@@ -81,6 +81,7 @@ steps:
           python tests/test_rm_math.py
           python tests/test_rm_math_dapo.py
           python tests/test_dp_schedule.py
+          python tests/test_mem_agent_nvlink_detect.py
           python tests/test_cp_utils.py
           python tests/test_metric_report.py
           python tests/test_metric_report_dist.py
