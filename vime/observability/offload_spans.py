@@ -13,9 +13,8 @@ This module measures the breakdown. It is disabled unless
 span, and it only accumulates ``perf_counter()`` deltas: no tensor work, no extra
 Ray calls, no change to any value that is produced or returned.
 
-Spans nest, so a parent's ``total_s`` includes its children. The spans recorded
-in `Actor.sleep()` / `Actor.wake_up()` are disjoint segments of the same call,
-which is what makes their sum comparable to the call's own total.
+Spans nest, so a parent's ``total_s`` includes its children. ``accounted_s``
+only includes root spans, avoiding double counting nested measurements.
 """
 
 from __future__ import annotations
@@ -26,25 +25,36 @@ import os
 import time
 
 _ENABLED = os.environ.get("VIME_OFFLOAD_SPANS") == "1"
+_clock = time.perf_counter
+
+
+def enabled() -> bool:
+    return _ENABLED
 
 
 class Spans:
     def __init__(self) -> None:
         self.totals: dict[str, float] = {}
         self.counts: dict[str, int] = {}
+        self.root_total_s = 0.0
+        self.depth = 0
 
     @contextlib.contextmanager
     def span(self, name: str):
         if not _ENABLED:
             yield
             return
-        start = time.perf_counter()
+        start = _clock()
+        self.depth += 1
         try:
             yield
         finally:
-            elapsed = time.perf_counter() - start
+            elapsed = _clock() - start
+            self.depth -= 1
             self.totals[name] = self.totals.get(name, 0.0) + elapsed
             self.counts[name] = self.counts.get(name, 0) + 1
+            if self.depth == 0:
+                self.root_total_s += elapsed
 
 
 _current = Spans()
@@ -57,6 +67,7 @@ def span(name: str):
 def reset() -> None:
     _current.totals.clear()
     _current.counts.clear()
+    _current.root_total_s = 0.0
 
 
 def snapshot() -> tuple[dict[str, float], dict[str, int]]:
@@ -68,19 +79,13 @@ def emit(label: str, total_s: float, logger) -> None:
     if not _ENABLED:
         return
     totals, counts = snapshot()
-    payload = {
-        name: {"total_s": round(value, 6), "calls": counts.get(name, 0)}
-        for name, value in sorted(totals.items(), key=lambda kv: -kv[1])
-    }
-    # The recorded spans are disjoint segments of one call, so their sum is what
-    # the breakdown actually accounts for; the remainder is call overhead. Summing
-    # the rounded entries keeps `accounted_s` equal to the table next to it.
-    accounted = round(sum(entry["total_s"] for entry in payload.values()), 6)
+    payload = {name: {"total_s": round(value, 6), "calls": counts.get(name, 0)} for name, value in sorted(totals.items(), key=lambda kv: -kv[1])}
+    accounted = _current.root_total_s
     logger.info(
         "OFFLOAD_SPANS %s total_s=%.6f accounted_s=%.6f unaccounted_s=%.6f %s",
         label,
         total_s,
         accounted,
-        round(total_s - accounted, 6),
+        total_s - accounted,
         json.dumps(payload, separators=(",", ":")),
     )

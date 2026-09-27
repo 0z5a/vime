@@ -16,6 +16,7 @@ from transformers import AutoConfig, AutoTokenizer
 from vime.observability import train_data_utils, train_metric_utils
 from vime.observability.logging_utils import init_tracking
 from vime.observability.offload_spans import emit as emit_offload_spans
+from vime.observability.offload_spans import enabled as offload_spans_enabled
 from vime.observability.offload_spans import reset as reset_offload_spans
 from vime.observability.offload_spans import span as offload_span
 from vime.observability.profile_utils import TrainProfiler
@@ -178,8 +179,9 @@ class MegatronTrainRayActor(TrainRayActor):
     def sleep(self) -> None:
         assert self.args.offload_train
 
-        started = time.perf_counter()
-        reset_offload_spans()
+        started = time.perf_counter() if offload_spans_enabled() else None
+        if started is not None:
+            reset_offload_spans()
         with offload_span("sleep.clear_memory"):
             clear_memory(clear_host_memory=True)
         with offload_span("sleep.print_memory_before"):
@@ -200,13 +202,15 @@ class MegatronTrainRayActor(TrainRayActor):
 
         with offload_span("sleep.print_memory_after"):
             print_memory("after offload model")
-        emit_offload_spans("sleep", time.perf_counter() - started, logger)
+        if started is not None:
+            emit_offload_spans("sleep", time.perf_counter() - started, logger)
 
     @timer
     def wake_up(self) -> None:
         assert self.args.offload_train
-        started = time.perf_counter()
-        reset_offload_spans()
+        started = time.perf_counter() if offload_spans_enabled() else None
+        if started is not None:
+            reset_offload_spans()
         with offload_span("wake.print_memory_before"):
             print_memory("before wake_up model")
 
@@ -232,7 +236,8 @@ class MegatronTrainRayActor(TrainRayActor):
                 self._switch_model("actor")
         with offload_span("wake.print_memory_after"):
             print_memory("after wake_up model")
-        emit_offload_spans("wake_up", time.perf_counter() - started, logger)
+        if started is not None:
+            emit_offload_spans("wake_up", time.perf_counter() - started, logger)
 
     def _get_rollout_data(self, rollout_data_ref: Box) -> RolloutBatch:
         # Fetch data through ray on CPU, not sure if this will be performance bottleneck.

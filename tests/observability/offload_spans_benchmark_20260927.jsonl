@@ -1,0 +1,12 @@
+{"arm": "A", "mode": "disabled", "pair_id": "01", "median_ns_per_span": 1112.55076, "cycles_ns_per_span": [1462.80208, 1158.51072, 1099.27894, 1127.62764, 1092.22812, 1112.55076]}
+{"arm": "B", "mode": "disabled", "pair_id": "01", "median_ns_per_span": 1120.30268, "cycles_ns_per_span": [1606.39002, 1196.10328, 1083.82714, 1126.13246, 1083.84618, 1120.30268]}
+{"arm": "B", "mode": "disabled", "pair_id": "02", "median_ns_per_span": 1082.23618, "cycles_ns_per_span": [1441.48018, 1104.51592, 1082.23618, 1079.01264, 1081.4144, 1285.3736]}
+{"arm": "A", "mode": "disabled", "pair_id": "02", "median_ns_per_span": 1313.93898, "cycles_ns_per_span": [1476.84926, 1090.89152, 1115.68702, 1975.47496, 1313.93898, 2189.20644]}
+{"arm": "A", "mode": "disabled", "pair_id": "03", "median_ns_per_span": 1125.0687, "cycles_ns_per_span": [1465.8101, 1125.0687, 1109.15838, 1170.10922, 1134.7253, 1101.11024]}
+{"arm": "B", "mode": "disabled", "pair_id": "03", "median_ns_per_span": 1095.25644, "cycles_ns_per_span": [1429.05162, 1107.31636, 1089.1701, 1176.21192, 1088.5862, 1095.25644]}
+{"arm": "A", "mode": "enabled", "pair_id": "01", "median_ns_per_span": 1466.24616, "cycles_ns_per_span": [1895.20914, 1475.4947, 1469.3215, 1466.24616, 1465.97858, 1463.06062]}
+{"arm": "B", "mode": "enabled", "pair_id": "01", "median_ns_per_span": 1495.13144, "cycles_ns_per_span": [1853.92876, 1494.55442, 1507.65312, 1495.13144, 1497.48616, 1481.23506]}
+{"arm": "B", "mode": "enabled", "pair_id": "02", "median_ns_per_span": 1496.84714, "cycles_ns_per_span": [1886.85582, 1504.15962, 1496.84714, 1502.21236, 1496.5043, 1481.61102]}
+{"arm": "A", "mode": "enabled", "pair_id": "02", "median_ns_per_span": 1458.75182, "cycles_ns_per_span": [1851.58216, 1469.28712, 1456.61424, 1462.24694, 1458.75182, 1456.94884]}
+{"arm": "A", "mode": "enabled", "pair_id": "03", "median_ns_per_span": 1469.39008, "cycles_ns_per_span": [2396.01048, 1540.15012, 1468.84596, 1479.17272, 1469.39008, 1457.2797]}
+{"arm": "B", "mode": "enabled", "pair_id": "03", "median_ns_per_span": 1496.17192, "cycles_ns_per_span": [1847.27708, 1496.67878, 1486.06242, 1496.17192, 1508.51658, 1470.87254]}

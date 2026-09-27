@@ -1,10 +1,8 @@
-"""The offload spans are opt-in and must stay free when they are off."""
+"""The offload spans are opt-in and account for nested calls once."""
 
 from __future__ import annotations
 
-import importlib
 import json
-import time
 
 import pytest
 
@@ -12,8 +10,6 @@ from vime.observability import offload_spans
 
 
 class _Recorder:
-    """Stand-in for a logger: `emit` only needs the %-style ``info`` call."""
-
     def __init__(self) -> None:
         self.messages: list[str] = []
 
@@ -22,96 +18,108 @@ class _Recorder:
 
 
 @pytest.fixture(autouse=True)
-def _restore_default_module():
-    """Every case reloads the module; leave it as the rest of the suite found it."""
+def _reset_spans():
+    offload_spans.reset()
     yield
-    importlib.reload(offload_spans)
+    offload_spans.reset()
 
 
-def _module(monkeypatch, *, enabled: bool):
-    if enabled:
-        monkeypatch.setenv("VIME_OFFLOAD_SPANS", "1")
-    else:
-        monkeypatch.delenv("VIME_OFFLOAD_SPANS", raising=False)
-    return importlib.reload(offload_spans)
+def _module(monkeypatch, *, enabled: bool, ticks: list[float]):
+    monkeypatch.setattr(offload_spans, "_ENABLED", enabled)
+    monkeypatch.setattr(offload_spans, "_clock", iter(ticks).__next__)
+    return offload_spans
 
 
-def test_disabled_by_default_records_nothing(monkeypatch):
-    module = _module(monkeypatch, enabled=False)
-    module.reset()
-    with module.span("sleep.memory_saver_pause"):
-        time.sleep(0.001)
-    assert module.snapshot() == ({}, {})
+def _emitted(module, total_s: float) -> tuple[str, dict]:
+    recorder = _Recorder()
+    module.emit("sleep", total_s, recorder)
+    prefix, payload = recorder.messages[-1].rsplit(" ", 1)
+    return prefix, json.loads(payload)
 
 
-def test_disabled_emit_is_silent(monkeypatch):
-    module = _module(monkeypatch, enabled=False)
+def test_disabled_does_not_read_clock_or_emit(monkeypatch):
+    module = _module(monkeypatch, enabled=False, ticks=[])
+    with module.span("sleep.pause"):
+        pass
     recorder = _Recorder()
     module.emit("sleep", 1.0, recorder)
+    assert module.snapshot() == ({}, {})
     assert recorder.messages == []
 
 
-def test_enabled_accumulates_per_name(monkeypatch):
-    module = _module(monkeypatch, enabled=True)
-    module.reset()
-    for _ in range(3):
-        with module.span("sleep.memory_saver_pause"):
-            time.sleep(0.001)
-    totals, counts = module.snapshot()
-    assert counts == {"sleep.memory_saver_pause": 3}
-    assert totals["sleep.memory_saver_pause"] >= 0.003
+def test_enabled_accumulates_repeated_spans(monkeypatch):
+    module = _module(monkeypatch, enabled=True, ticks=[0.0, 0.125, 0.2, 0.45])
+    with module.span("sleep.pause"):
+        pass
+    with module.span("sleep.pause"):
+        pass
+    assert module.snapshot() == ({"sleep.pause": pytest.approx(0.375)}, {"sleep.pause": 2})
+    prefix, _ = _emitted(module, 0.5)
+    assert "accounted_s=0.375000" in prefix
 
 
-def test_parent_includes_children(monkeypatch):
-    module = _module(monkeypatch, enabled=True)
-    module.reset()
+def test_nested_child_is_not_double_counted(monkeypatch):
+    module = _module(monkeypatch, enabled=True, ticks=[0.0, 0.1, 0.3, 0.5])
     with module.span("sleep.clear_memory"):
         with module.span("sleep.clear_memory.empty_cache"):
-            time.sleep(0.001)
-    totals, counts = module.snapshot()
-    assert counts == {"sleep.clear_memory": 1, "sleep.clear_memory.empty_cache": 1}
-    assert totals["sleep.clear_memory"] >= totals["sleep.clear_memory.empty_cache"]
+            pass
+    prefix, payload = _emitted(module, 0.6)
+    assert payload["sleep.clear_memory"] == {"total_s": 0.5, "calls": 1}
+    assert payload["sleep.clear_memory.empty_cache"] == {"total_s": 0.2, "calls": 1}
+    assert "accounted_s=0.500000 unaccounted_s=0.100000" in prefix
 
 
-def test_reset_clears_the_accumulator(monkeypatch):
-    module = _module(monkeypatch, enabled=True)
-    with module.span("wake.memory_saver_resume"):
+def test_dotted_siblings_both_count_as_roots(monkeypatch):
+    module = _module(monkeypatch, enabled=True, ticks=[0.0, 0.2, 0.3, 0.6])
+    with module.span("sleep.copy"):
         pass
-    assert module.snapshot() != ({}, {})
-    module.reset()
-    assert module.snapshot() == ({}, {})
-
-
-def test_emit_reports_payload_and_accounted_share(monkeypatch):
-    module = _module(monkeypatch, enabled=True)
-    module.reset()
-    with module.span("sleep.clear_memory"):
-        time.sleep(0.002)
-    with module.span("sleep.memory_saver_pause"):
+    with module.span("sleep.copy.h2d"):
         pass
-
-    recorder = _Recorder()
-    module.emit("sleep", 1.5, recorder)
-    prefix, payload = recorder.messages[-1].rsplit(" ", 1)
-
-    assert prefix.startswith("OFFLOAD_SPANS sleep total_s=1.500000 accounted_s=")
-    parsed = json.loads(payload)
-    assert set(parsed) == {"sleep.clear_memory", "sleep.memory_saver_pause"}
-    accounted = float(prefix.split("accounted_s=")[1].split(" ")[0])
-    unaccounted = float(prefix.split("unaccounted_s=")[1])
-    assert accounted == pytest.approx(sum(entry["total_s"] for entry in parsed.values()), abs=1e-6)
-    assert unaccounted == pytest.approx(1.5 - accounted, abs=1e-6)
+    prefix, _ = _emitted(module, 0.7)
+    assert "accounted_s=0.500000" in prefix
 
 
-def test_emit_payload_is_sorted_by_time(monkeypatch):
-    module = _module(monkeypatch, enabled=True)
+def test_exception_unwinds_nesting_before_next_span(monkeypatch):
+    module = _module(monkeypatch, enabled=True, ticks=[0.0, 0.1, 0.2, 0.3, 0.4, 0.5])
+    with pytest.raises(RuntimeError, match="boom"):
+        with module.span("sleep.parent"):
+            with module.span("sleep.child"):
+                raise RuntimeError("boom")
+    with module.span("sleep.next"):
+        pass
+    prefix, _ = _emitted(module, 0.5)
+    assert "accounted_s=0.400000" in prefix
+    assert module._current.depth == 0
+
+
+def test_reset_starts_a_fresh_call(monkeypatch):
+    module = _module(monkeypatch, enabled=True, ticks=[0.0, 0.1, 0.2, 0.25])
+    with module.span("sleep.first"):
+        pass
     module.reset()
+    with module.span("sleep.second"):
+        pass
+    prefix, payload = _emitted(module, 0.1)
+    assert set(payload) == {"sleep.second"}
+    assert "accounted_s=0.050000" in prefix
+
+
+def test_accounting_uses_raw_durations_before_rounding(monkeypatch):
+    module = _module(monkeypatch, enabled=True, ticks=[0.0, 0.0000006, 0.0000007, 0.0000013])
+    with module.span("sleep.a"):
+        pass
+    with module.span("sleep.b"):
+        pass
+    prefix, payload = _emitted(module, 0.0000023)
+    assert sum(entry["total_s"] for entry in payload.values()) == pytest.approx(0.000002)
+    assert "accounted_s=0.000001 unaccounted_s=0.000001" in prefix
+
+
+def test_emit_payload_is_sorted_by_duration(monkeypatch):
+    module = _module(monkeypatch, enabled=True, ticks=[0.0, 0.2, 0.3, 0.4])
     with module.span("sleep.slow"):
-        time.sleep(0.002)
+        pass
     with module.span("sleep.fast"):
         pass
-
-    recorder = _Recorder()
-    module.emit("sleep", 0.0, recorder)
-    parsed = json.loads(recorder.messages[-1].rsplit(" ", 1)[1])
-    assert list(parsed) == ["sleep.slow", "sleep.fast"]
+    _, payload = _emitted(module, 0.5)
+    assert list(payload) == ["sleep.slow", "sleep.fast"]
