@@ -79,7 +79,10 @@ def emit(label: str, total_s: float, logger) -> None:
     if not _ENABLED:
         return
     totals, counts = snapshot()
-    payload = {name: {"total_s": round(value, 6), "calls": counts.get(name, 0)} for name, value in sorted(totals.items(), key=lambda kv: -kv[1])}
+    payload = {
+        name: {"total_s": round(value, 6), "calls": counts.get(name, 0)}
+        for name, value in sorted(totals.items(), key=lambda kv: -kv[1])
+    }
     accounted = _current.root_total_s
     logger.info(
         "OFFLOAD_SPANS %s total_s=%.6f accounted_s=%.6f unaccounted_s=%.6f %s",
