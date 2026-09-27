@@ -54,7 +54,9 @@ class TrajectoryGroup:
     ready: bool
 
     def __post_init__(self) -> None:
-        if self.schema_version != 1 or not all((self.job_id, self.group_id, self.attempt_id, self.sampling_config_digest)):
+        if self.schema_version != 1 or not all(
+            (self.job_id, self.group_id, self.attempt_id, self.sampling_config_digest)
+        ):
             raise ValueError("invalid trajectory group schema or identity")
         if self.restart_epoch < 0 or self.expected_children <= 0:
             raise ValueError("invalid restart epoch or group size")
@@ -62,7 +64,10 @@ class TrajectoryGroup:
             raise ValueError("trajectory group is incomplete")
         if len({child.sample_id for child in self.children}) != len(self.children):
             raise ValueError("duplicate sample_id in trajectory group")
-        if not self.rollout_policy_version or any(not child.weight_versions or set(child.weight_versions) != {self.rollout_policy_version} for child in self.children):
+        if not self.rollout_policy_version or any(
+            not child.weight_versions or set(child.weight_versions) != {self.rollout_policy_version}
+            for child in self.children
+        ):
             raise ValueError("missing or mixed rollout policy version")
         if self.byte_count < 0 or (self.ready and (not self.payload_ref or self.byte_count == 0)):
             raise ValueError("ready trajectory group needs payload and byte count")
