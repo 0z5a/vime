@@ -1,20 +1,8 @@
-"""Opt-in wall-clock spans for the colocate offload/onload dance.
+"""Optional colocate offload/onload timing with nested span accounting.
 
-In colocate mode every step hands the GPUs back and forth between Megatron and
-vLLM, and `Actor.sleep()` / `Actor.wake_up()` sit on the critical path doing it.
-The actor's own `@timer` reports the two totals, which on a small-model
-short-response workload is the largest single block in the step -- but not where
-inside them the time goes. `sleep()` alone is `clear_memory(clear_host_memory=True)`
-+ `destroy_process_groups()` + `torch_memory_saver.pause()` + two `print_memory()`
-calls, and those have very different fixes.
-
-This module measures the breakdown. It is disabled unless
-``VIME_OFFLOAD_SPANS=1``, so the default path pays nothing but one dict lookup per
-span, and it only accumulates ``perf_counter()`` deltas: no tensor work, no extra
-Ray calls, no change to any value that is produced or returned.
-
-Spans nest, so a parent's ``total_s`` includes its children. ``accounted_s``
-only includes root spans, avoiding double counting nested measurements.
+Disabled spans do not read the clock or emit logs; context-manager overhead is
+measured in the accompanying benchmark. Enabled spans only record wall time.
+Parent totals include children, while ``accounted_s`` counts roots once.
 """
 
 from __future__ import annotations
