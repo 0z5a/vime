@@ -70,7 +70,9 @@ def build_token_map(sequences: tuple[DraftSequence, ...], max_tokens: int) -> Dr
         start = offsets[-1]
         for position, mask in enumerate(sequence.loss_mask[:-1]):
             if mask:
-                selected.append(DraftToken(sequence.sample_id, position, start + position, sequence.token_ids[position + 1]))
+                selected.append(
+                    DraftToken(sequence.sample_id, position, start + position, sequence.token_ids[position + 1])
+                )
                 if len(selected) > max_tokens:
                     raise ValueError("selected tokens exceed max_tokens")
         offsets.append(start + len(sequence.token_ids))
@@ -106,7 +108,15 @@ class DraftFeatureManifest:
     def __post_init__(self) -> None:
         if self.schema_version != 1:
             raise ValueError(f"unsupported draft feature schema_version: {self.schema_version}")
-        if not all((self.feature_batch_id, self.run_id, self.policy_source_version, self.model_config_digest, self.tokenizer_digest)):
+        if not all(
+            (
+                self.feature_batch_id,
+                self.run_id,
+                self.policy_source_version,
+                self.model_config_digest,
+                self.tokenizer_digest,
+            )
+        ):
             raise ValueError("feature batch identity, source version, and digests are required")
         if self.round_id < 0:
             raise ValueError("round_id must be nonnegative")
@@ -122,5 +132,7 @@ class DraftFeatureManifest:
             raise ValueError("draft feature schema v1 supports only TP=PP=CP=DP=1")
         if self.dtype not in ("float16", "bfloat16", "float32"):
             raise ValueError("unsupported feature dtype")
-        if self.byte_count < 0 or (self.ready and (not self.payload_ref or not self.head_snapshot_ref or self.byte_count == 0)):
+        if self.byte_count < 0 or (
+            self.ready and (not self.payload_ref or not self.head_snapshot_ref or self.byte_count == 0)
+        ):
             raise ValueError("ready feature batch requires payload, head snapshot, and byte count")

@@ -1,6 +1,12 @@
 import pytest
 
-from vime.utils.draft_feature_contract import DraftFeatureManifest, DraftSequence, DraftToken, DraftTokenMap, build_token_map
+from vime.utils.draft_feature_contract import (
+    DraftFeatureManifest,
+    DraftSequence,
+    DraftToken,
+    DraftTokenMap,
+    build_token_map,
+)
 
 
 def _sequences():
@@ -37,14 +43,20 @@ def _manifest(**changes):
 def test_reordered_packed_token_map_preserves_targets_and_versions():
     token_map = build_token_map(_sequences(), 3)
     assert token_map.sequence_offsets == (0, 4, 7)
-    assert [(token.sample_id, token.token_position, token.packed_position, token.target_token_id) for token in token_map.selected_tokens] == [
+    assert [
+        (token.sample_id, token.token_position, token.packed_position, token.target_token_id)
+        for token in token_map.selected_tokens
+    ] == [
         (22, 1, 1, 12),
         (22, 2, 2, 13),
         (11, 0, 4, 21),
     ]
     manifest = _manifest(token_map=token_map)
     assert manifest.policy_source_version == "target-v3"
-    assert [sequence.weight_versions for sequence in manifest.token_map.sequences] == [("rollout-v2",), ("rollout-v1",)]
+    assert [sequence.weight_versions for sequence in manifest.token_map.sequences] == [
+        ("rollout-v2",),
+        ("rollout-v1",),
+    ]
 
 
 def test_empty_response_and_masked_tail_cannot_cross_sequence_boundary():
