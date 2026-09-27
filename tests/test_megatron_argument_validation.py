@@ -259,6 +259,12 @@ def make_vime_validate_args(**overrides):
         update_weight_local_checkpoint_dir=None,
         update_weight_mode="full",
         rollout_temperature=1.0,
+        draft_feature_mode="off",
+        draft_feature_output_dir=None,
+        draft_feature_run_id=None,
+        draft_feature_max_tokens=128,
+        draft_feature_max_batches=8,
+        draft_feature_max_bytes=1 << 30,
     )
     values.update(overrides)
     return types.SimpleNamespace(**values)

@@ -7,6 +7,7 @@ Scope: the optional LM-head-input collector in this PR, stacked on the #452 feat
 | Check | Result |
 | --- | --- |
 | Contract, provenance, CPU/CUDA collector tests | 18 passed with `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1`, including the CUDA owned-storage and head-logit reconstruction test |
+| Existing argument-validation suite | 22 passed after adding the new opt-in defaults to its synthetic argument fixture |
 | Qwen3-0.6B, collector off | Full vLLM rollout → Megatron reference/actor forward → backward/optimizer → checkpoint → weight sync passed; `draft-off-smoke.log` |
 | Qwen3-0.6B, collector on | Same full path passed; `draft-on-smoke3.log` |
 | Real-model export | One ready batch, 35 selected tokens in two groups, 311,236,608 bytes including a tied LM-head snapshot; token targets, source/head versions and model/tokenizer digests validated |
