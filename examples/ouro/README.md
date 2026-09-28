@@ -80,3 +80,15 @@ Mixed-depth microbatch bucketing is not implemented. Establish fixed-K correctne
 and a useful quality/compute tradeoff before adding that scheduler. Compare fixed
 K=4, fixed K=2/3 and the simple mixed schedule from the same checkpoint and data.
 Do not infer equal reward, convergence or a speedup from reduced loop counts alone.
+
+## Validation
+
+```bash
+python -m pytest tests/test_ouro_model.py tests/test_ouro_budget.py tests/test_reward_normalization.py -q
+torchrun --standalone --nproc_per_node=2 examples/ouro/check_dp_plan.py
+```
+
+The second command checks both all-rank agreement and rejection of mismatched
+budgets using Gloo on CPU. Full-model numerical evidence is in
+`docs/validation/ouro-h20-correctness-20260928.md`; reward/cost evidence from the
+short pilot is reported separately and does not extend the numerical test's scope.
