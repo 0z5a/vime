@@ -4,6 +4,19 @@ import torch
 from vime.utils.tensor_backper import TensorBackuper
 
 
+def test_live_actor_reacquires_storage_after_completed_load():
+    model = torch.nn.Linear(3, 2)
+    backuper = TensorBackuper.create(model.named_parameters, single_tag="actor")
+    previous = backuper.get("actor")
+    restored = {name: value.detach().clone() + 1 for name, value in model.state_dict().items()}
+    model.load_state_dict(restored, assign=True)
+    current = backuper.get("actor")
+    for name, parameter in model.named_parameters():
+        assert current[name].data_ptr() == parameter.data_ptr()
+        assert current[name].data_ptr() != previous[name].data_ptr()
+        torch.testing.assert_close(current[name], restored[name], rtol=0, atol=0)
+
+
 def test_live_actor_tracks_optimizer_updates_without_snapshot_or_sync(monkeypatch):
     model = torch.nn.Linear(3, 2)
     optimizer = torch.optim.AdamW(model.parameters(), lr=0.01)
