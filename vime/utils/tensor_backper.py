@@ -75,41 +75,26 @@ class _TensorBackuperNormal(TensorBackuper):
 
 
 class _TensorBackuperNoop(TensorBackuper):
-    def __init__(self, source_getter, single_tag):
+    """Expose live resident weights when no alternate policy needs a snapshot."""
+
+    def __init__(self, source_getter: _SourceGetter, single_tag: str):
         super().__init__(source_getter=source_getter)
         self._single_tag = single_tag
-        # Sanity check for safety
-        self._backup_hash_dict = None
 
     @property
     def backup_tags(self):
         return [self._single_tag]
 
-    def get(self, tag: str):
-        ans = dict(self._source_getter())
-        ans = {k: v.detach() for k, v in ans.items()}
-        assert _compute_hash_dict(ans) == self._backup_hash_dict
-        return ans
+    def _check_tag(self, tag: str) -> None:
+        if tag != self._single_tag:
+            raise ValueError(f"Live weights are only available for {self._single_tag}, got {tag}")
+
+    def get(self, tag: str) -> dict[str, torch.Tensor]:
+        self._check_tag(tag)
+        return {name: tensor.detach() for name, tensor in self._source_getter()}
 
     def backup(self, tag: str) -> None:
-        assert tag == self._single_tag
-        self._backup_hash_dict = _compute_hash_dict(dict(self._source_getter()))
-        torch.cuda.synchronize()
+        self._check_tag(tag)
 
     def restore(self, tag: str) -> None:
-        assert tag == self._single_tag
-        assert _compute_hash_dict(dict(self._source_getter())) == self._backup_hash_dict
-        torch.cuda.synchronize()
-
-
-def _compute_hash_dict(tensors: dict[str, torch.Tensor]):
-    return {k: _compute_hash_tensor(v) for k, v in tensors.items()}
-
-
-def _compute_hash_tensor(x: torch.Tensor):
-    # Not a real/good hash, but pretty fast
-    x = x.contiguous()
-    x = x.view(-1)
-    x = x.view(torch.uint32)
-    x = x.sum()
-    return x.item()
+        self._check_tag(tag)
