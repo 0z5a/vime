@@ -33,6 +33,10 @@ This compatibility option does not turn the recipe into fixed-trajectory replay.
 - `--ouro-depths 2` and `--ouro-depths 3` are fixed-small-budget controls.
 - `--ouro-depths 2 3 4` cycles global K deterministically by update ID. Every rank
   verifies the same depth, policy version and execution configuration before work.
+- `--ouro-cuda-graphs` replays the companion's recurrent CUDA graphs across full
+  weight publications. Metrics include capture, replay and fallback counts.
+- `--ouro-reward-function vime_plugins.ouro.reward.boxed_answer` selects exact
+  boxed-answer matching for short integer tasks. The default remains Deepscaler.
 - `--ouro-run-dir DIR` stores raw per-rank metrics, evaluations and completion markers.
 - `--ouro-eval-data FILE --ouro-eval-prompts N --ouro-eval-interval M` evaluates each
   of K=2/3/4 on a separate fixed dataset. Use a meaningful held-out sample count for
@@ -48,7 +52,7 @@ The final distributed checkpoint includes optimizer and RNG state. After a new
 checkpoint is complete, earlier `iter_*` directories in that run's save directory
 are removed. Use a separate save directory for each experiment.
 
-The two-GPU pilot launcher accepts paths without changing the environment:
+The pilot launcher defaults to two GPUs; set `GPUS_PER_NODE=1` for one GPU:
 
 ```bash
 bash examples/ouro/run.sh /models/ouro pilot.jsonl /runs/ouro-mixed 6 \
@@ -69,7 +73,8 @@ The training forward uses exactly the depth that generated its old logprobs.
 No constant `lambda*K` reward penalty is introduced: it would cancel within a
 fixed-K group. This is externally budget-conditioned training, not learned halting.
 
-Physical layer hooks measure rollout prefill/decode block-token counts. Training
+Rollout counts eager layer invocations and executed graph rows, excluding capture
+warmup from decode work. Training
 reports layer invocation tokens including packing padding and recomputation;
 these counters are not FLOPs or a measured backward cost. Step timing includes
 rollout, scoring, training and publication. Job timing also includes initialization,
@@ -92,3 +97,6 @@ The second command checks both all-rank agreement and rejection of mismatched
 budgets using Gloo on CPU. Full-model numerical evidence is in
 `docs/validation/ouro-h20-correctness-20260928.md`; reward/cost evidence from the
 short pilot is reported separately and does not extend the numerical test's scope.
+
+The [Thor CUDA graph report](../../docs/validation/ouro-thor-20260930/README.md)
+contains full-model speed tables, real GRPO gradients and fresh-process checkpoint parity.

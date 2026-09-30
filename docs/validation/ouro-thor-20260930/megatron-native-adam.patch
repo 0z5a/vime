@@ -1,0 +1,43 @@
+diff --git a/megatron/core/optimizer/distrib_optimizer.py b/megatron/core/optimizer/distrib_optimizer.py
+index 0c828d0..4173b17 100644
+--- a/megatron/core/optimizer/distrib_optimizer.py
++++ b/megatron/core/optimizer/distrib_optimizer.py
+@@ -847,8 +847,8 @@ class DistributedOptimizer(MixedPrecisionOptimizer):
+         # Extract 'step', for non-Apex/TE support.
+         if not HAVE_APEX_OR_TE:
+             steps = list(set([s["step"].item() for s in inner_state_dict["state"].values()]))
+-            assert len(steps) == 1
+-            step = steps[0]
++            assert len(steps) <= 1, f"steps: {steps}"
++            step = steps[0] if steps else 0
+         elif isinstance(self.optimizer, HybridDeviceOptimizer):
+             step = None
+             for optimizer in self.optimizer.sub_optimizers:
+@@ -1040,7 +1040,9 @@ class DistributedOptimizer(MixedPrecisionOptimizer):
+ 
+             for s in state_dict_state.values():
+                 # Native PyTorch state dict requires step (i.e., iteration).
+-                s["step"] = step
++                s["step"] = step.detach().clone()
++            for group in state_dict_param_groups:
++                group.pop("step", None)
+         elif isinstance(self.optimizer, HybridDeviceOptimizer):
+             # Handle Torch AdamW special case, which, unlike FusedAdam, Torch AdamW
+             # has an extra optimizer state "step".
+@@ -1125,6 +1127,7 @@ class DistributedOptimizer(MixedPrecisionOptimizer):
+             for k, v in optim_state.items():
+                 if isinstance(v, torch.Tensor):
+                     tensors[k] = v
++        tensors.pop("step", None)
+         return tensors
+ 
+     @staticmethod
+@@ -1231,6 +1234,8 @@ class DistributedOptimizer(MixedPrecisionOptimizer):
+                 if isinstance(v, torch.Tensor):
+                     dst_tensors[k] = v
+             for key in dst_tensors:
++                if key == "step":
++                    continue
+                 if not isinstance(tensors[key], torch.Tensor):
+                     continue
+                 dst_tensors[key].copy_(tensors[key])

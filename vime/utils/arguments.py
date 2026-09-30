@@ -7,8 +7,6 @@ from typing import Any
 
 import yaml
 
-from vime.backends.vllm_utils.arguments import validate_args as vllm_validate_args
-from vime.backends.vllm_utils.arguments import vllm_parse_args
 from vime.backends.vllm_utils.external import apply_external_engine_info_to_args
 from vime.utils.eval_config import EvalDatasetConfig, build_eval_dataset_configs, ensure_dataset_list
 from vime.utils.logging_utils import configure_logger
@@ -1698,6 +1696,8 @@ def parse_args(add_custom_arguments=None):
     # Skipped when vllm servers are not needed.
     vllm_ns = None
     if not skip_vllm:
+        from vime.backends.vllm_utils.arguments import vllm_parse_args
+
         vllm_ns = vllm_parse_args()
 
     # Phase 2: Parse megatron + vime args.
@@ -1726,6 +1726,8 @@ def parse_args(add_custom_arguments=None):
         megatron_validate_args(args)
 
     if not args.debug_train_only:
+        from vime.backends.vllm_utils.arguments import validate_args as vllm_validate_args
+
         vllm_validate_args(args)
 
     return args

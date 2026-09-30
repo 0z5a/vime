@@ -16,6 +16,7 @@ import torch
 import torch.distributed as dist
 from megatron.core.utils import unwrap_model
 from transformers import AutoTokenizer
+from vllm_rlt.config import ExecutionConfig
 from vllm_rlt.engine.rl_engine import RLEngine
 from vllm_rlt.models.ouro import OuroForCausalLM
 
@@ -24,9 +25,9 @@ from vime.backends.megatron_utils.data import get_data_iterator
 from vime.backends.megatron_utils.initialize import init
 from vime.backends.megatron_utils.loss import compute_advantages_and_returns
 from vime.backends.megatron_utils.model import save, setup_model_and_optimizer, train
-from vime.rollout.rm_hub.deepscaler import get_deepscaler_rule_based_reward
 from vime.utils.arguments import parse_args
 from vime.utils.distributed_utils import init_gloo_group
+from vime.utils.misc import load_function
 from vime.utils.reward_normalization import normalize_rewards
 from vime_plugins.ouro.budget import BudgetSchedule, ExecutionPlan, synchronize_plan
 
@@ -39,6 +40,10 @@ def add_arguments(parser):
     parser.add_argument("--ouro-eval-prompts", type=int, default=4)
     parser.add_argument("--ouro-eval-interval", type=int, default=3)
     parser.add_argument("--ouro-kv-blocks", type=int, default=4096)
+    parser.add_argument("--ouro-cuda-graphs", action="store_true")
+    parser.add_argument(
+        "--ouro-reward-function", default="vime.rollout.rm_hub.deepscaler.get_deepscaler_rule_based_reward"
+    )
     return parser
 
 
@@ -48,7 +53,7 @@ def encode_prompt(tokenizer, question) -> list[int]:
     return tokenizer.encode(question + "\nGive your final answer in \\boxed{}.\n###Response\n")
 
 
-def evaluate(args, engine: RLEngine, tokenizer, update: int, started: float) -> None:
+def evaluate(args, engine: RLEngine, tokenizer, reward_function, update: int, started: float) -> None:
     records = [json.loads(line) for line in args.ouro_eval_data.read_text().splitlines()]
     records = records[: args.ouro_eval_prompts][args.rank :: args.world_size]
     if not records:
@@ -71,7 +76,7 @@ def evaluate(args, engine: RLEngine, tokenizer, update: int, started: float) -> 
                             "K": loops,
                             "policy_version": result.policy_version,
                             "problem_id": row["metadata"]["problem_id"],
-                            "reward": get_deepscaler_rule_based_reward("###Response\n" + text, row["label"]),
+                            "reward": reward_function("###Response\n" + text, row["label"]),
                             "response_tokens": len(result.token_ids),
                             "finish_reason": result.finish_reason,
                             "elapsed_seconds": time.monotonic() - started,
@@ -86,6 +91,8 @@ def evaluate(args, engine: RLEngine, tokenizer, update: int, started: float) -> 
 def main():
     started = time.monotonic()
     args = parse_args(add_arguments)
+    args.ckpt_assume_constant_structure = False
+    reward_function = load_function(args.ouro_reward_function)
     if args.kl_coef or args.use_kl_loss or args.use_critic or args.rollout_top_p != 1:
         raise ValueError("First Ouro recipe supports GRPO without reference/critic and full-vocab sampling")
     if args.advantage_estimator != "grpo" or args.rollout_batch_size % args.world_size:
@@ -104,6 +111,7 @@ def main():
         "depths": list(schedule.depths),
         "seed": args.seed,
         "temperature": args.rollout_temperature,
+        "reward_function": args.ouro_reward_function,
         "prompts_per_update": args.rollout_batch_size,
         "group_size": args.n_samples_per_prompt,
         "max_response_tokens": args.rollout_max_response_len,
@@ -114,17 +122,24 @@ def main():
     start = 0
     if args.ouro_resume:
         manifest = json.loads((Path(args.load) / "ouro-plan.json").read_text())
+        manifest["contract"].setdefault(
+            "reward_function", "vime.rollout.rm_hub.deepscaler.get_deepscaler_rule_based_reward"
+        )
         if manifest["contract"] != contract:
             raise ValueError("Checkpoint budget schedule differs from requested schedule")
         iteration, _ = load_checkpoint(chunks, optimizer, scheduler, {}, False)
         start = iteration + 1
         if manifest["next_update"] != start:
             raise ValueError("Checkpoint and budget/data cursor disagree")
-    tokenizer = AutoTokenizer.from_pretrained(args.hf_checkpoint)
+    tokenizer = AutoTokenizer.from_pretrained(args.hf_checkpoint, trust_remote_code=False)
     rollout = OuroForCausalLM.from_pretrained(
         args.hf_checkpoint, device=torch.cuda.current_device(), dtype=torch.bfloat16
     )
-    engine = RLEngine(rollout, num_blocks=args.ouro_kv_blocks)
+    engine = RLEngine(
+        rollout,
+        num_blocks=args.ouro_kv_blocks,
+        execution_config=ExecutionConfig(cuda_graphs=args.ouro_cuda_graphs),
+    )
     engine.publish(dict(actor.named_parameters()), version=start + 1)
     (args.ouro_run_dir / f"contract-rank{args.rank}.json").write_text(json.dumps(contract, indent=2))
     records = [json.loads(line) for line in Path(args.prompt_data).read_text().splitlines()]
@@ -133,7 +148,7 @@ def main():
     normalization_args.rollout_batch_size = local_prompts
     log = args.ouro_run_dir / f"metrics-rank{args.rank}.jsonl"
     if args.ouro_eval_data is not None:
-        evaluate(args, engine, tokenizer, start, started)
+        evaluate(args, engine, tokenizer, reward_function, start, started)
     for update in range(start, args.num_rollout):
         step_started = time.monotonic()
         plan = ExecutionPlan(schedule.at(update), engine.policy_version, args.rollout_temperature)
@@ -163,7 +178,7 @@ def main():
             ):
                 raise ValueError("Rollout did not execute the requested policy")
         rewards = [
-            get_deepscaler_rule_based_reward("###Response\n" + tokenizer.decode(result.token_ids), label)
+            reward_function("###Response\n" + tokenizer.decode(result.token_ids), label)
             for result, label in zip(generated, labels, strict=True)
         ]
         sequences = [prompt + result.token_ids for prompt, result in zip(prompts, generated, strict=True)]
@@ -181,9 +196,7 @@ def main():
         compute_advantages_and_returns(args, data)
         actor.block_tokens = 0
         train_start = time.monotonic()
-        train(
-            update, chunks, optimizer, scheduler, get_data_iterator(data), [len(sequences)], [args.global_batch_size]
-        )
+        train(update, chunks, optimizer, scheduler, get_data_iterator(data), [len(sequences)], [args.global_batch_size])
         train_seconds = time.monotonic() - train_start
         publish_start = time.monotonic()
         engine.publish(dict(actor.named_parameters()), version=plan.policy_version + 1)
@@ -205,11 +218,15 @@ def main():
             "rollout_decode_block_tokens": engine.block_tokens["decode"],
             "trainer_layer_invocation_tokens_including_recompute": actor.block_tokens,
             "trainer_backward_profiled_cost": None,
+            "cuda_graphs": args.ouro_cuda_graphs,
         }
+        graphs = engine.model_runner.graphs
+        if graphs is not None:
+            stats.update(graph_captures=graphs.captures, graph_replays=graphs.replays, graph_fallbacks=graphs.fallbacks)
         with log.open("a") as stream:
             stream.write(json.dumps(stats) + "\n")
         if args.ouro_eval_data is not None and (update + 1) % args.ouro_eval_interval == 0:
-            evaluate(args, engine, tokenizer, update + 1, started)
+            evaluate(args, engine, tokenizer, reward_function, update + 1, started)
     # Retain the newest checkpoint only after its distributed save completes.
     save(args.num_rollout - 1, chunks, optimizer, scheduler)
     dist.barrier()
