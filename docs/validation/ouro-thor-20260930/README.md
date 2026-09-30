@@ -113,3 +113,7 @@ Ruff, Python compilation and shell syntax checks passed. The recurrent graph CUD
 unit test passed; pytest is absent from this existing environment. Model downloads
 and development overlapped. Validated model weights and optimizer checkpoints
 were removed after their evidence was saved; cleanup records are in `raw/`.
+
+The duplicate mirror download also completed naturally and passed the same SHA256
+check before deletion. The task model directory is empty; see
+[final cleanup](raw/mirror-cleanup.json). No process was killed.

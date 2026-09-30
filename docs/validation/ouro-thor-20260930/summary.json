@@ -12,5 +12,7 @@
     3
   ],
   "training_samples_equal": true,
-  "rollout_benchmark_pairs": 15
+  "rollout_benchmark_pairs": 15,
+  "task_model_directory_empty": true,
+  "all_task_model_weights_and_optimizer_checkpoints_removed": true
 }
