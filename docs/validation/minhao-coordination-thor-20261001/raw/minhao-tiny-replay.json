@@ -1,0 +1,147 @@
+{
+  "decode-2": {
+    "prompt_tokens": 10,
+    "exit_depths": [
+      4,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "effective_seed": 1104658210009498862,
+    "seed_replay_exact": true,
+    "score_errors": {
+      "actual_trace": {
+        "mean_absolute": 0.0015007257461547852,
+        "maximum_absolute": 0.005423545837402344
+      },
+      "uniform_decode_budget": {
+        "mean_absolute": 0.12848055362701416,
+        "maximum_absolute": 1.0107221603393555
+      },
+      "uniform_full_depth": {
+        "mean_absolute": 0.30470025539398193,
+        "maximum_absolute": 0.7779159545898438
+      }
+    }
+  },
+  "decode-3": {
+    "prompt_tokens": 10,
+    "exit_depths": [
+      4,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    "effective_seed": 2395970830490371576,
+    "seed_replay_exact": true,
+    "score_errors": {
+      "actual_trace": {
+        "mean_absolute": 3.5762786865234375e-07,
+        "maximum_absolute": 9.5367431640625e-07
+      },
+      "uniform_decode_budget": {
+        "mean_absolute": 0.062406063079833984,
+        "maximum_absolute": 0.4735603332519531
+      },
+      "uniform_full_depth": {
+        "mean_absolute": 0.09247422218322754,
+        "maximum_absolute": 0.3332796096801758
+      }
+    }
+  },
+  "decode-4": {
+    "prompt_tokens": 10,
+    "exit_depths": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "effective_seed": 4341574926832211551,
+    "seed_replay_exact": true,
+    "score_errors": {
+      "actual_trace": {
+        "mean_absolute": 3.5762786865234375e-07,
+        "maximum_absolute": 9.5367431640625e-07
+      },
+      "uniform_decode_budget": {
+        "mean_absolute": 0.003177165985107422,
+        "maximum_absolute": 0.0074310302734375
+      },
+      "uniform_full_depth": {
+        "mean_absolute": 0.003177165985107422,
+        "maximum_absolute": 0.0074310302734375
+      }
+    }
+  },
+  "early-exit": {
+    "prompt_tokens": 10,
+    "exit_depths": [
+      4,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "effective_seed": 211782598707156085,
+    "seed_replay_exact": true,
+    "score_errors": {
+      "actual_trace": {
+        "mean_absolute": 2.384185791015625e-07,
+        "maximum_absolute": 9.5367431640625e-07
+      },
+      "uniform_decode_budget": {
+        "mean_absolute": 0.2618511915206909,
+        "maximum_absolute": 0.8183536529541016
+      },
+      "uniform_full_depth": {
+        "mean_absolute": 0.2618511915206909,
+        "maximum_absolute": 0.8183536529541016
+      }
+    }
+  },
+  "delayed-exit": {
+    "prompt_tokens": 10,
+    "exit_depths": [
+      4,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    "effective_seed": 475639240230918590,
+    "seed_replay_exact": true,
+    "score_errors": {
+      "actual_trace": {
+        "mean_absolute": 2.384185791015625e-07,
+        "maximum_absolute": 9.5367431640625e-07
+      },
+      "uniform_decode_budget": {
+        "mean_absolute": 0.14497244358062744,
+        "maximum_absolute": 0.43059444427490234
+      },
+      "uniform_full_depth": {
+        "mean_absolute": 0.14497244358062744,
+        "maximum_absolute": 0.43059444427490234
+      }
+    }
+  }
+}

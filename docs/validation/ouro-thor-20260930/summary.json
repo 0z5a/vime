@@ -1,0 +1,18 @@
+{
+  "completed": true,
+  "full_checkpoint_tensor_count": 272,
+  "tiny_checkpoint_tensor_count": 30,
+  "full_optimizer_metadata_equal": true,
+  "graph_first_job_seconds": 210.1889600319846,
+  "graph_resume_job_seconds": 97.07471799902851,
+  "eager_job_seconds": 249.12895635300083,
+  "steady_updates": [
+    1,
+    2,
+    3
+  ],
+  "training_samples_equal": true,
+  "rollout_benchmark_pairs": 15,
+  "task_model_directory_empty": true,
+  "all_task_model_weights_and_optimizer_checkpoints_removed": true
+}

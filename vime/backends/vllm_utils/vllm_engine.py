@@ -646,6 +646,7 @@ def _compute_server_args(
         "enable_prompt_tokens_details": True,
         "enable_per_request_metrics": True,
         "enable_server_load_tracking": True,
+        "enable_scale_out": True,
     }
 
     if pp > 1:

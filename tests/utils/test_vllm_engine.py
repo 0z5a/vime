@@ -156,6 +156,11 @@ def test_launch_config_single_node(vllm_args):
 
 
 @pytest.mark.unit
+def test_compute_server_args_enables_rollout_inference_endpoint(vllm_args):
+    server_args, _ = mod._compute_server_args(vllm_args, rank=0, dist_init_addr=None, host="127.0.0.1", port=8000)
+    assert server_args["enable_scale_out"] is True
+
+
 def test_compute_server_args_preserves_non_topology_vllm_flags(vllm_args, monkeypatch):
     monkeypatch.setattr(mod, "_VLLM_SERVER_FIELDS", frozenset({"server_concurrency", "tool_call_parser"}))
     vllm_args.vllm_server_concurrency = 256

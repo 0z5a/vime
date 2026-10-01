@@ -1,0 +1,238 @@
+{
+  "ouro-fixed4-pilot": {
+    "step_seconds_max_rank": [
+      46.10179395228624,
+      43.50988328456879,
+      44.19692421332002,
+      43.9083148650825,
+      45.8850184045732,
+      43.55451637133956
+    ],
+    "mean_all_six_steps_seconds": 44.52607518186172,
+    "job_seconds_including_init_eval_save": 633.6348057091236,
+    "allocated_gpu_hours": 0.35201933650506867,
+    "training_successes": 1,
+    "training_completions": 96,
+    "truncated_completions": 73,
+    "mean_response_tokens": 436.0729166666667,
+    "rollout_prefill_block_tokens": 1544832,
+    "rollout_decode_block_tokens": 4009632,
+    "trainer_layer_invocation_tokens_including_recompute": 12165120,
+    "eval": {
+      "0/2": {
+        "successes": 0,
+        "count": 4
+      },
+      "0/3": {
+        "successes": 0,
+        "count": 4
+      },
+      "0/4": {
+        "successes": 0,
+        "count": 4
+      },
+      "3/2": {
+        "successes": 0,
+        "count": 4
+      },
+      "3/3": {
+        "successes": 0,
+        "count": 4
+      },
+      "3/4": {
+        "successes": 0,
+        "count": 4
+      },
+      "6/2": {
+        "successes": 0,
+        "count": 4
+      },
+      "6/3": {
+        "successes": 0,
+        "count": 4
+      },
+      "6/4": {
+        "successes": 1,
+        "count": 4
+      }
+    },
+    "nonzero_gradient_updates": 1
+  },
+  "ouro-fixed2-pilot": {
+    "step_seconds_max_rank": [
+      23.815234702080488,
+      22.02063051238656,
+      23.184219930320978,
+      22.386816296726465,
+      22.677838698029518,
+      22.62843545526266
+    ],
+    "mean_all_six_steps_seconds": 22.785529265801113,
+    "job_seconds_including_init_eval_save": 499.85978292673826,
+    "allocated_gpu_hours": 0.27769987940374347,
+    "training_successes": 0,
+    "training_completions": 96,
+    "truncated_completions": 61,
+    "mean_response_tokens": 377.9791666666667,
+    "rollout_prefill_block_tokens": 772416,
+    "rollout_decode_block_tokens": 1737120,
+    "trainer_layer_invocation_tokens_including_recompute": 5603328,
+    "eval": {
+      "0/2": {
+        "successes": 0,
+        "count": 4
+      },
+      "0/3": {
+        "successes": 0,
+        "count": 4
+      },
+      "0/4": {
+        "successes": 0,
+        "count": 4
+      },
+      "3/2": {
+        "successes": 0,
+        "count": 4
+      },
+      "3/3": {
+        "successes": 0,
+        "count": 4
+      },
+      "3/4": {
+        "successes": 0,
+        "count": 4
+      },
+      "6/2": {
+        "successes": 0,
+        "count": 4
+      },
+      "6/3": {
+        "successes": 0,
+        "count": 4
+      },
+      "6/4": {
+        "successes": 0,
+        "count": 4
+      }
+    },
+    "nonzero_gradient_updates": 0
+  },
+  "ouro-fixed3-pilot": {
+    "step_seconds_max_rank": [
+      34.654127418994904,
+      32.54141841828823,
+      33.947462532669306,
+      34.12588683143258,
+      33.27879284322262,
+      32.85756812244654
+    ],
+    "mean_all_six_steps_seconds": 33.56754269450903,
+    "job_seconds_including_init_eval_save": 556.5618618652225,
+    "allocated_gpu_hours": 0.30920103436956803,
+    "training_successes": 1,
+    "training_completions": 96,
+    "truncated_completions": 70,
+    "mean_response_tokens": 428.53125,
+    "rollout_prefill_block_tokens": 1158624,
+    "rollout_decode_block_tokens": 2955096,
+    "trainer_layer_invocation_tokens_including_recompute": 9013248,
+    "eval": {
+      "0/2": {
+        "successes": 0,
+        "count": 4
+      },
+      "0/3": {
+        "successes": 0,
+        "count": 4
+      },
+      "0/4": {
+        "successes": 0,
+        "count": 4
+      },
+      "3/2": {
+        "successes": 0,
+        "count": 4
+      },
+      "3/3": {
+        "successes": 0,
+        "count": 4
+      },
+      "3/4": {
+        "successes": 0,
+        "count": 4
+      },
+      "6/2": {
+        "successes": 0,
+        "count": 4
+      },
+      "6/3": {
+        "successes": 0,
+        "count": 4
+      },
+      "6/4": {
+        "successes": 0,
+        "count": 4
+      }
+    },
+    "nonzero_gradient_updates": 1
+  },
+  "ouro-mixed-pilot": {
+    "step_seconds_max_rank": [
+      23.131743539124727,
+      33.137502521276474,
+      43.558732967823744,
+      22.1938792206347,
+      33.11392607539892,
+      45.35134636238217
+    ],
+    "mean_all_six_steps_seconds": 33.41452178110679,
+    "job_seconds_including_init_eval_save": 558.6323979198933,
+    "allocated_gpu_hours": 0.3103513321777185,
+    "training_successes": 1,
+    "training_completions": 96,
+    "truncated_completions": 78,
+    "mean_response_tokens": 450.5625,
+    "rollout_prefill_block_tokens": 1128480,
+    "rollout_decode_block_tokens": 3169992,
+    "trainer_layer_invocation_tokens_including_recompute": 9394176,
+    "eval": {
+      "0/2": {
+        "successes": 0,
+        "count": 4
+      },
+      "0/3": {
+        "successes": 0,
+        "count": 4
+      },
+      "0/4": {
+        "successes": 0,
+        "count": 4
+      },
+      "3/2": {
+        "successes": 0,
+        "count": 4
+      },
+      "3/3": {
+        "successes": 0,
+        "count": 4
+      },
+      "3/4": {
+        "successes": 0,
+        "count": 4
+      },
+      "6/2": {
+        "successes": 0,
+        "count": 4
+      },
+      "6/3": {
+        "successes": 0,
+        "count": 4
+      },
+      "6/4": {
+        "successes": 0,
+        "count": 4
+      }
+    },
+    "nonzero_gradient_updates": 1
+  }
+}

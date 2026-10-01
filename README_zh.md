@@ -158,6 +158,11 @@ Vime 由 slime 衍生而来。以下上游资源与本仓库文档仍沿用 slim
 
 Vime 构建于开源 RL 生态的想法与基础设施之上。特别感谢 [slime](https://github.com/THUDM/slime) 社区——Vime 直接构建于其出色工作之上；也感谢 [SkyRL](https://github.com/NovaSky-AI/SkyRL) 与 [verl](https://github.com/verl-project/verl)，我们参考了它们的优秀工作。Vime 由 vLLM 社区维护。
 
+
+### Ouro 共享层训练
+
+[Ouro 配方](examples/ouro/README.md)通过共享 rollout/update 接口复用 VIME 的 Megatron GRPO 训练路径，提供物理参数转换、多轮 CUDA Graph 运行、实际执行深度一致性检查及 checkpoint 保存/恢复验证。[Thor](docs/validation/ouro-thor-20261001/README.md)和 [A100 PD](docs/validation/ouro-a100-20261001/README.md)报告包含实测速度对比。
+
 ## 引用
 
 ```bibtex
