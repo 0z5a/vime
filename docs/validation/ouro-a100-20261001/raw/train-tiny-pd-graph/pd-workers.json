@@ -1,0 +1,23 @@
+{
+  "f21f7a7f356a426c8f1174dcb97d48d8-decode-1": {
+    "kind": "stopped",
+    "prefill_tokens": 0,
+    "bytes_sent": 0,
+    "transfers": 0,
+    "transfer_seconds": 0.0,
+    "used_blocks": 0,
+    "weight_version": 5,
+    "graph_captures": 3,
+    "graph_replays": 90,
+    "graph_fallbacks": 0
+  },
+  "f21f7a7f356a426c8f1174dcb97d48d8-prefill-0": {
+    "kind": "stopped",
+    "prefill_tokens": 352,
+    "bytes_sent": 1449984,
+    "transfers": 18,
+    "transfer_seconds": 22.234548636246473,
+    "used_blocks": 0,
+    "weight_version": 5
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "90837db2a69e43e79541c0599d26bf3c-prefill-0": {
+    "kind": "stopped",
+    "prefill_tokens": 528,
+    "bytes_sent": 415334400,
+    "transfers": 24,
+    "transfer_seconds": 1020.084759073332,
+    "used_blocks": 0,
+    "weight_version": 4
+  },
+  "90837db2a69e43e79541c0599d26bf3c-decode-1": {
+    "kind": "stopped",
+    "prefill_tokens": 0,
+    "bytes_sent": 0,
+    "transfers": 0,
+    "transfer_seconds": 0.0,
+    "used_blocks": 0,
+    "weight_version": 4
+  }
+}

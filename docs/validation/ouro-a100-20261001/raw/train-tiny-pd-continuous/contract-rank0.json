@@ -1,0 +1,27 @@
+{
+  "depths": [
+    2,
+    3,
+    4
+  ],
+  "seed": 42,
+  "temperature": 1.0,
+  "reward_function": "smoke_reward.score",
+  "prompts_per_update": 4,
+  "group_size": 4,
+  "max_response_tokens": 16,
+  "data_sha256": "b7b6983cc758dc9e5d2696fd2c5a489c7252c4f247db03a2eee7f806c38cfd39",
+  "model_config_sha256": "45a8ffd95eea28213fea6ef2da01a3722bc6f0ba07cbc312e4fd01e79b945222",
+  "tokenizer_sha256": "fcb808fe5e7642f5299be28aea07fc7f6d4f4364c3ac5e408e15a772cbc8fa8d",
+  "engine_contract": "full-prefill-last-exited-v1",
+  "logprobs_mode": "processed",
+  "exit_threshold": 1.0,
+  "async_scheduling": true,
+  "speculative_tokens": 0,
+  "prefill_devices": [
+    0
+  ],
+  "decode_devices": [
+    1
+  ]
+}

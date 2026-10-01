@@ -9,7 +9,13 @@ export CUDA_DEVICE_MAX_CONNECTIONS=1
 export OMP_NUM_THREADS=${OMP_NUM_THREADS:-4}
 gpus=${GPUS_PER_NODE:-2}
 mkdir -p "$output"
-python -m torch.distributed.run --standalone --nproc_per_node="$gpus" "$(dirname "$0")/train.py" \
+if [ "$gpus" -eq 1 ]; then
+  export RANK=0 WORLD_SIZE=1 LOCAL_RANK=0 MASTER_ADDR=127.0.0.1 MASTER_PORT=${MASTER_PORT:-29500}
+  launcher=(python)
+else
+  launcher=(python -m torch.distributed.run --standalone --nproc_per_node="$gpus")
+fi
+"${launcher[@]}" "$(dirname "$0")/train.py" \
  --debug-train-only --actor-num-nodes 1 --actor-num-gpus-per-node "$gpus" --num-gpus-per-node "$gpus" \
  --custom-model-provider-path vime_plugins.ouro.model.model_provider \
  --hf-checkpoint "$model" --load "$model" --ref-load "$model" \
