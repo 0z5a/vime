@@ -161,7 +161,7 @@ Vime builds on ideas and infrastructure from the open-source RL ecosystem. We es
 
 ### Ouro shared-layer training
 
-The [Ouro recipe](examples/ouro/README.md) uses the shared rollout/update contract with VIME's Megatron GRPO path. It includes physical parameter conversion, multi-iteration CUDA graph runs, execution-depth consistency checks, and checkpoint save/resume validation. See the [Thor](docs/validation/ouro-thor-20261001/README.md) and [A100 PD](docs/validation/ouro-a100-20261001/README.md) reports for measured speed comparisons.
+The [Ouro recipe](examples/ouro/README.md) uses the shared rollout/update contract with VIME's Megatron GRPO path. It includes physical parameter conversion, multi-iteration CUDA graph runs, execution-depth consistency checks, and checkpoint save/resume validation. Measured consistency and speed comparisons are summarized in [PR #459](https://github.com/vllm-project/vime/pull/459).
 
 ## Citation
 

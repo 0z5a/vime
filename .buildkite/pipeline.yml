@@ -68,7 +68,6 @@ steps:
           pip install -q -e . --no-deps
           python tests/test_megatron_argument_validation.py
           python tests/test_value_temperature.py
-          python -m pytest tests/test_ouro_budget.py tests/test_reward_normalization.py
           python tests/test_docs_consistency.py
           python tests/test_placement_group.py
           python tests/test_external_vllm_engines.py

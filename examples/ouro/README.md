@@ -6,7 +6,7 @@ all four sandwich norms, the inter-loop norm and the exit gate. The gate remains
 frozen during this externally budgeted recipe and participates in conversion and
 publication.
 
-The companion is [engine draft #4](https://github.com/0z5a/vllm-rlt/pull/4), the training-contract branch of
+The companion is [engine draft #78](https://github.com/ThinkFlowLab/vllm-rlt/pull/78), the training-contract branch of
 [0z5a/vllm-rlt](https://github.com/0z5a/vllm-rlt/tree/feat/training-contract), based on
 ThinkFlowLab/vllm-rlt `ecb1f8b505b7e831815b40aec3b4598619cca23a`; tested companion
 commit `f6cfefe5d7df8e31884b9396701245b934590bd6`.
@@ -97,19 +97,3 @@ Metrics separate rollout, training, publication and whole-step time. Decode work
 counts physical layer/token evaluations, including speculative verification rows;
 trainer counts include padding and recomputation. These are work counters, not
 measured backward FLOPs. PD GPU-hours count distinct devices once.
-
-## Evidence
-
-The [shared-contract Thor report](../../docs/validation/ouro-thor-20261001/README.md)
-contains full-model multi-update, early-exit, async, speculation, conversion and
-fresh-process save/resume results, with speed tables and retained raw evidence.
-The [dual-A100 PD report](../../docs/validation/ouro-a100-20261001/README.md)
-checks the same contract through real spawned workers and NIXL.
-The earlier [prototype report](../../docs/validation/ouro-thor-20260930/README.md)
-records its original scope.
-
-```bash
-python -m unittest tests.test_ouro_weight_conversion tests.test_ouro_execution_replay -v
-python -m pytest tests/test_ouro_model.py tests/test_ouro_budget.py tests/test_reward_normalization.py -q
-python examples/ouro/check_hf_export.py /runs/ouro/checkpoint/iter_0000004 /runs/ouro/export export-match.json
-```

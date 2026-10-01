@@ -161,7 +161,7 @@ Vime 构建于开源 RL 生态的想法与基础设施之上。特别感谢 [sli
 
 ### Ouro 共享层训练
 
-[Ouro 配方](examples/ouro/README.md)通过共享 rollout/update 接口复用 VIME 的 Megatron GRPO 训练路径，提供物理参数转换、多轮 CUDA Graph 运行、实际执行深度一致性检查及 checkpoint 保存/恢复验证。[Thor](docs/validation/ouro-thor-20261001/README.md)和 [A100 PD](docs/validation/ouro-a100-20261001/README.md)报告包含实测速度对比。
+[Ouro 配方](examples/ouro/README.md)通过共享 rollout/update 接口复用 VIME 的 Megatron GRPO 训练路径，提供物理参数转换、多轮 CUDA Graph 运行、实际执行深度一致性检查及 checkpoint 保存/恢复验证。[PR #459](https://github.com/vllm-project/vime/pull/459) 描述包含实测一致性与速度对比。
 
 ## 引用
 
