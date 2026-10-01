@@ -11,6 +11,8 @@ from .qwen3_next import convert_qwen3_next_to_hf
 from .qwen3_vl import convert_qwen3vl_to_hf
 from .qwen3moe import convert_qwen3moe_to_hf
 
+from vime.backends.megatron_utils.misc_utils import strip_param_name_prefix
+
 
 # TODO unify w/ `convert_to_hf`
 def postprocess_hf_param(args, megatron_param_name, hf_param_name, param):
@@ -36,6 +38,8 @@ def convert_to_hf(args, model_name, name, param, quantization_config=None, trans
 # TODO optimize code details
 def _convert_to_hf_core(args, model_name, name, param):
     model_name = model_name.lower().replace("_", "").replace("-", "")
+    if "ouro" in model_name:
+        return [(strip_param_name_prefix(name).removeprefix("language_model."), param)]
     if "minimaxm2" in model_name:
         converted_named_tensors = convert_minimax_m2_to_hf(args, name, param)
     elif any(family in model_name for family in ("glm4moelite", "deepseekv3", "deepseekv32", "glmmoedsa", "kimi")):

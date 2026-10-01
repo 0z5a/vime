@@ -20,7 +20,10 @@ def decoder_forward(
     hidden: torch.Tensor,
     cos: torch.Tensor,
     sin: torch.Tensor,
-) -> torch.Tensor:
+    *,
+    positions: torch.Tensor | None = None,
+    previous_kv: tuple[torch.Tensor, torch.Tensor] | None = None,
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     attention = layer.self_attn
     value = layer.input_layernorm(hidden)
     shape = (hidden.shape[0], -1, attention.config.head_dim)
@@ -31,12 +34,17 @@ def decoder_forward(
         return tensor * cos + torch.cat((-second, first), dim=-1) * sin
 
     q, k = rotate(q), rotate(k)
+    if previous_kv is not None:
+        k = previous_kv[0].index_copy(0, positions, k)
+        v = previous_kv[1].index_copy(0, positions, v)
+    mask = None if positions is None else torch.arange(k.shape[0], device=k.device)[None, :] <= positions[:, None]
     output = (
         F.scaled_dot_product_attention(
             q.transpose(0, 1).unsqueeze(0),
             k.transpose(0, 1).unsqueeze(0),
             v.transpose(0, 1).unsqueeze(0),
-            is_causal=True,
+            attn_mask=mask,
+            is_causal=positions is None,
             enable_gqa=True,
         )
         .squeeze(0)
@@ -44,7 +52,7 @@ def decoder_forward(
         .reshape(hidden.shape[0], -1)
     )
     hidden = hidden + layer.input_layernorm_2(attention.o_proj(output))
-    return hidden + layer.post_attention_layernorm_2(layer.mlp(layer.post_attention_layernorm(hidden)))
+    return hidden + layer.post_attention_layernorm_2(layer.mlp(layer.post_attention_layernorm(hidden))), k, v
 
 
 class OuroMegatronModel(MegatronModule):
@@ -84,7 +92,40 @@ class OuroMegatronModel(MegatronModule):
         self, layer: OuroDecoderLayer, hidden: torch.Tensor, cos: torch.Tensor, sin: torch.Tensor
     ) -> torch.Tensor:
         self.block_tokens += hidden.shape[0]
-        return decoder_forward(layer, hidden, cos, sin)
+        return decoder_forward(layer, hidden, cos, sin)[0]
+
+    def _traced_layer(
+        self,
+        layer: OuroDecoderLayer,
+        hidden: torch.Tensor,
+        cos: torch.Tensor,
+        sin: torch.Tensor,
+        *,
+        positions: torch.Tensor,
+        previous_kv: tuple[torch.Tensor, torch.Tensor] | None,
+    ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+        self.block_tokens += hidden.shape[0]
+        return decoder_forward(layer, hidden, cos, sin, positions=positions, previous_kv=previous_kv)
+
+    def _traced_sequence(self, tokens: torch.Tensor, depths: torch.Tensor) -> torch.Tensor:
+        """Replay LAST_EXITED: skipped deeper KV planes reuse the last computed KV."""
+        hidden = self.model.embed_tokens(tokens)
+        cos, sin = self.model.rotary_emb(hidden, torch.arange(tokens.numel(), device=tokens.device))
+        previous = [None] * len(self.model.layers)
+        for depth in range(int(depths.max())):
+            positions = (depths > depth).nonzero().flatten().to(tokens.device)
+            active = hidden[positions]
+            for index, layer in enumerate(self.model.layers):
+                forward = partial(self._traced_layer, layer, positions=positions, previous_kv=previous[index])
+                inputs = (active, cos[positions], sin[positions])
+                active, k, v = (
+                    checkpoint(forward, *inputs, use_reentrant=False)
+                    if self.recompute and torch.is_grad_enabled()
+                    else forward(*inputs)
+                )
+                previous[index] = (k, v)
+            hidden = hidden.index_copy(0, positions, self.model.norm(active))
+        return self.lm_head(hidden)
 
     def _sequence(self, tokens: torch.Tensor) -> torch.Tensor:
         hidden = self.model.embed_tokens(tokens)
@@ -108,18 +149,36 @@ class OuroMegatronModel(MegatronModule):
         labels=None,
         packed_seq_params: PackedSeqParams | None = None,
         loss_mask=None,
+        execution_depths: torch.Tensor | None = None,
     ) -> torch.Tensor:
         if labels is not None or attention_mask is not None or position_ids is not None:
             raise ValueError("Use VIME's masked RL loss and unmodified per-sequence positions")
         if input_ids.ndim != 2 or input_ids.shape[0] != 1:
             raise ValueError("Ouro expects one packed token stream")
+        if execution_depths is not None:
+            if (
+                execution_depths.ndim != 1
+                or execution_depths.numel() > input_ids.numel()
+                or execution_depths.dtype not in (torch.int32, torch.int64)
+                or not bool(((execution_depths >= 1) & (execution_depths <= self.ouro_config.total_ut_steps)).all())
+            ):
+                raise ValueError("Execution depths must specify a supported depth per input token")
+            # VIME adds a masked padding sequence after the real packed samples.
+            execution_depths = F.pad(execution_depths, (0, input_ids.numel() - execution_depths.numel()), value=1)
         if packed_seq_params is None:
-            return self._sequence(input_ids[0]).unsqueeze(0)
+            return (
+                self._sequence(input_ids[0])
+                if execution_depths is None
+                else self._traced_sequence(input_ids[0], execution_depths)
+            ).unsqueeze(0)
         if packed_seq_params.qkv_format != "thd":
             raise ValueError("Ouro expects thd packed sequences")
         boundaries = packed_seq_params.cu_seqlens_q.tolist()
         outputs = [
-            self._sequence(input_ids[0, start:end]) for start, end in zip(boundaries[:-1], boundaries[1:], strict=True)
+            self._sequence(input_ids[0, start:end])
+            if execution_depths is None
+            else self._traced_sequence(input_ids[0, start:end], execution_depths[start:end])
+            for start, end in zip(boundaries[:-1], boundaries[1:], strict=True)
         ]
         return torch.cat(outputs).unsqueeze(0)
 

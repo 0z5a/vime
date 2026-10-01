@@ -1,82 +1,99 @@
-# Fixed-budget Ouro GRPO
+# Ouro GRPO with the shared rollout engine
 
-This experimental recipe reuses VIME's Megatron optimizer, GRPO loss, gradient
-reduction and distributed checkpoint implementation. The provider keeps one copy
-of each physical Ouro layer. It preserves all four sandwich norms, inter-loop
-normalization and the original token positions. The unused exit gate is frozen
-but retained in checkpoints and weight publication.
+This recipe uses VIME's existing Megatron optimizer, GRPO loss, gradient reduction
+and distributed checkpoints. Ouro keeps one physical copy of every decoder layer,
+all four sandwich norms, the inter-loop norm and the exit gate. The gate remains
+frozen during this externally budgeted recipe and participates in conversion and
+publication.
 
-The separate `vllm-rlt` RL companion supplies selected-token log probabilities,
-synchronous full-weight publication and uniform prefill/decode depth. It is not
-upstream vLLM. The companion base is
-`ThinkFlowLab/vllm-rlt@ea680f7735eeaa357d2e09ba24355747496041dd`; use companion
-[0z5a/vllm-rlt#1](https://github.com/0z5a/vllm-rlt/pull/1), tested revision
-`74ec97df222728fbeda9041fb82555be29aa4e84`, for the RL interface. Model weights are pinned to
-`ByteDance/Ouro-1.4B@574fa66cb8bf5abdc979642d01cf2b79b16bfab1`.
+The companion is [engine draft #4](https://github.com/0z5a/vllm-rlt/pull/4), the training-contract branch of
+[0z5a/vllm-rlt](https://github.com/0z5a/vllm-rlt/tree/feat/training-contract), based on
+ThinkFlowLab/vllm-rlt `ecb1f8b505b7e831815b40aec3b4598619cca23a`; tested companion
+commit `f6cfefe5d7df8e31884b9396701245b934590bd6`.
+The adapter calls public `LLM.generate`, `start_weight_update`, `update_weights`,
+`finish_weight_update` and `get_weight_version`. It uses the same contract for
+local and disaggregated prefill/decode (PD) engines. The previous private
+`RLEngine` prototype is superseded.
 
-## Execution
+## Launch
 
-Use the existing custom provider option:
-`--custom-model-provider-path vime_plugins.ouro.model.model_provider`.
-Launch `examples/ouro/train.py` with `torchrun`, TP/PP/CP=1, BF16, sequence
-parallelism disabled and `--no-gradient-accumulation-fusion`. DP ranks each run a
-local rollout engine and train the same shared-parameter architecture. The first
-recipe supports full finetuning with GRPO, zero KL/reference/entropy costs and
-unfiltered positive-temperature sampling. It does not support pipeline/tensor
-parallel recurrent execution or LoRA.
-
-`--debug-train-only` suppresses VIME's built-in vLLM setup during argument parsing;
-this recipe still generates real online samples through its explicit RL engine.
-This compatibility option does not turn the recipe into fixed-trajectory replay.
-
-- `--ouro-depths 4` is the fixed-four-loop baseline.
-- `--ouro-depths 2` and `--ouro-depths 3` are fixed-small-budget controls.
-- `--ouro-depths 2 3 4` cycles global K deterministically by update ID. Every rank
-  verifies the same depth, policy version and execution configuration before work.
-- `--ouro-run-dir DIR` stores raw per-rank metrics, evaluations and completion markers.
-- `--ouro-eval-data FILE --ouro-eval-prompts N --ouro-eval-interval M` evaluates each
-  of K=2/3/4 on a separate fixed dataset. Use a meaningful held-out sample count for
-  quality claims; tiny smoke evaluations do not establish convergence.
-- `--ouro-resume --load CHECKPOINT --use-checkpoint-opt-param-scheduler` restores
-  training state and checks the schedule, data hash, sampling seed/temperature,
-  response cap and group size against `ouro-plan.json`.
-
-Pass the ordinary VIME model dimensions, optimizer, data, batch and loss options
-matching the pinned model. `--load` and `--ref-load` should initially point to the
-HF directory; the custom provider loads the complete physical weights directly.
-The final distributed checkpoint includes optimizer and RNG state. After a new
-checkpoint is complete, earlier `iter_*` directories in that run's save directory
-are removed. Use a separate save directory for each experiment.
-
-The two-GPU pilot launcher accepts paths without changing the environment:
+Make VIME, the companion and an existing Megatron source checkout importable.
+The tested model is `ByteDance/Ouro-1.4B` at
+`574fa66cb8bf5abdc979642d01cf2b79b16bfab1`. JSONL rows contain `prompt`, `label`
+and `metadata.problem_id`.
 
 ```bash
-bash examples/ouro/run.sh /models/ouro pilot.jsonl /runs/ouro-mixed 6 \
-  --ouro-depths 2 3 4 --ouro-eval-data validation.jsonl
+export PYTHONPATH="$PWD:/path/to/vllm-rlt:$MCORE"
+GPUS_PER_NODE=1 bash examples/ouro/run.sh /models/Ouro-1.4B train.jsonl /runs/ouro 5 \
+  --ouro-depths 2 3 4 --ouro-cuda-graphs --ouro-kv-blocks 128 \
+  --rollout-max-response-len 16 --seq-length 512 --max-position-embeddings 2048 \
+  --ouro-export-hf /runs/ouro/export
 ```
 
-Make VIME, Megatron and the pinned RL companion importable in the existing
-environment first. JSONL rows contain `prompt` (text or chat messages), `label`
-and `metadata.problem_id`. Training and evaluation IDs must be disjoint. This
-small launcher uses four prompts with four completions each and a 512-token cap;
-those defaults are a smoke workload, not a convergence protocol.
+The launcher runs one trainer directly when `GPUS_PER_NODE=1`; multiple local
+trainer ranks use torchrun. `--debug-train-only` bypasses VIME's server/router
+setup while this recipe still generates real online samples. TP=PP=CP=1, BF16,
+sequence parallelism and gradient accumulation fusion disabled are required.
+GRPO uses positive-temperature, full-vocabulary sampling without a reference,
+critic or KL loss. The small launch defaults are execution checks rather than a
+convergence protocol.
 
-## Semantics and measurements
+- `--ouro-depths 2 3 4` cycles a globally agreed decode budget by update ID.
+- `--ouro-cuda-graphs` enables recurrent graph replay across full publications.
+- `--ouro-exit-threshold 0` exercises native early exit within the budget.
+- `--ouro-async-scheduling` uses the shared delayed-exit asynchronous path.
+- `--ouro-speculative-tokens 3 --ouro-depths 4` uses the existing full-depth target
+  policy with a K=2 draft. The upstream engine requires synchronous speculation.
+- `--ouro-prefill-devices 0 --ouro-decode-devices 1 --ouro-max-num-seqs 1` selects real spawned PD
+  workers. This pilot supports one trainer rank, which may share GPU 0 with P.
+  PD and self-speculation cannot be combined in the upstream engine. Fixed
+  batch shapes are required for the reported BF16 bitwise resume comparisons;
+  dynamic BF16 batching can produce different scores and optimizer hashes.
+- `--ouro-export-hf DIR` exports through VIME's ordinary HF saver.
+- `--ouro-reward-function vime_plugins.ouro.reward.boxed_answer` enables exact
+  integer boxed-answer scoring; the default is Deepscaler.
+- `--ouro-eval-data FILE --ouro-eval-prompts N --ouro-eval-interval M` evaluates
+  K=2/3/4 on separate prompts, or K=4 for speculation.
 
-Each group retains `(prompt ID, K, policy version, execution config hash)` before
-reward normalization. The existing reward normalization and GRPO loss are reused.
-The training forward uses exactly the depth that generated its old logprobs.
-No constant `lambda*K` reward penalty is introduced: it would cancel within a
-fixed-K group. This is externally budget-conditioned training, not learned halting.
+For a fresh-process resume, keep the same schedule, data, sampling and PD pool
+flags, increase the update count and add:
 
-Physical layer hooks measure rollout prefill/decode block-token counts. Training
-reports layer invocation tokens including packing padding and recomputation;
-these counters are not FLOPs or a measured backward cost. Step timing includes
-rollout, scoring, training and publication. Job timing also includes initialization,
-evaluation and the final checkpoint in the completion marker. GPU-hours count DP
-ranks once, even though trainer and rollout share their devices.
+```bash
+--ouro-resume --load /runs/ouro/checkpoint --override-opt-param-scheduler
+```
 
-Mixed-depth microbatch bucketing is not implemented. Establish fixed-K correctness
-and a useful quality/compute tradeoff before adding that scheduler. Compare fixed
-K=4, fixed K=2/3 and the simple mixed schedule from the same checkpoint and data.
-Do not infer equal reward, convergence or a speedup from reduced loop counts alone.
+The override is needed when extending the requested constant-LR horizon. Model,
+Adam, scheduler, RNG and the deterministic data/budget cursor are restored.
+`ouro-plan.json` rejects incompatible execution settings. Completed saves remove
+older iteration directories within that experiment's save directory.
+
+On the tested A100 container, default UCX CUDA IPC did not deliver GPU writes in
+an independent two-process probe. Per-command `UCX_TLS=tcp,cuda_copy` passed the
+probe and PD checks with the installed NIXL; this is host-staged transport.
+The recipe disables forced worker termination and closes successful PD workers
+through the normal stop/acknowledgment protocol.
+
+## Probability and conversion semantics
+
+Every prompt uses full-depth prefill. Subsequent decode inputs use each returned
+`exit_depths` value, including mixed early exits and speculative target depths.
+The differentiable provider replays those physical depths and retains the last
+exited KV at deeper planes. VIME's existing per-sample forward kwargs carry the
+trace, including sequence padding and activation recomputation.
+
+Outputs include selected-token processed logprobs, effective sampling parameters
+and the committed policy version. VIME's existing loss applies the same rollout
+temperature. Each GRPO group validates its prompt ID, K, version and configuration
+hash. Failed or incomplete publication blocks generation until a newer full
+update completes. Publication changes tensors in place and invalidates cached KV.
+
+Ouro is registered in the general HF-to-Megatron and Megatron-to-HF converters.
+Physical names are preserved after removing MCore/DDP wrapper prefixes; recurrent
+loops do not duplicate parameter tensors. The same `HfWeightIteratorDirect` is
+used for initial and per-update publication. Full HF exports include all 269
+physical model tensors.
+
+Metrics separate rollout, training, publication and whole-step time. Decode work
+counts physical layer/token evaluations, including speculative verification rows;
+trainer counts include padding and recomputation. These are work counters, not
+measured backward FLOPs. PD GPU-hours count distinct devices once.

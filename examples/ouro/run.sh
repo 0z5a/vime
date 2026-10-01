@@ -7,9 +7,16 @@ updates=${4:?Number of updates}
 shift 4
 export CUDA_DEVICE_MAX_CONNECTIONS=1
 export OMP_NUM_THREADS=${OMP_NUM_THREADS:-4}
+gpus=${GPUS_PER_NODE:-2}
 mkdir -p "$output"
-python -m torch.distributed.run --standalone --nproc_per_node=2 "$(dirname "$0")/train.py" \
- --debug-train-only --actor-num-nodes 1 --actor-num-gpus-per-node 2 --num-gpus-per-node 2 \
+if [ "$gpus" -eq 1 ]; then
+  export RANK=0 WORLD_SIZE=1 LOCAL_RANK=0 MASTER_ADDR=127.0.0.1 MASTER_PORT=${MASTER_PORT:-29500}
+  launcher=(python)
+else
+  launcher=(python -m torch.distributed.run --standalone --nproc_per_node="$gpus")
+fi
+"${launcher[@]}" "$(dirname "$0")/train.py" \
+ --debug-train-only --actor-num-nodes 1 --actor-num-gpus-per-node "$gpus" --num-gpus-per-node "$gpus" \
  --custom-model-provider-path vime_plugins.ouro.model.model_provider \
  --hf-checkpoint "$model" --load "$model" --ref-load "$model" \
  --num-layers 24 --hidden-size 2048 --ffn-hidden-size 5632 --num-attention-heads 16 \
@@ -27,4 +34,5 @@ python -m torch.distributed.run --standalone --nproc_per_node=2 "$(dirname "$0")
  --optimizer adam --lr 1e-6 --lr-decay-style constant --weight-decay .1 --adam-beta1 .9 --adam-beta2 .98 \
  --attention-dropout 0 --hidden-dropout 0 --accumulate-allreduce-grads-in-fp32 \
  --no-gradient-accumulation-fusion --recompute-granularity full --recompute-method uniform --recompute-num-layers 1 \
+ --transformer-impl local --no-rope-fusion \
  --seed 42 "$@"
