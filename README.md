@@ -158,6 +158,11 @@ For frequently asked questions, please see the [Q&A](docs/en/get_started/qa.md)
 
 Vime builds on ideas and infrastructure from the open-source RL ecosystem. We especially thank the [slime](https://github.com/THUDM/slime) community, whose great work Vime is directly built on. We also thank [SkyRL](https://github.com/NovaSky-AI/SkyRL) and [verl](https://github.com/verl-project/verl), whose excellent work we referenced. Vime is maintained by the vLLM community.
 
+
+### Ouro shared-layer training
+
+The [Ouro recipe](examples/ouro/README.md) uses the shared rollout/update contract with VIME's Megatron GRPO path. It includes physical parameter conversion, multi-iteration CUDA graph runs, execution-depth consistency checks, and checkpoint save/resume validation. Measured consistency and speed comparisons are summarized in [PR #459](https://github.com/vllm-project/vime/pull/459).
+
 ## Citation
 
 ```bibtex
