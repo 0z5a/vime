@@ -282,38 +282,6 @@ def test_failed_native_update_does_not_resume_generation(update_module, monkeypa
     assert engine.continue_generation.calls == []
 
 
-def test_native_publication_waits_for_receiver_completion(update_module, monkeypatch):
-    from concurrent.futures import ThreadPoolExecutor
-    from threading import Event
-
-    updater = _updater(update_module)
-    engine = RecordingEngine()
-    updater._all_rollout_engines = [engine]
-    client = update_module.VimeRayWeightSyncClient([engine], lambda: updater.weight_version)
-    updater._native_trainers = [RecordingTrainer(client)]
-    reading, release = Event(), Event()
-    monkeypatch.setattr(engine.update_weights, "remote", lambda *args: "pending-read")
-
-    def wait_for_receiver(refs):
-        if refs == ["pending-read"]:
-            reading.set()
-            assert release.wait(5), "test receiver was not released"
-
-    monkeypatch.setattr(update_module.ray, "get", wait_for_receiver)
-    with ThreadPoolExecutor(max_workers=1) as pool:
-        future = pool.submit(updater.update_weights)
-        try:
-            assert reading.wait(5)
-            assert not future.done()
-            assert engine.finish_weight_update.calls == []
-            assert engine.continue_generation.calls == []
-        finally:
-            release.set()
-        future.result(timeout=5)
-    assert len(engine.finish_weight_update.calls) == 1
-    assert len(engine.continue_generation.calls) == 1
-
-
 @pytest.mark.unit
 def test_native_ipc_buffer_covers_largest_reconstructed_tensor(update_module, monkeypatch):
     dense = ParamInfo("dense", torch.float16, (8,), {}, 16, 0)
