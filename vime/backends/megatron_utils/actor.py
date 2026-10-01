@@ -124,7 +124,10 @@ class MegatronTrainRayActor(TrainRayActor):
                 self.model,
                 convert_to_global_name=True,
             ),
-            single_tag=None,
+            # A resident actor with no alternate policy can publish its live weights.
+            single_tag=(
+                "actor" if not (args.offload_train or with_ref or with_opd_teacher or args.keep_old_actor) else None
+            ),
         )
         self._active_model_tag: str | None = "actor"
         self.weights_backuper.backup("actor")
