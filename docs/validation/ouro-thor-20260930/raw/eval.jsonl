@@ -1,4 +1,0 @@
-{"prompt": "What is 5+5?", "label": "10", "metadata": {"problem_id": "5"}}
-{"prompt": "What is 6+6?", "label": "12", "metadata": {"problem_id": "6"}}
-{"prompt": "What is 7+7?", "label": "14", "metadata": {"problem_id": "7"}}
-{"prompt": "What is 8+8?", "label": "16", "metadata": {"problem_id": "8"}}

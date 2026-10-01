@@ -1,6 +1,0 @@
-test_all_workers_commit_and_partial_commit_requires_new_epoch (tests.test_pd_weight_control.PDWeightControlTest.test_all_workers_commit_and_partial_commit_requires_new_epoch) ... ok
-
-----------------------------------------------------------------------
-Ran 1 test in 0.059s
-
-OK
