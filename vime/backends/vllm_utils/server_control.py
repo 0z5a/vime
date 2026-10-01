@@ -13,7 +13,6 @@ import asyncio
 import logging
 import time
 from dataclasses import dataclass
-from typing import Any
 
 import httpx
 
@@ -106,7 +105,7 @@ def _discard_outcome(task: asyncio.Task[EngineDrainState]) -> None:
         task.exception()
 
 
-def _count_from_payload(payload: Any) -> tuple[int | None, str]:
+def _count_from_payload(payload: object) -> tuple[int | None, str]:
     """Extract the total in-flight count from a ``/load`` response body.
 
     The engine reports one entry per data-parallel rank, and the counts live in
