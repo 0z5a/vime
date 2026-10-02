@@ -684,7 +684,10 @@ async def abort(args: Namespace, rollout_id: int) -> list[list[Sample]]:
 
 
 async def generate_rollout_async(
-    args: Namespace, rollout_id: int, data_source: Callable[[int], list[list[Sample]]]
+    args: Namespace,
+    rollout_id: int,
+    data_source: Callable[[int], list[list[Sample]]],
+    group_ready: Callable[[list[Sample]], Awaitable[None]] | None = None,
 ) -> tuple[RolloutFnTrainOutput, list[list[Sample]]]:
     """An example to implement the generate_rollout function for an rule based rm rollout generation.
 
@@ -750,6 +753,8 @@ async def generate_rollout_async(
             # add the samples to the data
             # NOTE: here we have not stored all the unused samples back to the data buffer.
             if len(data) < target_data_size:
+                if group_ready is not None:
+                    await group_ready(group)
                 data.append(group)
                 pbar.update(args.n_samples_per_prompt)
 
@@ -936,7 +941,11 @@ async def eval_rollout_single_dataset(
 
 
 def generate_rollout(
-    args: Namespace, rollout_id: int, data_source: Any, evaluation: bool = False
+    args: Namespace,
+    rollout_id: int,
+    data_source: Any,
+    evaluation: bool = False,
+    group_ready: Callable[[list[Sample]], Awaitable[None]] | None = None,
 ) -> RolloutFnTrainOutput | RolloutFnEvalOutput:
     """An example to implement the generate_rollout function for an rule based rm rollout generation.
 
@@ -954,7 +963,7 @@ def generate_rollout(
         output, _ = run(eval_rollout(args, rollout_id))
         return output
 
-    output, aborted_samples = run(generate_rollout_async(args, rollout_id, data_source.get_samples))
+    output, aborted_samples = run(generate_rollout_async(args, rollout_id, data_source.get_samples, group_ready))
     if aborted_samples:
         data_source.add_samples(aborted_samples)
     return output
