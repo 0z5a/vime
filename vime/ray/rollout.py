@@ -303,27 +303,9 @@ class RolloutManager:
             return self.custom_reward_post_process_func(self.args, samples)
 
         raw_rewards = [sample.get_reward_value(self.args) for sample in samples]
-        if (
-            self.args.advantage_estimator in ["grpo", "gspo", "cispo", "reinforce_plus_plus_baseline"]
-            and self.args.rewards_normalization
-        ):
-            # group norm
-            rewards = torch.tensor(raw_rewards, dtype=torch.float)
-            if rewards.shape[-1] == self.args.n_samples_per_prompt * self.args.rollout_batch_size:
-                rewards = rewards.reshape(-1, self.args.n_samples_per_prompt)
-            else:
-                # when samples count are not equal in each group
-                rewards = rewards.view(-1, rewards.shape[-1])
-            mean = rewards.mean(dim=-1, keepdim=True)
-            rewards = rewards - mean
+        from vime.utils.reward_normalization import normalize_rewards
 
-            if self.args.advantage_estimator in ["grpo", "gspo", "cispo"] and self.args.grpo_std_normalization:
-                std = rewards.std(dim=-1, keepdim=True)
-                rewards = rewards / (std + 1e-6)
-
-            return raw_rewards, rewards.flatten().tolist()
-
-        return raw_rewards, raw_rewards
+        return raw_rewards, normalize_rewards(self.args, raw_rewards)
 
     def _convert_samples_to_train_data(self, samples: list[Sample] | list[list[Sample]]):
         """
@@ -358,6 +340,11 @@ class RolloutManager:
             "sample_indices": [sample.index for sample in samples],
             "rollout_ids": rollout_ids,
         }
+        if self.args.draft_feature_mode == "collect-only":
+            from vime.utils.draft_feature_contract import normalize_weight_versions
+
+            train_data["group_indices"] = [sample.group_index for sample in samples]
+            train_data["weight_versions"] = [normalize_weight_versions(sample.weight_versions) for sample in samples]
 
         # loss mask
         # TODO: compress the loss mask
@@ -485,7 +472,9 @@ class RolloutManager:
                 "loss_masks",
                 "round_number",
                 "sample_indices",
+                "group_indices",
                 "rollout_ids",
+                "weight_versions",
                 "rollout_mask_sums",
                 "rollout_log_probs",
                 "rollout_top_p_token_ids",
