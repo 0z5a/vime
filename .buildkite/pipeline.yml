@@ -150,6 +150,9 @@ steps:
             tests/test_deep_ep_tms_patch.py \
             tests/test_discounted_returns.py \
             tests/test_eval_config.py \
+            tests/test_draft_feature_contract.py \
+            tests/test_draft_feature_collector.py \
+            tests/test_draft_feature_metadata.py \
             tests/test_filter_long_prompt.py \
             tests/test_fully_async_rollout.py \
             tests/test_glm52_layerwise_comparison.py \

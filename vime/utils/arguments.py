@@ -1901,6 +1901,8 @@ def vime_validate_args(args):
     args.dspark_enabled = (getattr(args, "vllm_speculative_config", None) or {}).get("method") == "dspark"
 
     if args.draft_feature_mode == "collect-only":
+        if args.micro_batch_size != 1:
+            raise ValueError("collect-only draft features require micro_batch_size=1")
         if not args.draft_feature_output_dir or not args.draft_feature_run_id:
             raise ValueError("collect-only draft features require output dir and run id")
         if min(args.draft_feature_max_tokens, args.draft_feature_max_batches, args.draft_feature_max_bytes) <= 0:
@@ -1922,6 +1924,8 @@ def vime_validate_args(args):
             raise ValueError("collect-only draft features support TP=PP=CP=DP=1 without VPP")
         if args.keep_old_actor or args.use_rollout_logprobs or not args.compute_advantages_and_returns:
             raise ValueError("collect-only draft features require an actor log-prob forward")
+        if args.update_weights_interval != 1:
+            raise ValueError("collect-only draft features require publication after every actor update")
 
     if args.rollout_temperature <= 0:
         raise ValueError(

@@ -8,6 +8,7 @@ from pathlib import Path
 import ray
 import torch
 import torch.distributed as dist
+from megatron.core.utils import unwrap_model
 from megatron.core import mpu
 from torch_memory_saver import torch_memory_saver
 from transformers import AutoConfig, AutoTokenizer
@@ -449,7 +450,7 @@ class MegatronTrainRayActor(TrainRayActor):
                     from .draft_feature_collector import DraftFeatureCollector
 
                     draft_feature_collector = DraftFeatureCollector(
-                        self.args, self.model[0], rollout_id, str(self.weight_updater.weight_version)
+                        self.args, unwrap_model(self.model[0]), rollout_id, str(self.weight_updater.weight_version)
                     )
                 if (
                     not self.args.use_rollout_logprobs or self.args.get_mismatch_metrics

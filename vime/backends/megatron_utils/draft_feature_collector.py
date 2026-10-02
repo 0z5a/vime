@@ -9,10 +9,14 @@ from dataclasses import asdict
 from pathlib import Path
 
 import torch
-from megatron.core.utils import unwrap_model
 from safetensors.torch import save_file
 
-from vime.utils.draft_feature_contract import DraftFeatureManifest, DraftSequence, build_token_map
+from vime.utils.draft_feature_contract import (
+    DraftFeatureManifest,
+    DraftSequence,
+    build_token_map,
+    normalize_weight_versions,
+)
 
 
 def _digest(path: Path) -> str:
@@ -24,14 +28,14 @@ class DraftFeatureCollector:
         self.args = args
         self.round_id = round_id
         self.source_version = source_version
-        target = unwrap_model(model)
+        target = model
         self.output_layer = target.output_layer
         self.head_weight = (
             target.shared_embedding_or_output_weight()
             if target.share_embeddings_and_output_weights
             else self.output_layer.weight
         )
-        if self.output_layer.bias is not None:
+        if self.output_layer._parameters.get("bias") is not None:
             raise ValueError("collect-only draft features require a bias-free LM head")
         self.root = Path(args.draft_feature_output_dir) / args.draft_feature_run_id / f"round-{round_id}"
         self.root.mkdir(parents=True, exist_ok=False)
@@ -62,7 +66,7 @@ class DraftFeatureCollector:
                     rollout_id=rollout_data["rollout_ids"][rollout_index],
                     token_ids=tuple(int(value) for value in batch["unconcat_tokens"][local_index].tolist()),
                     loss_mask=(0,) * (total - response - 1) + mask + (0,),
-                    weight_versions=tuple(rollout_data["weight_versions"][rollout_index]),
+                    weight_versions=normalize_weight_versions(rollout_data["weight_versions"][rollout_index]),
                 )
             )
         return tuple(sequences)
@@ -82,7 +86,7 @@ class DraftFeatureCollector:
         if self.tokens_used + selected > self.args.draft_feature_max_tokens:
             self.stop_reason = "token budget"
             return model(**forward_kwargs)
-        payload_bytes = selected * self.head_weight.shape[1] * 4
+        payload_bytes = selected * self.head_weight.shape[1] * self.head_weight.element_size()
         next_bytes = payload_bytes + (self.head_bytes if self.published == 0 else 0)
         if self.bytes_used + next_bytes > self.args.draft_feature_max_bytes:
             self.stop_reason = "byte budget"
@@ -97,10 +101,22 @@ class DraftFeatureCollector:
 
         def capture_head_input(_module, inputs):
             nonlocal captured
+            if captured is not None:
+                return
             hidden = inputs[0]
-            if hidden.ndim != 3 or hidden.shape[1] != 1:
+            if hidden.ndim == 3 and hidden.shape[1] == 1:
+                hidden = hidden[:, 0]
+            elif hidden.ndim != 2:
                 raise ValueError("collect-only draft features require sequence-first batch size one")
-            captured = hidden[:, 0].index_select(0, positions).detach().clone()
+            actual_bytes = selected * hidden.shape[-1] * hidden.element_size()
+            if (
+                self.bytes_used + actual_bytes + (self.head_bytes if self.published == 0 else 0)
+                > self.args.draft_feature_max_bytes
+            ):
+                self.stop_reason = "byte budget"
+                return
+            # index_select owns storage, including when the source is already on CPU.
+            captured = hidden.detach().index_select(0, positions)
 
         handle = self.output_layer.register_forward_pre_hook(capture_head_input)
         try:
@@ -108,21 +124,15 @@ class DraftFeatureCollector:
         finally:
             handle.remove()
         if captured is None:
+            if self.stop_reason is not None:
+                return output
             raise RuntimeError("target forward did not reach the LM head")
 
         copy_start = time.perf_counter()
         features = captured.cpu().contiguous()
         payload_bytes = features.numel() * features.element_size()
         next_bytes = payload_bytes + (self.head_bytes if self.published == 0 else 0)
-        if self.published == 0:
-            head = self.head_weight.detach().cpu().clone().contiguous()
-            save_file({"weight": head}, str(self.head_ref) + ".tmp")
-            os.replace(str(self.head_ref) + ".tmp", self.head_ref)
-        self.copy_seconds += time.perf_counter() - copy_start
-
         payload_ref = self.root / f"batch-{self.published:04d}.safetensors"
-        save_file({"features": features}, str(payload_ref) + ".tmp")
-        os.replace(str(payload_ref) + ".tmp", payload_ref)
         manifest = DraftFeatureManifest(
             schema_version=1,
             feature_batch_id=f"{self.args.draft_feature_run_id}/round-{self.round_id}/batch-{self.published}",
@@ -140,10 +150,29 @@ class DraftFeatureCollector:
             payload_ref=payload_ref.name,
             byte_count=payload_bytes,
             ready=True,
+            hidden_size=features.shape[1],
         )
         manifest_ref = self.root / f"batch-{self.published:04d}.json"
-        Path(str(manifest_ref) + ".tmp").write_text(json.dumps(asdict(manifest), sort_keys=True))
-        os.replace(str(manifest_ref) + ".tmp", manifest_ref)
+        owned = [payload_ref, manifest_ref]
+        if self.published == 0:
+            owned.append(self.head_ref)
+        committed = False
+        try:
+            if self.published == 0:
+                head = self.head_weight.detach().to(device="cpu", copy=True).contiguous()
+                save_file({"weight": head}, str(self.head_ref) + ".tmp")
+                os.replace(str(self.head_ref) + ".tmp", self.head_ref)
+            save_file({"features": features}, str(payload_ref) + ".tmp")
+            os.replace(str(payload_ref) + ".tmp", payload_ref)
+            Path(str(manifest_ref) + ".tmp").write_text(json.dumps(asdict(manifest), sort_keys=True))
+            os.replace(str(manifest_ref) + ".tmp", manifest_ref)
+            committed = True
+        finally:
+            for path in owned:
+                Path(str(path) + ".tmp").unlink(missing_ok=True)
+                if not committed:
+                    path.unlink(missing_ok=True)
+        self.copy_seconds += time.perf_counter() - copy_start
         self.bytes_used += next_bytes
         self.tokens_used += selected
         self.published += 1
@@ -151,7 +180,8 @@ class DraftFeatureCollector:
 
     def finish(self) -> None:
         if self.published == 0:
-            raise ValueError("collect-only draft features saw no selected target tokens")
+            reason = self.stop_reason or "no selected target tokens"
+            raise ValueError(f"collect-only draft features produced no batch: {reason}")
         summary = {
             "source_version": self.source_version,
             "batches": self.published,
