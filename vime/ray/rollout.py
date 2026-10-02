@@ -314,12 +314,16 @@ class RolloutManager:
             )
             metrics = None
         else:
-            kwargs = {} if self.transfer_queue is None else {"group_ready": self.transfer_queue.accept_group}
+            rollout_fn = self.generate_rollout
+            kwargs = {}
+            if self.transfer_queue is not None:
+                from vime.rollout.vllm_rollout import generate_queued_rollout
+
+                rollout_fn = generate_queued_rollout
+                kwargs["group_ready"] = self.transfer_queue.accept_group
             completed = False
             try:
-                data = call_rollout_fn(
-                    self.generate_rollout, self.args, rollout_id, self.data_source, evaluation=False, **kwargs
-                )
+                data = call_rollout_fn(rollout_fn, self.args, rollout_id, self.data_source, evaluation=False, **kwargs)
                 completed = True
             finally:
                 if self.transfer_queue is not None and not completed:

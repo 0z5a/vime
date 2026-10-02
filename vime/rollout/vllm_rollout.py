@@ -1019,12 +1019,26 @@ async def _queued_rollout(
             await asyncio.gather(*pending, return_exceptions=True)
 
 
+def generate_queued_rollout(
+    args: Namespace,
+    rollout_id: int,
+    data_source: "DataSource",
+    *,
+    evaluation: bool,
+    group_ready: Callable[[list[Sample]], Awaitable[None]],
+) -> RolloutFnTrainOutput:
+    assert not evaluation and args.rollout_global_dataset
+    output, aborted_samples = run(_queued_rollout(args, rollout_id, data_source.get_samples, group_ready))
+    if aborted_samples:
+        data_source.add_samples(aborted_samples)
+    return output
+
+
 def generate_rollout(
     args: Namespace,
     rollout_id: int,
     data_source: "DataSource",
     evaluation: bool = False,
-    group_ready: Callable[[list[Sample]], Awaitable[None]] | None = None,
 ) -> RolloutFnTrainOutput | RolloutFnEvalOutput:
     """An example to implement the generate_rollout function for an rule based rm rollout generation.
 
@@ -1042,12 +1056,7 @@ def generate_rollout(
         output, _ = run(eval_rollout(args, rollout_id))
         return output
 
-    coroutine = (
-        generate_rollout_async(args, rollout_id, data_source.get_samples)
-        if group_ready is None
-        else _queued_rollout(args, rollout_id, data_source.get_samples, group_ready)
-    )
-    output, aborted_samples = run(coroutine)
+    output, aborted_samples = run(generate_rollout_async(args, rollout_id, data_source.get_samples))
     if aborted_samples:
         data_source.add_samples(aborted_samples)
     return output
