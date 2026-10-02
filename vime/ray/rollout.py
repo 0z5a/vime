@@ -315,9 +315,15 @@ class RolloutManager:
             metrics = None
         else:
             kwargs = {} if self.transfer_queue is None else {"group_ready": self.transfer_queue.accept_group}
-            data = call_rollout_fn(
-                self.generate_rollout, self.args, rollout_id, self.data_source, evaluation=False, **kwargs
-            )
+            completed = False
+            try:
+                data = call_rollout_fn(
+                    self.generate_rollout, self.args, rollout_id, self.data_source, evaluation=False, **kwargs
+                )
+                completed = True
+            finally:
+                if self.transfer_queue is not None and not completed:
+                    self.transfer_queue.paused = True
             metrics = data.metrics
             data = data.samples
             # Enforce the rollout_id contract before flattening: any list[Sample]

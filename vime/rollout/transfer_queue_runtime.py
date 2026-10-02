@@ -141,8 +141,14 @@ class TransferQueueRuntime:
     async def accept_group(self, samples: list[Sample]) -> None:
         # One codec/write/read at a time bounds temporary buffers while other
         # generation tasks keep running. The control-plane actor remains separate.
-        async with self.transfer_lock:
-            await self._accept_group(samples)
+        completed = False
+        try:
+            async with self.transfer_lock:
+                await self._accept_group(samples)
+            completed = True
+        finally:
+            if not completed:
+                self.paused = True
 
     async def _accept_group(self, samples: list[Sample]) -> None:
         if self.paused or self.policy_version is None:
