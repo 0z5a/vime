@@ -127,23 +127,11 @@ def encode_group(
             None if offsets is None else tuple(offsets),
             None if ids is None else len(ids),
         )
-        payload = dict(
-            index=sample.index,
-            group_index=sample.group_index,
-            rollout_id=sample.rollout_id,
-            tokens=sample.tokens,
-            response=sample.response,
-            response_length=sample.response_length,
-            reward=sample.reward,
-            loss_mask=sample.loss_mask,
+        payload = sample.to_dict()
+        payload.update(
             weight_versions=list(sample.weight_versions),
-            status=sample.status.value,
-            rollout_log_probs=sample.rollout_log_probs,
             rollout_top_p_token_ids=ids,
             rollout_top_p_token_offsets=offsets,
-            metadata=sample.metadata,
-            prompt=sample.prompt,
-            label=sample.label,
         )
         prepared_bytes += _tree_bytes(payload) + sys.getsizeof(sample) + sys.getsizeof(sample.__dict__)
         rows.append(json.dumps(payload, sort_keys=True, separators=(",", ":"), allow_nan=False).encode())

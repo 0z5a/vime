@@ -5,6 +5,7 @@ and optimizer completion are explicit fixture events, not model E2E evidence.
 """
 
 import asyncio
+import json
 import os
 import uuid
 from argparse import Namespace
@@ -56,7 +57,7 @@ def test_native_streaming_groups_soak_and_failed_read_cleanup(tmp_path, monkeypa
         transfer_queue_restart_epoch=0,
         transfer_queue_max_groups=2,
         transfer_queue_max_tokens=100,
-        transfer_queue_max_bytes=100000,
+        transfer_queue_max_bytes=1 << 20,
         transfer_queue_timeout_s=30,
         transfer_queue_lease_s=60,
         n_samples_per_prompt=2,
@@ -156,6 +157,7 @@ def test_native_streaming_groups_soak_and_failed_read_cleanup(tmp_path, monkeypa
         assert queue.metrics["peak_working_bytes"] <= args.transfer_queue_max_bytes
         with pytest.raises(ray.exceptions.RayTaskError):
             ray.get(queue.coordinator.publication_confirmed.remote())
+        print("TransferQueue transport metrics:", json.dumps(queue.metrics, sort_keys=True))
     finally:
         # Close only this client's sockets; no global TQ close or Ray process kill.
         queue.close()

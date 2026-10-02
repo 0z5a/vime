@@ -134,6 +134,10 @@ def test_default_rollout_id_and_mask_remain_nullable():
     for sample in decoded:
         sample.rollout_id = None
         sample.loss_mask = None
+        sample.session_id = "original-session"
+        sample.spec_info.spec_accept_token_num = 3
+        sample.prefix_cache_info.cached_tokens = 2
+        sample.non_generation_time = 0.25
     encoded = encode_group(
         decoded,
         job_id="job",
