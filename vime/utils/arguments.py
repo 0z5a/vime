@@ -2083,9 +2083,9 @@ def vime_validate_args(args):
             args.offload_rollout = True
         elif args.offload_train is None:
             # A default, not a requirement: an explicit --no-offload-train is kept, and
-            # is worth it when the training state and the rollout engines both fit in
-            # device memory, because the memory-saver copy it skips dominates a colocate
-            # step (measured 18.85 s -> 3.32 s per step on 1 GPU with Qwen3-0.6B).
+            # skips the memory-saver copy when the training state and rollout engines
+            # both fit in device memory. See the colocate section of the usage guide
+            # for the measured costs and configuration trade-offs.
             # The trade-off is that the rollout engines then have to fit next to the
             # resident training state instead of into the memory it released.
             args.offload_train = True

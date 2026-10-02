@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import math
 import time
 from dataclasses import dataclass
 
@@ -147,6 +148,8 @@ async def query_engine_inflight(
     transport: httpx.AsyncBaseTransport | None = None,
 ) -> EngineDrainState:
     """Ask one engine for its in-flight queue counts within ``timeout_s``."""
+    if isinstance(timeout_s, bool) or not math.isfinite(timeout_s) or timeout_s <= 0:
+        raise ValueError("probe timeout must be finite and positive")
     endpoint = f"{url.rstrip('/')}/load"
     params = {"include_inflight": "true", "inflight_limit": _INFLIGHT_SAMPLE_LIMIT}
     try:
@@ -179,6 +182,8 @@ async def verify_server_drain(
     UNKNOWN/FAILED, so an unreachable or unrecognised engine can never be
     mistaken for an idle one.
     """
+    if isinstance(deadline_s, bool) or not math.isfinite(deadline_s) or deadline_s <= 0:
+        raise ValueError("drain deadline must be finite and positive")
     started = time.monotonic()
     if not urls:
         return DrainReport((), time.monotonic() - started, deadline_s)

@@ -708,9 +708,9 @@ index 2b567da792d..8be32c6256b 100644
 --- a/vllm/distributed/kv_transfer/kv_connector/v1/multi_connector.py
 +++ b/vllm/distributed/kv_transfer/kv_connector/v1/multi_connector.py
 @@ -67,6 +67,40 @@ class MultiKVConnectorWorkerMetadata(KVConnectorWorkerMetadata):
- 
+
          return MultiKVConnectorWorkerMetadata(metadata=tuple(metadata_list))
- 
+
 +    def get_request_metrics(self) -> dict[str, dict[str, float]]:
 +        """Forward the per-request metrics reported by each child metadata.
 +
@@ -745,7 +745,7 @@ index 2b567da792d..8be32c6256b 100644
 +                    target[name] = value
 +        return merged
 +
- 
+
  @dataclass
  class MultiKVConnectorStats(KVConnectorStats):
 diff --git a/vllm/distributed/kv_transfer/kv_connector/v1/nixl/base_worker.py b/vllm/distributed/kv_transfer/kv_connector/v1/nixl/base_worker.py
