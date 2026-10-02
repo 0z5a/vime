@@ -10,7 +10,7 @@ import uuid
 from argparse import Namespace
 from collections.abc import Awaitable, Callable
 from contextlib import contextmanager
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import numpy as np
 import vllm_router  # noqa: F401 — ensures vllm-router is importable on startup
@@ -35,6 +35,9 @@ from vime.utils.processing_utils import (
 from vime.utils.types import Sample
 
 from .rm_hub import async_rm, batched_async_rm
+
+if TYPE_CHECKING:
+    from vime.rollout.data_source import DataSource
 
 __all__ = ["generate_rollout", "get_model_url", "prime_encoder"]
 
@@ -1019,7 +1022,7 @@ async def _queued_rollout(
 def generate_rollout(
     args: Namespace,
     rollout_id: int,
-    data_source: Any,
+    data_source: "DataSource",
     evaluation: bool = False,
     group_ready: Callable[[list[Sample]], Awaitable[None]] | None = None,
 ) -> RolloutFnTrainOutput | RolloutFnEvalOutput:
