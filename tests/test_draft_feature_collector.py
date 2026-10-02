@@ -188,11 +188,13 @@ def test_empty_budget_reason(fixture, field, value, reason):
 
 def test_flat_head_then_padding_head_keeps_the_real_sequence(fixture):
     args, _, _, hidden = fixture
+
     class PackedTarget(Target):
         def forward(self, hidden):
             real = self.output_layer(hidden[:5, 0])
             padding = self.output_layer(hidden[5:, 0])
             return torch.cat((real, padding)).unsqueeze(0)
+
     target = PackedTarget()
     collector = sink.DraftFeatureCollector(args, target, 0, "3")
     collect(collector, target, fixture)

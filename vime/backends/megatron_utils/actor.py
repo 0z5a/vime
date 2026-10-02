@@ -8,8 +8,8 @@ from pathlib import Path
 import ray
 import torch
 import torch.distributed as dist
-from megatron.core.utils import unwrap_model
 from megatron.core import mpu
+from megatron.core.utils import unwrap_model
 from torch_memory_saver import torch_memory_saver
 from transformers import AutoConfig, AutoTokenizer
 
