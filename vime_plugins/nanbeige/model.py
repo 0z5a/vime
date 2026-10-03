@@ -66,7 +66,11 @@ class NanbeigeMegatronModel(OuroMegatronModel):
                 )
             if not self.nanbeige_config.skip_loop_final_norm:
                 hidden = self.model.norm(hidden)
-        return self._readout(hidden)
+        return (
+            checkpoint(self._readout, hidden, use_reentrant=True)
+            if self.recompute and torch.is_grad_enabled()
+            else self._readout(hidden)
+        )
 
     def _traced_sequence(self, tokens: torch.Tensor, depths: torch.Tensor) -> torch.Tensor:
         if not bool((depths == self.nanbeige_config.num_loops).all()):
