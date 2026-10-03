@@ -31,9 +31,13 @@ selected-logprob error bound. Keep rollout and training precision identical.
 python examples/nanbeige/run.py --algorithm grpo \
   --model /models/Nanbeige4.2-3B --data /data/math.jsonl \
   --output /runs/nanbeige-grpo --updates 3 --recompute \
+  --train-env-vars '{"PYTORCH_ALLOC_CONF":"max_split_size_mb:128"}' \
   --model-revision b82e54bd609793562a75cbf9337970a93369eab5 \
   --engine-revision d2a358933393f25d74dd2bdd1068a741cd5d9226
 ```
+
+The checked 40 GB A100 PPO run limits large allocator-block splitting with
+`train-env-vars`; keep this setting when resuming.
 
 Select each algorithm in a separate output directory. For an interrupted run,
 add `--stop-after 2`, then start a fresh process with `--resume` and without that
