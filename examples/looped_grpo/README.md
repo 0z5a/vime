@@ -1,6 +1,6 @@
 # Fixed-depth recurrent GRPO
 
-Use the [Nanbeige recipe](../nanbeige) with `--algorithm grpo`, or invoke
+Use the [Nanbeige](../nanbeige) or [Huginn](../huginn) recipe with `--algorithm grpo`, or invoke
 `examples/looped_grpo/run.py` with the same model/data/revision/output arguments.
 The launcher shares the [recurrent training entry](../looped_ppo).
 

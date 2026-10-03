@@ -46,14 +46,20 @@ def main(advantage_estimator="ppo", model_family: str | None = None):
     family = config["model_type"]
     if model_family is not None and family != model_family:
         parser.error(f"This recipe requires a {model_family} checkpoint, received {family}")
-    providers = {"ouro": "ouro", "nanbeige": "nanbeige"}
+    providers = {"ouro": "ouro", "nanbeige": "nanbeige", "huginn_raven": "huginn"}
     provider = providers[family]
-    precision = options.precision or "fp32"
-    depth = config[{"ouro": "total_ut_steps", "nanbeige": "num_loops"}[family]]
-    layers, width, heads = config["num_hidden_layers"], config["hidden_size"], config["num_attention_heads"]
-    vocab, context = config["vocab_size"], config["max_position_embeddings"]
-    kv_heads, rope = config["num_key_value_heads"], config["rope_theta"]
-    norm_eps, tied = config["rms_norm_eps"], config["tie_word_embeddings"]
+    precision = options.precision or ("fp16" if family == "huginn_raven" else "fp32")
+    depth = config[{"ouro": "total_ut_steps", "nanbeige": "num_loops", "huginn_raven": "mean_recurrence"}[family]]
+    if family == "huginn_raven":
+        layers, width, heads = config["n_layers"], config["n_embd"], config["n_heads"]
+        vocab, context = config["padded_vocab_size"], config["block_size"]
+        kv_heads, rope = heads, config["rope_base"]
+        norm_eps, tied = config["norm_eps"], config["tie_embeddings"]
+    else:
+        layers, width, heads = config["num_hidden_layers"], config["hidden_size"], config["num_attention_heads"]
+        vocab, context = config["vocab_size"], config["max_position_embeddings"]
+        kv_heads, rope = config["num_key_value_heads"], config["rope_theta"]
+        norm_eps, tied = config["rms_norm_eps"], config["tie_word_embeddings"]
     options.output.mkdir(parents=True, exist_ok=True)
     checkpoints = options.output / "checkpoints"
     next_update = (

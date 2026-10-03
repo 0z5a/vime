@@ -2,6 +2,7 @@
 
 The shared launcher runs VIME's standard Ray entry with native vLLM-RLT rollout.
 [Nanbeige](../nanbeige) documents its model-specific command and all four algorithms.
+[Huginn](../huginn) uses the same four objectives and replay contract.
 Ouro also uses this entry with `--model /models/Ouro-1.4B` and checkpoint revision
 `574fa66cb8bf5abdc979642d01cf2b79b16bfab1`.
 
@@ -25,7 +26,8 @@ Math JSONL rows need string `prompt` and `label` fields, for example:
 
 Defaults use SGD without momentum, FP32 gradient accumulation, four prompts,
 128 prompt tokens, 48 response tokens and full-vocabulary sampling. Nanbeige
-and Ouro use FP32. `--precision fp16` selects fixed loss scale 128. Local MCore checkpointing
+and Ouro use FP32; Huginn uses FP16. `--precision fp16` selects fixed loss scale
+128. Local MCore checkpointing
 restores optimizer parameter groups, and FP16 master parameters and loss scale.
 `--recompute` checkpoints each physical block. `--rlt-cuda-graphs` selects the
 engine's graph path; eager execution is the default. Cache capacity accounts

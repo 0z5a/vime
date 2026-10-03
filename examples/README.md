@@ -21,3 +21,4 @@ These examples provide concrete examples to leverage vime in your own RL workflo
 - **[train_infer_mismatch_helper](./train_infer_mismatch_helper)**: Algorithmic methods for rollout correction (e.g., TIS, MIS).
 
 - [Nanbeige policy training](nanbeige): PPO, GRPO, Decoupled PPO and categorical Flow-DPPO.
+- [Huginn policy training](huginn): PPO, GRPO, Decoupled PPO and categorical Flow-DPPO.

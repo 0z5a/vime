@@ -97,7 +97,7 @@ def update(actor, critic, optimizer, critic_optimizer, engine, family, algorithm
     }
 
 
-@pytest.mark.parametrize("family", ["nanbeige"])
+@pytest.mark.parametrize("family", ["nanbeige", "huginn_raven"])
 @pytest.mark.parametrize("algorithm", ["ppo", "grpo", "dppo", "flow-dppo"])
 def test_three_updates_and_fresh_resume(family, algorithm, tmp_path, monkeypatch, record_property):
     monkeypatch.setattr(mpu, "get_tensor_model_parallel_group", lambda: None)

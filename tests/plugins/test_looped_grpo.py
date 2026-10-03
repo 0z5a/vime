@@ -14,6 +14,7 @@ pytest.importorskip("vllm_rlt")
 from megatron.core.packed_seq_params import PackedSeqParams
 from megatron.core.transformer.transformer_config import TransformerConfig
 from vllm_rlt import LLM, CacheConfig
+from vllm_rlt.models.huginn import HuginnConfig, HuginnForCausalLM
 from vllm_rlt.models.nanbeige import NanbeigeConfig, NanbeigeForCausalLM
 
 from vime.backends.megatron_utils.megatron_to_hf import _convert_to_hf_core
@@ -21,28 +22,55 @@ from vime.backends.vllm_rlt_utils.engine import NativeEngine
 from vime.utils.ppo_utils import compute_policy_loss, get_grpo_returns
 from vime.utils.reward_normalization import normalize_rewards
 from vime.utils.types import Sample
+from vime_plugins.huginn.model import HuginnMegatronModel
 from vime_plugins.nanbeige.model import NanbeigeMegatronModel
 
 
 def model_pair(family, recompute, role="actor"):
-    native = NanbeigeForCausalLM(
-        NanbeigeConfig(
-            vocab_size=11,
-            hidden_size=8,
-            intermediate_size=16,
-            num_hidden_layers=1,
-            num_attention_heads=2,
-            num_key_value_heads=1,
-            head_dim=8,
-            num_loops=2,
-            max_position_embeddings=32,
-            bos_token_id=None,
-            eos_token_id=None,
-            pad_token_id=None,
+    if family == "nanbeige":
+        native = NanbeigeForCausalLM(
+            NanbeigeConfig(
+                vocab_size=11,
+                hidden_size=8,
+                intermediate_size=16,
+                num_hidden_layers=1,
+                num_attention_heads=2,
+                num_key_value_heads=1,
+                head_dim=8,
+                num_loops=2,
+                max_position_embeddings=32,
+                bos_token_id=None,
+                eos_token_id=None,
+                pad_token_id=None,
+            )
         )
-    )
-    config = TransformerConfig(num_layers=1, hidden_size=8, num_attention_heads=2, kv_channels=8, ffn_hidden_size=16)
-    actor = NanbeigeMegatronModel(config, copy.deepcopy(native), recompute=recompute, role=role)
+        config = TransformerConfig(
+            num_layers=1, hidden_size=8, num_attention_heads=2, kv_channels=8, ffn_hidden_size=16
+        )
+        actor = NanbeigeMegatronModel(config, copy.deepcopy(native), recompute=recompute, role=role)
+    else:
+        native = HuginnForCausalLM(
+            HuginnConfig(
+                n_embd=8,
+                n_heads=2,
+                n_layers=3,
+                n_layers_in_prelude=1,
+                n_layers_in_recurrent_block=1,
+                n_layers_in_coda=1,
+                intermediate_size=16,
+                mean_recurrence=2,
+                block_size=32,
+                vocab_size=11,
+                padded_vocab_size=11,
+                bos_token_id=None,
+                eos_token_id=None,
+                pad_token_id=None,
+            )
+        )
+        config = TransformerConfig(num_layers=3, hidden_size=8, num_attention_heads=2, ffn_hidden_size=16)
+        actor = HuginnMegatronModel(
+            config, copy.deepcopy(native), recompute=recompute, model_revision="tiny-cpu", role=role
+        )
     return native, actor
 
 
@@ -65,12 +93,14 @@ def cpu_engine(native, family):
 
 def publish(actor, engine, family, path, version):
     path.mkdir()
-    name = family
+    name = "huginn" if family == "huginn_raven" else family
     state = dict(
         item
         for key, parameter in actor.named_parameters()
         for item in _convert_to_hf_core(None, name, key, parameter.detach())
     )
+    if family == "huginn_raven":
+        state["freqs_cis"] = actor.freqs_cis
     save_file(state, str(path / "model.safetensors"))
     engine.pause_generation()
     engine.flush_cache()
@@ -108,7 +138,7 @@ def selected_scores(actor, batch):
     return result
 
 
-@pytest.mark.parametrize("family", ["nanbeige"])
+@pytest.mark.parametrize("family", ["nanbeige", "huginn_raven"])
 @pytest.mark.parametrize("recompute", [False, True])
 def test_grouped_signal_packed_replay_publication_and_cpu_restore(family, recompute, tmp_path, record_property):
     torch.manual_seed(42)
@@ -120,6 +150,8 @@ def test_grouped_signal_packed_replay_publication_and_cpu_restore(family, recomp
     for sample in batch:
         assert sample.recurrent_trace.policy_version == 1
         assert sample.recurrent_trace.decode_depths == [2, 2]
+        if family == "huginn_raven":
+            assert sample.recurrent_trace.latent_seed == sample.recurrent_trace.seed
     current = selected_scores(actor, batch)
     record_property("scope", "tiny FP32 CPU; no Ray, official model, CUDA graph or GPU E2E")
     record_property("family", family)

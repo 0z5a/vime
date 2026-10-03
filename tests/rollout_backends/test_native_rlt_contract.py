@@ -119,3 +119,48 @@ def test_incomplete_publication_cannot_resume_or_reuse_old_manifest(engine, tmp_
     assert publish(engine, complete, 2) == 2
     engine.continue_generation()
     assert engine.generate([Sample(tokens=[1, 2], index=0)], 1)[0].weight_versions == ["2"]
+
+
+def test_huginn_aliases_static_buffer_and_noise_profile(engine, tmp_path):
+    from vllm_rlt.models.huginn import HuginnConfig, HuginnForCausalLM
+
+    engine.llm.close()
+    native = HuginnForCausalLM(
+        HuginnConfig(
+            n_embd=8,
+            n_heads=2,
+            n_layers=3,
+            n_layers_in_prelude=1,
+            n_layers_in_recurrent_block=1,
+            n_layers_in_coda=1,
+            intermediate_size=16,
+            mean_recurrence=2,
+            block_size=32,
+            vocab_size=11,
+            padded_vocab_size=11,
+            bos_token_id=None,
+            eos_token_id=None,
+            pad_token_id=None,
+        )
+    )
+    engine.llm = LLM(native, cache_config=CacheConfig(num_blocks=8))
+    engine.args.rlt_model_family, engine.args.rlt_depth = "huginn_raven", 2
+    state = {name: value.detach().clone() for name, value in native.state_dict().items()}
+    save_file(state, str(tmp_path / "model.safetensors"))
+    assert engine.update_weights_from_disk(str(tmp_path), "1") == 1
+    engine.continue_generation()
+    sample = engine.generate([Sample(tokens=[1, 2], index=0)], 0)[0]
+    assert sample.recurrent_trace.latent_profile == "like-init-cpu-f32-v1"
+    assert sample.recurrent_trace.latent_seed == sample.recurrent_trace.seed
+    engine.pause_generation()
+    state["lm_head.weight"][0, 0] += 1
+    save_file(state, str(tmp_path / "model.safetensors"))
+    with pytest.raises(ValueError, match="tied LM head"):
+        engine.update_weights_from_disk(str(tmp_path), "2")
+    with pytest.raises(RuntimeError, match="No complete"):
+        engine.continue_generation()
+    state["lm_head.weight"] = state["transformer.wte.weight"].clone()
+    state["freqs_cis"][0, 0, 0, 0, 0] += 1
+    save_file(state, str(tmp_path / "model.safetensors"))
+    with pytest.raises(ValueError, match="fixed RoPE"):
+        engine.update_weights_from_disk(str(tmp_path), "2")

@@ -22,7 +22,7 @@ def add_arguments(parser):
 def validate_args(args):
     config = json.loads((Path(args.hf_checkpoint) / "config.json").read_text())
     family = config["model_type"].lower()
-    depth_keys = {"ouro": "total_ut_steps", "nanbeige": "num_loops"}
+    depth_keys = {"ouro": "total_ut_steps", "nanbeige": "num_loops", "huginn_raven": "mean_recurrence"}
     if family not in depth_keys:
         raise ValueError(f"vLLM-RLT does not support {family!r}")
     args.rlt_model_family = family

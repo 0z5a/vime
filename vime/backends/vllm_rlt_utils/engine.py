@@ -62,6 +62,10 @@ class NativeEngine:
             )
             for sample in samples
         ]
+        if self.args.rlt_model_family == "huginn_raven":
+            from dataclasses import replace
+
+            params = [replace(sampling, latent_seed=sampling.seed) for sampling in params]
         outputs = self.llm.generate([sample.tokens for sample in samples], params)
         for sample, output, sampling in zip(samples, outputs, params, strict=True):
             assert sampling.seed is not None
@@ -109,6 +113,7 @@ class NativeEngine:
 
     def update_weights_from_disk(self, model_path: str, weight_version: str):
         from safetensors import safe_open
+        from vime.backends.megatron_utils.hf_to_megatron.common import SafetensorReader
 
         if not self.paused:
             raise RuntimeError("Pause generation before publication")
@@ -120,10 +125,20 @@ class NativeEngine:
             return version
         self.ready = False
         self.llm.start_weight_update(version)
+        reader = SafetensorReader(model_path)
 
         def physical_weights(weights):
             for name in weights.keys():
                 value = weights.get_tensor(name)
+                if self.args.rlt_model_family == "huginn_raven":
+                    if name == "freqs_cis":
+                        if not torch.equal(value, self.llm.engine.model.freqs_cis.cpu()):
+                            raise ValueError("Huginn's fixed RoPE buffer must match the model revision")
+                        continue
+                    if name == "lm_head.weight":
+                        if not torch.equal(value, reader.get_tensor("transformer.wte.weight")):
+                            raise ValueError("Huginn's tied LM head must equal its embedding")
+                        continue
                 yield name, value
 
         for file in files:

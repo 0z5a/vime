@@ -16,11 +16,12 @@ from vllm_rlt.models.ouro import OuroConfig, OuroForCausalLM
 from vime_plugins.ouro.model import OuroMegatronModel
 
 
-@pytest.mark.parametrize("family", ["ouro", "nanbeige"])
+@pytest.mark.parametrize("family", ["ouro", "nanbeige", "huginn"])
 def test_role_factory_and_common_hf_loader_preserve_scalar_head(family, tmp_path, monkeypatch):
     import megatron.training
     import megatron.training.arguments
     from megatron.core import mpu
+    from vllm_rlt.models.huginn import HuginnConfig, HuginnForCausalLM
     from vllm_rlt.models.nanbeige import NanbeigeConfig, NanbeigeForCausalLM
 
     from vime.backends.megatron_utils.hf_to_megatron.common import load_model_hf_weights
@@ -45,6 +46,25 @@ def test_role_factory_and_common_hf_loader_preserve_scalar_head(family, tmp_path
         native = OuroForCausalLM(OuroConfig(**settings))
     elif family == "nanbeige":
         native = NanbeigeForCausalLM(NanbeigeConfig(**settings))
+    else:
+        native = HuginnForCausalLM(
+            HuginnConfig(
+                n_embd=8,
+                n_heads=2,
+                n_layers=3,
+                n_layers_in_prelude=1,
+                n_layers_in_recurrent_block=1,
+                n_layers_in_coda=1,
+                intermediate_size=16,
+                mean_recurrence=2,
+                block_size=32,
+                vocab_size=11,
+                padded_vocab_size=11,
+                bos_token_id=None,
+                eos_token_id=None,
+                pad_token_id=None,
+            )
+        )
     save_file(
         {name: value.detach().clone() for name, value in native.state_dict().items()},
         str(tmp_path / "model.safetensors"),
@@ -84,6 +104,8 @@ def test_role_factory_and_common_hf_loader_preserve_scalar_head(family, tmp_path
     for name, value in critic.named_parameters():
         if name != "output_layer.weight":
             assert torch.equal(value, expected[name]), name
+    if family == "huginn":
+        assert torch.equal(critic.freqs_cis, native.freqs_cis)
 
 
 @pytest.mark.parametrize("recompute", [False, True])

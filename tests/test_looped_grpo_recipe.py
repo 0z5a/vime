@@ -9,7 +9,7 @@ from types import SimpleNamespace
 import pytest
 
 
-@pytest.mark.parametrize("family", ["nanbeige"])
+@pytest.mark.parametrize("family", ["nanbeige", "huginn_raven"])
 @pytest.mark.parametrize("resume", [False, True])
 @pytest.mark.parametrize("estimator", ["grpo", "ppo", "dppo", "flow-dppo"])
 @pytest.mark.parametrize("group_size", [None, 3])
