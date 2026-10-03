@@ -25,7 +25,7 @@ Math JSONL rows need string `prompt` and `label` fields, for example:
 
 Defaults use SGD without momentum, FP32 gradient accumulation, four prompts,
 128 prompt tokens, 48 response tokens and full-vocabulary sampling. Nanbeige
-uses FP32; Ouro uses FP16 with fixed loss scale 128. Local MCore checkpointing
+and Ouro use FP32. `--precision fp16` selects fixed loss scale 128. Local MCore checkpointing
 restores optimizer parameter groups, and FP16 master parameters and loss scale.
 `--recompute` checkpoints each physical block. `--rlt-cuda-graphs` selects the
 engine's graph path; eager execution is the default. Cache capacity accounts
@@ -42,5 +42,7 @@ Use a separate output directory with `--stop-after 2`, then a fresh process with
 Actor and critic checkpoints are separate; GRPO saves only the actor. The dataset
 cursor and policy version continue, and restored weights publish before generation.
 Compare full model/optimizer/scheduler/RNG state, tokens, rewards and traces.
+The launcher enables deterministic training and passes the cuBLAS workspace and
+NCCL algorithm settings to Ray workers for this comparison.
 Report end-to-end timing including rollout, rewards, optimization, full publications
 and checkpoints, with source pins, dtype and resource contention.

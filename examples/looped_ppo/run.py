@@ -48,7 +48,7 @@ def main(advantage_estimator="ppo", model_family: str | None = None):
         parser.error(f"This recipe requires a {model_family} checkpoint, received {family}")
     providers = {"ouro": "ouro", "nanbeige": "nanbeige"}
     provider = providers[family]
-    precision = options.precision or ("fp32" if family == "nanbeige" else "fp16")
+    precision = options.precision or "fp32"
     depth = config[{"ouro": "total_ut_steps", "nanbeige": "num_loops"}[family]]
     layers, width, heads = config["num_hidden_layers"], config["hidden_size"], config["num_attention_heads"]
     vocab, context = config["vocab_size"], config["max_position_embeddings"]
@@ -151,6 +151,7 @@ def main(advantage_estimator="ppo", model_family: str | None = None):
         "rollout-global-dataset",
         "no-gradient-accumulation-fusion",
         "no-rope-fusion",
+        "deterministic-mode",
     ]
     if algorithm == "dppo":
         switches.append("use-tis")
@@ -184,14 +185,20 @@ def main(advantage_estimator="ppo", model_family: str | None = None):
     command.extend(extra)
     import ray
 
-    os.environ["CUDA_DEVICE_MAX_CONNECTIONS"] = "1"
     source_root = str(Path(__file__).resolve().parents[2])
     sys.path.insert(0, source_root)
+    runtime_env_vars = {
+        "PYTHONPATH": source_root + os.pathsep + os.environ.get("PYTHONPATH", ""),
+        "CUDA_DEVICE_MAX_CONNECTIONS": "1",
+        "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+        "NCCL_ALGO": "Ring",
+    }
+    os.environ.update(runtime_env_vars)
     ray.init(
         address=options.ray_address,
         runtime_env={
             "py_executable": sys.executable,
-            "env_vars": {"PYTHONPATH": source_root + os.pathsep + os.environ.get("PYTHONPATH", "")},
+            "env_vars": runtime_env_vars,
         },
     )
     sys.argv = command[1:]

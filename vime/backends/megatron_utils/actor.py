@@ -584,7 +584,11 @@ class MegatronTrainRayActor(TrainRayActor):
             engine_parallel_configs,
         ) = ray.get(self.rollout_manager.get_updatable_engines_and_lock.remote())
 
-        reconnect_rollout_engines = self.args.offload_train and self.args.use_critic and not self.args.colocate
+        reconnect_rollout_engines = (
+            self.args.offload_train
+            and not self.args.colocate
+            and (self.args.use_critic or self.args.rollout_backend == "vllm-rlt")
+        )
 
         if not rollout_engines and not reconnect_rollout_engines:
             if dist.get_rank() == 0:
