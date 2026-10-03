@@ -61,3 +61,16 @@ def test_two_loop_logits_values_and_gradients(recompute):
     assert all(parameter.grad is not None for parameter in critic.parameters())
     F.cross_entropy(logits[0], torch.tensor([2, 3, 4])).backward()
     assert all(parameter.grad is not None for parameter in actor.parameters())
+    for model in (actor, critic):
+        reference = copy.deepcopy(model)
+        reference.recompute = False
+        reference.zero_grad(set_to_none=True)
+        output = reference(tokens)
+        loss = (
+            F.cross_entropy(output[0], torch.tensor([2, 3, 4]))
+            if model.role == "actor"
+            else (output - 1).square().mean()
+        )
+        loss.backward()
+        for actual, expected in zip(model.parameters(), reference.parameters(), strict=True):
+            torch.testing.assert_close(actual.grad, expected.grad, atol=2e-6, rtol=2e-5)

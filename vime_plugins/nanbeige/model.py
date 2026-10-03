@@ -58,8 +58,9 @@ class NanbeigeMegatronModel(OuroMegatronModel):
         for _ in range(self.loop_budget):
             for layer in self.model.layers:
                 forward = partial(self._layer, layer)
+                # Bound shared-weight gradient temporaries to one physical layer.
                 hidden = (
-                    checkpoint(forward, hidden, cos, sin, use_reentrant=False)
+                    checkpoint(forward, hidden, cos, sin, use_reentrant=True)
                     if (self.recompute and torch.is_grad_enabled())
                     else forward(hidden, cos, sin)
                 )
