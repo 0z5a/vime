@@ -89,8 +89,9 @@ class HuginnMegatronModel(MegatronModule):
     def _blocks(self, blocks: torch.nn.ModuleList, hidden: torch.Tensor, frequencies: torch.Tensor) -> torch.Tensor:
         for block in blocks:
             forward = partial(self._block, block)
+            # Drain each reused block's gradients into MCore before the next block.
             hidden = (
-                checkpoint(forward, hidden, frequencies, use_reentrant=False)
+                checkpoint(forward, hidden, frequencies, use_reentrant=True)
                 if (self.recompute and torch.is_grad_enabled())
                 else forward(hidden, frequencies)
             )

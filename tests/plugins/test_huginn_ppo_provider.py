@@ -101,6 +101,18 @@ def test_packed_policy_values_gradients_and_hf_export(recompute, tmp_path):
         assert all(
             parameter.grad is not None and torch.isfinite(parameter.grad).all() for parameter in module.parameters()
         )
+        reference = copy.deepcopy(module)
+        reference.recompute = False
+        reference.zero_grad(set_to_none=True)
+        output = reference(tokens, packed_seq_params=packed, recurrent_inputs=traces)
+        loss = (
+            F.cross_entropy(output[0], torch.tensor([2, 3, 4, 5, 6]))
+            if module.role == "actor"
+            else (output - 1).square().mean()
+        )
+        loss.backward()
+        for actual, expected in zip(module.parameters(), reference.parameters(), strict=True):
+            torch.testing.assert_close(actual.grad, expected.grad, atol=2e-6, rtol=2e-5)
 
     exported = dict(
         item
