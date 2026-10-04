@@ -117,7 +117,14 @@ class HuginnMegatronModel(MegatronModule):
             state = self._blocks(self.transformer.core_block, state, frequencies)
         state = self._blocks(self.transformer.coda, self.transformer.ln_f(state), frequencies)
         state = self.transformer.ln_f(state)
-        return self.output_layer(state)[0] if self.role == "critic" else self.lm_head(state)
+        if self.role == "critic":
+            return self.output_layer(state)[0]
+        # Drain the tied output gradient before recurrent backward reaches wte.
+        return (
+            checkpoint(self.lm_head, state, use_reentrant=True)
+            if self.recompute and torch.is_grad_enabled()
+            else self.lm_head(state)
+        )
 
     def forward(
         self,
