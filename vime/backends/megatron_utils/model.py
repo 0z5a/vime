@@ -15,6 +15,7 @@ from megatron.core.distributed import DistributedDataParallel as DDP
 from megatron.core.distributed import finalize_model_grads
 from megatron.core.enums import ModelType
 from megatron.core.models.gpt import GPTModel
+from megatron.core.optimizer import SGD as FusedSGD
 from megatron.core.optimizer import OptimizerConfig, get_megatron_optimizer
 from megatron.core.optimizer.optimizer import ChainedOptimizer, Float16OptimizerWithFloat16Params, MegatronOptimizer
 from megatron.core.optimizer_param_scheduler import OptimizerParamScheduler
@@ -23,7 +24,6 @@ from megatron.core.utils import get_model_config
 from megatron.training.global_vars import get_args
 from megatron.training.training import get_model
 from tqdm import tqdm
-from transformer_engine.pytorch.optimizers import FusedSGD
 
 try:
     from megatron.core.pipeline_parallel.utils import unwrap_model
@@ -260,7 +260,7 @@ def _prepare_sgd_checkpoint(optimizer: MegatronOptimizer) -> None:
                 component.load_state_dict,
                 isinstance(component, Float16OptimizerWithFloat16Params),
             )
-        elif isinstance(component.optimizer, FusedSGD):
+        elif FusedSGD is not torch.optim.SGD and isinstance(component.optimizer, FusedSGD):
             component.init_state_fn = _init_fused_sgd_state
 
 
