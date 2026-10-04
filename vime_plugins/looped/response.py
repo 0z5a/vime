@@ -2,11 +2,12 @@
 
 from collections.abc import Iterator
 from dataclasses import dataclass
-from typing import Protocol
+from typing import Literal, Protocol
 
 import torch
 
 from .readout import streamed_readout
+from .packing import ReplayLayout
 
 
 class RecurrentProvider(Protocol):
@@ -16,7 +17,7 @@ class RecurrentProvider(Protocol):
     def readout_depth(self) -> int: ...
 
     def iter_readout_states(
-        self, tokens: torch.Tensor, *, all_loops: bool, latent_seed: int
+        self, tokens: torch.Tensor, *, all_loops: bool, latent_seed: int, layout: ReplayLayout | None = None
     ) -> Iterator[torch.Tensor]: ...
 
 
@@ -27,6 +28,8 @@ class ResponseReadout:
     temperature: float
     all_loops: bool
     entropy: bool = False
+    sequence_lengths: tuple[int, ...] = ()
+    attention_backend: Literal["serial", "sdpa-reference", "varlen"] = "serial"
 
 
 def response_log_probs(
@@ -92,9 +95,45 @@ def packed_response_readout(
         raise ValueError("one response length is required per real packed sequence")
     if count == len(boundaries) - 2 and (loss_mask is None or bool(loss_mask[0, boundaries[-2] :].any())):
         raise ValueError("only fully masked padding may omit response readout")
+    if request.attention_backend != "serial":
+        return _batched_response_readout(model, tokens, boundaries, seeds[:count], request)
     return torch.cat(
         [
             _response_readout(model, tokens[0, boundaries[i] : boundaries[i + 1]], length, request, seeds[i])
             for i, length in enumerate(request.response_lengths)
         ]
     )
+
+
+def _batched_response_readout(
+    model: RecurrentProvider, tokens: torch.Tensor, boundaries: list[int], seeds: list[int], request: ResponseReadout
+) -> torch.Tensor:
+    lengths = tuple(boundaries[i + 1] - boundaries[i] for i in range(len(request.response_lengths)))
+    if any(not 0 <= response < length for response, length in zip(request.response_lengths, lengths, strict=True)):
+        raise ValueError("response must follow a nonempty prompt")
+    replay_lengths = tuple(max(1, length - 1) for length in lengths)
+    assert request.attention_backend != "serial"
+    layout = ReplayLayout.create(replay_lengths, tuple(seeds), request.attention_backend, tokens.device)
+    replay = torch.cat([tokens[0, boundaries[i] : boundaries[i] + length] for i, length in enumerate(replay_lengths)])
+    rows, labels = [], []
+    for i, (length, response) in enumerate(zip(lengths, request.response_lengths, strict=True)):
+        begin = length - response - 1
+        rows.extend(range(layout.boundaries[i] + begin, layout.boundaries[i] + begin + response))
+        labels.append(tokens[0, boundaries[i] + begin + 1 : boundaries[i + 1]])
+    rows = torch.tensor(rows, device=tokens.device, dtype=torch.long)
+    labels = torch.cat(labels)
+    depth = model.readout_depth if request.all_loops else 1
+    scores = []
+    for index, hidden in enumerate(
+        model.iter_readout_states(replay, all_loops=request.all_loops, latent_seed=0, layout=layout), 1
+    ):
+        result = streamed_readout(
+            hidden.index_select(0, rows),
+            model.lm_head.weight,
+            labels,
+            vocab_tile=request.vocab_tile,
+            temperature=request.temperature,
+            entropy=request.entropy and index == depth,
+        )
+        scores.append(result.log_probs)
+    return torch.stack([*scores, result.entropy], dim=-1)

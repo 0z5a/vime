@@ -484,7 +484,7 @@ def forward_only(
             forward_kwargs["recurrent_inputs"] = batch["recurrent_inputs"]
         if args.loss_type == "rltt_loss":
             forward_kwargs["readout"] = readout_request(
-                args, response_lengths, all_loops=False, entropy=args.use_rollout_entropy
+                args, response_lengths, total_lengths, all_loops=False, entropy=args.use_rollout_entropy
             )
         output_tensor = model(**forward_kwargs)
 
@@ -720,7 +720,7 @@ def train_one_step(
                 forward_kwargs["recurrent_inputs"] = batch["recurrent_inputs"]
             if args.loss_type == "rltt_loss":
                 forward_kwargs["readout"] = readout_request(
-                    args, batch["response_lengths"], all_loops=True, entropy=args.entropy_coef != 0
+                    args, batch["response_lengths"], batch["total_lengths"], all_loops=True, entropy=args.entropy_coef != 0
                 )
 
             if args.enable_mtp_training:

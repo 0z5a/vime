@@ -6,7 +6,6 @@ from functools import partial
 from typing import Literal
 
 import torch
-import torch.nn.functional as F
 from megatron.core.packed_seq_params import PackedSeqParams
 from megatron.core.transformer.module import MegatronModule
 from megatron.core.transformer.transformer_config import TransformerConfig
@@ -15,6 +14,7 @@ from vllm_rlt.models.huginn import HuginnBlock, HuginnForCausalLM
 from vllm_rlt.models.huginn_latents import HUGINN_LATENT_PROFILE, replay_huginn_latents
 
 from vime.utils.types import RecurrentTrace
+from vime_plugins.looped.packing import ReplayLayout, causal_attention, readout_boundaries
 from vime_plugins.looped.response import ResponseReadout, packed_response_readout
 
 
@@ -64,7 +64,14 @@ class HuginnMegatronModel(MegatronModule):
         if any(value is not None for value in input_tensor):
             raise ValueError("Huginn does not accept pipeline input")
 
-    def _block(self, block: HuginnBlock, hidden: torch.Tensor, frequencies: torch.Tensor) -> torch.Tensor:
+    def _block(
+        self,
+        block: HuginnBlock,
+        hidden: torch.Tensor,
+        frequencies: torch.Tensor,
+        *,
+        layout: ReplayLayout | None = None,
+    ) -> torch.Tensor:
         attention = block.attn
         q, k, v = attention.Wqkv(block.norm_1(hidden)).chunk(3, dim=-1)
         shape = (len(hidden), attention.n_heads, attention.head_dim)
@@ -74,23 +81,20 @@ class HuginnMegatronModel(MegatronModule):
         real = pairs[..., 0] * cos - pairs[..., 1] * sin
         imag = pairs[..., 1] * cos + pairs[..., 0] * sin
         q, k = torch.stack((real, imag), dim=-1).flatten(-2).to(hidden.dtype).unbind(0)
-        attended = (
-            F.scaled_dot_product_attention(
-                q.transpose(0, 1).unsqueeze(0),
-                k.transpose(0, 1).unsqueeze(0),
-                v.reshape(shape).transpose(0, 1).unsqueeze(0),
-                is_causal=True,
-            )
-            .squeeze(0)
-            .transpose(0, 1)
-            .reshape(len(hidden), -1)
-        )
+        attended = causal_attention(q, k, v.reshape(shape), layout).reshape(len(hidden), -1)
         hidden = block.norm_2(attention.proj(attended) + hidden)
         return block.norm_4(block.mlp(block.norm_3(hidden)) + hidden)
 
-    def _blocks(self, blocks: torch.nn.ModuleList, hidden: torch.Tensor, frequencies: torch.Tensor) -> torch.Tensor:
+    def _blocks(
+        self,
+        blocks: torch.nn.ModuleList,
+        hidden: torch.Tensor,
+        frequencies: torch.Tensor,
+        *,
+        layout: ReplayLayout | None = None,
+    ) -> torch.Tensor:
         for block in blocks:
-            forward = partial(self._block, block)
+            forward = partial(self._block, block, layout=layout)
             # Drain each reused block's gradients into MCore before the next block.
             hidden = (
                 checkpoint(forward, hidden, frequencies, use_reentrant=True)
@@ -104,27 +108,35 @@ class HuginnMegatronModel(MegatronModule):
         return self.huginn_config.mean_recurrence
 
     def iter_readout_states(
-        self, tokens: torch.Tensor, *, all_loops: bool = False, latent_seed: int = 0
+        self,
+        tokens: torch.Tensor,
+        *,
+        all_loops: bool = False,
+        latent_seed: int = 0,
+        layout: ReplayLayout | None = None,
     ) -> Iterator[torch.Tensor]:
         width = self.huginn_config.n_embd
-        frequencies = self.freqs_cis[0, : len(tokens)]
+        frequencies = self.freqs_cis[0, : len(tokens)] if layout is None else self.freqs_cis[0, layout.positions]
         injection = self._blocks(
             self.transformer.prelude,
             self.transformer.wte(tokens) * math.sqrt(width),
             frequencies,
+            layout=layout,
         )
         state = replay_huginn_latents(
             width,
-            [latent_seed] * len(tokens),
-            range(len(tokens)),
+            [latent_seed] * len(tokens)
+            if layout is None
+            else [seed for seed, length in zip(layout.seeds, layout.lengths, strict=True) for _ in range(length)],
+            range(len(tokens)) if layout is None else [p for length in layout.lengths for p in range(length)],
             dtype=injection.dtype,
             device=tokens.device,
         )
         for depth in range(self.huginn_config.mean_recurrence):
             state = self.transformer.adapter(torch.cat((state, injection), dim=-1))
-            state = self._blocks(self.transformer.core_block, state, frequencies)
+            state = self._blocks(self.transformer.core_block, state, frequencies, layout=layout)
             if all_loops or depth + 1 == self.huginn_config.mean_recurrence:
-                readout = self._blocks(self.transformer.coda, self.transformer.ln_f(state), frequencies)
+                readout = self._blocks(self.transformer.coda, self.transformer.ln_f(state), frequencies, layout=layout)
                 yield self.transformer.ln_f(readout)
 
     def _sequence(self, tokens: torch.Tensor, seed: int) -> torch.Tensor:
@@ -153,7 +165,13 @@ class HuginnMegatronModel(MegatronModule):
             raise ValueError("Use unmodified per-sequence positions and VIME's masked RL loss")
         if input_ids.ndim != 2 or input_ids.shape[0] != 1 or recurrent_inputs is None:
             raise ValueError("Huginn requires one packed token stream and its recurrent traces")
-        boundaries = [0, input_ids.numel()] if packed_seq_params is None else packed_seq_params.cu_seqlens_q.tolist()
+        boundaries = (
+            readout_boundaries(input_ids.numel(), readout.sequence_lengths)
+            if readout is not None and readout.attention_backend != "serial"
+            else [0, input_ids.numel()]
+            if packed_seq_params is None
+            else packed_seq_params.cu_seqlens_q.tolist()
+        )
         if packed_seq_params is not None and packed_seq_params.qkv_format != "thd":
             raise ValueError("Huginn expects thd packed sequences")
         if len(recurrent_inputs) > len(boundaries) - 1:

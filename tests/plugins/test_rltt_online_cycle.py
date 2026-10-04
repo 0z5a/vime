@@ -46,7 +46,7 @@ def pair(family):
     return native, OuroMegatronModel(config, copy.deepcopy(native), recompute=True)
 
 
-def update(actor, reference, optimizer, engine, family, path, step):
+def update(actor, reference, optimizer, engine, family, path, step, backend):
     publish(actor, engine, family, path / f"before-{step}", step + 1)
     prompts = ([1, 2], [2, 2])
     requests = [
@@ -75,7 +75,7 @@ def update(actor, reference, optimizer, engine, family, path, step):
     lengths = [s.response_length for s in samples]
     with torch.no_grad():
         # Engine sampling and reference/actor replay use the same temperature.
-        inputs = packed(items, all_loops=False, entropy=False, temperature=0.8)
+        inputs = packed(items, all_loops=False, entropy=False, temperature=0.8, attention_backend=backend)
         _, ref = collect_log_probs(reference(**inputs), response_lengths=lengths, with_entropy=False)
         _, current = collect_log_probs(actor(**inputs), response_lengths=lengths, with_entropy=False)
     error = max(
@@ -89,7 +89,7 @@ def update(actor, reference, optimizer, engine, family, path, step):
     losses = []
     for start in range(0, 16, 4):
         subset = items[start : start + 4]
-        inputs = packed(subset, all_loops=True, entropy=False, temperature=0.8)
+        inputs = packed(subset, all_loops=True, entropy=False, temperature=0.8, attention_backend=backend)
         batch = {
             "advantages": [
                 torch.full((length,), advantage)
@@ -133,13 +133,14 @@ def update(actor, reference, optimizer, engine, family, path, step):
 
 
 @pytest.mark.parametrize("family", ["ouro", "nanbeige", "huginn_raven"])
-def test_fresh_reward_updates_and_reference_adam_resume(family, tmp_path, record_property):
+@pytest.mark.parametrize("backend", ["serial", "sdpa-reference"])
+def test_fresh_reward_updates_and_reference_adam_resume(family, backend, tmp_path, record_property):
     native, actor = pair(family)
     reference = copy.deepcopy(actor).requires_grad_(False)
     frozen = copy.deepcopy(reference.state_dict())
     optimizer = torch.optim.AdamW(actor.parameters(), lr=1e-3, betas=(0.9, 0.99), weight_decay=0)
     engine = cpu_engine(native, family)
-    records = [update(actor, reference, optimizer, engine, family, tmp_path, step) for step in range(2)]
+    records = [update(actor, reference, optimizer, engine, family, tmp_path, step, backend) for step in range(2)]
     torch.save(
         dict(
             actor=actor.state_dict(),
@@ -150,7 +151,7 @@ def test_fresh_reward_updates_and_reference_adam_resume(family, tmp_path, record
         ),
         tmp_path / "resume.pt",
     )
-    expected = update(actor, reference, optimizer, engine, family, tmp_path, 2)
+    expected = update(actor, reference, optimizer, engine, family, tmp_path, 2, backend)
     checkpoint = torch.load(tmp_path / "resume.pt", weights_only=True)
     _, resumed = pair(family)
     resumed.load_state_dict(checkpoint["actor"])
@@ -163,7 +164,7 @@ def test_fresh_reward_updates_and_reference_adam_resume(family, tmp_path, record
     resume_path.mkdir()
     torch.set_rng_state(checkpoint["rng"])
     actual = update(
-        resumed, resumed_ref, resumed_optimizer, resumed_engine, family, resume_path, checkpoint["next_step"]
+        resumed, resumed_ref, resumed_optimizer, resumed_engine, family, resume_path, checkpoint["next_step"], backend
     )
     assert actual == expected
     for name, value in actor.state_dict().items():
@@ -176,6 +177,7 @@ def test_fresh_reward_updates_and_reference_adam_resume(family, tmp_path, record
         for key, value in state.items():
             torch.testing.assert_close(value, right["state"][index][key], rtol=0, atol=0)
     record_property("scope", "tiny CPU components; native sampling; token-parity reward; no Ray or CUDA lifecycle")
+    record_property("backend", backend)
     record_property("updates", json.dumps([*records, expected]))
     record_property("resume", "exact actor/reference/Adam moments/tokens/rewards/scores/publication")
     engine.close()

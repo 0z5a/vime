@@ -18,6 +18,7 @@ from vllm_rlt.models.nanbeige import NanbeigeForCausalLM
 from vllm_rlt.models.ouro import OuroDecoderLayer, OuroForCausalLM
 
 from vime.utils.types import RecurrentTrace
+from vime_plugins.looped.packing import ReplayLayout, causal_attention, readout_boundaries
 from vime_plugins.looped.response import ResponseReadout, packed_response_readout
 
 
@@ -29,6 +30,7 @@ def decoder_forward(
     *,
     positions: torch.Tensor | None = None,
     previous_kv: tuple[torch.Tensor, torch.Tensor] | None = None,
+    layout: ReplayLayout | None = None,
 ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     attention = layer.self_attn
     value = layer.input_layernorm(hidden)
@@ -45,17 +47,21 @@ def decoder_forward(
         v = previous_kv[1].index_copy(0, positions, v)
     mask = None if positions is None else torch.arange(k.shape[0], device=k.device)[None, :] <= positions[:, None]
     output = (
-        F.scaled_dot_product_attention(
-            q.transpose(0, 1).unsqueeze(0),
-            k.transpose(0, 1).unsqueeze(0),
-            v.transpose(0, 1).unsqueeze(0),
-            attn_mask=mask,
-            is_causal=positions is None,
-            enable_gqa=True,
+        causal_attention(q, k, v, layout).reshape(hidden.shape[0], -1)
+        if layout is not None
+        else (
+            F.scaled_dot_product_attention(
+                q.transpose(0, 1).unsqueeze(0),
+                k.transpose(0, 1).unsqueeze(0),
+                v.transpose(0, 1).unsqueeze(0),
+                attn_mask=mask,
+                is_causal=positions is None,
+                enable_gqa=True,
+            )
+            .squeeze(0)
+            .transpose(0, 1)
+            .reshape(hidden.shape[0], -1)
         )
-        .squeeze(0)
-        .transpose(0, 1)
-        .reshape(hidden.shape[0], -1)
     )
     hidden = hidden + layer.input_layernorm_2(attention.o_proj(output))
     return hidden + layer.post_attention_layernorm_2(layer.mlp(layer.post_attention_layernorm(hidden))), k, v
@@ -110,10 +116,16 @@ class OuroMegatronModel(MegatronModule):
         self.loop_budget = loops
 
     def _layer(
-        self, layer: OuroDecoderLayer, hidden: torch.Tensor, cos: torch.Tensor, sin: torch.Tensor
+        self,
+        layer: OuroDecoderLayer,
+        hidden: torch.Tensor,
+        cos: torch.Tensor,
+        sin: torch.Tensor,
+        *,
+        layout: ReplayLayout | None = None,
     ) -> torch.Tensor:
         self.block_tokens += hidden.shape[0]
-        return decoder_forward(layer, hidden, cos, sin)[0]
+        return decoder_forward(layer, hidden, cos, sin, layout=layout)[0]
 
     def _traced_layer(
         self,
@@ -156,18 +168,24 @@ class OuroMegatronModel(MegatronModule):
         return self.loop_budget
 
     def iter_readout_states(
-        self, tokens: torch.Tensor, *, all_loops: bool = False, latent_seed: int = 0
+        self,
+        tokens: torch.Tensor,
+        *,
+        all_loops: bool = False,
+        latent_seed: int = 0,
+        layout: ReplayLayout | None = None,
     ) -> Iterator[torch.Tensor]:
         hidden = self.model.embed_tokens(tokens)
-        positions = torch.arange(tokens.numel(), device=tokens.device)
+        positions = torch.arange(tokens.numel(), device=tokens.device) if layout is None else layout.positions
         cos, sin = self.model.rotary_emb(hidden, positions)
         # Capture K in the forward, so later schedule changes cannot alter recomputation.
         for depth in range(self.loop_budget):
             for layer in self.model.layers:
+                forward = partial(self._layer, layer, layout=layout)
                 if self.recompute and torch.is_grad_enabled():
-                    hidden = checkpoint(partial(self._layer, layer), hidden, cos, sin, use_reentrant=False)
+                    hidden = checkpoint(forward, hidden, cos, sin, use_reentrant=False)
                 else:
-                    hidden = self._layer(layer, hidden, cos, sin)
+                    hidden = forward(hidden, cos, sin)
             hidden = self.model.norm(hidden)
             if all_loops or depth + 1 == self.loop_budget:
                 yield hidden
@@ -211,10 +229,18 @@ class OuroMegatronModel(MegatronModule):
                 raise ValueError("response readout requires an actor and fixed-depth recurrent traces")
             if packed_seq_params is not None and packed_seq_params.qkv_format != "thd":
                 raise ValueError("response readout expects thd packed sequences")
-            boundaries = [0, input_ids.numel()] if packed_seq_params is None else packed_seq_params.cu_seqlens_q.tolist()
+            boundaries = (
+                readout_boundaries(input_ids.numel(), readout.sequence_lengths)
+                if readout.attention_backend != "serial"
+                else [0, input_ids.numel()]
+                if packed_seq_params is None
+                else packed_seq_params.cu_seqlens_q.tolist()
+            )
             if len(recurrent_inputs) != len(readout.response_lengths):
                 raise ValueError("every response requires a recurrent trace")
-            return packed_response_readout(self, input_ids, boundaries, [0] * len(recurrent_inputs), readout, loss_mask)
+            return packed_response_readout(
+                self, input_ids, boundaries, [0] * len(recurrent_inputs), readout, loss_mask
+            )
         if packed_seq_params is None:
             return (
                 self._sequence(input_ids[0])
