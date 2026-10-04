@@ -1,0 +1,55 @@
+{
+  "base": "11113db12ab00fd778c1b42fcb2fadca7095cd5d",
+  "rlt": "46145be03fc053da147f32c45f2a23893313cb70",
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "3",
+    "skipped": "0",
+    "tests": "260",
+    "time": "24.517",
+    "timestamp": "2026-10-05T04:48:19.661238+08:00",
+    "hostname": "192.168.10.10"
+  },
+  "passed": 257,
+  "failures": [
+    {
+      "test": "tests.plugins.test_ouro_critic::test_role_factory_and_common_hf_loader_preserve_scalar_head[ouro]",
+      "message": "ModuleNotFoundError: No module named 'triton'"
+    },
+    {
+      "test": "tests.plugins.test_ouro_critic::test_role_factory_and_common_hf_loader_preserve_scalar_head[nanbeige]",
+      "message": "ModuleNotFoundError: No module named 'triton'"
+    },
+    {
+      "test": "tests.plugins.test_ouro_critic::test_role_factory_and_common_hf_loader_preserve_scalar_head[huginn]",
+      "message": "ModuleNotFoundError: No module named 'triton'"
+    }
+  ],
+  "junit_sha256": "1af216898987d4d0fd120dc33be76db35fb0036f1ad5ef8a03322e31d80b7363",
+  "mcore": {
+    "upstream": "1dcf0dafa884ad52ffb243625717a3471643e087",
+    "standard_patch_sha256": "6fa39fdfdac8dae6b9bb3e44014df6766d774e0968ac07d6025a6b40f211aa98",
+    "independently_matched_files": 2232,
+    "additional_private_patches": 0
+  },
+  "runtime": "Existing Python 3.12.14; Torch 2.13.0; pytest 9.1.1; OMP_NUM_THREADS=1",
+  "scope": "CPU components and CLI units; Ray/CUDA official-model RL lifecycle, performance and convergence NOT_RUN",
+  "sha256": {
+    "benchmarks/results/rltt-tiny-cpu/native-updates.jsonl": "4b29abadbc4d25d25b5caa8e85cd8a19641406617667095c5b1959b63092f8fa",
+    "examples/looped_ppo/run.py": "83df518e0478415a33ade8c29039fd9be850c6114496f173a4b071046fbfcc6e",
+    "tests/plugins/test_rltt_online_cycle.py": "df7a45d305aa3b3e157e79a6ea6aa4de9329eeff70bdec27861afd2eec31c6cf",
+    "tests/plugins/test_rltt_training.py": "8d70e81713d40d6fdd01e049084c6fc15f9703e2f082abbae3dca872679eb1e7",
+    "tests/test_looped_grpo_recipe.py": "2b482ae184b84e5e59bc6b5141ffb437a37cff7f30e0368bed000cdefd8b842f",
+    "tests/test_megatron_argument_validation.py": "8d27041e07c4df196d92e5932496dffc401e3eb2045675d3b1917f19d9250df6",
+    "tests/test_placement_group.py": "97bfdb33067810a5722afbdd2918d7fa32ee9b74ceb18e213541c8c88ef20a5d",
+    "vime/backends/megatron_utils/model.py": "14aa1d1ca0ce0a5ccc65347255813bd6607aa9f5c91d04ae0a830839254b0f18",
+    "vime/backends/vllm_rlt_utils/arguments.py": "d7af85ded05ff8cbbb997ca491babcae34e9e7492c17b5d8c15d750a4ca72031",
+    "vime/ray/placement_group.py": "b67161f607e58d933f205c52e3241dee0d686a9fc337ba37c09ff7940117c1b7",
+    "vime/utils/arguments.py": "9f7d5274be41c18de19050d0856ea6e8fc1e9ef9dd34c85f536f198fe09d25f1",
+    "vime_plugins/huginn/model.py": "3aaaa5374b17331b1fe7809f672e496a9b473ca5f5fa85153a152ae889003e8a",
+    "vime_plugins/looped/response.py": "572796540775779f27771a55bc27ec6a6bd242942e496aac21f1e8c6ce052fba",
+    "vime_plugins/looped/training.py": "9e5dc3139a6c969fd48b84935503d40c0248ea92d5580f4a3a9550586ddf5330",
+    "vime_plugins/ouro/model.py": "bc67117e7587f46d8a8190dfa4b838b07a3b7dea40b65ed6dc36978cd6cc32a5"
+  }
+}

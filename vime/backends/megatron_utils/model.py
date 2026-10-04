@@ -31,6 +31,7 @@ except ImportError:
     from megatron.core.utils import unwrap_model
 from vime.observability import logging_utils, train_metric_utils
 from vime.utils.memory_utils import clear_memory
+from vime_plugins.looped.training import collect_log_probs, megatron_loss, readout_request, weights_for_step
 
 from .checkpoint import load_checkpoint, save_checkpoint
 from .data import DataIterator, get_batch
@@ -481,7 +482,16 @@ def forward_only(
             forward_kwargs.update(batch["multimodal_train_inputs"])
         if batch["recurrent_inputs"] is not None:
             forward_kwargs["recurrent_inputs"] = batch["recurrent_inputs"]
+        if args.loss_type == "rltt_loss":
+            forward_kwargs["readout"] = readout_request(
+                args, response_lengths, all_loops=False, entropy=args.use_rollout_entropy
+            )
         output_tensor = model(**forward_kwargs)
+
+        if args.loss_type == "rltt_loss":
+            return output_tensor, partial(
+                collect_log_probs, response_lengths=response_lengths, with_entropy=args.use_rollout_entropy
+            )
 
         output_kwargs = {
             "args": args,
@@ -608,7 +618,15 @@ def train_one_step(
         custom_before_train_step_hook = load_function(args.custom_megatron_before_train_step_hook_path)
         custom_before_train_step_hook(args, rollout_id, step_id, model, optimizer, opt_param_scheduler)
 
-    def forward_step(data_iterator: DataIterator, model: GPTModel, return_schedule_plan: bool = False) -> tuple[
+    rltt_weights = (
+        weights_for_step(data_iterator[0], num_microbatches, args.rltt_reduction)
+        if args.loss_type == "rltt_loss"
+        else None
+    )
+
+    def forward_step(
+        data_iterator: DataIterator, model: GPTModel, return_schedule_plan: bool = False
+    ) -> tuple[
         torch.Tensor,
         Callable[[torch.Tensor], tuple[torch.Tensor, int, dict[str, torch.Tensor | list[str]]]],
     ]:
@@ -624,6 +642,7 @@ def train_one_step(
             (loss, num_elems, {"keys": list[str], "values": torch.Tensor}).
         """
 
+        indices = data_iterator.micro_batch_indices[data_iterator.offset] if rltt_weights is not None else []
         # Get the batch.
         batch = get_batch(
             data_iterator,
@@ -699,6 +718,10 @@ def train_one_step(
                 forward_kwargs.update(batch["multimodal_train_inputs"])
             if batch["recurrent_inputs"] is not None:
                 forward_kwargs["recurrent_inputs"] = batch["recurrent_inputs"]
+            if args.loss_type == "rltt_loss":
+                forward_kwargs["readout"] = readout_request(
+                    args, batch["response_lengths"], all_loops=True, entropy=args.entropy_coef != 0
+                )
 
             if args.enable_mtp_training:
                 forward_kwargs["mtp_kwargs"] = {"mtp_labels": batch["tokens"]}
@@ -719,6 +742,16 @@ def train_one_step(
 
         if os.environ.get("ENABLE_ROUTING_REPLAY", "0") == "1":
             os.environ["ROUTING_REPLAY_STAGE"] = old_stage
+
+        if rltt_weights is not None:
+            return output_tensor, partial(
+                megatron_loss,
+                args,
+                batch,
+                [rltt_weights[index] for index in indices],
+                num_microbatches,
+                step_global_batch_size,
+            )
 
         if dspark_outputs is not None:
             from vime.backends.megatron_utils.dspark.loss import build_combined_loss_fn

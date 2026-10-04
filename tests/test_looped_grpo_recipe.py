@@ -9,9 +9,9 @@ from types import SimpleNamespace
 import pytest
 
 
-@pytest.mark.parametrize("family", ["nanbeige", "huginn_raven"])
+@pytest.mark.parametrize("family", ["ouro", "nanbeige", "huginn_raven"])
 @pytest.mark.parametrize("resume", [False, True])
-@pytest.mark.parametrize("estimator", ["grpo", "ppo", "dppo", "flow-dppo"])
+@pytest.mark.parametrize("estimator", ["grpo", "ppo", "dppo", "flow-dppo", "rltt"])
 @pytest.mark.parametrize("group_size", [None, 3])
 def test_recipe_roles_groups_precision_and_resume(tmp_path, monkeypatch, family, resume, estimator, group_size):
     source = Path(__file__).resolve().parents[1]
@@ -34,6 +34,7 @@ def test_recipe_roles_groups_precision_and_resume(tmp_path, monkeypatch, family,
         "rms_norm_eps": 1e-6,
         "tie_word_embeddings": False,
         "num_loops": 2,
+        "total_ut_steps": 4,
         "n_layers": 3,
         "n_embd": 16,
         "n_heads": 2,
@@ -86,9 +87,10 @@ def test_recipe_roles_groups_precision_and_resume(tmp_path, monkeypatch, family,
         return command[command.index("--" + name) + 1]
 
     roles = json.loads((output / "roles.json").read_text())["megatron"]
-    assert [role["role"] for role in roles] == (["actor"] if estimator == "grpo" else ["actor", "critic"])
-    assert flag("advantage-estimator") == ("grpo" if estimator == "grpo" else "ppo")
-    count = group_size if group_size is not None else (4 if estimator == "grpo" else 1)
+    grouped = estimator in ("grpo", "rltt")
+    assert [role["role"] for role in roles] == (["actor"] if grouped else ["actor", "critic"])
+    assert flag("advantage-estimator") == ("grpo" if grouped else "ppo")
+    count = group_size if group_size is not None else (4 if grouped else 1)
     assert flag("n-samples-per-prompt") == str(count)
     assert flag("global-batch-size") == str(count if estimator == "flow-dppo" else 2 * count)
     assert ("--use-tis" in command) is (estimator == "dppo")
@@ -100,17 +102,24 @@ def test_recipe_roles_groups_precision_and_resume(tmp_path, monkeypatch, family,
     assert flag("rlt-start-version") == ("2" if resume else "0")
     assert flag("load") == str(output / "checkpoints/actor" if resume else model)
     assert flag("rlt-model-revision") == "checkpoint-pin" and flag("rlt-engine-revision") == "engine-pin"
-    if estimator == "grpo":
+    if estimator == "rltt":
+        assert flag("loss-type") == "rltt_loss"
+        assert flag("ref-load") == str(model)  # Always the initial checkpoint, including after resume.
+        assert flag("kl-loss-coef") == "0.001"
+    if grouped:
         assert "--normalize-advantages" not in command
         assert "--value-clip" not in command and "--lambd" not in command
     else:
         assert "--normalize-advantages" in command
         assert flag("value-clip") == "0.2" and flag("lambd") == "0.95"
-    if family == "nanbeige":
+    if family in ("ouro", "nanbeige"):
         assert "--recurrent-fp32" in command and flag("kv-channels") == "128"
-        assert flag("rlt-kv-blocks") == "44"
+        assert flag("rlt-kv-blocks") == ("88" if family == "ouro" else "44")
     else:
-        assert "--fp16" in command and flag("loss-scale") == "128"
+        if estimator == "rltt":
+            assert "--recurrent-fp32" in command
+        else:
+            assert "--fp16" in command and flag("loss-scale") == "128"
         assert flag("rlt-kv-blocks") == "704"
     assert captured["ray"]["address"] == "host:6379"
     assert captured["ray"]["runtime_env"]["py_executable"] == sys.executable

@@ -15,6 +15,7 @@ from vllm_rlt.models.huginn import HuginnBlock, HuginnForCausalLM
 from vllm_rlt.models.huginn_latents import HUGINN_LATENT_PROFILE, replay_huginn_latents
 
 from vime.utils.types import RecurrentTrace
+from vime_plugins.looped.response import ResponseReadout, packed_response_readout
 
 
 class HuginnMegatronModel(MegatronModule):
@@ -98,6 +99,10 @@ class HuginnMegatronModel(MegatronModule):
             )
         return hidden
 
+    @property
+    def readout_depth(self) -> int:
+        return self.huginn_config.mean_recurrence
+
     def iter_readout_states(
         self, tokens: torch.Tensor, *, all_loops: bool = False, latent_seed: int = 0
     ) -> Iterator[torch.Tensor]:
@@ -142,6 +147,7 @@ class HuginnMegatronModel(MegatronModule):
         packed_seq_params: PackedSeqParams | None = None,
         loss_mask=None,
         recurrent_inputs: list[RecurrentTrace] | None = None,
+        readout: ResponseReadout | None = None,
     ) -> torch.Tensor:
         if position_ids is not None or attention_mask is not None or labels is not None:
             raise ValueError("Use unmodified per-sequence positions and VIME's masked RL loss")
@@ -171,6 +177,10 @@ class HuginnMegatronModel(MegatronModule):
             seeds.append(0)
         if len(seeds) != len(boundaries) - 1:
             raise ValueError("Missing a recurrent trace for a real packed sequence")
+        if readout is not None:
+            if self.role != "actor" or len(recurrent_inputs) != len(readout.response_lengths):
+                raise ValueError("response readout requires one actor trace per response")
+            return packed_response_readout(self, input_ids, boundaries, seeds, readout, loss_mask)
         return torch.cat(
             [
                 self._sequence(input_ids[0, start:end], seed)

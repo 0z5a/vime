@@ -18,6 +18,7 @@ from vllm_rlt.models.nanbeige import NanbeigeForCausalLM
 from vllm_rlt.models.ouro import OuroDecoderLayer, OuroForCausalLM
 
 from vime.utils.types import RecurrentTrace
+from vime_plugins.looped.response import ResponseReadout, packed_response_readout
 
 
 def decoder_forward(
@@ -150,6 +151,10 @@ class OuroMegatronModel(MegatronModule):
     def _readout(self, hidden: torch.Tensor) -> torch.Tensor:
         return self.output_layer(hidden)[0] if self.role == "critic" else self.lm_head(hidden)
 
+    @property
+    def readout_depth(self) -> int:
+        return self.loop_budget
+
     def iter_readout_states(
         self, tokens: torch.Tensor, *, all_loops: bool = False, latent_seed: int = 0
     ) -> Iterator[torch.Tensor]:
@@ -180,6 +185,7 @@ class OuroMegatronModel(MegatronModule):
         loss_mask=None,
         execution_depths: torch.Tensor | None = None,
         recurrent_inputs: list[RecurrentTrace] | None = None,
+        readout: ResponseReadout | None = None,
     ) -> torch.Tensor:
         if labels is not None or attention_mask is not None or position_ids is not None:
             raise ValueError("Use VIME's masked RL loss and unmodified per-sequence positions")
@@ -200,6 +206,15 @@ class OuroMegatronModel(MegatronModule):
                 raise ValueError("Execution depths must specify a supported depth per input token")
             # VIME adds a masked padding sequence after the real packed samples.
             execution_depths = F.pad(execution_depths, (0, input_ids.numel() - execution_depths.numel()), value=1)
+        if readout is not None:
+            if self.role != "actor" or execution_depths is not None or recurrent_inputs is None:
+                raise ValueError("response readout requires an actor and fixed-depth recurrent traces")
+            if packed_seq_params is not None and packed_seq_params.qkv_format != "thd":
+                raise ValueError("response readout expects thd packed sequences")
+            boundaries = [0, input_ids.numel()] if packed_seq_params is None else packed_seq_params.cu_seqlens_q.tolist()
+            if len(recurrent_inputs) != len(readout.response_lengths):
+                raise ValueError("every response requires a recurrent trace")
+            return packed_response_readout(self, input_ids, boundaries, [0] * len(recurrent_inputs), readout, loss_mask)
         if packed_seq_params is None:
             return (
                 self._sequence(input_ids[0])
