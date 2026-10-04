@@ -1,0 +1,48 @@
+{
+  "parent": "d41ab1ca24cba8c5085d213f32e0cbcd4f507a9d",
+  "native_rlt": "7d6e08edf6327797337f361421245539ac0283e8",
+  "cpu_passed": 354,
+  "cuda_skipped": 6,
+  "known_factory_deselected": 3,
+  "new_full_gradient_cases": 36,
+  "max_new_gradient_relative_l2": 3.7271910718165596e-07,
+  "candidate_observations": 864,
+  "clean_observations": 36,
+  "clean_processes": 12,
+  "scope": "CPU tiny fixed-trace RLTT actor updates and separate native component cycles; no official Ray/CUDA/full-RL or convergence",
+  "test_xml_sha256": "f951c01339cd7f77578d0abad81d61962f1e21af7cc40845c58bd32e3482a63c",
+  "testsuite": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "6",
+    "tests": "360",
+    "time": "16.157",
+    "timestamp": "2026-10-05T06:08:39.284170+08:00",
+    "hostname": "192.168.10.10"
+  },
+  "parent_audit": {
+    "head": "d41ab1ca24cba8c5085d213f32e0cbcd4f507a9d",
+    "files": 647,
+    "symlinks": 1,
+    "all_exact": true
+  },
+  "source_sha256": {
+    "benchmarks/bench_rematerialization.py": "722e9b514cbb42ee1a5451fca8c9ab89b221c68a7e38651f613f7ca0665ede58",
+    "benchmarks/bench_rematerialization_clean.py": "62a18a9fdcf7aeee481fe229e6c73ecf3d9eac3e4e33ca02a26ccd651ec6c75e",
+    "benchmarks/summarize_rematerialization.py": "4c67142e50bf90cd42e0fd2f7d1743e6de614ec855bc3caf834dbe2acdb0fdad",
+    "tests/plugins/test_packed_recurrent_replay.py": "1cddd2db672e2eb2007a345a14887c06f33cc071e80af765c90395d33c0b0d56",
+    "tests/plugins/test_recurrent_rematerialization.py": "b561ddf5ad8a1e482ea3d4dfb1bc4f7b3ebc631a02f4e7a5b54bda842ea27581",
+    "tests/plugins/test_rltt_online_cycle.py": "d2e36ca16f5fed6d229612aa42da0c97cfc53147f9936b89e5c614814190d893",
+    "tests/plugins/test_rltt_training.py": "26c94a871eede41602f639867ff678917cfce14a0f4f0cc168dfb4f4b2d25122",
+    "vime/backends/vllm_rlt_utils/arguments.py": "defc6128a45e59403ca9cb7f830d529913311cd9707e507226b5a05fc296c89b",
+    "vime_plugins/huginn/model.py": "0a80caf96e37b7899444e1201c8c4ba6c6d2e1c076c22668419069b8757a4b53",
+    "vime_plugins/looped/execution.py": "430e36f11e9245b713906aec1c9dc65c53a252eded17e322e04e482deb857758",
+    "vime_plugins/looped/packing.py": "57df230c54cdb7b61467158ca1d1c18c4604dba34ac569e29327b0e56b44b50e",
+    "vime_plugins/looped/planner.py": "fd236edb4fab1f3fe5e5fb226b53c7ce6a94cb209f04e2243c0a3442066a2fe0",
+    "vime_plugins/looped/response.py": "a509f0c9ec5dcb3c2fef051775d3cd0d772044fa2a85fc616542b7abd87dd0c1",
+    "vime_plugins/looped/training.py": "fe20928a40af462282da047f0ebaea3352beff5b9af24f12829e5acecfbd92b1",
+    "vime_plugins/nanbeige/model.py": "c97f4f8031a2b83fd7cd468d0a19492dd30fbcddee9dc522133c1dfeefab2b11",
+    "vime_plugins/ouro/model.py": "aba73f12cc415d48b5e1afd1f0104b6e26f85dfde0f07282ccf3d8539e809f9e"
+  }
+}

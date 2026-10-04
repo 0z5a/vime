@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING, Literal, TypedDict, cast
 import torch
 
 from .response import ResponseReadout
+from .execution import RematPlan
 from .rltt import loop_weights, rltt_loss
 
 if TYPE_CHECKING:
@@ -18,6 +19,7 @@ class RLTTBatch(TypedDict):
 
 
 def validate_rltt_args(args: Namespace) -> None:
+    RematPlan(args.rltt_loop_checkpoint, args.rltt_layer_checkpoint, args.rltt_token_chunk)
     if args.rollout_backend != "vllm-rlt":
         raise ValueError("RLTT requires the native recurrent rollout/provider contract")
     if args.actor_num_nodes * args.actor_num_gpus_per_node != 1:
@@ -70,6 +72,7 @@ def weights_for_step(
 def readout_request(
     args: Namespace, lengths: list[int], total_lengths: list[int], *, all_loops: bool, entropy: bool
 ) -> ResponseReadout:
+    intervals = (args.rltt_loop_checkpoint, args.rltt_layer_checkpoint, args.rltt_token_chunk)
     return ResponseReadout(
         tuple(lengths),
         args.rltt_vocab_tile,
@@ -78,6 +81,7 @@ def readout_request(
         entropy,
         tuple(total_lengths),
         args.rltt_attention_backend,
+        RematPlan(*intervals) if any(intervals) else None,
     )
 
 

@@ -15,6 +15,7 @@ from test_looped_response_readout import make_actor
 from vime.backends.megatron_utils.data import DataIterator
 from vime.utils.types import RecurrentTrace
 from vime_plugins.looped.response import ResponseReadout
+from vime_plugins.looped.execution import RematPlan
 from vime_plugins.looped.training import (
     collect_log_probs,
     masked_token_weights,
@@ -63,7 +64,8 @@ def packed(items, *, all_loops, entropy=True, temperature=0.7, attention_backend
             all_loops,
             entropy,
             tuple(len(token) for token in tokens),
-            attention_backend,
+            "sdpa-reference" if attention_backend == "remat" else attention_backend,
+            RematPlan(2, 1, 3) if attention_backend == "remat" else None,
         ),
     )
 
@@ -95,7 +97,7 @@ def dense_replays(actor, family, items):
 @pytest.mark.parametrize("family", ["ouro", "nanbeige", "huginn"])
 @pytest.mark.parametrize("reduction", ["token_mean", "response_mean"])
 @pytest.mark.parametrize("recompute", [False, True])
-@pytest.mark.parametrize("backend", ["serial", "sdpa-reference"])
+@pytest.mark.parametrize("backend", ["serial", "sdpa-reference", "remat"])
 def test_packed_reference_and_logical_microbatch_gradient(family, reduction, recompute, backend):
     source, depth = make_actor(family, recompute)
     items = [
@@ -222,6 +224,9 @@ def test_reject_unqualified_runtime_contracts(overrides, match):
         compute_advantages_and_returns=True,
         rltt_vocab_tile=4,
         rltt_progressive_alpha=0,
+        rltt_loop_checkpoint=0,
+        rltt_layer_checkpoint=0,
+        rltt_token_chunk=0,
     )
     validate_rltt_args(args)
     vars(args).update(overrides)

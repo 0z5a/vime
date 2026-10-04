@@ -90,13 +90,14 @@ def test_varlen_is_not_silently_replaced_on_cpu():
 
 @pytest.mark.skipif(not torch.cuda.is_available(), reason="requires an existing CUDA runtime")
 @pytest.mark.parametrize("dtype", [torch.float16, torch.bfloat16])
-def test_cuda_varlen_forward_and_backward(dtype):
+@pytest.mark.parametrize("token_chunk", [0, 3, 11])
+def test_cuda_varlen_forward_and_backward(dtype, token_chunk):
     torch.manual_seed(41)
-    layout = ReplayLayout.create((5, 17, 31), (0, 0, 0), "varlen", torch.device("cuda"))
+    layout = ReplayLayout.create((5, 17, 31), (0, 0, 0), "varlen", torch.device("cuda"), token_chunk=token_chunk)
     tensors = [torch.randn(53, heads, 64, device="cuda", dtype=dtype, requires_grad=True) for heads in (4, 2, 2)]
     oracle = [value.detach().clone().requires_grad_(True) for value in tensors]
     actual = causal_attention(*tensors, layout)
-    expected = causal_attention(*oracle, replace(layout, backend="sdpa-reference"))
+    expected = causal_attention(*oracle, replace(layout, backend="sdpa-reference", chunks=()))
     torch.testing.assert_close(actual, expected, atol=0.02, rtol=0.02)
     gradient = torch.randn_like(actual) / 53
     actual.backward(gradient)

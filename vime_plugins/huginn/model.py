@@ -16,6 +16,7 @@ from vllm_rlt.models.huginn_latents import HUGINN_LATENT_PROFILE, replay_huginn_
 from vime.utils.types import RecurrentTrace
 from vime_plugins.looped.packing import ReplayLayout, causal_attention, readout_boundaries
 from vime_plugins.looped.response import ResponseReadout, packed_response_readout
+from vime_plugins.looped.execution import RecurrentProgram, RematPlan, run_layers
 
 
 class HuginnMegatronModel(MegatronModule):
@@ -106,6 +107,41 @@ class HuginnMegatronModel(MegatronModule):
     @property
     def readout_depth(self) -> int:
         return self.huginn_config.mean_recurrence
+
+    def recurrent_program(
+        self, tokens: torch.Tensor, *, latent_seed: int, layout: ReplayLayout, plan: RematPlan
+    ) -> RecurrentProgram:
+        width = self.huginn_config.n_embd
+        frequencies = self.freqs_cis[0, layout.positions]
+
+        def block_forward(block, state: torch.Tensor, context: tuple[torch.Tensor, ...]) -> torch.Tensor:
+            return self._block(block, state, context[0], layout=layout)
+
+        prelude, core, coda = (
+            tuple(partial(block_forward, block) for block in blocks)
+            for blocks in (self.transformer.prelude, self.transformer.core_block, self.transformer.coda)
+        )
+        injection = run_layers(
+            prelude, self.transformer.wte(tokens) * math.sqrt(width), (frequencies,), plan.layer_interval
+        )
+        state = replay_huginn_latents(
+            width,
+            [seed for seed, length in zip(layout.seeds, layout.lengths, strict=True) for _ in range(length)],
+            [p for length in layout.lengths for p in range(length)],
+            dtype=injection.dtype,
+            device=tokens.device,
+        )
+
+        def step(state: torch.Tensor, context: tuple[torch.Tensor, ...]) -> torch.Tensor:
+            frequencies, injection = context
+            state = self.transformer.adapter(torch.cat((state, injection), dim=-1))
+            return run_layers(core, state, (frequencies,), plan.layer_interval)
+
+        def readout(state: torch.Tensor, context: tuple[torch.Tensor, ...]) -> torch.Tensor:
+            state = run_layers(coda, self.transformer.ln_f(state), (context[0],), plan.layer_interval)
+            return self.transformer.ln_f(state)
+
+        return RecurrentProgram(state, (frequencies, injection), self.readout_depth, step, readout)
 
     def iter_readout_states(
         self,
