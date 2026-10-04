@@ -1,0 +1,674 @@
+[
+  {
+    "family": "huginn",
+    "plan": [
+      1,
+      0,
+      0
+    ],
+    "speed_ratio": 0.7395641144316785,
+    "ci95_t_log": [
+      0.704954927817794,
+      0.7758724108053635
+    ],
+    "per_start_ratios": [
+      0.7456366766705587,
+      0.7234458880444573,
+      0.7498841515239135
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.008905006148443204,
+      "remat": 0.012040884589548122
+    },
+    "max_gradient_relative_l2": 0.0,
+    "saved_storage_bytes": {
+      "layer-baseline": 71660,
+      "remat": 76524
+    },
+    "saved_storage_reduction": -0.06787608149595314
+  },
+  {
+    "family": "huginn",
+    "plan": [
+      1,
+      0,
+      8
+    ],
+    "speed_ratio": 0.30868933277171995,
+    "ci95_t_log": [
+      0.25730783025222176,
+      0.37033114800138067
+    ],
+    "per_start_ratios": [
+      0.3027371099074584,
+      0.2902512331632736,
+      0.33475350423515243
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.010443886562838034,
+      "remat": 0.03383300118945616
+    },
+    "max_gradient_relative_l2": 9.369157647601855e-08,
+    "saved_storage_bytes": {
+      "layer-baseline": 71660,
+      "remat": 73404
+    },
+    "saved_storage_reduction": -0.024337147641641188
+  },
+  {
+    "family": "huginn",
+    "plan": [
+      1,
+      2,
+      0
+    ],
+    "speed_ratio": 0.5728923330941076,
+    "ci95_t_log": [
+      0.5383278388787816,
+      0.6096761148403359
+    ],
+    "per_start_ratios": [
+      0.5691888899083223,
+      0.560891400824491,
+      0.5889573342919125
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.010616729884506395,
+      "remat": 0.018531806538877905
+    },
+    "max_gradient_relative_l2": 0.0,
+    "saved_storage_bytes": {
+      "layer-baseline": 71660,
+      "remat": 14748
+    },
+    "saved_storage_reduction": 0.7941948088194251
+  },
+  {
+    "family": "huginn",
+    "plan": [
+      1,
+      2,
+      8
+    ],
+    "speed_ratio": 0.18510583780444012,
+    "ci95_t_log": [
+      0.16201371683838278,
+      0.21148932237301865
+    ],
+    "per_start_ratios": [
+      0.1957799048043438,
+      0.17593180730451394,
+      0.18413988588608862
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.00973425267433245,
+      "remat": 0.05258749691415164
+    },
+    "max_gradient_relative_l2": 9.369157647601855e-08,
+    "saved_storage_bytes": {
+      "layer-baseline": 71660,
+      "remat": 14748
+    },
+    "saved_storage_reduction": 0.7941948088194251
+  },
+  {
+    "family": "huginn",
+    "plan": [
+      2,
+      0,
+      0
+    ],
+    "speed_ratio": 0.7364606533320092,
+    "ci95_t_log": [
+      0.7086977676081401,
+      0.7653111364195865
+    ],
+    "per_start_ratios": [
+      0.7479324242643595,
+      0.7251474687883638,
+      0.736478291663683
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.008999004100031927,
+      "remat": 0.01221925986041107
+    },
+    "max_gradient_relative_l2": 0.0,
+    "saved_storage_bytes": {
+      "layer-baseline": 71660,
+      "remat": 74028
+    },
+    "saved_storage_reduction": -0.033044934412503446
+  },
+  {
+    "family": "huginn",
+    "plan": [
+      2,
+      0,
+      8
+    ],
+    "speed_ratio": 0.310486575978789,
+    "ci95_t_log": [
+      0.26887992151189055,
+      0.3585314713012855
+    ],
+    "per_start_ratios": [
+      0.3042175030866016,
+      0.3314568632747994,
+      0.2968364783043647
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.009823339344365512,
+      "remat": 0.0316385315964082
+    },
+    "max_gradient_relative_l2": 9.369157647601855e-08,
+    "saved_storage_bytes": {
+      "layer-baseline": 71660,
+      "remat": 70908
+    },
+    "saved_storage_reduction": 0.01049399944180851
+  },
+  {
+    "family": "huginn",
+    "plan": [
+      2,
+      2,
+      0
+    ],
+    "speed_ratio": 0.5916077317864645,
+    "ci95_t_log": [
+      0.4470488206835933,
+      0.7829116018566658
+    ],
+    "per_start_ratios": [
+      0.5669179704608708,
+      0.6723177927621578,
+      0.5432587061789073
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.009258667383560824,
+      "remat": 0.015650010786036617
+    },
+    "max_gradient_relative_l2": 0.0,
+    "saved_storage_bytes": {
+      "layer-baseline": 71660,
+      "remat": 12252
+    },
+    "saved_storage_reduction": 0.8290259559028746
+  },
+  {
+    "family": "huginn",
+    "plan": [
+      2,
+      2,
+      8
+    ],
+    "speed_ratio": 0.16790924151454648,
+    "ci95_t_log": [
+      0.10251743999810077,
+      0.27501187492111207
+    ],
+    "per_start_ratios": [
+      0.18005647103527736,
+      0.13419834005785508,
+      0.1959151050862487
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.011302840931434681,
+      "remat": 0.06731518068620113
+    },
+    "max_gradient_relative_l2": 9.369157647601855e-08,
+    "saved_storage_bytes": {
+      "layer-baseline": 71660,
+      "remat": 12252
+    },
+    "saved_storage_reduction": 0.8290259559028746
+  },
+  {
+    "family": "nanbeige",
+    "plan": [
+      1,
+      0,
+      0
+    ],
+    "speed_ratio": 0.7139015506538071,
+    "ci95_t_log": [
+      0.6459559893922123,
+      0.7889940373576397
+    ],
+    "per_start_ratios": [
+      0.7044387817450237,
+      0.6914909219380754,
+      0.7469391714081959
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.0061719715382032745,
+      "remat": 0.008645409906381133
+    },
+    "max_gradient_relative_l2": 0.0,
+    "saved_storage_bytes": {
+      "layer-baseline": 27688,
+      "remat": 8504
+    },
+    "saved_storage_reduction": 0.6928633342964461
+  },
+  {
+    "family": "nanbeige",
+    "plan": [
+      1,
+      0,
+      8
+    ],
+    "speed_ratio": 0.24202507617031255,
+    "ci95_t_log": [
+      0.2245960365076297,
+      0.26080663936051124
+    ],
+    "per_start_ratios": [
+      0.24591089189000645,
+      0.23377048727464708,
+      0.24661168433404138
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.004788256266706632,
+      "remat": 0.019784132877773142
+    },
+    "max_gradient_relative_l2": 4.198786067919271e-08,
+    "saved_storage_bytes": {
+      "layer-baseline": 27688,
+      "remat": 8504
+    },
+    "saved_storage_reduction": 0.6928633342964461
+  },
+  {
+    "family": "nanbeige",
+    "plan": [
+      1,
+      2,
+      0
+    ],
+    "speed_ratio": 0.5467070425970901,
+    "ci95_t_log": [
+      0.49856582535566485,
+      0.5994967469180957
+    ],
+    "per_start_ratios": [
+      0.5323941772010701,
+      0.5380971539960608,
+      0.5703875182605338
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.004620505405984225,
+      "remat": 0.008451519819526859
+    },
+    "max_gradient_relative_l2": 0.0,
+    "saved_storage_bytes": {
+      "layer-baseline": 27688,
+      "remat": 8504
+    },
+    "saved_storage_reduction": 0.6928633342964461
+  },
+  {
+    "family": "nanbeige",
+    "plan": [
+      1,
+      2,
+      8
+    ],
+    "speed_ratio": 0.18271478164331603,
+    "ci95_t_log": [
+      0.15555238924087608,
+      0.21462024205406302
+    ],
+    "per_start_ratios": [
+      0.19159910087794113,
+      0.18758944181030537,
+      0.16971459491838883
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.004747045625432663,
+      "remat": 0.02598063267097644
+    },
+    "max_gradient_relative_l2": 4.198786067919271e-08,
+    "saved_storage_bytes": {
+      "layer-baseline": 27688,
+      "remat": 8504
+    },
+    "saved_storage_reduction": 0.6928633342964461
+  },
+  {
+    "family": "nanbeige",
+    "plan": [
+      2,
+      0,
+      0
+    ],
+    "speed_ratio": 0.6968578158406612,
+    "ci95_t_log": [
+      0.6547466327563889,
+      0.7416774538478579
+    ],
+    "per_start_ratios": [
+      0.6905860786427831,
+      0.6835242529880603,
+      0.7169036275698867
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.004424005975753104,
+      "remat": 0.006348505929313797
+    },
+    "max_gradient_relative_l2": 0.0,
+    "saved_storage_bytes": {
+      "layer-baseline": 27688,
+      "remat": 6008
+    },
+    "saved_storage_reduction": 0.7830106905518637
+  },
+  {
+    "family": "nanbeige",
+    "plan": [
+      2,
+      0,
+      8
+    ],
+    "speed_ratio": 0.23192609325069566,
+    "ci95_t_log": [
+      0.21205767370978637,
+      0.2536560539853173
+    ],
+    "per_start_ratios": [
+      0.24064439537180202,
+      0.22391780026869676,
+      0.23151784265525502
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.004116641252632573,
+      "remat": 0.017749797769338424
+    },
+    "max_gradient_relative_l2": 4.198786067919271e-08,
+    "saved_storage_bytes": {
+      "layer-baseline": 27688,
+      "remat": 6008
+    },
+    "saved_storage_reduction": 0.7830106905518637
+  },
+  {
+    "family": "nanbeige",
+    "plan": [
+      2,
+      2,
+      0
+    ],
+    "speed_ratio": 0.5388883384810101,
+    "ci95_t_log": [
+      0.4469929979006932,
+      0.6496760412684159
+    ],
+    "per_start_ratios": [
+      0.5264736428883937,
+      0.5862044249893209,
+      0.5070731683645593
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.004576221518153667,
+      "remat": 0.008491966129853317
+    },
+    "max_gradient_relative_l2": 0.0,
+    "saved_storage_bytes": {
+      "layer-baseline": 27688,
+      "remat": 6008
+    },
+    "saved_storage_reduction": 0.7830106905518637
+  },
+  {
+    "family": "nanbeige",
+    "plan": [
+      2,
+      2,
+      8
+    ],
+    "speed_ratio": 0.14272753390836646,
+    "ci95_t_log": [
+      0.117299669353129,
+      0.17366757338622024
+    ],
+    "per_start_ratios": [
+      0.15144015425832724,
+      0.1304862441075499,
+      0.14713551440784506
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.00410171608859571,
+      "remat": 0.02873808561163176
+    },
+    "max_gradient_relative_l2": 4.198786067919271e-08,
+    "saved_storage_bytes": {
+      "layer-baseline": 27688,
+      "remat": 6008
+    },
+    "saved_storage_reduction": 0.7830106905518637
+  },
+  {
+    "family": "ouro",
+    "plan": [
+      1,
+      0,
+      0
+    ],
+    "speed_ratio": 0.6726724507611366,
+    "ci95_t_log": [
+      0.5818742919976666,
+      0.7776391434299837
+    ],
+    "per_start_ratios": [
+      0.6990137086069554,
+      0.6289722285134263,
+      0.6922990913561314
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.013854134526859874,
+      "remat": 0.020595662140145275
+    },
+    "max_gradient_relative_l2": 0.0,
+    "saved_storage_bytes": {
+      "layer-baseline": 51360,
+      "remat": 13504
+    },
+    "saved_storage_reduction": 0.7370716510903427
+  },
+  {
+    "family": "ouro",
+    "plan": [
+      1,
+      0,
+      8
+    ],
+    "speed_ratio": 0.3662450872165345,
+    "ci95_t_log": [
+      0.30795960564066377,
+      0.43556187712085886
+    ],
+    "per_start_ratios": [
+      0.35207876862749543,
+      0.35149149553759457,
+      0.3969728133970171
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.015608659872716747,
+      "remat": 0.04261807302684296
+    },
+    "max_gradient_relative_l2": 1.8507122036106397e-07,
+    "saved_storage_bytes": {
+      "layer-baseline": 51360,
+      "remat": 13504
+    },
+    "saved_storage_reduction": 0.7370716510903427
+  },
+  {
+    "family": "ouro",
+    "plan": [
+      1,
+      2,
+      0
+    ],
+    "speed_ratio": 0.767660344122172,
+    "ci95_t_log": [
+      0.7489358086619419,
+      0.7868530214767359
+    ],
+    "per_start_ratios": [
+      0.7646800334257083,
+      0.776382120980834,
+      0.7619948620085403
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.01725735886555482,
+      "remat": 0.022480461570916235
+    },
+    "max_gradient_relative_l2": 0.0,
+    "saved_storage_bytes": {
+      "layer-baseline": 51360,
+      "remat": 13504
+    },
+    "saved_storage_reduction": 0.7370716510903427
+  },
+  {
+    "family": "ouro",
+    "plan": [
+      1,
+      2,
+      8
+    ],
+    "speed_ratio": 0.2207108394114757,
+    "ci95_t_log": [
+      0.20870761446224706,
+      0.23340439571039187
+    ],
+    "per_start_ratios": [
+      0.2212647309970092,
+      0.22542912005969418,
+      0.2155503724272712
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.018492080740479384,
+      "remat": 0.08378419831934138
+    },
+    "max_gradient_relative_l2": 1.8507122036106397e-07,
+    "saved_storage_bytes": {
+      "layer-baseline": 51360,
+      "remat": 13504
+    },
+    "saved_storage_reduction": 0.7370716510903427
+  },
+  {
+    "family": "ouro",
+    "plan": [
+      2,
+      0,
+      0
+    ],
+    "speed_ratio": 1.101690176772224,
+    "ci95_t_log": [
+      0.737410839926358,
+      1.6459227066930873
+    ],
+    "per_start_ratios": [
+      1.0049723922253637,
+      1.327698234049019,
+      1.0021319815914993
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.01738499351192491,
+      "remat": 0.01578029275241444
+    },
+    "max_gradient_relative_l2": 0.0,
+    "saved_storage_bytes": {
+      "layer-baseline": 51360,
+      "remat": 8512
+    },
+    "saved_storage_reduction": 0.8342679127725856
+  },
+  {
+    "family": "ouro",
+    "plan": [
+      2,
+      0,
+      8
+    ],
+    "speed_ratio": 0.265093707256701,
+    "ci95_t_log": [
+      0.189180390091027,
+      0.371469123164868
+    ],
+    "per_start_ratios": [
+      0.29495916747858714,
+      0.227514952942137,
+      0.2776044426887909
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.014548516210769429,
+      "remat": 0.05488065469876091
+    },
+    "max_gradient_relative_l2": 1.8507122036106397e-07,
+    "saved_storage_bytes": {
+      "layer-baseline": 51360,
+      "remat": 8512
+    },
+    "saved_storage_reduction": 0.8342679127725856
+  },
+  {
+    "family": "ouro",
+    "plan": [
+      2,
+      2,
+      0
+    ],
+    "speed_ratio": 0.7376892282154774,
+    "ci95_t_log": [
+      0.5192840585908547,
+      1.0479532125478013
+    ],
+    "per_start_ratios": [
+      0.762236384670284,
+      0.631882008031319,
+      0.8334789972021011
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.02034436415266433,
+      "remat": 0.02757850240253445
+    },
+    "max_gradient_relative_l2": 0.0,
+    "saved_storage_bytes": {
+      "layer-baseline": 51360,
+      "remat": 8512
+    },
+    "saved_storage_reduction": 0.8342679127725856
+  },
+  {
+    "family": "ouro",
+    "plan": [
+      2,
+      2,
+      8
+    ],
+    "speed_ratio": 0.30039380582137687,
+    "ci95_t_log": [
+      0.2292656981297545,
+      0.39358892024388725
+    ],
+    "per_start_ratios": [
+      0.30066326350864464,
+      0.33476154682812276,
+      0.26931279459145074
+    ],
+    "actor_update_seconds_geomean": {
+      "layer-baseline": 0.019786984769741726,
+      "remat": 0.06587014907194079
+    },
+    "max_gradient_relative_l2": 1.8507122036106397e-07,
+    "saved_storage_bytes": {
+      "layer-baseline": 51360,
+      "remat": 8512
+    },
+    "saved_storage_reduction": 0.8342679127725856
+  }
+]

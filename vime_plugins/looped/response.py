@@ -8,6 +8,7 @@ import torch
 
 from .readout import streamed_readout
 from .packing import ReplayLayout
+from .execution import RecurrentProgram, RematPlan, recurrent_scores
 
 
 class RecurrentProvider(Protocol):
@@ -20,6 +21,10 @@ class RecurrentProvider(Protocol):
         self, tokens: torch.Tensor, *, all_loops: bool, latent_seed: int, layout: ReplayLayout | None = None
     ) -> Iterator[torch.Tensor]: ...
 
+    def recurrent_program(
+        self, tokens: torch.Tensor, *, latent_seed: int, layout: ReplayLayout, plan: RematPlan
+    ) -> RecurrentProgram: ...
+
 
 @dataclass(frozen=True)
 class ResponseReadout:
@@ -30,6 +35,7 @@ class ResponseReadout:
     entropy: bool = False
     sequence_lengths: tuple[int, ...] = ()
     attention_backend: Literal["serial", "sdpa-reference", "varlen"] = "serial"
+    rematerialization: RematPlan | None = None
 
 
 def response_log_probs(
@@ -60,6 +66,16 @@ def _response_readout(
     labels = tokens[begin + 1 :]
     # A one-token prompt with no response still anchors a differentiable zero.
     replay_tokens = tokens[: max(1, len(tokens) - 1)]
+    if request.rematerialization is not None:
+        layout = ReplayLayout.create(
+            (len(replay_tokens),),
+            (seed,),
+            "sdpa-reference",
+            tokens.device,
+            token_chunk=request.rematerialization.token_chunk,
+        )
+        rows = torch.arange(begin, begin + response_length, device=tokens.device)
+        return _rematerialized_readout(model, replay_tokens, rows, labels, request, layout)
     scores = []
     depth = model.readout_depth if request.all_loops else 1
     for index, hidden in enumerate(
@@ -113,7 +129,13 @@ def _batched_response_readout(
         raise ValueError("response must follow a nonempty prompt")
     replay_lengths = tuple(max(1, length - 1) for length in lengths)
     assert request.attention_backend != "serial"
-    layout = ReplayLayout.create(replay_lengths, tuple(seeds), request.attention_backend, tokens.device)
+    layout = ReplayLayout.create(
+        replay_lengths,
+        tuple(seeds),
+        request.attention_backend,
+        tokens.device,
+        token_chunk=0 if request.rematerialization is None else request.rematerialization.token_chunk,
+    )
     replay = torch.cat([tokens[0, boundaries[i] : boundaries[i] + length] for i, length in enumerate(replay_lengths)])
     rows, labels = [], []
     for i, (length, response) in enumerate(zip(lengths, request.response_lengths, strict=True)):
@@ -122,6 +144,8 @@ def _batched_response_readout(
         labels.append(tokens[0, boundaries[i] + begin + 1 : boundaries[i + 1]])
     rows = torch.tensor(rows, device=tokens.device, dtype=torch.long)
     labels = torch.cat(labels)
+    if request.rematerialization is not None:
+        return _rematerialized_readout(model, replay, rows, labels, request, layout)
     depth = model.readout_depth if request.all_loops else 1
     scores = []
     for index, hidden in enumerate(
@@ -137,3 +161,30 @@ def _batched_response_readout(
         )
         scores.append(result.log_probs)
     return torch.stack([*scores, result.entropy], dim=-1)
+
+
+def _rematerialized_readout(
+    model: RecurrentProvider,
+    tokens: torch.Tensor,
+    rows: torch.Tensor,
+    labels: torch.Tensor,
+    request: ResponseReadout,
+    layout: ReplayLayout,
+) -> torch.Tensor:
+    assert request.rematerialization is not None
+    program = model.recurrent_program(tokens, latent_seed=0, layout=layout, plan=request.rematerialization)
+
+    def score(hidden: torch.Tensor, terminal: bool) -> torch.Tensor:
+        result = streamed_readout(
+            hidden.index_select(0, rows),
+            model.lm_head.weight,
+            labels,
+            vocab_tile=request.vocab_tile,
+            temperature=request.temperature,
+            entropy=terminal and request.entropy,
+        )
+        return torch.stack((result.log_probs, result.entropy), dim=-1)
+
+    return recurrent_scores(
+        program, score, all_loops=request.all_loops, response_tokens=len(labels), plan=request.rematerialization
+    )

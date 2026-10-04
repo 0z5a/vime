@@ -133,7 +133,7 @@ def update(actor, reference, optimizer, engine, family, path, step, backend):
 
 
 @pytest.mark.parametrize("family", ["ouro", "nanbeige", "huginn_raven"])
-@pytest.mark.parametrize("backend", ["serial", "sdpa-reference"])
+@pytest.mark.parametrize("backend", ["serial", "sdpa-reference", "remat"])
 def test_fresh_reward_updates_and_reference_adam_resume(family, backend, tmp_path, record_property):
     native, actor = pair(family)
     reference = copy.deepcopy(actor).requires_grad_(False)

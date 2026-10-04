@@ -20,6 +20,7 @@ from vllm_rlt.models.ouro import OuroDecoderLayer, OuroForCausalLM
 from vime.utils.types import RecurrentTrace
 from vime_plugins.looped.packing import ReplayLayout, causal_attention, readout_boundaries
 from vime_plugins.looped.response import ResponseReadout, packed_response_readout
+from vime_plugins.looped.execution import RecurrentProgram, RematPlan, run_layers
 
 
 def decoder_forward(
@@ -166,6 +167,25 @@ class OuroMegatronModel(MegatronModule):
     @property
     def readout_depth(self) -> int:
         return self.loop_budget
+
+    def _loop_output(self, hidden: torch.Tensor) -> torch.Tensor:
+        return self.model.norm(hidden)
+
+    def recurrent_program(
+        self, tokens: torch.Tensor, *, latent_seed: int, layout: ReplayLayout, plan: RematPlan
+    ) -> RecurrentProgram:
+        hidden = self.model.embed_tokens(tokens)
+        context = self.model.rotary_emb(hidden, layout.positions)
+
+        def layer_forward(layer, state: torch.Tensor, context: tuple[torch.Tensor, ...]) -> torch.Tensor:
+            return self._layer(layer, state, *context, layout=layout)
+
+        functions = tuple(partial(layer_forward, layer) for layer in self.model.layers)
+
+        def step(state: torch.Tensor, context: tuple[torch.Tensor, ...]) -> torch.Tensor:
+            return self._loop_output(run_layers(functions, state, context, plan.layer_interval))
+
+        return RecurrentProgram(hidden, context, self.loop_budget, step, lambda state, context: state)
 
     def iter_readout_states(
         self,

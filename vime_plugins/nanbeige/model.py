@@ -81,6 +81,9 @@ class NanbeigeMegatronModel(OuroMegatronModel):
             else self._readout(hidden)
         )
 
+    def _loop_output(self, hidden: torch.Tensor) -> torch.Tensor:
+        return hidden if self.nanbeige_config.skip_loop_final_norm else self.model.norm(hidden)
+
     def _traced_sequence(self, tokens: torch.Tensor, depths: torch.Tensor) -> torch.Tensor:
         if not bool((depths == self.nanbeige_config.num_loops).all()):
             raise ValueError("Nanbeige requires the checkpoint's fixed loop count")

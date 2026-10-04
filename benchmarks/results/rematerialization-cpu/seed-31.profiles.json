@@ -1,0 +1,350 @@
+[
+  {
+    "contract": "tiny-ouro-model81-data31-B4-FP32-CPU-RLTT",
+    "memory_metric": "forward_observed_saved_storage",
+    "budget_bytes": 8512,
+    "selected": {
+      "loop_interval": 2,
+      "layer_interval": 0,
+      "token_chunk": 0
+    },
+    "profiles": [
+      {
+        "plan": {
+          "loop_interval": 1,
+          "layer_interval": 0,
+          "token_chunk": 0
+        },
+        "contract": "tiny-ouro-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.013329815227217776,
+        "memory_bytes": 13504,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 1,
+          "layer_interval": 0,
+          "token_chunk": 8
+        },
+        "contract": "tiny-ouro-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.027858920806927992,
+        "memory_bytes": 13504,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 1,
+          "layer_interval": 2,
+          "token_chunk": 0
+        },
+        "contract": "tiny-ouro-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.016536507089785248,
+        "memory_bytes": 13504,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 1,
+          "layer_interval": 2,
+          "token_chunk": 8
+        },
+        "contract": "tiny-ouro-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.07094867712310388,
+        "memory_bytes": 13504,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 2,
+          "layer_interval": 0,
+          "token_chunk": 0
+        },
+        "contract": "tiny-ouro-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.012626658970063327,
+        "memory_bytes": 8512,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 2,
+          "layer_interval": 0,
+          "token_chunk": 8
+        },
+        "contract": "tiny-ouro-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.041739460100569656,
+        "memory_bytes": 8512,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 2,
+          "layer_interval": 2,
+          "token_chunk": 0
+        },
+        "contract": "tiny-ouro-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.017374169479409778,
+        "memory_bytes": 8512,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 2,
+          "layer_interval": 2,
+          "token_chunk": 8
+        },
+        "contract": "tiny-ouro-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.04425924431839128,
+        "memory_bytes": 8512,
+        "gradient_verified": true
+      }
+    ]
+  },
+  {
+    "contract": "tiny-nanbeige-model81-data31-B4-FP32-CPU-RLTT",
+    "memory_metric": "forward_observed_saved_storage",
+    "budget_bytes": 6008,
+    "selected": {
+      "loop_interval": 2,
+      "layer_interval": 0,
+      "token_chunk": 0
+    },
+    "profiles": [
+      {
+        "plan": {
+          "loop_interval": 1,
+          "layer_interval": 0,
+          "token_chunk": 0
+        },
+        "contract": "tiny-nanbeige-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.00578311928490455,
+        "memory_bytes": 8504,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 1,
+          "layer_interval": 0,
+          "token_chunk": 8
+        },
+        "contract": "tiny-nanbeige-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.01706972829579997,
+        "memory_bytes": 8504,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 1,
+          "layer_interval": 2,
+          "token_chunk": 0
+        },
+        "contract": "tiny-nanbeige-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.007777503139698246,
+        "memory_bytes": 8504,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 1,
+          "layer_interval": 2,
+          "token_chunk": 8
+        },
+        "contract": "tiny-nanbeige-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.021211717617468887,
+        "memory_bytes": 8504,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 2,
+          "layer_interval": 0,
+          "token_chunk": 0
+        },
+        "contract": "tiny-nanbeige-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.005581899893512402,
+        "memory_bytes": 6008,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 2,
+          "layer_interval": 0,
+          "token_chunk": 8
+        },
+        "contract": "tiny-nanbeige-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.01655005620984918,
+        "memory_bytes": 6008,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 2,
+          "layer_interval": 2,
+          "token_chunk": 0
+        },
+        "contract": "tiny-nanbeige-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.007344986652529683,
+        "memory_bytes": 6008,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 2,
+          "layer_interval": 2,
+          "token_chunk": 8
+        },
+        "contract": "tiny-nanbeige-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.026129930464568813,
+        "memory_bytes": 6008,
+        "gradient_verified": true
+      }
+    ]
+  },
+  {
+    "contract": "tiny-huginn-model81-data31-B4-FP32-CPU-RLTT",
+    "memory_metric": "forward_observed_saved_storage",
+    "budget_bytes": 12252,
+    "selected": {
+      "loop_interval": 2,
+      "layer_interval": 2,
+      "token_chunk": 0
+    },
+    "profiles": [
+      {
+        "plan": {
+          "loop_interval": 1,
+          "layer_interval": 0,
+          "token_chunk": 0
+        },
+        "contract": "tiny-huginn-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.011560413441260228,
+        "memory_bytes": 76524,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 1,
+          "layer_interval": 0,
+          "token_chunk": 8
+        },
+        "contract": "tiny-huginn-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.02521133737917355,
+        "memory_bytes": 73404,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 1,
+          "layer_interval": 2,
+          "token_chunk": 0
+        },
+        "contract": "tiny-huginn-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.013613237573299889,
+        "memory_bytes": 14748,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 1,
+          "layer_interval": 2,
+          "token_chunk": 8
+        },
+        "contract": "tiny-huginn-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.037364129218328074,
+        "memory_bytes": 14748,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 2,
+          "layer_interval": 0,
+          "token_chunk": 0
+        },
+        "contract": "tiny-huginn-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.00991068984588493,
+        "memory_bytes": 74028,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 2,
+          "layer_interval": 0,
+          "token_chunk": 8
+        },
+        "contract": "tiny-huginn-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.024756272165024733,
+        "memory_bytes": 70908,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 2,
+          "layer_interval": 2,
+          "token_chunk": 0
+        },
+        "contract": "tiny-huginn-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.014487435497321857,
+        "memory_bytes": 12252,
+        "gradient_verified": true
+      },
+      {
+        "plan": {
+          "loop_interval": 2,
+          "layer_interval": 2,
+          "token_chunk": 8
+        },
+        "contract": "tiny-huginn-model81-data31-B4-FP32-CPU-RLTT",
+        "scope": "actor_update",
+        "memory_metric": "forward_observed_saved_storage",
+        "seconds": 0.05149444890928004,
+        "memory_bytes": 12252,
+        "gradient_verified": true
+      }
+    ]
+  }
+]
