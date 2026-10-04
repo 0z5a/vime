@@ -4,6 +4,7 @@ The optional vllm-rlt dependency supplies checkpoint-compatible physical modules
 Training uses differentiable SDPA, not the serving KV writes or a HF model wrapper.
 """
 
+from collections.abc import Iterator
 from functools import partial
 from typing import Literal
 
@@ -149,19 +150,25 @@ class OuroMegatronModel(MegatronModule):
     def _readout(self, hidden: torch.Tensor) -> torch.Tensor:
         return self.output_layer(hidden)[0] if self.role == "critic" else self.lm_head(hidden)
 
-    def _sequence(self, tokens: torch.Tensor) -> torch.Tensor:
+    def iter_readout_states(
+        self, tokens: torch.Tensor, *, all_loops: bool = False, latent_seed: int = 0
+    ) -> Iterator[torch.Tensor]:
         hidden = self.model.embed_tokens(tokens)
         positions = torch.arange(tokens.numel(), device=tokens.device)
         cos, sin = self.model.rotary_emb(hidden, positions)
         # Capture K in the forward, so later schedule changes cannot alter recomputation.
-        for _ in range(self.loop_budget):
+        for depth in range(self.loop_budget):
             for layer in self.model.layers:
                 if self.recompute and torch.is_grad_enabled():
                     hidden = checkpoint(partial(self._layer, layer), hidden, cos, sin, use_reentrant=False)
                 else:
                     hidden = self._layer(layer, hidden, cos, sin)
             hidden = self.model.norm(hidden)
-        return self._readout(hidden)
+            if all_loops or depth + 1 == self.loop_budget:
+                yield hidden
+
+    def _sequence(self, tokens: torch.Tensor) -> torch.Tensor:
+        return self._readout(next(self.iter_readout_states(tokens)))
 
     def forward(
         self,
