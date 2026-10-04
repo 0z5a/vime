@@ -44,7 +44,7 @@ def trace(family, depth, seed, length):
     )
 
 
-def packed(items, *, all_loops, entropy=True, temperature=0.7):
+def packed(items, *, all_loops, entropy=True, temperature=0.7, attention_backend="serial"):
     tokens = [item[0] for item in items]
     lengths = [item[1] for item in items]
     boundaries = torch.tensor([0, *torch.tensor([len(t) for t in tokens]).cumsum(0).tolist()], dtype=torch.int32)
@@ -56,7 +56,15 @@ def packed(items, *, all_loops, entropy=True, temperature=0.7):
         packed_seq_params=PackedSeqParams(cu_seqlens_q=boundaries, cu_seqlens_kv=boundaries, qkv_format="thd"),
         recurrent_inputs=[item[2] for item in items],
         loss_mask=mask,
-        readout=ResponseReadout(tuple(lengths), 5, temperature, all_loops, entropy),
+        readout=ResponseReadout(
+            tuple(lengths),
+            5,
+            temperature,
+            all_loops,
+            entropy,
+            tuple(len(token) for token in tokens),
+            attention_backend,
+        ),
     )
 
 
@@ -87,7 +95,8 @@ def dense_replays(actor, family, items):
 @pytest.mark.parametrize("family", ["ouro", "nanbeige", "huginn"])
 @pytest.mark.parametrize("reduction", ["token_mean", "response_mean"])
 @pytest.mark.parametrize("recompute", [False, True])
-def test_packed_reference_and_logical_microbatch_gradient(family, reduction, recompute):
+@pytest.mark.parametrize("backend", ["serial", "sdpa-reference"])
+def test_packed_reference_and_logical_microbatch_gradient(family, reduction, recompute, backend):
     source, depth = make_actor(family, recompute)
     items = [
         (torch.tensor(tokens), length, trace(family, depth, 19 + i, length))
@@ -99,7 +108,7 @@ def test_packed_reference_and_logical_microbatch_gradient(family, reduction, rec
     with torch.no_grad():
         # A distinct frozen reference catches accidental current/old-policy substitution.
         reference.lm_head.weight.mul_(0.9)
-        reference_output = reference(**packed(items, all_loops=False))
+        reference_output = reference(**packed(items, all_loops=False, attention_backend=backend))
         _, ref = collect_log_probs(reference_output, response_lengths=[3, 0, 1], with_entropy=True)
         ref_dense, ref_entropy = dense_replays(reference, family, items)
         torch.testing.assert_close(torch.cat(ref["log_probs"]), ref_dense[:, -1], atol=2e-6, rtol=2e-6)
@@ -127,7 +136,7 @@ def test_packed_reference_and_logical_microbatch_gradient(family, reduction, rec
         total = 0.0
         logged = 0.0
         for group in groups:
-            output = actor(**packed([items[i] for i in group], all_loops=True))
+            output = actor(**packed([items[i] for i in group], all_loops=True, attention_backend=backend))
             loss_fn = partial(
                 megatron_loss,
                 args,

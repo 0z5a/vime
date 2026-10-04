@@ -19,6 +19,7 @@ def add_arguments(parser):
     group.add_argument("--rltt-vocab-tile", type=int, default=2048)
     group.add_argument("--rltt-progressive-alpha", type=float, default=0.0)
     group.add_argument("--rltt-reduction", choices=("response_mean", "token_mean"), default="response_mean")
+    group.add_argument("--rltt-attention-backend", choices=("serial", "sdpa-reference", "varlen"), default="serial")
     return parser
 
 

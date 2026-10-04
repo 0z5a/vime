@@ -67,8 +67,18 @@ def weights_for_step(
     return dict(zip(indices, weights, strict=True))
 
 
-def readout_request(args: Namespace, lengths: list[int], *, all_loops: bool, entropy: bool) -> ResponseReadout:
-    return ResponseReadout(tuple(lengths), args.rltt_vocab_tile, args.rollout_temperature, all_loops, entropy)
+def readout_request(
+    args: Namespace, lengths: list[int], total_lengths: list[int], *, all_loops: bool, entropy: bool
+) -> ResponseReadout:
+    return ResponseReadout(
+        tuple(lengths),
+        args.rltt_vocab_tile,
+        args.rollout_temperature,
+        all_loops,
+        entropy,
+        tuple(total_lengths),
+        args.rltt_attention_backend,
+    )
 
 
 def collect_log_probs(

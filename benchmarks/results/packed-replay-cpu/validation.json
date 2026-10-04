@@ -1,0 +1,51 @@
+{
+  "base": "fba761ff018b6b127e07cb0ca14e107cfe6e590a",
+  "tests": {
+    "w03-release.xml": {
+      "summary": {
+        "name": "pytest",
+        "errors": "0",
+        "failures": "0",
+        "skipped": "2",
+        "tests": "284",
+        "time": "30.455",
+        "timestamp": "2026-10-05T05:02:46.696887+08:00",
+        "hostname": "192.168.10.10"
+      },
+      "sha256": "b88a69e5eb9871cf3d4b6fcbefa08074589afec697c2909b2bfabf989d1800da"
+    },
+    "w03-rltt-cycle.xml": {
+      "summary": {
+        "name": "pytest",
+        "errors": "0",
+        "failures": "0",
+        "skipped": "0",
+        "tests": "41",
+        "time": "18.701",
+        "timestamp": "2026-10-05T05:06:09.437508+08:00",
+        "hostname": "192.168.10.10"
+      },
+      "sha256": "07956d8213978aff57d1a4cbd4b1070e05b5687a0d14b12020a824bc7c7f9749"
+    }
+  },
+  "source_sha256": {
+    "benchmarks/bench_packed_replay.py": "fccc186d39819e009cf11c7ea3e4e88c55836db9f0f899780b88f9834210e5c7",
+    "benchmarks/results/packed-replay-cpu/31.jsonl": "6922d3d4e5cc8b100abc174534c7db70328d240328b9345726f502f0efd12469",
+    "benchmarks/results/packed-replay-cpu/32.jsonl": "8fdb792c3a6390145c9a5df41c05ff7654cf7f4fa78cff73466248f62c90c497",
+    "benchmarks/results/packed-replay-cpu/33.jsonl": "661535e3763a8b49deaf75ac209f99ca907987ce2f701359232032511f278796",
+    "benchmarks/results/packed-replay-cpu/native-updates.jsonl": "76b805be2a969cf8e05809fdfe9696867d59b3153cec279007423fb2fed6c7b0",
+    "tests/plugins/test_packed_recurrent_replay.py": "80e207a25dd8c4f6c8b6950924e6e3d7c33dd786e094edc9b53f07a4eac0616f",
+    "tests/plugins/test_rltt_online_cycle.py": "bb119c49b3d120922d0a41f58183f214910465a77a04e805270012e28f52a4b1",
+    "tests/plugins/test_rltt_training.py": "a324b91be6e5d3da2eee186e94af98981a78319468956a3e5e35320f248c5d0c",
+    "vime/backends/megatron_utils/model.py": "27664f231f15c6faf53b759807aad8eb42842dc3ac24e1aefb0e26bc2a52e8a6",
+    "vime/backends/vllm_rlt_utils/arguments.py": "f167e5132ab7f8a414330b9e723cf4576575df6dcc7d54579a1b53dfd4f7c02b",
+    "vime_plugins/huginn/model.py": "eeebfc04e68003c998327658024572cc8cb3d93d0aac08ac12d7bb89dd7556d1",
+    "vime_plugins/looped/packing.py": "f684c3e3436a1d0704a0a2b16d3ba385f8efba9576b4068aa4c72a2fc167ca83",
+    "vime_plugins/looped/response.py": "d39d623dff4f57e91a41f0346bc4f23b1a9393cb3ccb90eecd48cd061fcc5588",
+    "vime_plugins/looped/training.py": "9f18cafbc71aed6a53bd49879c82d9462f125d0d49598a1837f5052ed1d400c7",
+    "vime_plugins/nanbeige/model.py": "5c0d1b02af824f35dbc51d1d3c458ddc0e09b6177e2f1e7eb64df0fdd79a0957",
+    "vime_plugins/ouro/model.py": "e28b4365e04e94e881d417d17f965a9e3988767a32b8fd8e7e71f7a68fae0cbc"
+  },
+  "scope": "CPU numerical and native cycles; two CUDA tests skipped; three known missing-Triton factories deselected",
+  "mcore_identity": "1dcf0dafa884ad52ffb243625717a3471643e087 + standard patch; 2232 files verified"
+}

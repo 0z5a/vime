@@ -5,12 +5,12 @@ from functools import partial
 from typing import Literal
 
 import torch
-import torch.nn.functional as F
 from megatron.core.transformer.transformer_config import TransformerConfig
 from torch.utils.checkpoint import checkpoint
 from vllm_rlt.layers import apply_rotary_pos_emb
 from vllm_rlt.models.nanbeige import NanbeigeDecoderLayer, NanbeigeForCausalLM
 
+from vime_plugins.looped.packing import ReplayLayout, causal_attention
 from vime_plugins.ouro.model import OuroMegatronModel
 
 
@@ -28,7 +28,13 @@ class NanbeigeMegatronModel(OuroMegatronModel):
         self.nanbeige_config = native.config
 
     def _layer(
-        self, layer: NanbeigeDecoderLayer, hidden: torch.Tensor, cos: torch.Tensor, sin: torch.Tensor
+        self,
+        layer: NanbeigeDecoderLayer,
+        hidden: torch.Tensor,
+        cos: torch.Tensor,
+        sin: torch.Tensor,
+        *,
+        layout: ReplayLayout | None = None,
     ) -> torch.Tensor:
         self.block_tokens += hidden.shape[0]
         attention = layer.self_attn
@@ -38,29 +44,24 @@ class NanbeigeMegatronModel(OuroMegatronModel):
             projection(value).view(shape) for projection in (attention.q_proj, attention.k_proj, attention.v_proj)
         )
         q, k = apply_rotary_pos_emb(q, k, cos, sin)
-        attended = (
-            F.scaled_dot_product_attention(
-                q.transpose(0, 1).unsqueeze(0),
-                k.transpose(0, 1).unsqueeze(0),
-                v.transpose(0, 1).unsqueeze(0),
-                is_causal=True,
-                enable_gqa=True,
-            )
-            .squeeze(0)
-            .transpose(0, 1)
-            .reshape(hidden.shape[0], -1)
-        )
+        attended = causal_attention(q, k, v, layout).reshape(hidden.shape[0], -1)
         hidden = hidden + attention.o_proj(attended)
         return hidden + layer.mlp(layer.post_attention_layernorm(hidden))
 
     def iter_readout_states(
-        self, tokens: torch.Tensor, *, all_loops: bool = False, latent_seed: int = 0
+        self,
+        tokens: torch.Tensor,
+        *,
+        all_loops: bool = False,
+        latent_seed: int = 0,
+        layout: ReplayLayout | None = None,
     ) -> Iterator[torch.Tensor]:
         hidden = self.model.embed_tokens(tokens)
-        cos, sin = self.model.rotary_emb(hidden, torch.arange(tokens.numel(), device=tokens.device))
+        positions = torch.arange(tokens.numel(), device=tokens.device) if layout is None else layout.positions
+        cos, sin = self.model.rotary_emb(hidden, positions)
         for depth in range(self.loop_budget):
             for layer in self.model.layers:
-                forward = partial(self._layer, layer)
+                forward = partial(self._layer, layer, layout=layout)
                 # Bound shared-weight gradient temporaries to one physical layer.
                 hidden = (
                     checkpoint(forward, hidden, cos, sin, use_reentrant=True)

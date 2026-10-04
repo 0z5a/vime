@@ -33,7 +33,10 @@ RLTT optimizer or a convergence recipe. Native held-out evaluation is still
 unavailable through VIME's dataset evaluator. Do not use this probe as the main
 quality experiment.
 
-## Validation result
+## Parent training-bridge validation result
+
+This section records the immutable `fba761f` training-bridge delivery. Subsequent
+packed replay validation is tracked separately in [packed replay results](packed_replay_results.md).
 
 The final CPU run reports **257 passed, 3 failed**. All three failures occur while
 importing `megatron.training`, which requires unavailable Triton in this existing
