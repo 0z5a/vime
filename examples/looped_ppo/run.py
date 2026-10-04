@@ -23,7 +23,7 @@ def main(advantage_estimator="ppo", model_family: str | None = None):
     parser.add_argument("--recompute", action="store_true")
     parser.add_argument("--precision", choices=("fp16", "fp32"))
     parser.add_argument("--advantage-estimator", choices=("ppo", "grpo"), default=advantage_estimator)
-    parser.add_argument("--algorithm", choices=("ppo", "grpo", "dppo", "flow-dppo"))
+    parser.add_argument("--algorithm", choices=("ppo", "grpo", "dppo", "flow-dppo", "rltt"))
     parser.add_argument("--flow-dppo-divergence-budget", type=float)
     parser.add_argument("--rollout-batch-size", type=int, default=4)
     parser.add_argument("--n-samples-per-prompt", type=int)
@@ -33,7 +33,7 @@ def main(advantage_estimator="ppo", model_family: str | None = None):
         if algorithm not in ("ppo", "flow-dppo"):
             parser.error("A Flow-DPPO divergence budget requires the Flow-DPPO policy loss")
         algorithm = "flow-dppo"
-    grpo = algorithm == "grpo"
+    grpo = algorithm in ("grpo", "rltt")
     group_size = options.n_samples_per_prompt
     if group_size is None:
         group_size = 4 if grpo else 1
@@ -48,7 +48,7 @@ def main(advantage_estimator="ppo", model_family: str | None = None):
         parser.error(f"This recipe requires a {model_family} checkpoint, received {family}")
     providers = {"ouro": "ouro", "nanbeige": "nanbeige", "huginn_raven": "huginn"}
     provider = providers[family]
-    precision = options.precision or ("fp16" if family == "huginn_raven" else "fp32")
+    precision = options.precision or ("fp16" if family == "huginn_raven" and algorithm != "rltt" else "fp32")
     depth = config[{"ouro": "total_ut_steps", "nanbeige": "num_loops", "huginn_raven": "mean_recurrence"}[family]]
     if family == "huginn_raven":
         layers, width, heads = config["n_layers"], config["n_embd"], config["n_heads"]
@@ -159,6 +159,8 @@ def main(advantage_estimator="ppo", model_family: str | None = None):
         "no-rope-fusion",
         "deterministic-mode",
     ]
+    if algorithm == "rltt":
+        flags.update({"loss-type": "rltt_loss", "ref-load": options.model, "kl-loss-coef": 0.001})
     if algorithm == "dppo":
         switches.append("use-tis")
         flags.update({"tis-clip-low": 0.5, "tis-clip": 2.0})

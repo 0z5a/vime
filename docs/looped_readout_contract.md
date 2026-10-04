@@ -1,8 +1,9 @@
 # Response-only loop readout and objective primitives
 
 This is an explicit fixed-depth replay entry point. Existing dense provider
-`forward` calls keep their output contract. The MCore loss dispatcher, Ray trainer,
-and online RL launcher do not select this entry yet.
+`forward` calls keep their output contract. The opt-in `rltt_loss` training branch
+selects the response-only output through the standard MCore model call; its
+Ray/CUDA lifecycle is not yet qualified. See [training validation](rltt_training_validation.md).
 
 `response_log_probs` includes the last prompt position, which predicts the first
 response token. It returns `[response_tokens, supervised_loops]`. Ouro normalizes
@@ -81,6 +82,7 @@ intermediate-storage measurements, including slower cases, are in
 [streamed_readout_results.md](streamed_readout_results.md).
 
 GPU head optimization, official checkpoints, BF16 cross-engine G0, distributed
-execution, online loss dispatch, full lifecycle timing and reward convergence
-remain unqualified. Those results must be measured before enabling the new path
-in an online training recipe.
+execution, full Ray/CUDA lifecycle timing and reward convergence remain unqualified.
+The explicit recipe is available for qualification; it is not a measured speed or
+quality result. Its initial scope uses static credit and terminal sampled k3;
+the standalone full-KL primitive is not yet connected to that training recipe.

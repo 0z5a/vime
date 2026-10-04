@@ -50,5 +50,28 @@ def test_create_zero_gpu_placement_group_is_empty():
     assert _create_placement_group(0) == (None, [], [])
 
 
+@pytest.mark.parametrize("loss_type,with_ref", [("rltt_loss", True), ("policy_loss", False)])
+def test_zero_kl_reference_allocation(monkeypatch, loss_type, with_ref):
+    from vime.ray import placement_group
+
+    allocated = {}
+
+    class Group:
+        def create(self, *, rollout_manager):
+            assert rollout_manager == "rollouts"
+            return [0]
+
+    group = Group()
+
+    def allocate(**kwargs):
+        allocated.update(kwargs)
+        return group
+
+    monkeypatch.setattr(placement_group, "allocate_train_group", allocate)
+    args = _args(megatron_config_path=None, kl_coef=0, use_kl_loss=False, loss_type=loss_type, use_opd=False)
+    assert placement_group.create_actor_model(args, {"actor": "pg"}, "rollouts") == (group, [0])
+    assert allocated["with_ref"] is with_ref
+
+
 if __name__ == "__main__":
     raise SystemExit(pytest.main([__file__]))

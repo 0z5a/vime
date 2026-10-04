@@ -180,6 +180,7 @@ def test_update_weight_disk_dir_required_for_disk_transport(monkeypatch):
 def make_vime_validate_args(**overrides):
     values = dict(
         eval_config=None,
+        loss_type="policy_loss",
         eval_prompt_data=None,
         kl_coef=0,
         use_kl_loss=False,

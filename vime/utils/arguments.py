@@ -945,10 +945,10 @@ def get_vime_extra_args_provider(add_custom_arguments=None):
             parser.add_argument(
                 "--loss-type",
                 type=str,
-                choices=["policy_loss", "sft_loss", "custom_loss"],
+                choices=["policy_loss", "sft_loss", "custom_loss", "rltt_loss"],
                 default="policy_loss",
                 help=(
-                    "Choose loss type, currently support ppo policy_loss or sft_loss, "
+                    "Choose PPO policy_loss, sft_loss or fixed-depth native rltt_loss; "
                     "if custom_loss is set, we will use the function path from `--custom-loss-function-path`."
                 ),
             )
@@ -1932,7 +1932,12 @@ def vime_validate_args(args):
             "--rollout-temperature must be > 0; temperature 0 is greedy decoding and is not a valid RL policy."
         )
 
-    if args.kl_coef != 0 or args.use_kl_loss:
+    if args.loss_type == "rltt_loss":
+        from vime_plugins.looped.training import validate_rltt_args
+
+        validate_rltt_args(args)
+
+    if args.kl_coef != 0 or args.use_kl_loss or args.loss_type == "rltt_loss":
         if not os.path.exists(args.ref_load):
             raise FileNotFoundError(f"ref_load {args.ref_load} does not exist, please check the path.")
 
