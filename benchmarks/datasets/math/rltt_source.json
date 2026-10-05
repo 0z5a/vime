@@ -1,0 +1,127 @@
+{
+  "repository": "jonwill8/RLTT",
+  "revision": "06189850bb23a1b1b715ad29768e68f36b1c4a19",
+  "tree_entries": 335,
+  "tree_truncated": false,
+  "files": [
+    {
+      "path": "README.md",
+      "git_blob_sha1": "f1a1c50e206f742db1583ef4e92eadfd7640faec",
+      "sha256": "99b1fb25a147558daa1d902bb3981def105edd72341f283e4558f1bbb0ed05cd",
+      "bytes": 6816,
+      "url": "https://raw.githubusercontent.com/jonwill8/RLTT/06189850bb23a1b1b715ad29768e68f36b1c4a19/README.md"
+    },
+    {
+      "path": "math_utils/README.md",
+      "git_blob_sha1": "31cf5335bf46b98cdf5459000ad5e6ea6b2f0629",
+      "sha256": "ba7553f47e2567e6450ca3ec3d7b05bbbeb2532b2a792c4da923365ae1c86a9b",
+      "bytes": 872,
+      "url": "https://raw.githubusercontent.com/jonwill8/RLTT/06189850bb23a1b1b715ad29768e68f36b1c4a19/math_utils/README.md"
+    },
+    {
+      "path": "math_utils/__init__.py",
+      "git_blob_sha1": "6e618b06e7dca8a1360cada774c06d6be34cd8e1",
+      "sha256": "5477113363ff0902cad836d3048eaea5abd5c6991f1b9cfc58b3f0a28c7ede98",
+      "bytes": 1886,
+      "url": "https://raw.githubusercontent.com/jonwill8/RLTT/06189850bb23a1b1b715ad29768e68f36b1c4a19/math_utils/__init__.py"
+    },
+    {
+      "path": "math_utils/answer_parsing.py",
+      "git_blob_sha1": "627cd2065fa3a10b62fb1a2638070c379b433ee6",
+      "sha256": "f847020861559cc7ccb5ed670ced91e4050bde180966050cc976e95a5d612301",
+      "bytes": 11068,
+      "url": "https://raw.githubusercontent.com/jonwill8/RLTT/06189850bb23a1b1b715ad29768e68f36b1c4a19/math_utils/answer_parsing.py"
+    },
+    {
+      "path": "math_utils/prompting.py",
+      "git_blob_sha1": "859541f767644adef75ffa72b6f894f17bcb8bc5",
+      "sha256": "8942d673010011ac98b4f8eb81fac6c1d15a180b514edc21247041ebc2a241fe",
+      "bytes": 4763,
+      "url": "https://raw.githubusercontent.com/jonwill8/RLTT/06189850bb23a1b1b715ad29768e68f36b1c4a19/math_utils/prompting.py"
+    },
+    {
+      "path": "math_utils/reward.py",
+      "git_blob_sha1": "82408ad9296e874d5a9d0c6e37ab07fbad02a5db",
+      "sha256": "ac852026de72fd4d77335e2131d160e4e26ced6ca54f9e1a9905bb10ae9f8b1a",
+      "bytes": 9938,
+      "url": "https://raw.githubusercontent.com/jonwill8/RLTT/06189850bb23a1b1b715ad29768e68f36b1c4a19/math_utils/reward.py"
+    },
+    {
+      "path": "math_utils/rl_trained_answer_parsing.py",
+      "git_blob_sha1": "322ee72f19c142ff34b159102c046530d46c4040",
+      "sha256": "cfcf88dad8e905a5f8af9a75bc24c5e9cb1c253b2c60ca48bf2675c8ef036379",
+      "bytes": 10163,
+      "url": "https://raw.githubusercontent.com/jonwill8/RLTT/06189850bb23a1b1b715ad29768e68f36b1c4a19/math_utils/rl_trained_answer_parsing.py"
+    },
+    {
+      "path": "requirements.txt",
+      "git_blob_sha1": "de75433be41700c789e28da8fd2d0b34966f76a2",
+      "sha256": "0a4497b5df36546c928f2909584f1bf6545789b8131206ebe98e2c50f21e77f0",
+      "bytes": 4302,
+      "url": "https://raw.githubusercontent.com/jonwill8/RLTT/06189850bb23a1b1b715ad29768e68f36b1c4a19/requirements.txt"
+    },
+    {
+      "path": "rltt_experiments/README.md",
+      "git_blob_sha1": "32b128820299226e085c9086019939cbf1020b8f",
+      "sha256": "d2a812b274a9ada87c38db0b2885760a07652537cb6c26c5485a1f601c96b401",
+      "bytes": 10493,
+      "url": "https://raw.githubusercontent.com/jonwill8/RLTT/06189850bb23a1b1b715ad29768e68f36b1c4a19/rltt_experiments/README.md"
+    },
+    {
+      "path": "rltt_experiments/data_utils.py",
+      "git_blob_sha1": "220e060b6e1d996c3759673271a50d94f6573805",
+      "sha256": "fc5251193140fbc7fb68dc52e358c66f741baeb870ebcb29189d3f6f1f66d21a",
+      "bytes": 6693,
+      "url": "https://raw.githubusercontent.com/jonwill8/RLTT/06189850bb23a1b1b715ad29768e68f36b1c4a19/rltt_experiments/data_utils.py"
+    },
+    {
+      "path": "rltt_experiments/rltt_train.py",
+      "git_blob_sha1": "fd9b173a107e92fcb683a6b26a09a0b86a0af1a0",
+      "sha256": "bcd3eeaae9a38b5200428511694009140539966758ede0eab1a83d31d187d81d",
+      "bytes": 78151,
+      "url": "https://raw.githubusercontent.com/jonwill8/RLTT/06189850bb23a1b1b715ad29768e68f36b1c4a19/rltt_experiments/rltt_train.py"
+    },
+    {
+      "path": "rltt_experiments/run_rltt.slurm",
+      "git_blob_sha1": "bdaa6c050ac006102954e54f5eed233ebe169330",
+      "sha256": "290b98386f3071c07a43d8db4b61c78c5b0898701a14788b02d1e8a33df17b63",
+      "bytes": 20372,
+      "url": "https://raw.githubusercontent.com/jonwill8/RLTT/06189850bb23a1b1b715ad29768e68f36b1c4a19/rltt_experiments/run_rltt.slurm"
+    },
+    {
+      "path": "rltt_experiments/verl_rltt/README.md",
+      "git_blob_sha1": "e9e7fc258604a590d27df95092b02721150583f4",
+      "sha256": "eaabcd0021a39129ce2d2447815c99e8a4c53b37799957dee63156a864c6e6ee",
+      "bytes": 881,
+      "url": "https://raw.githubusercontent.com/jonwill8/RLTT/06189850bb23a1b1b715ad29768e68f36b1c4a19/rltt_experiments/verl_rltt/README.md"
+    },
+    {
+      "path": "rltt_experiments/verl_rltt/__init__.py",
+      "git_blob_sha1": "59f5dc045901a9ad514cd943e27da9c44256aa1f",
+      "sha256": "8a38a7985eef3194a9e18dbe4a3f675d48b6ec1ac1197dcebef60f85548566af",
+      "bytes": 1038,
+      "url": "https://raw.githubusercontent.com/jonwill8/RLTT/06189850bb23a1b1b715ad29768e68f36b1c4a19/rltt_experiments/verl_rltt/__init__.py"
+    },
+    {
+      "path": "rltt_experiments/verl_rltt/rltt_actor.py",
+      "git_blob_sha1": "c4e3f8a35d7414e346f0eb15365977e72127e76a",
+      "sha256": "81a0a76079720411f243185fdd7bc62104f81ca02fa7330421aefd1da37e199a",
+      "bytes": 28666,
+      "url": "https://raw.githubusercontent.com/jonwill8/RLTT/06189850bb23a1b1b715ad29768e68f36b1c4a19/rltt_experiments/verl_rltt/rltt_actor.py"
+    },
+    {
+      "path": "rltt_experiments/verl_rltt/rltt_algos.py",
+      "git_blob_sha1": "194eb19646290704f41f25cbbf87a230e0a5503d",
+      "sha256": "661d1703f295f0830822bd14a03b7baa62464fbab7aa80a2e6718e44ce344932",
+      "bytes": 10134,
+      "url": "https://raw.githubusercontent.com/jonwill8/RLTT/06189850bb23a1b1b715ad29768e68f36b1c4a19/rltt_experiments/verl_rltt/rltt_algos.py"
+    },
+    {
+      "path": "rltt_experiments/verl_rltt/rltt_fsdp_workers.py",
+      "git_blob_sha1": "7214ae7b3151e8336aff446c39fe298a6ec16c36",
+      "sha256": "72c587384f1d4c923fe74cc40c7d27a84ea8b1d5a27ccc91d8c02db8767a99ac",
+      "bytes": 8086,
+      "url": "https://raw.githubusercontent.com/jonwill8/RLTT/06189850bb23a1b1b715ad29768e68f36b1c4a19/rltt_experiments/verl_rltt/rltt_fsdp_workers.py"
+    }
+  ]
+}

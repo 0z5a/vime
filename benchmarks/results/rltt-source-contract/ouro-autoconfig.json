@@ -1,0 +1,13 @@
+{
+  "transformers_version": "4.54.1",
+  "transformers_source": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/transformers/__init__.py",
+  "class": "OuroConfig",
+  "loaded_configuration_source": "/Users/0z5a/Documents/infra/flashrlt-20261005/data/hf-modules/transformers_modules/ouro-thinking/configuration_ouro.py",
+  "loaded_configuration_sha256": "950443e32929047aa08d02abad2e1888bc1914b3db988d3d675f70787f65dafb",
+  "model_type": "ouro",
+  "hidden_size": 2048,
+  "num_hidden_layers": 24,
+  "num_attention_heads": 16,
+  "vocab_size": 49152,
+  "scope": "Actual official AutoConfig only; no model, weight, GPU or full VIME parser execution"
+}

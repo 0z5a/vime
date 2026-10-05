@@ -1,0 +1,16 @@
+[
+  {
+    "path": "configuration_ouro.py",
+    "git_blob_sha1": "ed783160ba1a64292bb0b060bb0e2e920afbe3b2",
+    "sha256": "950443e32929047aa08d02abad2e1888bc1914b3db988d3d675f70787f65dafb",
+    "bytes": 11550,
+    "url": "https://huggingface.co/ByteDance/Ouro-1.4B-Thinking/resolve/3aaa2224253a92ca45cf2e3d427c360e1ef9c93d/configuration_ouro.py"
+  },
+  {
+    "path": "modeling_ouro.py",
+    "git_blob_sha1": "a14044c0998988f9039784e2177d473c45751c95",
+    "sha256": "cb8c980b016ae8ae35b6c1193633b9b4496e89993e3a0e8c7853324f01904b30",
+    "bytes": 35500,
+    "url": "https://huggingface.co/ByteDance/Ouro-1.4B-Thinking/resolve/3aaa2224253a92ca45cf2e3d427c360e1ef9c93d/modeling_ouro.py"
+  }
+]
