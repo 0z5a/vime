@@ -1,0 +1,23 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+{
+  "prepared_manifest_sha256": "10ce26681d2d07f91add2e5a304aca931b3d9300670fe7f3b55bbd00d4341037",
+  "source_solutions_checked": 13000,
+  "source_solution_rejections": [
+    "algebra/train/888",
+    "algebra/train/1011",
+    "number_theory/train/661",
+    "number_theory/train/663"
+  ],
+  "actual_dataset_rows": {
+    "train": 7498,
+    "development": 256,
+    "math500": 500,
+    "reserve": 4244
+  },
+  "canonical_answer_reward_one": 12498,
+  "missing_box_reward_zero": 12498,
+  "regeneration_byte_identical": true,
+  "tokenizer_or_model_execution": false,
+  "scope": "Known-label data/grader plumbing; not model accuracy or reward convergence"
+}

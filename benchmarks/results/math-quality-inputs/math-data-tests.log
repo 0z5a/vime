@@ -1,0 +1,25 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/0z5a/Documents/infra/flashrlt-20261005/vime
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 49 items / 1 error
+
+==================================== ERRORS ====================================
+_____________ ERROR collecting tests/test_math_data_preparation.py _____________
+ImportError while importing test module '/Users/0z5a/Documents/infra/flashrlt-20261005/vime/tests/test_math_data_preparation.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/Users/0z5a/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_math_data_preparation.py:8: in <module>
+    from benchmarks.download_math_data import verify
+E   ModuleNotFoundError: No module named 'benchmarks.download_math_data'
+- generated xml file: /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/math-data-tests.xml -
+=========================== short test summary info ============================
+ERROR tests/test_math_data_preparation.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 6.18s ===============================

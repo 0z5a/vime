@@ -1,0 +1,14 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+train/plain: rows=7498, max=2058, over_1024=16
+train/chat: rows=7498, max=2078, over_1024=18
+train/thinking: rows=7498, max=2080, over_1024=18
+development/plain: rows=256, max=973, over_1024=0
+development/chat: rows=256, max=993, over_1024=0
+development/thinking: rows=256, max=995, over_1024=0
+math500/plain: rows=500, max=932, over_1024=0
+math500/chat: rows=500, max=952, over_1024=0
+math500/thinking: rows=500, max=954, over_1024=0
+reserve/plain: rows=4244, max=1539, over_1024=6
+reserve/chat: rows=4244, max=1559, over_1024=6
+reserve/thinking: rows=4244, max=1561, over_1024=7

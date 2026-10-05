@@ -1,0 +1,104 @@
+[
+  {
+    "repository": "EleutherAI/hendrycks_math",
+    "revision": "21a5633873b6a120296cce3e2df9d5550074f4a3",
+    "files": [
+      {
+        "path": "README.md",
+        "size": 3926,
+        "git_blob_sha1": "9ab6422553ffa7c65f5c11386d1599fc77149101"
+      },
+      {
+        "path": "algebra/test-00000-of-00001.parquet",
+        "size": 353114,
+        "sha256": "0e04a850dac9cfc758eac0c80afd2d0cc65e29ea72f916c8ac1045b12af937f5"
+      },
+      {
+        "path": "algebra/train-00000-of-00001.parquet",
+        "size": 505186,
+        "sha256": "73347f5b55869f21ff094361025dbd12d291e971aa4d72142eacee10438e449f"
+      },
+      {
+        "path": "counting_and_probability/test-00000-of-00001.parquet",
+        "size": 175032,
+        "sha256": "c324818949c75a6227c0328a8499d58023cbbf6757cfc1736f5ab24cc8d87966"
+      },
+      {
+        "path": "counting_and_probability/train-00000-of-00001.parquet",
+        "size": 329354,
+        "sha256": "d37ae017930df41678edee50dcde18c17fb06afaff9eb505c1b95f1002bfcb31"
+      },
+      {
+        "path": "geometry/test-00000-of-00001.parquet",
+        "size": 263835,
+        "sha256": "98720f3a8134ad9784fd8951195245264495df03ffc5c9485a9a54ff5ae2431a"
+      },
+      {
+        "path": "geometry/train-00000-of-00001.parquet",
+        "size": 549388,
+        "sha256": "9dbf5e5b55499e696e0ba72da9d85d4f0be3acbf7eaa6cb014b0fc78bb63784f"
+      },
+      {
+        "path": "intermediate_algebra/test-00000-of-00001.parquet",
+        "size": 394797,
+        "sha256": "e859f72486c951c2017da880541ca729940eaa986b0364eb23e238983df9bfeb"
+      },
+      {
+        "path": "intermediate_algebra/train-00000-of-00001.parquet",
+        "size": 575154,
+        "sha256": "0c87f3798ebdfb915b1f9b6fc13c1a8d064c3cb91631ccbe85b83ed5d71150f6"
+      },
+      {
+        "path": "number_theory/test-00000-of-00001.parquet",
+        "size": 182003,
+        "sha256": "ba156c9c9fa2040836ba12135fd964e6e67d6bccd8c469ec4a3ad941f8f6fbe9"
+      },
+      {
+        "path": "number_theory/train-00000-of-00001.parquet",
+        "size": 308653,
+        "sha256": "81c08649149b39811f2d1d7ddf5dfccf6c4c8044a2e169cfb24db09160c941f4"
+      },
+      {
+        "path": "prealgebra/test-00000-of-00001.parquet",
+        "size": 267729,
+        "sha256": "301e5d8ade5c7b5038032532e498bdc9dca799e7f1061a63f2e7d980803240cc"
+      },
+      {
+        "path": "prealgebra/train-00000-of-00001.parquet",
+        "size": 383626,
+        "sha256": "765b526fb5c0b8385cb7be2c16bf4f6f28cf71f2bc15c826abfbb5fa7f8616cc"
+      },
+      {
+        "path": "precalculus/test-00000-of-00001.parquet",
+        "size": 242241,
+        "sha256": "da37474ba3761ae5727af3844a7ba963a735bd6a14c65e6137593669a4fe3b9c"
+      },
+      {
+        "path": "precalculus/train-00000-of-00001.parquet",
+        "size": 353745,
+        "sha256": "28bb1ff95525c8d32521509bef91de76339659f5467a381e6e8deea204538f0e"
+      }
+    ]
+  },
+  {
+    "repository": "HuggingFaceH4/MATH-500",
+    "revision": "6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be",
+    "files": [
+      {
+        "path": "README.md",
+        "size": 412,
+        "git_blob_sha1": "7bcd88fdd6d84875d4599f8893aa5ed5938dbca8"
+      },
+      {
+        "path": "eval.yaml",
+        "size": 949,
+        "git_blob_sha1": "b1c260f01c7dfb3f36beb50c6e4832311392a78a"
+      },
+      {
+        "path": "test.jsonl",
+        "size": 446564,
+        "git_blob_sha1": "2376b9a194b46c0790e197c91b7249e5f88ac09b"
+      }
+    ]
+  }
+]

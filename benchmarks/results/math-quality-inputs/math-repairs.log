@@ -1,0 +1,24 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+{
+  "algebra/train/888": {
+    "solution_sha256": "c1bca4a8c3c563e0264caea2adc34e326e850592a9e04e1e2c085522acc0edc0",
+    "label": "2",
+    "reason": "The source ends in unbraced \\boxed 2. Roots are 1/2 and 2; the larger root is 2."
+  },
+  "algebra/train/1011": {
+    "solution_sha256": "58bb30b54681bdce68656852e359166247651bb0fb0e40e8a4b01b73ec1eed81",
+    "label": "9",
+    "reason": "The source ends in unbraced \\boxed 9. x^2+y^2=(x+y)^2-2xy=1+8=9."
+  },
+  "number_theory/train/661": {
+    "solution_sha256": "5e1b77771c858fd0c05e248fc23f6cc172fa28b273ea4bbe40c69fd9b816993d",
+    "label": "0",
+    "reason": "The source box is empty. For 2 <= k <= n-1, k divides n!+k and 1 < k < n!+k, so every candidate is composite."
+  },
+  "number_theory/train/663": {
+    "solution_sha256": "641bf04313760e5b7b3660e328a8bdc073aaf748752ae313ccae7c04a8d33f74",
+    "label": "0",
+    "reason": "The source box is empty. For each 2 <= n <= 59, a prime divisor of n is <=59 and divides P+n, with 1 < p < P+n. All 58 candidates are composite."
+  }
+}
