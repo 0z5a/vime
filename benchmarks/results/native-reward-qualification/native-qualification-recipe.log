@@ -1,0 +1,19 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/0z5a/Documents/infra/flashrlt-20261005/vime
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 128 items
+
+tests/test_native_qualification_recipe.py .......                        [  5%]
+tests/test_looped_grpo_recipe.py ....................................... [ 35%]
+........................................................................ [ 92%]
+..........                                                               [100%]
+
+- generated xml file: /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/native-qualification-recipe.xml -
+============================== slowest durations ===============================
+
+(384 durations < 0.005s hidden.  Use -vv to show these durations.)
+============================= 128 passed in 0.43s ==============================

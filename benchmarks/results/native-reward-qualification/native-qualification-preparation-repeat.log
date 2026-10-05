@@ -1,0 +1,1 @@
+{"files": {"train.jsonl": {"sha256": "c5a2156c48c8263a44893f6050d1822bd88323d7e037c31d8e4c94b760f768a6", "rows": 12}, "development.jsonl": {"sha256": "eb1147bf09c1f194bf7f0a75620bdf9a61e13fc6fb36a0f97cfa7994e752010c", "rows": 8}}, "manifest_sha256": "d7bf3edcd0a05ee25b93bf7abaf1f739a4f8da4a769ac5fc00cf87a423e67f9c"}

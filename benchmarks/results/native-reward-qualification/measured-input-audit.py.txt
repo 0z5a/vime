@@ -1,0 +1,49 @@
+import hashlib
+import json
+from pathlib import Path
+
+import torch
+from transformers import AutoTokenizer
+
+from benchmarks.run_native_qualification import command
+from vime.utils.data import Dataset
+
+root = Path(__file__).resolve().parents[1]
+packet = root / "data/native-qualification-v1"
+repeat = root / "data/native-qualification-repeat"
+profile = json.loads((packet / "qualification.json").read_text())
+model = root / "data/math-v1/model-config/ouro-thinking"
+tokenizer = AutoTokenizer.from_pretrained(model, local_files_only=True, trust_remote_code=True)
+rows = []
+for filename in ("qualification.json", "train.jsonl", "development.jsonl"):
+    assert (packet / filename).read_bytes() == (repeat / filename).read_bytes()
+for split in ("train", "development"):
+    path = packet / f"{split}.jsonl"
+    original = [json.loads(line) for line in path.read_text().splitlines()]
+    dataset = Dataset(str(path), tokenizer, None, None, prompt_key="prompt", label_key="label",
+                      metadata_key="metadata", apply_chat_template=True, apply_chat_template_kwargs={})
+    assert len(dataset.samples) == len(original)
+    for source, sample in zip(original, dataset.samples, strict=True):
+        assert sample.metadata["id"] == source["metadata"]["id"] and sample.label == source["label"]
+        tokens = tokenizer.encode(sample.prompt, add_special_tokens=False)
+        expected = tokenizer.apply_chat_template(source["prompt"], tokenize=True, add_generation_prompt=True)
+        assert tokens == expected and 0 < len(tokens) <= 1024
+        rows.append({"split": split, "id": sample.metadata["id"], "prompt_tokens": len(tokens),
+                     "token_ids_sha256": hashlib.sha256(json.dumps(tokens).encode()).hexdigest()})
+assert len(rows) == 20 and len({row["id"] for row in rows}) == 20
+commands = [
+    {"algorithm": algorithm, "phase": phase,
+     "argv": command(packet, model, root / "qualification-planned-runs", "RESERVED_CLUSTER_REQUIRED",
+                     algorithm, phase)}
+    for algorithm in ("grpo", "rltt") for phase in ("continuous", "split", "resume")
+]
+result = {"qualification_sha256": hashlib.sha256((packet / "qualification.json").read_bytes()).hexdigest(),
+          "rows": rows, "commands": commands, "torch_version": torch.__version__,
+          "cuda_initialized": torch.cuda.is_initialized(), "executed_training": False,
+          "full_framework_parse": "NOT_RUN: local Triton unavailable",
+          "prepare_repeat_byte_identical": True}
+assert not result["cuda_initialized"]
+(root / "evidence/native-qualification-input-audit.json").write_text(json.dumps(result, indent=2)+"\n")
+print(json.dumps({"rows": len(rows), "commands_prepared_not_run": len(commands),
+                  "max_prompt_tokens": max(row["prompt_tokens"] for row in rows),
+                  "cuda_initialized": False, "executed_training": False}))
