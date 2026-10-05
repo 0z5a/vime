@@ -11,6 +11,7 @@ import pytest
 
 from benchmarks import run_native_qualification as launcher
 from benchmarks.audit_native_sources import audit, main
+from benchmarks.native_model_manifest import MODEL_FILES
 from benchmarks.native_sources import (
     ROOTS,
     SCHEMA,
@@ -225,7 +226,18 @@ def test_same_revision_declarations_do_not_qualify_changed_sources(sourced_recor
 
 
 @pytest.mark.parametrize(
-    "case", ["missing_options", "revision", "entrypoint", "changed_file", "resume_manifest", "success"]
+    "case",
+    [
+        "missing_options",
+        "revision",
+        "entrypoint",
+        "changed_file",
+        "resume_manifest",
+        "missing_model_manifest",
+        "changed_model",
+        "resume_model_manifest",
+        "success",
+    ],
 )
 def test_controller_checks_sources_before_launch(packet, frozen, tmp_path, monkeypatch, case):
     manifest, roots, path = frozen
@@ -242,11 +254,29 @@ def test_controller_checks_sources_before_launch(packet, frozen, tmp_path, monke
             for row in manifest["files"]
         ]
     profile = json.loads((packet / "qualification.json").read_text())
+    model = tmp_path / "model"
+    model.mkdir()
+    for name in MODEL_FILES:
+        (model / name).write_text("fixture " + name)
+    model_manifest = tmp_path / "model-manifest.json"
+    model_manifest.write_text(
+        json.dumps(
+            {
+                "revision": profile["model_revision"],
+                "files": [
+                    {"path": name, "bytes": (model / name).stat().st_size, "sha256": sha((model / name).read_bytes())}
+                    for name in sorted(MODEL_FILES)
+                ],
+            }
+        )
+    )
+    if case == "changed_model":
+        (model / "model.safetensors").write_text("changed")
     manifest["sources"]["rlt"]["commit"] = "wrong" if case == "revision" else profile["engine_revision"]
     path.write_text(json.dumps(manifest))
     roots_path = tmp_path / "roots.json"
     roots_path.write_text(json.dumps({name: str(root) for name, root in roots.items()}))
-    phase = "resume" if case == "resume_manifest" else "continuous"
+    phase = "resume" if case in {"resume_manifest", "resume_model_manifest"} else "continuous"
     output = tmp_path / "runs"
     run = output / "rltt" / ("resumed" if phase == "resume" else "continuous")
     if phase == "resume":
@@ -256,7 +286,8 @@ def test_controller_checks_sources_before_launch(packet, frozen, tmp_path, monke
                 {
                     "returncode": 0,
                     "qualification_sha256": sha((packet / "qualification.json").read_bytes()),
-                    "source_manifest_sha256": "old",
+                    "source_manifest_sha256": "old" if case == "resume_manifest" else sha(path.read_bytes()),
+                    "model_manifest_sha256": "old",
                 }
             )
         )
@@ -273,7 +304,7 @@ def test_controller_checks_sources_before_launch(packet, frozen, tmp_path, monke
         "--packet",
         str(packet),
         "--model",
-        str(tmp_path),
+        str(model),
         "--output",
         str(output),
         "--ray-address",
@@ -286,6 +317,8 @@ def test_controller_checks_sources_before_launch(packet, frozen, tmp_path, monke
     ]
     if case != "missing_options":
         argv.extend(["--source-manifest", str(path), "--source-roots", str(roots_path)])
+    if case != "missing_model_manifest":
+        argv.extend(["--model-manifest", str(model_manifest)])
     monkeypatch.setattr(sys, "argv", argv)
     if case == "success":
         with pytest.raises(SystemExit) as finished:
@@ -294,6 +327,8 @@ def test_controller_checks_sources_before_launch(packet, frozen, tmp_path, monke
         receipt = json.loads((run / "continuous-process.json").read_text())
         assert receipt["returncode"] == 0 and receipt["source_manifest_sha256"] == sha(path.read_bytes())
         assert receipt["source_preflight"]["files_checked"] == {"vime": 6, "rlt": 2, "megatron": 1}
+        assert receipt["model_manifest_sha256"] == sha(model_manifest.read_bytes())
+        assert set(receipt["model_preflight"]["files"]) == MODEL_FILES
         assert receipt["finished_ns"] > receipt["started_ns"]
         assert Path(entrypoint.with_name("import-origin.txt").read_text()) == roots["rlt"] / "vllm_rlt/__init__.py"
     else:
@@ -302,6 +337,6 @@ def test_controller_checks_sources_before_launch(packet, frozen, tmp_path, monke
             pytest.fail("Invalid source reached Popen")
 
         monkeypatch.setattr(launcher.subprocess, "Popen", forbidden)
-        with pytest.raises(ValueError):
+        with pytest.raises((ValueError, AssertionError)):
             launcher.main()
         assert not (run / f"{phase}.log").exists()

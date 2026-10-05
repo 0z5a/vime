@@ -74,7 +74,8 @@ python -m benchmarks.run_native_qualification \
   --packet /task/qualification --model /models/Ouro-1.4B-Thinking \
   --output /task/qualification-runs --ray-address RESERVED_HOST:PORT \
   --algorithm rltt --phase continuous \
-  --source-manifest /task/sources.json --source-roots /task/source-roots.json --execute
+  --source-manifest /task/sources.json --source-roots /task/source-roots.json \
+  --model-manifest /task/ouro-thinking-model-manifest.json --execute
 ```
 
 Run `split` in a separate process, then `resume` only after the split phase

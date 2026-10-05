@@ -1,0 +1,34 @@
+{
+  "source_sha256": {
+    "benchmarks/audit_native_adam.py": "4428ae22da61a86f9cf25da008aa6c92104b2fec1dbb56eb1bd0da81ae9d9f40",
+    "benchmarks/run_native_qualification.py": "346df64220a493eb55a796941f3723d6f6e8e97a5a3519a7876995b63dd5c803",
+    "benchmarks/audit_native_qualification.py": "695229e2f39a63351257e29d25e7bce22da5fbe76bc149dd093ff83e95050080",
+    "benchmarks/native_model_manifest.py": "2252365afa0d807a1ae9d94de511be367196de7f23281f5857a53f0b899ee8da",
+    "benchmarks/native_publications.py": "4250db9c6cfefd2bfed408be8d3869be5694e9b5977a27155ab917191bf355f2",
+    "tests/test_native_source_membership.py": "f53a50c73b6b09b140311be4417682a303006d6c8d31e1ae4d495a5d1900b411",
+    "tests/test_native_qualification_chain.py": "7b92111354868afce68063fce4b005f6a2d2f3b43911a90e98a2358ce9e9ca02",
+    "tests/plugins/test_native_publication_chain.py": "bc2f3f256f33d05e4ff248ce43fa1ac9932bf027f519746e8931574daaf5f19c",
+    "docs/native_qualification_chain.md": "1790d960645c1d3800c6fe066e768419da0fb82f3b6cc26f461296f56d029a10",
+    "docs/native_source_membership.md": "f7d861c3be2dde2695915e8a70232f0e707ceb7b3719182c9e07f9cf5a04c6c0",
+    "docs/native_reward_qualification.md": "e2b455bf5e96efe445e7b838fb137c1139f7a76013ef65a7b5056297f5e72bcf"
+  },
+  "artifact_sha256": {
+    "native-chain-bound.log": "f59b5f8bc4a8d54eade34fa3c2e361cfb9e0e2bea5c3a4f88de859f44ed02e76",
+    "native-chain-bound.xml": "6c17e68028da0cc595463d0aabfe90c5dc5dca2d46e669e1598a5711fb414cd5",
+    "native-chain-final.log": "39ba0889e139807bd3841a13d75fbf02abba688756942f47675a3380782e300d",
+    "native-chain-final.xml": "7532e23b3df22cd45551d2143c1a7e725cf7acdbfb0118758fc9597661e6e228",
+    "native-chain-first.log": "3bc9df60fb5d5c3f9137a9680986a78d26cd3075dd1ae2977f7ac3eb308eddeb",
+    "native-chain-first.xml": "c742bdd0539a771ea04a9b66601397918d8aaab27e74a29108baa4f7da2db7dd",
+    "native-chain-model.log": "a42ba97e1bc4f9edb6d324c7bf7b8efd5dad9000ad8e0c4a31f9e1f848d15800",
+    "native-chain-model.xml": "6cd5833ca546a960bdfbae967d5909d07b2224e9d17752d5edbd6120f909d51a",
+    "native-chain-second.log": "a558745b72399e1e51d330bdfa0f7aea6ed52abf1ce95d0a5838e0bc315b10f9",
+    "native-chain-second.xml": "551c9770d65bb762298191b510e31ec7a74e4b3bd084b019f42e3fd8e90e58ef",
+    "native-chain-tiny.log": "637f7b46feff53a441087c4500c059f4614ec46f067ed307df84d6291cb7304b",
+    "native-chain-tiny.xml": "458031e958082d1e226ea6279cc5c01472087c48f8c06b30df32342e7743c17f",
+    "resident_pytest.py": "2af5ce445da14f656c71e8d4817dcf85cd57402a77f50f612898c47f52f4d4f4",
+    "synthetic-grpo-audit.json": "04abff5bb2127670fad7ca4f1a1df8b91a23810f936b348f7e835917138a8227",
+    "synthetic-rltt-audit.json": "9cf6fd9ef83e9726bcab74afa9afc458fb2134b015371037ed67f6ccf4771c08",
+    "tiny-updates.json": "5ce4fb3d5c20e86148644dd09a8d48c6a016e7174e327f32eb84423f185561aa",
+    "validation.json": "ba3d6b5ad754d745c5b76e280e902ebe1bccd057ecf4a3317367b5876ca4f0a4"
+  }
+}

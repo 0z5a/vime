@@ -1,0 +1,45 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/0z5a/Documents/infra/flashrlt-20261005/vime
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 13 items
+
+tests/test_native_qualification_chain.py .............                   [100%]
+
+=============================== warnings summary ===============================
+tests/test_native_qualification_chain.py: 13 warnings
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/distributed/checkpoint/utils.py:485: UserWarning: torch.distributed is disabled, unavailable or uninitialized, assuming the intent is to save in a single process.
+    return func(*args, **kwargs)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/native-chain-second.xml -
+============================== slowest durations ===============================
+0.26s call     tests/test_native_qualification_chain.py::test_complete_cli_reopens_all_evidence[learning-grpo]
+0.25s setup    tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-rehashed_wrong_update]
+0.23s setup    tests/test_native_qualification_chain.py::test_complete_cli_reopens_all_evidence[learning-grpo]
+0.22s call     tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-publication_bytes]
+0.20s call     tests/test_native_qualification_chain.py::test_complete_cli_reopens_all_evidence[learning-rltt]
+0.19s call     tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-rehashed_wrong_update]
+0.18s setup    tests/test_native_qualification_chain.py::test_no_shared_useful_update_retains_failed_report[decay]
+0.18s call     tests/test_native_qualification_chain.py::test_no_shared_useful_update_retains_failed_report[decay]
+0.18s setup    tests/test_native_qualification_chain.py::test_complete_cli_reopens_all_evidence[learning-rltt]
+0.18s call     tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-missing_tensor]
+0.17s setup    tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-model_revision]
+0.16s call     tests/test_native_qualification_chain.py::test_failed_chain_cli_returns_one_and_writes_report[learning]
+0.16s call     tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-duplicate_tensor]
+0.16s call     tests/test_native_qualification_chain.py::test_no_shared_useful_update_retains_failed_report[momentum]
+0.16s call     tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-missing_version]
+0.16s setup    tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-tokenizer_bytes]
+0.15s setup    tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-publication_bytes]
+0.14s setup    tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-model_bytes]
+0.14s setup    tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-duplicate_tensor]
+0.14s setup    tests/test_native_qualification_chain.py::test_failed_chain_cli_returns_one_and_writes_report[learning]
+0.13s setup    tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-missing_version]
+0.12s setup    tests/test_native_qualification_chain.py::test_no_shared_useful_update_retains_failed_report[momentum]
+0.12s setup    tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-missing_tensor]
+
+(16 durations < 0.005s hidden.  Use -vv to show these durations.)
+======================= 13 passed, 13 warnings in 7.05s ========================
