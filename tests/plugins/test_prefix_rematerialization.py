@@ -31,11 +31,12 @@ def observe_saved(actor, call):
     return result, {"saved_tensors": tensors, "observed_unique_nonparameter_storage_bytes": sum(saved.values())}
 
 
+@pytest.mark.parametrize("family", ["ouro", "nanbeige"])
 @pytest.mark.parametrize("all_loops", [False, True])
 @pytest.mark.parametrize("groups", [((0, 1, 2),), ((0,), (1,), (2,)), ((2,), (0, 1))])
 @pytest.mark.parametrize("batch_suffixes", [False, True])
-def test_joint_replay_two_adam_updates(all_loops, groups, batch_suffixes, record_property):
-    source, depth = make_actor("ouro", False)
+def test_joint_replay_two_adam_updates(all_loops, groups, batch_suffixes, family, record_property):
+    source, depth = make_actor(family, False)
     actors = [copy.deepcopy(source), copy.deepcopy(source)]
     reference = copy.deepcopy(source).requires_grad_(False)
     with torch.no_grad():
@@ -44,7 +45,7 @@ def test_joint_replay_two_adam_updates(all_loops, groups, batch_suffixes, record
     responses = tuple(torch.tensor(values) for values in ([2], [4, 6, 8], [9, 10, 11, 12, 2]))
     inputs = packed(
         [
-            (torch.cat((prompt, response)), len(response), trace("ouro", depth, i, len(response)))
+            (torch.cat((prompt, response)), len(response), trace(family, depth, i, len(response)))
             for i, response in enumerate(responses)
         ],
         all_loops=all_loops,

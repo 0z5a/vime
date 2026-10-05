@@ -1,4 +1,4 @@
-"""Plan one Ouro actor update without changing its samples or loss denominator."""
+"""Plan one fixed-depth actor update without changing its samples or loss denominator."""
 
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Literal, cast
@@ -44,10 +44,11 @@ def plan_step(
     actor_generation: int,
     model_revision: str,
     loop_depth: int,
+    model_family: Literal["ouro", "nanbeige"] = "ouro",
     suffix_wave_size: int,
     reduction: Literal["token_mean", "response_mean"],
 ) -> LogicalStep:
-    """Keep original identities; group only canonical causal, fixed-depth Ouro.
+    """Keep original identities; group only canonical causal, fixed-depth Ouro/Nanbeige.
 
     Prefix positions start at zero and use the provider's unmodified causal
     mask. Response loss masks remain per sample and do not change prefix keys.
@@ -55,9 +56,11 @@ def plan_step(
     """
     if min(num_microbatches, suffix_wave_size, loop_depth) < 1 or iterator.offset < 0:
         raise ValueError("A logical step requires positive microbatch, wave and depth counts")
+    if model_family not in ("ouro", "nanbeige"):
+        raise ValueError("Prefix planning supports Ouro and Nanbeige; Huginn requires latent-aware replay")
     data = iterator.rollout_data
     if data.get("position_ids") is not None or data.get("attention_mask") is not None:
-        raise ValueError("Ouro prefix sharing requires canonical positions and causal attention")
+        raise ValueError("Prefix sharing requires canonical positions and causal attention")
     microbatches = tuple(
         tuple(group) for group in iterator.micro_batch_indices[iterator.offset : iterator.offset + num_microbatches]
     )
@@ -87,14 +90,14 @@ def plan_step(
         if not bool(torch.isfinite(mask).all()) or bool((mask < 0).any()):
             raise ValueError("Logical loss masks must be finite and nonnegative")
         if (
-            trace.model_family != "ouro"
+            trace.model_family != model_family
             or trace.model_revision != model_revision
             or trace.prefill_depth != loop_depth
             or trace.decode_depths != [loop_depth] * length
             or trace.latent_seed is not None
             or trace.latent_profile is not None
         ):
-            raise ValueError("Logical prefix plan requires the recorded fixed-depth Ouro model")
+            raise ValueError("Logical prefix plan requires the recorded fixed-depth model family and revision")
         prompt = tuple(sequence[: len(sequence) - length].tolist())
         identity = PrefixIdentity(model_revision, actor_generation, prompt, loop_depth)
         grouped.setdefault(identity, []).append(index)

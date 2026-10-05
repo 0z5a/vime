@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="5" failures="0" skipped="0" tests="5" time="2.799" timestamp="2026-10-06T03:30:22.114259+08:00" hostname="dadaxiaoxiaodeMacBook-Air.local"><testcase classname="" name="tests.plugins.test_differentiable_prefix" file="tests/plugins/test_differentiable_prefix.py" time="0.000"><error message="collection failure">tests/plugins/test_differentiable_prefix.py:8: in &lt;module&gt;
+    from test_looped_response_readout import make_actor
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/plugins/test_looped_response_readout.py:9: in &lt;module&gt;
+    from megatron.core.transformer.transformer_config import TransformerConfig
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/__init__.py:49: in &lt;module&gt;
+    from .safe_globals import register_safe_globals
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/safe_globals.py:15: in &lt;module&gt;
+    from megatron.core.optimizer import OptimizerConfig
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+&lt;frozen importlib._bootstrap_external&gt;:995: in exec_module
+    ???
+&lt;frozen importlib._bootstrap_external&gt;:1132: in get_code
+    ???
+../bench/resident_pytest.py:50: in resident_data
+    raise OSError(61, "iCloud file is not resident", path)
+E   ConnectionRefusedError: [Errno 61] iCloud file is not resident: '/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/__init__.py'</error></testcase><testcase classname="" name="tests.plugins.test_looped_logical_step" file="tests/plugins/test_looped_logical_step.py" time="0.000"><error message="collection failure">tests/plugins/test_looped_logical_step.py:14: in &lt;module&gt;
+    from test_rltt_training import packed, trace
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/plugins/test_rltt_training.py:15: in &lt;module&gt;
+    from vime.backends.megatron_utils.data import DataIterator
+vime/backends/megatron_utils/data.py:5: in &lt;module&gt;
+    from megatron.core import mpu
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/__init__.py:49: in &lt;module&gt;
+    from .safe_globals import register_safe_globals
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/safe_globals.py:15: in &lt;module&gt;
+    from megatron.core.optimizer import OptimizerConfig
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+&lt;frozen importlib._bootstrap_external&gt;:995: in exec_module
+    ???
+&lt;frozen importlib._bootstrap_external&gt;:1132: in get_code
+    ???
+../bench/resident_pytest.py:50: in resident_data
+    raise OSError(61, "iCloud file is not resident", path)
+E   ConnectionRefusedError: [Errno 61] iCloud file is not resident: '/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/__init__.py'</error></testcase><testcase classname="" name="tests.plugins.test_prefix_actor_binding" file="tests/plugins/test_prefix_actor_binding.py" time="0.000"><error message="collection failure">tests/plugins/test_prefix_actor_binding.py:7: in &lt;module&gt;
+    from test_differentiable_prefix import replay
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/plugins/test_differentiable_prefix.py:9: in &lt;module&gt;
+    from test_rltt_training import packed, trace
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/plugins/test_rltt_training.py:15: in &lt;module&gt;
+    from vime.backends.megatron_utils.data import DataIterator
+vime/backends/megatron_utils/data.py:5: in &lt;module&gt;
+    from megatron.core import mpu
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/__init__.py:49: in &lt;module&gt;
+    from .safe_globals import register_safe_globals
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/safe_globals.py:15: in &lt;module&gt;
+    from megatron.core.optimizer import OptimizerConfig
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+&lt;frozen importlib._bootstrap_external&gt;:995: in exec_module
+    ???
+&lt;frozen importlib._bootstrap_external&gt;:1132: in get_code
+    ???
+../bench/resident_pytest.py:50: in resident_data
+    raise OSError(61, "iCloud file is not resident", path)
+E   ConnectionRefusedError: [Errno 61] iCloud file is not resident: '/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/__init__.py'</error></testcase><testcase classname="" name="tests.plugins.test_prefix_provider_entry" file="tests/plugins/test_prefix_provider_entry.py" time="0.000"><error message="collection failure">tests/plugins/test_prefix_provider_entry.py:10: in &lt;module&gt;
+    from vime.backends.megatron_utils.looped_prefix_schedule import forward_backward_prefix
+vime/backends/megatron_utils/looped_prefix_schedule.py:14: in &lt;module&gt;
+    from .data import DataIterator
+vime/backends/megatron_utils/data.py:5: in &lt;module&gt;
+    from megatron.core import mpu
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/__init__.py:49: in &lt;module&gt;
+    from .safe_globals import register_safe_globals
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/safe_globals.py:15: in &lt;module&gt;
+    from megatron.core.optimizer import OptimizerConfig
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+&lt;frozen importlib._bootstrap_external&gt;:995: in exec_module
+    ???
+&lt;frozen importlib._bootstrap_external&gt;:1132: in get_code
+    ???
+../bench/resident_pytest.py:50: in resident_data
+    raise OSError(61, "iCloud file is not resident", path)
+E   ConnectionRefusedError: [Errno 61] iCloud file is not resident: '/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/__init__.py'</error></testcase><testcase classname="" name="tests.plugins.test_prefix_rematerialization" file="tests/plugins/test_prefix_rematerialization.py" time="0.000"><error message="collection failure">tests/plugins/test_prefix_rematerialization.py:9: in &lt;module&gt;
+    from test_differentiable_prefix import objective
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/plugins/test_differentiable_prefix.py:9: in &lt;module&gt;
+    from test_rltt_training import packed, trace
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/plugins/test_rltt_training.py:15: in &lt;module&gt;
+    from vime.backends.megatron_utils.data import DataIterator
+vime/backends/megatron_utils/data.py:5: in &lt;module&gt;
+    from megatron.core import mpu
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/__init__.py:49: in &lt;module&gt;
+    from .safe_globals import register_safe_globals
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/safe_globals.py:15: in &lt;module&gt;
+    from megatron.core.optimizer import OptimizerConfig
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+&lt;frozen importlib._bootstrap_external&gt;:995: in exec_module
+    ???
+&lt;frozen importlib._bootstrap_external&gt;:1132: in get_code
+    ???
+../bench/resident_pytest.py:50: in resident_data
+    raise OSError(61, "iCloud file is not resident", path)
+E   ConnectionRefusedError: [Errno 61] iCloud file is not resident: '/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/__init__.py'</error></testcase></testsuite></testsuites>

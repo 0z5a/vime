@@ -1,4 +1,4 @@
-"""Opt-in single-learner Ouro prefix forward/backward through MCore DDP."""
+"""Opt-in single-learner Ouro/Nanbeige prefix forward/backward through MCore DDP."""
 
 from argparse import Namespace
 from typing import cast
@@ -24,7 +24,7 @@ def forward_backward_prefix(
 ) -> list[dict[str, list[str] | torch.Tensor]]:
     """Finalize once; leave optimizer, scheduler and cursor commit to the caller."""
     if not isinstance(model, DDP) or not isinstance(model.module, OuroMegatronModel):
-        raise ValueError("The prefix schedule requires the actual FP32 MCore DDP Ouro wrapper")
+        raise ValueError("The prefix schedule requires the actual FP32 MCore DDP Ouro/Nanbeige wrapper")
     actor, config = model.module, model.config
     if model.dp_cp_group.size() != 1:
         raise ValueError("The prefix schedule requires one actual learner rank")
@@ -47,6 +47,7 @@ def forward_backward_prefix(
         actor_generation=actor_generation,
         model_revision=args.rlt_model_revision,
         loop_depth=actor.readout_depth,
+        model_family=actor.prefix_model_family,
         suffix_wave_size=args.rltt_prefix_wave_size,
         reduction=args.rltt_reduction,
     )
