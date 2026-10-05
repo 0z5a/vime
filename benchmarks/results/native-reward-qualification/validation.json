@@ -1,0 +1,73 @@
+{
+  "parent": "67da3243aab3c82704d8b75e20696a34c9272830",
+  "production_delta": "none; qualification tooling, protocol and retained evidence only",
+  "source_sha256": {
+    "benchmarks/prepare_native_qualification.py": "816e025a3820dc8e4239d72a6f991bd5eac51ddac9d14a86c03a987098ffad9a",
+    "benchmarks/run_native_qualification.py": "e59dc03dfe53e2634e5d7b6052a2fb725e7c5f4873c92126ab7312e85366484a",
+    "benchmarks/audit_native_learning_signal.py": "48dda7c53d488d826e6ee19dfa8dff4342c6f68c7b104109ba02f9ea33930fbd",
+    "tests/test_native_qualification_recipe.py": "67cade5f28723fba835b220d7f7223b83539bf6b07031504c4fea60e97bc27b1",
+    "tests/test_native_learning_signal_audit.py": "60674e58a5a6ab1e42c8e080d02ae2fc255baa73e5d5ec6137b7d70b0eba505c",
+    "tests/test_looped_grpo_recipe.py": "0e1422b1d9e461a6328c5d210c897aae2421c7740d8a479d35a6edc9462ab2e5",
+    "examples/looped_ppo/run.py": "8117217279e82c0d0b8a767733a4f5b6737c8964254c564b24695ada13ff17d6",
+    "vime/utils/data.py": "2ad9c48ff46e89a60ae297b0fc305af079960f6a52e23cf7a4b45190107ddbca",
+    "vime/utils/types.py": "1906577a12559375018cef16fc8317c2c74e008798d77a99b6304d4c737b9e11",
+    "vime/rollout/vllm_rlt_rollout.py": "aa18f8806f6bfa0a894b3b0f67ecad0e669f7695351309e6f2f4e5b55ddbbeee",
+    "vime/rollout/rm_hub/math_utils.py": "cd884f4686ab3a1e0664ea09b2c15a5ebbf2b7d40b799c68ae5bbc0978637d32",
+    "docs/native_reward_qualification.md": "8d3e14d569698e8b3d62b0734745dc2091db5d6740d1ee336710f52901721c5d"
+  },
+  "artifact_sha256": {
+    "development.jsonl": "eb1147bf09c1f194bf7f0a75620bdf9a61e13fc6fb36a0f97cfa7994e752010c",
+    "measured-input-audit.py.txt": "70d407e7fa9453f6e1c05d6f7d7f2fd5abd1365cc3156fede1a7eb6d39d75740",
+    "native-qualification-final.log": "cb1fddec7656aba5b8ab5aad08d44e71b6ac4342f5cc02c5b178176c6e00c58b",
+    "native-qualification-final.xml": "93b4f22fbc1aae79bae027d74c8036b9d9bd0bc1efb78071e2a56d2188e900ee",
+    "native-qualification-input-audit-v2.log": "3917a4afb5710b0e0378ade08453f4f93dbfc2218ec0dd7f18277bcab9783484",
+    "native-qualification-input-audit.json": "66e4cf3e67c468f6579997c13a4e56a12b6795dc43e81b3d92ea992b1f20b0fb",
+    "native-qualification-input-audit.log": "99d21ce51cf927cc5ee385cb68f786d3d58f468120ac5a952a747e32b404a8ce",
+    "native-qualification-preparation-repeat.log": "c52603992f2327872e755fcf16f267261f6ced5c6fcbdaebb6eef4c48453337e",
+    "native-qualification-preparation.log": "c52603992f2327872e755fcf16f267261f6ced5c6fcbdaebb6eef4c48453337e",
+    "native-qualification-recipe.log": "550391a229aec84496e12c84e232b1c7602cd5b357b83d6509087f4a236e29e6",
+    "native-qualification-recipe.xml": "f17a0f385f53f0503d4c1affeaa25123d98f10cd613cfa7b06b5d65b687d9698",
+    "native-qualification-release.log": "d0785fc3d1ce4121d2f4533e1dd1554e7256b06014ca4f6e6196981e3a2b5d2c",
+    "native-qualification-release.xml": "74e8eb3b50b405a19c3a450e2d6141fe520fd50ddaf2b79920ba24302ea1e514",
+    "qualification.json": "d7bf3edcd0a05ee25b93bf7abaf1f739a4f8da4a769ac5fc00cf87a423e67f9c",
+    "resident-pytest-harness.py.txt": "2af5ce445da14f656c71e8d4817dcf85cd57402a77f50f612898c47f52f4d4f4",
+    "train.jsonl": "c5a2156c48c8263a44893f6050d1822bd88323d7e037c31d8e4c94b760f768a6"
+  },
+  "tests": {
+    "unique_cpu_passed": 136,
+    "new_recipe": 7,
+    "new_signal_audit": 8,
+    "existing_recipe": 121,
+    "cuda_skipped": 0,
+    "full_framework_parse": "NOT_RUN: local Triton unavailable",
+    "signal_evidence": "synthetic saved dump fixtures, not model generation"
+  },
+  "commands": {
+    "prepared": 6,
+    "recipe_boundary": "actual recipe; captured Ray.init and runpy calls",
+    "execute_controller": "NOT_RUN",
+    "model_path": "configuration and tokenizer only, no weights"
+  },
+  "natural_exit_zero_sessions": [
+    81290,
+    69276,
+    83321,
+    53263
+  ],
+  "natural_nonzero_sessions": {
+    "99596": "Path supplied where existing Dataset expects str; caller corrected"
+  },
+  "token_audit": {
+    "actual_tokenizer_and_dataset": true,
+    "rows": 20,
+    "max_prompt_tokens": 1013,
+    "repeat_preparation_byte_identical": true,
+    "cuda_initialized": false
+  },
+  "ray_workers_started": false,
+  "model_generation": false,
+  "optimizer_updates": false,
+  "gpu": false,
+  "speed_measurement": false,
+  "reward_convergence": "NOT_ESTABLISHED"
+}
