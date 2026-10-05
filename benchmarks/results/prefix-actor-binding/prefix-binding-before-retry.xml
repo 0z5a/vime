@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="12" skipped="0" tests="12" time="40.007" timestamp="2026-10-06T00:48:45.520972+08:00" hostname="dadaxiaoxiaodeMacBook-Air.local"><testcase classname="tests.plugins.test_prefix_actor_binding" name="test_prefix_rejects_role_or_weight_changes_before_replay[other_actor-ouro]" file="tests/plugins/test_prefix_actor_binding.py" line="12" time="0.583"><failure message="Failed: DID NOT RAISE RuntimeError">tests/plugins/test_prefix_actor_binding.py:34: in test_prefix_rejects_role_or_weight_changes_before_replay
+    with pytest.raises(RuntimeError, match="actor binding"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RuntimeError</failure></testcase><testcase classname="tests.plugins.test_prefix_actor_binding" name="test_prefix_rejects_role_or_weight_changes_before_replay[other_actor-nanbeige]" file="tests/plugins/test_prefix_actor_binding.py" line="12" time="0.090"><failure message="Failed: DID NOT RAISE RuntimeError">tests/plugins/test_prefix_actor_binding.py:34: in test_prefix_rejects_role_or_weight_changes_before_replay
+    with pytest.raises(RuntimeError, match="actor binding"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RuntimeError</failure></testcase><testcase classname="tests.plugins.test_prefix_actor_binding" name="test_prefix_rejects_role_or_weight_changes_before_replay[other_actor-huginn]" file="tests/plugins/test_prefix_actor_binding.py" line="12" time="0.369"><failure message="Failed: DID NOT RAISE RuntimeError">tests/plugins/test_prefix_actor_binding.py:34: in test_prefix_rejects_role_or_weight_changes_before_replay
+    with pytest.raises(RuntimeError, match="actor binding"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RuntimeError</failure></testcase><testcase classname="tests.plugins.test_prefix_actor_binding" name="test_prefix_rejects_role_or_weight_changes_before_replay[restore-ouro]" file="tests/plugins/test_prefix_actor_binding.py" line="12" time="0.071"><failure message="Failed: DID NOT RAISE RuntimeError">tests/plugins/test_prefix_actor_binding.py:34: in test_prefix_rejects_role_or_weight_changes_before_replay
+    with pytest.raises(RuntimeError, match="actor binding"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RuntimeError</failure></testcase><testcase classname="tests.plugins.test_prefix_actor_binding" name="test_prefix_rejects_role_or_weight_changes_before_replay[restore-nanbeige]" file="tests/plugins/test_prefix_actor_binding.py" line="12" time="0.049"><failure message="Failed: DID NOT RAISE RuntimeError">tests/plugins/test_prefix_actor_binding.py:34: in test_prefix_rejects_role_or_weight_changes_before_replay
+    with pytest.raises(RuntimeError, match="actor binding"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RuntimeError</failure></testcase><testcase classname="tests.plugins.test_prefix_actor_binding" name="test_prefix_rejects_role_or_weight_changes_before_replay[restore-huginn]" file="tests/plugins/test_prefix_actor_binding.py" line="12" time="0.159"><failure message="Failed: DID NOT RAISE RuntimeError">tests/plugins/test_prefix_actor_binding.py:34: in test_prefix_rejects_role_or_weight_changes_before_replay
+    with pytest.raises(RuntimeError, match="actor binding"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RuntimeError</failure></testcase><testcase classname="tests.plugins.test_prefix_actor_binding" name="test_prefix_rejects_role_or_weight_changes_before_replay[restore_roundtrip-ouro]" file="tests/plugins/test_prefix_actor_binding.py" line="12" time="0.057"><failure message="Failed: DID NOT RAISE RuntimeError">tests/plugins/test_prefix_actor_binding.py:34: in test_prefix_rejects_role_or_weight_changes_before_replay
+    with pytest.raises(RuntimeError, match="actor binding"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RuntimeError</failure></testcase><testcase classname="tests.plugins.test_prefix_actor_binding" name="test_prefix_rejects_role_or_weight_changes_before_replay[restore_roundtrip-nanbeige]" file="tests/plugins/test_prefix_actor_binding.py" line="12" time="0.168"><failure message="Failed: DID NOT RAISE RuntimeError">tests/plugins/test_prefix_actor_binding.py:34: in test_prefix_rejects_role_or_weight_changes_before_replay
+    with pytest.raises(RuntimeError, match="actor binding"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RuntimeError</failure></testcase><testcase classname="tests.plugins.test_prefix_actor_binding" name="test_prefix_rejects_role_or_weight_changes_before_replay[restore_roundtrip-huginn]" file="tests/plugins/test_prefix_actor_binding.py" line="12" time="0.070"><failure message="Failed: DID NOT RAISE RuntimeError">tests/plugins/test_prefix_actor_binding.py:34: in test_prefix_rejects_role_or_weight_changes_before_replay
+    with pytest.raises(RuntimeError, match="actor binding"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RuntimeError</failure></testcase><testcase classname="tests.plugins.test_prefix_actor_binding" name="test_prefix_rejects_role_or_weight_changes_before_replay[reference_head-ouro]" file="tests/plugins/test_prefix_actor_binding.py" line="12" time="0.259"><failure message="Failed: DID NOT RAISE RuntimeError">tests/plugins/test_prefix_actor_binding.py:34: in test_prefix_rejects_role_or_weight_changes_before_replay
+    with pytest.raises(RuntimeError, match="actor binding"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RuntimeError</failure></testcase><testcase classname="tests.plugins.test_prefix_actor_binding" name="test_prefix_rejects_role_or_weight_changes_before_replay[reference_head-nanbeige]" file="tests/plugins/test_prefix_actor_binding.py" line="12" time="0.056"><failure message="Failed: DID NOT RAISE RuntimeError">tests/plugins/test_prefix_actor_binding.py:34: in test_prefix_rejects_role_or_weight_changes_before_replay
+    with pytest.raises(RuntimeError, match="actor binding"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RuntimeError</failure></testcase><testcase classname="tests.plugins.test_prefix_actor_binding" name="test_prefix_rejects_role_or_weight_changes_before_replay[reference_head-huginn]" file="tests/plugins/test_prefix_actor_binding.py" line="12" time="0.169"><failure message="Failed: DID NOT RAISE RuntimeError">tests/plugins/test_prefix_actor_binding.py:34: in test_prefix_rejects_role_or_weight_changes_before_replay
+    with pytest.raises(RuntimeError, match="actor binding"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RuntimeError</failure></testcase></testsuite></testsuites>
