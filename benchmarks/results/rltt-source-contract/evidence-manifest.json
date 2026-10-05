@@ -1,0 +1,58 @@
+{
+  "source_parent": "a6cb17f28b655a921046595986eedb6edc82ef79",
+  "versions": {
+    "pandas": "3.0.6",
+    "pyarrow": "25.0.1",
+    "transformers": "4.54.1",
+    "torch": "2.13.0",
+    "pytest": "9.1.1"
+  },
+  "source_sha256": {
+    "benchmarks/prepare_rltt_math_data.py": "364dc143852857f3a698bf49a93aac7c109d98d82edf3d115ddd8a84680d9825",
+    "benchmarks/audit_rltt_accounting.py": "873e78174be99e07ed146b46323240cb7a2d9d4da80603db6dc00e0ef8625b5d",
+    "benchmarks/prepare_math_data.py": "706fd6a37f61fd8b1c1bbfccf8eac51fe6147c1272541bf24de9145ba3e6be24",
+    "benchmarks/download_math_data.py": "c248135852668359b5d259144eca0ad2c1fedfb56a399622449742cb655b5abe",
+    "benchmarks/datasets/math/sources.json": "a6915ae56dea1ff808d88819c440f1711aa2484d40fd384c6ec1f3a1533c5e9c",
+    "benchmarks/datasets/math/label_repairs.json": "98793f7cbd78c4f3c6a8a41b32eba953068c9f825373057f67be0b21b6be40b8",
+    "benchmarks/datasets/math/ouro_tokenizer.json": "94fdbfa3faddf1aaa17e1526dfdc006c1cd6c4bfd41d2683cb18a55f14d421c2",
+    "benchmarks/datasets/math/rltt_source.json": "3efaaf8b3255bc8e11d50c59fd650b08a41030266e5d95d3fcfca75e6803a536",
+    "vime/utils/data.py": "2ad9c48ff46e89a60ae297b0fc305af079960f6a52e23cf7a4b45190107ddbca",
+    "vime/rollout/vllm_rlt_rollout.py": "aa18f8806f6bfa0a894b3b0f67ecad0e669f7695351309e6f2f4e5b55ddbbeee",
+    "tests/test_math_data_preparation.py": "d762e59c6de80b5dde42da8ae24013561d065bec13c53633e84c3cca1cf08461",
+    "tests/test_rm_math.py": "2b4fe55a6c95736266bd2230a2288a83fd7ace4fdead0ba64380eb5d45c3b073",
+    "tests/rollout_backends/test_native_rlt_evaluation.py": "e0b150f8fd49b9bdabca3322b21f0f683efe01959010f5fb31c1d6de4810bef0",
+    "examples/looped_ppo/README.md": "de01231ca13ff1f660267552d6188c037b484b02b0f6acc95b1428204d920972",
+    "docs/rltt_source_contract.md": "f22ad3c6607040f60b078552cc7eb28ee4e9b4a933a85706aa771f0fa22609e0"
+  },
+  "declared_verl_inspected_source_sha256": {
+    "verl/trainer/ppo/ray_trainer.py": "423b50445817f6d788fd1a6a3894f448d951f09e3aea8f7db71f8c1dc64b836b",
+    "verl/workers/fsdp_workers.py": "ac75354db92440f6bed447a8272b77e62d5d64f33430ef43c50c1fc309e9376c",
+    "verl/utils/dataset/rl_dataset.py": "5374a0e1b2b83018301f7971e5f8db161be0bd0cf9a387b443030f05afa0037c"
+  },
+  "raw_sha256": {
+    "contract-check.json": "d07ac40f8b0b2d2a6ab27994262f8496945b2deabdaf07d9f29ae97507fcc63c",
+    "contract-check.log": "1b023eb6eed488e089bc3f592bfdd0faef3fdc7b7bf66a603b8fd7fb41ea9175",
+    "data-regression.log": "12f2e615bf5e82e4c3364a507cac5e3fe51d64bcb8ea22a1240b2e65c8e37306",
+    "data-regression.xml": "de4b68fece2187fba178b16794f09709238776f425f448a5451cf30422d6f031",
+    "drivers/check_rltt_contract.py": "f2c58862c4b4292c7690924e14549d4157e6f154c7c8f15d96e7a03270c15923",
+    "drivers/import_real_vime_parser.py": "95858ac12309b8d1dc2873f309e05e1b9681c872d417a8f611f6f6ea588c3403",
+    "drivers/load_official_ouro_config.py": "eeec910ef9f3fd370e67311de5be81c52d7e2b0cb8fe461d669c41ff4ae3e6a7",
+    "inputs-first.log": "4b8c492208906425ed25b3948552475d6382523f9dfb34cb235a9ba4e6d16d92",
+    "inputs-manifest.json": "a272932944329fa41b4da023b2d115606a1dbf3a364a1d1d300df6f251233b53",
+    "inputs-release.log": "4b8c492208906425ed25b3948552475d6382523f9dfb34cb235a9ba4e6d16d92",
+    "ouro-autoconfig.json": "3f752971ec957a17ff897913d8e5c8d75f943d00b372878cb92d5f21d02bf1b8",
+    "ouro-autoconfig.log": "07d0158daad86803d02dff4a935796a567719d15198bae56ea04efeb0e726ab3",
+    "ouro-config-source.json": "fed0df8ab0757459a99c961a32f8ab0bc1415cf2791a2d49859eea259b9edfc5",
+    "real-vime-parser-import.log": "92d2033a932d595533a576cb10fb4e16b49e4b96a905d3d4f13bba63a7a809c1",
+    "rltt-git-tree.json": "4cc907a160bbf5df7f3f1315d44883180668b1c0bc2b2915b0243a22e93d9063",
+    "source-accounting.json": "708339738f97cffd06f74a5e226aacc82643878e8f2b9d2c45d85c55895dc2b6",
+    "source-accounting.log": "a89579677b3d235d1f942e2060a491fa3fc830f51a6bb02df5c74eaa3874e419",
+    "token-identity.jsonl": "e890bc3af6ac58fb8b7428162bed7cb60cc1f20b521114c1c72ebff4536778d7",
+    "verl-source-receipt.json": "9943c4db3b8a20d5886ad41ff5f2f7225291627a3b89037126efe863387c3d49"
+  },
+  "unique_passing_tests": 62,
+  "source_runtime_scope": "Config AST slices and data converter functions; no complete original framework execution",
+  "driver_context": "Raw diagnostic driver copies preserve the original task-relative paths; portable input/config entrypoints are in benchmarks/",
+  "latex_compile": "Native desktop compiler success, exact-title paper/flashrlt.tex",
+  "scope": "Public input and conditional source accounting; no speed, GPU memory, stability or convergence measurement"
+}

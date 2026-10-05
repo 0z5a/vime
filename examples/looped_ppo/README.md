@@ -26,7 +26,8 @@ disables both offload paths and uses the shared placement described in the
 [backend contract](../../vime/backends/vllm_rlt_utils/README.md#single-gpu-resident-profile).
 Capacity and actual Ray/CUDA training for this new profile are still unqualified;
 it does not turn a small device into a sharded or offloaded execution path.
-Math JSONL rows need string `prompt` and `label` fields, for example:
+Math JSONL rows need `prompt` and `label` fields. Prompts may be strings or
+structured chat messages when `--apply-chat-template` is enabled. For example:
 
 ```json
 {"prompt":"Calculate 7-4. Reply with only \\boxed{answer}.\n###Response\n","label":"3"}
@@ -63,3 +64,10 @@ the training dataset cursor. Initial and post-update results retain distinct
 completed-update indices, and the output samples retain their policy and seed
 traces. See the [native evaluation contract](../../vime/backends/vllm_rlt_utils/README.md#held-out-evaluation).
 Existing short update/resume checks do not establish reward convergence.
+
+The [RLTT source input profile](../../docs/rltt_source_contract.md) provides the
+same audited public MATH split in native JSONL and original-converter Parquet.
+It uses the source instruction and default chat options, separately from the
+earlier thinking-enabled profile. Pass its JSONL with `--apply-chat-template`
+and no thinking override. Its full training split and explicit 1,024-token
+profile have different manifests; choose one before comparing systems.

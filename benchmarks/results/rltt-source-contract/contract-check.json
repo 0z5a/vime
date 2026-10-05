@@ -1,0 +1,91 @@
+{
+  "public_rows_with_v1_identity_order_labels_unchanged": 12498,
+  "byte_identical_files_between_fresh_runs": 11,
+  "token_rosters_byte_identical": true,
+  "v1_manifest_and_all_splits_unchanged": true,
+  "original_converter_on_old_v1": {
+    "rows": 1,
+    "problem_empty": true,
+    "gold_empty": true
+  },
+  "official_template_default_equals_thinking_false": true,
+  "official_template_default_differs_from_thinking_true": true,
+  "prepared_manifest_sha256": "a272932944329fa41b4da023b2d115606a1dbf3a364a1d1d300df6f251233b53",
+  "lengths": {
+    "train": {
+      "max": 2098,
+      "over_1024": 19
+    },
+    "development": {
+      "max": 1013,
+      "over_1024": 0
+    },
+    "math500": {
+      "max": 972,
+      "over_1024": 0
+    },
+    "reserve": {
+      "max": 1579,
+      "over_1024": 8
+    }
+  },
+  "artifacts": {
+    "train": {
+      "file": "train.jsonl",
+      "rows": 7498,
+      "sha256": "ec3a9e15287914db4af664ee2236d75420374a1200e6b6caae48d50be9f2379c",
+      "bytes": 9625270,
+      "parquet": {
+        "file": "train.parquet",
+        "sha256": "49c664e376397f63d48d4c61c9d5714b99bee8e814f0ab2f37be269b8227ca0b",
+        "bytes": 1831842
+      }
+    },
+    "train_p1024": {
+      "file": "train-p1024.jsonl",
+      "rows": 7479,
+      "sha256": "f3e52c440246c455b7a7fa089c63ab08f69fdac4a29bc9c828fdd567b0a72a90",
+      "bytes": 9518731,
+      "parquet": {
+        "file": "train-p1024.parquet",
+        "sha256": "cf07ae5aab414d35f8d2ca0bfd61e5ee0b9d15a8cc58570aa250a5cd459aef02",
+        "bytes": 1802452
+      }
+    },
+    "development": {
+      "file": "development.jsonl",
+      "rows": 256,
+      "sha256": "e7a6997035062b18fbc032f45fd46391202983096eb9bcb57f1bc0caf601fc77",
+      "bytes": 318652,
+      "parquet": {
+        "file": "development.parquet",
+        "sha256": "cce5a5993a09569a7aa25c6290e474081c447160e7cde5ce205949e6a179cb09",
+        "bytes": 70875
+      }
+    },
+    "math500": {
+      "file": "math500.jsonl",
+      "rows": 500,
+      "sha256": "d4696bb1b50a36580426130826c59a85001687738365018828b8b550dba11032",
+      "bytes": 616846,
+      "parquet": {
+        "file": "math500.parquet",
+        "sha256": "95096232c1434acf1b88868e1f72ce1c067314d93d18fa775f90b3344323c674",
+        "bytes": 133717
+      }
+    },
+    "reserve": {
+      "file": "reserve.jsonl",
+      "rows": 4244,
+      "sha256": "a312a25eeb0ca8d31afea2801c494bd501aeb9bef1ad24fea9431e1a360a4ac2",
+      "bytes": 5261614,
+      "parquet": {
+        "file": "reserve.parquet",
+        "sha256": "26cdbff86453dc3a9b114b91882538b4734c7adb60bb1943dfa3f2c05116a6f1",
+        "bytes": 1038711
+      }
+    }
+  },
+  "accounting_unchanged": true,
+  "scope": "Input/source-function/AutoTokenizer/PyArrow checks only, no model or reward accuracy"
+}

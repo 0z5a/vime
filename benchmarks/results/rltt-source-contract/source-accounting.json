@@ -1,0 +1,150 @@
+{
+  "rltt_revision": "06189850bb23a1b1b715ad29768e68f36b1c4a19",
+  "source_sha256": "bcd3eeaae9a38b5200428511694009140539966758ede0eab1a83d31d187d81d",
+  "executed": "Three unchanged source AST function definitions; explicit n_gpus avoids any Torch/CUDA call",
+  "not_executed": [
+    "dataloader",
+    "DataProto",
+    "FSDP",
+    "model",
+    "optimizer"
+  ],
+  "assumptions": [
+    "Published verl 0.6.1 semantics",
+    "4 equal DP ranks, sequence parallel size 1",
+    "No gen_batch_size override",
+    "140 complete rollout batches are available",
+    "No hidden private source or configuration modifications"
+  ],
+  "records": [
+    {
+      "cli_prompts": 32,
+      "generations": 8,
+      "accumulation_rollouts": 1,
+      "executed_config": {
+        "data": {
+          "train_batch_size": 256,
+          "val_batch_size": 256,
+          "max_prompt_length": 512,
+          "max_response_length": 4096,
+          "filter_overlong_prompts": true,
+          "truncation": "error",
+          "sampler": null,
+          "shuffle": true,
+          "dataloader_num_workers": 8
+        },
+        "actor_minibatch": 128,
+        "ppo_epochs": 1,
+        "optimizer": {
+          "_target_": "verl.workers.config.FSDPOptimizerConfig",
+          "optimizer": "AdamW8bit",
+          "optimizer_impl": "bitsandbytes.optim",
+          "lr": 1e-06,
+          "weight_decay": 0.1,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "override_optimizer_config": null
+        }
+      },
+      "conditional_counts": {
+        "loader_prompt_rows": 256,
+        "new_completions_per_rollout": 2048,
+        "per_rank_minibatch_completions": 256,
+        "completions_per_full_actor_call": 2048,
+        "optimizer_steps_per_full_actor_call": 2,
+        "rollout_batches": 140,
+        "actor_calls": 140,
+        "total_new_completions": 286720,
+        "optimizer_steps_for_140_full_rollouts": 280
+      }
+    },
+    {
+      "cli_prompts": 32,
+      "generations": 8,
+      "accumulation_rollouts": 2,
+      "executed_config": {
+        "data": {
+          "train_batch_size": 256,
+          "val_batch_size": 256,
+          "max_prompt_length": 512,
+          "max_response_length": 4096,
+          "filter_overlong_prompts": true,
+          "truncation": "error",
+          "sampler": null,
+          "shuffle": true,
+          "dataloader_num_workers": 8
+        },
+        "actor_minibatch": 128,
+        "ppo_epochs": 1,
+        "optimizer": {
+          "_target_": "verl.workers.config.FSDPOptimizerConfig",
+          "optimizer": "AdamW8bit",
+          "optimizer_impl": "bitsandbytes.optim",
+          "lr": 1e-06,
+          "weight_decay": 0.1,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "override_optimizer_config": null
+        }
+      },
+      "conditional_counts": {
+        "loader_prompt_rows": 256,
+        "new_completions_per_rollout": 2048,
+        "per_rank_minibatch_completions": 256,
+        "completions_per_full_actor_call": 4096,
+        "optimizer_steps_per_full_actor_call": 4,
+        "rollout_batches": 140,
+        "actor_calls": 70,
+        "total_new_completions": 286720,
+        "optimizer_steps_for_140_full_rollouts": 280
+      }
+    },
+    {
+      "cli_prompts": 4,
+      "generations": 8,
+      "accumulation_rollouts": 1,
+      "executed_config": {
+        "data": {
+          "train_batch_size": 32,
+          "val_batch_size": 32,
+          "max_prompt_length": 512,
+          "max_response_length": 4096,
+          "filter_overlong_prompts": true,
+          "truncation": "error",
+          "sampler": null,
+          "shuffle": true,
+          "dataloader_num_workers": 8
+        },
+        "actor_minibatch": 32,
+        "ppo_epochs": 1,
+        "optimizer": {
+          "_target_": "verl.workers.config.FSDPOptimizerConfig",
+          "optimizer": "AdamW8bit",
+          "optimizer_impl": "bitsandbytes.optim",
+          "lr": 1e-06,
+          "weight_decay": 0.1,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "override_optimizer_config": null
+        }
+      },
+      "conditional_counts": {
+        "loader_prompt_rows": 32,
+        "new_completions_per_rollout": 256,
+        "per_rank_minibatch_completions": 64,
+        "completions_per_full_actor_call": 256,
+        "optimizer_steps_per_full_actor_call": 1,
+        "rollout_batches": 140,
+        "actor_calls": 140,
+        "total_new_completions": 35840,
+        "optimizer_steps_for_140_full_rollouts": 140
+      }
+    }
+  ]
+}
