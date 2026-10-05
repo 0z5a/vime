@@ -1,0 +1,11 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+/Users/0z5a/Documents/infra/flashrlt-20261005/vime/../bench/resident_pytest.py:62
+<frozen runpy>:287
+<frozen runpy>:98
+<frozen runpy>:88
+benchmarks/prepare_math_data.py:227
+benchmarks/prepare_math_data.py:213
+benchmarks/prepare_math_data.py:173
+benchmarks/prepare_math_data.py:109
+ValueError: invalid literal for int() with base 10: '?'

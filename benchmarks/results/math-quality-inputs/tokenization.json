@@ -1,0 +1,497 @@
+{
+  "tokenizer_repository": "ByteDance/Ouro-1.4B-Thinking",
+  "tokenizer_revision": "3aaa2224253a92ca45cf2e3d427c360e1ef9c93d",
+  "tokenizer_lock_sha256": "94fdbfa3faddf1aaa17e1526dfdc006c1cd6c4bfd41d2683cb18a55f14d421c2",
+  "tokenizer_class": "GPT2TokenizerFast",
+  "eos_token_id": 2,
+  "prepared_manifest_sha256": "10ce26681d2d07f91add2e5a304aca931b3d9300670fe7f3b55bbd00d4341037",
+  "token_lengths_sha256": "566d921dfafdf4f3bf574313f6ae407526bae55d47b6f7dcd9ab9337eb9590fa",
+  "quantile_rule": "sorted[floor((n-1)*q)]",
+  "add_special_tokens": false,
+  "summaries": {
+    "train/plain": {
+      "rows": 7498,
+      "min": 27,
+      "max": 2058,
+      "p50": 69,
+      "p95": 288,
+      "p99": 559,
+      "over_1024": [
+        {
+          "id": "algebra/train/413",
+          "tokens": 1044
+        },
+        {
+          "id": "algebra/train/544",
+          "tokens": 1063
+        },
+        {
+          "id": "algebra/train/960",
+          "tokens": 1061
+        },
+        {
+          "id": "counting_and_probability/train/603",
+          "tokens": 1266
+        },
+        {
+          "id": "geometry/train/101",
+          "tokens": 2058
+        },
+        {
+          "id": "geometry/train/388",
+          "tokens": 1879
+        },
+        {
+          "id": "geometry/train/522",
+          "tokens": 1267
+        },
+        {
+          "id": "geometry/train/528",
+          "tokens": 1046
+        },
+        {
+          "id": "geometry/train/543",
+          "tokens": 1399
+        },
+        {
+          "id": "intermediate_algebra/train/39",
+          "tokens": 1057
+        },
+        {
+          "id": "intermediate_algebra/train/263",
+          "tokens": 1102
+        },
+        {
+          "id": "intermediate_algebra/train/572",
+          "tokens": 1101
+        },
+        {
+          "id": "intermediate_algebra/train/1156",
+          "tokens": 1032
+        },
+        {
+          "id": "intermediate_algebra/train/1166",
+          "tokens": 1057
+        },
+        {
+          "id": "prealgebra/train/174",
+          "tokens": 1254
+        },
+        {
+          "id": "prealgebra/train/1087",
+          "tokens": 1253
+        }
+      ]
+    },
+    "train/chat": {
+      "rows": 7498,
+      "min": 47,
+      "max": 2078,
+      "p50": 89,
+      "p95": 308,
+      "p99": 579,
+      "over_1024": [
+        {
+          "id": "algebra/train/413",
+          "tokens": 1064
+        },
+        {
+          "id": "algebra/train/544",
+          "tokens": 1083
+        },
+        {
+          "id": "algebra/train/960",
+          "tokens": 1081
+        },
+        {
+          "id": "counting_and_probability/train/603",
+          "tokens": 1286
+        },
+        {
+          "id": "geometry/train/101",
+          "tokens": 2078
+        },
+        {
+          "id": "geometry/train/388",
+          "tokens": 1899
+        },
+        {
+          "id": "geometry/train/522",
+          "tokens": 1287
+        },
+        {
+          "id": "geometry/train/528",
+          "tokens": 1066
+        },
+        {
+          "id": "geometry/train/543",
+          "tokens": 1419
+        },
+        {
+          "id": "intermediate_algebra/train/39",
+          "tokens": 1077
+        },
+        {
+          "id": "intermediate_algebra/train/263",
+          "tokens": 1122
+        },
+        {
+          "id": "intermediate_algebra/train/572",
+          "tokens": 1121
+        },
+        {
+          "id": "intermediate_algebra/train/822",
+          "tokens": 1039
+        },
+        {
+          "id": "intermediate_algebra/train/1156",
+          "tokens": 1052
+        },
+        {
+          "id": "intermediate_algebra/train/1166",
+          "tokens": 1077
+        },
+        {
+          "id": "intermediate_algebra/train/1182",
+          "tokens": 1037
+        },
+        {
+          "id": "prealgebra/train/174",
+          "tokens": 1274
+        },
+        {
+          "id": "prealgebra/train/1087",
+          "tokens": 1273
+        }
+      ]
+    },
+    "train/thinking": {
+      "rows": 7498,
+      "min": 49,
+      "max": 2080,
+      "p50": 91,
+      "p95": 310,
+      "p99": 581,
+      "over_1024": [
+        {
+          "id": "algebra/train/413",
+          "tokens": 1066
+        },
+        {
+          "id": "algebra/train/544",
+          "tokens": 1085
+        },
+        {
+          "id": "algebra/train/960",
+          "tokens": 1083
+        },
+        {
+          "id": "counting_and_probability/train/603",
+          "tokens": 1288
+        },
+        {
+          "id": "geometry/train/101",
+          "tokens": 2080
+        },
+        {
+          "id": "geometry/train/388",
+          "tokens": 1901
+        },
+        {
+          "id": "geometry/train/522",
+          "tokens": 1289
+        },
+        {
+          "id": "geometry/train/528",
+          "tokens": 1068
+        },
+        {
+          "id": "geometry/train/543",
+          "tokens": 1421
+        },
+        {
+          "id": "intermediate_algebra/train/39",
+          "tokens": 1079
+        },
+        {
+          "id": "intermediate_algebra/train/263",
+          "tokens": 1124
+        },
+        {
+          "id": "intermediate_algebra/train/572",
+          "tokens": 1123
+        },
+        {
+          "id": "intermediate_algebra/train/822",
+          "tokens": 1041
+        },
+        {
+          "id": "intermediate_algebra/train/1156",
+          "tokens": 1054
+        },
+        {
+          "id": "intermediate_algebra/train/1166",
+          "tokens": 1079
+        },
+        {
+          "id": "intermediate_algebra/train/1182",
+          "tokens": 1039
+        },
+        {
+          "id": "prealgebra/train/174",
+          "tokens": 1276
+        },
+        {
+          "id": "prealgebra/train/1087",
+          "tokens": 1275
+        }
+      ]
+    },
+    "development/plain": {
+      "rows": 256,
+      "min": 28,
+      "max": 973,
+      "p50": 67,
+      "p95": 235,
+      "p99": 522,
+      "over_1024": []
+    },
+    "development/chat": {
+      "rows": 256,
+      "min": 48,
+      "max": 993,
+      "p50": 87,
+      "p95": 255,
+      "p99": 542,
+      "over_1024": []
+    },
+    "development/thinking": {
+      "rows": 256,
+      "min": 50,
+      "max": 995,
+      "p50": 89,
+      "p95": 257,
+      "p99": 544,
+      "over_1024": []
+    },
+    "math500/plain": {
+      "rows": 500,
+      "min": 28,
+      "max": 932,
+      "p50": 70,
+      "p95": 252,
+      "p99": 420,
+      "over_1024": []
+    },
+    "math500/chat": {
+      "rows": 500,
+      "min": 48,
+      "max": 952,
+      "p50": 90,
+      "p95": 272,
+      "p99": 440,
+      "over_1024": []
+    },
+    "math500/thinking": {
+      "rows": 500,
+      "min": 50,
+      "max": 954,
+      "p50": 92,
+      "p95": 274,
+      "p99": 442,
+      "over_1024": []
+    },
+    "reserve/plain": {
+      "rows": 4244,
+      "min": 27,
+      "max": 1539,
+      "p50": 67,
+      "p95": 259,
+      "p99": 456,
+      "over_1024": [
+        {
+          "id": "intermediate_algebra/test/498",
+          "tokens": 1104
+        },
+        {
+          "id": "counting_and_probability/test/327",
+          "tokens": 1539
+        },
+        {
+          "id": "intermediate_algebra/test/17",
+          "tokens": 1104
+        },
+        {
+          "id": "geometry/test/204",
+          "tokens": 1293
+        },
+        {
+          "id": "intermediate_algebra/test/421",
+          "tokens": 1036
+        },
+        {
+          "id": "prealgebra/test/805",
+          "tokens": 1029
+        }
+      ]
+    },
+    "reserve/chat": {
+      "rows": 4244,
+      "min": 47,
+      "max": 1559,
+      "p50": 87,
+      "p95": 279,
+      "p99": 476,
+      "over_1024": [
+        {
+          "id": "intermediate_algebra/test/498",
+          "tokens": 1124
+        },
+        {
+          "id": "counting_and_probability/test/327",
+          "tokens": 1559
+        },
+        {
+          "id": "intermediate_algebra/test/17",
+          "tokens": 1124
+        },
+        {
+          "id": "geometry/test/204",
+          "tokens": 1313
+        },
+        {
+          "id": "intermediate_algebra/test/421",
+          "tokens": 1056
+        },
+        {
+          "id": "prealgebra/test/805",
+          "tokens": 1049
+        }
+      ]
+    },
+    "reserve/thinking": {
+      "rows": 4244,
+      "min": 49,
+      "max": 1561,
+      "p50": 89,
+      "p95": 281,
+      "p99": 478,
+      "over_1024": [
+        {
+          "id": "intermediate_algebra/test/498",
+          "tokens": 1126
+        },
+        {
+          "id": "counting_and_probability/test/327",
+          "tokens": 1561
+        },
+        {
+          "id": "intermediate_algebra/test/17",
+          "tokens": 1126
+        },
+        {
+          "id": "geometry/test/204",
+          "tokens": 1315
+        },
+        {
+          "id": "intermediate_algebra/test/421",
+          "tokens": 1058
+        },
+        {
+          "id": "prealgebra/test/805",
+          "tokens": 1051
+        },
+        {
+          "id": "algebra/test/375",
+          "tokens": 1025
+        }
+      ]
+    }
+  },
+  "training_profile": {
+    "file": "train-ouro-thinking-p1024.jsonl",
+    "rows": 7480,
+    "sha256": "9459d0041c3d0a8cd0aad22fc44be8163ca88c1fcd5dd9d666e99b0d2ab88bc9",
+    "max_prompt_tokens": 1024,
+    "apply_chat_template": true,
+    "apply_chat_template_kwargs": {
+      "enable_thinking": true
+    },
+    "excluded": [
+      {
+        "id": "algebra/train/413",
+        "tokens": 1066
+      },
+      {
+        "id": "algebra/train/544",
+        "tokens": 1085
+      },
+      {
+        "id": "algebra/train/960",
+        "tokens": 1083
+      },
+      {
+        "id": "counting_and_probability/train/603",
+        "tokens": 1288
+      },
+      {
+        "id": "geometry/train/101",
+        "tokens": 2080
+      },
+      {
+        "id": "geometry/train/388",
+        "tokens": 1901
+      },
+      {
+        "id": "geometry/train/522",
+        "tokens": 1289
+      },
+      {
+        "id": "geometry/train/528",
+        "tokens": 1068
+      },
+      {
+        "id": "geometry/train/543",
+        "tokens": 1421
+      },
+      {
+        "id": "intermediate_algebra/train/39",
+        "tokens": 1079
+      },
+      {
+        "id": "intermediate_algebra/train/263",
+        "tokens": 1124
+      },
+      {
+        "id": "intermediate_algebra/train/572",
+        "tokens": 1123
+      },
+      {
+        "id": "intermediate_algebra/train/822",
+        "tokens": 1041
+      },
+      {
+        "id": "intermediate_algebra/train/1156",
+        "tokens": 1054
+      },
+      {
+        "id": "intermediate_algebra/train/1166",
+        "tokens": 1079
+      },
+      {
+        "id": "intermediate_algebra/train/1182",
+        "tokens": 1039
+      },
+      {
+        "id": "prealgebra/train/174",
+        "tokens": 1276
+      },
+      {
+        "id": "prealgebra/train/1087",
+        "tokens": 1275
+      }
+    ],
+    "note": "Only this explicit training profile omits over-cap rows; full input artifacts remain intact"
+  },
+  "scope": "Actual tokenizer and Dataset, no model or rollout execution; no rows filtered"
+}

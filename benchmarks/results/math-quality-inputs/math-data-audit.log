@@ -1,0 +1,15 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+/Users/0z5a/Documents/infra/flashrlt-20261005/vime/../bench/resident_pytest.py:62
+<frozen runpy>:287
+<frozen runpy>:98
+<frozen runpy>:88
+benchmarks/audit_math_data.py:73
+benchmarks/audit_math_data.py:67
+/Users/0z5a/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py:195
+/Users/0z5a/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/runners.py:118
+/Users/0z5a/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/base_events.py:691
+benchmarks/audit_math_data.py:18
+/Users/0z5a/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1027
+/Users/0z5a/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013
+FileNotFoundError: [Errno 2] No such file or directory: '../data/math-v1/prepared/manifest.json'

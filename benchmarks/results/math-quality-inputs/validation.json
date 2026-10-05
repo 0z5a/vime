@@ -1,0 +1,89 @@
+{
+  "tests": {
+    "unique_passed": 62,
+    "new_preparation_checks": 13,
+    "known_existing_reward_and_eval_checks": 49,
+    "skipped": 0,
+    "failed": 0,
+    "xml": "math-data-release-v2.xml"
+  },
+  "natural_exit_zero_sessions": [
+    33509,
+    22449,
+    1643,
+    2910,
+    69671,
+    97260,
+    40066,
+    57671,
+    36279,
+    60049,
+    31996,
+    89657,
+    51861
+  ],
+  "retained_nonzero_sessions": {
+    "34429": "import namespace collision",
+    "68615": "test collection namespace collision",
+    "28675": "unknown Level ? metadata",
+    "16757": "audit started before successful preparation"
+  },
+  "source_sha256": {
+    "benchmarks/__init__.py": "cde3cc6cd89a6872c4d3acc25e2d3e269d3e0655280a35d7cd5de9c847ee9d73",
+    "benchmarks/download_math_data.py": "c248135852668359b5d259144eca0ad2c1fedfb56a399622449742cb655b5abe",
+    "benchmarks/prepare_math_data.py": "706fd6a37f61fd8b1c1bbfccf8eac51fe6147c1272541bf24de9145ba3e6be24",
+    "benchmarks/audit_math_data.py": "85deda7333f11ea6b44eedfffb1f93b11c42251e3f7e0277037b8917c6c5ec9b",
+    "benchmarks/audit_math_tokenization.py": "599a5c01e8ce36dd4657e6540bc4a4771df87118cee867127aabfc039037c044",
+    "benchmarks/datasets/math/sources.json": "a6915ae56dea1ff808d88819c440f1711aa2484d40fd384c6ec1f3a1533c5e9c",
+    "benchmarks/datasets/math/label_repairs.json": "98793f7cbd78c4f3c6a8a41b32eba953068c9f825373057f67be0b21b6be40b8",
+    "benchmarks/datasets/math/ouro_tokenizer.json": "94fdbfa3faddf1aaa17e1526dfdc006c1cd6c4bfd41d2683cb18a55f14d421c2",
+    "tests/test_math_data_preparation.py": "d762e59c6de80b5dde42da8ae24013561d065bec13c53633e84c3cca1cf08461",
+    "vime/utils/data.py": "2ad9c48ff46e89a60ae297b0fc305af079960f6a52e23cf7a4b45190107ddbca",
+    "vime/rollout/rm_hub/math_utils.py": "cd884f4686ab3a1e0664ea09b2c15a5ebbf2b7d40b799c68ae5bbc0978637d32",
+    "vime/rollout/rm_hub/__init__.py": "e916523143afcf0ce8691d8568aa6c8eb9656f9b8caae2897a98fe83754f7e31",
+    "vime/rollout/vllm_rlt_rollout.py": "b60f2a8583a12a01310d0b2c9b8690bde4a9923379ac3ef0ab66ffeed8712855"
+  },
+  "artifact_sha256": {
+    "data-download-manifest.json": "7545f412fc62c2e6913425357debdd60bcc7b7d596253494081b5db962941f9c",
+    "math-arrow-import.log": "fb9688e82e36bc85ce93bb7ff864d5ac56d07f9debe320f58e5f374bccbc2a87",
+    "math-data-audit-v2.json": "73c8ad987d08321fcd4905c5a8352033958e9164eadaf1c6b54ae3cbb17b391c",
+    "math-data-audit-v2.log": "52c7d098938a07cebdda0ee3768cfe31fbfbcaaa55130ec4b796fabcc2acc22f",
+    "math-data-audit.log": "e1a8a7276f806f00cb324b67cb01184f86bf7878c3997f74f0a88bbf9b59cb09",
+    "math-data-release-v2.log": "a3e2ccbe0829ee2e83bf5d0c7b1a0ae31ced15e12cb5d39847ce112f8f476421",
+    "math-data-release-v2.xml": "3cf94b11f1887dd59a1c71526e47930b203799dabb3ae7b06c17d0574bc68e41",
+    "math-data-release.log": "7056ed37111ac66dfc5d7c2d85ec63beccb2e0449286cb9e57407640689ad80b",
+    "math-data-release.xml": "7395ece7d47ef7dbf2aab1aa7b0a4561727afd02a35568685920be34843afd19",
+    "math-data-tests-final.log": "3613a8cad2426480255d3304efb0651fdf6a26c769fd6ea7d6ba8487404f6555",
+    "math-data-tests-final.xml": "0ad594474f54334f5141601d4ddf259f93b8221904530364527cdc738dd7a8f4",
+    "math-data-tests.log": "c27cebeba030dd6c87d03a72cfb0b533574f49a26924705e45f0d09cc012286c",
+    "math-data-tests.xml": "b16c0d2788865753c69423cf89ea7e381a50471b23003a1901475123e7c48875",
+    "math-download.log": "8b9d259fa4bad4db42af6c969891dbf6d6b59289d96a54ac7af02cd9dd1c4fca",
+    "math-initial-audit.log": "bbecc787d06e95ae37c14c4819095c6edb60f7efcc4af50159bbe2520468ed80",
+    "math-label-audit.log": "2de80b42611db6509f4be7af1c5609fb9733b42daa7a5e08f494914d4bac2d3b",
+    "math-preparation-final.log": "136a006f8216bbf28e90d8427c2140b1d96b406b41fc4bc056be13c9550b2013",
+    "math-preparation-v3.log": "9a90d41d447ac1cae6b603cc03c8cc8f89f4ea5b865e1717f66421cd74f45f9c",
+    "math-preparation.log": "4bebbc7688d72a5bc0bb706fbad1004e5139656f7ff1f3c5f0d01116b0a44c1e",
+    "math-repairs.log": "a576ffa05703a7b1e1a05671ba273636e5860745ac883763ee99f95af6d472d8",
+    "math-tokenization-release.log": "bd5f68f6ff931a328251445c54392aa03911a6149eeb4b60ff34340e83cf9446",
+    "math-tokenization.log": "bd5f68f6ff931a328251445c54392aa03911a6149eeb4b60ff34340e83cf9446",
+    "math-tokenizer-download.log": "cf080a9303b21ed2db57e349ea7e6847d56cfd9125152dd9c10fa8a28afe950a",
+    "prepared-manifest.json": "10ce26681d2d07f91add2e5a304aca931b3d9300670fe7f3b55bbd00d4341037",
+    "token-lengths.jsonl": "566d921dfafdf4f3bf574313f6ae407526bae55d47b6f7dcd9ab9337eb9590fa",
+    "tokenization.json": "fbcdf998712c4b1c3f9755a3c8e212b7af689ea44c38cc3f3d0217a9ecf49816",
+    "tokenizer-download-manifest.json": "66fb6370a58a0be883068840d15a973f4d0e20b6fd799c3668116a706b376a8e"
+  },
+  "checks": {
+    "prepared_split_counts": {
+      "train": 7498,
+      "development": 256,
+      "math500": 500,
+      "reserve": 4244
+    },
+    "tokenization_rows": 37494,
+    "tokenization_repeated_byte_identical": true,
+    "profile_matches_exact_cap_membership": true,
+    "model_execution": false,
+    "gpu_execution": false,
+    "speedup_measured": false
+  }
+}
