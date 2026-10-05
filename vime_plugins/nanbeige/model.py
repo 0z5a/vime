@@ -10,7 +10,7 @@ from torch.utils.checkpoint import checkpoint
 from vllm_rlt.layers import apply_rotary_pos_emb
 from vllm_rlt.models.nanbeige import NanbeigeDecoderLayer, NanbeigeForCausalLM
 
-from vime_plugins.looped.packing import ReplayLayout, causal_attention, prefix_attention
+from vime_plugins.looped.packing import ReplayLayout, SuffixLayout, causal_attention, prefix_attention
 from vime_plugins.ouro.model import OuroMegatronModel
 
 
@@ -47,6 +47,7 @@ class NanbeigeMegatronModel(OuroMegatronModel):
         prefix_kv: tuple[torch.Tensor, torch.Tensor] | None = None,
         *,
         layout: ReplayLayout | None = None,
+        suffix_layout: SuffixLayout | None = None,
     ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
         self.block_tokens += hidden.shape[0]
         attention = layer.self_attn
@@ -57,7 +58,9 @@ class NanbeigeMegatronModel(OuroMegatronModel):
         )
         q, k = apply_rotary_pos_emb(q, k, cos, sin)
         attended = (
-            causal_attention(q, k, v, layout) if prefix_kv is None else prefix_attention(q, k, v, prefix_kv)
+            causal_attention(q, k, v, layout)
+            if prefix_kv is None
+            else prefix_attention(q, k, v, prefix_kv, suffix_layout)
         ).reshape(hidden.shape[0], -1)
         hidden = hidden + attention.o_proj(attended)
         return hidden + layer.mlp(layer.post_attention_layernorm(hidden)), k, v

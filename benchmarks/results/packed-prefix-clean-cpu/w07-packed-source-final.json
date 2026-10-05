@@ -1,0 +1,12 @@
+{
+  "tests/plugins/test_differentiable_prefix.py": "a9949fa40173fe5eb091fec5cdd9331f191045fb9e6e9f9a76fc46ce78694f18",
+  "vime_plugins/huginn/model.py": "cfad8746feec84c4e99bfebfa5dc73cd552b834211bdb97fc89489b6a4ba41d1",
+  "vime_plugins/looped/packing.py": "7df0bd34770cde25af21c341331d14151f66504a29d7f1f333d24bbf0128dc85",
+  "vime_plugins/looped/prefix.py": "979fdb10a202438d6dee0fb63a9abc2b5f54383c17eb56814388ecffc712117a",
+  "vime_plugins/nanbeige/model.py": "1e8dbc94e8a133cc89bc20e9e3a49c669f61ee4cd53447098803207dadb95fd2",
+  "vime_plugins/ouro/model.py": "cbffbd8de33efadf4af69345bde2b5c4b3f454c10438cc91a3731d0368bfd125",
+  "benchmarks/bench_packed_prefix.py": "cfe06820dd1982e1f784186d61bb6c3fe9a654fc3baf8872b4d59ddfba6f51a5",
+  "benchmarks/bench_packed_prefix_clean.py": "cea1bdcfd98fa0afa0af1f9c6f6f5fe5a697de163d286c4d24072c59a893087f",
+  "benchmarks/summarize_packed_prefix.py": "d6d30314ae266b39cbffa264925d26274ef9ac0ba075e9e1d5673a230928f586",
+  "benchmarks/prefix_benchmark_fixture.py": "53294fef52ab8d5237ec9b3cce361851f9ff5571ae3eb0e678dd29d254709bb3"
+}

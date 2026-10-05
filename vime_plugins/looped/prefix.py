@@ -1,7 +1,7 @@
 """Three-phase differentiable prefix reuse with every recurrent readout boundary.
 
-This is a serial SDPA reference for the schedule of arXiv:2606.01143v3,
-extended to fixed recurrent calls and per-loop response supervision.
+The schedule of arXiv:2606.01143v3 extended to fixed recurrent calls and
+per-loop response supervision, with optional packed suffix projections.
 """
 
 from collections.abc import Callable, Iterator
@@ -10,8 +10,9 @@ from dataclasses import dataclass
 import torch
 
 from .readout import streamed_readout
+from .packing import SuffixLayout
 
-SuffixReplay = Callable[[torch.Tensor, tuple[torch.Tensor, ...]], Iterator[torch.Tensor]]
+SuffixReplay = Callable[[torch.Tensor, tuple[torch.Tensor, ...], SuffixLayout | None], Iterator[torch.Tensor]]
 
 
 @dataclass(frozen=True)
@@ -82,16 +83,35 @@ class PrefixReplay:
         if response.ndim != 1:
             raise ValueError("shared-prefix response must be a token vector")
         if not len(response):
-            zero = sum(leaf.reshape(-1)[:1].sum() * 0 for leaf in self.leaves) + self.weight[:1, :1].sum() * 0
-            return zero.expand(0, (self.program.depth if self.all_loops else 1) + 1)
+            return self._empty_scores()
+        return self._readout(self.program.suffix(response[:-1], self.leaves, None), response)
+
+    def scores_batch(self, responses: tuple[torch.Tensor, ...], *, identity: PrefixIdentity) -> torch.Tensor:
+        """Pack projections/readout; each suffix attends only to its own history."""
+        self._check(identity)
+        if not responses or any(response.ndim != 1 for response in responses):
+            raise ValueError("shared-prefix batch requires response token vectors")
+        nonempty = tuple(response for response in responses if len(response))
+        if not nonempty:
+            return self._empty_scores()
+        labels = torch.cat(nonempty)
+        layout = SuffixLayout.create(tuple(len(response) - 1 for response in nonempty), labels.device)
+        states = self.program.suffix(torch.cat([response[:-1] for response in nonempty]), self.leaves, layout)
+        return self._readout(states, labels)
+
+    def _empty_scores(self) -> torch.Tensor:
+        zero = sum(leaf.reshape(-1)[:1].sum() * 0 for leaf in self.leaves) + self.weight[:1, :1].sum() * 0
+        return zero.expand(0, (self.program.depth if self.all_loops else 1) + 1)
+
+    def _readout(self, states: Iterator[torch.Tensor], labels: torch.Tensor) -> torch.Tensor:
         columns = []
-        for loop, hidden in enumerate(self.program.suffix(response[:-1], self.leaves), 1):
+        for loop, hidden in enumerate(states, 1):
             terminal = loop == self.program.depth
             if self.all_loops or terminal:
                 result = streamed_readout(
                     hidden,
                     self.weight,
-                    response,
+                    labels,
                     vocab_tile=self.vocab_tile,
                     temperature=self.temperature,
                     entropy=terminal and self.entropy,
@@ -119,6 +139,7 @@ class PrefixReplay:
         objective: Callable[[torch.Tensor, tuple[int, ...]], torch.Tensor],
         *,
         identity: PrefixIdentity,
+        batch_suffixes: bool = False,
     ) -> torch.Tensor:
         """Run B/C with caller-supplied logical loss weights; optimizer follows C."""
         indices = [index for group in microbatches for index in group]
@@ -126,7 +147,11 @@ class PrefixReplay:
             raise ValueError("suffix microbatches must partition the logical group exactly once")
         total = self.weight.new_zeros(())
         for group in microbatches:
-            scores = torch.cat([self.scores(responses[index], identity=identity) for index in group])
+            scores = (
+                self.scores_batch(tuple(responses[index] for index in group), identity=identity)
+                if batch_suffixes
+                else torch.cat([self.scores(responses[index], identity=identity) for index in group])
+            )
             loss = objective(scores, group)
             loss.backward()
             total = total + loss.detach()

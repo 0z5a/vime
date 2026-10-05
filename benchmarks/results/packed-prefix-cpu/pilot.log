@@ -1,0 +1,32 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+W1005 09:28:42.900000 97365 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/mixed_precision.py:113: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_scale
+  warnings.warn(
+/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/__init__.py:24: UserWarning: Transformer Engine and Apex are not installed. Falling back to Torch optimizers.
+  warnings.warn(
+/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/optimizer.py:28: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_scale
+  warnings.warn(
+/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/clip_grads.py:29: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier, multi_tensor_l2norm, and multi_tensor_scale
+  warnings.warn(
+WARNING:root:deep_ep is not installed, some functionalities may be limited.
+/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/transformer_config.py:1734: UserWarning: full scope is deprecated. Use empty cuda_graph_scope to capture the whole layer.
+  warnings.warn(
+PASS seed30 ouro P4 D16 G1
+PASS seed30 ouro P4 D16 G8
+PASS seed30 ouro P4 D16 G32
+PASS seed30 ouro P24 D4 G1
+PASS seed30 ouro P24 D4 G8
+PASS seed30 ouro P24 D4 G32
+PASS seed30 nanbeige P4 D16 G1
+PASS seed30 nanbeige P4 D16 G8
+PASS seed30 nanbeige P4 D16 G32
+PASS seed30 nanbeige P24 D4 G1
+PASS seed30 nanbeige P24 D4 G8
+PASS seed30 nanbeige P24 D4 G32
+PASS seed30 huginn P4 D16 G1
+PASS seed30 huginn P4 D16 G8
+PASS seed30 huginn P4 D16 G32
+PASS seed30 huginn P24 D4 G1
+PASS seed30 huginn P24 D4 G8
+PASS seed30 huginn P24 D4 G32

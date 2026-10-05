@@ -1,0 +1,6 @@
+BEGIN seed31-order0-parent
+END seed31-order0-parent 1
+Traceback (most recent call last):
+  File "/Users/0z5a/Documents/infra/flashrlt-20261005/bench/run_packed_prefix_clean.py", line 42, in <module>
+    assert code == 0, record
+AssertionError: {'name': 'seed31-order0-parent', 'pid': 97832, 'returncode': 1, 'source': '/Users/0z5a/Documents/infra/flashrlt-20261005/vime-parent-w07', 'driver_sha256': '0bbc35ad67265b2b58f88c3856d6e2afa9b1b7b35b6bac07fc39123c59bc1cb2'}
