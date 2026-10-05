@@ -3,9 +3,12 @@
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
 
 import torch
+
+from benchmarks.prepare_native_qualification import EXECUTION_VARIANTS
 
 
 def audit(continuous: Path, resumed: Path, packet: Path) -> dict:
@@ -75,6 +78,26 @@ def audit(continuous: Path, resumed: Path, packet: Path) -> dict:
                 assert stable == roles[row["role"]], "Model or effective optimizer contract changed"
             roles[row["role"]] = stable
         learner, rollout = phase_roles["actor"]["details"], phase_roles["rollout"]["details"]
+        if "execution_variant" in profile:
+            execution = EXECUTION_VARIANTS[profile["execution_variant"]]
+            assert profile["learner_execution"] == learner["learner_execution"] == execution
+            steps = [
+                json.loads(consume(path).read_text())
+                for path in sorted((run / "runtime" / phase / "steps").glob("*.json"))
+            ]
+            assert len(steps) == len(indices), "Missing or extra completed learner dispatches"
+            assert {(step["rollout_id"], step["step_id"]) for step in steps} == {(i, 0) for i in indices}
+            samples = profile["prompts_per_rollout"] * profile["completions_per_prompt"]
+            for step in steps:
+                assert all(step[key] == phase_roles["actor"][key] for key in ("pid", "process_start_ticks", "rank"))
+                assert (
+                    step["learner_execution"] == execution
+                    and step["schedule_completed"] == execution["actor_schedule"]
+                )
+                assert step["logical_samples"] == samples
+                assert step["actor_generation_before"] == step["rollout_id"] * samples
+                assert step["actor_generation_after"] == (step["rollout_id"] + 1) * samples
+                assert math.isfinite(step["gradient_norm"]) and step["gradient_norm"] >= 0
         assert learner["loaded_checkpoint_iteration"] == (1 if phase == "resume" else 0)
         assert learner["parallelism"] == {"tp": 1, "pp": 1, "cp": 1} and len(learner["optimizers"]) == 1
         epoch = rollout["runtime_epoch"]

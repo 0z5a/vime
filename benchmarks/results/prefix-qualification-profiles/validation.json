@@ -1,0 +1,15 @@
+{
+  "parent_commit": "1df9b6c01fc87b246a6cbe6fa380c89282f27fc8",
+  "test_session": 57972,
+  "actual_exit_code": 0,
+  "cpu_passed": 86,
+  "cuda_skipped": 2,
+  "seconds": 20.92,
+  "scope": "Real recipe argument forwarding with replaced Ray/entrypoint transports; synthetic audit records; existing MCore CPU identity classes, no GPU/Ray training",
+  "prepared_commands": 6,
+  "training_executed": false,
+  "legacy_profile_byte_identical": true,
+  "model_cache": "7 files / 2874132953 bytes, verified twice on H20; not a model run",
+  "reward_convergence": "NOT_ESTABLISHED",
+  "speedup": "NOT_MEASURED"
+}

@@ -1,0 +1,33 @@
+{
+  "source_sha256": {
+    "benchmarks/prepare_native_qualification.py": "fc2615d53792e6c41ec3a40cf829c9ec3745e5614796f7b3b342c2dd338d80ce",
+    "benchmarks/run_native_qualification.py": "96ae975d3f88eb000eb440616df3c1755c406f621e57751e2d9599490ade26b7",
+    "benchmarks/audit_native_runtime.py": "3fe1ff6098bda7fbebad00a4dfac5314f27e389b4ecdb06316ca7edfa51fa4ce",
+    "vime/observability/native_runtime.py": "2566ba24c7359b7ec2b7a4a044e93d0c19486134643c2b476c9dec88390d42eb",
+    "vime/backends/megatron_utils/model.py": "839a96a8fbcb3540b11e32a82455a0e08ba8e9e243902924fb16d2ee973a2477",
+    "tests/test_native_qualification_recipe.py": "82eac329b2ce5b215024ae73d053deb0b004813734c40e8f795db7bd5656d3bb",
+    "tests/test_native_runtime_mcore.py": "c24ee16782e839890abaa5b175ac6f0b82ca041e35da96e506d282c1a7084f58",
+    "tests/test_native_runtime_audit.py": "e51f66ff9e5e0fa0c941d1e00b70665f0de51708fa777e7023cab8d5e236c6ec",
+    "tests/integration/test_native_prefix_train_step.py": "fb4116492da0df910627b8f545ab548bc4562fc687cdc43be6956323be9f5a13",
+    "docs/prefix_qualification_profiles.md": "0afd550a5e287042214e1e4a78d5b8788befa416723af25cccd6c24176a07474"
+  },
+  "artifact_sha256": {
+    "b-baseline/development.jsonl": "eb1147bf09c1f194bf7f0a75620bdf9a61e13fc6fb36a0f97cfa7994e752010c",
+    "b-baseline/input-audit.json": "4ef95d2e9cca35c2b32725ac396fdc66a83eb687d34559f1c1dd1c6788168f21",
+    "b-baseline/qualification.json": "ed00347fb8bac30888949905c142797fbb9edc3013d41abb1f807cc275621f4c",
+    "b-baseline/train.jsonl": "c5a2156c48c8263a44893f6050d1822bd88323d7e037c31d8e4c94b760f768a6",
+    "b-prefix/development.jsonl": "eb1147bf09c1f194bf7f0a75620bdf9a61e13fc6fb36a0f97cfa7994e752010c",
+    "b-prefix/input-audit.json": "8e8e0736bb899a1aa5f6cdb5cd2e6d5312e40575ab4c89421f972b6ef6c3cd1b",
+    "b-prefix/qualification.json": "3284713921c35c40dac052874c32d544b15472deae160c248decc52cb578c08c",
+    "b-prefix/train.jsonl": "c5a2156c48c8263a44893f6050d1822bd88323d7e037c31d8e4c94b760f768a6",
+    "freeze_prefix_profiles.py": "2e22ffc885d083add8292922e64efc1182210274eb4ae40d79d3e2675e8e0442",
+    "h20-model-stage-complete.json": "26527b6e6e68aab3b01b23a00d016044711f642ed5ab1aa07b3c3fed2ac6580f",
+    "h20-ouro-thinking-model-manifest.json": "ba9b61e5bb28f8a5e96c06f468e8380808f861b58ed382c613ec8b380606f5df",
+    "prefix-profiles-first.log": "c670d29dc4cc4b7e88bf34bb56ff245301448300ef81653a5cc0e9b6bd8a9419",
+    "prefix-profiles-first.xml": "6cd371019bff1f1c57db25c9ca4a4e316492705e541d4f0b15925248f51eedb0",
+    "prefix-profiles-freeze.json": "6177e905d5efe24b1950350070e3dcf3f8a19f9aa27c9a68db9b9d301acf2afe",
+    "prefix-profiles-freeze.log": "9ef95dba2d11575635a7e9d455624990dbfa591e49ffb90da3e817491110d23b",
+    "resident_pytest.py": "2af5ce445da14f656c71e8d4817dcf85cd57402a77f50f612898c47f52f4d4f4",
+    "validation.json": "d9fde5c7b638d99c3c2950eddf7add9dc4c47fcc3277dbde1045fc4a051968dd"
+  }
+}

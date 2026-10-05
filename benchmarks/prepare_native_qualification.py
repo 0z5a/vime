@@ -9,13 +9,26 @@ MODEL_REVISION = "3aaa2224253a92ca45cf2e3d427c360e1ef9c93d"
 ENGINE_REVISION = "fd993ec5512904b68e16f4d541682c076c487b5d"
 SOURCE_MANIFEST = "a272932944329fa41b4da023b2d115606a1dbf3a364a1d1d300df6f251233b53"
 TRAIN_SHA = "f3e52c440246c455b7a7fa089c63ab08f69fdac4a29bc9c828fdd567b0a72a90"
+EXECUTION_VARIANTS = {
+    name: {
+        "actor_schedule": schedule,
+        "prefix_wave_size": wave,
+        "recompute": False,
+        "loop_checkpoint": 0,
+        "layer_checkpoint": 0,
+        "token_chunk": 0,
+    }
+    for name, schedule, wave in (("b-baseline", "mcore", 0), ("b-prefix", "prefix", 2))
+}
 
 
 def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def prepare(source: Path, output: Path) -> dict:
+def prepare(source: Path, output: Path, variant: str = "legacy-remat") -> dict:
+    if variant not in {"legacy-remat", *EXECUTION_VARIANTS}:
+        raise ValueError("Unknown qualification execution variant")
     if sha(source / "manifest.json") != SOURCE_MANIFEST or sha(source / "train-p1024.jsonl") != TRAIN_SHA:
         raise ValueError("Qualification requires the frozen RLTT-source public input profile")
     manifest = json.loads((source / "manifest.json").read_text())
@@ -81,6 +94,12 @@ def prepare(source: Path, output: Path) -> dict:
             "natural process completion and complete resource handback",
         ],
     }
+    if variant != "legacy-remat":
+        packet.update(
+            algorithms=["rltt"],
+            execution_variant=variant,
+            learner_execution=dict(EXECUTION_VARIANTS[variant]),
+        )
     (output / "qualification.json").write_text(json.dumps(packet, indent=2) + "\n")
     return packet
 
@@ -89,8 +108,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--variant", choices=("legacy-remat", *EXECUTION_VARIANTS), default="legacy-remat")
     options = parser.parse_args()
-    packet = prepare(options.source, options.output)
+    packet = prepare(options.source, options.output, options.variant)
     print(json.dumps({"files": packet["files"], "manifest_sha256": sha(options.output / "qualification.json")}))
 
 

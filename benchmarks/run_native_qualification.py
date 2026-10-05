@@ -11,6 +11,7 @@ from pathlib import Path
 
 from benchmarks.native_sources import read_resident, sha, verify_local
 from benchmarks.native_model_manifest import MODEL_FILES, verify_model
+from benchmarks.prepare_native_qualification import EXECUTION_VARIANTS
 
 
 def command(packet: Path, model: Path, output: Path, address: str, algorithm: str, phase: str) -> list[str]:
@@ -19,6 +20,13 @@ def command(packet: Path, model: Path, output: Path, address: str, algorithm: st
     profile = json.loads((packet / "qualification.json").read_text())
     if profile["schema"] != "native-reward-qualification-v1" or algorithm not in profile["algorithms"]:
         raise ValueError("Unknown qualification profile or algorithm")
+    variant = profile.get("execution_variant", "legacy-remat")
+    if variant != "legacy-remat" and (
+        variant not in EXECUTION_VARIANTS
+        or profile["learner_execution"] != EXECUTION_VARIANTS[variant]
+        or profile["algorithms"] != ["rltt"]
+    ):
+        raise ValueError("Changed B-stage execution contract")
     for name, record in profile["files"].items():
         if hashlib.sha256((packet / name).read_bytes()).hexdigest() != record["sha256"]:
             raise ValueError(f"Changed qualification data: {name}")
@@ -76,6 +84,16 @@ def command(packet: Path, model: Path, output: Path, address: str, algorithm: st
                 "rltt-token-chunk": 256,
             }
         )
+        if variant != "legacy-remat":
+            execution = profile["learner_execution"]
+            values.update(
+                {
+                    "rltt-prefix-wave-size": execution["prefix_wave_size"],
+                    "rltt-loop-checkpoint": execution["loop_checkpoint"],
+                    "rltt-layer-checkpoint": execution["layer_checkpoint"],
+                    "rltt-token-chunk": execution["token_chunk"],
+                }
+            )
     if phase == "split":
         values["stop-after"] = profile["split_stop_after"]
     argv = [sys.executable, str(Path(__file__).resolve().parents[1] / "examples/looped_ppo/run.py")]
@@ -84,13 +102,14 @@ def command(packet: Path, model: Path, output: Path, address: str, algorithm: st
     argv.extend(
         (
             "--colocate-resident",
-            "--recompute",
             "--apply-chat-template",
             "--eval-prompt-data",
             "qualification-development",
             str(packet / "development.jsonl"),
         )
     )
+    if variant == "legacy-remat":
+        argv.insert(argv.index("--colocate-resident") + 1, "--recompute")
     if phase == "resume":
         argv.append("--resume")
     return argv
