@@ -81,6 +81,8 @@ def decoder_forward(
 
 
 class OuroMegatronModel(MegatronModule):
+    prefix_model_family: Literal["ouro", "nanbeige"] = "ouro"
+
     def __init__(
         self,
         config: TransformerConfig,

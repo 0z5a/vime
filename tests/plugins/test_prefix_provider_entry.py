@@ -11,9 +11,10 @@ from vime.backends.megatron_utils.looped_prefix_schedule import forward_backward
 from vime_plugins.looped.prefix import PrefixIdentity, PrefixReplay
 
 
+@pytest.mark.parametrize("family", ["ouro", "nanbeige"])
 @pytest.mark.parametrize("rematerialize", [False, True])
-def test_prefix_forward_entry_preserves_all_parameter_gradients(rematerialize):
-    direct, depth = make_actor("ouro", False)
+def test_prefix_forward_entry_preserves_all_parameter_gradients(rematerialize, family):
+    direct, depth = make_actor(family, False)
     entry = copy.deepcopy(direct)
     prompt = torch.tensor([1, 3, 5])
     identity = PrefixIdentity("tiny", 1, tuple(prompt.tolist()), depth)

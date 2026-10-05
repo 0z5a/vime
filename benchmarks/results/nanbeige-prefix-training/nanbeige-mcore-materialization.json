@@ -1,0 +1,9 @@
+{
+  "restored_original_sources": [
+    "megatron/core/optimizer/__init__.py",
+    "megatron/core/transformer/experimental_attention_variant/dsa.py",
+    "megatron/post_training/model_builder.py",
+    "megatron/rl/__init__.py"
+  ],
+  "scope": "iCloud materialization only; exact preexisting frozen SHA preserved"
+}

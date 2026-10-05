@@ -1,0 +1,207 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/0z5a/Documents/infra/flashrlt-20261005/vime
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 8 items / 5 errors
+
+==================================== ERRORS ====================================
+_________ ERROR collecting tests/plugins/test_differentiable_prefix.py _________
+tests/plugins/test_differentiable_prefix.py:8: in <module>
+    from test_looped_response_readout import make_actor
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/plugins/test_looped_response_readout.py:9: in <module>
+    from megatron.core.transformer.transformer_config import TransformerConfig
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/__init__.py:6: in <module>
+    from megatron.core.distributed import DistributedDataParallel
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/__init__.py:12: in <module>
+    from .torch_fully_sharded_data_parallel import TorchFullyShardedDataParallel
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/torch_fully_sharded_data_parallel.py:20: in <module>
+    from ..models.common.embeddings.language_model_embedding import LanguageModelEmbedding
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:995: in exec_module
+    ???
+<frozen importlib._bootstrap_external>:1132: in get_code
+    ???
+../bench/resident_pytest.py:50: in resident_data
+    raise OSError(61, "iCloud file is not resident", path)
+E   ConnectionRefusedError: [Errno 61] iCloud file is not resident: '/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/models/common/embeddings/language_model_embedding.py'
+__________ ERROR collecting tests/plugins/test_looped_logical_step.py __________
+tests/plugins/test_looped_logical_step.py:14: in <module>
+    from test_rltt_training import packed, trace
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/plugins/test_rltt_training.py:15: in <module>
+    from vime.backends.megatron_utils.data import DataIterator
+vime/backends/megatron_utils/data.py:5: in <module>
+    from megatron.core import mpu
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/__init__.py:6: in <module>
+    from megatron.core.distributed import DistributedDataParallel
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/__init__.py:12: in <module>
+    from .torch_fully_sharded_data_parallel import TorchFullyShardedDataParallel
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/torch_fully_sharded_data_parallel.py:20: in <module>
+    from ..models.common.embeddings.language_model_embedding import LanguageModelEmbedding
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:995: in exec_module
+    ???
+<frozen importlib._bootstrap_external>:1132: in get_code
+    ???
+../bench/resident_pytest.py:50: in resident_data
+    raise OSError(61, "iCloud file is not resident", path)
+E   ConnectionRefusedError: [Errno 61] iCloud file is not resident: '/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/models/common/embeddings/language_model_embedding.py'
+_________ ERROR collecting tests/plugins/test_prefix_actor_binding.py __________
+tests/plugins/test_prefix_actor_binding.py:7: in <module>
+    from test_differentiable_prefix import replay
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/plugins/test_differentiable_prefix.py:9: in <module>
+    from test_rltt_training import packed, trace
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/plugins/test_rltt_training.py:15: in <module>
+    from vime.backends.megatron_utils.data import DataIterator
+vime/backends/megatron_utils/data.py:5: in <module>
+    from megatron.core import mpu
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/__init__.py:6: in <module>
+    from megatron.core.distributed import DistributedDataParallel
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/__init__.py:12: in <module>
+    from .torch_fully_sharded_data_parallel import TorchFullyShardedDataParallel
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/torch_fully_sharded_data_parallel.py:20: in <module>
+    from ..models.common.embeddings.language_model_embedding import LanguageModelEmbedding
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:995: in exec_module
+    ???
+<frozen importlib._bootstrap_external>:1132: in get_code
+    ???
+../bench/resident_pytest.py:50: in resident_data
+    raise OSError(61, "iCloud file is not resident", path)
+E   ConnectionRefusedError: [Errno 61] iCloud file is not resident: '/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/models/common/embeddings/language_model_embedding.py'
+_________ ERROR collecting tests/plugins/test_prefix_provider_entry.py _________
+tests/plugins/test_prefix_provider_entry.py:10: in <module>
+    from vime.backends.megatron_utils.looped_prefix_schedule import forward_backward_prefix
+vime/backends/megatron_utils/looped_prefix_schedule.py:7: in <module>
+    from megatron.core.distributed import DistributedDataParallel as DDP
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/__init__.py:6: in <module>
+    from megatron.core.distributed import DistributedDataParallel
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/__init__.py:12: in <module>
+    from .torch_fully_sharded_data_parallel import TorchFullyShardedDataParallel
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/torch_fully_sharded_data_parallel.py:20: in <module>
+    from ..models.common.embeddings.language_model_embedding import LanguageModelEmbedding
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:995: in exec_module
+    ???
+<frozen importlib._bootstrap_external>:1132: in get_code
+    ???
+../bench/resident_pytest.py:50: in resident_data
+    raise OSError(61, "iCloud file is not resident", path)
+E   ConnectionRefusedError: [Errno 61] iCloud file is not resident: '/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/models/common/embeddings/language_model_embedding.py'
+_______ ERROR collecting tests/plugins/test_prefix_rematerialization.py ________
+tests/plugins/test_prefix_rematerialization.py:9: in <module>
+    from test_differentiable_prefix import objective
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/plugins/test_differentiable_prefix.py:9: in <module>
+    from test_rltt_training import packed, trace
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/plugins/test_rltt_training.py:15: in <module>
+    from vime.backends.megatron_utils.data import DataIterator
+vime/backends/megatron_utils/data.py:5: in <module>
+    from megatron.core import mpu
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/__init__.py:6: in <module>
+    from megatron.core.distributed import DistributedDataParallel
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/__init__.py:12: in <module>
+    from .torch_fully_sharded_data_parallel import TorchFullyShardedDataParallel
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/torch_fully_sharded_data_parallel.py:20: in <module>
+    from ..models.common.embeddings.language_model_embedding import LanguageModelEmbedding
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:995: in exec_module
+    ???
+<frozen importlib._bootstrap_external>:1132: in get_code
+    ???
+../bench/resident_pytest.py:50: in resident_data
+    raise OSError(61, "iCloud file is not resident", path)
+E   ConnectionRefusedError: [Errno 61] iCloud file is not resident: '/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/models/common/embeddings/language_model_embedding.py'
+=============================== warnings summary ===============================
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/jit/_script.py:365: 14 warnings
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/mixed_precision.py:113
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/mixed_precision.py:113: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_scale
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/nanbeige-prefix-first.xml -
+=========================== short test summary info ============================
+ERROR tests/plugins/test_differentiable_prefix.py - ConnectionRefusedError: [...
+ERROR tests/plugins/test_looped_logical_step.py - ConnectionRefusedError: [Er...
+ERROR tests/plugins/test_prefix_actor_binding.py - ConnectionRefusedError: [E...
+ERROR tests/plugins/test_prefix_provider_entry.py - ConnectionRefusedError: [...
+ERROR tests/plugins/test_prefix_rematerialization.py - ConnectionRefusedError...
+!!!!!!!!!!!!!!!!!!! Interrupted: 5 errors during collection !!!!!!!!!!!!!!!!!!!!
+======================= 15 warnings, 5 errors in 38.46s ========================

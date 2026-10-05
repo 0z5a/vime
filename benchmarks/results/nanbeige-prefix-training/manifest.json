@@ -1,0 +1,51 @@
+{
+  "parent": "5c1284059733669f167102a359a86a152e33bb32",
+  "files": [
+    {
+      "path": "nanbeige-mcore-materialization.json",
+      "bytes": 314,
+      "sha256": "a3b5b6deaef30c5f1e880066d35d3e9ad2ed752fab101cdd9881103c31043bde"
+    },
+    {
+      "path": "nanbeige-prefix-final.log",
+      "bytes": 26710,
+      "sha256": "7cb4442b8b7e5402407b3fa80c2f50ad0f073c10a6e0ca5668dee6f2e1759ce0"
+    },
+    {
+      "path": "nanbeige-prefix-final.xml",
+      "bytes": 148176,
+      "sha256": "2f5374f23662c040939ef9301fe2e48e793a027396387fc478a8b0865f7039a3"
+    },
+    {
+      "path": "nanbeige-prefix-first.log",
+      "bytes": 12700,
+      "sha256": "3692b38df320ac63a9d16eb2061918da6a6e6ec5ec03fb2afab7f7891b9f1db9"
+    },
+    {
+      "path": "nanbeige-prefix-first.xml",
+      "bytes": 11577,
+      "sha256": "40b469ac8689570de5029f9febbd8e3071d609097b3a1f3d27f6460fd10e5d8c"
+    },
+    {
+      "path": "nanbeige-prefix-retry.log",
+      "bytes": 11738,
+      "sha256": "dd34710490567a8c0495fad1f476899fc27ed536db4502610d4e04d66fb8db9b"
+    },
+    {
+      "path": "nanbeige-prefix-retry.xml",
+      "bytes": 10086,
+      "sha256": "3c54fbd32e699de3c1d5c735b77f757c5afee97916f634aabdbda4d07b66e28d"
+    },
+    {
+      "path": "nanbeige-prefix-summary.json",
+      "bytes": 46015,
+      "sha256": "f01651e949a4e24095888bd8cdf93ee68cd82526f93b46097f90c10080517fcd"
+    },
+    {
+      "path": "nanbeige-test-mcore-source.json",
+      "bytes": 342,
+      "sha256": "2109fa562bbd2cca0c1cc4e0c95e89a4488b014eb81dbd47cccb74920a8bd22e"
+    }
+  ],
+  "scope": "CPU tiny component evidence; no new CUDA or online RL run"
+}

@@ -25,7 +25,7 @@ class PrecisionMismatch(AssertionError):
     """The recorded two-update trajectory exceeds the unchanged numeric gate."""
 
 
-def rollout(depth):
+def rollout(depth, family="ouro"):
     prompts = ([1, 3, 5], [2, 4], [1, 3, 5], [2, 4], [1, 3, 5])
     responses = ([7], [], [4, 6, 8], [9, 11], [3, 5])
     masks = ([1.0], [], [1.0, 0.0, 1.0], [0.0, 0.0], [1.0, 1.0])
@@ -38,12 +38,12 @@ def rollout(depth):
         "loss_masks": [torch.tensor(mask) for mask in masks],
         "sample_indices": [10, 22, 14, 23, 18],
         "group_indices": [5, 7, 5, 7, 9],
-        "recurrent_inputs": [trace("ouro", depth, i, len(response)) for i, response in enumerate(responses)],
+        "recurrent_inputs": [trace(family, depth, i, len(response)) for i, response in enumerate(responses)],
         "advantages": [torch.tensor(value) for value in ([0.7], [], [-0.3, 0.2, 0.4], [0.8, -0.6], [-0.2, 0.5])],
     }
 
 
-def plan(data, groups, wave, reduction, generation=10):
+def plan(data, groups, wave, reduction, generation=10, family="ouro", depth=4):
     iterator = DataIterator(data, [[1], *groups, [0]])
     iterator.offset = 1
     return iterator, plan_step(
@@ -51,7 +51,8 @@ def plan(data, groups, wave, reduction, generation=10):
         len(groups),
         actor_generation=generation,
         model_revision="tiny-cpu",
-        loop_depth=4,
+        loop_depth=depth,
+        model_family=family,
         suffix_wave_size=wave,
         reduction=reduction,
     )
@@ -154,10 +155,12 @@ def test_plan_rejects_incompatible_or_incomplete_step(change):
 @pytest.mark.parametrize("groups,wave", LAYOUTS)
 @pytest.mark.parametrize("scale", [1.0, 8.0])
 @pytest.mark.parametrize(
-    "dtype",
+    "family,dtype",
     [
-        torch.float32,
+        ("ouro", torch.float32),
+        ("nanbeige", torch.float32),
         pytest.param(
+            "ouro",
             torch.bfloat16,
             marks=pytest.mark.xfail(
                 strict=True,
@@ -167,8 +170,10 @@ def test_plan_rejects_incompatible_or_incomplete_step(change):
         ),
     ],
 )
-def test_two_adam_updates_match_dense_and_mcore_scaling(groups, wave, reduction, scale, dtype, record_property):
-    oracle, depth = make_actor("ouro", False)
+def test_two_adam_updates_match_dense_and_mcore_scaling(
+    groups, wave, reduction, scale, family, dtype, record_property
+):
+    oracle, depth = make_actor(family, False)
     oracle = oracle.to(dtype)
     legacy, shared = copy.deepcopy(oracle), copy.deepcopy(oracle)
     reference = copy.deepcopy(oracle).requires_grad_(False)
@@ -176,7 +181,7 @@ def test_two_adam_updates_match_dense_and_mcore_scaling(groups, wave, reduction,
         reference.lm_head.weight.mul_(0.9)
     models = (oracle, legacy, shared)
     optimizers = [torch.optim.AdamW(model.parameters(), lr=1e-3, eps=1e-5, weight_decay=0.1) for model in models]
-    data = rollout(depth)
+    data = rollout(depth, family)
     lengths = data["response_lengths"]
     items = list(zip(data["tokens"], lengths, data["recurrent_inputs"], strict=True))
     with torch.no_grad():
@@ -192,7 +197,7 @@ def test_two_adam_updates_match_dense_and_mcore_scaling(groups, wave, reduction,
         for optimizer in optimizers:
             optimizer.zero_grad()
         before = [[p.detach().clone() for p in model.parameters()] for model in models]
-        iterator, step = plan(data, groups, wave, reduction, generation=10 + update)
+        iterator, step = plan(data, groups, wave, reduction, generation=10 + update, family=family, depth=depth)
         scores, entropy = dense_scores(oracle, items)
         credit = torch.arange(1, depth + 1).float().pow(1.5)
         credit /= credit.sum()
@@ -315,3 +320,17 @@ def test_two_adam_updates_match_dense_and_mcore_scaling(groups, wave, reduction,
     record_property("two_update_oracle", json.dumps(measurements))
     if not all(all(row[key]) for row in measurements for key in ("loss_pass", "gradient_pass", "delta_pass")):
         raise PrecisionMismatch("Trajectory exceeds the original precision tolerance; see two_update_oracle")
+
+
+@pytest.mark.parametrize("declared,actual", [("ouro", "nanbeige"), ("nanbeige", "ouro"), ("huginn", "huginn")])
+def test_prefix_plan_rejects_wrong_or_latent_family(declared, actual):
+    data = rollout(4, actual)
+    with pytest.raises(ValueError, match="family|latent"):
+        plan(data, [[0, 1, 2, 3, 4]], 2, "response_mean", family=declared)
+
+
+def test_prefix_plan_rejects_mixed_model_families():
+    data = rollout(4, "nanbeige")
+    data["recurrent_inputs"][2] = replace(data["recurrent_inputs"][2], model_family="ouro")
+    with pytest.raises(ValueError, match="family"):
+        plan(data, [[0, 1, 2, 3, 4]], 2, "response_mean", family="nanbeige")

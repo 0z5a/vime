@@ -15,6 +15,8 @@ from vime_plugins.ouro.model import OuroMegatronModel
 
 
 class NanbeigeMegatronModel(OuroMegatronModel):
+    prefix_model_family = "nanbeige"
+
     def __init__(
         self,
         config: TransformerConfig,

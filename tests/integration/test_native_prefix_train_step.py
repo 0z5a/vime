@@ -25,9 +25,12 @@ def single_rank(tmp_path):
     torch.distributed.destroy_process_group()
 
 
+@pytest.mark.parametrize("family", ["ouro", "nanbeige"])
 @pytest.mark.parametrize("reduction", ["token_mean", "response_mean"])
 @pytest.mark.parametrize("rematerialize", [False, True])
-def test_actual_mcore_prefix_train_step(single_rank, monkeypatch, record_property, reduction, rematerialize, tmp_path):
+def test_actual_mcore_prefix_train_step(
+    single_rank, monkeypatch, record_property, reduction, rematerialize, family, tmp_path
+):
     from megatron.core.distributed import DistributedDataParallel as DDP
     from megatron.core.distributed import DistributedDataParallelConfig, finalize_model_grads
     from megatron.core.enums import ModelType
@@ -41,13 +44,13 @@ def test_actual_mcore_prefix_train_step(single_rank, monkeypatch, record_propert
     from vime.backends.megatron_utils.data import DataIterator
     from vime_plugins.looped.response import ResponseReadout
 
-    source, depth = make_actor("ouro", False)
+    source, depth = make_actor(family, False)
     source.model_type = ModelType.encoder_or_decoder  # Assigned by MCore get_model in production.
     source = source.cuda()
     reference = copy.deepcopy(source).requires_grad_(False)
     with torch.no_grad():
         reference.lm_head.weight.mul_(0.9)
-    data = rollout(depth)
+    data = rollout(depth, family)
     for key in ("tokens", "advantages", "loss_masks"):
         data[key] = [tensor.cuda() for tensor in data[key]]
     data["total_lengths"] = [len(tokens) for tokens in data["tokens"]]
