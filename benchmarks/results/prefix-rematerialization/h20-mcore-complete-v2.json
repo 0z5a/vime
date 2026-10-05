@@ -1,0 +1,93 @@
+{
+  "archive_sha256": "a463628305b16dfa241d3308054891777fd3c94ecbbe4b01b53f0a8fe9a7c714",
+  "archive_bytes": 15010,
+  "files_verified": 20,
+  "natural_training_ssh_exit": 0,
+  "finalizer_exit": 0,
+  "copy_handle": "unavailable after tool-host restart; complete copied archive independently SHA verified",
+  "completion": {
+    "timestamp": 1791225957.266605,
+    "boot": "797c630e-4da1-48bd-bdf3-daabf26649d2",
+    "uuid": "GPU-edf64e5f-21ef-a1f2-6601-e8620b5664ff",
+    "source": "d6229d638b08a3927d23d39854aa13a85df71933",
+    "exit_code": 0,
+    "absent_owned_pids": [
+      68475,
+      68514
+    ],
+    "gpu_compute_snapshot": [],
+    "cases": [
+      {
+        "name": "test_actual_mcore_prefix_train_step[token_mean]",
+        "seconds": 7.491,
+        "status": "PASS",
+        "actual_mcore_two_update": [
+          {
+            "update": 0,
+            "gradient_max_error": 7.450580596923828e-08,
+            "parameter_max_error": 5.8673322200775146e-08,
+            "delta_norm": 0.03521193191409111,
+            "loss": {
+              "loss": 0.4919145584106445,
+              "rltt_terminal_logprob": -2.533199501037598,
+              "entropy_loss": 2.5616533279418947
+            }
+          },
+          {
+            "update": 1,
+            "gradient_max_error": 5.960464477539063e-08,
+            "parameter_max_error": 5.960464477539063e-08,
+            "delta_norm": 0.0270307045429945,
+            "loss": {
+              "loss": 0.47786765098571776,
+              "rltt_terminal_logprob": -2.5281244277954102,
+              "entropy_loss": 2.5631681442260743
+            }
+          }
+        ]
+      },
+      {
+        "name": "test_actual_mcore_prefix_train_step[response_mean]",
+        "seconds": 1.131,
+        "status": "PASS",
+        "actual_mcore_two_update": [
+          {
+            "update": 0,
+            "gradient_max_error": 1.1920928955078125e-07,
+            "parameter_max_error": 1.6763806343078613e-08,
+            "delta_norm": 0.03511379286646843,
+            "loss": {
+              "loss": 0.6862307071685791,
+              "rltt_terminal_logprob": -2.523184967041016,
+              "entropy_loss": 2.5616641998291017
+            }
+          },
+          {
+            "update": 1,
+            "gradient_max_error": 8.940696716308594e-08,
+            "parameter_max_error": 2.0489096641540527e-08,
+            "delta_norm": 0.028335392475128174,
+            "loss": {
+              "loss": 0.6705065250396729,
+              "rltt_terminal_logprob": -2.5039222717285154,
+              "entropy_loss": 2.562147521972656
+            }
+          }
+        ]
+      }
+    ],
+    "pass": true,
+    "scope": "Two tiny actual CUDA MCore/DDP/Adam cases, not official online RL or speed/convergence evidence"
+  },
+  "step_receipts": [
+    "pytest-tmp/test_actual_mcore_prefix_train0/wave0/steps/rollout0-step0-rank0.json",
+    "pytest-tmp/test_actual_mcore_prefix_train0/wave0/steps/rollout0-step1-rank0.json",
+    "pytest-tmp/test_actual_mcore_prefix_train0/wave2/steps/rollout0-step0-rank0.json",
+    "pytest-tmp/test_actual_mcore_prefix_train0/wave2/steps/rollout0-step1-rank0.json",
+    "pytest-tmp/test_actual_mcore_prefix_train1/wave0/steps/rollout0-step0-rank0.json",
+    "pytest-tmp/test_actual_mcore_prefix_train1/wave0/steps/rollout0-step1-rank0.json",
+    "pytest-tmp/test_actual_mcore_prefix_train1/wave2/steps/rollout0-step0-rank0.json",
+    "pytest-tmp/test_actual_mcore_prefix_train1/wave2/steps/rollout0-step1-rank0.json"
+  ],
+  "whole_window_handback": true
+}

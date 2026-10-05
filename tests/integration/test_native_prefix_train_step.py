@@ -26,7 +26,8 @@ def single_rank(tmp_path):
 
 
 @pytest.mark.parametrize("reduction", ["token_mean", "response_mean"])
-def test_actual_mcore_prefix_train_step(single_rank, monkeypatch, record_property, reduction, tmp_path):
+@pytest.mark.parametrize("rematerialize", [False, True])
+def test_actual_mcore_prefix_train_step(single_rank, monkeypatch, record_property, reduction, rematerialize, tmp_path):
     from megatron.core.distributed import DistributedDataParallel as DDP
     from megatron.core.distributed import DistributedDataParallelConfig, finalize_model_grads
     from megatron.core.enums import ModelType
@@ -128,6 +129,7 @@ def test_actual_mcore_prefix_train_step(single_rank, monkeypatch, record_propert
         actor.config.finalize_model_grads_func = capture
         iterator = DataIterator(data, groups * 2)
         args.rltt_prefix_wave_size = wave
+        args.rltt_loop_checkpoint = depth if rematerialize and wave else 0
         args.rlt_runtime_report_dir = str(tmp_path / f"wave{wave}")
         for update in range(2):
             before = torch.cat([p.detach().flatten().clone() for p in actor.parameters()])

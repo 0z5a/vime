@@ -1,0 +1,200 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/0z5a/Documents/infra/flashrlt-20261005/vime
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 174 items
+
+tests/plugins/test_prefix_rematerialization.py ...............           [  8%]
+tests/plugins/test_prefix_provider_entry.py ........                     [ 13%]
+tests/plugins/test_differentiable_prefix.py ............................ [ 29%]
+..................................................................       [ 67%]
+tests/plugins/test_prefix_actor_binding.py ............                  [ 74%]
+tests/plugins/test_looped_logical_step.py .............................x [ 91%]
+xxxxxxxxxxx                                                              [ 97%]
+tests/integration/test_native_prefix_train_step.py ssss                  [100%]
+
+=============================== warnings summary ===============================
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/jit/_script.py:365: 14 warnings
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/mixed_precision.py:113
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/mixed_precision.py:113: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_scale
+    warnings.warn(
+
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/contexts/__init__.py:9
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/contexts/__init__.py:9: DeprecationWarning: The following imports from `dynamic_context.py` will be removed in this file in `megatron-core` 0.14. The imports here result in a cyclic import issue that causes rotary embeddings to import from Apex rather than Transformer Engine.
+    warnings.warn(
+
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/__init__.py:24
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/__init__.py:24: UserWarning: Transformer Engine and Apex are not installed. Falling back to Torch optimizers.
+    warnings.warn(
+
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/optimizer.py:28
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/optimizer.py:28: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_scale
+    warnings.warn(
+
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/clip_grads.py:29
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/clip_grads.py:29: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier, multi_tensor_l2norm, and multi_tensor_scale
+    warnings.warn(
+
+tests/plugins/test_prefix_rematerialization.py: 15 warnings
+tests/plugins/test_prefix_provider_entry.py: 8 warnings
+tests/plugins/test_differentiable_prefix.py: 90 warnings
+tests/plugins/test_prefix_actor_binding.py: 12 warnings
+tests/plugins/test_looped_logical_step.py: 24 warnings
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/transformer_config.py:1734: UserWarning: full scope is deprecated. Use empty cuda_graph_scope to capture the whole layer.
+    warnings.warn(
+
+tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-1.0-groups0-1-token_mean]
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/models/backends.py:21: UserWarning: Apex is not installed. Falling back to Torch Norm
+    warnings.warn("Apex is not installed. Falling back to Torch Norm")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/prefix-remat-final.xml -
+============================== slowest durations ===============================
+0.35s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-8.0-groups1-2-token_mean]
+0.32s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-8.0-groups2-3-token_mean]
+0.28s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-8.0-groups0-1-response_mean]
+0.27s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-8.0-groups2-3-token_mean]
+0.24s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-8.0-groups2-3-response_mean]
+0.23s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-1.0-groups1-2-response_mean]
+0.22s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-1.0-groups0-1-token_mean]
+0.21s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-1.0-groups2-3-token_mean]
+0.21s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-8.0-groups1-2-response_mean]
+0.21s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-1.0-groups1-2-token_mean]
+0.20s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-8.0-groups1-2-response_mean]
+0.20s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-8.0-groups1-2-token_mean]
+0.19s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-1.0-groups2-3-token_mean]
+0.19s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-8.0-groups0-1-response_mean]
+0.18s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-1.0-groups1-2-token_mean]
+0.18s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-8.0-groups0-1-token_mean]
+0.18s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-1.0-groups0-1-response_mean]
+0.18s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-1.0-groups0-1-response_mean]
+0.18s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-1.0-groups1-2-response_mean]
+0.17s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-1.0-groups2-3-response_mean]
+0.17s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-1.0-groups2-3-response_mean]
+0.17s call     tests/plugins/test_prefix_rematerialization.py::test_joint_replay_two_adam_updates[False-groups0-False]
+0.16s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-1.0-groups0-1-token_mean]
+0.16s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-8.0-groups0-1-token_mean]
+0.14s call     tests/plugins/test_looped_logical_step.py::test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-8.0-groups2-3-response_mean]
+0.13s call     tests/plugins/test_prefix_rematerialization.py::test_joint_replay_two_adam_updates[True-groups2-False]
+0.11s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups1-True-huginn]
+0.09s call     tests/plugins/test_prefix_rematerialization.py::test_joint_replay_two_adam_updates[False-groups1-True]
+0.09s call     tests/plugins/test_prefix_rematerialization.py::test_joint_replay_two_adam_updates[False-groups2-True]
+0.08s call     tests/plugins/test_prefix_rematerialization.py::test_joint_replay_two_adam_updates[False-groups0-True]
+0.08s call     tests/plugins/test_prefix_rematerialization.py::test_joint_replay_two_adam_updates[True-groups1-True]
+0.08s call     tests/plugins/test_prefix_rematerialization.py::test_joint_replay_two_adam_updates[False-groups1-False]
+0.08s call     tests/plugins/test_prefix_rematerialization.py::test_joint_replay_two_adam_updates[True-groups2-True]
+0.08s call     tests/plugins/test_prefix_rematerialization.py::test_joint_replay_two_adam_updates[False-groups2-False]
+0.07s call     tests/plugins/test_prefix_rematerialization.py::test_joint_replay_two_adam_updates[True-groups1-False]
+0.07s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups2-True-huginn]
+0.07s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups2-True-ouro]
+0.07s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups1-False-huginn]
+0.07s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups2-False-huginn]
+0.06s call     tests/plugins/test_prefix_rematerialization.py::test_joint_replay_two_adam_updates[True-groups0-True]
+0.06s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups2-False-ouro]
+0.06s call     tests/plugins/test_prefix_rematerialization.py::test_joint_replay_two_adam_updates[True-groups0-False]
+0.06s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups2-True-huginn]
+0.06s call     tests/plugins/test_prefix_provider_entry.py::test_prefix_forward_entry_preserves_all_parameter_gradients[True]
+0.05s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups0-True-ouro]
+0.05s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups1-True-ouro]
+0.05s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups0-False-ouro]
+0.05s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups0-False-huginn]
+0.05s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups0-True-huginn]
+0.05s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups2-True-huginn]
+0.05s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups2-True-ouro]
+0.05s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups1-True-huginn]
+0.05s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups1-True-ouro]
+0.05s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups1-True-huginn]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups2-True-nanbeige]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups0-False-ouro]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups0-True-ouro]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups0-True-huginn]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups2-True-ouro]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups1-True-huginn]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups0-True-huginn]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups2-False-nanbeige]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups2-True-huginn]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups1-True-ouro]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups0-True-ouro]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups1-False-huginn]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups2-True-ouro]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups1-True-ouro]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups0-False-ouro]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups1-False-ouro]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups0-True-ouro]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups1-False-huginn]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups2-False-ouro]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups2-False-ouro]
+0.04s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups1-False-ouro]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups2-False-huginn]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups2-False-huginn]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups0-False-ouro]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups1-False-ouro]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups2-False-ouro]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups0-True-huginn]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups0-False-huginn]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups1-False-ouro]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups0-False-huginn]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups2-False-huginn]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups1-False-huginn]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups0-True-nanbeige]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups2-True-nanbeige]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups0-False-huginn]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups2-True-nanbeige]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_packed_suffix_empty_single_token_and_ragged_gradients[lengths2-huginn]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_packed_suffix_empty_single_token_and_ragged_gradients[lengths2-ouro]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups1-True-nanbeige]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups0-False-nanbeige]
+0.03s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups1-True-nanbeige]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups1-False-nanbeige]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups0-True-nanbeige]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups0-True-nanbeige]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups0-False-nanbeige]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype1-groups1-False-nanbeige]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups1-False-nanbeige]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups1-True-nanbeige]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups1-True-nanbeige]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups2-False-nanbeige]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups2-True-nanbeige]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype1-groups0-False-nanbeige]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups1-False-nanbeige]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups2-False-nanbeige]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[True-dtype0-groups0-True-nanbeige]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups2-False-nanbeige]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_full_gradient_and_update_across_suffix_microbatches[False-dtype0-groups0-False-nanbeige]
+0.02s call     tests/plugins/test_prefix_provider_entry.py::test_prefix_forward_entry_preserves_all_parameter_gradients[False]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_packed_suffix_empty_single_token_and_ragged_gradients[lengths1-ouro]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_packed_suffix_empty_single_token_and_ragged_gradients[lengths1-huginn]
+0.02s call     tests/plugins/test_differentiable_prefix.py::test_packed_suffix_empty_single_token_and_ragged_gradients[lengths2-nanbeige]
+0.01s call     tests/plugins/test_differentiable_prefix.py::test_packed_suffix_empty_single_token_and_ragged_gradients[lengths0-huginn]
+0.01s call     tests/plugins/test_differentiable_prefix.py::test_packed_suffix_empty_single_token_and_ragged_gradients[lengths0-ouro]
+0.01s call     tests/plugins/test_differentiable_prefix.py::test_first_response_readout_is_a_live_boundary[ouro]
+0.01s call     tests/plugins/test_differentiable_prefix.py::test_huginn_prefix_does_not_alias_different_latent_identities
+0.01s call     tests/plugins/test_differentiable_prefix.py::test_packed_suffix_empty_single_token_and_ragged_gradients[lengths1-nanbeige]
+0.01s call     tests/plugins/test_differentiable_prefix.py::test_packed_suffix_empty_single_token_and_ragged_gradients[lengths0-nanbeige]
+0.01s call     tests/plugins/test_prefix_actor_binding.py::test_prefix_rejects_role_or_weight_changes_before_replay[other_actor-huginn]
+0.01s call     tests/plugins/test_prefix_actor_binding.py::test_prefix_rejects_role_or_weight_changes_before_replay[other_actor-ouro]
+0.01s call     tests/plugins/test_prefix_rematerialization.py::test_rematerialized_suffix_rejects_token_mutation[0]
+0.01s call     tests/plugins/test_differentiable_prefix.py::test_first_response_readout_is_a_live_boundary[nanbeige]
+0.01s call     tests/plugins/test_prefix_actor_binding.py::test_prefix_rejects_role_or_weight_changes_before_replay[restore-ouro]
+0.01s call     tests/plugins/test_differentiable_prefix.py::test_empty_response_and_replaced_parameter[ouro]
+0.01s call     tests/plugins/test_differentiable_prefix.py::test_empty_response_and_replaced_parameter[huginn]
+0.01s call     tests/plugins/test_prefix_actor_binding.py::test_prefix_rejects_role_or_weight_changes_before_replay[restore-huginn]
+0.01s call     tests/plugins/test_prefix_rematerialization.py::test_rematerialized_prefix_rejects_update_before_backward
+0.01s call     tests/plugins/test_prefix_rematerialization.py::test_rematerialized_suffix_rejects_token_mutation[-1]
+0.01s call     tests/plugins/test_prefix_actor_binding.py::test_prefix_rejects_role_or_weight_changes_before_replay[restore_roundtrip-huginn]
+0.01s call     tests/plugins/test_prefix_actor_binding.py::test_prefix_rejects_role_or_weight_changes_before_replay[reference_head-ouro]
+0.01s call     tests/plugins/test_differentiable_prefix.py::test_prefix_backward_is_once_per_logical_group
+0.01s call     tests/plugins/test_prefix_actor_binding.py::test_prefix_rejects_role_or_weight_changes_before_replay[other_actor-nanbeige]
+0.01s call     tests/plugins/test_prefix_actor_binding.py::test_prefix_rejects_role_or_weight_changes_before_replay[restore_roundtrip-ouro]
+0.01s call     tests/plugins/test_prefix_actor_binding.py::test_prefix_rejects_role_or_weight_changes_before_replay[reference_head-huginn]
+0.01s call     tests/plugins/test_prefix_actor_binding.py::test_prefix_rejects_role_or_weight_changes_before_replay[restore-nanbeige]
+0.01s call     tests/plugins/test_prefix_provider_entry.py::test_prefix_forward_rejects_mixed_contract[attention_mask-value3]
+
+(379 durations < 0.005s hidden.  Use -vv to show these durations.)
+========== 158 passed, 4 skipped, 12 xfailed, 169 warnings in 29.59s ===========

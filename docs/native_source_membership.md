@@ -107,7 +107,7 @@ A separate real CPU import check validates all 768 retained files and matches
 loss and actual MCore optimizer/configuration classes. CUDA remains
 uninitialized. No model weight is read, and no training or generation runs.
 
-| Required E2E comparison | Baseline throughput | FlashRLT throughput | Speedup | Peak memory reduction | Reward convergence |
+| Required E2E comparison | Baseline throughput | ScaleRLT throughput | Speedup | Peak memory reduction | Reward convergence |
 |---|---:|---:|---:|---:|---|
 | Official Ouro Thinking continuous/fresh-worker recovery | NOT_RUN | NOT_RUN | NOT_MEASURED | NOT_MEASURED | NOT_ESTABLISHED |
 | RLTT / FlashLoop / slime / Megatron campaign | NOT_RUN | NOT_RUN | NOT_MEASURED | NOT_MEASURED | NOT_ESTABLISHED |

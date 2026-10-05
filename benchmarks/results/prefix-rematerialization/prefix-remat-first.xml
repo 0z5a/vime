@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="12" skipped="0" tests="13" time="5.359" timestamp="2026-10-06T02:29:36.543468+08:00" hostname="dadaxiaoxiaodeMacBook-Air.local"><testcase classname="tests.plugins.test_prefix_rematerialization" name="test_joint_replay_two_adam_updates[False-groups0-False]" file="tests/plugins/test_prefix_rematerialization.py" line="33" time="0.303"><failure message="KeyError: 'exp_avg'">tests/plugins/test_prefix_rematerialization.py:116: in test_joint_replay_two_adam_updates
+    torch.testing.assert_close(optimizers[0].state[left][field], optimizers[1].state[right][field], atol=1e-6, rtol=8e-5)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'exp_avg'</failure></testcase><testcase classname="tests.plugins.test_prefix_rematerialization" name="test_joint_replay_two_adam_updates[False-groups0-True]" file="tests/plugins/test_prefix_rematerialization.py" line="33" time="0.070"><failure message="KeyError: 'exp_avg'">tests/plugins/test_prefix_rematerialization.py:116: in test_joint_replay_two_adam_updates
+    torch.testing.assert_close(optimizers[0].state[left][field], optimizers[1].state[right][field], atol=1e-6, rtol=8e-5)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'exp_avg'</failure></testcase><testcase classname="tests.plugins.test_prefix_rematerialization" name="test_joint_replay_two_adam_updates[False-groups1-False]" file="tests/plugins/test_prefix_rematerialization.py" line="33" time="0.067"><failure message="KeyError: 'exp_avg'">tests/plugins/test_prefix_rematerialization.py:116: in test_joint_replay_two_adam_updates
+    torch.testing.assert_close(optimizers[0].state[left][field], optimizers[1].state[right][field], atol=1e-6, rtol=8e-5)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'exp_avg'</failure></testcase><testcase classname="tests.plugins.test_prefix_rematerialization" name="test_joint_replay_two_adam_updates[False-groups1-True]" file="tests/plugins/test_prefix_rematerialization.py" line="33" time="0.086"><failure message="KeyError: 'exp_avg'">tests/plugins/test_prefix_rematerialization.py:116: in test_joint_replay_two_adam_updates
+    torch.testing.assert_close(optimizers[0].state[left][field], optimizers[1].state[right][field], atol=1e-6, rtol=8e-5)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'exp_avg'</failure></testcase><testcase classname="tests.plugins.test_prefix_rematerialization" name="test_joint_replay_two_adam_updates[False-groups2-False]" file="tests/plugins/test_prefix_rematerialization.py" line="33" time="0.079"><failure message="KeyError: 'exp_avg'">tests/plugins/test_prefix_rematerialization.py:116: in test_joint_replay_two_adam_updates
+    torch.testing.assert_close(optimizers[0].state[left][field], optimizers[1].state[right][field], atol=1e-6, rtol=8e-5)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'exp_avg'</failure></testcase><testcase classname="tests.plugins.test_prefix_rematerialization" name="test_joint_replay_two_adam_updates[False-groups2-True]" file="tests/plugins/test_prefix_rematerialization.py" line="33" time="0.082"><failure message="KeyError: 'exp_avg'">tests/plugins/test_prefix_rematerialization.py:116: in test_joint_replay_two_adam_updates
+    torch.testing.assert_close(optimizers[0].state[left][field], optimizers[1].state[right][field], atol=1e-6, rtol=8e-5)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'exp_avg'</failure></testcase><testcase classname="tests.plugins.test_prefix_rematerialization" name="test_joint_replay_two_adam_updates[True-groups0-False]" file="tests/plugins/test_prefix_rematerialization.py" line="33" time="0.051"><failure message="KeyError: 'exp_avg'">tests/plugins/test_prefix_rematerialization.py:116: in test_joint_replay_two_adam_updates
+    torch.testing.assert_close(optimizers[0].state[left][field], optimizers[1].state[right][field], atol=1e-6, rtol=8e-5)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'exp_avg'</failure></testcase><testcase classname="tests.plugins.test_prefix_rematerialization" name="test_joint_replay_two_adam_updates[True-groups0-True]" file="tests/plugins/test_prefix_rematerialization.py" line="33" time="0.052"><failure message="KeyError: 'exp_avg'">tests/plugins/test_prefix_rematerialization.py:116: in test_joint_replay_two_adam_updates
+    torch.testing.assert_close(optimizers[0].state[left][field], optimizers[1].state[right][field], atol=1e-6, rtol=8e-5)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'exp_avg'</failure></testcase><testcase classname="tests.plugins.test_prefix_rematerialization" name="test_joint_replay_two_adam_updates[True-groups1-False]" file="tests/plugins/test_prefix_rematerialization.py" line="33" time="0.058"><failure message="KeyError: 'exp_avg'">tests/plugins/test_prefix_rematerialization.py:116: in test_joint_replay_two_adam_updates
+    torch.testing.assert_close(optimizers[0].state[left][field], optimizers[1].state[right][field], atol=1e-6, rtol=8e-5)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'exp_avg'</failure></testcase><testcase classname="tests.plugins.test_prefix_rematerialization" name="test_joint_replay_two_adam_updates[True-groups1-True]" file="tests/plugins/test_prefix_rematerialization.py" line="33" time="0.062"><failure message="KeyError: 'exp_avg'">tests/plugins/test_prefix_rematerialization.py:116: in test_joint_replay_two_adam_updates
+    torch.testing.assert_close(optimizers[0].state[left][field], optimizers[1].state[right][field], atol=1e-6, rtol=8e-5)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'exp_avg'</failure></testcase><testcase classname="tests.plugins.test_prefix_rematerialization" name="test_joint_replay_two_adam_updates[True-groups2-False]" file="tests/plugins/test_prefix_rematerialization.py" line="33" time="0.054"><failure message="KeyError: 'exp_avg'">tests/plugins/test_prefix_rematerialization.py:116: in test_joint_replay_two_adam_updates
+    torch.testing.assert_close(optimizers[0].state[left][field], optimizers[1].state[right][field], atol=1e-6, rtol=8e-5)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'exp_avg'</failure></testcase><testcase classname="tests.plugins.test_prefix_rematerialization" name="test_joint_replay_two_adam_updates[True-groups2-True]" file="tests/plugins/test_prefix_rematerialization.py" line="33" time="0.058"><failure message="KeyError: 'exp_avg'">tests/plugins/test_prefix_rematerialization.py:116: in test_joint_replay_two_adam_updates
+    torch.testing.assert_close(optimizers[0].state[left][field], optimizers[1].state[right][field], atol=1e-6, rtol=8e-5)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'exp_avg'</failure></testcase><testcase classname="tests.plugins.test_prefix_rematerialization" name="test_rematerialized_prefix_rejects_update_before_backward" file="tests/plugins/test_prefix_rematerialization.py" line="132" time="0.009" /></testsuite></testsuites>

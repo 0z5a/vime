@@ -1,0 +1,1088 @@
+{
+  "source": "prefix-remat-final.xml",
+  "updates": 24,
+  "gradient_max_error": 0.0,
+  "gradient_relative_l2": 0.0,
+  "observations": [
+    {
+      "update": 0,
+      "loss": 0.5357416868209839,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.035871472209692,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 888,
+              "observed_unique_nonparameter_storage_bytes": 42776
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 66,
+              "observed_unique_nonparameter_storage_bytes": 2632
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 1,
+      "loss": 0.5150919556617737,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.030671365559101105,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 888,
+              "observed_unique_nonparameter_storage_bytes": 42776
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 66,
+              "observed_unique_nonparameter_storage_bytes": 2632
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 0,
+      "loss": 0.5343590974807739,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.03630828857421875,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 951,
+              "observed_unique_nonparameter_storage_bytes": 44072
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 66,
+              "observed_unique_nonparameter_storage_bytes": 2632
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 1,
+      "loss": 0.5126358270645142,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.0307760052382946,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 951,
+              "observed_unique_nonparameter_storage_bytes": 44072
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 66,
+              "observed_unique_nonparameter_storage_bytes": 2632
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 0,
+      "loss": 0.5357417166233063,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.035871472209692,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 8,
+              "observed_unique_nonparameter_storage_bytes": 56
+            },
+            {
+              "saved_tensors": 440,
+              "observed_unique_nonparameter_storage_bytes": 14856
+            },
+            {
+              "saved_tensors": 440,
+              "observed_unique_nonparameter_storage_bytes": 27864
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2568
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2584
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2600
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 1,
+      "loss": 0.5150919258594513,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.030671365559101105,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 8,
+              "observed_unique_nonparameter_storage_bytes": 56
+            },
+            {
+              "saved_tensors": 440,
+              "observed_unique_nonparameter_storage_bytes": 14856
+            },
+            {
+              "saved_tensors": 440,
+              "observed_unique_nonparameter_storage_bytes": 27864
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2568
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2584
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2600
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 0,
+      "loss": 0.5343590974807739,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.03630828857421875,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 29,
+              "observed_unique_nonparameter_storage_bytes": 200
+            },
+            {
+              "saved_tensors": 461,
+              "observed_unique_nonparameter_storage_bytes": 15288
+            },
+            {
+              "saved_tensors": 461,
+              "observed_unique_nonparameter_storage_bytes": 28584
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2568
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2584
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2600
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 1,
+      "loss": 0.5126358866691589,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.0307760052382946,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 29,
+              "observed_unique_nonparameter_storage_bytes": 200
+            },
+            {
+              "saved_tensors": 461,
+              "observed_unique_nonparameter_storage_bytes": 15288
+            },
+            {
+              "saved_tensors": 461,
+              "observed_unique_nonparameter_storage_bytes": 28584
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2568
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2584
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2600
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 0,
+      "loss": 0.5357417166233063,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.035871472209692,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 440,
+              "observed_unique_nonparameter_storage_bytes": 27864
+            },
+            {
+              "saved_tensors": 448,
+              "observed_unique_nonparameter_storage_bytes": 14912
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2600
+            },
+            {
+              "saved_tensors": 44,
+              "observed_unique_nonparameter_storage_bytes": 2592
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 1,
+      "loss": 0.5150919407606125,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.030671365559101105,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 440,
+              "observed_unique_nonparameter_storage_bytes": 27864
+            },
+            {
+              "saved_tensors": 448,
+              "observed_unique_nonparameter_storage_bytes": 14912
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2600
+            },
+            {
+              "saved_tensors": 44,
+              "observed_unique_nonparameter_storage_bytes": 2592
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 0,
+      "loss": 0.5343590974807739,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.03630828857421875,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 461,
+              "observed_unique_nonparameter_storage_bytes": 28584
+            },
+            {
+              "saved_tensors": 490,
+              "observed_unique_nonparameter_storage_bytes": 15488
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2600
+            },
+            {
+              "saved_tensors": 44,
+              "observed_unique_nonparameter_storage_bytes": 2592
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 1,
+      "loss": 0.5126358866691589,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.0307760052382946,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 461,
+              "observed_unique_nonparameter_storage_bytes": 28584
+            },
+            {
+              "saved_tensors": 490,
+              "observed_unique_nonparameter_storage_bytes": 15488
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2600
+            },
+            {
+              "saved_tensors": 44,
+              "observed_unique_nonparameter_storage_bytes": 2592
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 0,
+      "loss": 0.5357416868209839,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.035871472209692,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 488,
+              "observed_unique_nonparameter_storage_bytes": 44360
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2680
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 1,
+      "loss": 0.5150919556617737,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.030671365559101105,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 488,
+              "observed_unique_nonparameter_storage_bytes": 44360
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2680
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 0,
+      "loss": 0.5343590974807739,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.03630828857421875,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 509,
+              "observed_unique_nonparameter_storage_bytes": 45656
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2680
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 1,
+      "loss": 0.5126358270645142,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.0307760052382946,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 509,
+              "observed_unique_nonparameter_storage_bytes": 45656
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2680
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 0,
+      "loss": 0.5357417166233063,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.035871472209692,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 8,
+              "observed_unique_nonparameter_storage_bytes": 56
+            },
+            {
+              "saved_tensors": 440,
+              "observed_unique_nonparameter_storage_bytes": 15384
+            },
+            {
+              "saved_tensors": 440,
+              "observed_unique_nonparameter_storage_bytes": 28920
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2568
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2600
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2632
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 1,
+      "loss": 0.5150919258594513,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.030671365559101105,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 8,
+              "observed_unique_nonparameter_storage_bytes": 56
+            },
+            {
+              "saved_tensors": 440,
+              "observed_unique_nonparameter_storage_bytes": 15384
+            },
+            {
+              "saved_tensors": 440,
+              "observed_unique_nonparameter_storage_bytes": 28920
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2568
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2600
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2632
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 0,
+      "loss": 0.5343590974807739,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.03630828857421875,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 29,
+              "observed_unique_nonparameter_storage_bytes": 200
+            },
+            {
+              "saved_tensors": 461,
+              "observed_unique_nonparameter_storage_bytes": 15816
+            },
+            {
+              "saved_tensors": 461,
+              "observed_unique_nonparameter_storage_bytes": 29640
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2568
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2600
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2632
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 1,
+      "loss": 0.5126358866691589,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.0307760052382946,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 29,
+              "observed_unique_nonparameter_storage_bytes": 200
+            },
+            {
+              "saved_tensors": 461,
+              "observed_unique_nonparameter_storage_bytes": 15816
+            },
+            {
+              "saved_tensors": 461,
+              "observed_unique_nonparameter_storage_bytes": 29640
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2568
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2600
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2632
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 0,
+      "loss": 0.5357417166233063,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.035871472209692,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 440,
+              "observed_unique_nonparameter_storage_bytes": 28920
+            },
+            {
+              "saved_tensors": 440,
+              "observed_unique_nonparameter_storage_bytes": 15440
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2632
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2608
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 1,
+      "loss": 0.5150919407606125,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.030671365559101105,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 440,
+              "observed_unique_nonparameter_storage_bytes": 28920
+            },
+            {
+              "saved_tensors": 440,
+              "observed_unique_nonparameter_storage_bytes": 15440
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2632
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2608
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 0,
+      "loss": 0.5343590974807739,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.03630828857421875,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 461,
+              "observed_unique_nonparameter_storage_bytes": 29640
+            },
+            {
+              "saved_tensors": 461,
+              "observed_unique_nonparameter_storage_bytes": 16016
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2632
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2608
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    },
+    {
+      "update": 1,
+      "loss": 0.5126358866691589,
+      "gradient_max_error": 0.0,
+      "gradient_relative_l2": 0.0,
+      "delta_norm": 0.0307760052382946,
+      "resources": [
+        {
+          "prefix_forward": {
+            "saved_tensors": 425,
+            "observed_unique_nonparameter_storage_bytes": 24544
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 461,
+              "observed_unique_nonparameter_storage_bytes": 29640
+            },
+            {
+              "saved_tensors": 461,
+              "observed_unique_nonparameter_storage_bytes": 16016
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 80
+        },
+        {
+          "prefix_forward": {
+            "saved_tensors": 1,
+            "observed_unique_nonparameter_storage_bytes": 32
+          },
+          "suffix_wave_forwards": [
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2632
+            },
+            {
+              "saved_tensors": 22,
+              "observed_unique_nonparameter_storage_bytes": 2608
+            }
+          ],
+          "retained_boundary_unique_storage_bytes": 2560,
+          "physical_decoder_token_calls": 160
+        }
+      ]
+    }
+  ]
+}

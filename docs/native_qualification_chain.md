@@ -67,7 +67,7 @@ not the official Ouro qualification profile.
 | 1 | 2 | 1.460079 | 0.0220454 | 2.38e-7 |
 | 2 | 2 | 1.056497 | 0.0164092 | 4.77e-7 |
 
-| Comparison | Baseline throughput | FlashRLT throughput | Speedup | Peak-memory reduction | Reward convergence |
+| Comparison | Baseline throughput | ScaleRLT throughput | Speedup | Peak-memory reduction | Reward convergence |
 |---|---:|---:|---:|---:|---|
 | Official Ouro continuous/fresh-worker recovery | NOT_RUN | NOT_RUN | NOT_MEASURED | NOT_MEASURED | NOT_ESTABLISHED |
 | RLTT / FlashLoop / slime / Megatron campaign | NOT_RUN | NOT_RUN | NOT_MEASURED | NOT_MEASURED | NOT_ESTABLISHED |

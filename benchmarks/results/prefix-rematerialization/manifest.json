@@ -1,0 +1,51 @@
+{
+  "cpu_candidate": "working tree based on d6229d638b08a3927d23d39854aa13a85df71933",
+  "h20_tested_commit": "d6229d638b08a3927d23d39854aa13a85df71933",
+  "files": [
+    {
+      "path": "h20-mcore-complete-v2.json",
+      "bytes": 3519,
+      "sha256": "1016f9f34ab59410575f06a8fe2c54e807dba3beb03de3e60c3ab074b801542c"
+    },
+    {
+      "path": "h20-mcore-gate-v2-receipts.tar.gz",
+      "bytes": 15010,
+      "sha256": "a463628305b16dfa241d3308054891777fd3c94ecbbe4b01b53f0a8fe9a7c714"
+    },
+    {
+      "path": "prefix-remat-component-summary.json",
+      "bytes": 32378,
+      "sha256": "36f267455da4034bf9136fb901da4b7b665feb17fa7732f30a014101e9bfb60b"
+    },
+    {
+      "path": "prefix-remat-final.log",
+      "bytes": 24786,
+      "sha256": "c4bcdd2a609eb1e1856cc5d46e69c9de9f4b3ce53913248a2b38334a3c63acc1"
+    },
+    {
+      "path": "prefix-remat-final.xml",
+      "bytes": 100003,
+      "sha256": "14d9b6f71ed1d73e861772df802cd0b57b75d5cbdecb310670163659b3e578e0"
+    },
+    {
+      "path": "prefix-remat-first.log",
+      "bytes": 11457,
+      "sha256": "06e841dac069bd25edc94ec397e4e3cd6088c469c24ae13216b895c6c686bfb4"
+    },
+    {
+      "path": "prefix-remat-first.xml",
+      "bytes": 7248,
+      "sha256": "7c4298285db13271464fbaa4ab955b8fbb4bec6a93a7b671394c700ba92c6082"
+    },
+    {
+      "path": "prefix-remat-token-before.log",
+      "bytes": 5424,
+      "sha256": "1935993ba5f0b7bf6c7afad38d5b2b15db1d4ae59c19a0ab0f040ea3f31e09c7"
+    },
+    {
+      "path": "prefix-remat-token-before.xml",
+      "bytes": 1431,
+      "sha256": "e5fa9b9b0dfd431319d2b571a39bbcb0ae4df3fb79d275761e8fe5dd14aa35c7"
+    }
+  ]
+}

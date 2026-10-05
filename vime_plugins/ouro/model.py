@@ -166,20 +166,29 @@ class OuroMegatronModel(MegatronModule):
         self.block_tokens += hidden.shape[0]
         return decoder_forward(layer, hidden, cos, sin, prefix_kv=prefix_kv, suffix_layout=suffix_layout)
 
-    def prefix_program(self, tokens: torch.Tensor) -> PrefixProgram:
+    def prefix_program(self, tokens: torch.Tensor, *, rematerialize: bool = False) -> PrefixProgram:
         """Capture every physical-layer/loop KV and first-response hidden boundary."""
         if self.role != "actor":
             raise ValueError("shared response prefix requires an actor")
-        hidden = self.model.embed_tokens(tokens)
-        cos, sin = self.model.rotary_emb(hidden, torch.arange(len(tokens), device=tokens.device))
-        boundaries = []
         layers, depth, length = len(self.model.layers), self.loop_budget, len(tokens)
-        for _ in range(depth):
-            for layer in self.model.layers:
-                hidden, k, v = self._prefix_layer(layer, hidden, cos, sin)
-                boundaries.extend((k, v))
-            hidden = self._loop_output(hidden)
-            boundaries.append(hidden[-1:])
+
+        def prefix(tokens: torch.Tensor) -> tuple[torch.Tensor, ...]:
+            hidden = self.model.embed_tokens(tokens)
+            cos, sin = self.model.rotary_emb(hidden, torch.arange(len(tokens), device=tokens.device))
+            boundaries = []
+            for _ in range(depth):
+                for layer in self.model.layers:
+                    hidden, k, v = self._prefix_layer(layer, hidden, cos, sin)
+                    boundaries.extend((k, v))
+                hidden = self._loop_output(hidden)
+                boundaries.append(hidden[-1:])
+            return tuple(boundaries)
+
+        boundaries = (
+            checkpoint(prefix, tokens, use_reentrant=False)
+            if rematerialize and torch.is_grad_enabled()
+            else prefix(tokens)
+        )
 
         def suffix(
             tokens: torch.Tensor, boundary: tuple[torch.Tensor, ...], layout: SuffixLayout | None
@@ -202,7 +211,9 @@ class OuroMegatronModel(MegatronModule):
                     hidden = self._loop_output(hidden)
                 yield prefix_readout(boundary[base + 2 * layers], hidden, layout)
 
-        return PrefixProgram(tuple(boundaries), depth, suffix, tuple(tokens.tolist()), self, self.lm_head.weight)
+        return PrefixProgram(
+            boundaries, depth, suffix, tuple(tokens.tolist()), self, self.lm_head.weight, rematerialize=rematerialize
+        )
 
     def _traced_sequence(self, tokens: torch.Tensor, depths: torch.Tensor) -> torch.Tensor:
         """Replay LAST_EXITED: skipped deeper KV planes reuse the last computed KV."""
@@ -288,6 +299,7 @@ class OuroMegatronModel(MegatronModule):
         recurrent_inputs: list[RecurrentTrace] | None = None,
         readout: ResponseReadout | None = None,
         prefix_only: bool = False,
+        prefix_rematerialize: bool = False,
     ) -> torch.Tensor | PrefixProgram:
         if labels is not None or attention_mask is not None or position_ids is not None:
             raise ValueError("Use VIME's masked RL loss and unmodified per-sequence positions")
@@ -299,7 +311,9 @@ class OuroMegatronModel(MegatronModule):
                 for value in (packed_seq_params, loss_mask, execution_depths, recurrent_inputs, readout)
             ):
                 raise ValueError("A prefix forward requires only one nonempty unmodified prompt")
-            return self.prefix_program(input_ids[0])
+            return self.prefix_program(input_ids[0], rematerialize=prefix_rematerialize)
+        if prefix_rematerialize:
+            raise ValueError("Joint rematerialization requires a prefix forward")
         if recurrent_inputs is not None and any(
             trace.prefill_depth != self.loop_budget or any(depth != self.loop_budget for depth in trace.decode_depths)
             for trace in recurrent_inputs
