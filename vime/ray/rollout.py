@@ -402,6 +402,7 @@ class RolloutManager:
             if any(sample.recurrent_trace is None for sample in samples):
                 raise ValueError("A native rollout batch must contain one complete recurrent cohort")
             train_data["recurrent_inputs"] = [sample.recurrent_trace for sample in samples]
+            train_data["group_indices"] = [sample.group_index for sample in samples]
 
         if getattr(self.args, "rollout_top_p", 1.0) != 1.0:
             for sample in samples:
@@ -481,6 +482,7 @@ class RolloutManager:
                 "loss_masks",
                 "round_number",
                 "sample_indices",
+                "group_indices",
                 "rollout_ids",
                 "rollout_mask_sums",
                 "rollout_log_probs",

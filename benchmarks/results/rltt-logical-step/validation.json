@@ -1,0 +1,58 @@
+{
+  "parent": "81d092cef5154e82dcb3cf6b8e36f9f80817d128",
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "12",
+    "tests": "182",
+    "time": "49.492",
+    "timestamp": "2026-10-06T00:16:27.152619+08:00",
+    "hostname": "dadaxiaoxiaodeMacBook-Air.local"
+  },
+  "existing_cases": 141,
+  "natural_exit": {
+    "22160": 1,
+    "25465": 1,
+    "34946": 1,
+    "71006": 0
+  },
+  "test_files": [
+    "tests/plugins/test_looped_logical_step.py",
+    "tests/plugins/test_rltt_training.py",
+    "tests/plugins/test_differentiable_prefix.py"
+  ],
+  "harness": "../bench/resident_pytest.py",
+  "test_options": [
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--tb=short",
+    "--show-capture=no",
+    "-o",
+    "junit_family=legacy"
+  ],
+  "python": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/bin/python",
+  "test_environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "FROZENLIST_NO_EXTENSIONS": "1",
+    "MULTIDICT_NO_EXTENSIONS": "1",
+    "AIOHTTP_NO_EXTENSIONS": "1",
+    "YARL_NO_EXTENSIONS": "1",
+    "OMP_NUM_THREADS": "1",
+    "PYTHONPATH": ".:../rlt:tests/plugins:/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron"
+  },
+  "scope": "Actual CPU Ouro components and MCore loss/backward functions; no full DDP, optimizer wrapper, Ray or GPU run",
+  "actual_ray_cuda_e2e": "NOT_RUN",
+  "reward_convergence": "NOT_ESTABLISHED",
+  "environment_mutation": false,
+  "process_signals": false,
+  "new_cases": 41,
+  "warnings": 170,
+  "fixture_corrections": [
+    "Dense BF16 oracle corrected to specified FP32 readout products; low-precision trajectory still fails unchanged gate",
+    "Record both updates before raising a numeric-gate-specific exception; strict xfail only for known BF16 failure"
+  ],
+  "passed": 170,
+  "strict_expected_numeric_failures": 12
+}

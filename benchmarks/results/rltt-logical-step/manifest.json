@@ -1,0 +1,24 @@
+{
+  "source_sha256": {
+    "vime/ray/rollout.py": "cb8cd1ba84040c6b998a7660b2e052badd82138f9739d568f68f0d9e0e937160",
+    "vime_plugins/looped/logical_step.py": "fbea7178c86e6939079a441bff300353c4e9e105a4b01b0c368818b2d2453d5c",
+    "vime_plugins/looped/training.py": "9cdc57f8a091fee12777419059a844dd307c8a71530b1bbc5117e4f8941c05b4",
+    "vime_plugins/looped/prefix.py": "35b189dd2a29a492e84ccca390971a2f5b6e9317f2965e55e1870a84179713af",
+    "tests/plugins/test_looped_logical_step.py": "06ee85a79acefc4da0d7313a39d20f88879f817bd429e26c070a41c7224a6f87",
+    "docs/rltt_logical_step.md": "4480e1a09b8b275de0be56a53a218e8e170710b6976663de22a4640a995f4b65"
+  },
+  "artifact_sha256": {
+    "logical-step-final.log": "792a7753e796e46fc11ba6d2a67e170ea03e66c8d02b96335c551148f07511a9",
+    "logical-step-final.xml": "245bec5151bddc6ec39fa2897f33f0c7e2715d6599014e04e9f27e6b27735760",
+    "logical-step-first.log": "4fcc56042fcb08becf8a8f11b1b836777214a09305d98863f6619933b27574e8",
+    "logical-step-first.xml": "f34916f6e224463da14217382e89c1233451799d4d5eb20c4459689c7db0ae58",
+    "logical-step-second-test.py": "1e6ee7ffe4ded6e90c24964861207b5c7dcd0cb895516e76563304cb73ef3217",
+    "logical-step-second.log": "7aa7f8059dbb554109c1684dcb0d7eb9f3a6c666ebd8b709892acc8c9eea16af",
+    "logical-step-second.xml": "0804a5202595d812e937107422f25da48846b303f2e7c2131cc1ad0fa236955a",
+    "logical-step-third.log": "1a7236ed005287a2a226106287186826ab2b725120fe96d4f391d5b0e66793ce",
+    "logical-step-third.xml": "3b3002c7ab925a4e81862f999ba528b196d08e2fdbbbe24555a4ff8cbd10592c",
+    "resident_pytest.py": "2af5ce445da14f656c71e8d4817dcf85cd57402a77f50f612898c47f52f4d4f4",
+    "two-update-measurements.json": "ff9c02c6cd73a2a2c0a03e56f878ee71f0c18e6337f450e8910112cdc349a376",
+    "validation.json": "f7f290e8dfba4133a320a981285dd9a4b97dc8e0a9bdcdc985cdf69ef8a15af7"
+  }
+}
