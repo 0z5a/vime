@@ -8,6 +8,7 @@ from collections.abc import Callable, Iterator
 from dataclasses import dataclass, field
 
 import torch
+from torch.utils.checkpoint import checkpoint
 
 from .readout import streamed_readout
 from .packing import SuffixLayout
@@ -30,6 +31,7 @@ class PrefixProgram:
     readout_weight: torch.Tensor = field(repr=False)
     latent_seed: int | None = None
     latent_profile: str | None = None
+    rematerialize: bool = False
     versions: ParameterVersions = field(init=False, repr=False)
 
     def __post_init__(self) -> None:
@@ -97,7 +99,7 @@ class PrefixReplay:
             raise ValueError("shared-prefix response must be a token vector")
         if not len(response):
             return self._empty_scores()
-        return self._readout(self.program.suffix(response[:-1], self.leaves, None), response)
+        return self._scores(response[:-1], response, None, identity)
 
     def scores_batch(self, responses: tuple[torch.Tensor, ...], *, identity: PrefixIdentity) -> torch.Tensor:
         """Pack projections/readout; each suffix attends only to its own history."""
@@ -109,8 +111,22 @@ class PrefixReplay:
             return self._empty_scores()
         labels = torch.cat(nonempty)
         layout = SuffixLayout.create(tuple(len(response) - 1 for response in nonempty), labels.device)
-        states = self.program.suffix(torch.cat([response[:-1] for response in nonempty]), self.leaves, layout)
-        return self._readout(states, labels)
+        return self._scores(torch.cat([response[:-1] for response in nonempty]), labels, layout, identity)
+
+    def _scores(
+        self, tokens: torch.Tensor, labels: torch.Tensor, layout: SuffixLayout | None, identity: PrefixIdentity
+    ) -> torch.Tensor:
+        def forward(tokens: torch.Tensor, labels: torch.Tensor, *boundaries: torch.Tensor) -> torch.Tensor:
+            self._check(identity)
+            return self._readout(self.program.suffix(tokens, boundaries, layout), labels)
+
+        # A suffix wave is one full-depth segment. Its first-token readouts,
+        # complete causal KV dependencies and final entropy are replayed together.
+        return (
+            checkpoint(forward, tokens, labels, *self.leaves, use_reentrant=False)
+            if self.program.rematerialize and torch.is_grad_enabled()
+            else forward(tokens, labels, *self.leaves)
+        )
 
     def _empty_scores(self) -> torch.Tensor:
         zero = sum(leaf.reshape(-1)[:1].sum() * 0 for leaf in self.leaves) + self.weight[:1, :1].sum() * 0

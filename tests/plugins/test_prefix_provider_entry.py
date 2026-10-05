@@ -11,14 +11,15 @@ from vime.backends.megatron_utils.looped_prefix_schedule import forward_backward
 from vime_plugins.looped.prefix import PrefixIdentity, PrefixReplay
 
 
-def test_prefix_forward_entry_preserves_all_parameter_gradients():
+@pytest.mark.parametrize("rematerialize", [False, True])
+def test_prefix_forward_entry_preserves_all_parameter_gradients(rematerialize):
     direct, depth = make_actor("ouro", False)
     entry = copy.deepcopy(direct)
     prompt = torch.tensor([1, 3, 5])
     identity = PrefixIdentity("tiny", 1, tuple(prompt.tolist()), depth)
     for actor, program in (
-        (direct, direct.prefix_program(prompt)),
-        (entry, entry(input_ids=prompt[None], prefix_only=True)),
+        (direct, direct.prefix_program(prompt, rematerialize=rematerialize)),
+        (entry, entry(input_ids=prompt[None], prefix_only=True, prefix_rematerialize=rematerialize)),
     ):
         replay = PrefixReplay(
             program, identity, actor, actor.lm_head.weight, vocab_tile=5, temperature=0.7, all_loops=True, entropy=True
@@ -50,3 +51,9 @@ def test_schedule_does_not_masquerade_an_unwrapped_component_as_mcore():
     actor, _ = make_actor("ouro", False)
     with pytest.raises(ValueError, match="actual FP32 MCore DDP"):
         forward_backward_prefix(Namespace(), None, actor, 1, 1, 0)
+
+
+def test_joint_rematerialization_requires_prefix_forward():
+    actor, _ = make_actor("ouro", False)
+    with pytest.raises(ValueError, match="requires a prefix forward"):
+        actor(input_ids=torch.tensor([[1, 3]]), prefix_rematerialize=True)

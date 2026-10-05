@@ -34,8 +34,13 @@ def forward_backward_prefix(
         raise ValueError("The first prefix schedule requires non-overlapped, unsharded gradient buffers")
     if config.cuda_graph_scope or config.calculate_per_token_loss or config.finalize_model_grads_func is None:
         raise ValueError("The prefix schedule requires eager logical reduction and MCore gradient finalization")
-    if actor.recompute or any((args.rltt_loop_checkpoint, args.rltt_layer_checkpoint, args.rltt_token_chunk)):
-        raise ValueError("Joint prefix rematerialization is a separate schedule, not yet enabled")
+    if (
+        actor.recompute
+        or args.rltt_layer_checkpoint
+        or args.rltt_token_chunk
+        or args.rltt_loop_checkpoint not in (0, actor.readout_depth)
+    ):
+        raise ValueError("Prefix rematerialization requires one whole-depth segment without layer/query subdivision")
     step = plan_step(
         iterator,
         num_microbatches,
@@ -57,7 +62,9 @@ def forward_backward_prefix(
         prompt = tokens[group.indices[0]][:length]
         # Enter through DDP.forward; its real AccumulateGrad hooks continue to
         # move each suffix/prefix contribution into the MCore main_grad buffers.
-        program = model(input_ids=prompt.unsqueeze(0), prefix_only=True)
+        program = model(
+            input_ids=prompt.unsqueeze(0), prefix_only=True, prefix_rematerialize=args.rltt_loop_checkpoint != 0
+        )
         replay = PrefixReplay(
             program,
             group.identity,
