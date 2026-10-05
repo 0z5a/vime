@@ -1,0 +1,8 @@
+{
+  "upload_and_redownload_natural_exit": 0,
+  "bytes": 10178626,
+  "sha256": "772e1abe21ae85b6ccfa29ce03fc4e86cbe7c7082d3614a9fe397690fac2f043",
+  "wall_seconds": 24.18349453,
+  "end_to_end_input_mib_per_second": 0.4013933627525617,
+  "scope": "Actual licensed frozen MCore source upload and independent download, including API overhead; not large-checkpoint bandwidth or model throughput"
+}

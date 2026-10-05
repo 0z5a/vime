@@ -1,0 +1,15 @@
+{
+  "files": {
+    "raw/mcore-source-draft-parts.json": "def15922a3441eb5f18c198fb38fa1c77b65df2aa8c93b718fd53806c6546255",
+    "raw/mcore-source-h20route-draft-parts.json": "ed224ca677d01483be7fc13cef74714ee3089abe6bad6748c6c0f5c05dad3817",
+    "raw/mcore-source-h20route-offbox-complete.json": "4c7870d629506a177f18a92c8d27bee58100e644da081de839aa90f41d31b92a",
+    "raw/mcore-source-offbox-complete.json": "c6de90b7ce7428da5b89cd62f34544e16762919533bcb152fc3a7633476afb57",
+    "raw/mcore-source-offbox-start.json": "81270a9bfc5074059832c97b9577cfc2cccfc3b1c27c0e34868a0d1664dc50c0",
+    "raw/mcore-uncompressed-source-draft-parts-v2.json": "4d41048c4603bd7304e0fc3934cd11aaefe3e7f429e68d597fd81e7c88d3ae0a",
+    "raw/mcore-uncompressed-source-offbox-complete-v2.json": "d1c62de98d328693dbd806d65a0582a1395c54f8daabc7cfbe60218ed24ff5c7",
+    "raw/mcore-uncompressed-source-offbox-complete.json": "f02b639a3f1fc8a6cc6a520b7b418254cfeebbd0afd73e9cc535db1719978c54",
+    "raw/mcore-uncompressed-source-offbox-start-v2.json": "4e622f9026047770d45584a03d7884d073554881a44c25cc8e2002928d7978ff",
+    "raw/mcore-uncompressed-source-offbox.log": "dbe9d2b1f1508d7bf395c63fd88f344a59a609d4869435236d4a14a03df04cea"
+  },
+  "stream_scope": "Evidence transport only, no native training claim"
+}

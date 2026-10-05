@@ -1,0 +1,23 @@
+{
+  "state": "PARTS_OFFBOX_VERIFIED",
+  "release_id": 404079314,
+  "name": "mcore-frozen-source",
+  "part_bytes": 536870912,
+  "parts": [
+    {
+      "name": "mcore-frozen-source.tar.gz.part-00000",
+      "asset_id": 613583396,
+      "bytes": 10178626,
+      "sha256": "772e1abe21ae85b6ccfa29ce03fc4e86cbe7c7082d3614a9fe397690fac2f043",
+      "server_digest": "sha256:772e1abe21ae85b6ccfa29ce03fc4e86cbe7c7082d3614a9fe397690fac2f043",
+      "download_sha256": "772e1abe21ae85b6ccfa29ce03fc4e86cbe7c7082d3614a9fe397690fac2f043",
+      "upload_exit": 0,
+      "download_exit": 0,
+      "verified": true
+    }
+  ],
+  "stream_sha256": "772e1abe21ae85b6ccfa29ce03fc4e86cbe7c7082d3614a9fe397690fac2f043",
+  "stream_bytes": 10178626,
+  "stream_eof": true,
+  "producer_exit": "IMMUTABLE_LOCAL_INPUT"
+}

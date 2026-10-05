@@ -1,0 +1,14 @@
+{
+  "state": "FAILED_PRESERVED_SOURCE_TRANSPORT",
+  "started_at": "2026-10-05T21:24:56.237027+00:00",
+  "started_unix": 1791235496.237004,
+  "input": "/Users/0z5a/Documents/infra/vime-three-deliverables-20261001/megatron-validated.tar.gz",
+  "expected_stream_bytes": 38015488,
+  "expected_stream_sha256": "7e263b90b4ac4159869592a5450c4ffae858ab170631f00bc86a2909490aa6a9",
+  "release_id": 404079314,
+  "model_or_RL_claim": false,
+  "finished_at": "2026-10-05T21:24:56.309845+00:00",
+  "elapsed_seconds": 0.07289290428161621,
+  "publisher_natural_exit": 1,
+  "producer_natural_exit": 0
+}
