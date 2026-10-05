@@ -1,0 +1,24 @@
+{
+  "state": "PARTS_OFFBOX_VERIFIED",
+  "release_id": 404079314,
+  "name": "scalert-mcore-original-source-tar",
+  "stream_format": "tar",
+  "part_bytes": 536870912,
+  "parts": [
+    {
+      "name": "scalert-mcore-original-source-tar.tar.part-00000",
+      "asset_id": 613641684,
+      "bytes": 38015488,
+      "sha256": "7e263b90b4ac4159869592a5450c4ffae858ab170631f00bc86a2909490aa6a9",
+      "server_digest": "sha256:7e263b90b4ac4159869592a5450c4ffae858ab170631f00bc86a2909490aa6a9",
+      "download_sha256": "7e263b90b4ac4159869592a5450c4ffae858ab170631f00bc86a2909490aa6a9",
+      "upload_exit": 0,
+      "download_exit": 0,
+      "verified": true
+    }
+  ],
+  "stream_sha256": "7e263b90b4ac4159869592a5450c4ffae858ab170631f00bc86a2909490aa6a9",
+  "stream_bytes": 38015488,
+  "stream_eof": true,
+  "producer_exit": "EXTERNAL_PRODUCER_RECEIPT_REQUIRED"
+}
