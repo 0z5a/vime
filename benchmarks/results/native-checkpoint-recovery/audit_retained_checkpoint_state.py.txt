@@ -1,0 +1,33 @@
+"""Read the retained prior Ray/PPO state; do not run a new learner or worker."""
+
+import hashlib
+import json
+from pathlib import Path
+
+import pytest
+import torch
+
+from benchmarks.audit_native_adam import audit_adam
+from benchmarks.native_checkpoint import Checkpoint, compare_checkpoints, fingerprint
+
+task = Path(__file__).resolve().parents[1]
+root = task.parent / 'vime-looped-deliverables-20261003/evidence/a100-standard-ray-ppo-20261003/runs'
+paths = [root / name / 'checkpoints/actor' for name in
+         ('synthetic-tiny-ray-ppo-v17-multiround-continuous', 'synthetic-tiny-ray-ppo-v17-multiround-resume')]
+checkpoints = [Checkpoint(path / 'iter_0000002') for path in paths]
+report = compare_checkpoints(*checkpoints)
+counters = [torch.load(path / 'rollout/global_dataset_state_dict_2.pt', map_location='cpu', weights_only=False)
+            for path in paths]
+assert fingerprint(counters[0]) == fingerprint(counters[1])
+with pytest.raises(AssertionError, match='No saved Adam'):
+    audit_adam([checkpoints[0]], task / 'unused-initial.safetensors', {})
+result = {'scope': 'fresh audit of retained prior synthetic-tiny Ray PPO/SGD checkpoint, not a new RL run',
+          'source_paths': [str(path) for path in paths], 'final_iteration': 2,
+          'checkpoint_comparison': report, 'rollout_counter_sha256': fingerprint(counters[0]),
+          'rollout_counters': counters[0], 'adam_qualification_rejected': True,
+          'reader_sha256': hashlib.sha256((task / 'vime/benchmarks/native_checkpoint.py').read_bytes()).hexdigest(),
+          'cuda_initialized': torch.cuda.is_initialized(), 'new_training': False}
+assert not result['cuda_initialized']
+(task / 'evidence/native-checkpoint-retained-v2.json').write_text(json.dumps(result, indent=2) + '\n')
+print(json.dumps({'exact_chunks': len(report['chunks']), 'counters_equal': True,
+                  'adam_qualification_rejected': True, 'new_training': False, 'cuda_initialized': False}))

@@ -1,0 +1,11 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+/Users/0z5a/Documents/infra/flashrlt-20261005/bench/resident_pytest.py:62
+<frozen runpy>:287
+<frozen runpy>:98
+<frozen runpy>:88
+bench/inspect_checkpoint_contract.py:10
+/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/serialization.py:1610
+/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/serialization.py:2221
+/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/serialization.py:2210
+ModuleNotFoundError: No module named 'megatron'

@@ -1,0 +1,75 @@
+{
+  "parent": "16def6e0486551d8a85d7c7d589e185aeda2d595",
+  "production_runtime_delta": "none",
+  "source_sha256": {
+    "benchmarks/native_checkpoint.py": "c09e8597715a1fbc1bccacf84f7639ed9ca5bf5e09bb160e10ea83857f00c578",
+    "benchmarks/audit_native_adam.py": "e1f9d9ec0f80d6866723bdf68f96b05fbdcd3a77c6b4279b92da1b6dd8170fc2",
+    "benchmarks/audit_native_learning_signal.py": "48dda7c53d488d826e6ee19dfa8dff4342c6f68c7b104109ba02f9ea33930fbd",
+    "benchmarks/run_native_qualification.py": "e59dc03dfe53e2634e5d7b6052a2fb725e7c5f4873c92126ab7312e85366484a",
+    "tests/test_native_checkpoint_audit.py": "ff4a71aaecd5996a1d435b3a65ca673e4c2baa3bdb3d00d94b56b544f1d657ae",
+    "tests/test_native_learning_signal_audit.py": "60674e58a5a6ab1e42c8e080d02ae2fc255baa73e5d5ec6137b7d70b0eba505c",
+    "tests/test_native_qualification_recipe.py": "67cade5f28723fba835b220d7f7223b83539bf6b07031504c4fea60e97bc27b1",
+    "tests/test_looped_grpo_recipe.py": "0e1422b1d9e461a6328c5d210c897aae2421c7740d8a479d35a6edc9462ab2e5",
+    "docs/native_checkpoint_recovery.md": "da9920be2907abd30a9abbc6cbff1b7feebe23201b4ae33ed87c926c205eb2f6"
+  },
+  "artifact_sha256": {
+    "audit_retained_checkpoint_state.py.txt": "883c601113d6327ed6fe7e13a80d4b103357658796cc7aa40bce04b4f4136718",
+    "checkpoint-contract-inspection-v2.log": "9c52455c494f22305a1bf37b26994bbdd36b0c943ee38458dbaf06ff21ccaf28",
+    "checkpoint-contract-inspection-v3.log": "6992bd3a8234ba6ca9ab9c1f1b82d0938de665be943748fb34e2afc91ef10cb3",
+    "checkpoint-contract-inspection.log": "7c9b978d58f9eca9324c5f08fcb3e2c895ab89774192574dc23f17577e72c85a",
+    "inspect_checkpoint_contract.py.txt": "819e7ba7eb8828fbdab8d14ca08c6764163618e140bcf0ad590e328576e0c41d",
+    "native-checkpoint-final-v2.log": "2912e4cb4199c6d191e1d44dd7f3a393ab5d89963f1bbb0603c696a32575671a",
+    "native-checkpoint-final-v2.xml": "73b267eb6bb54a34efe49a67273e3a2b65a556385646db7bcc957067df85b7de",
+    "native-checkpoint-final-v3.log": "ff3c5cf47e651e9c1676017a9fa63b4f310500d3e39990c2d40e7764d4495241",
+    "native-checkpoint-final-v3.xml": "9025159523a531b6f6e8d46a9b5c1d660b71988d95737f1385dd79b5d89234e5",
+    "native-checkpoint-final.log": "ffb34eaab1b28d46dd9dc6aa279abf1fa2e9b9cebd0af4f02ede53e026786c38",
+    "native-checkpoint-final.xml": "a235ba8ea8a8f572111db0e4caa46432594e525e147bb7e7fb41d5cbe8add1c9",
+    "native-checkpoint-initial.log": "2a05d3e9987f3ad1d85ab5d9c441a1fd76f101d1af127b01c64ab17a64b2fd12",
+    "native-checkpoint-initial.xml": "225a5d54c671ff860e883ae3cf19fcd8919f5de2a2f2714d38676d69065c935d",
+    "native-checkpoint-release.log": "1b24ed45006244cffe0177a470012550824e0c09985b57bcc37ac118f7ff1b0a",
+    "native-checkpoint-release.xml": "615bfa63d20e139dd1464e00a1d50ceb9931aea93210c54c5c01169e7553c1f9",
+    "native-checkpoint-retained-v2.json": "f6fc1bc0da4b63ccdf4117ea690366557d361b94a23a93e59a1b38a285c52eb9",
+    "native-checkpoint-retained-v2.log": "a55d0bda11e064599a8091bbc928dda0452ba06bae90e7b36f76f0920d5157e6",
+    "native-checkpoint-retained.json": "a703db95cdf5e3f350625887491a35c0f90421c17c5baeaffd47ed1429c06344",
+    "native-checkpoint-retained.log": "8e15eb4e0d926546217834754558e29a89361b3d8bd6d0b72a410abe3d958552",
+    "resident_pytest.py.txt": "2af5ce445da14f656c71e8d4817dcf85cd57402a77f50f612898c47f52f4d4f4"
+  },
+  "tests": {
+    "unique_cpu_passed": 155,
+    "new_checkpoint_adam_cli": 19,
+    "prior_qualification": 136,
+    "adam_lr_controls": [
+      0.001,
+      1e-06
+    ],
+    "true_cpu_adamw_updates": true,
+    "true_cpu_dcp_serialization": true,
+    "synthetic_saved_rollout_fixtures": true
+  },
+  "natural_zero_sessions": [
+    2179,
+    78975,
+    50650,
+    19385,
+    6732,
+    76068,
+    52815,
+    91787
+  ],
+  "initial_nonzero_sessions": {
+    "39646": "caller omitted existing MCore source path",
+    "24153": "caller assumed optional planner metadata was non-null"
+  },
+  "retained_actual_prior_ray_checkpoint": {
+    "scope": "synthetic-tiny PPO/SGD stored state only",
+    "fresh_exact_chunks": 17,
+    "counters_equal": true,
+    "adam_qualification_rejected": true
+  },
+  "actual_new_ray_workers": false,
+  "actual_new_model_training": false,
+  "cuda": false,
+  "official_adam_state_qualification": false,
+  "speed_comparison": false,
+  "reward_convergence": "NOT_ESTABLISHED"
+}
