@@ -1,0 +1,54 @@
+{
+  "parent": "ed97e0173d4825055d2f2547664888bc5e3df6bc",
+  "production_delta": "one template condition; lists only",
+  "source_sha256": {
+    "vime/rollout/vllm_rlt_rollout.py": "aa18f8806f6bfa0a894b3b0f67ecad0e669f7695351309e6f2f4e5b55ddbbeee",
+    "vime/utils/data.py": "2ad9c48ff46e89a60ae297b0fc305af079960f6a52e23cf7a4b45190107ddbca",
+    "vime/rollout/rm_hub/__init__.py": "e916523143afcf0ce8691d8568aa6c8eb9656f9b8caae2897a98fe83754f7e31",
+    "vime/rollout/rm_hub/math_utils.py": "cd884f4686ab3a1e0664ea09b2c15a5ebbf2b7d40b799c68ae5bbc0978637d32",
+    "benchmarks/audit_native_chat.py": "ab75193060232ec000540d29e93f34fdc63ee975fab4f58f8e059ae3b80a1205",
+    "tests/rollout_backends/test_native_chat_prompt.py": "a11536ffda324d1b03af33262a0a7c24e894d22113635586957aa574322209e0",
+    "benchmarks/datasets/math/ouro_tokenizer.json": "94fdbfa3faddf1aaa17e1526dfdc006c1cd6c4bfd41d2683cb18a55f14d421c2"
+  },
+  "artifact_sha256": {
+    "measured-original-reproducer.py.txt": "f7c1e46448ba1d0bc4a8bf3e5930cce1dad84247b7df160cef7427bce420d8a1",
+    "native-chat-focused.log": "cd87a8897b9053a3b2c60d77b89451f09575cb5d15a797b23a00fc7a741f0a6d",
+    "native-chat-focused.xml": "7b97009d90ef25aa0746ef5a90e3e72258ea56e06a08f6ce9491dd312d20c35b",
+    "native-chat-official.json": "58bf37d3278b6a9e87b7ce148aee1a3cd8929765d0ce2b4e355908ea194654bb",
+    "native-chat-official.log": "2aff444715623916451d70621293ff1c213acf3398c21ee00b24da33f1f5ce46",
+    "native-chat-original.log": "5710077155ac67d9a7709b031599ec2cfe8efcca8a3f0fed4aa369f7428ffb7a",
+    "native-chat-parent-repro.log": "01dd2b6a9318cc87e2154d23a66a826be0476022b1db3520ce15a5c26f921749",
+    "native-chat-parent-repro.xml": "6d26a2fe0d8a7be246c0b016770642442ca3ded49e280f755b55d9d8fb44cf5f",
+    "native-chat-parent.log": "a30bf189db5046992cf073fe1adc490a432b7b2682fbb21309d8468280666e64",
+    "native-chat-parent.xml": "72e77ef3d4c593a6605b8c803204bb46b76991cddeeef3247e9ffb7aed43903e",
+    "native-chat-release.log": "52421e80da713ef6b598b934509809fbd66648ed5f13f6347af78801855c9c90",
+    "native-chat-release.xml": "aee10729b19d7cc6f603acc99824b8840528e12b48f8f79a5f8ebd597b35dd38",
+    "native-chat-test-files.txt": "c1b64a4978c9d3080701778d1b0f9af53fba943cea8f68db96476ffdfb0c1604"
+  },
+  "tests": {
+    "unique_passed": 631,
+    "cuda_skipped": 6,
+    "known_factory_deselected": 3,
+    "seconds": 45.2,
+    "meaningful_parent_reproduction": {
+      "failed": 2,
+      "passed": 4
+    },
+    "initial_fixture_failures_retained": true
+  },
+  "natural_exit_zero_sessions": [
+    83841,
+    51623
+  ],
+  "natural_nonzero_sessions": {
+    "46604": "official parent tokenizer failure",
+    "21477": "fixture omitted tools keyword",
+    "62425": "same fixture omission",
+    "63166": "meaningful parent production regression"
+  },
+  "official_tokenizer_prompt_checks": 2000,
+  "ray_workers_started": false,
+  "model_generation": false,
+  "gpu": false,
+  "speed_measurement": false
+}

@@ -1,0 +1,24 @@
+import copy
+import json
+from argparse import Namespace
+from pathlib import Path
+from types import SimpleNamespace
+
+from vime.rollout.vllm_rlt_rollout import _tokenizer, generate_rollout
+from vime.utils.data import Dataset
+
+root = Path(__file__).resolve().parents[1]
+checkpoint = root / "data/math-v1/tokenizer/ByteDance/Ouro-1.4B-Thinking/3aaa2224253a92ca45cf2e3d427c360e1ef9c93d"
+tokenizer = _tokenizer(str(checkpoint))
+dataset = Dataset(str(root / "data/math-v1/prepared/math500.jsonl"), tokenizer, None, None,
+                  prompt_key="prompt", label_key="label", apply_chat_template=True,
+                  apply_chat_template_kwargs={"enable_thinking": True})
+sample = dataset.samples[0]
+expected = tokenizer.encode(sample.prompt, add_special_tokens=False)
+print(json.dumps({"id": sample.metadata["id"], "prompt_type": type(sample.prompt).__name__,
+                  "rendered_tokens": len(expected), "ends_with_thinking": sample.prompt.endswith("<think>\n")}), flush=True)
+groups = [[copy.deepcopy(sample), copy.deepcopy(sample)]]
+for i, item in enumerate(groups[0]):
+    item.group_index, item.index = 0, i
+args = Namespace(rollout_batch_size=1, n_samples_per_prompt=2, hf_checkpoint=str(checkpoint), apply_chat_template=True)
+generate_rollout(args, 0, SimpleNamespace(get_samples=lambda count: groups))
