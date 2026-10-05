@@ -28,6 +28,8 @@ from vime_plugins.looped.prefix import PrefixProgram
 
 
 class HuginnMegatronModel(MegatronModule):
+    prefix_model_family: Literal["huginn_raven"] = "huginn_raven"
+
     def __init__(
         self,
         config: TransformerConfig,
@@ -292,9 +294,23 @@ class HuginnMegatronModel(MegatronModule):
         loss_mask=None,
         recurrent_inputs: list[RecurrentTrace] | None = None,
         readout: ResponseReadout | None = None,
-    ) -> torch.Tensor:
+        prefix_only: bool = False,
+        prefix_latent_seed: int | None = None,
+    ) -> torch.Tensor | PrefixProgram:
         if position_ids is not None or attention_mask is not None or labels is not None:
             raise ValueError("Use unmodified per-sequence positions and VIME's masked RL loss")
+        if prefix_only:
+            if (
+                input_ids.ndim != 2
+                or input_ids.shape[0] != 1
+                or input_ids.numel() == 0
+                or type(prefix_latent_seed) is not int
+                or any(value is not None for value in (packed_seq_params, loss_mask, recurrent_inputs, readout))
+            ):
+                raise ValueError("Huginn prefix forward requires a nonempty prompt and its recorded latent seed")
+            return self.prefix_program(input_ids[0], latent_seed=prefix_latent_seed)
+        if prefix_latent_seed is not None:
+            raise ValueError("A prefix latent seed requires prefix forward")
         if input_ids.ndim != 2 or input_ids.shape[0] != 1 or recurrent_inputs is None:
             raise ValueError("Huginn requires one packed token stream and its recurrent traces")
         boundaries = (

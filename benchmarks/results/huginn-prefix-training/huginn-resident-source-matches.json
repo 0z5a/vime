@@ -1,0 +1,1724 @@
+[
+  {
+    "path": "torch/torch_version.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=MheXhDr4r0O0mDO_Eaxz7vYLl0HRWr8hnQciPgx4QuI",
+    "bytes": 2530,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/torch_version.py"
+  },
+  {
+    "path": "torch/_numpy/_getlimits.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=QRUbPnrehERJA9Wk01SdUaF1F2FhksfgpewYN6SmtgE",
+    "bytes": 269,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/Q0vNQ1SlXTvZrhomgV9Wf/torch/_numpy/_getlimits.py"
+  },
+  {
+    "path": "torch/_export/db/examples/fn_with_kwargs.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=fEndpGN__D456vh3NAamoK1KdmtEyvmAsW0gZB0TExo",
+    "bytes": 731,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/_export/db/examples/fn_with_kwargs.py"
+  },
+  {
+    "path": "torch/_export/db/examples/pytree_flatten.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=MFIw36BZAXANZ-iajZi--lbPzf1EyDrcmWxPeQ_VCyA",
+    "bytes": 376,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/_export/db/examples/pytree_flatten.py"
+  },
+  {
+    "path": "torch/_export/db/examples/tensor_setattr.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=LXED12gZiYOvhZXBzThejfW2meNYI8U-8_aIVwfdaqI",
+    "bytes": 337,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/Q0vNQ1SlXTvZrhomgV9Wf/torch/_export/db/examples/tensor_setattr.py"
+  },
+  {
+    "path": "torch/_export/serde/__init__.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU",
+    "bytes": 0,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/Q0vNQ1SlXTvZrhomgV9Wf/torch/_export/serde/__init__.py"
+  },
+  {
+    "path": "torch/_dispatch/__init__.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU",
+    "bytes": 0,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/_dispatch/__init__.py"
+  },
+  {
+    "path": "torch/nn/utils/clip_grad.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=XjDawX6wMRqxoS5G7SSE3stmFlQnZE0mAdE1cKsO5Nc",
+    "bytes": 11465,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/Q0vNQ1SlXTvZrhomgV9Wf/torch/nn/utils/clip_grad.py"
+  },
+  {
+    "path": "torch/nn/intrinsic/quantized/__init__.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=LdqC1LFI5lpIY34H0B2y0QlVtbYp78P_72k9-KMh7h4",
+    "bytes": 322,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/nn/intrinsic/quantized/__init__.py"
+  },
+  {
+    "path": "torch/nn/modules/utils.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=kS7sezb3cU9-B9swphiw4LaO0kzOlegUliZTHuFtKIk",
+    "bytes": 2601,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/nn/modules/utils.py"
+  },
+  {
+    "path": "torch/onnx/_internal/fx/passes/__init__.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=mImXwcuJd6IfP3-3RkuLStx9i0ykJK8dhozuZNwRdpA",
+    "bytes": 91,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/onnx/_internal/fx/passes/__init__.py"
+  },
+  {
+    "path": "torch/onnx/_internal/exporter/_torchlib/ops/__init__.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=bgyPtdiM9s1nE_1ZdR_6-0y0Tea9o0Qiyts2wWU7EM4",
+    "bytes": 180,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/onnx/_internal/exporter/_torchlib/ops/__init__.py"
+  },
+  {
+    "path": "torch/onnx/ops/_impl.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=LMioMCIyzBnzP5ks4VkrczesyQzuaeuEmZ9jkngDoac",
+    "bytes": 20481,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/onnx/ops/_impl.py"
+  },
+  {
+    "path": "torch/cpu/amp/autocast_mode.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=XC8Kac0XKSERFrp8Oc3W1G77_cOqrRuG_zOWKjua85I",
+    "bytes": 2180,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/cpu/amp/autocast_mode.py"
+  },
+  {
+    "path": "torch/distributed/fsdp/fully_sharded_data_parallel.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=FTPIj3VJztHNVGFfe_Ke1d0De002iYt-bP5ZT4IKcs8",
+    "bytes": 100777,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py"
+  },
+  {
+    "path": "torch/distributed/fsdp/_runtime_utils.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=Nekjyo2EJNfbG7cbPieBrTZ9gcz2XpKvdVTfCfuVspw",
+    "bytes": 66906,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/distributed/fsdp/_runtime_utils.py"
+  },
+  {
+    "path": "torch/distributed/fsdp/_fully_shard/__init__.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=uXSibxJe0zL41WR-oTOtpzPSk6Wxq6UTSc6ge0kYO38",
+    "bytes": 489,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/distributed/fsdp/_fully_shard/__init__.py"
+  },
+  {
+    "path": "torch/distributed/_symmetric_memory/_nccl.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=QOX2pNQkNy8G_sSS6DJ9vSE7_URJqpFgKUAdcRqBjZE",
+    "bytes": 3904,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/distributed/_symmetric_memory/_nccl.py"
+  },
+  {
+    "path": "torch/distributed/tensor/parallel/_data_parallel_utils.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=toFgFzlwhtjqPA6hOJjRFW4ZYjV77KZpmu2TssdBaPw",
+    "bytes": 1498,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/distributed/tensor/parallel/_data_parallel_utils.py"
+  },
+  {
+    "path": "torch/autograd/variable.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=N0cAiO8ZPZ6rtRtU-hJYH_6NVt-zun16CmO_KrZV7-0",
+    "bytes": 391,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/autograd/variable.py"
+  },
+  {
+    "path": "torch/fx/__init__.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=3UU6khKhgRPJ2WaEj01tLXG-suHc5yGwGFtXLCTfLCE",
+    "bytes": 4134,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/Q0vNQ1SlXTvZrhomgV9Wf/torch/fx/__init__.py"
+  },
+  {
+    "path": "torch/fx/experimental/unification/multipledispatch/__init__.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=xjEjlwV6TTwkgteOREoXUJwMTiNnpJN3YfBALC9eslU",
+    "bytes": 139,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/fx/experimental/unification/multipledispatch/__init__.py"
+  },
+  {
+    "path": "torch/fx/experimental/migrate_gradual_types/z3_types.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=9CzjT7bWhU2CUNwZrQcdI7PDY8haxTrzGBRw_V7X7dk",
+    "bytes": 807,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/fx/experimental/migrate_gradual_types/z3_types.py"
+  },
+  {
+    "path": "torch/fx/passes/annotate_getitem_nodes.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=F6pofuCRCivrQou6o0LjIlaJUo2qjj5dJiyne5Xf2xY",
+    "bytes": 3609,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/fx/passes/annotate_getitem_nodes.py"
+  },
+  {
+    "path": "torch/multiprocessing/spawn.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=_Dhfal6Wuy6zHLJrSf9TVA-5EWHWoXgLvCiXmdQmVsM",
+    "bytes": 12863,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/multiprocessing/spawn.py"
+  },
+  {
+    "path": "torch/cuda/_pin_memory_utils.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=uk6Tnea02s5jWmKIdD2JX7p4W4H-74xpKNf7ZryTFqs",
+    "bytes": 773,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/cuda/_pin_memory_utils.py"
+  },
+  {
+    "path": "torch/_inductor/codegen/cutlass/lib_extensions/cutlass_mock_imports/cuda/cudart.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=pkNjquWqOMt8KAnOBkHbIxpgBmdWRZqXZbpQXS7ElK0",
+    "bytes": 305,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/_inductor/codegen/cutlass/lib_extensions/cutlass_mock_imports/cuda/cudart.py"
+  },
+  {
+    "path": "torch/_inductor/autoheuristic/artifacts/_PadMMH200.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=kwnmibiVDQ1Oh_Dl7nBd9hugqvqoJT1XrVfoFI6WpkY",
+    "bytes": 8501,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/Q0vNQ1SlXTvZrhomgV9Wf/torch/_inductor/autoheuristic/artifacts/_PadMMH200.py"
+  },
+  {
+    "path": "torch/utils/model_zoo.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=o2NC-XaU8fqDXbUBQDv7thQBld_LOK-Ko63GS4x8Iyg",
+    "bytes": 117,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/utils/model_zoo.py"
+  },
+  {
+    "path": "torch/utils/data/datapipes/iter/callable.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=vGa_hics1TsiXLsCkFS6gQFlC8mj8E_hA8UMRNh9j8c",
+    "bytes": 9114,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/utils/data/datapipes/iter/callable.py"
+  },
+  {
+    "path": "torch/quantization/quantize_jit.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=JNw2_M1d6EITYzYrXlrAsUac_4tX-IDMuAO_7prxhk8",
+    "bytes": 714,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/Q0vNQ1SlXTvZrhomgV9Wf/torch/quantization/quantize_jit.py"
+  },
+  {
+    "path": "torch/quantization/fx/__init__.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=H5nvSncLr3GGfo7gXFANAc3gJ64hDmAXPj048dRKQyU",
+    "bytes": 573,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/Q0vNQ1SlXTvZrhomgV9Wf/torch/quantization/fx/__init__.py"
+  },
+  {
+    "path": "torch/quantization/fx/prepare.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=k6hE4OfbcI8r-csnlRP9gd8E4Hbak6NIO-q4E2_TPTg",
+    "bytes": 387,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/quantization/fx/prepare.py"
+  },
+  {
+    "path": "torch/quantization/fx/quantization_patterns.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=42Mi20H8zdK1gZFtNu8STWy5aFk4w-Kc8BKAsztGZ0s",
+    "bytes": 2067,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/quantization/fx/quantization_patterns.py"
+  },
+  {
+    "path": "torch/testing/_utils.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=qfU2CiPMoNiej2eD4hqMJDAxMT8tviWzxM0HJqxiQ9M",
+    "bytes": 2519,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/testing/_utils.py"
+  },
+  {
+    "path": "torch/testing/_internal/fake_config_module2.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=gk8fSMjiMktUYrbdWi-Yvm4aH6TeOBa-7nnB5SDMZwQ",
+    "bytes": 343,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/Q0vNQ1SlXTvZrhomgV9Wf/torch/testing/_internal/fake_config_module2.py"
+  },
+  {
+    "path": "torch/testing/_internal/fake_config_module.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=py4Y9FaDJ7vdrG2xgJGVkuySNFyN1fe_pXoSgKlJ3xw",
+    "bytes": 1559,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/Q0vNQ1SlXTvZrhomgV9Wf/torch/testing/_internal/fake_config_module.py"
+  },
+  {
+    "path": "torch/testing/_internal/data/network1.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=ksE5iUCq6Hhp8772pRhqpUna414huKdlzvh92oQgxTc",
+    "bytes": 169,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/Q0vNQ1SlXTvZrhomgV9Wf/torch/testing/_internal/data/network1.py"
+  },
+  {
+    "path": "torch/testing/_internal/data/__init__.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=8QLhisbHub6VJl6egijnrOPKK5QNAe5FJhfcxEelj4Y",
+    "bytes": 22,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/Q0vNQ1SlXTvZrhomgV9Wf/torch/testing/_internal/data/__init__.py"
+  },
+  {
+    "path": "torch/amp/grad_scaler.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=l8QR2gKNqvam7RXQa5sgwBdASEbbaCA74aWG4nbkQDk",
+    "bytes": 31615,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/amp/grad_scaler.py"
+  },
+  {
+    "path": "torch/_dynamo/_trace_wrapped_higher_order_op.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=23k8ubN2GSQ7schq2L4_dLch3V0oKU6K1-0267lILrM",
+    "bytes": 10330,
+    "source": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/resident-dependencies/torch/_dynamo/_trace_wrapped_higher_order_op.py"
+  },
+  {
+    "path": "torch/_dynamo/backends/inductor.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=fSjxEorULdmCAxVxMoNcBTvTtzEpGJv-WHUTHvTE7QU",
+    "bytes": 1104,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/Q0vNQ1SlXTvZrhomgV9Wf/torch/_dynamo/backends/inductor.py"
+  },
+  {
+    "path": "torch/ao/nn/quantized/modules/rnn.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=gH1nq8M2l5Ie2nPBaY8ap91OmPlDAYSwjc_RU98vbdM",
+    "bytes": 2026,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/ao/nn/quantized/modules/rnn.py"
+  },
+  {
+    "path": "torch/ao/nn/intrinsic/quantized/modules/conv_relu.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=_aqBbU6SW8ddej_MH5u36vibx-QBWjS84VTbsckycBw",
+    "bytes": 9575,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/ao/nn/intrinsic/quantized/modules/conv_relu.py"
+  },
+  {
+    "path": "torch/ao/ns/fx/mappings.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=I3ZnL73L2BTNVhhI9cR7GL-mgjjLx18f5n76XoFBt2o",
+    "bytes": 18446,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/ao/ns/fx/mappings.py"
+  },
+  {
+    "path": "torch/ao/quantization/qconfig.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=ky-hewCl0RDB76kj3ti-AXCSiZ2MZNey8VaCfLdwKWE",
+    "bytes": 24629,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/ao/quantization/qconfig.py"
+  },
+  {
+    "path": "torch/ao/quantization/backend_config/native.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=xKBjjC-uZ8qZsbHluftqC6Tn9vo_6ivcsVYFWLFFQtQ",
+    "bytes": 8242,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/ao/quantization/backend_config/native.py"
+  },
+  {
+    "path": "torch/ao/quantization/fx/fuse_handler.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=KlI4Gk2e5bc_8Whfkib45iWLffWnPSU2qvU0QA3-umw",
+    "bytes": 4704,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/ao/quantization/fx/fuse_handler.py"
+  },
+  {
+    "path": "torch/_refs/special/__init__.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=Njxv8FI1zSzZANrqwvhVe9oD3hZsY2rgsWkHF6vwAuc",
+    "bytes": 7035,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/_refs/special/__init__.py"
+  },
+  {
+    "path": "torch/export/decomp_utils.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=3WGV86fP5QSFIe31u9jyG63N-mhnsLxS5V2mtqRBK5c",
+    "bytes": 5753,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/export/decomp_utils.py"
+  },
+  {
+    "path": "torch/distributions/gumbel.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=62tPcwq8-w9HzSsTcCh127OGDsaPWi7NHKBBXtas_ko",
+    "bytes": 3002,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/distributions/gumbel.py"
+  },
+  {
+    "path": "torch/func/__init__.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=QWAhPM0xIlGHLP_bLmSGdjcTcnz_aPsNrYbeShWa-ho",
+    "bytes": 719,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/func/__init__.py"
+  },
+  {
+    "path": "torch/_native/ops/topk/_common.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=WdYaHjjDbjVjcQpejoHE9BZ-jbZnPZ3w8uhUzlTLjtY",
+    "bytes": 2328,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/_native/ops/topk/_common.py"
+  },
+  {
+    "path": "torch/_native/ops/scatter_add/cutedsl_impl.py",
+    "distribution": "torch-2.13.0.dist-info",
+    "record": "sha256=Q2SD247hNFsFBwNyPI6mTpIZHhccTQiqIS9O0Jzvazs",
+    "bytes": 17427,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/torch/_native/ops/scatter_add/cutedsl_impl.py"
+  },
+  {
+    "path": "networkx/drawing/nx_latex.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=aCJs8V5PFhkEjb1LkqMLLn6CEAKgXBsq32sM-1QWWzY",
+    "bytes": 27927,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/wkNxDnjdn9ZrmQEzpkev1/networkx/drawing/nx_latex.py"
+  },
+  {
+    "path": "networkx/drawing/tests/test_agraph.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=QUmeu8lZzOi2-RcTREJCfilobwpr7w2DyMDW5t7Jl2Y",
+    "bytes": 9534,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/wkNxDnjdn9ZrmQEzpkev1/networkx/drawing/tests/test_agraph.py"
+  },
+  {
+    "path": "networkx/drawing/tests/test_layout.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=H11dDJ0XoxfRGq3po7GxQ9-noCE9Rv427Y53G_8jE2Y",
+    "bytes": 25378,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/wkNxDnjdn9ZrmQEzpkev1/networkx/drawing/tests/test_layout.py"
+  },
+  {
+    "path": "networkx/linalg/modularitymatrix.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=R_VITtgIkGenxlsCLN4u6CYxj3_HiPXfeU29yarntRo",
+    "bytes": 4706,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/networkx/linalg/modularitymatrix.py"
+  },
+  {
+    "path": "networkx/classes/function.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=6DbdlPQZ27m-uKROLbFPfo9jLUSXLanDZquWIOVU6FI",
+    "bytes": 45564,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/wkNxDnjdn9ZrmQEzpkev1/networkx/classes/function.py"
+  },
+  {
+    "path": "networkx/classes/tests/test_subgraphviews.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=iIMkbHdtJsgDlcdphhE_uUTJ0VGTGFzKIVvMd7oamoU",
+    "bytes": 13669,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/networkx/classes/tests/test_subgraphviews.py"
+  },
+  {
+    "path": "networkx/algorithms/dominating.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=W7pPtiOOfMvn8LgbmPEdYMTbF1XIQF_NkebeXh5O-F0",
+    "bytes": 8133,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/wkNxDnjdn9ZrmQEzpkev1/networkx/algorithms/dominating.py"
+  },
+  {
+    "path": "networkx/algorithms/reciprocity.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=1WMhLbSMkVPxRPlfUvbgO5FgVvJHn1doXQF4WuqSLQk",
+    "bytes": 2855,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/CtrDtWLECR0c0ZDFw8Tkm/networkx/algorithms/reciprocity.py"
+  },
+  {
+    "path": "networkx/algorithms/vitality.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=8M1cubIydO49El2kwVCURHZ2UwCtfGVFeGS8-JYt1ko",
+    "bytes": 2289,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/CtrDtWLECR0c0ZDFw8Tkm/networkx/algorithms/vitality.py"
+  },
+  {
+    "path": "networkx/algorithms/tree/distance_measures.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=shdjDNhwwkfxyWJfSOvS7x7dy994Hqs6WQ0ZOD5ZKa8",
+    "bytes": 7001,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/wkNxDnjdn9ZrmQEzpkev1/networkx/algorithms/tree/distance_measures.py"
+  },
+  {
+    "path": "networkx/algorithms/isomorphism/isomorph.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=hFz4T2bm2X1Y5L2qEIhd_YUk4VbXc5jhuOMmodIWVt0",
+    "bytes": 8564,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/wkNxDnjdn9ZrmQEzpkev1/networkx/algorithms/isomorphism/isomorph.py"
+  },
+  {
+    "path": "networkx/algorithms/connectivity/stoerwagner.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=WodsJEqKgsmTTcyUBk2u3wV_CXeon-cAzveWgIGgFmA",
+    "bytes": 5431,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/networkx/algorithms/connectivity/stoerwagner.py"
+  },
+  {
+    "path": "networkx/algorithms/approximation/__init__.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=1W0c3YlSfVQtNI4-WiQdzMfPqmcrCar5hJQmrwcsVoI",
+    "bytes": 1234,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/networkx/algorithms/approximation/__init__.py"
+  },
+  {
+    "path": "networkx/algorithms/centrality/betweenness.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=Y7a0cTUQrHFFyid5Z1NeWzx12B0tgCsgEx3pl1_T-6o",
+    "bytes": 23238,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/wkNxDnjdn9ZrmQEzpkev1/networkx/algorithms/centrality/betweenness.py"
+  },
+  {
+    "path": "networkx/algorithms/bipartite/__init__.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=S2JoHWCjKhZz9gVm186twUdtrRb25g6_CIxTcsIrfqA",
+    "bytes": 3937,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/wkNxDnjdn9ZrmQEzpkev1/networkx/algorithms/bipartite/__init__.py"
+  },
+  {
+    "path": "networkx/algorithms/bipartite/tests/test_centrality.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=PABPbrIyoAziEEQKXsZLl2jT36N8DZpNRzEO-jeu89Y",
+    "bytes": 6362,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/CtrDtWLECR0c0ZDFw8Tkm/networkx/algorithms/bipartite/tests/test_centrality.py"
+  },
+  {
+    "path": "networkx/algorithms/bipartite/tests/test_link_analysis.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=GlNMySTK1y3WTwj3z8W0xT3kWDB2SvuEFuGk54a7-uQ",
+    "bytes": 6865,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/wkNxDnjdn9ZrmQEzpkev1/networkx/algorithms/bipartite/tests/test_link_analysis.py"
+  },
+  {
+    "path": "networkx/algorithms/components/__init__.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=Dt74KZWp_cJ_j0lL5hd_S50_hia5DKcC2SjuRnubr6M",
+    "bytes": 173,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/CtrDtWLECR0c0ZDFw8Tkm/networkx/algorithms/components/__init__.py"
+  },
+  {
+    "path": "networkx/algorithms/components/tests/test_strongly_connected.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=-DANvkQlbrPaBGx58MTR6l6dqSxj_7abw78lqdFAsf4",
+    "bytes": 6631,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/wkNxDnjdn9ZrmQEzpkev1/networkx/algorithms/components/tests/test_strongly_connected.py"
+  },
+  {
+    "path": "networkx/algorithms/shortest_paths/tests/test_dense.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=PnQgtqdKZ0mP2QT8Zg8eBjjdzJXd_-45LMd_rmXktbM",
+    "bytes": 10201,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/wkNxDnjdn9ZrmQEzpkev1/networkx/algorithms/shortest_paths/tests/test_dense.py"
+  },
+  {
+    "path": "networkx/algorithms/assortativity/connectivity.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=-V0C5MTqtErl86N-gyrZ487MUyiG5x1QFEZKurOpIJA",
+    "bytes": 4220,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/networkx/algorithms/assortativity/connectivity.py"
+  },
+  {
+    "path": "networkx/algorithms/coloring/equitable_coloring.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=uDcza6PD9qbvwVPUX1MBZbopQdrAEKNk6DpCFkc02tU",
+    "bytes": 16315,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/networkx/algorithms/coloring/equitable_coloring.py"
+  },
+  {
+    "path": "networkx/tests/test_convert_numpy.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=wYOMw_0KQ_3XjqL8tMDpVoKpLFTQzDq7bFG6TdEXHpY",
+    "bytes": 19901,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/wkNxDnjdn9ZrmQEzpkev1/networkx/tests/test_convert_numpy.py"
+  },
+  {
+    "path": "networkx/tests/test_import.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=Gm4ujfH9JkQtDrSjOlwXXXUuubI057wskKLCkF6Z92k",
+    "bytes": 220,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/networkx/tests/test_import.py"
+  },
+  {
+    "path": "networkx/utils/tests/test__init.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=QE0i-lNE4pG2eYjB2mZ0uw7jPD-7TdL7Y9p73JoWQmo",
+    "bytes": 363,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/networkx/utils/tests/test__init.py"
+  },
+  {
+    "path": "networkx/generators/tests/test_mycielski.py",
+    "distribution": "networkx-3.7.dist-info",
+    "record": "sha256=fwZLO1ybcltRy6TzCel8tPBil1oZWv9QSXs779H6Xt0",
+    "bytes": 946,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/networkx/generators/tests/test_mycielski.py"
+  },
+  {
+    "path": "sympy/conftest.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=wvibr2FiWTlUcLTYAFEL8tSAKWPnv_Q6Cj4lARBCM0U",
+    "bytes": 2775,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/kxnMG8MxzMZAt4Yy_F110/sympy/conftest.py"
+  },
+  {
+    "path": "sympy/series/tests/test_nseries.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=uzhzYswSOe9Gh_nWKeO69tvGPMLd-9tqk4HBYX8JIm4",
+    "bytes": 18284,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/series/tests/test_nseries.py"
+  },
+  {
+    "path": "sympy/core/backend.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=hF9cftjzB92QEcwimekj0gQ9CEMXTH-leH3l8QcguGo",
+    "bytes": 5273,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/core/backend.py"
+  },
+  {
+    "path": "sympy/core/tests/test_basic.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=skFOWZRNqDujmQ8GAskWH7OYcsrO0miBdM92Gy01k0U",
+    "bytes": 10230,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/core/tests/test_basic.py"
+  },
+  {
+    "path": "sympy/core/tests/__init__.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU",
+    "bytes": 0,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/core/tests/__init__.py"
+  },
+  {
+    "path": "sympy/polys/subresultants_qq_zz.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=VFKTAe3iGMCimLkc9GeuwG5o4SB0x2T5kRwxe4A5BDo",
+    "bytes": 88241,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/polys/subresultants_qq_zz.py"
+  },
+  {
+    "path": "sympy/polys/groebnertools.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=NhK-XcFR9e4chDDJJ-diXb7XYuw9zcixFA_riomThPM",
+    "bytes": 23342,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/kxnMG8MxzMZAt4Yy_F110/sympy/polys/groebnertools.py"
+  },
+  {
+    "path": "sympy/polys/domains/old_polynomialring.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=KQcH58oHnHzOpDdWojZiLlHDqrAiUd4OAaBIZigqpyc",
+    "bytes": 15982,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/polys/domains/old_polynomialring.py"
+  },
+  {
+    "path": "sympy/polys/tests/test_dispersion.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=S3diTgz7WKH88ulGNT3ijiQ8Y53Rpul6jATBJMGyQdw",
+    "bytes": 3182,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/polys/tests/test_dispersion.py"
+  },
+  {
+    "path": "sympy/polys/tests/test_groebnertools.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=ZWHBcCCOVNwDxuJWg1WPo0krTHx1m1wTPi2cOYPsAT4",
+    "bytes": 18584,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/kxnMG8MxzMZAt4Yy_F110/sympy/polys/tests/test_groebnertools.py"
+  },
+  {
+    "path": "sympy/polys/numberfields/galoisgroups.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=c4s6z_mEUkoWKezFrfjKiU2tZnEnxR4m1LYaagicVno",
+    "bytes": 20671,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/kxnMG8MxzMZAt4Yy_F110/sympy/polys/numberfields/galoisgroups.py"
+  },
+  {
+    "path": "sympy/polys/numberfields/tests/test_basis.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=96BJ7e4oPDKXyvlRrUkiQxmHyjRGpOkAC7R3ln-jgNE",
+    "bytes": 4580,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/polys/numberfields/tests/test_basis.py"
+  },
+  {
+    "path": "sympy/polys/matrices/tests/test_lll.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=RGYTDGbLfFvAMTESv-S1kqSWzwtOIjmguqXO3yGCjH4",
+    "bytes": 6624,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/polys/matrices/tests/test_lll.py"
+  },
+  {
+    "path": "sympy/strategies/core.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=nsH6LZgyc_aslv4Na5XvJMEizC6uSzscRlVW91k1pu4",
+    "bytes": 3956,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/strategies/core.py"
+  },
+  {
+    "path": "sympy/strategies/branch/tests/test_traverse.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=6rikMnZdamSzww1sSiM-aQwqa4lQrpM-DpOU9XCbiOQ",
+    "bytes": 1322,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/strategies/branch/tests/test_traverse.py"
+  },
+  {
+    "path": "sympy/strategies/branch/tests/test_tools.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=4BDkqVqrTlsivQ0PldQr6PjVZsAikc39tSxGAQA3ir8",
+    "bytes": 942,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/strategies/branch/tests/test_tools.py"
+  },
+  {
+    "path": "sympy/strategies/tests/test_core.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=42XHlv1hN1S1QPEf2r9pddZ2EQL6o4FEPQvfo-UmXcw",
+    "bytes": 2152,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/strategies/tests/test_core.py"
+  },
+  {
+    "path": "sympy/ntheory/elliptic_curve.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=ZT677EHi26BkZdRTLs1Tf4VSyMxDzJrwk1xECoMT7Qg",
+    "bytes": 11544,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/ntheory/elliptic_curve.py"
+  },
+  {
+    "path": "sympy/discrete/tests/__init__.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU",
+    "bytes": 0,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/discrete/tests/__init__.py"
+  },
+  {
+    "path": "sympy/printing/repr.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=GLO6WFOunZ8k0Om0g1VbGW2Y5uOP0IVEo_pIGO8HoNw",
+    "bytes": 11545,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/printing/repr.py"
+  },
+  {
+    "path": "sympy/printing/pycode.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=LsDnREZEJVw0zsy_AjRSkYER-acomwQiDicrWBmnoW8",
+    "bytes": 27048,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/printing/pycode.py"
+  },
+  {
+    "path": "sympy/printing/pretty/pretty.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=KmEXRb6XEtI5tiQYssueibKKrJVF1F1mwrF1uHGxmpM",
+    "bytes": 105024,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/printing/pretty/pretty.py"
+  },
+  {
+    "path": "sympy/solvers/diophantine/tests/__init__.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU",
+    "bytes": 0,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/solvers/diophantine/tests/__init__.py"
+  },
+  {
+    "path": "sympy/liealgebras/type_f.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=gIyk4zA04uIpwizcYdvKsZ_xkcpPLId6LIHR6tp38dk",
+    "bytes": 4423,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/kxnMG8MxzMZAt4Yy_F110/sympy/liealgebras/type_f.py"
+  },
+  {
+    "path": "sympy/liealgebras/tests/test_cartan_matrix.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=KCsakn0fHKHRbIUcrUkHBIKkudl3_ISUdHrfJy-UOd4",
+    "bytes": 303,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/liealgebras/tests/test_cartan_matrix.py"
+  },
+  {
+    "path": "sympy/utilities/lambdify.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=lepieExI19QvZYPrGl_WZaFwta8YZBo6AgxDnwq01ow",
+    "bytes": 57816,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/kxnMG8MxzMZAt4Yy_F110/sympy/utilities/lambdify.py"
+  },
+  {
+    "path": "sympy/utilities/tests/test_source.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=ObjrJxZFVhLgXjVmFHUy7bti9UPPgOh5Cptw8lHW9mM",
+    "bytes": 289,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/utilities/tests/test_source.py"
+  },
+  {
+    "path": "sympy/testing/matrices.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=VWBPdjIUYNHE7fdbYcmQwQTYcIWpOP9tFn9A0rGCBmE",
+    "bytes": 216,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/testing/matrices.py"
+  },
+  {
+    "path": "sympy/integrals/intpoly.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=SXjd_f295YrYsvoQpzE2EQM5xaQnnj0zvHdYW5KEdn0",
+    "bytes": 43266,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/integrals/intpoly.py"
+  },
+  {
+    "path": "sympy/integrals/tests/test_prde.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=2BZmEDasdx_3l64-9hioArysDj6Nl520GpQN2xnEE_A",
+    "bytes": 16360,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/integrals/tests/test_prde.py"
+  },
+  {
+    "path": "sympy/assumptions/ask_generated.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=whNIU5tj2UkEGHPAfk-_89ahvVERs4npOB0JYVbIQJc",
+    "bytes": 23558,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/assumptions/ask_generated.py"
+  },
+  {
+    "path": "sympy/plotting/intervalmath/tests/test_interval_membership.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=D1KjcrLxAwOmDEUqA-8TCqkFWGtmeerR9KwmzS7tyjk",
+    "bytes": 4216,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/kxnMG8MxzMZAt4Yy_F110/sympy/plotting/intervalmath/tests/test_interval_membership.py"
+  },
+  {
+    "path": "sympy/sets/powerset.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=vIGnSYKngEPEt6V-6beDOXAOY9ugDLJ8fXOx5H9JJck",
+    "bytes": 2913,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/sets/powerset.py"
+  },
+  {
+    "path": "sympy/sets/handlers/add.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=_ucFvxuDv9wsmKxGkCDUERtYk3I_tQxjZjY3ZkroWs0",
+    "bytes": 1863,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/sets/handlers/add.py"
+  },
+  {
+    "path": "sympy/combinatorics/schur_number.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=YdsyA7n_z9tyfRTSRfIjEjtnGo5EuDGBMUS09AQ2MxU",
+    "bytes": 4437,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/combinatorics/schur_number.py"
+  },
+  {
+    "path": "sympy/functions/special/polynomials.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=IdxRf8D1iFA-oYfLyTcUmsSCeuWja4h2ExNb8UShwxg",
+    "bytes": 46753,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/functions/special/polynomials.py"
+  },
+  {
+    "path": "sympy/functions/special/tests/test_error_functions.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=TkhkIKiuRZS78-F4ZTt5rvr3hfknp654IEhmHhRXT48",
+    "bytes": 33565,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/kxnMG8MxzMZAt4Yy_F110/sympy/functions/special/tests/test_error_functions.py"
+  },
+  {
+    "path": "sympy/functions/special/tests/test_beta_functions.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=yxfgu-wmNEeMfaFABiDHYmuZpZup9FTp0ZYerlc6hhc",
+    "bytes": 3786,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/kxnMG8MxzMZAt4Yy_F110/sympy/functions/special/tests/test_beta_functions.py"
+  },
+  {
+    "path": "sympy/functions/elementary/exponential.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=GoDlUBPcmpRjYehRZOooF0bISSK_oxpJlkqaE_KNTeQ",
+    "bytes": 42610,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/functions/elementary/exponential.py"
+  },
+  {
+    "path": "sympy/functions/elementary/piecewise.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=Nv32I9lktMPHF3k0JpifbcgCgIz7CyQ8KwI_t1BaVsI",
+    "bytes": 58285,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/functions/elementary/piecewise.py"
+  },
+  {
+    "path": "sympy/tensor/array/array_derivatives.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=c-gYeA_qpXOY3aexyz7psSqmTVIGVBrcGDvSkW5dZV0",
+    "bytes": 4796,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/kxnMG8MxzMZAt4Yy_F110/sympy/tensor/array/array_derivatives.py"
+  },
+  {
+    "path": "sympy/tensor/array/arrayop.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=KvFGYWcYvChWkThtVAotlaSrcfjHogAxvpxWvp6dSgo",
+    "bytes": 18397,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/tensor/array/arrayop.py"
+  },
+  {
+    "path": "sympy/tensor/array/tests/test_ndim_array_conversions.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=CUGDCbCcslACy3Ngq-zoig9JnO4yHTw3IPcKy0FnRpw",
+    "bytes": 648,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/tensor/array/tests/test_ndim_array_conversions.py"
+  },
+  {
+    "path": "sympy/tensor/array/tests/test_ndim_array.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=KH-9LAME3ldVIu5n7Vd_Xr36dN4frCdiF9qZdBWETu0",
+    "bytes": 2232,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/tensor/array/tests/test_ndim_array.py"
+  },
+  {
+    "path": "sympy/tensor/tests/test_tensor_element.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=1dF96FtqUGaJzethw23vJIj3H5KdxsU1Xyd4DU54EB4",
+    "bytes": 908,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/tensor/tests/test_tensor_element.py"
+  },
+  {
+    "path": "sympy/physics/wigner.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=L5QyzD4yH4SyTk7-WCCd07XK0_Pd9nz7sHwo2zOWV7I",
+    "bytes": 39588,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/physics/wigner.py"
+  },
+  {
+    "path": "sympy/physics/mechanics/system.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=VsPPQfJs0gBLKJYNQ2ZLmD98JWLd1IZy0QGRwI21_TM",
+    "bytes": 59457,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/physics/mechanics/system.py"
+  },
+  {
+    "path": "sympy/physics/mechanics/pathway.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=2T71x06X8CZ20NUyXkMnP83gKsx2wJJEbPJS-1gMXFA",
+    "bytes": 26555,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/physics/mechanics/pathway.py"
+  },
+  {
+    "path": "sympy/physics/mechanics/tests/test_body.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=ygHfWeL6-3LW9gqXHfzdvqQhJWxg2-U2KQIHKqGNqKQ",
+    "bytes": 12067,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/kxnMG8MxzMZAt4Yy_F110/sympy/physics/mechanics/tests/test_body.py"
+  },
+  {
+    "path": "sympy/physics/units/tests/test_prefixes.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=Y3vlIReWGu8bwwZTrNGZSVoWYjhzgUZC33CDeyIvw48",
+    "bytes": 2238,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/physics/units/tests/test_prefixes.py"
+  },
+  {
+    "path": "sympy/physics/continuum_mechanics/arch.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=TKaoHk7-ToNP0n6ZGFF_cW6x965C-D3iENiqFo74ZJU",
+    "bytes": 39243,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/physics/continuum_mechanics/arch.py"
+  },
+  {
+    "path": "sympy/physics/vector/tests/test_output.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=hgqlE-_zN_EPE_gIZ_v2uXB1y2auo39hReWpvFUm2QQ",
+    "bytes": 2612,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/physics/vector/tests/test_output.py"
+  },
+  {
+    "path": "sympy/physics/quantum/shor.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=DVwPxLAPSr8t3F3aXJIPe4o5XSuQiE6a6eA6OYmdZFw",
+    "bytes": 5504,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/physics/quantum/shor.py"
+  },
+  {
+    "path": "sympy/parsing/latex/__init__.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=CfRRwZZo2qMF2HksyjGer8qSwhx0T4wnXsa2HKxCvUE",
+    "bytes": 8968,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/parsing/latex/__init__.py"
+  },
+  {
+    "path": "sympy/parsing/tests/test_latex.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=WvKNJ5mtxfzl-rBiE9hc2aEz81b5BmI3SKO7sRZiNbI",
+    "bytes": 11765,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/parsing/tests/test_latex.py"
+  },
+  {
+    "path": "sympy/parsing/autolev/test-examples/ruletest1.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=eIKEFzEwkCFhPF0GTmf6SLuxXT384GqdCJnhiL2U0BQ",
+    "bytes": 555,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/parsing/autolev/test-examples/ruletest1.py"
+  },
+  {
+    "path": "sympy/parsing/autolev/test-examples/ruletest8.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=8tgbwJ-ir0wiOCsgIFCAu4uD8SieYRrLoLzEfae5YQY",
+    "bytes": 2690,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/parsing/autolev/test-examples/ruletest8.py"
+  },
+  {
+    "path": "sympy/parsing/autolev/test-examples/pydy-example-repo/double_pendulum.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=uU9azTUGrY15BSDtw5T_V-7gmjyhHbXslzkmwBvFjGk",
+    "bytes": 1583,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/parsing/autolev/test-examples/pydy-example-repo/double_pendulum.py"
+  },
+  {
+    "path": "sympy/simplify/hyperexpand.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=sTWd1-VeLr0NTr-cm6nftjmO_gVPqa1P9ud_rvSZS54",
+    "bytes": 84420,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/simplify/hyperexpand.py"
+  },
+  {
+    "path": "sympy/vector/coordsysrect.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=0BKdr8AG8BUJnShIIyyCvkU5OVdjtZsKcBuGgdbvdHw",
+    "bytes": 36833,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/kxnMG8MxzMZAt4Yy_F110/sympy/vector/coordsysrect.py"
+  },
+  {
+    "path": "sympy/matrices/decompositions.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=5OjwFe5Z_eM2XoZPqrNFY9-Esq3cO_8yqFxT9QBPHgQ",
+    "bytes": 47865,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/kxnMG8MxzMZAt4Yy_F110/sympy/matrices/decompositions.py"
+  },
+  {
+    "path": "sympy/matrices/exceptions.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=8diN_ojMGC93XpqvZeS5ow4crlFxSkm6WqtnIK5j81E",
+    "bytes": 503,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/matrices/exceptions.py"
+  },
+  {
+    "path": "sympy/matrices/expressions/matpow.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=puuYB49wr1WzFxhT9DcTWtF2bGDFWcbJ7oh14ATQARs",
+    "bytes": 5140,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/matrices/expressions/matpow.py"
+  },
+  {
+    "path": "sympy/matrices/expressions/matadd.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=0MSanal1HKVEuCBEpehKwfUX4fuM9UMy6Fg2H5noA0s",
+    "bytes": 4773,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/matrices/expressions/matadd.py"
+  },
+  {
+    "path": "sympy/matrices/expressions/tests/test_blockmatrix.py",
+    "distribution": "sympy-1.14.0.dist-info",
+    "record": "sha256=ANNR7e2eiGIvabMNezxRVzipmA8oUwmDTrBTz5ALMzU",
+    "bytes": 16541,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/sympy/matrices/expressions/tests/test_blockmatrix.py"
+  },
+  {
+    "path": "pygments/token.py",
+    "distribution": "pygments-2.21.0.dist-info",
+    "record": "sha256=DVil5T2ltHkTgQTUYy1dMtgyigjavCs1ypE4Qf2CrGo",
+    "bytes": 6229,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/pygments/token.py"
+  },
+  {
+    "path": "pygments/style.py",
+    "distribution": "pygments-2.21.0.dist-info",
+    "record": "sha256=KYKfa_XPQTOPxphTuRrT9UGnbj46_GtrEyQRlGe6q1c",
+    "bytes": 6479,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/pygments/style.py"
+  },
+  {
+    "path": "pygments/cmdline.py",
+    "distribution": "pygments-2.21.0.dist-info",
+    "record": "sha256=k_r5QTPmEQFHanJqxex-k_1yrUysww2GI3VlyfisEIo",
+    "bytes": 23542,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/pygments/cmdline.py"
+  },
+  {
+    "path": "pygments/__main__.py",
+    "distribution": "pygments-2.21.0.dist-info",
+    "record": "sha256=QZWj0T6TTRsqr-w-0YvVILo1DyAvzzydGCRONwdEzqo",
+    "bytes": 351,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/pygments/__main__.py"
+  },
+  {
+    "path": "pygments/lexers/verifpal.py",
+    "distribution": "pygments-2.21.0.dist-info",
+    "record": "sha256=0iZTQWawF9f7lFZnFNPTwYRiu6L_25PtEI83tuCAmKY",
+    "bytes": 2664,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/pygments/lexers/verifpal.py"
+  },
+  {
+    "path": "pygments/lexers/web.py",
+    "distribution": "pygments-2.21.0.dist-info",
+    "record": "sha256=YMrxoHlKlQwfFJlae9_T9F1Vp03YA7IWsmgqLzh6pgI",
+    "bytes": 916,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/pygments/lexers/web.py"
+  },
+  {
+    "path": "pygments/lexers/maple.py",
+    "distribution": "pygments-2.21.0.dist-info",
+    "record": "sha256=aZ4lMzm9hEtgHm0-tkBhBn3SpwR6srI1eW55tyP_3ms",
+    "bytes": 7965,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/pygments/lexers/maple.py"
+  },
+  {
+    "path": "pygments/lexers/blueprint.py",
+    "distribution": "pygments-2.21.0.dist-info",
+    "record": "sha256=dW-L5bFIiWxRPDashee2EOYmXIRHdwuCZ1y3iN-a6_0",
+    "bytes": 6191,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/pygments/lexers/blueprint.py"
+  },
+  {
+    "path": "pygments/lexers/gdscript.py",
+    "distribution": "pygments-2.21.0.dist-info",
+    "record": "sha256=1aIezdxqgC6zWhq6oA8G1bxntrP4YlwT7Y_5lFQWqwM",
+    "bytes": 7565,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/pygments/lexers/gdscript.py"
+  },
+  {
+    "path": "pygments/lexers/unicon.py",
+    "distribution": "pygments-2.21.0.dist-info",
+    "record": "sha256=blg8AQYmU4SujjtyATTljEY-ML39isICvIYb1FYhL5k",
+    "bytes": 18562,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/pygments/lexers/unicon.py"
+  },
+  {
+    "path": "pygments/lexers/xorg.py",
+    "distribution": "pygments-2.21.0.dist-info",
+    "record": "sha256=LUKU91t1Opc3W_F64UGzx0nB-HqKlN3Cn_6tFzt5IYw",
+    "bytes": 928,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/pygments/lexers/xorg.py"
+  },
+  {
+    "path": "pygments/lexers/x10.py",
+    "distribution": "pygments-2.21.0.dist-info",
+    "record": "sha256=0Z0hhPboSfIVE9NTi_gTXgI_uRrS8ARj0vm7JwZagz8",
+    "bytes": 1946,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/pygments/lexers/x10.py"
+  },
+  {
+    "path": "pygments/lexers/_scheme_builtins.py",
+    "distribution": "pygments-2.21.0.dist-info",
+    "record": "sha256=O3BRtt5suTESbZ_bSReQ6D0r0G_Sq_i4wCcUkdUrdS0",
+    "bytes": 32567,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/pygments/lexers/_scheme_builtins.py"
+  },
+  {
+    "path": "pygments/lexers/purescript.py",
+    "distribution": "pygments-2.21.0.dist-info",
+    "record": "sha256=cbDAly-NUN4O_SUk6v5zJSUQzoZZJbOTMHWeZRPx6lo",
+    "bytes": 6086,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/pygments/lexers/purescript.py"
+  },
+  {
+    "path": "pygments/styles/solarized.py",
+    "distribution": "pygments-2.21.0.dist-info",
+    "record": "sha256=VdtLYhQ7xDj_iTHP_Ekr6rAdMcE3fRSrglngVSal63M",
+    "bytes": 4250,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/pygments/styles/solarized.py"
+  },
+  {
+    "path": "pygments/styles/autumn.py",
+    "distribution": "pygments-2.21.0.dist-info",
+    "record": "sha256=P9IX5utjDvdJgevM0kNGwE-wvVysRh1lgMkjO1dhDDE",
+    "bytes": 2198,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/pygments/styles/autumn.py"
+  },
+  {
+    "path": "_pytest/pytester.py",
+    "distribution": "pytest-9.1.1.dist-info",
+    "record": "sha256=nnkdCjRGsEMk5wu5OXEvjUkABa0T60arMklZK6oI_xc",
+    "bytes": 62905,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/_pytest/pytester.py"
+  },
+  {
+    "path": "_pytest/raises.py",
+    "distribution": "pytest-9.1.1.dist-info",
+    "record": "sha256=3CiAXx4cLbg18aUpAhjv7l1RDRkK0zPWFmPVm9bRNiw",
+    "bytes": 59770,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/_pytest/raises.py"
+  },
+  {
+    "path": "_pytest/_io/wcwidth.py",
+    "distribution": "pytest-9.1.1.dist-info",
+    "record": "sha256=cUEJ74UhweICwbKvU2q6noZcNgD0QlBEB9CfakGYaqA",
+    "bytes": 1289,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/_pytest/_io/wcwidth.py"
+  },
+  {
+    "path": "transformers/optimization_tf.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=JYL8tVbLyB3puGJ0b2i1gGaidCHSxm8_jYmm7z-ZJ-4",
+    "bytes": 16718,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/optimization_tf.py"
+  },
+  {
+    "path": "transformers/safetensors_conversion.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=LjnFRVfXRsOhIHdyiw6pevDJcMdsKwc3kvQ6csPs9wA",
+    "bytes": 4074,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/safetensors_conversion.py"
+  },
+  {
+    "path": "transformers/modeling_gguf_pytorch_utils.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=VkHVLcZablhT925mSOHPeooJuSBZ4-22_BIaX-CObRU",
+    "bytes": 20366,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/modeling_gguf_pytorch_utils.py"
+  },
+  {
+    "path": "transformers/convert_pytorch_checkpoint_to_tf2.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=jII-TBFhdBdeS060ZUV_ZpgHkylkRrlrbO0QQ7XynTg",
+    "bytes": 14422,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/convert_pytorch_checkpoint_to_tf2.py"
+  },
+  {
+    "path": "transformers/debug_utils.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=9IaV6by9RhH3x2zj9nbhx0M7tDmIDr4GZC3L-uN_DR0",
+    "bytes": 12910,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/debug_utils.py"
+  },
+  {
+    "path": "transformers/quantizers/quantizer_vptq.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=OCz4vueKXQg9Az5KJ97COYZBnHaHhYYF3a4H56fvDDk",
+    "bytes": 3764,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/quantizers/quantizer_vptq.py"
+  },
+  {
+    "path": "transformers/pipelines/audio_classification.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=ZDKCHhh7RE0OR_qD4Oq6jdY3qb5JpuUMJOioKudYyG8",
+    "bytes": 11200,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/pipelines/audio_classification.py"
+  },
+  {
+    "path": "transformers/utils/sentencepiece_model_pb2.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=WcMZRm2-571XwxSfo-6FZih9fDy_Zl5mMwqrDrC1Dlg",
+    "bytes": 50663,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/utils/sentencepiece_model_pb2.py"
+  },
+  {
+    "path": "transformers/utils/sentencepiece_model_pb2_new.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=ahaV--amhGIL3nXFCTHqezqxuGXm8SHr_C3Zvj7KbAY",
+    "bytes": 6598,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/utils/sentencepiece_model_pb2_new.py"
+  },
+  {
+    "path": "transformers/utils/model_parallel_utils.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=dmPsjrVGLxwYHsGXyvFQrcl-aZRQA5hydi4I7_sBAoo",
+    "bytes": 2257,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/utils/model_parallel_utils.py"
+  },
+  {
+    "path": "transformers/utils/bitsandbytes.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=LzOKwcHWAxxZZv-7Ts9Q0vlEYvHd18affVgVbiR3Tzs",
+    "bytes": 1040,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/utils/bitsandbytes.py"
+  },
+  {
+    "path": "transformers/models/albert/modeling_albert.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=UeUK-zmo7Gz66IJaJJSsSMyVg4dIWDoN8XGENjX4v0k",
+    "bytes": 58338,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/albert/modeling_albert.py"
+  },
+  {
+    "path": "transformers/models/starcoder2/modular_starcoder2.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=HlS9Rg6ifP-GSqiWNJd7dxf9AUd7rWlvavfZJJtrHWA",
+    "bytes": 9704,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/starcoder2/modular_starcoder2.py"
+  },
+  {
+    "path": "transformers/models/convnext/modeling_tf_convnext.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=CQ3AIeUarAgYgMsI9_aWcMjD6ie-JYI22JSw9rGzo9E",
+    "bytes": 27199,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/convnext/modeling_tf_convnext.py"
+  },
+  {
+    "path": "transformers/models/gpt_neox/__init__.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=6CL92CuqBTIDJ-YH_doFwb-oRylAffw7pwxedv3a-40",
+    "bytes": 1043,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/gpt_neox/__init__.py"
+  },
+  {
+    "path": "transformers/models/electra/modeling_flax_electra.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=I8aa02ZkCCKL6ch_L38BFxYmQK-EWuMnSEUsT_qUxPE",
+    "bytes": 62613,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/electra/modeling_flax_electra.py"
+  },
+  {
+    "path": "transformers/models/evolla/__init__.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=pOj8KGoc9jqtS_PYTeNCxZUtQrlFR_txE-kdZpiAkCw",
+    "bytes": 1030,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/evolla/__init__.py"
+  },
+  {
+    "path": "transformers/models/bit/image_processing_bit.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=YW-8pzn8uS2Mr0Nof3QBZxuAhXmDCpaNxaWXFJdl_VU",
+    "bytes": 15912,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/bit/image_processing_bit.py"
+  },
+  {
+    "path": "transformers/models/timesfm/modeling_timesfm.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=oW_6yao7FOzfvlXxGVAsdK2AZlfX7H1f0R77yUDR-oQ",
+    "bytes": 34502,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/timesfm/modeling_timesfm.py"
+  },
+  {
+    "path": "transformers/models/lxmert/tokenization_lxmert_fast.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=5E0lKrkPi1dSrXcZ2BxipbDtMMBVjcwFStrOBVELRv8",
+    "bytes": 6625,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/lxmert/tokenization_lxmert_fast.py"
+  },
+  {
+    "path": "transformers/models/clip/image_processing_clip.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=yCu3mXUS_6mqNlppQx9m3LYUof8-aZJkgXe1ZMkfF68",
+    "bytes": 16976,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/clip/image_processing_clip.py"
+  },
+  {
+    "path": "transformers/models/sam_hq/__init__.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=DtfMcRDroMaiZ9FKrgymx4rCyGuP5r1dxr-wzjS0T0Q",
+    "bytes": 1029,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/sam_hq/__init__.py"
+  },
+  {
+    "path": "transformers/models/groupvit/modeling_groupvit.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=cVYDDVMUkRAZqXkX2XNOi_ikP1wXuA89ThWafIBGLRQ",
+    "bytes": 61501,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/groupvit/modeling_groupvit.py"
+  },
+  {
+    "path": "transformers/models/llava_next_video/configuration_llava_next_video.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=bCs1V56wrLM3j4z9l0j5rpJxihDup4bq3sZMCaw-qrc",
+    "bytes": 8362,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/llava_next_video/configuration_llava_next_video.py"
+  },
+  {
+    "path": "transformers/models/tapas/tokenization_tapas.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=tN5PcvOE_GT9NOYggB4GYI0kRl3mj_gyqUHDQ0bjGXE",
+    "bytes": 118445,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/tapas/tokenization_tapas.py"
+  },
+  {
+    "path": "transformers/models/dinat/__init__.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=N0HykajUSY5KsvPQNUxc8jAuuJntmDJ-Dz8Qa8_sJ9E",
+    "bytes": 991,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/dinat/__init__.py"
+  },
+  {
+    "path": "transformers/models/seamless_m4t/__init__.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=Y5c_W1E83fh8ToTMqF4NcReXzKZiTDv3A4ePoNUxXDg",
+    "bytes": 1194,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/seamless_m4t/__init__.py"
+  },
+  {
+    "path": "transformers/models/vit/modeling_flax_vit.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=95SBab3CAIoD3bwgWfN6Y7v44fR6EHNJVDuPqi-FOX8",
+    "bytes": 25503,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/vit/modeling_flax_vit.py"
+  },
+  {
+    "path": "transformers/models/vit/modeling_tf_vit.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=r__S8GF7AS7xbOpnVp_JOdE4ByH1H1WBnv1CZdGLTmE",
+    "bytes": 37321,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/vit/modeling_tf_vit.py"
+  },
+  {
+    "path": "transformers/models/segformer/feature_extraction_segformer.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=7JHygTUT0pw36WCxl14kgaPvxqNBPFf9AOUuxQKHhlg",
+    "bytes": 1324,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/segformer/feature_extraction_segformer.py"
+  },
+  {
+    "path": "transformers/models/paligemma/modeling_paligemma.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=gShN8-W9VZQoic9Z9V-13ddAqQpJ8SIp5Y4nGRbi4L0",
+    "bytes": 27517,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/paligemma/modeling_paligemma.py"
+  },
+  {
+    "path": "transformers/models/musicgen_melody/__init__.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=WVEsVs7g0XlpO_yd1X0X4QnMjhG0h_n6T41FpdJcnS8",
+    "bytes": 1011,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/musicgen_melody/__init__.py"
+  },
+  {
+    "path": "transformers/models/idefics/configuration_idefics.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=4j7sAul74adsu3fXPiq34FePCqJJaafCg2dmHU9h_GU",
+    "bytes": 15304,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/idefics/configuration_idefics.py"
+  },
+  {
+    "path": "transformers/models/mobilenet_v2/configuration_mobilenet_v2.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=kEuy8U-ShxevXr2lGluqA4BRAq_3-UsWN4YutMm1yoc",
+    "bytes": 6835,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/mobilenet_v2/configuration_mobilenet_v2.py"
+  },
+  {
+    "path": "transformers/models/idefics2/image_processing_idefics2.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=jou_cXD3NnR4mA3qqGVEFdQUGSjMOW0DXP2Kvypr3OQ",
+    "bytes": 26485,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/idefics2/image_processing_idefics2.py"
+  },
+  {
+    "path": "transformers/models/splinter/configuration_splinter.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=ZajZPX6f9K7gBqp2PbOtmJg-_fAU8h72tKdTNjyQV0M",
+    "bytes": 5625,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/splinter/configuration_splinter.py"
+  },
+  {
+    "path": "transformers/models/opt/modeling_flax_opt.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=a1OCINHVTj-osjuJUxfYZgTS-1j7r6EPT-TgAD9lP74",
+    "bytes": 31631,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/opt/modeling_flax_opt.py"
+  },
+  {
+    "path": "transformers/models/fuyu/processing_fuyu.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=nPn1WApmZFOwmrb5VXJsrU2mcUu3iovKAprUB-enrdY",
+    "bytes": 36580,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/fuyu/processing_fuyu.py"
+  },
+  {
+    "path": "transformers/models/glm4_moe/configuration_glm4_moe.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=uhNU910obiitL0_IAnbO_STy7uuIBY_uugscT0caAJE",
+    "bytes": 13422,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/glm4_moe/configuration_glm4_moe.py"
+  },
+  {
+    "path": "transformers/models/patchtsmixer/configuration_patchtsmixer.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=h1w-YRD_Q9AgQUKBRvzxi2JBEW35NbDap8xkdui-c3U",
+    "bytes": 12580,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/patchtsmixer/configuration_patchtsmixer.py"
+  },
+  {
+    "path": "transformers/models/bros/__init__.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=wT0avJ_J50-WK6jOB-6UbgN5kjHiBwG-NNT_iefMXr8",
+    "bytes": 1024,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/bros/__init__.py"
+  },
+  {
+    "path": "transformers/models/internvl/processing_internvl.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=-T2_le1vclNms56R5CVGUhTaCmehsWRVNqGXtJJeLf0",
+    "bytes": 16265,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/internvl/processing_internvl.py"
+  },
+  {
+    "path": "transformers/models/roc_bert/tokenization_roc_bert.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=Zo8YLFlTCOtUMFXU-et41Ktw_S61n9XRHn7DulIJ4tQ",
+    "bytes": 49487,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/roc_bert/tokenization_roc_bert.py"
+  },
+  {
+    "path": "transformers/models/textnet/image_processing_textnet.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=fR9wH7_0gal82_n-4MwsLImm4_3i9qPOR-fvtKMupn0",
+    "bytes": 17711,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/textnet/image_processing_textnet.py"
+  },
+  {
+    "path": "transformers/models/phi4_multimodal/modular_phi4_multimodal.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=baJPg7nFo1IsnhGGc7JyIaStQ8lJSJVQQ6AqE7hOgCs",
+    "bytes": 77473,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/phi4_multimodal/modular_phi4_multimodal.py"
+  },
+  {
+    "path": "transformers/models/megatron_bert/configuration_megatron_bert.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=Z8A_6hWPyBaC_64AHDlvxGB-08uqpGAyHlX12ty1k2s",
+    "bytes": 6517,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/megatron_bert/configuration_megatron_bert.py"
+  },
+  {
+    "path": "transformers/models/ernie4_5/__init__.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=5tqpitaOWvT1CdXTgMtMLCKIkUG683y3jdcTZ8yuwfM",
+    "bytes": 997,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/ernie4_5/__init__.py"
+  },
+  {
+    "path": "transformers/models/mistral/configuration_mistral.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=e423bLQqzKYrnIr6tkVAfcMJVqmReWzlc_jVj4jBH2o",
+    "bytes": 7757,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/mistral/configuration_mistral.py"
+  },
+  {
+    "path": "transformers/models/seggpt/configuration_seggpt.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=VeHoocblt-EIRF-FO8JkrVGUcBPKbXPWAJMlXRllz44",
+    "bytes": 6492,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/seggpt/configuration_seggpt.py"
+  },
+  {
+    "path": "transformers/models/deprecated/tvlt/configuration_tvlt.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=PaJXPttCw4t832Pqo1pV0MBYa9f-oDljfmc2SBMFXCI",
+    "bytes": 8650,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/deprecated/tvlt/configuration_tvlt.py"
+  },
+  {
+    "path": "transformers/models/deprecated/tvlt/feature_extraction_tvlt.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=DnmB8RIloaTfmfYIKTL-9hMGuVtWMgwazIJihx-6dxc",
+    "bytes": 10591,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/deprecated/tvlt/feature_extraction_tvlt.py"
+  },
+  {
+    "path": "transformers/models/deprecated/mctct/configuration_mctct.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=se5nTkdBsiWJT9eGIbsAju4olV_f-GddUDtba3HUSEk",
+    "bytes": 9101,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/deprecated/mctct/configuration_mctct.py"
+  },
+  {
+    "path": "transformers/models/deprecated/bort/__init__.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU",
+    "bytes": 0,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/deprecated/bort/__init__.py"
+  },
+  {
+    "path": "transformers/models/deprecated/vit_hybrid/configuration_vit_hybrid.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=11CxocubWXalAiG6tpbNEBXRc5N7nVaeWmlgRhxyrG0",
+    "bytes": 8262,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/models/deprecated/vit_hybrid/configuration_vit_hybrid.py"
+  },
+  {
+    "path": "transformers/integrations/finegrained_fp8.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=AlhRxjh7bjn-0DwonNrWhiXtBQiClrrF3hHJf3dlYLw",
+    "bytes": 15120,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/integrations/finegrained_fp8.py"
+  },
+  {
+    "path": "transformers/data/metrics/squad_metrics.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=fKA4MXBLgyB4p7EaPCiaLMR-CW5NDweXSDZh1qO02NM",
+    "bytes": 29699,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/data/metrics/squad_metrics.py"
+  },
+  {
+    "path": "transformers/data/datasets/squad.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=uEA-pVJFVKtZlliRBE_TU5MtWenJfJtacKtZLtOG_3w",
+    "bytes": 9295,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/data/datasets/squad.py"
+  },
+  {
+    "path": "transformers/generation/continuous_batching.py",
+    "distribution": "transformers-4.54.1.dist-info",
+    "record": "sha256=iGQ8Xw1nZGDoJDNvcESy7NdnaKJ9qiSQZz4QI4byhXU",
+    "bytes": 62963,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/a4R-zCEhdV2k87pLRfvR3/transformers/generation/continuous_batching.py"
+  },
+  {
+    "path": "fsspec/tests/abstract/open.py",
+    "distribution": "fsspec-2026.6.0.dist-info",
+    "record": "sha256=Fi2PBPYLbRqysF8cFm0rwnB41kMdQVYjq8cGyDXp3BU",
+    "bytes": 329,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/fsspec/tests/abstract/open.py"
+  },
+  {
+    "path": "huggingface_hub/_oauth.py",
+    "distribution": "huggingface_hub-0.36.2.dist-info",
+    "record": "sha256=75ya9toHxC0WRKsLOAI212CrssRjTSxs16mHWWNMb3w",
+    "bytes": 18714,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/FCKiPeLE3kycz48QjCAJf/huggingface_hub/_oauth.py"
+  },
+  {
+    "path": "huggingface_hub/utils/_subprocess.py",
+    "distribution": "huggingface_hub-0.36.2.dist-info",
+    "record": "sha256=u9FFUDE7TrzQTiuEzlUnHx7S2P57GbYRV8u16GJwrFw",
+    "bytes": 4625,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/FCKiPeLE3kycz48QjCAJf/huggingface_hub/utils/_subprocess.py"
+  },
+  {
+    "path": "huggingface_hub/utils/_telemetry.py",
+    "distribution": "huggingface_hub-0.36.2.dist-info",
+    "record": "sha256=54LXeIJU5pEGghPAh06gqNAR-UoxOjVLvKqAQscwqZs",
+    "bytes": 4890,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/FCKiPeLE3kycz48QjCAJf/huggingface_hub/utils/_telemetry.py"
+  },
+  {
+    "path": "huggingface_hub/utils/_deprecation.py",
+    "distribution": "huggingface_hub-0.36.2.dist-info",
+    "record": "sha256=HZhRGGUX_QMKBBBwHHlffLtmCSK01TOpeXHefZbPfwI",
+    "bytes": 4872,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/FCKiPeLE3kycz48QjCAJf/huggingface_hub/utils/_deprecation.py"
+  },
+  {
+    "path": "huggingface_hub/utils/__init__.py",
+    "distribution": "huggingface_hub-0.36.2.dist-info",
+    "record": "sha256=ORfVkn5D0wuLIq12jjhTzn5_c4F8fRPxB7TG-iednuQ",
+    "bytes": 3722,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/FCKiPeLE3kycz48QjCAJf/huggingface_hub/utils/__init__.py"
+  },
+  {
+    "path": "huggingface_hub/utils/_lfs.py",
+    "distribution": "huggingface_hub-0.36.2.dist-info",
+    "record": "sha256=EC0Oz6Wiwl8foRNkUOzrETXzAWlbgpnpxo5a410ovFY",
+    "bytes": 3957,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/FCKiPeLE3kycz48QjCAJf/huggingface_hub/utils/_lfs.py"
+  },
+  {
+    "path": "huggingface_hub/utils/_safetensors.py",
+    "distribution": "huggingface_hub-0.36.2.dist-info",
+    "record": "sha256=GW3nyv7xQcuwObKYeYoT9VhURVzG1DZTbKBKho8Bbos",
+    "bytes": 4458,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/FCKiPeLE3kycz48QjCAJf/huggingface_hub/utils/_safetensors.py"
+  },
+  {
+    "path": "huggingface_hub/cli/hf.py",
+    "distribution": "huggingface_hub-0.36.2.dist-info",
+    "record": "sha256=SQ73_SXEQnWVJkhKT_6bwNQBHQXGOdI5qqlTTtI0XH0",
+    "bytes": 2328,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/FCKiPeLE3kycz48QjCAJf/huggingface_hub/cli/hf.py"
+  },
+  {
+    "path": "huggingface_hub/inference/_providers/fireworks_ai.py",
+    "distribution": "huggingface_hub-0.36.2.dist-info",
+    "record": "sha256=Id226ITfPkOcFMFzly3MW9l-dZl9l4qizL4JEHWkBFk",
+    "bytes": 1215,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/FCKiPeLE3kycz48QjCAJf/huggingface_hub/inference/_providers/fireworks_ai.py"
+  },
+  {
+    "path": "setuptools/installer.py",
+    "distribution": "setuptools-84.0.0.dist-info",
+    "record": "sha256=OlBDa-_y2S0VEd_o6oLDProoLaaDFujoMTJuvea1M7E",
+    "bytes": 5198,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/setuptools/installer.py"
+  },
+  {
+    "path": "setuptools/glob.py",
+    "distribution": "setuptools-84.0.0.dist-info",
+    "record": "sha256=Je_96zzsFfg__Srg-ISQlTKA--01ZqjsSQeBF7biU04",
+    "bytes": 6161,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/setuptools/glob.py"
+  },
+  {
+    "path": "setuptools/extension.py",
+    "distribution": "setuptools-84.0.0.dist-info",
+    "record": "sha256=zz2Sw170oVaKf1_GQWqc9Qob3feKtV2sc1feF69LJVs",
+    "bytes": 6923,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/ETH4LBSzcCdRnD7ITGw20/setuptools/extension.py"
+  },
+  {
+    "path": "setuptools/unicode_utils.py",
+    "distribution": "setuptools-84.0.0.dist-info",
+    "record": "sha256=DkAGeONCVPH36O8pqFUVRz6d-YaZ6k1DFAmO5BRyHVI",
+    "bytes": 3831,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/setuptools/unicode_utils.py"
+  },
+  {
+    "path": "setuptools/namespaces.py",
+    "distribution": "setuptools-84.0.0.dist-info",
+    "record": "sha256=eE1hI5X86TNWvY5u5BC1WiGiOrrJyGOv0pp9vycCmK0",
+    "bytes": 3045,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/setuptools/namespaces.py"
+  },
+  {
+    "path": "setuptools/_shutil.py",
+    "distribution": "setuptools-84.0.0.dist-info",
+    "record": "sha256=SgCqBkj0JWBGl3E8OLcL7mSZf0ajOARha1pQtssknl8",
+    "bytes": 1605,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/ETH4LBSzcCdRnD7ITGw20/setuptools/_shutil.py"
+  },
+  {
+    "path": "setuptools/compat/__init__.py",
+    "distribution": "setuptools-84.0.0.dist-info",
+    "record": "sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU",
+    "bytes": 0,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/setuptools/compat/__init__.py"
+  },
+  {
+    "path": "setuptools/_vendor/more_itertools/recipes.py",
+    "distribution": "setuptools-84.0.0.dist-info",
+    "record": "sha256=Ma-kuBNZDFhaQDbIJgRmnrG86WzaupbOyUV3v8je3xw",
+    "bytes": 41811,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/ETH4LBSzcCdRnD7ITGw20/setuptools/_vendor/more_itertools/recipes.py"
+  },
+  {
+    "path": "setuptools/_vendor/tomli/_re.py",
+    "distribution": "setuptools-84.0.0.dist-info",
+    "record": "sha256=oSNZ_ilFI6chEuQ01YRSoUydBQr_okF_mSdHTkFmv90",
+    "bytes": 3396,
+    "source": "/Users/0z5a/.cache/uv/archive-v0/ETH4LBSzcCdRnD7ITGw20/setuptools/_vendor/tomli/_re.py"
+  },
+  {
+    "path": "setuptools/_distutils/version.py",
+    "distribution": "setuptools-84.0.0.dist-info",
+    "record": "sha256=vImT5-ECXkQ21oKL0XYFiTqK6NyM09cpzBNoA_34CQU",
+    "bytes": 12619,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/setuptools/_distutils/version.py"
+  },
+  {
+    "path": "setuptools/_distutils/util.py",
+    "distribution": "setuptools-84.0.0.dist-info",
+    "record": "sha256=-l5qrpFZD8ToSkujdmDM0KOTN4p8UPj01avV3foHMqY",
+    "bytes": 14883,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/setuptools/_distutils/util.py"
+  },
+  {
+    "path": "setuptools/_distutils/errors.py",
+    "distribution": "setuptools-84.0.0.dist-info",
+    "record": "sha256=0f3dIbv7sdsORwEUK7RWBYlU1OpvcUZsVo9E0KgBH5Y",
+    "bytes": 3418,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/setuptools/_distutils/errors.py"
+  },
+  {
+    "path": "setuptools/_distutils/dep_util.py",
+    "distribution": "setuptools-84.0.0.dist-info",
+    "record": "sha256=xN75p6ZpHhMiHEc-rpL2XilJQynHnDNiafHteaZ4tjU",
+    "bytes": 349,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/setuptools/_distutils/dep_util.py"
+  },
+  {
+    "path": "setuptools/_distutils/_macos_compat.py",
+    "distribution": "setuptools-84.0.0.dist-info",
+    "record": "sha256=JzUGhF4E5yIITHbUaPobZEWjGHdrrcNV63z86S4RjBc",
+    "bytes": 239,
+    "source": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages/setuptools/_distutils/_macos_compat.py"
+  }
+]

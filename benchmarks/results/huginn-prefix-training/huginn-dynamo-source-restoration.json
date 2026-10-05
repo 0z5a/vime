@@ -1,0 +1,10 @@
+{
+  "source_url": "https://github.com/pytorch/pytorch/blob/v2.13.0/torch/_dynamo/_trace_wrapped_higher_order_op.py",
+  "source_ref": "v2.13.0",
+  "git_blob": "8a732c898ed831b0def87c73529b7fa1f33889ef",
+  "sha256": "db793cb9b37619243bb1c86ad8be3f74b721dd5d28294e8ad7ed36ebb9482eb3",
+  "bytes": 10330,
+  "matches_original_installed_RECORD": true,
+  "target": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/resident-dependencies/torch/_dynamo/_trace_wrapped_higher_order_op.py",
+  "existing_environment_modified": false
+}
