@@ -57,4 +57,6 @@ def validate_args(args):
     if args.rollout_function_path != "vime.rollout.vllm_rlt_rollout.generate_rollout":
         raise ValueError("Use the native RLT rollout function with --rollout-backend=vllm-rlt")
     if args.eval_interval is not None:
-        raise ValueError("Native RLT evaluation is not yet exposed through the dataset evaluator")
+        from vime.rollout.native_eval import validate_evaluation
+
+        validate_evaluation(args)

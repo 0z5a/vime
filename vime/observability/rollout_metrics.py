@@ -246,7 +246,7 @@ def log_eval_rollout_data(rollout_id, args, data, extra_metrics: dict[str, Any] 
             log_dict |= dict_add_prefix(
                 compute_pass_rate(
                     flat_rewards=rewards,
-                    group_size=args.n_samples_per_eval_prompt,
+                    group_size=data[key].get("n_samples_per_prompt", args.n_samples_per_eval_prompt),
                 ),
                 f"eval/{key}-",
             )

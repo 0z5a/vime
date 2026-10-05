@@ -6,12 +6,14 @@ The shared launcher runs VIME's standard Ray entry with native vLLM-RLT rollout.
 Ouro also uses this entry with `--model /models/Ouro-1.4B` and checkpoint revision
 `574fa66cb8bf5abdc979642d01cf2b79b16bfab1`.
 
-Use `--algorithm ppo`, `grpo`, `dppo`, or `flow-dppo`. PPO and GRPO reuse the existing
+Use `--algorithm ppo`, `grpo`, `dppo`, `flow-dppo`, or `rltt`. PPO and GRPO reuse the existing
 clipped policy loss. DPPO keeps rollout behavior scores separate from proximal
 scores recomputed by the training provider, and applies VIME's existing bounded
 importance correction. Flow-DPPO freezes full-vocabulary old-policy scores and
 applies the categorical divergence gate. Actor/critic roles use GAE for PPO,
 DPPO and Flow-DPPO; GRPO uses an actor and prompt-group reward normalization.
+RLTT uses the explicit recurrent weighted-logprob objective, logical-batch
+reduction and frozen initial reference described in [its contract](../../docs/looped_readout_contract.md).
 
 Install the [pinned RLT engine](../../vime/backends/vllm_rlt_utils/README.md) and
 Megatron `1dcf0dafa884ad52ffb243625717a3471643e087` with
@@ -48,3 +50,10 @@ The launcher enables deterministic training and passes the cuBLAS workspace and
 NCCL algorithm settings to Ray workers for this comparison.
 Report end-to-end timing including rollout, rewards, optimization, full publications
 and checkpoints, with source pins, dtype and resource contention.
+
+Periodic held-out evaluation uses the same committed native policy through
+`--eval-interval` and `--eval-prompt-data` or `--eval-config`. It does not consume
+the training dataset cursor. Initial and post-update results retain distinct
+completed-update indices, and the output samples retain their policy and seed
+traces. See the [native evaluation contract](../../vime/backends/vllm_rlt_utils/README.md#held-out-evaluation).
+Existing short update/resume checks do not establish reward convergence.

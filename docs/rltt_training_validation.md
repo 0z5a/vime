@@ -29,9 +29,11 @@ official-model training result.
 
 The existing recipe defaults remain a short lifecycle probe: FP32 for RLTT, SGD,
 three updates, short responses, and a single seed. These are not the original
-RLTT optimizer or a convergence recipe. Native held-out evaluation is still
-unavailable through VIME's dataset evaluator. Do not use this probe as the main
-quality experiment.
+RLTT optimizer or a convergence recipe. The subsequent
+[native held-out evaluator](native_evaluation_results.md) has CPU component
+coverage for all three families, including evaluation between updates and
+restored objects. Official Ray/CUDA quality runs remain pending. Do not use this
+probe as the main quality experiment.
 
 ## Parent training-bridge validation result
 
@@ -103,6 +105,6 @@ patched-source manifest, with no additional private patches. This is distinct
 from the separately frozen upstream Megatron framework-baseline archive.
 
 Before performance or quality conclusions: qualify official-checkpoint G0 and
-BF16 arithmetic, run the actual Ray/MCore CUDA lifecycle and typed resume, expose
-held-out evaluation, freeze the optimizer/budget/reward and source-matched baseline
+BF16 arithmetic, run the actual Ray/MCore CUDA lifecycle and typed resume, qualify
+official held-out evaluation, freeze the optimizer/budget/reward and source-matched baseline
 profiles, then run matched systems measurements and independent training seeds.
