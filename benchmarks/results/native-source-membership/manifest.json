@@ -1,0 +1,29 @@
+{
+  "source_sha256": {
+    "benchmarks/native_sources.py": "4d5feeecea3f1aff3ff2c500645831d779e98cc289a52c811a50408bee257373",
+    "benchmarks/audit_native_sources.py": "7ebddc3ccc1f9f82181ed4926aa5c338a821edd39b4168d3c90ad6f771785512",
+    "benchmarks/run_native_qualification.py": "74d7bdaf3247a57567cb42e7a9b0cd295e33d68e66fb91d8277585aa2c70ac81",
+    "benchmarks/audit_native_runtime.py": "b676295b99a7489d7d80810186e5b414bbeb36a3258d073fd696cc92dad40e50",
+    "tests/test_native_source_membership.py": "075434f393b99eac0131fb3835d7b1db35501d05621ff881a788df7226eff984",
+    "tests/test_native_runtime_audit.py": "583de0496f5b3424c617dd7238f7c1500da68a4864fa400d9548ac207a0da15f",
+    "tests/test_native_qualification_recipe.py": "e8fe2ee8ebe22d1d3b08bf850686b1ad5235cf4503960eaae1b6cef600dc3a76",
+    "docs/native_source_membership.md": "e07dc3df5b71c05edd1128c83be058cb713a183090632e88ac99ebe6defbf0e9",
+    "docs/native_reward_qualification.md": "065799bf9a4e9525f1435d66529cc38bb6a53fddd6b493c4dfe416e9079283de"
+  },
+  "artifact_sha256": {
+    "audit_native_source_imports.py": "8906582b9f7ffc9df0766adbcfa99621ab1408ca9b653806868d8740643ff9c7",
+    "mcore-source-copy.json": "45b3a1c9994d08effa5ce1177a1a373c24649e133c0b95454d2899ca0895a11a",
+    "native-source-bound.log": "f305a01368d1f140de4a54cb2702342c506850a1985c4744772ba84772c06556",
+    "native-source-bound.xml": "a04daee4137223d5f455ecee4fa7647d10cb9a132a075ca4df420878a31d2d53",
+    "native-source-final.log": "b4c4e92f7164186dea2a28977e9abada9c6631478c6d80e887ca64bda96db6ee",
+    "native-source-final.xml": "301a9f642c50a7ae81a5b0ac67f8165ab49e81d68a0cd09fd8bf31c765e03e87",
+    "native-source-first.log": "4093f44c0385605ca76a6dbf1788fd7f456f342fe974343295957e29bea03e9b",
+    "native-source-first.xml": "2aea9de00043efafe7205eb86b517b41f0f6771ca2836dd0e42843588a1c7bf0",
+    "native-source-imports-final.log": "36b4814047260e889b8ae0ff59569df851541c9d881f0c347296404bcf42043f",
+    "native-source-imports.log": "cc62e97aadd385748b3d7970a97ef91e45c5dcf3d3d806e663188f8bb117401b",
+    "native-source-local-audit.json": "259b044036b4f7fd46485ab988b3f4acb6fd25a637c76797c877ee6fc98c2e6b",
+    "native-sources-v1.json": "f421d2be6c52eaf402afac520a637399615f3f6286f09f93e7af86b617975ec3",
+    "resident_pytest.py": "2af5ce445da14f656c71e8d4817dcf85cd57402a77f50f612898c47f52f4d4f4",
+    "validation.json": "5a7261a3cc20669f875c8306b8fde15e0dd7608470d0a75e32144dd01a9bb306"
+  }
+}

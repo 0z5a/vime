@@ -1,0 +1,834 @@
+{
+  "harness_sha256": "8906582b9f7ffc9df0766adbcfa99621ab1408ca9b653806868d8740643ff9c7",
+  "verifier_sha256": "4d5feeecea3f1aff3ff2c500645831d779e98cc289a52c811a50408bee257373",
+  "source_manifest_sha256": "f421d2be6c52eaf402afac520a637399615f3f6286f09f93e7af86b617975ec3",
+  "preflight": {
+    "files_checked": {
+      "vime": 224,
+      "rlt": 54,
+      "megatron": 490
+    },
+    "roots": {
+      "vime": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime",
+      "rlt": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent",
+      "megatron": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron"
+    }
+  },
+  "real_cpu_imports": {
+    "megatron.core": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/__init__.py",
+      "sha256": "cdf5e08f9796cb222d63fe6ac98d4d46d1cb8fff950b8817adf887af77ad0669"
+    },
+    "megatron.core._rank_utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/_rank_utils.py",
+      "sha256": "87dbaa4145ccdfb14b7f5c33a568df1b072601f36908f6005c7e34e2a7f96b75"
+    },
+    "megatron.core.config": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/config.py",
+      "sha256": "83e503648ab324be9e86428a6da568b5ce255f6556033dfa9b967482f010aa36"
+    },
+    "megatron.core.config_logger": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/config_logger.py",
+      "sha256": "6c2fd097197e2f8dfcf2dd5685300bd5e773f504eac7ebd7ba5924e479cacf0a"
+    },
+    "megatron.core.dist_checkpointing": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/dist_checkpointing/__init__.py",
+      "sha256": "05804998a6f1135fa540da8cc086d3a6e7671c8907e7fa60c18ab26864a61ccd"
+    },
+    "megatron.core.dist_checkpointing.core": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/dist_checkpointing/core.py",
+      "sha256": "c7c67d98c147ba265f536b9df9172e2434caf390d13ecc6fbf162a53eab78580"
+    },
+    "megatron.core.dist_checkpointing.dict_utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/dist_checkpointing/dict_utils.py",
+      "sha256": "37139d43a57248bfd682d3df27cb5bbcfd1da09af4c10663b7a24bb96771117c"
+    },
+    "megatron.core.dist_checkpointing.mapping": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/dist_checkpointing/mapping.py",
+      "sha256": "fb161c5afb0cef4937ff9d2fc13b5304de92c50a328bcef2548a837cfe69607a"
+    },
+    "megatron.core.dist_checkpointing.optimizer": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/dist_checkpointing/optimizer.py",
+      "sha256": "48ce3aa3fced08c8760323c30784ef9291b026e9cbd2a8bcaa5c231a720c2762"
+    },
+    "megatron.core.dist_checkpointing.serialization": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/dist_checkpointing/serialization.py",
+      "sha256": "7207075aee240c8a65792303cc8d1d437eb4953be7d704071b8459d575bc2511"
+    },
+    "megatron.core.dist_checkpointing.state_dict_utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/dist_checkpointing/state_dict_utils.py",
+      "sha256": "008034a6a24fc928489ec919e72833645ed3182d4b9bf3a8c93cd966e3507e09"
+    },
+    "megatron.core.dist_checkpointing.strategies": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/dist_checkpointing/strategies/__init__.py",
+      "sha256": "8d466e8957b5165c657761e671db8fe3be4cb68a8821479ff32add83f0e8bb25"
+    },
+    "megatron.core.dist_checkpointing.strategies.async_utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/dist_checkpointing/strategies/async_utils.py",
+      "sha256": "8bc7abfd158589acb4f84774ba9592e42099b451c8d1d8b8203ce8f3d2ca98dd"
+    },
+    "megatron.core.dist_checkpointing.strategies.base": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/dist_checkpointing/strategies/base.py",
+      "sha256": "9a2c3955191bef72c263cf19e792a7fe36ca002faaa0e4d7e7b0807825110379"
+    },
+    "megatron.core.dist_checkpointing.strategies.common": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/dist_checkpointing/strategies/common.py",
+      "sha256": "0f57410c97db50c494812f808f3a938fd9d41d86b7d62523e46092c1fc95c61c"
+    },
+    "megatron.core.dist_checkpointing.utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/dist_checkpointing/utils.py",
+      "sha256": "34918feccec79f8e7326fca664b466b06dbb435e36569b5972dd3690c5dd97a6"
+    },
+    "megatron.core.dist_checkpointing.validation": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/dist_checkpointing/validation.py",
+      "sha256": "2676da71f14652514268a06d719280c7a8f2203551769bf69d2993f310f9888b"
+    },
+    "megatron.core.distributed": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/__init__.py",
+      "sha256": "884074e2275f9c7d29960498fb9cf30342891f315edf68b5970445a51797db55"
+    },
+    "megatron.core.distributed.data_parallel_base": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/data_parallel_base.py",
+      "sha256": "2f2a2570d3b1f99555528903fc2d4a67ef29a99d5c542a2c2f8feeaaf5744f2a"
+    },
+    "megatron.core.distributed.distributed_data_parallel": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/distributed_data_parallel.py",
+      "sha256": "ae77486e41960e00408d91213a7963a68c9fa4745ab176bf58c61c7122c2b3ff"
+    },
+    "megatron.core.distributed.distributed_data_parallel_config": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/distributed_data_parallel_config.py",
+      "sha256": "21d52bfa861c8fa7534e7df75d36bc51249868d32a52f53f0c8ebf941d3d1051"
+    },
+    "megatron.core.distributed.finalize_model_grads": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/finalize_model_grads.py",
+      "sha256": "b81ca0352fe0120a04839a5928388a9b0edcc35da30b44f1b7d38eae90a487b5"
+    },
+    "megatron.core.distributed.fsdp": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/__init__.py",
+      "sha256": "8645081f6b99eae688a9931814faef81b722b75682615ea6cd4ccce86b633e59"
+    },
+    "megatron.core.distributed.fsdp.mcore_fsdp_adapter": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/mcore_fsdp_adapter.py",
+      "sha256": "b2dbd804f3def0e748694627151e08d68979c1f2ac5ad7262b20a40b4ab7bf46"
+    },
+    "megatron.core.distributed.fsdp.src": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/__init__.py",
+      "sha256": "05b7a7dd9408434f37d08ddfbcf9dce2534d2b8319a0b0df44d85f2a887e68b8"
+    },
+    "megatron.core.distributed.fsdp.src.megatron_fsdp": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/__init__.py",
+      "sha256": "d4978e65ef6a6b4736d80bf9c74cb1bf09cff2d5db8450c82c949cbf8afa40b2"
+    },
+    "megatron.core.distributed.fsdp.src.megatron_fsdp.distributed_data_parallel_config": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/distributed_data_parallel_config.py",
+      "sha256": "a50eee8aba3e2ffb04d66ef9884dce3a9fa6b2048950f3da08014cdf510a4f96"
+    },
+    "megatron.core.distributed.fsdp.src.megatron_fsdp.fully_shard": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/fully_shard.py",
+      "sha256": "8a295f3c7a97562255effe49eeea0507e697bf0e034c5c720fdc5ebe7decf8c1"
+    },
+    "megatron.core.distributed.fsdp.src.megatron_fsdp.megatron_fsdp": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/megatron_fsdp.py",
+      "sha256": "c4dc67ffa64883e85399e5158196c3182b31fe7aebacf0801e149439e9e0cfeb"
+    },
+    "megatron.core.distributed.fsdp.src.megatron_fsdp.mixed_precision": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/mixed_precision.py",
+      "sha256": "009b2eb8c9ffc767bdd21b972c0070d357c4893dc494c1e1b8adf5345b98aaa3"
+    },
+    "megatron.core.distributed.fsdp.src.megatron_fsdp.package_info": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/package_info.py",
+      "sha256": "2350e05f299edbb8b814326ed6a6f1babfe8e86cfb7493d4c202279028f6fbde"
+    },
+    "megatron.core.distributed.fsdp.src.megatron_fsdp.param_and_grad_buffer": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/param_and_grad_buffer.py",
+      "sha256": "f07a9384a4c5f61985311efd1ebc5ccd16581d5b41b254aeb6f1006ffc51812b"
+    },
+    "megatron.core.distributed.fsdp.src.megatron_fsdp.uneven_dtensor": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/uneven_dtensor.py",
+      "sha256": "e81202ea857f9c110153f0d36b000d5bee101ba27f12ca8264b16c101abedb2f"
+    },
+    "megatron.core.distributed.fsdp.src.megatron_fsdp.utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/utils.py",
+      "sha256": "36f9d05e30a5dddee60ddcb475f9580eac6f0c36c2e052810365b8e73bb8c7f3"
+    },
+    "megatron.core.distributed.param_and_grad_buffer": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/param_and_grad_buffer.py",
+      "sha256": "35910805dc2b4272a6cf6c8c014f0a4cc5d9aaa987cad67b13e0e355a3033697"
+    },
+    "megatron.core.distributed.reduce_scatter_with_fp32_accumulation": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/reduce_scatter_with_fp32_accumulation.py",
+      "sha256": "c1c4f92a5aa7e596f48ad08107ee53fe2f20aa601453bf0ed9814c5fdcd7390b"
+    },
+    "megatron.core.distributed.torch_fully_sharded_data_parallel": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/torch_fully_sharded_data_parallel.py",
+      "sha256": "c01769a760b6aec501deb2617744d8b111aadd3eeac2f31b467e4903af1476c6"
+    },
+    "megatron.core.distributed.torch_fully_sharded_data_parallel_config": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/torch_fully_sharded_data_parallel_config.py",
+      "sha256": "c797098b0309708898502796686938c3746bc6b33e560d025734cdef3210458c"
+    },
+    "megatron.core.enums": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/enums.py",
+      "sha256": "583285ea38501dbdfbe96c2ec2b12055e80e8a7f0fdfccdc41caf92b0ae4034b"
+    },
+    "megatron.core.extensions": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/extensions/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "megatron.core.extensions.transformer_engine": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/extensions/transformer_engine.py",
+      "sha256": "ea756922b545e144c4bcc4c9a8260f254bb80fad32411f0eb4dc1241eb40bca1"
+    },
+    "megatron.core.fp4_utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/fp4_utils.py",
+      "sha256": "3a81ee54ef0cce0e00847976f45795bd0d73a31466f9d3d3242b273d33ad9842"
+    },
+    "megatron.core.fp8_utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/fp8_utils.py",
+      "sha256": "ea6148e71a4b4202d433519d82362b76d3cc979dfef829763efc9e91b6dc290c"
+    },
+    "megatron.core.fusions": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/fusions/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "megatron.core.fusions.fused_bias_geglu": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/fusions/fused_bias_geglu.py",
+      "sha256": "71c48456c8041f81ae9aaaa99ebbacb0f77c9c71b15962bad4a8e75effecde46"
+    },
+    "megatron.core.fusions.fused_bias_gelu": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/fusions/fused_bias_gelu.py",
+      "sha256": "46c6d977058749c14f5ff23eb260d78e3e16bf604681b3ff09bdd7237c2b8aa3"
+    },
+    "megatron.core.fusions.fused_bias_swiglu": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/fusions/fused_bias_swiglu.py",
+      "sha256": "5303680596749464c45f9c3ec65f94d1127fb6d49b2aa9ec3ba8c91b1141f08f"
+    },
+    "megatron.core.fusions.fused_indices_converter": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/fusions/fused_indices_converter.py",
+      "sha256": "7a115b78185e3291b50f5be921d624d84af7cc370eadc687afe322bc8238ffd0"
+    },
+    "megatron.core.fusions.fused_pad_routing_map": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/fusions/fused_pad_routing_map.py",
+      "sha256": "fc42a20781d13693450611f6820c65446501d97e83aec434ce8b8066f6cb139c"
+    },
+    "megatron.core.inference": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/__init__.py",
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    "megatron.core.inference.batch_dimensions_utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/batch_dimensions_utils.py",
+      "sha256": "dc0c4f445eff6d977d5736b398fa8011ef2c2e298e04fa193dcfeabd84e63376"
+    },
+    "megatron.core.inference.communication.torch_symm_triton": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/communication/torch_symm_triton/__init__.py",
+      "sha256": "c3e939ab4acf6d9b080b2fc4476009fc175658b602f64757d32139610cdf9066"
+    },
+    "megatron.core.inference.communication.torch_symm_triton.barrier": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/communication/torch_symm_triton/barrier.py",
+      "sha256": "982da975305b03bdac48739338553cbe638f29dca696ec838031838dec2593aa"
+    },
+    "megatron.core.inference.communication.torch_symm_triton.collectives": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/communication/torch_symm_triton/collectives.py",
+      "sha256": "50a6a1dbb6247d627f9b38e344543a0ccf643a802fb16d4f875d6aea097cf0bb"
+    },
+    "megatron.core.inference.communication.torch_symm_triton.fused_collectives": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/communication/torch_symm_triton/fused_collectives.py",
+      "sha256": "c42f1b44e816c088b73e09d66dc7f44444b58bcd6f38db9e0a9dad3ce993856c"
+    },
+    "megatron.core.inference.communication.torch_symm_triton.multimem_asm": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/communication/torch_symm_triton/multimem_asm.py",
+      "sha256": "8e8395d7e9cf4d5687feda8f636ca003e50f73d95e1bc4d5a755eada1da4e52d"
+    },
+    "megatron.core.inference.communication.torch_symm_triton.utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/communication/torch_symm_triton/utils.py",
+      "sha256": "cb325e47f474bb269210ac5d922e0bd77e1922de1b26ff4a04bff0b1dee47d6f"
+    },
+    "megatron.core.inference.contexts": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/contexts/__init__.py",
+      "sha256": "870215dc64a2a714d7d21e860dabbcb6c6054e716de85a5a0d5db634dd60e3ec"
+    },
+    "megatron.core.inference.contexts.attention_context.mamba_metadata": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/contexts/attention_context/mamba_metadata.py",
+      "sha256": "691cd2268f83d06b928585d26565aa6bdcaf39e345e99923d1c0bf520a590bdf"
+    },
+    "megatron.core.inference.contexts.attention_context.metadata_base": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/contexts/attention_context/metadata_base.py",
+      "sha256": "908a1e500a483ce8cb51cde74fe75cede1c2e54bd1814a986f2d34e53600afe9"
+    },
+    "megatron.core.inference.contexts.attention_context.mha_metadata": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/contexts/attention_context/mha_metadata.py",
+      "sha256": "504d421ed9947119e032a94449cc545f447aa88b0244cb3e7a4758ed9cef110e"
+    },
+    "megatron.core.inference.contexts.base_context": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/contexts/base_context.py",
+      "sha256": "fbe0ae609f4524af5cedffdba7539b4ce00a543076173ae8cc447141b4386475"
+    },
+    "megatron.core.inference.contexts.dynamic_block_allocator": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/contexts/dynamic_block_allocator.py",
+      "sha256": "717076323dacc0209f15b486c26e05a24a2ece8df58770316b0073394a5c5ee8"
+    },
+    "megatron.core.inference.contexts.dynamic_context": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/contexts/dynamic_context.py",
+      "sha256": "2ff151f14df0d875d16d5e29be8de76458f11170d9f84b698d57c6c37c31a4df"
+    },
+    "megatron.core.inference.contexts.static_context": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/contexts/static_context.py",
+      "sha256": "035e28f523b4b353fc6660b89bb0a760ce1952e2ecc3850cb4412877751f53aa"
+    },
+    "megatron.core.inference.inference_request": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/inference_request.py",
+      "sha256": "170b8c8f25400d85bdb5f34f50595fdf1ca511d06c95c16bc225dd8169d43cea"
+    },
+    "megatron.core.inference.model_inference_wrappers": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/model_inference_wrappers/__init__.py",
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    "megatron.core.inference.model_inference_wrappers.inference_wrapper_config": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/model_inference_wrappers/inference_wrapper_config.py",
+      "sha256": "a35c08c2eb1cad346d6c167fe5cbc7c8db40c236d29a5bd0045a90ffeeabc7d2"
+    },
+    "megatron.core.inference.sampling_params": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/sampling_params.py",
+      "sha256": "45145a05378a7fd2b9f19a8e2d117eccd44530b88450928d61891c14b2bc1e6b"
+    },
+    "megatron.core.inference.unified_memory": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/unified_memory.py",
+      "sha256": "ee13492627284e4e69c4f714a8b7104b4c626189ef340d552cc841c5f169ea60"
+    },
+    "megatron.core.inference.utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/utils.py",
+      "sha256": "e06f11bc85f68037fc8c1f72bf47239548246e4c678795c68b5bc110cf223bbf"
+    },
+    "megatron.core.inference_params": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference_params.py",
+      "sha256": "73f837aea6f06ed47881ed28768ae9f218ccdac245ac38926d89a710165f485d"
+    },
+    "megatron.core.jit": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/jit.py",
+      "sha256": "0de81ea1c3a8fd5bf1a880a1c3d3ddacd706b4df946c9016d563b5c14778a3ba"
+    },
+    "megatron.core.model_parallel_config": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/model_parallel_config.py",
+      "sha256": "095fafacc50b0f5d096ab0d9bd8d0ec43de3ef222cf404cff8eea09a4e584852"
+    },
+    "megatron.core.models": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/models/__init__.py",
+      "sha256": "3b3fe3576ee632788053c56a5535d19d7d0f19239c086a7218c02e7e7e49b247"
+    },
+    "megatron.core.models.common": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/models/common/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "megatron.core.models.common.embeddings": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/models/common/embeddings/__init__.py",
+      "sha256": "945c7a12d2a3eebdfb7c5ec0e60b023f455f56c871ede64261589a91e1101c3b"
+    },
+    "megatron.core.models.common.embeddings.language_model_embedding": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/models/common/embeddings/language_model_embedding.py",
+      "sha256": "5c2904229f556038dfdf14c531b0d7e91d643636f6bef2477b66f9f78ad8d1b5"
+    },
+    "megatron.core.models.common.embeddings.rope_utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/models/common/embeddings/rope_utils.py",
+      "sha256": "53c8ec189e35fb56a73079b6a1077e2c40480adadd38bba64fce057022d42b1c"
+    },
+    "megatron.core.models.common.embeddings.rotary_pos_embedding": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/models/common/embeddings/rotary_pos_embedding.py",
+      "sha256": "aef1391fd2da1a4aa9b739190191fceeba1b371f861376047db980e6c6a43d56"
+    },
+    "megatron.core.models.common.embeddings.yarn_rotary_pos_embedding": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/models/common/embeddings/yarn_rotary_pos_embedding.py",
+      "sha256": "0389def065ef655b4effa3c22e7bff8b077ca57ccdb53963ac2f032ecec2e7c7"
+    },
+    "megatron.core.msc_utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/msc_utils.py",
+      "sha256": "334cbec0195857ea9b846a699dee908622dbe3b5c10fec21a797a56cf02752c8"
+    },
+    "megatron.core.nccl_allocator": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/nccl_allocator.py",
+      "sha256": "1a6640fd971477a22f43fa6bd37dd59256bb4ca683c56e1934f5eb1df92d6f18"
+    },
+    "megatron.core.num_microbatches_calculator": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/num_microbatches_calculator.py",
+      "sha256": "8b53da48d50914598fc959a29284dcc4385116a6c59360fff0dc28c34fedc567"
+    },
+    "megatron.core.optimizer": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/__init__.py",
+      "sha256": "87c984430926fa239d48805e44a61d0a0c53337249a5f784cdf3564e76db6939"
+    },
+    "megatron.core.optimizer.clip_grads": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/clip_grads.py",
+      "sha256": "4a68e9aae8cb1188f30766af93fabba00a43a8512f8fe3e9e4154d80de4c84ee"
+    },
+    "megatron.core.optimizer.cpu_offloading": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/cpu_offloading/__init__.py",
+      "sha256": "b4b9274add85569ef7648f7ba8af416bcda15d16231254b93bc7cc65dac45fa5"
+    },
+    "megatron.core.optimizer.cpu_offloading.hybrid_optimizer": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/cpu_offloading/hybrid_optimizer.py",
+      "sha256": "28053c32a2468645215b19f246bd8e86e250ffab49a036e49b3f6940b8996dcb"
+    },
+    "megatron.core.optimizer.cpu_offloading.optimizer_state_offloader": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/cpu_offloading/optimizer_state_offloader.py",
+      "sha256": "88358d6a57ce2e9861cb3c4eb6704ef6208c31aae8fc22c7b10c1b366b1e7d5c"
+    },
+    "megatron.core.optimizer.distrib_optimizer": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/distrib_optimizer.py",
+      "sha256": "154af62ddb2e082401df5ce755ab911d01dc211e15886b07db601dcef1e3e1fe"
+    },
+    "megatron.core.optimizer.grad_scaler": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/grad_scaler.py",
+      "sha256": "c2f341955c8333bd6e2554fcc7c34f74e776b0b1bd4ce4bcb53add9a54a05782"
+    },
+    "megatron.core.optimizer.optimizer": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/optimizer.py",
+      "sha256": "32e7cfd874c72b00a7b68faff5c5a66aaeec74d414aea70f1a213247dd3d02c0"
+    },
+    "megatron.core.optimizer.optimizer_config": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/optimizer_config.py",
+      "sha256": "bc4710bfd32375afff110a3a8af6d042dacf91a22514809654d70c8e0f3036cc"
+    },
+    "megatron.core.optimizer_param_scheduler": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer_param_scheduler.py",
+      "sha256": "22ddd78a2ed920e1c56132e4cc194890f940ce736aa06955c816bc73c070f144"
+    },
+    "megatron.core.package_info": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/package_info.py",
+      "sha256": "3e4982ed8ad3b6bac47e478933ac1089d38c1873a3da9300edd9f8555be68fb6"
+    },
+    "megatron.core.packed_seq_params": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/packed_seq_params.py",
+      "sha256": "2b0744496c0f9dd6483f6225e2ea349fe4500b89676311d5751c88f5ceb04323"
+    },
+    "megatron.core.parallel_state": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/parallel_state.py",
+      "sha256": "bcaf44c2646e30d320288c8c92d4a0cc2dacb014deaae3c8fa7e5b6bb2256c2b"
+    },
+    "megatron.core.pipeline_parallel": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/pipeline_parallel/__init__.py",
+      "sha256": "5bce08737fcd015f6cfd85ef80a69872fdbeb947744fc7bd64f6a54f43c0d703"
+    },
+    "megatron.core.pipeline_parallel.combined_1f1b": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/pipeline_parallel/combined_1f1b.py",
+      "sha256": "7ec4872b9b2c0cdcad5af8c5692006d7f4bea918b9ecfac3be1316fad103ce0c"
+    },
+    "megatron.core.pipeline_parallel.fine_grained_activation_offload": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/pipeline_parallel/fine_grained_activation_offload.py",
+      "sha256": "4bf2584b377425b0f63071a70f4dcedb90e7f6822d591b3b39cc0feb82dcd913"
+    },
+    "megatron.core.pipeline_parallel.hybrid_cp_schedule": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/pipeline_parallel/hybrid_cp_schedule.py",
+      "sha256": "4a07d9ae6b619f3a1c92a33dbb3c4af1e205b7879fc83e681ad6da1f1be6dfc0"
+    },
+    "megatron.core.pipeline_parallel.p2p_communication": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/pipeline_parallel/p2p_communication.py",
+      "sha256": "771c687af18f8c8677dcce8592222c9d04f3738c0d5b1f65082937a3bba82aa7"
+    },
+    "megatron.core.pipeline_parallel.schedules": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/pipeline_parallel/schedules.py",
+      "sha256": "74dfa05fe19484c3204f2d23829f8dd64f8200af469a05df7699520d2a547610"
+    },
+    "megatron.core.pipeline_parallel.utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/pipeline_parallel/utils.py",
+      "sha256": "8253de723e8c6927967cb42654b00284434e139f02420d7c0834e6b225361ee0"
+    },
+    "megatron.core.process_groups_config": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/process_groups_config.py",
+      "sha256": "20512d08c9aa32032446230e4256718b90dfcb6f3f1659dd75f9be02144fa179"
+    },
+    "megatron.core.quantization": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/quantization/__init__.py",
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    "megatron.core.quantization.quant_config": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/quantization/quant_config.py",
+      "sha256": "2e0e843ba4aa770f6ecb961455a8a03df069cd867cc7e92cdaf4da6a812d1e99"
+    },
+    "megatron.core.rerun_state_machine": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/rerun_state_machine.py",
+      "sha256": "9b1788b0373d893906a13057380d64d34c005077f8dbcb376e888c68c75c9afb"
+    },
+    "megatron.core.safe_globals": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/safe_globals.py",
+      "sha256": "db3f0d7241221393f196af7f13035da2007c3e9783a175f087d5377b7278d944"
+    },
+    "megatron.core.ssm": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/ssm/__init__.py",
+      "sha256": "dbff02cbb6deebe0e7f1323adcd1c6dcc5e772e40b083f61f032034d393c889c"
+    },
+    "megatron.core.ssm.mamba_hybrid_layer_allocation": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/ssm/mamba_hybrid_layer_allocation.py",
+      "sha256": "7e649e9c8c9c9694ba7991597de1f5f7b448bde67f701a734f7828c201e55ee2"
+    },
+    "megatron.core.tensor_parallel": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/tensor_parallel/__init__.py",
+      "sha256": "33938ec809106dea1315cf083a1b343780de6a90329d56e209ca28588554fe1e"
+    },
+    "megatron.core.tensor_parallel.cross_entropy": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/tensor_parallel/cross_entropy.py",
+      "sha256": "6165711be6446d75a7b10cac479bfb6bc0bdb80cf1c95bd2c4cff728902f6ff6"
+    },
+    "megatron.core.tensor_parallel.data": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/tensor_parallel/data.py",
+      "sha256": "e696cd817e127632c146fbcef0dd41ea3d56ad8f4a8619ee6394d5316208c921"
+    },
+    "megatron.core.tensor_parallel.inference_layers": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/tensor_parallel/inference_layers.py",
+      "sha256": "99feeabcea1baabda7229e59f070f192ba3fa7ae80ddf742a5984e69e45e6674"
+    },
+    "megatron.core.tensor_parallel.layers": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/tensor_parallel/layers.py",
+      "sha256": "4f2732329e626ce2d25a20922334ae7d3ba322f152b5436dbb6d675366219437"
+    },
+    "megatron.core.tensor_parallel.mappings": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/tensor_parallel/mappings.py",
+      "sha256": "4dbbe88b381dc92d276cfda9c3ba30962ec475207ebc16bed14658a512dbb05d"
+    },
+    "megatron.core.tensor_parallel.random": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/tensor_parallel/random.py",
+      "sha256": "56d6aee49040e74dec1c8b71bdf6c6874b2035e62dccd00274172c31c31b2a9a"
+    },
+    "megatron.core.tensor_parallel.utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/tensor_parallel/utils.py",
+      "sha256": "931a35e7113d28b60ab71b56e98f034137707ef53f49215b0c936dd7eb74a1e9"
+    },
+    "megatron.core.timers": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/timers.py",
+      "sha256": "14e76e6578adf7e621f68bba773727f87dd6ecab917887f48ce047475885ff2a"
+    },
+    "megatron.core.tokenizers": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/tokenizers/__init__.py",
+      "sha256": "1211b132636c704fed5d6779e2e7cd49b3db30fdafca3696001f83d5a1482919"
+    },
+    "megatron.core.tokenizers.base_tokenizer": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/tokenizers/base_tokenizer.py",
+      "sha256": "70a224976b7aa8ba653c2136178de18f32a17710d46a1d58a6181cea1941cc18"
+    },
+    "megatron.core.tokenizers.megatron_tokenizer": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/tokenizers/megatron_tokenizer.py",
+      "sha256": "1f0da951b7aa3b184e87d442464deb56ce3b0cb72f6c19a0a5062c4aa5ae7098"
+    },
+    "megatron.core.transformer": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/__init__.py",
+      "sha256": "b4a6d21da269e8fd7e4f0da0380bfc51bba70357c7e4a1b13fa839d7fce2e968"
+    },
+    "megatron.core.transformer.cuda_graphs": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/cuda_graphs.py",
+      "sha256": "7033f53d30cdb416e652cadb8fc7cdc3575cad699fdd47bd15b8bbb101e313f6"
+    },
+    "megatron.core.transformer.enums": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/enums.py",
+      "sha256": "b922227558cde49e0edc38f66a941419f6a3dd92fc108d8b5a5922017d01a7a9"
+    },
+    "megatron.core.transformer.fsdp_dtensor_checkpoint": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/fsdp_dtensor_checkpoint.py",
+      "sha256": "74a1e2e5d1542ed06447b4843f98820d8443b58d2ebf7a09544a0e27b2d9d8b3"
+    },
+    "megatron.core.transformer.identity_op": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/identity_op.py",
+      "sha256": "ad521e5fd15c41d1854405ec1b2c726b3fc620658b175b220eed0b4c050a54a8"
+    },
+    "megatron.core.transformer.mlp": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/mlp.py",
+      "sha256": "0a51b7ee9af3e8f19cf84f1ebdbdb5871efb4c939513273a4cbbeafa10ae3a41"
+    },
+    "megatron.core.transformer.module": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/module.py",
+      "sha256": "3fbc108f8bd69a588430cc35cf40bc9df0a2ac5e868165dc6a9c3b10bde5185d"
+    },
+    "megatron.core.transformer.moe": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/moe/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "megatron.core.transformer.moe.fused_a2a": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/moe/fused_a2a.py",
+      "sha256": "ef0913260c99987137ccb03a9e11fd92b26fedc909d7d422372a3b9baa5384fa"
+    },
+    "megatron.core.transformer.moe.moe_layer": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/moe/moe_layer.py",
+      "sha256": "b14caab25a724e5496a5aad98da6cea479c051fac10ee4d4e4231a54c460ac49"
+    },
+    "megatron.core.transformer.moe.moe_utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/moe/moe_utils.py",
+      "sha256": "df82b4874ab241c339535264d0c0e1ff4f898cfd4fe0cae5f9aa5bb7258a8821"
+    },
+    "megatron.core.transformer.moe.router": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/moe/router.py",
+      "sha256": "f7b490234a74c2f90d4b6d8b42ca41566f571ef52e8048112669bca626073a0c"
+    },
+    "megatron.core.transformer.moe.router_replay": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/moe/router_replay.py",
+      "sha256": "9b8cee3f28d4f2e71800779e88ead596064520d3709d53f3ebd3a0cbe5189f76"
+    },
+    "megatron.core.transformer.moe.shared_experts": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/moe/shared_experts.py",
+      "sha256": "032ba37ddbb23bf52696b08434cc764a751dfc3951936edf5ae243ed14cded9f"
+    },
+    "megatron.core.transformer.moe.token_dispatcher": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/moe/token_dispatcher.py",
+      "sha256": "7e20f0d82d983f6ae3b6861fc72eb1b58d9c4ad45549871571627826d9931de7"
+    },
+    "megatron.core.transformer.pipeline_parallel_layer_layout": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/pipeline_parallel_layer_layout.py",
+      "sha256": "810aeb7f23089dda0b14f3da490d97cea29ef82da1fc76f92a569b77a46c49f6"
+    },
+    "megatron.core.transformer.spec_utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/spec_utils.py",
+      "sha256": "8dd4d0622f648f20f7858bdd4c6827de2dd35c5c41bdb15cb6254e4cb05edcb5"
+    },
+    "megatron.core.transformer.transformer_config": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/transformer_config.py",
+      "sha256": "2a7188037d00d3867effe07c0843859bb68fcbd4e42bba01164ed2f0c2d504db"
+    },
+    "megatron.core.transformer.transformer_layer": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/transformer_layer.py",
+      "sha256": "a34dff0032a21c29cc23370821c9eeb8b5c7a4575d20c606e764531bffada306"
+    },
+    "megatron.core.transformer.utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/utils.py",
+      "sha256": "045881e40ba9df2ddaaeaca0c01b270c06013b5732ffb09d1a4a5ce274c46126"
+    },
+    "megatron.core.typed_torch": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/typed_torch.py",
+      "sha256": "fdc804270211fe84712b9132b06ec8975e4644b548e7415c359775887efa80e5"
+    },
+    "megatron.core.utils": {
+      "path": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/utils.py",
+      "sha256": "470c22dc2cb68fad8e6dd6a6f68af2c9b72db49c6ff7193ac19620b165cc7643"
+    },
+    "vime": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/vime/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "vime.observability": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/vime/observability/__init__.py",
+      "sha256": "e8a00cec93b14f44ceafa0101c4621900450a3394f4c072d179e556882ed9c66"
+    },
+    "vime.observability.native_runtime": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/vime/observability/native_runtime.py",
+      "sha256": "5d64fc2f8a98b5f835dfb557d1b4917dd9484f98c5013926c1c104b1b588665e"
+    },
+    "vime.utils": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/vime/utils/__init__.py",
+      "sha256": "de1cf48d98776a94306852b8dbebe3c0b6ee5b3253b846e1834d71a9d18d05ef"
+    },
+    "vime.utils.http_utils": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/vime/utils/http_utils.py",
+      "sha256": "f6a37ef62f41533838596ab3184525d0bc3c84caa23cf609cf2c8c64d7f6c57e"
+    },
+    "vime.utils.misc": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/vime/utils/misc.py",
+      "sha256": "af90d93f59902038f97575757c6d626eff3e7b592d34595380cd914cc095941b"
+    },
+    "vime.utils.types": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/vime/utils/types.py",
+      "sha256": "1906577a12559375018cef16fc8317c2c74e008798d77a99b6304d4c737b9e11"
+    },
+    "vime_plugins": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/vime_plugins/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "vime_plugins.looped": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/vime_plugins/looped/__init__.py",
+      "sha256": "bc655269a38dbec068cfd1d576fc3b544af70b62dec578b08c09c732b8142d31"
+    },
+    "vime_plugins.looped.execution": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/vime_plugins/looped/execution.py",
+      "sha256": "430e36f11e9245b713906aec1c9dc65c53a252eded17e322e04e482deb857758"
+    },
+    "vime_plugins.looped.packing": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/vime_plugins/looped/packing.py",
+      "sha256": "7df0bd34770cde25af21c341331d14151f66504a29d7f1f333d24bbf0128dc85"
+    },
+    "vime_plugins.looped.prefix": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/vime_plugins/looped/prefix.py",
+      "sha256": "979fdb10a202438d6dee0fb63a9abc2b5f54383c17eb56814388ecffc712117a"
+    },
+    "vime_plugins.looped.readout": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/vime_plugins/looped/readout.py",
+      "sha256": "15d6abd6b3f407d57fdf8d98750297f87c010a67f31774d9474280bd1673c821"
+    },
+    "vime_plugins.looped.response": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/vime_plugins/looped/response.py",
+      "sha256": "a509f0c9ec5dcb3c2fef051775d3cd0d772044fa2a85fc616542b7abd87dd0c1"
+    },
+    "vime_plugins.looped.rltt": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/vime_plugins/looped/rltt.py",
+      "sha256": "cd2709362b79bc07d5cd3785c83c3fa33a05042479cdee1e1545539d12686290"
+    },
+    "vime_plugins.ouro": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/vime_plugins/ouro/__init__.py",
+      "sha256": "345cffded6c5cd3c9631cd846fe883d457dfda3bcf27e25b8163acdce9e6386f"
+    },
+    "vime_plugins.ouro.model": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/vime_plugins/ouro/model.py",
+      "sha256": "cbffbd8de33efadf4af69345bde2b5c4b3f454c10438cc91a3731d0368bfd125"
+    },
+    "vllm_rlt": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/__init__.py",
+      "sha256": "6182fa7a786e92456887ee2b9ebd2bf51b46beef0a4c62ce9871c3c3e4f7f849"
+    },
+    "vllm_rlt.config": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/config.py",
+      "sha256": "9005a2ddd2a7db4be060683643600dfede6775829659ce9c05d4af6357b5bec9"
+    },
+    "vllm_rlt.core": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/core/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "vllm_rlt.core.kv_cache_manager": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/core/kv_cache_manager.py",
+      "sha256": "cbf6a6678517dd8bf01e0a6d6f78ca0c2eb1cfa1ca8e03798e0e3d4b5ebfcdf8"
+    },
+    "vllm_rlt.core.kv_group": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/core/kv_group.py",
+      "sha256": "f522ee0fc36dd3d14de92c9897be42f635c2840f7f25191fc6157d55b7d99e22"
+    },
+    "vllm_rlt.core.memory": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/core/memory.py",
+      "sha256": "f86b38980963800c567035d221dbdb943d5ba242201dab111c26e890decd8e61"
+    },
+    "vllm_rlt.core.scheduler": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/core/scheduler.py",
+      "sha256": "df89e8e8db71800687d775235393c1eb408ffcc9a32548cb83447db49372a09b"
+    },
+    "vllm_rlt.core.scheduling_policy": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/core/scheduling_policy.py",
+      "sha256": "584124dbc9fd3908e3c850f7b570a2649bda45f4785231f8d9c17dbfd5077749"
+    },
+    "vllm_rlt.core.stage_kv_cache": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/core/stage_kv_cache.py",
+      "sha256": "4593eee4afca76c46eb10c7d78165adbf5168b3b38fb3bdd0d81b74b5fe52437"
+    },
+    "vllm_rlt.engine": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/engine/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "vllm_rlt.engine.llm_engine": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/engine/llm_engine.py",
+      "sha256": "a38f11e3b5ed3ad660d47e1eb3bcbba6303cd6c7f94594204f2f5f1c9c5e9292"
+    },
+    "vllm_rlt.engine.preemption": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/engine/preemption.py",
+      "sha256": "3ace18dc776693d04b4aa1e94d60b82780e64a4209ac092f3bed6fcf10723992"
+    },
+    "vllm_rlt.entrypoints": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/entrypoints/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "vllm_rlt.entrypoints.llm": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/entrypoints/llm.py",
+      "sha256": "d378ea69217c75a3392d2dfae9a988e11e56c9c7095f0bd3e53ee96262506bd5"
+    },
+    "vllm_rlt.kernels": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/kernels/__init__.py",
+      "sha256": "3ce880bacb0d2565857d13c161ab0831e40d95c0ab9bd307694a08a9bc6478a5"
+    },
+    "vllm_rlt.kernels.flash_attention": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/kernels/flash_attention.py",
+      "sha256": "33e4092ff3f567ea02327277e8b5d833ad3f63fc292cf6746070759506ad0b91"
+    },
+    "vllm_rlt.kernels.paged_attention": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/kernels/paged_attention.py",
+      "sha256": "0b8426436c4e004fd748a5b3d2fbde09c3694688dec03a443884f0326cb9a6b1"
+    },
+    "vllm_rlt.layers": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/layers/__init__.py",
+      "sha256": "3cd59909bb787a93fb6ee1bfc91278a547c31fb26f8efd32bf7745cac33448e5"
+    },
+    "vllm_rlt.layers.normalization": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/layers/normalization.py",
+      "sha256": "0d95a98a62ad6bc0069d1aa71593da1844ad9b61a948af41d9461fc139e427e4"
+    },
+    "vllm_rlt.layers.rotary_embedding": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/layers/rotary_embedding.py",
+      "sha256": "6626e2b34f8fed807c8af9eb461dc0331f7f7b372e6cbd925b4350cfb262dd72"
+    },
+    "vllm_rlt.models": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/models/__init__.py",
+      "sha256": "30ae7d248097c7bf7c1448a6c3977a678e6bca23ff181a4fe3dc825de9326bc9"
+    },
+    "vllm_rlt.models.huginn": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/models/huginn.py",
+      "sha256": "6bbcffdcd28520e05b5f3cd7ff1106c41c251107257fe9a3a3ae0d799b5793ea"
+    },
+    "vllm_rlt.models.nanbeige": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/models/nanbeige.py",
+      "sha256": "68efaa5aab43fb6f976a1c5f61646c23bbbde33f9bfa56556ff9f9e96bd5bdd6"
+    },
+    "vllm_rlt.models.ouro": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/models/ouro.py",
+      "sha256": "89d9af962e39e940f81f1193016c09090090dbff3f157068b18514b96eb1e0bd"
+    },
+    "vllm_rlt.pd": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/pd/__init__.py",
+      "sha256": "ce97d589536897d534c8424c797959991c51b9d6df963080ba4c33311be69f46"
+    },
+    "vllm_rlt.pd.config": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/pd/config.py",
+      "sha256": "5097b5aa8630259ae32035720f65eb201b7f9c00e1c79649312a1ace4c479b15"
+    },
+    "vllm_rlt.pd.engine": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/pd/engine.py",
+      "sha256": "43229bf4678d958aac46e6c97f3e67745fba8116366bc2d38c3b5c527f271bb6"
+    },
+    "vllm_rlt.pd.transport": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/pd/transport.py",
+      "sha256": "c2c954081c4d2a3091bae0626b30fcd3e2c30656f12775ecaa8599009b3bcc58"
+    },
+    "vllm_rlt.pd.worker": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/pd/worker.py",
+      "sha256": "2c3b6ebab3eb80bce4699ec6371183b74038f33819cf82fddcfefc85155942eb"
+    },
+    "vllm_rlt.profiling": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/profiling.py",
+      "sha256": "0744f3c46723dec3420bc4882a77f5c6f81a4aeff6e9f6587cfb3ae981d9f158"
+    },
+    "vllm_rlt.profiling_artifacts": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/profiling_artifacts.py",
+      "sha256": "a03553c7d04e4f0c3b84664074aa4f9bb3ea708d6c1b68fa5dd4b91f16729851"
+    },
+    "vllm_rlt.request": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/request.py",
+      "sha256": "0bce4d3bcbf8aa94cee024bb156f21e1d03ce7fc13b98599b462022091b25216"
+    },
+    "vllm_rlt.sampling_params": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/sampling_params.py",
+      "sha256": "38c2c477c03a95bcb19451b9da0fcceb3da41ac08308e4751675fd333a9925fe"
+    },
+    "vllm_rlt.worker": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/worker/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "vllm_rlt.worker.buffers": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/worker/buffers.py",
+      "sha256": "4ec2bbdfb52b8ff42f48af18eaf571d6bd5934e0911ca431fc01f3b84097f919"
+    },
+    "vllm_rlt.worker.cuda_graph": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/worker/cuda_graph.py",
+      "sha256": "22914dd76963d457965250db69126797c4f425d838fd99d6516b2431e3214d95"
+    },
+    "vllm_rlt.worker.model_runner": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/worker/model_runner.py",
+      "sha256": "51c39b3c2f3b647971225756981b8b336f803502a0efb3293db75025fcecb2fb"
+    },
+    "vllm_rlt.worker.sampler": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/worker/sampler.py",
+      "sha256": "ae477775b22529777fc569ce270dc1df4d610dbb8b6eaf558de993b620bb093a"
+    },
+    "vllm_rlt.worker.sampling": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/worker/sampling.py",
+      "sha256": "a18df2d2f6fc36bc025d53b4df910e1f9a9edf66cc3713632d608c9bb6fdb49c"
+    },
+    "vllm_rlt.worker.speculative": {
+      "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w08-gpu-packet-v1/parent/vllm_rlt/worker/speculative.py",
+      "sha256": "ed95bbc302cc374038dc4d61203c0a0af79ca7722b8163ff410ea9d1733ae9d6"
+    }
+  },
+  "changed_rlt_working_tree_rejected": "Changed source: rlt:vllm_rlt/config.py",
+  "python": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/bin/python",
+  "torch_version": "2.13.0",
+  "cuda_initialized": false,
+  "scope": "read-only local files and real CPU imports; no Ray workers, model weights, generation or optimizer steps",
+  "full_framework_ray_cuda": "NOT_RUN",
+  "reward_convergence": "NOT_ESTABLISHED"
+}
