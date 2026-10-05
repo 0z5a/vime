@@ -287,11 +287,19 @@ class OuroMegatronModel(MegatronModule):
         execution_depths: torch.Tensor | None = None,
         recurrent_inputs: list[RecurrentTrace] | None = None,
         readout: ResponseReadout | None = None,
-    ) -> torch.Tensor:
+        prefix_only: bool = False,
+    ) -> torch.Tensor | PrefixProgram:
         if labels is not None or attention_mask is not None or position_ids is not None:
             raise ValueError("Use VIME's masked RL loss and unmodified per-sequence positions")
         if input_ids.ndim != 2 or input_ids.shape[0] != 1:
             raise ValueError("Ouro expects one packed token stream")
+        if prefix_only:
+            if input_ids.shape[1] == 0 or any(
+                value is not None
+                for value in (packed_seq_params, loss_mask, execution_depths, recurrent_inputs, readout)
+            ):
+                raise ValueError("A prefix forward requires only one nonempty unmodified prompt")
+            return self.prefix_program(input_ids[0])
         if recurrent_inputs is not None and any(
             trace.prefill_depth != self.loop_budget or any(depth != self.loop_budget for depth in trace.decode_depths)
             for trace in recurrent_inputs

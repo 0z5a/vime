@@ -1,0 +1,73 @@
+{
+  "parent": "e86e53e108cca8f54ebda73408f2827006d6d416",
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "2",
+    "tests": "27",
+    "time": "23.128",
+    "timestamp": "2026-10-06T00:34:35.023817+08:00",
+    "hostname": "dadaxiaoxiaodeMacBook-Air.local"
+  },
+  "existing_cases": 196,
+  "natural_exit": {
+    "75147": 0,
+    "72784": 0
+  },
+  "test_files": [
+    "tests/plugins/test_prefix_provider_entry.py",
+    "tests/rollout_backends/test_native_prefix_arguments.py",
+    "tests/rollout_backends/test_native_colocation.py",
+    "tests/rollout_backends/test_native_eval_arguments.py",
+    "tests/integration/test_native_prefix_train_step.py"
+  ],
+  "harness": "../bench/resident_pytest.py",
+  "test_options": [
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--tb=short",
+    "--show-capture=no",
+    "-o",
+    "junit_family=legacy"
+  ],
+  "python": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/bin/python",
+  "test_environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "FROZENLIST_NO_EXTENSIONS": "1",
+    "MULTIDICT_NO_EXTENSIONS": "1",
+    "AIOHTTP_NO_EXTENSIONS": "1",
+    "YARL_NO_EXTENSIONS": "1",
+    "OMP_NUM_THREADS": "1",
+    "PYTHONPATH": ".:../rlt:tests:tests/plugins:tests/rollout_backends:/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron"
+  },
+  "scope": "CPU provider/argument tests; real CUDA DDP/optimizer tests collected but skipped; no actual full learner run",
+  "actual_ray_cuda_e2e": "NOT_RUN",
+  "reward_convergence": "NOT_ESTABLISHED",
+  "environment_mutation": false,
+  "process_signals": false,
+  "new_cases": 13,
+  "warnings": 25,
+  "passed": 25,
+  "strict_expected_numeric_failures": 0,
+  "broad_tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "14",
+    "tests": "209",
+    "time": "85.335",
+    "timestamp": "2026-10-06T00:31:31.272117+08:00",
+    "hostname": "dadaxiaoxiaodeMacBook-Air.local"
+  },
+  "broad_passes": 195,
+  "broad_strict_expected_numeric_failures": 12,
+  "actual_cuda_skipped": 2,
+  "broad_additional_test_files": [
+    "tests/plugins/test_looped_logical_step.py",
+    "tests/plugins/test_rltt_training.py",
+    "tests/plugins/test_differentiable_prefix.py"
+  ],
+  "changes_after_broad_run": "Added explicit actual rank/recompute guards and model_type setup in CUDA-only fixture. Focused run tests finalized sources; no GPU execution."
+}

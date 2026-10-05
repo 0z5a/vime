@@ -1,0 +1,22 @@
+{
+  "source_sha256": {
+    "vime/backends/megatron_utils/model.py": "b52495c34a1ad2bd4b68eea31e1dd23fa9ebbad3c4d0e92b2df70477fb45a30a",
+    "vime/backends/megatron_utils/looped_prefix_schedule.py": "ac95d4f7738fa15825ea9525b5e813e8534036156a3021a049550079bd45b4a6",
+    "vime/backends/vllm_rlt_utils/arguments.py": "08e505a7191219261155c3d389c1c6e5518697fe36b82e305a15ebfdb3a9f208",
+    "vime_plugins/ouro/model.py": "c3bd7fe426f517d2a9afafc210bc59b32d28185bec76c1d088a6a3e80f536ef3",
+    "tests/rollout_backends/test_native_colocation.py": "bffdcd08661310e39dd8a05c9770a833466f377f8d9d8bd9664fef472d61feee",
+    "tests/rollout_backends/test_native_eval_arguments.py": "fea76b5823950d667e4e0c13c4d71e95e95b09bf85b281ec1de0022d01b2423c",
+    "tests/rollout_backends/test_native_prefix_arguments.py": "332f510a8aa5898daa576d434eb1ec3d22df7014c30642fcf6ad0287e49cd063",
+    "tests/plugins/test_prefix_provider_entry.py": "2b698d0a667b389f4455fddbf102aa2f28bd9ef9388bc3318316d0628fd8753a",
+    "tests/integration/test_native_prefix_train_step.py": "281288c5322c5ab0e8cdcc53c4ae37758d6d10a92ee223983ce7407abadea8c7",
+    "docs/rltt_prefix_schedule.md": "69a709ced4e79abd66034b56a53d13e53a593171e9f68d7bf3a785be72d918db"
+  },
+  "artifact_sha256": {
+    "prefix-schedule-final.log": "1a2f20cf079a52a39569c106060c37f76af8ae5cfc93a70a0a34bab58b207c91",
+    "prefix-schedule-final.xml": "8d1cf6849046cbaa1ac7b229f299880e5fb9501ee603839c819c44f66ad7ddc0",
+    "prefix-schedule-first.log": "d4f518be0b7454b232b043854b35f0796488768525ef15bebe97d2d5a2036360",
+    "prefix-schedule-first.xml": "7d236cd3bee82399dd8f249c993baaf4feb854d7284734ecf6421025504fc37f",
+    "resident_pytest.py": "2af5ce445da14f656c71e8d4817dcf85cd57402a77f50f612898c47f52f4d4f4",
+    "validation.json": "20823479be9e1d60c5c10344a0b61ef4eb62559657abacea8bfb136348db20af"
+  }
+}

@@ -26,6 +26,12 @@ def add_arguments(parser):
     group.add_argument("--rltt-loop-checkpoint", type=int, default=0)
     group.add_argument("--rltt-layer-checkpoint", type=int, default=0)
     group.add_argument("--rltt-token-chunk", type=int, default=0)
+    group.add_argument(
+        "--rltt-prefix-wave-size",
+        type=int,
+        default=0,
+        help="Opt-in FP32 Ouro actor prefix schedule; zero retains the MCore schedule",
+    )
     return parser
 
 
@@ -36,6 +42,10 @@ def validate_args(args):
     if family not in depth_keys:
         raise ValueError(f"vLLM-RLT does not support {family!r}")
     args.rlt_model_family = family
+    if args.rltt_prefix_wave_size < 0:
+        raise ValueError("RLTT prefix wave size must be nonnegative")
+    if args.rltt_prefix_wave_size and (family != "ouro" or args.loss_type != "rltt_loss"):
+        raise ValueError("The prefix schedule currently requires native Ouro RLTT")
     full_depth = config[depth_keys[family]]
     if args.rlt_depth is None:
         args.rlt_depth = full_depth

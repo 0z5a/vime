@@ -618,9 +618,10 @@ def train_one_step(
         custom_before_train_step_hook = load_function(args.custom_megatron_before_train_step_hook_path)
         custom_before_train_step_hook(args, rollout_id, step_id, model, optimizer, opt_param_scheduler)
 
+    prefix_schedule = args.loss_type == "rltt_loss" and args.rltt_prefix_wave_size > 0
     rltt_weights = (
         weights_for_step(data_iterator[0], num_microbatches, args.rltt_reduction)
-        if args.loss_type == "rltt_loss"
+        if args.loss_type == "rltt_loss" and not prefix_schedule
         else None
     )
 
@@ -720,7 +721,11 @@ def train_one_step(
                 forward_kwargs["recurrent_inputs"] = batch["recurrent_inputs"]
             if args.loss_type == "rltt_loss":
                 forward_kwargs["readout"] = readout_request(
-                    args, batch["response_lengths"], batch["total_lengths"], all_loops=True, entropy=args.entropy_coef != 0
+                    args,
+                    batch["response_lengths"],
+                    batch["total_lengths"],
+                    all_loops=True,
+                    entropy=args.entropy_coef != 0,
                 )
 
             if args.enable_mtp_training:
@@ -768,17 +773,31 @@ def train_one_step(
         return output_tensor, partial(loss_function, args, batch, num_microbatches, step_global_batch_size)
 
     # Forward pass.
-    forward_backward_func = get_forward_backward_func()
-    losses_reduced = forward_backward_func(
-        forward_step_func=_wrap_forward_step_with_microbatch_pbar(forward_step, microbatch_pbar),
-        data_iterator=data_iterator,
-        model=model,
-        num_microbatches=num_microbatches,
-        seq_length=args.seq_length,
-        micro_batch_size=args.micro_batch_size,
-        decoder_seq_length=args.decoder_seq_length,
-        forward_only=False,
-    )
+    if prefix_schedule:
+        from .looped_prefix_schedule import forward_backward_prefix
+
+        if len(model) != 1 or len(data_iterator) != 1:
+            raise ValueError("The prefix schedule requires one learner model and iterator")
+        losses_reduced = forward_backward_prefix(
+            args,
+            data_iterator[0],
+            model[0],
+            num_microbatches,
+            step_global_batch_size,
+            actor_generation=opt_param_scheduler.num_steps,
+        )
+    else:
+        forward_backward_func = get_forward_backward_func()
+        losses_reduced = forward_backward_func(
+            forward_step_func=_wrap_forward_step_with_microbatch_pbar(forward_step, microbatch_pbar),
+            data_iterator=data_iterator,
+            model=model,
+            num_microbatches=num_microbatches,
+            seq_length=args.seq_length,
+            micro_batch_size=args.micro_batch_size,
+            decoder_seq_length=args.decoder_seq_length,
+            forward_only=False,
+        )
 
     valid_step = True
     grad_norm = float("nan")
@@ -808,6 +827,12 @@ def train_one_step(
         # batching is on so the scheduler's samples-seen counter tracks reality.
         assert update_successful
         opt_param_scheduler.step(increment=step_global_batch_size)
+        if prefix_schedule:
+            data_iterator[0].offset += num_microbatches
+            if microbatch_pbar is not None:
+                microbatch_pbar.update(num_microbatches)
+    elif prefix_schedule:
+        raise FloatingPointError("Prefix actor update rejected; iterator cursor was not advanced")
 
     # release grad
     for model_chunk in model:
@@ -949,7 +974,6 @@ def train(
 
     # Run training iterations till done.
     for step_id in range(num_steps_per_rollout):
-
         # Run training step.
         loss_dict, grad_norm = train_one_step(
             args,

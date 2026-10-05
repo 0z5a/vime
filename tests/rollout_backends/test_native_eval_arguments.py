@@ -18,6 +18,7 @@ def test_eval_sampling_is_separate_from_training_validation(tmp_path, training_t
         rlt_kv_blocks=128,
         rlt_max_num_seqs=2,
         rlt_start_version=0,
+        rltt_prefix_wave_size=0,
         rollout_num_gpus=1,
         rollout_num_gpus_per_engine=1,
         colocate=False,
