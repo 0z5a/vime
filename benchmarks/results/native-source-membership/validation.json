@@ -1,0 +1,66 @@
+{
+  "parent": "62a86331b5a9e9135aeffa64b8f3c4b122a31960",
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "89",
+    "time": "7.711",
+    "timestamp": "2026-10-05T23:33:04.040334+08:00",
+    "hostname": "dadaxiaoxiaodeMacBook-Air.local"
+  },
+  "new_source_cases": 22,
+  "existing_cases": 67,
+  "natural_exit": {
+    "70168": 0,
+    "41179": 0,
+    "50752": 0,
+    "55700": 0,
+    "31274": 0,
+    "12306": 0,
+    "39741": 0
+  },
+  "source_manifest_sha256": "f421d2be6c52eaf402afac520a637399615f3f6286f09f93e7af86b617975ec3",
+  "repeated_freeze_byte_identical": true,
+  "files_checked": {
+    "vime": 224,
+    "rlt": 54,
+    "megatron": 490
+  },
+  "actual_imported_modules": 202,
+  "changed_rlt_rejected": "Changed source: rlt:vllm_rlt/config.py",
+  "test_files": [
+    "tests/test_native_checkpoint_audit.py",
+    "tests/test_native_learning_signal_audit.py",
+    "tests/test_native_output_audit.py",
+    "tests/test_native_qualification_recipe.py",
+    "tests/test_native_runtime_audit.py",
+    "tests/test_native_source_membership.py"
+  ],
+  "harness": "../bench/resident_pytest.py",
+  "test_options": [
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--tb=short",
+    "-o",
+    "junit_family=legacy"
+  ],
+  "python": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/bin/python",
+  "test_environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "FROZENLIST_NO_EXTENSIONS": "1",
+    "MULTIDICT_NO_EXTENSIONS": "1",
+    "AIOHTTP_NO_EXTENSIONS": "1",
+    "YARL_NO_EXTENSIONS": "1",
+    "OMP_NUM_THREADS": "1",
+    "PYTHONPATH": ".:../rlt:tests/plugins:/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron"
+  },
+  "import_environment_pythonpath": ".:../evidence/w08-gpu-packet-v1/parent:/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron",
+  "scope": "CPU source/control tests; synthetic worker records; real finite Python child; actual CPU imports without model weights",
+  "actual_ray_cuda_e2e": "NOT_RUN",
+  "reward_convergence": "NOT_ESTABLISHED",
+  "environment_mutation": false,
+  "process_signals": false
+}

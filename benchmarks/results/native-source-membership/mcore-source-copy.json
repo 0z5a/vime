@@ -1,0 +1,10 @@
+{
+  "utc": "2026-10-03T05:51:24.304355+00:00",
+  "archive": "/Users/0z5a/Documents/infra/vime-three-deliverables-20261001/megatron-validated.tar.gz",
+  "sha256": "772e1abe21ae85b6ccfa29ce03fc4e86cbe7c7082d3614a9fe397690fac2f043",
+  "files": 2232,
+  "destination": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron",
+  "base": "1dcf0dafa884ad52ffb243625717a3471643e087",
+  "patch": "6fa39fdfdac8dae6b9bb3e44014df6766d774e0968ac07d6025a6b40f211aa98",
+  "scope": "own read-only CPU source copy; no shared runtime changes"
+}

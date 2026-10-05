@@ -1,0 +1,25 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/0z5a/Documents/infra/flashrlt-20261005/vime
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 41 items
+
+tests/test_native_source_membership.py .....................             [ 51%]
+tests/test_native_qualification_recipe.py .......                        [ 68%]
+tests/test_native_runtime_audit.py .............                         [100%]
+
+- generated xml file: /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/native-source-first.xml -
+============================== slowest durations ===============================
+0.14s call     tests/test_native_source_membership.py::test_git_reads_commit_objects_instead_of_dirty_checkout
+0.02s call     tests/test_native_source_membership.py::test_controller_checks_sources_before_launch[success]
+0.01s setup    tests/test_native_source_membership.py::test_cli_binds_frozen_sources_to_all_phases
+0.01s setup    tests/test_native_source_membership.py::test_same_revision_declarations_do_not_qualify_changed_sources[incomplete]
+0.01s setup    tests/test_native_source_membership.py::test_same_revision_declarations_do_not_qualify_changed_sources[unknown_module]
+0.01s setup    tests/test_native_source_membership.py::test_same_revision_declarations_do_not_qualify_changed_sources[manifest]
+0.01s setup    tests/test_native_source_membership.py::test_same_revision_declarations_do_not_qualify_changed_sources[all_phases_changed]
+
+(116 durations < 0.005s hidden.  Use -vv to show these durations.)
+============================== 41 passed in 0.76s ==============================

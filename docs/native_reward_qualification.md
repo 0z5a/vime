@@ -70,10 +70,11 @@ boundary and do not replace that parser or worker startup.
 python benchmarks/prepare_native_qualification.py \
   --source /task/math-v2-rltt-source-release --output /task/qualification
 
-python benchmarks/run_native_qualification.py \
+python -m benchmarks.run_native_qualification \
   --packet /task/qualification --model /models/Ouro-1.4B-Thinking \
   --output /task/qualification-runs --ray-address RESERVED_HOST:PORT \
-  --algorithm rltt --phase continuous --execute
+  --algorithm rltt --phase continuous \
+  --source-manifest /task/sources.json --source-roots /task/source-roots.json --execute
 ```
 
 Run `split` in a separate process, then `resume` only after the split phase
@@ -84,9 +85,11 @@ to perform update three. Repeat the three phases independently for GRPO.
 The launcher rejects `--ray-address local`, checks frozen input hashes, records
 the child PID before waiting, and uses ordinary `wait()` without a timeout or
 signal. Omitting `--execute` prints the exact command and launches nothing.
-The controller's execute path has not run in this delivery. Revision arguments
-declare the intended inputs; they do not authenticate model files or worker
-imports. Verify actual model hashes and loaded source identities before execution.
+The official Ray/CUDA execute path has not run. The
+[source membership gate](native_source_membership.md) describes the required
+source manifest and roots, pre-launch file checks, and post-run worker-module
+audit. Revision arguments alone do not authenticate model files or worker imports.
+Verify actual model hashes separately before execution.
 The retained dry-run commands reference a local tokenizer/configuration directory,
 which contains no weights and must be replaced by the verified model directory.
 

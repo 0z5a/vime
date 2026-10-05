@@ -1,0 +1,4632 @@
+{
+  "schema": "native-source-membership-v1",
+  "sources": {
+    "vime": {
+      "kind": "git",
+      "commit": "62a86331b5a9e9135aeffa64b8f3c4b122a31960",
+      "tree": "95f2922c66ccc240ef49302f806d7e96b19fa021"
+    },
+    "rlt": {
+      "kind": "git",
+      "commit": "fd993ec5512904b68e16f4d541682c076c487b5d",
+      "tree": "aa65a2569658c54cdb7f6cb377741b970cd98f0b"
+    },
+    "megatron": {
+      "kind": "archive",
+      "sha256": "772e1abe21ae85b6ccfa29ce03fc4e86cbe7c7082d3614a9fe397690fac2f043",
+      "receipt_sha256": "45b3a1c9994d08effa5ce1177a1a373c24649e133c0b95454d2899ca0895a11a",
+      "recorded_base": "1dcf0dafa884ad52ffb243625717a3471643e087",
+      "recorded_patch": "6fa39fdfdac8dae6b9bb3e44014df6766d774e0968ac07d6025a6b40f211aa98"
+    }
+  },
+  "files": [
+    {
+      "source": "megatron",
+      "path": "megatron/core/MSC_Integration.md",
+      "bytes": 8770,
+      "sha256": "ac6d060e7c351b668de4f8e242ea1f80708d6c85911233b7b21ff46994a3dbb5"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/QuickStart.md",
+      "bytes": 9793,
+      "sha256": "bc66165f7bb599c8632d3fb2db1b343c0b05104a7e6779d20f74ca859381515f"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/README.md",
+      "bytes": 2484,
+      "sha256": "bc55fffd0ae689ed282cdac5c0026f1cd3aacfbd065d4d7840c2b77224dfe66b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/README_STRAGGLER.md",
+      "bytes": 4119,
+      "sha256": "1d158a4259f2620beab7107c195467c3a1ecabfd728219bd2bc716fcdd2afc8f"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/__init__.py",
+      "bytes": 1321,
+      "sha256": "cdf5e08f9796cb222d63fe6ac98d4d46d1cb8fff950b8817adf887af77ad0669"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/_rank_utils.py",
+      "bytes": 1290,
+      "sha256": "87dbaa4145ccdfb14b7f5c33a568df1b072601f36908f6005c7e34e2a7f96b75"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/activations.py",
+      "bytes": 593,
+      "sha256": "b5e71c7d039a9454117aab0ef11c42d035960ea872c54d2450a941a73bc71408"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/config.py",
+      "bytes": 355,
+      "sha256": "83e503648ab324be9e86428a6da568b5ce255f6556033dfa9b967482f010aa36"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/config_logger.py",
+      "bytes": 4346,
+      "sha256": "6c2fd097197e2f8dfcf2dd5685300bd5e773f504eac7ebd7ba5924e479cacf0a"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/Makefile",
+      "bytes": 313,
+      "sha256": "0555c53484b55bf1a7e40aa4d2e09329f6767512282d428e2c868c677ed50350"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/bert_dataset.py",
+      "bytes": 7275,
+      "sha256": "d2a1e46343a9b2a56d82b2409cf7d032c16cb336970d9c2c67a5e86d282928ad"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/blended_dataset.py",
+      "bytes": 9988,
+      "sha256": "d6ba1631cd37e8884594b3f8f3444707a2ac81664c06dcdde5d287f65f4b123b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/blended_megatron_dataset_builder.py",
+      "bytes": 25127,
+      "sha256": "6493c670da8ef10b049f63af1fcdaa1fb09757def1cacc200a90b169a80c185a"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/blended_megatron_dataset_config.py",
+      "bytes": 9270,
+      "sha256": "003e7905e7ef86768525a33197b481fed8ad6735aae86c6c50b354bb05ae6d90"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/data_schedule.py",
+      "bytes": 12896,
+      "sha256": "4fde0ecd4111c42cd18158f2753173bcc9b4c2d92aa1333eb67b0aaf0e5249de"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/gpt_dataset.py",
+      "bytes": 34036,
+      "sha256": "d569d076cf9c7ccc285a48b7882faa07c6008e4f10891150981f2257251ac272"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/helpers.cpp",
+      "bytes": 29803,
+      "sha256": "dbc3429a1dac7a86946494a61d14fe5754538399e6413ca6939de46cc530b24b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/helpers.py",
+      "bytes": 2127,
+      "sha256": "2cdd3ed8dc66831203568c36b8932149c2db837cbb37bc3ea7ed8461ffaa428a"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/indexed_dataset.py",
+      "bytes": 38176,
+      "sha256": "86650eec71319b99e63fde40c95d38176b89cbbe7ede9581aa7c67f1334eab72"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/masked_dataset.py",
+      "bytes": 17647,
+      "sha256": "cac6e09a86f02c3e799a36b0009544402085d9fe5c53ec9881ff35bd8b962b63"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/megatron_dataset.py",
+      "bytes": 7211,
+      "sha256": "a7312b523c27a2e260f1344f26ed7f068bdb82a5f18223908bfd478b7e3db2cb"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/megatron_tokenizer.py",
+      "bytes": 4774,
+      "sha256": "0ac7e39b8546e883f20d9a3fdee10aaf04e9da703bf738161473320b0c2b5718"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/multimodal_dataset.py",
+      "bytes": 1907,
+      "sha256": "951a42e063a508496b0d339e138b15844e5601185fcd6998bebe85b97051fceb"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/object_storage_utils.py",
+      "bytes": 8310,
+      "sha256": "d0cfea24d600298b113c468c8027b0ecb17dc8b4d69fcbe5c55444b01728b655"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/readme.md",
+      "bytes": 8973,
+      "sha256": "cb15f4ed2549d546f4d300e8a35a1d92b4ed1f79848e783f87bddd9ee33b5434"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/t5_dataset.py",
+      "bytes": 14270,
+      "sha256": "525732cee8314d5b9228549d6e29fc4ce73132afc2ac404d2e33a692d85f0cfe"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/utils.py",
+      "bytes": 2787,
+      "sha256": "b0b7f4461623dbcd076e41ccf2de6d0214c4e9433c363c03daec6a5a060613c2"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/datasets/utils_s3.py",
+      "bytes": 185,
+      "sha256": "bd05fd9fbe6bcc441feeaf7690cdb5369f8ca14268be642bb01ec1589275b9f9"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/__init__.py",
+      "bytes": 381,
+      "sha256": "05804998a6f1135fa540da8cc086d3a6e7671c8907e7fa60c18ab26864a61ccd"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/core.py",
+      "bytes": 2831,
+      "sha256": "c7c67d98c147ba265f536b9df9172e2434caf390d13ecc6fbf162a53eab78580"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/dict_utils.py",
+      "bytes": 9532,
+      "sha256": "37139d43a57248bfd682d3df27cb5bbcfd1da09af4c10663b7a24bb96771117c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/exchange_utils.py",
+      "bytes": 25782,
+      "sha256": "3e5c7999a67fcaa49816164138ef5fbcf1a581fdc1a29c8e11a213ffb99e506b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/mapping.py",
+      "bytes": 21135,
+      "sha256": "fb161c5afb0cef4937ff9d2fc13b5304de92c50a328bcef2548a837cfe69607a"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/optimizer.py",
+      "bytes": 6251,
+      "sha256": "48ce3aa3fced08c8760323c30784ef9291b026e9cbd2a8bcaa5c231a720c2762"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/serialization.py",
+      "bytes": 20222,
+      "sha256": "7207075aee240c8a65792303cc8d1d437eb4953be7d704071b8459d575bc2511"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/state_dict_utils.py",
+      "bytes": 4980,
+      "sha256": "008034a6a24fc928489ec919e72833645ed3182d4b9bf3a8c93cd966e3507e09"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/strategies/__init__.py",
+      "bytes": 316,
+      "sha256": "8d466e8957b5165c657761e671db8fe3be4cb68a8821479ff32add83f0e8bb25"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/strategies/async_utils.py",
+      "bytes": 24967,
+      "sha256": "8bc7abfd158589acb4f84774ba9592e42099b451c8d1d8b8203ce8f3d2ca98dd"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/strategies/base.py",
+      "bytes": 7881,
+      "sha256": "9a2c3955191bef72c263cf19e792a7fe36ca002faaa0e4d7e7b0807825110379"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/strategies/cached_metadata_filesystem_reader.py",
+      "bytes": 1105,
+      "sha256": "804954e2ce15ab6f78a19999371ef8ca5911aad688a27ef72d54977c3fb1ac24"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/strategies/checkpointable.py",
+      "bytes": 7286,
+      "sha256": "7e568ce046b8450f245af86b5182dcaaa2a6678b93c4086f6aa551af164cafee"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/strategies/common.py",
+      "bytes": 8111,
+      "sha256": "0f57410c97db50c494812f808f3a938fd9d41d86b7d62523e46092c1fc95c61c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/strategies/filesystem_async.py",
+      "bytes": 24486,
+      "sha256": "6922b7ab3342df7e3f278af400769823600115a5e4ce95db8132dbf56cc2e248"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/strategies/fully_parallel.py",
+      "bytes": 22011,
+      "sha256": "da976df41e782d60a52423773b642b1c44402662c2913ff029d7509ecf84d3e1"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/strategies/state_dict_saver.py",
+      "bytes": 11144,
+      "sha256": "3b35f1e9cc1dd3a48827675c60508303bdd4bb285d78fb7d6fb56ec57ef2e69c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/strategies/torch.py",
+      "bytes": 39472,
+      "sha256": "21cef46b045823866282eab3d49d1780c198f743273c71aaaf6f7569b800a91d"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/tensor_aware_state_dict.py",
+      "bytes": 16421,
+      "sha256": "36ba69f2ab4e8db614072b1fdd6fa4481296ee62800fbcc82a5db4ebb4532e9e"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/utils.py",
+      "bytes": 12549,
+      "sha256": "34918feccec79f8e7326fca664b466b06dbb435e36569b5972dd3690c5dd97a6"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/dist_checkpointing/validation.py",
+      "bytes": 23087,
+      "sha256": "2676da71f14652514268a06d719280c7a8f2203551769bf69d2993f310f9888b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/README.md",
+      "bytes": 334,
+      "sha256": "d12a24fedbc4e5555694cd9d377fb37f52c1191527efe03fedcca7c93cb40061"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/__init__.py",
+      "bytes": 564,
+      "sha256": "884074e2275f9c7d29960498fb9cf30342891f315edf68b5970445a51797db55"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/data_parallel_base.py",
+      "bytes": 3217,
+      "sha256": "2f2a2570d3b1f99555528903fc2d4a67ef29a99d5c542a2c2f8feeaaf5744f2a"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/distributed_data_parallel.py",
+      "bytes": 29801,
+      "sha256": "ae77486e41960e00408d91213a7963a68c9fa4745ab176bf58c61c7122c2b3ff"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/distributed_data_parallel_config.py",
+      "bytes": 8006,
+      "sha256": "21d52bfa861c8fa7534e7df75d36bc51249868d32a52f53f0c8ebf941d3d1051"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/finalize_model_grads.py",
+      "bytes": 20686,
+      "sha256": "b81ca0352fe0120a04839a5928388a9b0edcc35da30b44f1b7d38eae90a487b5"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/fsdp/__init__.py",
+      "bytes": 121,
+      "sha256": "8645081f6b99eae688a9931814faef81b722b75682615ea6cd4ccce86b633e59"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/fsdp/mcore_fsdp_adapter.py",
+      "bytes": 19716,
+      "sha256": "b2dbd804f3def0e748694627151e08d68979c1f2ac5ad7262b20a40b4ab7bf46"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/fsdp/src/README.md",
+      "bytes": 25221,
+      "sha256": "ae801eb20f0f2fc5f136cd3c539e1dd3f480ba9f5c69eadc5a648f8c65f5a3e3"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/fsdp/src/__init__.py",
+      "bytes": 610,
+      "sha256": "05b7a7dd9408434f37d08ddfbcf9dce2534d2b8319a0b0df44d85f2a887e68b8"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/fsdp/src/megatron_fsdp/__init__.py",
+      "bytes": 1527,
+      "sha256": "d4978e65ef6a6b4736d80bf9c74cb1bf09cff2d5db8450c82c949cbf8afa40b2"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/fsdp/src/megatron_fsdp/distributed_data_parallel_config.py",
+      "bytes": 7507,
+      "sha256": "a50eee8aba3e2ffb04d66ef9884dce3a9fa6b2048950f3da08014cdf510a4f96"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/fsdp/src/megatron_fsdp/fully_shard.py",
+      "bytes": 28822,
+      "sha256": "8a295f3c7a97562255effe49eeea0507e697bf0e034c5c720fdc5ebe7decf8c1"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/fsdp/src/megatron_fsdp/megatron_fsdp.py",
+      "bytes": 66203,
+      "sha256": "c4dc67ffa64883e85399e5158196c3182b31fe7aebacf0801e149439e9e0cfeb"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/fsdp/src/megatron_fsdp/mixed_precision.py",
+      "bytes": 13495,
+      "sha256": "009b2eb8c9ffc767bdd21b972c0070d357c4893dc494c1e1b8adf5345b98aaa3"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/fsdp/src/megatron_fsdp/package_info.py",
+      "bytes": 992,
+      "sha256": "2350e05f299edbb8b814326ed6a6f1babfe8e86cfb7493d4c202279028f6fbde"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/fsdp/src/megatron_fsdp/param_and_grad_buffer.py",
+      "bytes": 192259,
+      "sha256": "f07a9384a4c5f61985311efd1ebc5ccd16581d5b41b254aeb6f1006ffc51812b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/fsdp/src/megatron_fsdp/uneven_dtensor.py",
+      "bytes": 18901,
+      "sha256": "e81202ea857f9c110153f0d36b000d5bee101ba27f12ca8264b16c101abedb2f"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/fsdp/src/megatron_fsdp/utils.py",
+      "bytes": 32947,
+      "sha256": "36f9d05e30a5dddee60ddcb475f9580eac6f0c36c2e052810365b8e73bb8c7f3"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/fsdp/src/pyproject.toml",
+      "bytes": 2131,
+      "sha256": "f9b336b0e58ee6cd0e5b10af840807a9fcc39496744aaebd83729b7697cb5e53"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/param_and_grad_buffer.py",
+      "bytes": 53990,
+      "sha256": "35910805dc2b4272a6cf6c8c014f0a4cc5d9aaa987cad67b13e0e355a3033697"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/reduce_scatter_with_fp32_accumulation.py",
+      "bytes": 3475,
+      "sha256": "c1c4f92a5aa7e596f48ad08107ee53fe2f20aa601453bf0ed9814c5fdcd7390b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/torch_fully_sharded_data_parallel.py",
+      "bytes": 6413,
+      "sha256": "c01769a760b6aec501deb2617744d8b111aadd3eeac2f31b467e4903af1476c6"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/distributed/torch_fully_sharded_data_parallel_config.py",
+      "bytes": 719,
+      "sha256": "c797098b0309708898502796686938c3746bc6b33e560d025734cdef3210458c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/energy_monitor.py",
+      "bytes": 2648,
+      "sha256": "bded2ba8a0b9ec5f2f1af3bc09a24523a613b823eba9eadb6d750cb236f6d806"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/enums.py",
+      "bytes": 789,
+      "sha256": "583285ea38501dbdfbe96c2ec2b12055e80e8a7f0fdfccdc41caf92b0ae4034b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/export/__init__.py",
+      "bytes": 63,
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/export/data_type.py",
+      "bytes": 151,
+      "sha256": "4db3207a61aef5c04836d09837814949697658408bff4812ec2d157be74d8100"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/export/export_config.py",
+      "bytes": 909,
+      "sha256": "4cee42ad85bf35fc4e3a590df0c508d938c037dda1002420c97c3d44f8cca6d1"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/export/model_type.py",
+      "bytes": 216,
+      "sha256": "81a5d3c910e1bd8ee14659123b7debc0bc55e6861181dddc55ab4741f998ce56"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/export/trtllm/__init__.py",
+      "bytes": 63,
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/export/trtllm/engine_builder/__init__.py",
+      "bytes": 63,
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/export/trtllm/engine_builder/trtllm_engine_builder.py",
+      "bytes": 7444,
+      "sha256": "72918e4a49377d7058a097ab487ab9dd395400f84027890b86d77bbfabd71d7e"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/export/trtllm/model_to_trllm_mapping/__init__.py",
+      "bytes": 63,
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/export/trtllm/model_to_trllm_mapping/default_conversion_dict.py",
+      "bytes": 2870,
+      "sha256": "5a374dc33eef73fcc8f54e5ad348ee2b98e6b2d708c30ef2aab518157d22e52f"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/export/trtllm/trt_model_config.py",
+      "bytes": 846,
+      "sha256": "ec4456811a007856922a4c6eb5b4baa900370baa71c820cf832a0472c9d7f199"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/export/trtllm/trt_model_type.py",
+      "bytes": 485,
+      "sha256": "13bf640c5991b757f6834838771ef7d170f2d87cff3cbd60fffa1b81062257ba"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/export/trtllm/trtllm_helper.py",
+      "bytes": 28568,
+      "sha256": "5e7ed99bcf778d07dc388e8375611b12f4c468a40cb19a8f840a676a4825f991"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/export/trtllm/trtllm_layers.py",
+      "bytes": 7949,
+      "sha256": "84a9f40fdc58217d49625d4e735c5853b2d3add22adf4e63203043575c7712b6"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/export/trtllm/trtllm_weights_converter/__init__.py",
+      "bytes": 63,
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/export/trtllm/trtllm_weights_converter/distributed_trtllm_model_weights_converter.py",
+      "bytes": 14206,
+      "sha256": "da4058818bf5159933c0976065fe474b921e42cb9d95092aba44e4c5fd08c8b7"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/export/trtllm/trtllm_weights_converter/single_device_trtllm_model_weights_converter.py",
+      "bytes": 24695,
+      "sha256": "c214d010833692d5e63e40987a0a93c01ec778b2dda41a4056bfeae22be9682f"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/export/trtllm/trtllm_weights_converter/utils.py",
+      "bytes": 317,
+      "sha256": "878b45ca464611ad9e2fde3a98494d105f1cb68f464c63b3b8c39afd6c205aba"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/extensions/TransformerEngineMixedPrecision.md",
+      "bytes": 4097,
+      "sha256": "ac3254dbdec426087997b52727884e695721ce197053bc99d1dc0ee2c681db5f"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/extensions/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/extensions/kitchen.py",
+      "bytes": 1013,
+      "sha256": "8063d7f06756653438449bcfbea25a00ba710992fa37bbe5eb96bfeeb5073f3f"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/extensions/transformer_engine.py",
+      "bytes": 107852,
+      "sha256": "ea756922b545e144c4bcc4c9a8260f254bb80fad32411f0eb4dc1241eb40bca1"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/extensions/transformer_engine_spec_provider.py",
+      "bytes": 4102,
+      "sha256": "33b58dc0dee391f628d26eaa0de794105ed4cc9d51764ef53bfbd080866a6476"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fp4_utils.py",
+      "bytes": 7148,
+      "sha256": "3a81ee54ef0cce0e00847976f45795bd0d73a31466f9d3d3242b273d33ad9842"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fp8_utils.py",
+      "bytes": 32572,
+      "sha256": "ea6148e71a4b4202d433519d82362b76d3cc979dfef829763efc9e91b6dc290c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/full_cuda_graph.py",
+      "bytes": 8143,
+      "sha256": "74221779f965842145fd122c78846af9604dacb1db901393a0a5c583d99fc21b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/fused_bias_dropout.py",
+      "bytes": 3415,
+      "sha256": "7687ea130f7f0244113719345f404925e35e13198b6ccf938e52c9b1ad2a42a3"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/fused_bias_geglu.py",
+      "bytes": 15567,
+      "sha256": "71c48456c8041f81ae9aaaa99ebbacb0f77c9c71b15962bad4a8e75effecde46"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/fused_bias_gelu.py",
+      "bytes": 1544,
+      "sha256": "46c6d977058749c14f5ff23eb260d78e3e16bf604681b3ff09bdd7237c2b8aa3"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/fused_bias_swiglu.py",
+      "bytes": 9011,
+      "sha256": "5303680596749464c45f9c3ec65f94d1127fb6d49b2aa9ec3ba8c91b1141f08f"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/fused_cross_entropy.py",
+      "bytes": 5160,
+      "sha256": "edbfa9665e0ebcbf1bec1794818c1adf11589cbce1414c02d445fc7407d48268"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/fused_indices_converter.py",
+      "bytes": 10622,
+      "sha256": "7a115b78185e3291b50f5be921d624d84af7cc370eadc687afe322bc8238ffd0"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/fused_layer_norm.py",
+      "bytes": 5687,
+      "sha256": "e6016d82201c20fc527f936cffd687bfe32288660ae02ac2c0d3d1c181b65b00"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/fused_linear_cross_entropy.py",
+      "bytes": 9412,
+      "sha256": "bf24e5b4e7f0ad817d88797d7ce4c60f272564d06a9e72113c5bf866f6ed634b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/fused_mla_yarn_rope_apply.py",
+      "bytes": 27448,
+      "sha256": "47ee7b08ebb1b6cf2ed41f72c5a117ad3110c23162b10e5fbba3b2bfa37c8dbb"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/fused_pad_routing_map.py",
+      "bytes": 3384,
+      "sha256": "fc42a20781d13693450611f6820c65446501d97e83aec434ce8b8066f6cb139c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/fused_softmax.py",
+      "bytes": 13177,
+      "sha256": "a75dc9d23380ff5d2ccdbfaa335c050bc4d16039fe35797f96dc108bad011e68"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/fused_weighted_squared_relu.py",
+      "bytes": 3822,
+      "sha256": "90a2cf44d8083184342d4906cd528f11cff5587f3e7335ed9fb5273cd8dc4448"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/linear_cross_entropy/__init__.py",
+      "bytes": 75,
+      "sha256": "82734155ea4fc02074d329a336180a014dac26f78610cf9d20f740e530b36683"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/linear_cross_entropy/blackwell/__init__.py",
+      "bytes": 75,
+      "sha256": "82734155ea4fc02074d329a336180a014dac26f78610cf9d20f740e530b36683"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/linear_cross_entropy/blackwell/bwd_partial_dlogits.py",
+      "bytes": 29703,
+      "sha256": "9963504fcb9ffc986b953aad6c0842779b7b4a4a17d75d2312847272e23b3ea9"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/linear_cross_entropy/blackwell/entry.py",
+      "bytes": 18827,
+      "sha256": "febe9f27f0eb51251f9359c347b0fa41e38b80fa89a61295be28f54a95d5dcd5"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/linear_cross_entropy/blackwell/fwd_mainloop.py",
+      "bytes": 30111,
+      "sha256": "aa8b705472bf70a4bb6faf88cd2583db9a1a06aa8076e60dffb79aebef4d8816"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/linear_cross_entropy/blackwell/triton.py",
+      "bytes": 9366,
+      "sha256": "ddd11c6538de13afa716a556615bb0b6a837af75b232a408dcf3aff39295f3e6"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/fusions/linear_cross_entropy/utils.py",
+      "bytes": 1082,
+      "sha256": "116d82d9ad6b65d7e6477529a91874b0623361b7eed9d5a6e6375437f77cb0e5"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/hyper_comm_grid.py",
+      "bytes": 10554,
+      "sha256": "fe05250c08b406ac98d6345af0fae439e664cf428371921047dcd85d8c27edc9"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/__init__.py",
+      "bytes": 63,
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/async_stream.py",
+      "bytes": 2637,
+      "sha256": "87030e2dffd959276e4adc5a2b7ee7d492099ca043a2c2827df3bf304ff7ccbc"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/batch_dimensions_utils.py",
+      "bytes": 21655,
+      "sha256": "dc0c4f445eff6d977d5736b398fa8011ef2c2e298e04fa193dcfeabd84e63376"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/common_inference_params.py",
+      "bytes": 211,
+      "sha256": "e373f64b49eafc32b74be9496b1433f888d5c365edfb399e48983bdb79a42c66"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/communication/torch_symm_triton/__init__.py",
+      "bytes": 207,
+      "sha256": "c3e939ab4acf6d9b080b2fc4476009fc175658b602f64757d32139610cdf9066"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/communication/torch_symm_triton/barrier.py",
+      "bytes": 3542,
+      "sha256": "982da975305b03bdac48739338553cbe638f29dca696ec838031838dec2593aa"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/communication/torch_symm_triton/collectives.py",
+      "bytes": 7841,
+      "sha256": "50a6a1dbb6247d627f9b38e344543a0ccf643a802fb16d4f875d6aea097cf0bb"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/communication/torch_symm_triton/fused_collectives.py",
+      "bytes": 10250,
+      "sha256": "c42f1b44e816c088b73e09d66dc7f44444b58bcd6f38db9e0a9dad3ce993856c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/communication/torch_symm_triton/multimem_asm.py",
+      "bytes": 6943,
+      "sha256": "8e8395d7e9cf4d5687feda8f636ca003e50f73d95e1bc4d5a755eada1da4e52d"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/communication/torch_symm_triton/utils.py",
+      "bytes": 1834,
+      "sha256": "cb325e47f474bb269210ac5d922e0bd77e1922de1b26ff4a04bff0b1dee47d6f"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/communication_utils.py",
+      "bytes": 7439,
+      "sha256": "10ebde3dab26986f21fec9b05e38bbbba7ea2913aac489f07992a05213851833"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/contexts/__init__.py",
+      "bytes": 733,
+      "sha256": "870215dc64a2a714d7d21e860dabbcb6c6054e716de85a5a0d5db634dd60e3ec"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/contexts/attention_context/mamba_metadata.py",
+      "bytes": 11497,
+      "sha256": "691cd2268f83d06b928585d26565aa6bdcaf39e345e99923d1c0bf520a590bdf"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/contexts/attention_context/metadata_base.py",
+      "bytes": 2529,
+      "sha256": "908a1e500a483ce8cb51cde74fe75cede1c2e54bd1814a986f2d34e53600afe9"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/contexts/attention_context/mha_metadata.py",
+      "bytes": 7864,
+      "sha256": "504d421ed9947119e032a94449cc545f447aa88b0244cb3e7a4758ed9cef110e"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/contexts/attention_context/triton/tensor_ops.py",
+      "bytes": 14167,
+      "sha256": "546683ad3554bed2062679e9562a9d5ae31257b4d82eed8a2ebb533cffa78e38"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/contexts/base_context.py",
+      "bytes": 1571,
+      "sha256": "fbe0ae609f4524af5cedffdba7539b4ce00a543076173ae8cc447141b4386475"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/contexts/dynamic_block_allocator.py",
+      "bytes": 4736,
+      "sha256": "717076323dacc0209f15b486c26e05a24a2ece8df58770316b0073394a5c5ee8"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/contexts/dynamic_context.py",
+      "bytes": 106003,
+      "sha256": "2ff151f14df0d875d16d5e29be8de76458f11170d9f84b698d57c6c37c31a4df"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/contexts/fused_kv_append_kernel.py",
+      "bytes": 5891,
+      "sha256": "4fc4af03905525d356d19655900e44661f7eb88f029bf24ed25c013cde06caa9"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/contexts/static_context.py",
+      "bytes": 4963,
+      "sha256": "035e28f523b4b353fc6660b89bb0a760ce1952e2ecc3850cb4412877751f53aa"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/data_parallel_inference_coordinator.py",
+      "bytes": 17082,
+      "sha256": "7dc8d65b272d908ef5a5eb5957da12f03bb8c3eac5d273e4e7e847f71cefb28a"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/engines/__init__.py",
+      "bytes": 230,
+      "sha256": "0f172f1f3e058a271f1401a9537b88ab96778d35341c907dee9149ff7ea3748c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/engines/abstract_engine.py",
+      "bytes": 521,
+      "sha256": "373984dace2694d1462373306d533ff87f44a0f01df68973bda8a8af6a2af1f3"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/engines/async_zmq_communicator.py",
+      "bytes": 3944,
+      "sha256": "4cf040c340b98942f23470c7af569329665557670bc14a29cb3217c61ff00324"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/engines/dynamic_engine.py",
+      "bytes": 77656,
+      "sha256": "800e2a79333558d0d4137850818a06be8d6ad4057f6a2660af6ba334bf8b515e"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/engines/mcore_engine.py",
+      "bytes": 183,
+      "sha256": "7359974889a6bff897fdc7b8da07c2b13dad37c2c8f9da9b3a30131d22d93c7f"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/engines/static_engine.py",
+      "bytes": 17116,
+      "sha256": "7124a797f2e83277b0747b76739884c3aa27e71fb3060eda749f857b0b75f32a"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/headers.py",
+      "bytes": 666,
+      "sha256": "c8ce01f81de43a2281b35383c08432f223d80b848e72b67613a5544def528239"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/inference_client.py",
+      "bytes": 10150,
+      "sha256": "a1244c7aadd9cf7d521dad15f1e2051199bbad69dc8bb34ceb23748f16677a5c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/inference_request.py",
+      "bytes": 18796,
+      "sha256": "170b8c8f25400d85bdb5f34f50595fdf1ca511d06c95c16bc225dd8169d43cea"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/model_inference_wrappers/__init__.py",
+      "bytes": 63,
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/model_inference_wrappers/abstract_model_inference_wrapper.py",
+      "bytes": 17516,
+      "sha256": "ebd004dd4ab7b2d20b298ccb655182d8197052b7e9fc8198bd3b3edf0744a264"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/model_inference_wrappers/gpt/__init__.py",
+      "bytes": 63,
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/model_inference_wrappers/gpt/gpt_inference_wrapper.py",
+      "bytes": 5527,
+      "sha256": "5bdea34f346fdd74e94710f16f859e0cb73c510fd14690cdfd6459dce63ed9c7"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/model_inference_wrappers/inference_wrapper_config.py",
+      "bytes": 2735,
+      "sha256": "a35c08c2eb1cad346d6c167fe5cbc7c8db40c236d29a5bd0045a90ffeeabc7d2"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/model_inference_wrappers/multimodal/vlm_inference_wrapper.py",
+      "bytes": 9148,
+      "sha256": "53bf4cd78978bfd3bd2db540a6bbdf59410b6113492e3434032ec373b0cb7838"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/model_inference_wrappers/t5/__init__.py",
+      "bytes": 63,
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/model_inference_wrappers/t5/t5_inference_wrapper.py",
+      "bytes": 9430,
+      "sha256": "2b0c0e1a64369464b32448df20674b637e6a9a9986386079aa8d14cc54319825"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/sampling_params.py",
+      "bytes": 3504,
+      "sha256": "45145a05378a7fd2b9f19a8e2d117eccd44530b88450928d61891c14b2bc1e6b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/scheduler.py",
+      "bytes": 7800,
+      "sha256": "12d3a5e68bf03861cba03454988f0f14c2f2da8628f0c73b106efd0f847fe037"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_controllers/__init__.py",
+      "bytes": 63,
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_controllers/encoder_decoder_text_generation_controller.py",
+      "bytes": 2014,
+      "sha256": "6cb29da93ca57089c4ff322de7c7841390694e1fe8fbbf4f1b82db6ffdad51eb"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_controllers/simple_text_generation_controller.py",
+      "bytes": 269,
+      "sha256": "c5d13d19e5a2201c5c8a52d5f575587a9fe46e707b23cdc589222cd0b89f7323"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_controllers/text_generation_controller.py",
+      "bytes": 73705,
+      "sha256": "0e123b11ab8927813491611b688a2968646dbb2b6ec7ca52345b95df74fe54c4"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_controllers/vlm_text_generation_controller.py",
+      "bytes": 2112,
+      "sha256": "641d2709e86cdd1ccebf5c54e626fd2cc13ac328a1a56162cd6897e6a6fbdac8"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_server/__init__.py",
+      "bytes": 115,
+      "sha256": "1b3bcb80e21359f0e10598f86013575016458575317f835cf45962a266e67b4a"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_server/dynamic_text_gen_server/__init__.py",
+      "bytes": 107,
+      "sha256": "6f50bf051617de259cd398a5faa9cf3bf2278b0f8daa4638f395434aed4882a9"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_server/dynamic_text_gen_server/endpoints/__init__.py",
+      "bytes": 301,
+      "sha256": "9a4be29c7a9bf66ff75ddf7df335afd94e591821de37d57cc4d4d22696792d59"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_server/dynamic_text_gen_server/endpoints/chat_completions.py",
+      "bytes": 6280,
+      "sha256": "5ce54688594fa14c7ff9926faaddc744e9be9536f2a93966f2f76a04fbde933d"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_server/dynamic_text_gen_server/endpoints/common.py",
+      "bytes": 387,
+      "sha256": "36a9e910635aad5a396aa22c1a5318dda81f826dbde654c3df8889219e9767b7"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_server/dynamic_text_gen_server/endpoints/completions.py",
+      "bytes": 9184,
+      "sha256": "dbb281f4d6da101e236a5a3195806746798b3d2863ed0a913ed377d423821153"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_server/dynamic_text_gen_server/endpoints/health.py",
+      "bytes": 1317,
+      "sha256": "f0e8101bcadaee519997e8908f1d3065b99f0ae68c03d48e8d7fb4aca0704c08"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_server/dynamic_text_gen_server/flask_server.py",
+      "bytes": 2283,
+      "sha256": "d01e8ad2547a322baa2e65ff2dd39b4da851a78e4d3cd705b8785d6e18a89681"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_server/dynamic_text_gen_server/tokenization.py",
+      "bytes": 4150,
+      "sha256": "0f13a82c85b969b75dd20ae780437c452a1c867ac56267fda4c3a40e0ee423f0"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_server/endpoints/common.py",
+      "bytes": 387,
+      "sha256": "36a9e910635aad5a396aa22c1a5318dda81f826dbde654c3df8889219e9767b7"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_server/endpoints/completions.py",
+      "bytes": 8328,
+      "sha256": "94389f43e05053fdf4b15fcdc4ebbad4f186e30b8b61387a8b404c3fdb7e4e04"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_server/run_mcore_engine.py",
+      "bytes": 4113,
+      "sha256": "93101446e68f46c3eceeb429e7b400add798059b17fa96b39fcdd70f9353311b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_server/text_generation_server.py",
+      "bytes": 8503,
+      "sha256": "5f828c035d0541177f08f708ee7ee8125482eba70c9796a9cc3e75e4d95240dc"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/text_generation_server/tokenization.py",
+      "bytes": 4150,
+      "sha256": "0f13a82c85b969b75dd20ae780437c452a1c867ac56267fda4c3a40e0ee423f0"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/unified_memory.py",
+      "bytes": 20536,
+      "sha256": "ee13492627284e4e69c4f714a8b7104b4c626189ef340d552cc841c5f169ea60"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference/utils.py",
+      "bytes": 7161,
+      "sha256": "e06f11bc85f68037fc8c1f72bf47239548246e4c678795c68b5bc110cf223bbf"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/inference_params.py",
+      "bytes": 193,
+      "sha256": "73f837aea6f06ed47881ed28768ae9f218ccdac245ac38926d89a710165f485d"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/jit.py",
+      "bytes": 649,
+      "sha256": "0de81ea1c3a8fd5bf1a880a1c3d3ddacd706b4df946c9016d563b5c14778a3ba"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/model_parallel_config.py",
+      "bytes": 19603,
+      "sha256": "095fafacc50b0f5d096ab0d9bd8d0ec43de3ef222cf404cff8eea09a4e584852"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/T5/__init__.py",
+      "bytes": 93,
+      "sha256": "3e274136ac43817eec2155f4c26f655fa0070e904d255e7543fbc79770acf1ae"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/T5/t5_model.py",
+      "bytes": 22085,
+      "sha256": "118e33da13d3e3673e6072048cea4bb157ad36b6eed75828dabe8ad1b77a7dbb"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/T5/t5_spec.py",
+      "bytes": 9443,
+      "sha256": "d42e35260c9f6813fade4daccd3b51b2edb3f43a86d0f3f8ccd8e8b6a6002a74"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/__init__.py",
+      "bytes": 63,
+      "sha256": "3b3fe3576ee632788053c56a5535d19d7d0f19239c086a7218c02e7e7e49b247"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/backends.py",
+      "bytes": 6386,
+      "sha256": "994da264bc04581f1a59f0e784ae1c6cd41cd7484dc6d25c3b18a910eecb0144"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/bert/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/bert/bert_layer_specs.py",
+      "bytes": 4507,
+      "sha256": "e8a6cb4c76b35221e740280963f47fb919c0a647575510345c7fbdc168f292f3"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/bert/bert_lm_head.py",
+      "bytes": 1696,
+      "sha256": "3b6bdf40ec1585d0bcf64017c1ac0d4969d4ae88b2299377820172c115b92c62"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/bert/bert_model.py",
+      "bytes": 17027,
+      "sha256": "9de851781914a0fd9a537cd9ccdca465f60cb55a6370a2dfa4db8fc0d426e960"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/bert/pooler.py",
+      "bytes": 1886,
+      "sha256": "f900286374fe48c0d4cf8a78b99f85bde174d5b3c1d9cc3d5b056d011ffcfa43"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/common/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/common/embeddings/__init__.py",
+      "bytes": 263,
+      "sha256": "945c7a12d2a3eebdfb7c5ec0e60b023f455f56c871ede64261589a91e1101c3b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/common/embeddings/language_model_embedding.py",
+      "bytes": 6535,
+      "sha256": "5c2904229f556038dfdf14c531b0d7e91d643636f6bef2477b66f9f78ad8d1b5"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/common/embeddings/relative_pos_embedding.py",
+      "bytes": 7254,
+      "sha256": "7e01e6639b6ecc1a39b19b21cea2da9b8d33b68c8d4dd52dc231fcb46558befc"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/common/embeddings/rope_utils.py",
+      "bytes": 12548,
+      "sha256": "53c8ec189e35fb56a73079b6a1077e2c40480adadd38bba64fce057022d42b1c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/common/embeddings/rotary_pos_embedding.py",
+      "bytes": 14747,
+      "sha256": "aef1391fd2da1a4aa9b739190191fceeba1b371f861376047db980e6c6a43d56"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/common/embeddings/yarn_rotary_pos_embedding.py",
+      "bytes": 11198,
+      "sha256": "0389def065ef655b4effa3c22e7bff8b077ca57ccdb53963ac2f032ecec2e7c7"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/common/language_module/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/common/language_module/language_module.py",
+      "bytes": 17588,
+      "sha256": "d8b45540aef8884ca0889ec0cc183e22ae32a91b62078ecb01acaf680458baa4"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/common/model_chunk_schedule_plan.py",
+      "bytes": 22871,
+      "sha256": "bd071b89d15dd6677ebd6e8348c72ef5626806265b0352ccdda34c1a2beeac6b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/common/vision_module/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/common/vision_module/vision_module.py",
+      "bytes": 635,
+      "sha256": "494c017c8b6b34a65d107b70fcd0824601743c1b1a057fe5a930273e90b8cc21"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/gpt/__init__.py",
+      "bytes": 95,
+      "sha256": "56cda2cb431e2dfdc22129ec4226a6f55f7ae2969fefb6b41a25e0a0011566fc"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/gpt/experimental_attention_variant_module_specs.py",
+      "bytes": 18795,
+      "sha256": "2d33f42589fbc515f7824efc1516d67598351ceb84975edb6f9559bf931393ce"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/gpt/fine_grained_callables.py",
+      "bytes": 31329,
+      "sha256": "70150d72690e6f92da6d4d7e33b195d04f99ad0c80c6efeaae984a8b855326d8"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/gpt/gpt_layer_specs.py",
+      "bytes": 30374,
+      "sha256": "2bea1985c678f710bd2dde32c72ee4c572135d8c78337902ceeaf13c8a09178c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/gpt/gpt_model.py",
+      "bytes": 40375,
+      "sha256": "efb64f3376063290a7811c81c0352d4a9ce4843179440577656a685029ddb2a3"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/gpt/heterogeneous/heterogeneous_layer_specs.py",
+      "bytes": 8932,
+      "sha256": "4d5c48eb49db076edb8808dc13f114e0633e0ee4ac1dfefb5189c4c04b4f4ab1"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/gpt/moe_module_specs.py",
+      "bytes": 2517,
+      "sha256": "184347aa60d8ff52f2a41250b5cfc314d5c03bad341200932b9969a2eebb7784"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/huggingface/__init__.py",
+      "bytes": 117,
+      "sha256": "9889426d1b27442f6a69566d99c12fdcbd6a8d950eef41021416dbed2b9826ec"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/huggingface/clip_model.py",
+      "bytes": 1208,
+      "sha256": "7a859952297dd1f9260600d3997d46890433d0bbe1673946c8ce80ac220e18d2"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/huggingface/module.py",
+      "bytes": 3068,
+      "sha256": "6e681cfd04008112aab0bbedf9043d6d4010bc2e7b55b3ec8c30c712290dbbf3"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/huggingface/qwen_model.py",
+      "bytes": 1884,
+      "sha256": "d410eb13f77e3cecd11c8d051012bf8c11b2982d0ac374edcf2b41a57613ead5"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/mamba/__init__.py",
+      "bytes": 99,
+      "sha256": "70210053448c52032057b5ba3dbc8488fd54bc037e97457a1dc57b9069c7cbd8"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/mamba/mamba_layer_specs.py",
+      "bytes": 5855,
+      "sha256": "38f00df67a99232ce4a344f9aba7d53197a1b9e063112d99d9c2eccc9cd5c6c6"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/mamba/mamba_model.py",
+      "bytes": 14842,
+      "sha256": "32678886a7fb321d65532a71393972d4025140ec80d1799b22af9dab7dd4867e"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/mimo/README.md",
+      "bytes": 6630,
+      "sha256": "17a45420e678e5976445ecf5e7cc89c19ff33ee72964449adc6e53d45c226f17"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/mimo/__init__.py",
+      "bytes": 593,
+      "sha256": "ea6a1bc4f8589b14d207281868714ea6fac2b9cfa78bb2aa6e8a6e6daf060ea5"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/mimo/config/__init__.py",
+      "bytes": 169,
+      "sha256": "ac1ada7c2323d4f63fbee13b16021b04aa8adc45cea13429fa1178c0a721fad2"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/mimo/config/base_configs.py",
+      "bytes": 1275,
+      "sha256": "6acd35567c553fbc320785a332502572df0cefed9b9513490ab52dadbbc127f8"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/mimo/model/__init__.py",
+      "bytes": 147,
+      "sha256": "f5986506f1212d6ea9eb73b1f65d9538b31dd6185c485bb9cf42abaf5a28e083"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/mimo/model/base.py",
+      "bytes": 12391,
+      "sha256": "4b54023dd9deae1b65461f812fd39224951a8f754150faf763a3d94e99ee2d04"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/mimo/submodules/audio.py",
+      "bytes": 6084,
+      "sha256": "a5e6c984441025db714052bec180681bf5038a626fd636f67c0590facd703c36"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/mimo/submodules/base.py",
+      "bytes": 6917,
+      "sha256": "bc05871deed7b202e4aa61145740d0c5bc24e3aedef6d346108040b7aba228c4"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/mimo/submodules/vision.py",
+      "bytes": 6879,
+      "sha256": "be47b849013b0533c70e0d51da33f93dc963ca389acb3c5cc446b235119fce69"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/multimodal/__init__.py",
+      "bytes": 63,
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/multimodal/context_parallel.py",
+      "bytes": 3911,
+      "sha256": "ad82c195ef77f287c065bf56c5377a6df904885b1453ba332d565db5255465d2"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/multimodal/llava_model.py",
+      "bytes": 48640,
+      "sha256": "d9cf84772341a8eeeb9085c8c054df40c9e180cc8fe43d2803fb125507ced905"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/multimodal/llava_spec.py",
+      "bytes": 3489,
+      "sha256": "0ea04a2ec0fee6a9af85079f413aa8617d6909a604af35ce41c1a336d87c597c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/vision/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/vision/clip_vit_model.py",
+      "bytes": 10061,
+      "sha256": "6dec3474dbfb0b69eb20bca506b15443b4614b89ee165b8435e70d4f194b993b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/vision/multimodal_projector.py",
+      "bytes": 3371,
+      "sha256": "e71da91793ce5a88a3d6e4d38ea83bd88677aee4be605c23276e5523abcb259c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/vision/radio.py",
+      "bytes": 13899,
+      "sha256": "f4e4d85ceb0e969cffeeebc3872be071f28fb146baff4e955881692e979df451"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/models/vision/vit_layer_specs.py",
+      "bytes": 3514,
+      "sha256": "d3a0131ef635602a570df1e2e03078955cf63d2d9897e4b198650fa553aa2cfc"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/msc_utils.py",
+      "bytes": 1933,
+      "sha256": "334cbec0195857ea9b846a699dee908622dbe3b5c10fec21a797a56cf02752c8"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/nccl_allocator.py",
+      "bytes": 14955,
+      "sha256": "1a6640fd971477a22f43fa6bd37dd59256bb4ca683c56e1934f5eb1df92d6f18"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/num_microbatches_calculator.py",
+      "bytes": 19565,
+      "sha256": "8b53da48d50914598fc959a29284dcc4385116a6c59360fff0dc28c34fedc567"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/optimizer/__init__.py",
+      "bytes": 30851,
+      "sha256": "87c984430926fa239d48805e44a61d0a0c53337249a5f784cdf3564e76db6939"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/optimizer/clip_grads.py",
+      "bytes": 9866,
+      "sha256": "4a68e9aae8cb1188f30766af93fabba00a43a8512f8fe3e9e4154d80de4c84ee"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/optimizer/cpu_offloading/README.md",
+      "bytes": 445,
+      "sha256": "58bb8c15943166199d3066361742f2718536d4792b81cd0d22007e20e984571d"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/optimizer/cpu_offloading/__init__.py",
+      "bytes": 115,
+      "sha256": "b4b9274add85569ef7648f7ba8af416bcda15d16231254b93bc7cc65dac45fa5"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/optimizer/cpu_offloading/hybrid_optimizer.py",
+      "bytes": 19762,
+      "sha256": "28053c32a2468645215b19f246bd8e86e250ffab49a036e49b3f6940b8996dcb"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/optimizer/cpu_offloading/optimizer_state_offloader.py",
+      "bytes": 12762,
+      "sha256": "88358d6a57ce2e9861cb3c4eb6704ef6208c31aae8fc22c7b10c1b366b1e7d5c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/optimizer/distrib_optimizer.py",
+      "bytes": 129401,
+      "sha256": "154af62ddb2e082401df5ce755ab911d01dc211e15886b07db601dcef1e3e1fe"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/optimizer/grad_scaler.py",
+      "bytes": 5161,
+      "sha256": "c2f341955c8333bd6e2554fcc7c34f74e776b0b1bd4ce4bcb53add9a54a05782"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/optimizer/layer_wise_optimizer.py",
+      "bytes": 15033,
+      "sha256": "f2c7c126d73f4689bb9efd47139981f793f7de6b688e0e0ded485d2dc56b5bd8"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/optimizer/muon.py",
+      "bytes": 14381,
+      "sha256": "46b045b8521be85c8b3a6cb25fe8639b29032bdf429ee482bb4d35e7cc63c941"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/optimizer/optimizer.py",
+      "bytes": 57706,
+      "sha256": "32e7cfd874c72b00a7b68faff5c5a66aaeec74d414aea70f1a213247dd3d02c0"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/optimizer/optimizer_config.py",
+      "bytes": 17116,
+      "sha256": "bc4710bfd32375afff110a3a8af6d042dacf91a22514809654d70c8e0f3036cc"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/optimizer/qk_clip.py",
+      "bytes": 1734,
+      "sha256": "76d355d48fe6bc217e00798b6bfe1fe2295c0033ed8ef35ca606b90e61f4589f"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/optimizer_param_scheduler.py",
+      "bytes": 14069,
+      "sha256": "22ddd78a2ed920e1c56132e4cc194890f940ce736aa06955c816bc73c070f144"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/package_info.py",
+      "bytes": 993,
+      "sha256": "3e4982ed8ad3b6bac47e478933ac1089d38c1873a3da9300edd9f8555be68fb6"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/packed_seq_params.py",
+      "bytes": 614,
+      "sha256": "2b0744496c0f9dd6483f6225e2ea349fe4500b89676311d5751c88f5ceb04323"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/parallel_state.py",
+      "bytes": 93206,
+      "sha256": "bcaf44c2646e30d320288c8c92d4a0cc2dacb014deaae3c8fa7e5b6bb2256c2b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/pipeline_parallel/__init__.py",
+      "bytes": 112,
+      "sha256": "5bce08737fcd015f6cfd85ef80a69872fdbeb947744fc7bd64f6a54f43c0d703"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/pipeline_parallel/bridge_communicator.py",
+      "bytes": 40328,
+      "sha256": "725724d2ed44d6791eb9b5fd0e9c472134bd173b6ac3c755407ea7bbb0c804e9"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/pipeline_parallel/combined_1f1b.py",
+      "bytes": 18244,
+      "sha256": "7ec4872b9b2c0cdcad5af8c5692006d7f4bea918b9ecfac3be1316fad103ce0c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/pipeline_parallel/fine_grained_activation_offload.py",
+      "bytes": 51364,
+      "sha256": "4bf2584b377425b0f63071a70f4dcedb90e7f6822d591b3b39cc0feb82dcd913"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/pipeline_parallel/hybrid_cp_schedule.py",
+      "bytes": 28273,
+      "sha256": "4a07d9ae6b619f3a1c92a33dbb3c4af1e205b7879fc83e681ad6da1f1be6dfc0"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/pipeline_parallel/multimodule_communicator.py",
+      "bytes": 23884,
+      "sha256": "dc390f4c95d27fc2413da0ae5b2af0df93427eeed4bf45ea3ff1fb73e3f8ec9f"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/pipeline_parallel/p2p_communication.py",
+      "bytes": 25306,
+      "sha256": "771c687af18f8c8677dcce8592222c9d04f3738c0d5b1f65082937a3bba82aa7"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/pipeline_parallel/schedules.py",
+      "bytes": 108120,
+      "sha256": "74dfa05fe19484c3204f2d23829f8dd64f8200af469a05df7699520d2a547610"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/pipeline_parallel/utils.py",
+      "bytes": 12710,
+      "sha256": "8253de723e8c6927967cb42654b00284434e139f02420d7c0834e6b225361ee0"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/post_training/__init__.py",
+      "bytes": 63,
+      "sha256": "3b3fe3576ee632788053c56a5535d19d7d0f19239c086a7218c02e7e7e49b247"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/post_training/modelopt/__init__.py",
+      "bytes": 569,
+      "sha256": "91ea16b59fe08424b2c0f7465eba3afdf5054ee8b989f4efe43d052d78cc964e"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/post_training/modelopt/gpt/__init__.py",
+      "bytes": 63,
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/post_training/modelopt/gpt/model_specs.py",
+      "bytes": 8595,
+      "sha256": "dec4860f1955af9c61048ce8383b863ad5059a05f047e07911e064864df41db7"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/post_training/modelopt/gpt/state_dict_hooks.py",
+      "bytes": 2574,
+      "sha256": "f5298a0ea581f6ba8e179d5325283b62cf864814390cd26f6bea0fc4ad475909"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/post_training/modelopt/layers.py",
+      "bytes": 9324,
+      "sha256": "ae8457dd6567b9780ef396ca2f9a5a6330b0302290db014a62872c98e788475e"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/post_training/modelopt/mamba/__init__.py",
+      "bytes": 63,
+      "sha256": "3b3fe3576ee632788053c56a5535d19d7d0f19239c086a7218c02e7e7e49b247"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/post_training/modelopt/mamba/model_specs.py",
+      "bytes": 4216,
+      "sha256": "90c59e98514ef24ea350870a87801be30c8c48a6c00420f59652f814b0477872"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/process_groups_config.py",
+      "bytes": 25267,
+      "sha256": "20512d08c9aa32032446230e4256718b90dfcb6f3f1659dd75f9be02144fa179"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/quantization/__init__.py",
+      "bytes": 63,
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/quantization/quant_config.py",
+      "bytes": 7873,
+      "sha256": "2e0e843ba4aa770f6ecb961455a8a03df069cd867cc7e92cdaf4da6a812d1e99"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/quantization/utils.py",
+      "bytes": 1249,
+      "sha256": "acc99266a79f75bbb8dd174f4a859fb4e7be7b8cbf78efa8a182945f4ae87891"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/requirements.txt",
+      "bytes": 16,
+      "sha256": "74d7db1da483c1ca8f007a86f77ec3ff32383914aea6cc426fea8adc454a0ee2"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/rerun_state_machine.py",
+      "bytes": 60356,
+      "sha256": "9b1788b0373d893906a13057380d64d34c005077f8dbcb376e888c68c75c9afb"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/resharding/__init__.py",
+      "bytes": 526,
+      "sha256": "f3151c485a6c3fd339241942e9efcf26c70269929204626c23858d4a6741b67d"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/resharding/copy_services/__init__.py",
+      "bytes": 222,
+      "sha256": "81a68f8fa9dc6babc0b13f3c76bfa038c054f102ad51e744421e768da02742af"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/resharding/copy_services/base.py",
+      "bytes": 762,
+      "sha256": "0f095d66aae8c4ff3f1d34f1cddf7ac3f6cad5c0e81566e2877adf961b3f6bc3"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/resharding/copy_services/gloo_copy_service.py",
+      "bytes": 6181,
+      "sha256": "6e0094a1a9df78357a14921fcf8448266b88ab979ad1c2be10e8032687858476"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/resharding/copy_services/nccl_copy_service.py",
+      "bytes": 4984,
+      "sha256": "ff38b8bd65195370a079978754ffc6ac7a8903e63bf5d81b3edd1063231aedf0"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/resharding/execution.py",
+      "bytes": 2490,
+      "sha256": "898290bd6704d2577288712fd119890b83c9fa8bc96640fab344f2a7649a5906"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/resharding/planner.py",
+      "bytes": 14454,
+      "sha256": "22966692ceca56d14bf0166f421ed8cc5ed6dbc0c1bc1bc5c549c1f00c7613de"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/resharding/refit.py",
+      "bytes": 3590,
+      "sha256": "3dd415bfa6fb72191fdac5d181ef4c3b894c5d146ccb972cfa2166089f3bfd8a"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/resharding/utils.py",
+      "bytes": 14837,
+      "sha256": "8903794c5206077c98fb37747e64cc7d8119b196e53ee5703c86c9715817bbdb"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/safe_globals.py",
+      "bytes": 1058,
+      "sha256": "db3f0d7241221393f196af7f13035da2007c3e9783a175f087d5377b7278d944"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/ssm/__init__.py",
+      "bytes": 64,
+      "sha256": "dbff02cbb6deebe0e7f1323adcd1c6dcc5e772e40b083f61f032034d393c889c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/ssm/gated_delta_net.py",
+      "bytes": 34704,
+      "sha256": "2d573edc20bde3c83abfbcc6dacf4e813038594c90a0151a6c0bd2b4dc5e0b3a"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/ssm/mamba_block.py",
+      "bytes": 16253,
+      "sha256": "a61bea678f60daef29e8ba19fa03e172a12606a483fcdcf9397b1c3a4a421038"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/ssm/mamba_context_parallel.py",
+      "bytes": 19075,
+      "sha256": "131473ebdfc0f6e45a855b7ec38894b9c079cfdc331fb32fa0a40261346b400f"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/ssm/mamba_hybrid_layer_allocation.py",
+      "bytes": 8274,
+      "sha256": "7e649e9c8c9c9694ba7991597de1f5f7b448bde67f701a734f7828c201e55ee2"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/ssm/mamba_layer.py",
+      "bytes": 8418,
+      "sha256": "519e97bc2959c9022ef98d0167bc9f5d4145a838a35432cc8efc5aba8a854ca2"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/ssm/mamba_mixer.py",
+      "bytes": 52041,
+      "sha256": "751180cda750880527f5c07787c0f2e988d3c3ebb571e2fe17a791eee6824592"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/ssm/mlp_layer.py",
+      "bytes": 889,
+      "sha256": "0b73b86f10aeb514bbbf7940266cf476739388b66f54fabf4a13654688efebaa"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/ssm/triton_cache_manager.py",
+      "bytes": 3240,
+      "sha256": "f13b9452080ff4239e6fefab7228cc87469bbd5d4e28eeeb1c3acc9ba44cc751"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tensor_parallel/__init__.py",
+      "bytes": 2673,
+      "sha256": "33938ec809106dea1315cf083a1b343780de6a90329d56e209ca28588554fe1e"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tensor_parallel/cross_entropy.py",
+      "bytes": 9433,
+      "sha256": "6165711be6446d75a7b10cac479bfb6bc0bdb80cf1c95bd2c4cff728902f6ff6"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tensor_parallel/data.py",
+      "bytes": 3501,
+      "sha256": "e696cd817e127632c146fbcef0dd41ea3d56ad8f4a8619ee6394d5316208c921"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tensor_parallel/inference_layers.py",
+      "bytes": 11311,
+      "sha256": "99feeabcea1baabda7229e59f070f192ba3fa7ae80ddf742a5984e69e45e6674"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tensor_parallel/layers.py",
+      "bytes": 53067,
+      "sha256": "4f2732329e626ce2d25a20922334ae7d3ba322f152b5436dbb6d675366219437"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tensor_parallel/mappings.py",
+      "bytes": 20524,
+      "sha256": "4dbbe88b381dc92d276cfda9c3ba30962ec475207ebc16bed14658a512dbb05d"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tensor_parallel/random.py",
+      "bytes": 28485,
+      "sha256": "56d6aee49040e74dec1c8b71bdf6c6874b2035e62dccd00274172c31c31b2a9a"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tensor_parallel/utils.py",
+      "bytes": 4009,
+      "sha256": "931a35e7113d28b60ab71b56e98f034137707ef53f49215b0c936dd7eb74a1e9"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/timers.py",
+      "bytes": 17791,
+      "sha256": "14e76e6578adf7e621f68bba773727f87dd6ecab917887f48ce047475885ff2a"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/__init__.py",
+      "bytes": 212,
+      "sha256": "1211b132636c704fed5d6779e2e7cd49b3db30fdafca3696001f83d5a1482919"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/base_tokenizer.py",
+      "bytes": 1309,
+      "sha256": "70a224976b7aa8ba653c2136178de18f32a17710d46a1d58a6181cea1941cc18"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/megatron_tokenizer.py",
+      "bytes": 6273,
+      "sha256": "1f0da951b7aa3b184e87d442464deb56ce3b0cb72f6c19a0a5062c4aa5ae7098"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/__init__.py",
+      "bytes": 143,
+      "sha256": "0b897d4571b7c3b07b554b0d04617088b628ffcef95f1445ebfd82c2eaca4280"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/libraries/__init__.py",
+      "bytes": 613,
+      "sha256": "c5ec610bfa20c3f9fe67c39a57f373c385a0a53f96677bc1a7c868721f77a5c8"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/libraries/abstract_tokenizer.py",
+      "bytes": 4147,
+      "sha256": "e9a3be72ac7d92eb27dc666304716ff75bf2d93d6a0578a3a3110c940e8df126"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/libraries/bytelevel_tokenizer.py",
+      "bytes": 5044,
+      "sha256": "f0deeb9141937b851e247839c3d906e336b7d8696ec465ea3796d0a5104cbb6d"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/libraries/chat_template.py",
+      "bytes": 3035,
+      "sha256": "fe2681dac594fe23e539fdf9fefef308399807feab2108f7eb25abbb4f9f1bab"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/libraries/huggingface_tokenizer.py",
+      "bytes": 14323,
+      "sha256": "3f42f149b29031a187d97f9a0e01a156839a98f2c5f9b38ebb0945869f165102"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/libraries/megatron_hf_tokenizer.py",
+      "bytes": 6933,
+      "sha256": "ce0a6f09875fd9604d7176a8811997b39236b2df7d2c68741f73439c33a2f35b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/libraries/null_tokenizer.py",
+      "bytes": 2138,
+      "sha256": "c49d48be4e9ef79277cfea56412b91244cc4f83bcff3552519f5e6c9eb931d01"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/libraries/sentencepiece_tokenizer.py",
+      "bytes": 15773,
+      "sha256": "fe28fe15357b0aae9426ae1fc06d25fc35f6003362febfdd6e5fdd0105d11777"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/libraries/tiktoken_tokenizer.py",
+      "bytes": 11220,
+      "sha256": "dad2447d1fd84ff630b9b4a4b5db53ca3d210f0dbb2c183a6c8576838507793d"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/models/__init__.py",
+      "bytes": 460,
+      "sha256": "87fb6492c48b5914169a5017e50b866bab6ebda2398ec5201abf7414c2fd90e8"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/models/bert_tokenizer.py",
+      "bytes": 482,
+      "sha256": "dbb5f924d63f7bd9803629ab94225011b2914a095f0188147c2b9fcc0013480b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/models/default_tokenizer.py",
+      "bytes": 492,
+      "sha256": "c477dff6178b859e11ac7349aef7d5e98e12d1249a737575bf88b3861dde3629"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/models/gpt_tokenizer.py",
+      "bytes": 480,
+      "sha256": "ae16486ecf376cdbf7e355e6ec9ac5addf28fbab2907da187e4d72ee863eb43e"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/models/mamba_tokenizer.py",
+      "bytes": 484,
+      "sha256": "2c2dde65203fe9052a6663be45eb457b81885a099b6ee4aa12b9f142b60bae64"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/models/t5_tokenizer.py",
+      "bytes": 478,
+      "sha256": "e1a41da257d73a8246523bf1c685fff49c3777bfbb180e8b4533dd6606330302"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/text_tokenizer.py",
+      "bytes": 8285,
+      "sha256": "091b4a09cbbd9b96fcd2b9b513554324ef85945cf91d260e61649630342fe8ef"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/tokenizers/text/utils/build_tokenizer.py",
+      "bytes": 3099,
+      "sha256": "be3f087e5310500f559ab12dd3281b6c6f771ca58f324f2b2f19450ceb7a5067"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/__init__.py",
+      "bytes": 296,
+      "sha256": "b4a6d21da269e8fd7e4f0da0380bfc51bba70357c7e4a1b13fa839d7fce2e968"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/attention.py",
+      "bytes": 67988,
+      "sha256": "378fea76d25983f558cb1e28c43d7315d37652482025252a0e4aa2864a00fd5e"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/cuda_graphs.py",
+      "bytes": 107516,
+      "sha256": "7033f53d30cdb416e652cadb8fc7cdc3575cad699fdd47bd15b8bbb101e313f6"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/custom_layers/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/custom_layers/batch_invariant_kernels.py",
+      "bytes": 36365,
+      "sha256": "ffa26d6d1e172a0c500a35d793b0462190b2edcc89539f195eef0c1a6f648e0c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/custom_layers/transformer_engine.py",
+      "bytes": 402,
+      "sha256": "422bae98b9f8bd774fc17ed0a80189c20fc2c0592ee8343b65870c9d600e481d"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/dot_product_attention.py",
+      "bytes": 11666,
+      "sha256": "50af52cf410c5e132a4612d8391a28eccd872f407d3245d1df705ea94b59eee4"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/dot_product_attention_context_parallel.py",
+      "bytes": 12730,
+      "sha256": "7189232f0dcf14ff6ac25e9da9c5d01eedd026c5639177c9a53aafeb8af16576"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/enums.py",
+      "bytes": 1934,
+      "sha256": "b922227558cde49e0edc38f66a941419f6a3dd92fc108d8b5a5922017d01a7a9"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/experimental_attention_variant/absorbed_mla.py",
+      "bytes": 40602,
+      "sha256": "a8f53f65f63a6c81dd7357fc3fd881f2f6b9c45c3bab42ae596f74d203f1cea4"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/experimental_attention_variant/dsa.py",
+      "bytes": 42212,
+      "sha256": "5f0efc2eb6f9d039a8357cb88cf364c32735becb26eddab1d98f73f09499b173"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/fsdp_dtensor_checkpoint.py",
+      "bytes": 19930,
+      "sha256": "74a1e2e5d1542ed06447b4843f98820d8443b58d2ebf7a09544a0e27b2d9d8b3"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/heterogeneous/heterogeneous_config.py",
+      "bytes": 10186,
+      "sha256": "6e0234278fd3b38bff0c7fbb0e63fa4e35685a43b1b60873b9adf88c6c53778c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/heterogeneous/linear_replacements.py",
+      "bytes": 4168,
+      "sha256": "ed27e19bb0feda7c548c78c69ac42c7346da4184d82ec978aa81ee6c3df22297"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/identity_op.py",
+      "bytes": 1032,
+      "sha256": "ad521e5fd15c41d1854405ec1b2c726b3fc620658b175b220eed0b4c050a54a8"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/linear_cross_entropy.py",
+      "bytes": 3192,
+      "sha256": "c3895a3d7fccaacdf9fd453309673122f35d671b3e605211af2b7b2ad10d0283"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/mlp.py",
+      "bytes": 14287,
+      "sha256": "0a51b7ee9af3e8f19cf84f1ebdbdb5871efb4c939513273a4cbbeafa10ae3a41"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/module.py",
+      "bytes": 21431,
+      "sha256": "3fbc108f8bd69a588430cc35cf40bc9df0a2ac5e868165dc6a9c3b10bde5185d"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/moe/README.md",
+      "bytes": 36414,
+      "sha256": "5aa8db5ce945c7da583c932ceab6a00b5c7833d7e984b8ec48cf75002516f60f"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/moe/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/moe/experts.py",
+      "bytes": 44024,
+      "sha256": "e9973a2905c2f468eb79164694e6cdd63b6453d386cbbbc0264175352d315469"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/moe/fused_a2a.py",
+      "bytes": 16908,
+      "sha256": "ef0913260c99987137ccb03a9e11fd92b26fedc909d7d422372a3b9baa5384fa"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/moe/grouped_gemm_util.py",
+      "bytes": 591,
+      "sha256": "198ce2adb4484d353345498e82c3fd5150054ac2f4515fc3782bbc2e9cc8c06e"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/moe/moe_layer.py",
+      "bytes": 19497,
+      "sha256": "b14caab25a724e5496a5aad98da6cea479c051fac10ee4d4e4231a54c460ac49"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/moe/moe_utils.py",
+      "bytes": 68241,
+      "sha256": "df82b4874ab241c339535264d0c0e1ff4f898cfd4fe0cae5f9aa5bb7258a8821"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/moe/router.py",
+      "bytes": 28428,
+      "sha256": "f7b490234a74c2f90d4b6d8b42ca41566f571ef52e8048112669bca626073a0c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/moe/router_replay.py",
+      "bytes": 7190,
+      "sha256": "9b8cee3f28d4f2e71800779e88ead596064520d3709d53f3ebd3a0cbe5189f76"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/moe/shared_experts.py",
+      "bytes": 13161,
+      "sha256": "032ba37ddbb23bf52696b08434cc764a751dfc3951936edf5ae243ed14cded9f"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/moe/token_dispatcher.py",
+      "bytes": 66203,
+      "sha256": "7e20f0d82d983f6ae3b6861fc72eb1b58d9c4ad45549871571627826d9931de7"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/moe/upcycling_utils.py",
+      "bytes": 13824,
+      "sha256": "b86cc577ee5be893627f5691b13ad97badb2e79871cf258b5cbf61ae3f6d7a25"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/multi_latent_attention.py",
+      "bytes": 46416,
+      "sha256": "02a9d8c70b084485edb87f3ad7670a8fc3f518abe2ad7d2cef28a7f06f7fc710"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/multi_token_prediction.py",
+      "bytes": 51045,
+      "sha256": "f8b1203dda3d420a01fb6cfc4f5018204cf475c3a11fda8c9edf8b93bf053de1"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/pipeline_parallel_layer_layout.py",
+      "bytes": 14115,
+      "sha256": "810aeb7f23089dda0b14f3da490d97cea29ef82da1fc76f92a569b77a46c49f6"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/spec_utils.py",
+      "bytes": 4932,
+      "sha256": "8dd4d0622f648f20f7858bdd4c6827de2dd35c5c41bdb15cb6254e4cb05edcb5"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/torch_layer_norm.py",
+      "bytes": 171,
+      "sha256": "dbfe099b44dbff4b507612d447b7888f45e9ac7b0fd5912ff7f90017db56aae6"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/torch_norm.py",
+      "bytes": 3128,
+      "sha256": "bbddb3cfad564a8507a02ced37374501cc99992e9dae1cf512c73a71c4c71889"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/transformer_block.py",
+      "bytes": 39873,
+      "sha256": "f1cf3732e97d00fb48eb001acfd4e1ed55ac80fac253adc666aa06fdf3c6c75a"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/transformer_config.py",
+      "bytes": 101562,
+      "sha256": "2a7188037d00d3867effe07c0843859bb68fcbd4e42bba01164ed2f0c2d504db"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/transformer_layer.py",
+      "bytes": 65365,
+      "sha256": "a34dff0032a21c29cc23370821c9eeb8b5c7a4575d20c606e764531bffada306"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/transformer/utils.py",
+      "bytes": 18053,
+      "sha256": "045881e40ba9df2ddaaeaca0c01b270c06013b5732ffb09d1a4a5ce274c46126"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/typed_torch.py",
+      "bytes": 1540,
+      "sha256": "fdc804270211fe84712b9132b06ec8975e4644b548e7415c359775887efa80e5"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/core/utils.py",
+      "bytes": 94150,
+      "sha256": "470c22dc2cb68fad8e6dd6a6f68af2c9b72db49c6ff7193ac19620b165cc7643"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/data/__init__.py",
+      "bytes": 63,
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/data/autoaugment.py",
+      "bytes": 13481,
+      "sha256": "1e46c860ab05393d01318ac9e24818c3a8336d07622eb104a65f15ba5d4af381"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/data/biencoder_dataset_utils.py",
+      "bytes": 7863,
+      "sha256": "c4ffbf2c4cda0de984be156fe5a852db5058a97283b32f4eb208338f0af79a94"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/data/dataset_utils.py",
+      "bytes": 28343,
+      "sha256": "bb15b7c29f6e2592cbddfeb727a3cd883956f6790a9b20708cf5da2ffd0d47cd"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/data/ict_dataset.py",
+      "bytes": 6252,
+      "sha256": "e4203b97d222beef22d71ee14a7a53f31f0b0a4bd8ae55b7f8908626c644711a"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/data/image_folder.py",
+      "bytes": 12680,
+      "sha256": "010319a9598e6ebbccf5661e760618c4c1571380171097f48cb447617fc7f419"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/data/multimodal_dataset.py",
+      "bytes": 1838,
+      "sha256": "ebfff26e5e364f04db4681f73fc9c58cf7a6ee9022e52ec01e2d6c5bac89d6e9"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/data/orqa_wiki_dataset.py",
+      "bytes": 6326,
+      "sha256": "30af7e5294f2d146612200b10c5a48c0d8b03cf183fb422ec1a10cc8d6f7e90e"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/data/realm_dataset_utils.py",
+      "bytes": 7690,
+      "sha256": "f68af700dfccf3e200994331f397d94eda7d4330cbefd358fcc7a5df9cd30194"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/data/realm_index.py",
+      "bytes": 8401,
+      "sha256": "b2ee5bc78868ed0a5a5c729ffe8b8fc4bb677cf45afbbd33a7644fe3b85f103f"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/data/vit_dataset.py",
+      "bytes": 8838,
+      "sha256": "2db9858f2e473a97d19cc7c314836019ec9f2162a804150bd6d75e29f4c4307b"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/fp16_deprecated/loss_scaler.py",
+      "bytes": 883,
+      "sha256": "c293d2e3662536b8e950b65a43d696159ea7fdd5bdc2ac7ff9edcf6d2566a89c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/fused_kernels/__init__.py",
+      "bytes": 2289,
+      "sha256": "2625944656248d3f1afb7f3213bd7097b1203d3dc4444b2c55b0a0d2cb38f9af"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/fused_kernels/compat.h",
+      "bytes": 320,
+      "sha256": "21ddb965177f791871be0d565db7480e06f5381535d8444a00d094b334e19fde"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/fused_kernels/tests/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/fused_kernels/tests/test_fused_kernels.py",
+      "bytes": 13415,
+      "sha256": "619db26dcb154a9ac6cde5ac38e92a629ca7d0963cf186359e8653bb6da4ffc1"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/fused_kernels/type_shim.h",
+      "bytes": 2631,
+      "sha256": "2ac508cce1de4e21ba92170e6aa76b2d65916de24f3eae6fa9fca0a34151d1c9"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/indexer.py",
+      "bytes": 5024,
+      "sha256": "feb22538bdc89b03551e62cd966e3ec6e427e8d78f9e13f9cd748d1b5b00662c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/__init__.py",
+      "bytes": 301,
+      "sha256": "83977838e4a9ddb797874dc3e8058df0eb84a55987420006f1cd01917c179c29"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/bert_model.py",
+      "bytes": 10143,
+      "sha256": "f3a8246f50ee07b59984bf76a49482ff8da309d7b9019a1ebbb613cf37da453c"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/biencoder_model.py",
+      "bytes": 14029,
+      "sha256": "9fa17110393806ca1a340844c378ee1bb59a2092c8716cbc5d2cb7c7e62197e0"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/classification.py",
+      "bytes": 4102,
+      "sha256": "d64beb444aca74deefae9beb3b7db4b4b36e1ccf55f0192e5eed427deaeabefa"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/enums.py",
+      "bytes": 365,
+      "sha256": "f01c54f8b2a09cf7609e6a8994c33086e98e683506ae388694203706194f1e80"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/fused_bias_gelu.py",
+      "bytes": 1381,
+      "sha256": "ff2ef30f69ac6c2c637789815a9e82593ec8eef7ce7be6180c5342e349e79c81"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/fused_layer_norm.py",
+      "bytes": 3737,
+      "sha256": "c6214c9eebf623f2bd151ebaedab6b1e51f24135dd9ad388214e8af8d8a282d5"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/fused_softmax.py",
+      "bytes": 7824,
+      "sha256": "1ffcd1a3a91950a3d3c56d7aeb7d64c236dc0742b987d80615a551686ef8094d"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/gpt_model.py",
+      "bytes": 4576,
+      "sha256": "791019ec3d6b95c6c939a8633d8d1a21f8ac6381dd8c7c6e4b6290baad680a89"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/language_model.py",
+      "bytes": 25138,
+      "sha256": "ac666b8d9e8030d557cc35e4c5b263bac6379fc634b3e195a21b9c2b883c1e28"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/module.py",
+      "bytes": 6820,
+      "sha256": "a5e324851e5f604b26e1ad71daaed728f9efe4bc586fe729debc028f8e543de2"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/multiple_choice.py",
+      "bytes": 4609,
+      "sha256": "6503037b67934ace4af931f97ddfbc55606faacd6ca5c2fc8684d804d7199897"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/realm_model.py",
+      "bytes": 8923,
+      "sha256": "286bb5ded32a2526a3fe13abdec323970df6028a13f93d3a5069ecb5b4eea5a8"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/rms_norm.py",
+      "bytes": 1039,
+      "sha256": "6d0b94815dd0f37c7029cdd519b92e1c4286f08b90a4f59a4098a405a7fda4bb"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/t5_model.py",
+      "bytes": 7925,
+      "sha256": "c07acb7205c92188882ec6be54d56d1451a42193d87cc7010001ce716812e3ba"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/transformer.py",
+      "bytes": 65759,
+      "sha256": "748e6ee0287ab8de8310f547a5c1089b8035cd0b60800a75f429854b1d7ce803"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/utils.py",
+      "bytes": 2433,
+      "sha256": "13134216a419e3d5df628dcc961ab15a6605a44926fa133f9d69d80dac3f9a24"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/vision/classification.py",
+      "bytes": 2865,
+      "sha256": "d2d831681bd6067caf1a303b6a22dbcadb04dea8f744da118a84337880c51f28"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/vision/dino.py",
+      "bytes": 11117,
+      "sha256": "4b530c0ffb03b5c7184b142e4ab3a6851000c91b47f15c066a77064ea4f25b81"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/vision/esvit_swin_backbone.py",
+      "bytes": 33207,
+      "sha256": "860590b6133725b404b0abffaf4dd1757e1810ef745d20281d095fc88f5717b5"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/vision/inpainting.py",
+      "bytes": 5162,
+      "sha256": "8af191f2d4d3368cb159c00917d32dbb6c845139f2e9cd761c987c0902fae2c4"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/vision/knn_monitor.py",
+      "bytes": 4701,
+      "sha256": "c60adaeebbde9c3e04449d4b5286132fe2b37dfd7d01e782410c4b3d7746cf78"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/vision/mit_backbone.py",
+      "bytes": 16550,
+      "sha256": "7057b2412bf60b6dde33c7f4f2413ef681ba4f692e4692b2ad7bbfb3777e9163"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/vision/swin_backbone.py",
+      "bytes": 25098,
+      "sha256": "0d0b34c852d4d3be928fc0b237c1e83f30d3522962ab5605d3350e2f63d7ae5a"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/vision/utils.py",
+      "bytes": 1188,
+      "sha256": "065e861b1a38ccaa1fc2b662c05f5df99d8ac7ea820a737a6902f9d09a59d3d3"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/model/vision/vit_backbone.py",
+      "bytes": 8715,
+      "sha256": "100f608cd6b5142ac1177cec464e9bfb88ae017dd09ba42851fc52852e1a8fd0"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/mpu/tests/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/mpu/tests/commons.py",
+      "bytes": 2058,
+      "sha256": "399a99b7d31649d933aaf51933abfd18696015119c92dadb5be4048dec83a817"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/mpu/tests/test_cross_entropy.py",
+      "bytes": 3390,
+      "sha256": "db51d1776a6bbc0bc1dede70f39fcbf7a22d6128d95374a682ab741a19f11825"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/mpu/tests/test_data.py",
+      "bytes": 2430,
+      "sha256": "b6a6bc23947fe93e4a27a38f99a2bb0015bf78ae7fd41b786b9e162eef522f95"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/mpu/tests/test_initialize.py",
+      "bytes": 3062,
+      "sha256": "2206d7794e3b251c12b8b90826037eebbbaa1dffddd2c01a8b2be0c6681844eb"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/mpu/tests/test_layers.py",
+      "bytes": 19259,
+      "sha256": "d19c0ad8d08df9ec148054de10819e14f7597d19b53b23df14002482e24f3fca"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/legacy/mpu/tests/test_random.py",
+      "bytes": 6377,
+      "sha256": "04258c15b4c0e962895615a3dcda7c1d749f788203d1b05b828995060efddfd9"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/post_training/__init__.py",
+      "bytes": 63,
+      "sha256": "2a3670002806b9dd36b8288355207d26467b20945ecddc1feeeae5088640a972"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/post_training/arguments.py",
+      "bytes": 4106,
+      "sha256": "e619f99043b914be09243244f0fb183077a61d39188f07d11f0a251f1ba9fd67"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/post_training/checkpointing.py",
+      "bytes": 8028,
+      "sha256": "98f159163232c39985d500523caa18144d4e5c60558cad2352b5cdd6dbe9dedc"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/post_training/generate.py",
+      "bytes": 5026,
+      "sha256": "7b13de543f23bf591487edaad377250f2e3fb6303aa033a8671b4075bb1b7dfc"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/post_training/loss_func.py",
+      "bytes": 2753,
+      "sha256": "635cd38db7feac3f603e1fbeb0c85af5254a3eb76c92f23e95a8d6c3d2c80f5d"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/post_training/model_builder.py",
+      "bytes": 15866,
+      "sha256": "859005c099d7cc48d4dd5329b4a43e08d7d6c99b94a51d3bc5be8b01841e02f2"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/post_training/non_loss_data_func.py",
+      "bytes": 2782,
+      "sha256": "5cd92ed01b6cbdb58714606626d50dafe03eb619f5e7e593657bbfaad78c3a24"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/post_training/utils.py",
+      "bytes": 4550,
+      "sha256": "1b0f0e65a1dffc12a74365df12d1e19084624a57ff34b09fb401a3e4e4a22ee7"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/README.md",
+      "bytes": 2715,
+      "sha256": "1bcf45fa3c748f9e4bff83b023c14cc934606332f0f033e9cea65430c70d7cbb"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/__init__.py",
+      "bytes": 2522,
+      "sha256": "d74aaa3fc5620f6d45566ce55fc4675f887b868902ea2a5f81c8e95e5d45a822"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/agent/__init__.py",
+      "bytes": 199,
+      "sha256": "2be763de4ce0edce88e78fd613247370a383b6b18b17c3c128da8600a0c6a1b0"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/agent/api.py",
+      "bytes": 7280,
+      "sha256": "402147349bbc08e6796f20252c0dd40402d4c00d4a8f19bf3eafbea0ebb4fb63"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/agent/huggingface_dataset_agent.py",
+      "bytes": 1178,
+      "sha256": "fee723865ec4ca3039e97dcdb6e4f1ca083c3a39f2b1cda6717a510ee79e75b7"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/agent/pass_at_evaluation_agent.py",
+      "bytes": 3773,
+      "sha256": "dba0c129131acd163b7fef373ee7d60643e0d524203a21d5800f81b0cbf5dadd"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/agent/remote_agent.py",
+      "bytes": 371,
+      "sha256": "0fcae203fd5ac1c123720db06a97c8c63cde75dc573cdaa4a2247d30a97f2c7e"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/agent/reward_only_agent.py",
+      "bytes": 7818,
+      "sha256": "d124d123381423c08e3e274cc0ae77b9589fe522be1a2859268bf6ff9db088b4"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/agent/weighted_multi_task.py",
+      "bytes": 12289,
+      "sha256": "adc5123d636fc5edac56bd0ed77960d508f122ed027a0ceb0f1b3fa4e5bd0f49"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/inference/__init__.py",
+      "bytes": 137,
+      "sha256": "9a12723f81751d4c1995cc64443ae9144c3e649a91ab9af7bab9c875a4eca951"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/inference/api.py",
+      "bytes": 1243,
+      "sha256": "5656517cd1f241ac67524c1ee0e1293a40758dbffd757e9b9fee92af1b7973b7"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/inference/chat_templates.py",
+      "bytes": 1952,
+      "sha256": "09e31298e366e69135cd1a7ab08e47316ef7ce5097b4d65594aa37c2c6eedc3f"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/inference/inference_interface.py",
+      "bytes": 5798,
+      "sha256": "878645eb710feefda75266d40c4af89f51a515af21a6bf19302e10c77c9120a8"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/inference/megatron.py",
+      "bytes": 12939,
+      "sha256": "b51dae30d1b659fa917e6aeb92582445d54d5db76d2861074b60a2a9d2fe0d93"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/logging.py",
+      "bytes": 569,
+      "sha256": "1e341d4d2981ff4fbdf4375409ccc113a6326b18fddc77a7ef2fdab01bb22e7e"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/parallel_utils.py",
+      "bytes": 6241,
+      "sha256": "cc5ba146ea54627720e5499f2b536f6865ee3924f66ee5fcd5a40ed30fb1c900"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/rl_utils.py",
+      "bytes": 74154,
+      "sha256": "c2f24f1222b5982e16a8f8525c819e4ebdc1a86bfa695bdd1ae05430ee2bf9af"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/sequence_packing_utils.py",
+      "bytes": 45674,
+      "sha256": "98590f4e0d50d85d28f1dde650fcc271aecf0c6e9534dc3fa1f9c1da9ea46388"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/server/__init__.py",
+      "bytes": 127,
+      "sha256": "4881b4e9ae8c114f463508f61ddac39d0879f25de3eafab117f39c2a02316646"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/server/agent/__init__.py",
+      "bytes": 75,
+      "sha256": "82734155ea4fc02074d329a336180a014dac26f78610cf9d20f740e530b36683"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/server/agent/fastapi_env_server.py",
+      "bytes": 7706,
+      "sha256": "8701d886048c7ce8ec1ddb8ddb986f6df1ec4b81d84e70018a074b4300e780e2"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/server/api.py",
+      "bytes": 1102,
+      "sha256": "41077769afe2074953b288eea96252b65b6b6e36c637165b0f9947ad8cb9d201"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/server/inference/__init__.py",
+      "bytes": 75,
+      "sha256": "82734155ea4fc02074d329a336180a014dac26f78610cf9d20f740e530b36683"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/rl/server/inference/inference_interface_server.py",
+      "bytes": 3626,
+      "sha256": "21a566abae5b891270d11bcd5d17c1ccca930f1bb6477ed0e505e373ec009d92"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/__init__.py",
+      "bytes": 657,
+      "sha256": "50c69298d0670a40554aa5e2fc9227a757d7e4d64f2fabe88af1ff7f477cc822"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/argument_utils.py",
+      "bytes": 11157,
+      "sha256": "43d2cd3f8032b1cad45cd259985dec5fffc91db3d3a76d805738cf770c8b8560"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/arguments.py",
+      "bytes": 166582,
+      "sha256": "7c250b12e88123f12ab59dd2c54fe65bba9dc33f802adce8294999bb3717ddfb"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/async_utils.py",
+      "bytes": 2533,
+      "sha256": "f5f41b9d202814c4ee3ca587f160e6ba353c0879d3dab56f190a77f8e710d8c9"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/checkpointing.py",
+      "bytes": 90777,
+      "sha256": "d06dca530713e7d34089ccf1c157fdcecc57d2a1e4cd683081c7a2b7c91e9e7a"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/common_config.py",
+      "bytes": 2043,
+      "sha256": "b2bccb5ce481224ad7c539815ce27cf52c854d470a39d91fd0879a1f1e0786f7"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/datasets/README.md",
+      "bytes": 1970,
+      "sha256": "e2964019eaced47787e49abfc0a38ee0c3ef9d1443eec8603a319d2ac6bb5659"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/datasets/__init__.py",
+      "bytes": 63,
+      "sha256": "3b3fe3576ee632788053c56a5535d19d7d0f19239c086a7218c02e7e7e49b247"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/datasets/data_samplers.py",
+      "bytes": 13185,
+      "sha256": "e314c6faa8d09836b4dae777c1e315a88dcd16384cabf276941d0953797a1ce8"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/datasets/fim_dataset.py",
+      "bytes": 12186,
+      "sha256": "8a8787847f887aff503d459398cfc38ae43948cd8bc65e2095f6cdf922959bd1"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/datasets/sft_dataset.py",
+      "bytes": 8338,
+      "sha256": "7a384cc790d4eb95a9e794979058bc09efc49f5f3ce228582d7e64e3059063f4"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/dgrad_logging.py",
+      "bytes": 4232,
+      "sha256": "1c68f62871fe8df5b2eeb1b5d7abcccda5878bcba02ccea41b5e69d6f5c0233e"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/dist_signal_handler.py",
+      "bytes": 2180,
+      "sha256": "6bbfd7a50305b8fd96d20ccbe1f47f3be0665c3946024974962b967dbebe828d"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/ft_integration.py",
+      "bytes": 13386,
+      "sha256": "1a0e81668074b79abff43465017daa44f5c29c2335f4c623d119bcc295c3a0bd"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/global_vars.py",
+      "bytes": 9785,
+      "sha256": "8641fdaf7339e26c6579e03a24ed449e47a0015b18349c2b9e5adaed54d34f28"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/initialize.py",
+      "bytes": 20914,
+      "sha256": "68683f66b33aea6d80d880473e26e578d0158d4d0aa86e77bee70dad750c6f58"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/inprocess_restart.py",
+      "bytes": 5545,
+      "sha256": "f009d53b82baeb562845fc8ed08ffdc3e018c8b90d9dc0896866b67e51e20704"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/log_handler.py",
+      "bytes": 718,
+      "sha256": "25249378653ae0bffbf2d2943f619d244c0fd667c65b8b2adb86b15c2114ace9"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/one_logger_utils.py",
+      "bytes": 22426,
+      "sha256": "2bc0a5ca10d83119951fdfbe3e8e572e1c5ee3fa84252583efe2a4e588fa2017"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/resilience_config.py",
+      "bytes": 1496,
+      "sha256": "a03a8318e03dd8fedf56e6d615acad563788ea14175144d9b669dc5b8c2d49ce"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/theoretical_memory_usage.py",
+      "bytes": 14942,
+      "sha256": "1e37e22b91339b08bad5c1d72165ff23f9a1a2f25194af1f03a9a52956f9adb4"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/tokenizer/__init__.py",
+      "bytes": 104,
+      "sha256": "039b7157ee60bfe8c026fed6fb9420612fd9fab8ec6f7602f34758aa38e9e40e"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/tokenizer/bert_tokenization.py",
+      "bytes": 14660,
+      "sha256": "0704246587093c5c2ef2ca6ef1b968f6cf9ac5872ca4f48a24c7e2abc7184804"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/tokenizer/gpt2_tokenization.py",
+      "bytes": 13534,
+      "sha256": "df8138777c992a164a1d420e62c2b234bc2446e309f5d5b59f332d8033cd7706"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/tokenizer/multimodal_tokenizer.py",
+      "bytes": 18525,
+      "sha256": "5ca79bee4cdb1944e00bc66d6db938781ff5f671d47cd46e401660978b638784"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/tokenizer/sft_tokenizer.py",
+      "bytes": 7690,
+      "sha256": "debbccdfe174d4a52ccec78a4af0d6efbfc5c35c6eb8e8db2174e392cd640a60"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/tokenizer/tokenizer.py",
+      "bytes": 29039,
+      "sha256": "426eb1b3a8a110d368ca675750af8b8f9e79d14dbe198b2afd6ac8ec6debf9d5"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/training.py",
+      "bytes": 153552,
+      "sha256": "154465a02cfc4324d7955112ede1cea7724d01f736834a6d7f345e7411f67b49"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/training_config.py",
+      "bytes": 21496,
+      "sha256": "565be3abede62fb37b55d9adf5621ce233feb4340b85b0b7deedb76aad812002"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/utils.py",
+      "bytes": 31478,
+      "sha256": "9950d893e667eec4dfb3189e14af91d7f220a761492e00d7d5a8a740ea3649e2"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/wandb_utils.py",
+      "bytes": 3022,
+      "sha256": "c55e7af6030435b0b248b4cd325f4717d1b8c51500e801ef3464313a0334c3a0"
+    },
+    {
+      "source": "megatron",
+      "path": "megatron/training/yaml_arguments.py",
+      "bytes": 20273,
+      "sha256": "97a95fcb27dd0efdcd8640b607f30197ef58c5a0d5dbf8955c481d2b681c599e"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/__init__.py",
+      "bytes": 573,
+      "sha256": "6182fa7a786e92456887ee2b9ebd2bf51b46beef0a4c62ce9871c3c3e4f7f849"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/config.py",
+      "bytes": 5785,
+      "sha256": "9005a2ddd2a7db4be060683643600dfede6775829659ce9c05d4af6357b5bec9"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/core/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/core/kv_cache_manager.py",
+      "bytes": 34596,
+      "sha256": "cbf6a6678517dd8bf01e0a6d6f78ca0c2eb1cfa1ca8e03798e0e3d4b5ebfcdf8"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/core/kv_group.py",
+      "bytes": 301,
+      "sha256": "f522ee0fc36dd3d14de92c9897be42f635c2840f7f25191fc6157d55b7d99e22"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/core/memory.py",
+      "bytes": 7327,
+      "sha256": "f86b38980963800c567035d221dbdb943d5ba242201dab111c26e890decd8e61"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/core/scheduler.py",
+      "bytes": 16132,
+      "sha256": "df89e8e8db71800687d775235393c1eb408ffcc9a32548cb83447db49372a09b"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/core/scheduling_policy.py",
+      "bytes": 4026,
+      "sha256": "584124dbc9fd3908e3c850f7b570a2649bda45f4785231f8d9c17dbfd5077749"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/core/stage_kv_cache.py",
+      "bytes": 7012,
+      "sha256": "4593eee4afca76c46eb10c7d78165adbf5168b3b38fb3bdd0d81b74b5fe52437"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/engine/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/engine/llm_engine.py",
+      "bytes": 30054,
+      "sha256": "a38f11e3b5ed3ad660d47e1eb3bcbba6303cd6c7f94594204f2f5f1c9c5e9292"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/engine/preemption.py",
+      "bytes": 5847,
+      "sha256": "3ace18dc776693d04b4aa1e94d60b82780e64a4209ac092f3bed6fcf10723992"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/entrypoints/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/entrypoints/cli.py",
+      "bytes": 5740,
+      "sha256": "5db81a6a0223994f7d4f9a745606b61ada10b1af4623051a1e55fcc6a37fb632"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/entrypoints/llm.py",
+      "bytes": 5593,
+      "sha256": "d378ea69217c75a3392d2dfae9a988e11e56c9c7095f0bd3e53ee96262506bd5"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/entrypoints/pd_serve.py",
+      "bytes": 6607,
+      "sha256": "8031942b48d1e8cee147553bf7fa482b05c296c833524c0df70881e2529d60fa"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/entrypoints/runtime_args.py",
+      "bytes": 6351,
+      "sha256": "0c4a64bf2e8f9d8b48726dc4de09e2ca0d7a1f9ae27b5d1e8ca55e9e227f70b9"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/entrypoints/serve.py",
+      "bytes": 4907,
+      "sha256": "c0a4a54a3fdf64fa51a3d7dcf691494f84e4d1c5ee36fda256d2ea783529aac3"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/kernels/__init__.py",
+      "bytes": 76,
+      "sha256": "3ce880bacb0d2565857d13c161ab0831e40d95c0ab9bd307694a08a9bc6478a5"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/kernels/flash_attention.py",
+      "bytes": 5533,
+      "sha256": "33e4092ff3f567ea02327277e8b5d833ad3f63fc292cf6746070759506ad0b91"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/kernels/paged_attention.py",
+      "bytes": 2157,
+      "sha256": "0b8426436c4e004fd748a5b3d2fbde09c3694688dec03a443884f0326cb9a6b1"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/kernels/prefill_metadata.py",
+      "bytes": 840,
+      "sha256": "7ab2cadf17b5ac5e7c55711e0cacc975ae8402c618794318bacee50694af5d4b"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/kernels/routing.py",
+      "bytes": 3143,
+      "sha256": "6eceaa08ff1acf92acde4a4163350317dddce9dd470558d3d5bd16a569bdc11e"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/kernels/triton_attention.py",
+      "bytes": 4192,
+      "sha256": "5dca0c113ef07622ff61daa38f7d0d71ed2d27647dfd7cd43ed9208d746f73f8"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/layers/__init__.py",
+      "bytes": 360,
+      "sha256": "3cd59909bb787a93fb6ee1bfc91278a547c31fb26f8efd32bf7745cac33448e5"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/layers/normalization.py",
+      "bytes": 774,
+      "sha256": "0d95a98a62ad6bc0069d1aa71593da1844ad9b61a948af41d9461fc139e427e4"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/layers/rotary_embedding.py",
+      "bytes": 2367,
+      "sha256": "6626e2b34f8fed807c8af9eb461dc0331f7f7b372e6cbd925b4350cfb262dd72"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/models/__init__.py",
+      "bytes": 5720,
+      "sha256": "30ae7d248097c7bf7c1448a6c3977a678e6bca23ff181a4fe3dc825de9326bc9"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/models/huginn.py",
+      "bytes": 16569,
+      "sha256": "6bbcffdcd28520e05b5f3cd7ff1106c41c251107257fe9a3a3ae0d799b5793ea"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/models/huginn_latents.py",
+      "bytes": 1423,
+      "sha256": "e189dde6101724dcef3ff419a9ebc524f92611d27cf259f8017d89bd0c3b7936"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/models/nanbeige.py",
+      "bytes": 14962,
+      "sha256": "68efaa5aab43fb6f976a1c5f61646c23bbbde33f9bfa56556ff9f9e96bd5bdd6"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/models/ouro.py",
+      "bytes": 16747,
+      "sha256": "89d9af962e39e940f81f1193016c09090090dbff3f157068b18514b96eb1e0bd"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/pd/__init__.py",
+      "bytes": 173,
+      "sha256": "ce97d589536897d534c8424c797959991c51b9d6df963080ba4c33311be69f46"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/pd/config.py",
+      "bytes": 2075,
+      "sha256": "5097b5aa8630259ae32035720f65eb201b7f9c00e1c79649312a1ace4c479b15"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/pd/engine.py",
+      "bytes": 31220,
+      "sha256": "43229bf4678d958aac46e6c97f3e67745fba8116366bc2d38c3b5c527f271bb6"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/pd/transport.py",
+      "bytes": 7211,
+      "sha256": "c2c954081c4d2a3091bae0626b30fcd3e2c30656f12775ecaa8599009b3bcc58"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/pd/worker.py",
+      "bytes": 20466,
+      "sha256": "2c3b6ebab3eb80bce4699ec6371183b74038f33819cf82fddcfefc85155942eb"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/profiling.py",
+      "bytes": 9680,
+      "sha256": "0744f3c46723dec3420bc4882a77f5c6f81a4aeff6e9f6587cfb3ae981d9f158"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/profiling_artifacts.py",
+      "bytes": 20640,
+      "sha256": "a03553c7d04e4f0c3b84664074aa4f9bb3ea708d6c1b68fa5dd4b91f16729851"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/request.py",
+      "bytes": 3278,
+      "sha256": "0bce4d3bcbf8aa94cee024bb156f21e1d03ce7fc13b98599b462022091b25216"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/sampling_params.py",
+      "bytes": 2477,
+      "sha256": "38c2c477c03a95bcb19451b9da0fcceb3da41ac08308e4751675fd333a9925fe"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/serving/__init__.py",
+      "bytes": 47,
+      "sha256": "dc942abc8b751f574d25e917f8df0efab161ae910401b35522ee067b1ca20f49"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/serving/protocol.py",
+      "bytes": 7261,
+      "sha256": "c5b0e99f60c9a436b01576b004192c141ac5fae643ae4b0ad07f64638afd4101"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/serving/server.py",
+      "bytes": 9653,
+      "sha256": "b082fefa19f6cd74f51293ebff4efab9942ef6b03055d331f3059df54d1b6d97"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/serving/worker.py",
+      "bytes": 10605,
+      "sha256": "7601c8f3bbd8f06431993f3c1f94fd0bc1864db7ee6c72faf462ce547412c6ec"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/worker/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/worker/async_state.py",
+      "bytes": 8788,
+      "sha256": "054cdd228662719431a17db63fcb80fb26acf7ff40dac4ff1dc4b7d8ac40f2fe"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/worker/buffers.py",
+      "bytes": 4148,
+      "sha256": "4ec2bbdfb52b8ff42f48af18eaf571d6bd5934e0911ca431fc01f3b84097f919"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/worker/cuda_graph.py",
+      "bytes": 7991,
+      "sha256": "22914dd76963d457965250db69126797c4f425d838fd99d6516b2431e3214d95"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/worker/model_runner.py",
+      "bytes": 30057,
+      "sha256": "51c39b3c2f3b647971225756981b8b336f803502a0efb3293db75025fcecb2fb"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/worker/prefill_metadata.py",
+      "bytes": 4526,
+      "sha256": "8ff65133e556ca11cccdc06d50ade5ddfd92cdfdb1537fc12962c138c247f380"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/worker/sampler.py",
+      "bytes": 2027,
+      "sha256": "ae477775b22529777fc569ce270dc1df4d610dbb8b6eaf558de993b620bb093a"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/worker/sampling.py",
+      "bytes": 2643,
+      "sha256": "a18df2d2f6fc36bc025d53b4df910e1f9a9edf66cc3713632d608c9bb6fdb49c"
+    },
+    {
+      "source": "rlt",
+      "path": "vllm_rlt/worker/speculative.py",
+      "bytes": 8679,
+      "sha256": "ed95bbc302cc374038dc4d61203c0a0af79ca7722b8163ff410ea9d1733ae9d6"
+    },
+    {
+      "source": "vime",
+      "path": "examples/looped_ppo/run.py",
+      "bytes": 9718,
+      "sha256": "8117217279e82c0d0b8a767733a4f5b6737c8964254c564b24695ada13ff17d6"
+    },
+    {
+      "source": "vime",
+      "path": "train.py",
+      "bytes": 4497,
+      "sha256": "5d6912878b7490aee786d16e0359fc4f90573c8d0d2f7e28a228f730901a86d0"
+    },
+    {
+      "source": "vime",
+      "path": "vime/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "vime",
+      "path": "vime/agent/__init__.py",
+      "bytes": 37,
+      "sha256": "db8ee13dd4891e4b93237ed440d69be2d063986f5bcb20cbe9fcfd6b2ed83a82"
+    },
+    {
+      "source": "vime",
+      "path": "vime/agent/adapters/__init__.py",
+      "bytes": 268,
+      "sha256": "1fdc3d93daef16b48d0dbbbca7ec936839bc871e0b6691fc89db4edda6fd9e87"
+    },
+    {
+      "source": "vime",
+      "path": "vime/agent/adapters/anthropic.py",
+      "bytes": 13647,
+      "sha256": "831b2796c3f6c152a058dcf1750eee4644424109c4e19aec4ee9ef70dbcd65a7"
+    },
+    {
+      "source": "vime",
+      "path": "vime/agent/adapters/common.py",
+      "bytes": 21978,
+      "sha256": "5120c9bb20145fdbff66912b7c430c9339a715a3b8fec8060b3c7850e66aaa8d"
+    },
+    {
+      "source": "vime",
+      "path": "vime/agent/adapters/openai.py",
+      "bytes": 14508,
+      "sha256": "bd03d94461a32369d63c6d0efb358ae97609fea206a2d36e082f1d90a44762bd"
+    },
+    {
+      "source": "vime",
+      "path": "vime/agent/aiohttp_threaded.py",
+      "bytes": 2833,
+      "sha256": "651e5aedbf9529d5f2e458bc6fbbd9a1931ec31bc00c9b8c911b6762d1209268"
+    },
+    {
+      "source": "vime",
+      "path": "vime/agent/harness/__init__.py",
+      "bytes": 327,
+      "sha256": "9446446dc967ce4863b959e228917e494f7d2c78f7b452a8eeace4695c9f18e8"
+    },
+    {
+      "source": "vime",
+      "path": "vime/agent/harness/claude_code.py",
+      "bytes": 2675,
+      "sha256": "9754d25c7cfc1b0fdb173b2e8a8e176eb6e076c1af65eeb9d8274cdf47c6c0bd"
+    },
+    {
+      "source": "vime",
+      "path": "vime/agent/harness/codex.py",
+      "bytes": 3384,
+      "sha256": "d9a35672441ed60c28dd5fd92e4d339cf61b4b1a7c92eedb75ef73bc4d831254"
+    },
+    {
+      "source": "vime",
+      "path": "vime/agent/harness/common.py",
+      "bytes": 6553,
+      "sha256": "0b4e6162432268f72c6ef6d7371ba4cdc89f650bb5de610b870f694222c1fe3e"
+    },
+    {
+      "source": "vime",
+      "path": "vime/agent/parsing.py",
+      "bytes": 4287,
+      "sha256": "92107faeb2d1b145724b007ed47fe0455c8404dedc9745e39f8ea4b1ffe2625f"
+    },
+    {
+      "source": "vime",
+      "path": "vime/agent/sandbox.py",
+      "bytes": 14823,
+      "sha256": "42a37e6fbe87685a52123b3078c355f18f7491d26cd2c6d81f78b4a7d92bba38"
+    },
+    {
+      "source": "vime",
+      "path": "vime/agent/trajectory.py",
+      "bytes": 21085,
+      "sha256": "d682689e4e087653e315b518de2e130d2c3edbc68acecc67df2eac9baf4d0c8e"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/__init__.py",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/__init__.py",
+      "bytes": 1749,
+      "sha256": "82398084e19c122f1236372d0a0deb650ef114d9fe0571e4355ce3b69beb338d"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/actor.py",
+      "bytes": 28030,
+      "sha256": "7edc9c8498d7e21fb96505e9f8bb1073674994c3c64c6e27a98ac626fec60f26"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/alignment/__init__.py",
+      "bytes": 69,
+      "sha256": "911f27fe140e5bfbcdd1c29b5f71e7be699f8ba0277cc10596a290d6f72f3472"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/alignment/deepgemm_forward.py",
+      "bytes": 45327,
+      "sha256": "72fff4dcb2d868eeb267ff036d496b669d2978d6db87b1c801eca9de77ce2426"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/alignment/deepgemm_moe_forward.py",
+      "bytes": 137920,
+      "sha256": "053d23e31f7b4ac9636107aafa91e5b217ece2b3277ee4469f3ea01e0fa671ef"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/alignment/deterministic_route_kernels.py",
+      "bytes": 10273,
+      "sha256": "ae89f68241c22ec2aedb2a258b21073517d5a127f42c4ee64ffa173944a66f4e"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/alignment/env.py",
+      "bytes": 1566,
+      "sha256": "28d9f3c970573ef415156c4807ca7091f6586ff01a69de8b6e0d74cfa6915a9e"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/alignment/layerwise_alignment.py",
+      "bytes": 5778,
+      "sha256": "023e3357a810e29999b509fd81271099cef0fde576d24299b1d6f6967f01c133"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/arguments.py",
+      "bytes": 8418,
+      "sha256": "6993e2ff473387875f5d48954c540294c6c291907307fb94db5e94051760d2de"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/checkpoint.py",
+      "bytes": 5517,
+      "sha256": "bb91bcaecebb5f5c5bc1acb9b5c8dcc05441b41946e37a5af498c5940e0dd779"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/ci_utils.py",
+      "bytes": 2997,
+      "sha256": "fd55f6fed9d57f91666dd0764ba812c08de5ed2d7e83b1c3a7b577ff6dbd2e1c"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/cp_utils.py",
+      "bytes": 11616,
+      "sha256": "01cc3c6cfa3574d233908af0d808099178a9c7f3319661a712bd88641925b80a"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/data.py",
+      "bytes": 8619,
+      "sha256": "84496abcc95723aaa0cf8f3b351803aa0f8a7a68beea171c385dbad8b47be588"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/dspark/__init__.py",
+      "bytes": 60,
+      "sha256": "5cef1dc1a736aa6fabdbe40941bbb5352b4e5c6ab350b92ff8f165afd746bcdc"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/dspark/attention.py",
+      "bytes": 8584,
+      "sha256": "724f40112082ad453f003315b8d0c2466476f46cb5481204627427343765564c"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/dspark/common.py",
+      "bytes": 11119,
+      "sha256": "2eee37dd750cc9a97d11fe9995df187bb95406b7dde6d6594e4e285c7552a6b9"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/dspark/export.py",
+      "bytes": 2190,
+      "sha256": "cdd50bca02ff078a7e18bc62bd271a27b4a5b7424caaf430e3a361acf8e49dee"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/dspark/hidden_capture.py",
+      "bytes": 15138,
+      "sha256": "fe80b0b7396640c9b00beea8a2ca6116b96f14f79c717cddb3bf5b88f64c198f"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/dspark/loss.py",
+      "bytes": 14000,
+      "sha256": "c43b01b053b1b7d174c28c9f9f4cfe55641b96367ca9dccca5682ff9b594cccb"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/dspark/markov_head.py",
+      "bytes": 7765,
+      "sha256": "2887114fe600be5c455783d9ad1c51aa79b203113a128cf0dc6c689d73d384ea"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/dspark/modeling.py",
+      "bytes": 24693,
+      "sha256": "1fa9d1da16a2562d75789d7b5376984a72989592b55dac24caa1a0847100bae3"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/hf_checkpoint_saver.py",
+      "bytes": 13500,
+      "sha256": "d9d1fc03bf818337671c50c7522c08c83e83f8d29f7fb8622716f9bb057b777d"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/hf_to_megatron/__init__.py",
+      "bytes": 1760,
+      "sha256": "61ff04bfa60741a1ece59719a0c7328e793a296cacafb3a3fca9727f01d8efd5"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/hf_to_megatron/common.py",
+      "bytes": 6501,
+      "sha256": "46a48a96f5e298b0597b9d247ce7d191199fe29ddb54c133274ea5d4b3d1788b"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/hf_to_megatron/deepseek.py",
+      "bytes": 5344,
+      "sha256": "fa3fe5642880a46c2f5e536780630ca599b63791d926b76a76b3cb2f91e1b6e6"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/hf_to_megatron/glm.py",
+      "bytes": 3735,
+      "sha256": "f5c02cd10e1939f6d07e8fb17f247dc2a5b87d3247ac3abf9b40c2ee5bfb69e3"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/hf_to_megatron/ouro.py",
+      "bytes": 427,
+      "sha256": "3e044eecc94c872f12ee9dc6272c3947fee0dbd120af838daa5dbb147a157345"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/hf_to_megatron/qwen.py",
+      "bytes": 8072,
+      "sha256": "268562398419f7c9b29c3734b8f96da6197946204392af37881c98828ef8ef8a"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/hf_to_megatron/qwen3_5.py",
+      "bytes": 6329,
+      "sha256": "7a808f639f473874dd40cfe3283642fb159d7076d2a1a492c16e540cdc882a9a"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/hf_to_megatron/qwen3_next.py",
+      "bytes": 3308,
+      "sha256": "264052beadd472702668bc07782861a1f2799cfb7ebd58ac3d0e8cab25283034"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/hf_to_megatron/qwen3_omni.py",
+      "bytes": 841,
+      "sha256": "ec5511ea5dfa80706cc3a12d74c398b9d31e3ec817e27d07ff9e759560cd691b"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/initialize.py",
+      "bytes": 4251,
+      "sha256": "cedf41bed23bc71475faa7d5bfa02281c367e2d743562b9efc493f2eb78e837a"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/kernels/fp8_kernel.py",
+      "bytes": 2305,
+      "sha256": "0c3f8121d9423de9b5109c9015f1b5e4bb0622574fa00b38c267e900ac4bd487"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/kernels/int4_qat/fake_int4_quant_cuda.cu",
+      "bytes": 12419,
+      "sha256": "4b3a76a5f6e59c98dbddcca42c74a42e2f212f3fc87ef9c4044f232161ca215b"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/kernels/int4_qat/setup.py",
+      "bytes": 2196,
+      "sha256": "e586031ecfd775e386f0402ce903b2ab2de92df5b5bf393b88da6d155d86609d"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/loss.py",
+      "bytes": 57432,
+      "sha256": "ce5e435ed5d7b0f1df35fdf277254be4f56a9762af8f0b52734207c9d527a219"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/megatron_to_hf/__init__.py",
+      "bytes": 3500,
+      "sha256": "7de52709e7badd9a99d221d48642de9a40a5245dac5a6a300831ded1beb52119"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/megatron_to_hf/deepseekv3.py",
+      "bytes": 7833,
+      "sha256": "dfab14f4b938525798fb4bd05195e43b8f267de34671808a5d0cfeb64019341f"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/megatron_to_hf/glm4.py",
+      "bytes": 3702,
+      "sha256": "fdc2a52fa21e7f9b526b0cffeee97801cc3a28990a8ace7d33809c6044d4283e"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/megatron_to_hf/glm4moe.py",
+      "bytes": 6799,
+      "sha256": "5e84f368481c5d713907d6a32de0424d3b58fe96b22d8de4ef8375626c762969"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/megatron_to_hf/llama.py",
+      "bytes": 2736,
+      "sha256": "e9223b10d7bf62b9acb3314f909831b0b12502451595763668c541ae0cd28399"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/megatron_to_hf/mimo.py",
+      "bytes": 2742,
+      "sha256": "20864f3628f3a8f2a146dc85d159dfd8a83e247a729e1e34eb067ea503797029"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/megatron_to_hf/minimax_m2.py",
+      "bytes": 4081,
+      "sha256": "c90cac72fb21ae8a2804b76dd3eefa87231e900216a60d26292bc1d5a3a6cf92"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/megatron_to_hf/processors/__init__.py",
+      "bytes": 901,
+      "sha256": "cd62112ae6d759022537cde98c4a78de262912dd9934cb05f4bc158c45a7e271"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/megatron_to_hf/processors/padding_remover.py",
+      "bytes": 435,
+      "sha256": "bc436f0ef4b0f8f736efbf27d73028ac895610d95af5833c2d20266b69e4f32f"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/megatron_to_hf/processors/quantizer_compressed_tensors.py",
+      "bytes": 9213,
+      "sha256": "80c30c92cf4f2ee72d1de986914dede04db8106b06f84a4dd4bce2a796a176e7"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/megatron_to_hf/processors/quantizer_fp8.py",
+      "bytes": 5681,
+      "sha256": "45bd6dfb71d68f8876f86d1ec7f41c8d0407e7aae02a0d4e7d0b06aab5b59839"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/megatron_to_hf/qwen2.py",
+      "bytes": 3882,
+      "sha256": "67e6e034bda9fd03dbce7e1d2ae440ba91d2612a81999233a9e934382267f377"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/megatron_to_hf/qwen3_5.py",
+      "bytes": 8780,
+      "sha256": "c1a786d5d54c7f27bd84394a6ebfea755bc2694b2aabd7549633a93939b6a704"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/megatron_to_hf/qwen3_next.py",
+      "bytes": 8919,
+      "sha256": "88792a45b2652b58ea7c6831a2f107ee8a71a24cd13de0ea081312b9eb926cf6"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/megatron_to_hf/qwen3_omni.py",
+      "bytes": 596,
+      "sha256": "6b400dbffe3a4f5e41611da15e720805d5534099e6a4f7f8d69fb13fd231c2f8"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/megatron_to_hf/qwen3_vl.py",
+      "bytes": 6195,
+      "sha256": "5890ed8d21cab6ede81f626777a5071b3a2543d068dabfcd3676c9f9c5b0b159"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/megatron_to_hf/qwen3moe.py",
+      "bytes": 5730,
+      "sha256": "59aef122cc8e193e69e8bc46b2a22fbb73daa28b5f5b9da06bb53a471dbbc5b9"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/misc_utils.py",
+      "bytes": 155,
+      "sha256": "8031be98b7aedbf84a3ad0802821994c6fb091d01d9c743ef3c4a6ece52b71c7"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/model.py",
+      "bytes": 47503,
+      "sha256": "793b0d7f0cc1c158212de6480880b664860b2706b325b190b3796fbbe8134d54"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/model_provider.py",
+      "bytes": 13099,
+      "sha256": "71ddcd4159755aafdac616697a538d4073df481ac051f6f755af708ff227c25e"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/server/__init__.py",
+      "bytes": 337,
+      "sha256": "6fa71b1ac1d7e225451fa2a034f69e91497f5e28da5269d5397e380073f6a7e8"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/server/arguments.py",
+      "bytes": 4363,
+      "sha256": "b23a5a912be6f638a896dab9d4ec33509b36d935678687727e5b9ecdec75f227"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/server/logprob_utils.py",
+      "bytes": 24707,
+      "sha256": "bf74295e56f80d20f33f2702d2319da72d043af5077bc52e7f8df8841b9032df"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/server/megatron_server.py",
+      "bytes": 27837,
+      "sha256": "7cb09ced79ff3ba5019cd1723e2af35778dd3c7841db578ecdc4f5be625c3581"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/stateless_adam.py",
+      "bytes": 3974,
+      "sha256": "795a7f9be09744364b06a5d3170db46ab4528857a68a3afa425c03895da7ae1b"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/update_weight/__init__.py",
+      "bytes": 2133,
+      "sha256": "80ccad2161a22c8945ff1b16f10bb46cd722b6c2e6eeae23d1418c9f2160b6e2"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/update_weight/common.py",
+      "bytes": 13397,
+      "sha256": "ffef6f58beb30579cd88ff75b04b33a88b36d061b22dea4f04dba4de1c405137"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/update_weight/expert_routing.py",
+      "bytes": 14964,
+      "sha256": "f3e4dcdd8d5220a5685720138521b1c40918d8ddb16f898f106cd621c5cb78fb"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/update_weight/hf_weight_iterator_direct.py",
+      "bytes": 10950,
+      "sha256": "994de69823587dbafbf669543d1ef94b2029148538fe691fed73975a540f9800"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/update_weight/update_weight_from_disk.py",
+      "bytes": 3654,
+      "sha256": "ea8572e0776290d9b33305b7a7d403bf6e4409404b69fdd2fea59a783d13caff"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/update_weight/update_weight_from_disk_delta.py",
+      "bytes": 14018,
+      "sha256": "a484f47e3deb6007adef38ca928f36b5b3fc48b77165dc8ce397edd8f8c36c37"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/update_weight/update_weight_from_distributed.py",
+      "bytes": 5068,
+      "sha256": "8e835df804d0d38020095eb25b3f19964707f7d331dd3ac64132280f118b1a57"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/update_weight/update_weight_from_tensor.py",
+      "bytes": 19508,
+      "sha256": "d44f3580350ea497f4dfce70c0ae467576dc4b1487fb5d00cbbf4d9069abc331"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/megatron_utils/vllm.py",
+      "bytes": 1632,
+      "sha256": "d8aaec3b97d4eeb16898d0c68946a4803ddd0dc5cd19a8578f71196ba5fa30df"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/rollout_backend.py",
+      "bytes": 377,
+      "sha256": "acb1645ee786bed90b85296158adcfed350228635b9c60c62556601611e002a1"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/vllm_rlt_utils/README.md",
+      "bytes": 6422,
+      "sha256": "c942c448bbe5833781bc25bea8d34faa8c6cc48523c7d96fb0f0e7749baabe7b"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/vllm_rlt_utils/__init__.py",
+      "bytes": 49,
+      "sha256": "182dc24f2ef95de6f7636bd1a4dbe382c333c9577f478df9159735372082fc00"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/vllm_rlt_utils/arguments.py",
+      "bytes": 4086,
+      "sha256": "330b0680b4b5c75bf083e2fd13e620ce56a61683cdee64d6adc71728650436a6"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/vllm_rlt_utils/deployment.py",
+      "bytes": 1743,
+      "sha256": "fa29d794e436795a23d2151d83803c538c35bb0fa2ff91432d95658b0a6e6daf"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/vllm_rlt_utils/engine.py",
+      "bytes": 7986,
+      "sha256": "d685ce50987059e46616921c8b02b20a5d78835f8707eb85b8ae6094f668fac0"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/vllm_utils/__init__.py",
+      "bytes": 215,
+      "sha256": "1793566f5ee8a15243e06ad662eb25c7136eb708f397b10ac81f07b0f81a9bdf"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/vllm_utils/arguments.py",
+      "bytes": 6237,
+      "sha256": "890300bb54411e8c9aff10e67514a16e70183da4491fd541c86140a5d75f1e30"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/vllm_utils/deployment.py",
+      "bytes": 6120,
+      "sha256": "86f6c018cd00702fe2621d0456891cf7ef74e4087e338303013710d82c66b2b3"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/vllm_utils/disaggregation.py",
+      "bytes": 3599,
+      "sha256": "ddfa53827c817224c7cda4c9844d664c3d3c27c709230bb54c16e1c731b0a097"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/vllm_utils/engine_group.py",
+      "bytes": 21041,
+      "sha256": "94665a47bab581d156f98a80e8cbdb792f268a0b2bf6e625998c49f1cd0cd887"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/vllm_utils/external.py",
+      "bytes": 11800,
+      "sha256": "def792b4f5c8a07debbb1bf62699a3ee6553d4da677b57787d80233058f93331"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/vllm_utils/server_control.py",
+      "bytes": 8045,
+      "sha256": "f2d7c876fd9de2896a2060ae343db6663669182885ee418b6d422f76e4bbae67"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/vllm_utils/vllm_config.py",
+      "bytes": 9761,
+      "sha256": "b61f37834f04e6aec33ca50b74fa3fbc785df6d377546a64b58422f04466b0e9"
+    },
+    {
+      "source": "vime",
+      "path": "vime/backends/vllm_utils/vllm_engine.py",
+      "bytes": 29914,
+      "sha256": "8cf0c0a5a82ab7cbdf71500e6a8f29c1ae6f2a44c49cccad8397b36dbf2a232b"
+    },
+    {
+      "source": "vime",
+      "path": "vime/observability/__init__.py",
+      "bytes": 52,
+      "sha256": "e8a00cec93b14f44ceafa0101c4621900450a3394f4c072d179e556882ed9c66"
+    },
+    {
+      "source": "vime",
+      "path": "vime/observability/logging_utils.py",
+      "bytes": 1428,
+      "sha256": "f2444895ede4e9ebaa52a52249af0a6155fc209365cdac69304067b7f6225f4c"
+    },
+    {
+      "source": "vime",
+      "path": "vime/observability/metric_utils.py",
+      "bytes": 3282,
+      "sha256": "4e51ae13e8cd969ed7ef59701d06479338df7085cf2465a47ed94748f40d60a0"
+    },
+    {
+      "source": "vime",
+      "path": "vime/observability/native_runtime.py",
+      "bytes": 7171,
+      "sha256": "5d64fc2f8a98b5f835dfb557d1b4917dd9484f98c5013926c1c104b1b588665e"
+    },
+    {
+      "source": "vime",
+      "path": "vime/observability/profile_utils.py",
+      "bytes": 5428,
+      "sha256": "14171b5b4bc6d59001488aacf28c8b81a743d458ddd73d0a108d9d349abdadbe"
+    },
+    {
+      "source": "vime",
+      "path": "vime/observability/rollout_data_utils.py",
+      "bytes": 6548,
+      "sha256": "437f980c52cb95909e84f128f0410436f7e16e11f8c1da4a81538a9e7b988948"
+    },
+    {
+      "source": "vime",
+      "path": "vime/observability/rollout_metrics.py",
+      "bytes": 11775,
+      "sha256": "d85918ee581bcce4dd4a69b4482b2459950619b55b739880cd03a54298c18b79"
+    },
+    {
+      "source": "vime",
+      "path": "vime/observability/tensorboard_utils.py",
+      "bytes": 2243,
+      "sha256": "635c9a0732869018bdb9e8e46113a4f91f00eed3336e386c80374f29aff1789b"
+    },
+    {
+      "source": "vime",
+      "path": "vime/observability/timer.py",
+      "bytes": 2398,
+      "sha256": "18f5151e1338cb8a51cb5f4a8b6da3eca2f2e188a6811c9a4b9aef4dc12a07aa"
+    },
+    {
+      "source": "vime",
+      "path": "vime/observability/trace_utils.py",
+      "bytes": 29123,
+      "sha256": "85069d18d174602e1bcebe590b47967257b58cf2cd0c51ff4228e095a5439c1d"
+    },
+    {
+      "source": "vime",
+      "path": "vime/observability/train_data_utils.py",
+      "bytes": 9277,
+      "sha256": "d23b99d5ab4a1489b5522e8f732c3e4844f189aedff2d57484fccbd2b95a7574"
+    },
+    {
+      "source": "vime",
+      "path": "vime/observability/train_metric_utils.py",
+      "bytes": 16858,
+      "sha256": "e885e9994e0b39b51b0d5cd16ffe09eb1c111eed3eeddc662e349b1e55d14947"
+    },
+    {
+      "source": "vime",
+      "path": "vime/observability/wandb_utils.py",
+      "bytes": 5518,
+      "sha256": "4932e349c6260de0450f2f3ebe9721732345b60b3d3dcc8660649896ca4079e0"
+    },
+    {
+      "source": "vime",
+      "path": "vime/ray/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "vime",
+      "path": "vime/ray/actor_group.py",
+      "bytes": 12481,
+      "sha256": "74a8313a42520de8e451e97bd2135881214984ecd08c1626aa0591f101805c9e"
+    },
+    {
+      "source": "vime",
+      "path": "vime/ray/placement_group.py",
+      "bytes": 9234,
+      "sha256": "b67161f607e58d933f205c52e3241dee0d686a9fc337ba37c09ff7940117c1b7"
+    },
+    {
+      "source": "vime",
+      "path": "vime/ray/ray_actor.py",
+      "bytes": 367,
+      "sha256": "650b72f4f3b5f89a97fd89c49ca482590b20a2afef7879db3bc2c6badbba34e5"
+    },
+    {
+      "source": "vime",
+      "path": "vime/ray/rollout.py",
+      "bytes": 22561,
+      "sha256": "18d2f28103ccc0e27a4edcf59cd1a47fbb7ade8a235da1763f7cbcedfd5a17f1"
+    },
+    {
+      "source": "vime",
+      "path": "vime/ray/train_actor.py",
+      "bytes": 4511,
+      "sha256": "5176fddb97df926eb98252e55be0ce6062cca42d768e922552adb9acc98da602"
+    },
+    {
+      "source": "vime",
+      "path": "vime/ray/utils.py",
+      "bytes": 2816,
+      "sha256": "617e52b5c7f82374a497ca32704ad5a7f98fab28b9536a8d5316cb263203c45a"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/base_types.py",
+      "bytes": 672,
+      "sha256": "794c18a066ce77df07cbc80d1555ba2601282eb17f7256b180ef151fd56816a0"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/data_source.py",
+      "bytes": 7923,
+      "sha256": "9643ce3a83ac90cca0a0f33fc18e071cf01226535cc97a3bf6f304f5065177ac"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/filter_hub/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/filter_hub/base_types.py",
+      "bytes": 1445,
+      "sha256": "718862b02c21840963f9fec72b7215b7a6ba7f02d7cbb2d210f192e5fe6fec2a"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/filter_hub/dynamic_sampling_filters.py",
+      "bytes": 819,
+      "sha256": "7d2fcb92b868468dd731080dd5abcd8fe5e7fbb6c2f0048bba0866a7d62e31a0"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/forge_load.py",
+      "bytes": 4958,
+      "sha256": "b37e0d33e0c8824170e221db88cf21c56f2bcaf02f6e9d64a88b315f9851cc55"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/fully_async_rollout.py",
+      "bytes": 10404,
+      "sha256": "baea9f7142df755da6634758542e8dc2ffecf7e7a5adf2588898230a87dfb7bd"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/native_eval.py",
+      "bytes": 8494,
+      "sha256": "06a7aab463bd888f4d7946544f8f390d1d462504fe88120305e0fa5f4ca4a363"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/on_policy_distillation.py",
+      "bytes": 6144,
+      "sha256": "9423739d30bf5e70fca17209cb1c46961cf4ff2792758e195fa445de83068edf"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/rm_hub/__init__.py",
+      "bytes": 4567,
+      "sha256": "e916523143afcf0ce8691d8568aa6c8eb9656f9b8caae2897a98fe83754f7e31"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/rm_hub/deepscaler.py",
+      "bytes": 1323,
+      "sha256": "7be863a12650d5054f5245bee0a9f01e1efe4b314db2e272c9d4261e18feb0a0"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/rm_hub/f1.py",
+      "bytes": 1483,
+      "sha256": "89457e8e95d7acdacd52a39044dd0a4b0c5d4cfa638dc1cdb8ce96e03620de6b"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/rm_hub/gpqa.py",
+      "bytes": 4189,
+      "sha256": "7d39fc87c5422501e0fa44d4da2578646ed55d3f411db242a8800c3f0398c4d7"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/rm_hub/ifbench.py",
+      "bytes": 5466,
+      "sha256": "fa3e2475b676714dedd0bef56ef45febe694f673eb331c3dcddf6b3bfb2ebb83"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/rm_hub/math_dapo_utils.py",
+      "bytes": 8301,
+      "sha256": "3d6b61357e2ee8f1704ba0eb1726ea2dd65dbf9c76e963f20d5ff6598b8f7b23"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/rm_hub/math_utils.py",
+      "bytes": 14667,
+      "sha256": "cd884f4686ab3a1e0664ea09b2c15a5ebbf2b7d40b799c68ae5bbc0978637d32"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/sample_hooks.py",
+      "bytes": 1870,
+      "sha256": "6601c25a390d218039be497d2bb81b0ee79e026560e4e479447c2714873dd073"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/sft_rollout.py",
+      "bytes": 2332,
+      "sha256": "8695263753682e2dd62c331627ad7fce0d72766655c3951c9adad307e802d682"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/sleep_rollout.py",
+      "bytes": 257,
+      "sha256": "5c3dbcc2e9a595e785446ea8e3ff470a198396815216724a03d879375f6b4b9d"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/vllm_rlt_rollout.py",
+      "bytes": 2647,
+      "sha256": "aa18f8806f6bfa0a894b3b0f67ecad0e669f7695351309e6f2f4e5b55ddbbeee"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/vllm_rollout.py",
+      "bytes": 42951,
+      "sha256": "6fa8bb394ead1d2af05fe8ba43d458c772c04b3997fece17599a37948351ad2f"
+    },
+    {
+      "source": "vime",
+      "path": "vime/rollout/vllm_streaming_rollout.py",
+      "bytes": 12797,
+      "sha256": "8ec3bb3c0a313101445cf4832623d2981121f7cb2a54ea1aee3a20edefeaaa53"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/__init__.py",
+      "bytes": 37,
+      "sha256": "de1cf48d98776a94306852b8dbebe3c0b6ee5b3253b846e1834d71a9d18d05ef"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/accelerator/__init__.py",
+      "bytes": 12461,
+      "sha256": "75615d46a87ae7919ff9e1e1380af66719966eb1c0f9a5774c55afc6c84447cc"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/accelerator/base.py",
+      "bytes": 6578,
+      "sha256": "07a223ce541c62769ae67815b12fd939d09fae217c39f94d0ba3c2ed14a11ea9"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/accelerator/cuda.py",
+      "bytes": 1266,
+      "sha256": "483095c56670cc1a589fca7a91dd937c94158734ec8bda5a667d2e952fc66816"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/accelerator/musa.py",
+      "bytes": 2962,
+      "sha256": "50ed2c73dc281b88808b960b2ac41922b4a5dafda15debf485bcb4c96d7925cf"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/accelerator/torch_accelerator.py",
+      "bytes": 6053,
+      "sha256": "7603ab1e2bf98f6d392fd838804b7c28c236e2e08ce2437b269953db3f058758"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/arguments.py",
+      "bytes": 101908,
+      "sha256": "9f7d5274be41c18de19050d0856ea6e8fc1e9ef9dd34c85f536f198fe09d25f1"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/async_utils.py",
+      "bytes": 877,
+      "sha256": "ed1dac4267d17139e06d63c857a953fafb8bed0a0b229ff8fda82126a0c1bfcb"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/data.py",
+      "bytes": 13289,
+      "sha256": "2ad9c48ff46e89a60ae297b0fc305af079960f6a52e23cf7a4b45190107ddbca"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/disk_delta.py",
+      "bytes": 3050,
+      "sha256": "8e6c1d96f323d085867bcbdc595e9001e507524ef8b71a2b93fbf134b4da99cb"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/distributed_utils.py",
+      "bytes": 5793,
+      "sha256": "ee95a4775eceee51e6fc693236c2cd1f7d87d6530fdd49a46126e7c60f47dce4"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/dp_schedule.py",
+      "bytes": 9885,
+      "sha256": "1b49e898ca55487d4a1be99fe64a8e5aae118fb9800c672bea511ea5ac9af400"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/eval_config.py",
+      "bytes": 10401,
+      "sha256": "36928aed38b268335cd70cbe79881fbb30fc9a59d6678277b072b5369e257cec"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/external_utils/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/external_utils/command_utils.py",
+      "bytes": 9984,
+      "sha256": "1ede235417874525354631a627a348a74ea6af8b9491a23c318e37d2d4e15e3f"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/external_utils/typer_utils.py",
+      "bytes": 2204,
+      "sha256": "542b52bd24c7e3e325c963935b41081a17f4616dbda543433e89d66ac5e0143a"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/flops_utils.py",
+      "bytes": 4561,
+      "sha256": "5929a8614e682dd8678c900feb602e85f92215097fa6da3164a14f891cf2486e"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/health_monitor.py",
+      "bytes": 6801,
+      "sha256": "5fc62b811297e7aa78db4ceb684451ca62180bc8d2746597d3a30faab9749e86"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/http_utils.py",
+      "bytes": 10463,
+      "sha256": "f6a37ef62f41533838596ab3184525d0bc3c84caa23cf609cf2c8c64d7f6c57e"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/mask_utils.py",
+      "bytes": 11907,
+      "sha256": "0c2ab2464dc6257030883fd0e10523e15e418a6cc7afc357ee6c557bc652a770"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/memory_utils.py",
+      "bytes": 1484,
+      "sha256": "883a861321ea4dc6de679deae65ce68a3650281f95f58ca979c0a29b0acd59cc"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/misc.py",
+      "bytes": 4221,
+      "sha256": "af90d93f59902038f97575757c6d626eff3e7b592d34595380cd914cc095941b"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/ppo_utils.py",
+      "bytes": 29075,
+      "sha256": "32295b54c33f15e4d520cd26f9b462c8e5eaf1a2825b266b347d8f537c2b3628"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/processing_utils.py",
+      "bytes": 10157,
+      "sha256": "7de13601d166e6d610ab585d12f906c52ae7dd7f8c3de98e8bada43baafdf8d2"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/reloadable_process_group.py",
+      "bytes": 18819,
+      "sha256": "8f9712a9718fe185f2d427e701af50264c938d63e937839c56dcc1e550f52287"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/reward_normalization.py",
+      "bytes": 924,
+      "sha256": "9557d8513a77b15dea48f6cfbbd4b7bf35fd76b1f44b88a2738c8f6e0abc3493"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/rocm_checkpoint_writer.py",
+      "bytes": 1187,
+      "sha256": "6f29a85785a5b40e09e3b28b34e4dfb8007730039ba059863d7bbacef557e6a4"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/routing_replay.py",
+      "bytes": 8209,
+      "sha256": "79698838f4cc39b1fb91c9f3d99554a0f569eb7c5138d1fd909b1b849b3c355c"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/seqlen_balancing.py",
+      "bytes": 8333,
+      "sha256": "1a4f675ef6379d9775f08e74faeaaa9017e5cd4321296fed40fd5a3e80d83bad"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/tensor_backper.py",
+      "bytes": 1426,
+      "sha256": "e3d9e74fd596ccef471c102f270c3bbf9b94601c4222c5a168633a6b8af4d862"
+    },
+    {
+      "source": "vime",
+      "path": "vime/utils/types.py",
+      "bytes": 21064,
+      "sha256": "1906577a12559375018cef16fc8317c2c74e008798d77a99b6304d4c737b9e11"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/flow_dppo/README.md",
+      "bytes": 1472,
+      "sha256": "cb53cafd20976e6dca87f4bd1150e56304401baec5f9e8ca2d1be24bdd2b932a"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/flow_dppo/__init__.py",
+      "bytes": 71,
+      "sha256": "0fd11430ee82a1b254c122663d38ed8b4a31fef699dc2d5ab8435dca33556294"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/flow_dppo/loss.py",
+      "bytes": 948,
+      "sha256": "b1cb22afa7bc2c0c4c68e4dd2aea1bd317817f6b9bf862ea2c8389208e023db7"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/huginn/__init__.py",
+      "bytes": 60,
+      "sha256": "b38fbf32d9308f68ac3d03e98106bca74c2323dc7961e33f1210ff4d8fe46791"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/huginn/model.py",
+      "bytes": 16195,
+      "sha256": "cfad8746feec84c4e99bfebfa5dc73cd552b834211bdb97fc89489b6a4ba41d1"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/looped/__init__.py",
+      "bytes": 74,
+      "sha256": "bc655269a38dbec068cfd1d576fc3b544af70b62dec578b08c09c732b8142d31"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/looped/execution.py",
+      "bytes": 3367,
+      "sha256": "430e36f11e9245b713906aec1c9dc65c53a252eded17e322e04e482deb857758"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/looped/packing.py",
+      "bytes": 8098,
+      "sha256": "7df0bd34770cde25af21c341331d14151f66504a29d7f1f333d24bbf0128dc85"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/looped/planner.py",
+      "bytes": 1581,
+      "sha256": "fd236edb4fab1f3fe5e5fb226b53c7ce6a94cb209f04e2243c0a3442066a2fe0"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/looped/prefix.py",
+      "bytes": 6835,
+      "sha256": "979fdb10a202438d6dee0fb63a9abc2b5f54383c17eb56814388ecffc712117a"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/looped/readout.py",
+      "bytes": 5883,
+      "sha256": "15d6abd6b3f407d57fdf8d98750297f87c010a67f31774d9474280bd1673c821"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/looped/response.py",
+      "bytes": 7610,
+      "sha256": "a509f0c9ec5dcb3c2fef051775d3cd0d772044fa2a85fc616542b7abd87dd0c1"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/looped/rltt.py",
+      "bytes": 3406,
+      "sha256": "cd2709362b79bc07d5cd3785c83c3fa33a05042479cdee1e1545539d12686290"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/looped/training.py",
+      "bytes": 6023,
+      "sha256": "fe20928a40af462282da047f0ebaea3352beff5b9af24f12829e5acecfbd92b1"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/flash_dot_product_attention.py",
+      "bytes": 7140,
+      "sha256": "895a235db0528823cc831d9850fba64bbfca443e2b5baa41a6fc3d59ef93ad02"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/glm4.py",
+      "bytes": 625,
+      "sha256": "3c4d2bab8e433f70f2687ef29117b9b7267a69f6b6f369f308965213bb782ff3"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/glm5/glm5.py",
+      "bytes": 45636,
+      "sha256": "24abbda50e8ce2d57cc5ea25faae7b8814bc734972f248e05fbe7056810bbb76"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/glm5/ops/indexer.py",
+      "bytes": 7791,
+      "sha256": "ad6c2cec774dd560f744d13bf62a6536df3270dc5afcf949b19c8b5475086633"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/glm5/ops/sparse_mla.py",
+      "bytes": 3933,
+      "sha256": "4e0880ffe12ff1814a7eaafe352b4f916196167897425ec5d0a25fa28f100496"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/glm5/ops/tilelang_indexer_bwd.py",
+      "bytes": 5926,
+      "sha256": "62deb53a37524c308640923ab35a2b515b2171d0d45ff634aea9c88fc7607b7d"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/glm5/ops/tilelang_indexer_fwd.py",
+      "bytes": 4942,
+      "sha256": "39e78f7b5e0e79cb213cca1951aecf7bb826ac6dca5020172aea986d8e81223e"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/glm5/ops/tilelang_sparse_mla_bwd.py",
+      "bytes": 11522,
+      "sha256": "80a8b0eb0158dd2f6d5e975521d56e1dbe9a23f0cf6bfd493f137e116b369179"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/glm5/ops/tilelang_sparse_mla_fwd.py",
+      "bytes": 7890,
+      "sha256": "a9f6f99d826dc3d173594d703c56ac109810f3b5fb67157661b399ca741a7da0"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/hf_attention.py",
+      "bytes": 6931,
+      "sha256": "dec82b0a2d9fb99dc79d6c6138c8a6748881bc1de40600c5aadc4633a5ecdea9"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/learnable_softmax_attention.py",
+      "bytes": 7078,
+      "sha256": "37db88778587f1a72528638a76ebbfee2b348f3ec7258ed8c2bcce8d7fc580d5"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/minimax_m2.py",
+      "bytes": 3828,
+      "sha256": "bb8f300afc833307b6c1116ef4211119cc5fd98850cc734b13631eb074272eb7"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/qwen3_5.py",
+      "bytes": 8931,
+      "sha256": "dc9fc2e26fa1c4b8c6b393ad43b6fb6c8a35a9c1f9ab0c2ccca8775d908649c0"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/qwen3_5_vl.py",
+      "bytes": 11651,
+      "sha256": "2200ff8cc58d065e75db59c61c38611d6ab5025025c7c5f0120350788d57d946"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/qwen3_5_vl_utils.py",
+      "bytes": 6312,
+      "sha256": "8dc116565b186b7371797b42f2d9dfa5b098e65af9ec5a1b99e84c839a2e162e"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/qwen3_next.py",
+      "bytes": 9844,
+      "sha256": "8dda89a3130131c125976ee3df82a8ecf24f0260c663d041520ed425347ebeaf"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/qwen3_omni_moe.py",
+      "bytes": 46010,
+      "sha256": "d65365a7da3bd5eee2ca0337f44db7c9932220b26cb0ae84a84e536c9248a44b"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/qwen3_omni_transformer.py",
+      "bytes": 17797,
+      "sha256": "d3e743f0cfe5213fabc93f8b43ce2a81108e6b0b51992037e310a48660ed6a1f"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/models/qwen_gdn_backend.py",
+      "bytes": 1723,
+      "sha256": "1f9606b6707aef5f8dceaf0bb13b90c779d31503ebba22025f6e68c734aea404"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/nanbeige/__init__.py",
+      "bytes": 53,
+      "sha256": "8810558a83341004ccbb599c60a3d3d056ea71acd6d079856e941c8e82def918"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/nanbeige/model.py",
+      "bytes": 5134,
+      "sha256": "1e8dbc94e8a133cc89bc20e9e3a49c669f61ee4cd53447098803207dadb95fd2"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/ouro/__init__.py",
+      "bytes": 52,
+      "sha256": "345cffded6c5cd3c9631cd846fe883d457dfda3bcf27e25b8163acdce9e6386f"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/ouro/budget.py",
+      "bytes": 3344,
+      "sha256": "09faedec742f51cd37c9547f3f6ce6df3da1c082aab69a979cdd7cf9574654c1"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/ouro/model.py",
+      "bytes": 16303,
+      "sha256": "cbffbd8de33efadf4af69345bde2b5c4b3f454c10438cc91a3731d0368bfd125"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/ouro/reward.py",
+      "bytes": 295,
+      "sha256": "d6ab33daddc33e9f5f30467b745782252bde37e75050b91c21133892fcd5a91a"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/rollout_buffer/README.md",
+      "bytes": 2122,
+      "sha256": "659e01d30494e16c74e0e1deebc9f96991fb7893f4684d380d8fab9f8006de6f"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/rollout_buffer/README_zh.md",
+      "bytes": 1982,
+      "sha256": "05a0b1f2f618fba52d37d2da65738d96f39bd1142beac14631c3853dbcac0102"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/rollout_buffer/buffer.py",
+      "bytes": 11272,
+      "sha256": "c98b814f731e923d0470e140cf3e6c2faf5c52e59807c176219a53d446a6f8e4"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/rollout_buffer/generator/__init__.py",
+      "bytes": 122,
+      "sha256": "0b4bed1673bc72da74df4164e91e34c8eab1b0f194d91a1eaa037321568396ba"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/rollout_buffer/generator/base_generator.py",
+      "bytes": 12310,
+      "sha256": "d5a284386b1a7c46c5444d01b1e33d63854670bb68b67989b231c69152e31b6e"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/rollout_buffer/rollout_buffer_example.py",
+      "bytes": 12304,
+      "sha256": "94a2ad23fe9646f76a43f5e3074d59c4273ebf4c2fbb8ecfea5772453119076b"
+    },
+    {
+      "source": "vime",
+      "path": "vime_plugins/rollout_buffer/rollout_buffer_example.sh",
+      "bytes": 3058,
+      "sha256": "7e17d821b6c0c184b2bc7d12fe8385394fcdce8454fc4703fc26ef881943836a"
+    }
+  ]
+}

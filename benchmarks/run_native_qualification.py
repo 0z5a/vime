@@ -3,10 +3,13 @@
 import argparse
 import hashlib
 import json
+import os
 import subprocess
 import sys
 import time
 from pathlib import Path
+
+from benchmarks.native_sources import read_resident, sha, verify_local
 
 
 def command(packet: Path, model: Path, output: Path, address: str, algorithm: str, phase: str) -> list[str]:
@@ -100,6 +103,8 @@ def main():
     parser.add_argument("--ray-address", required=True)
     parser.add_argument("--algorithm", choices=("grpo", "rltt"), required=True)
     parser.add_argument("--phase", choices=("continuous", "split", "resume"), required=True)
+    parser.add_argument("--source-manifest", type=Path)
+    parser.add_argument("--source-roots", type=Path, help="JSON object mapping vime/rlt/megatron to local directories")
     parser.add_argument("--execute", action="store_true")
     options = parser.parse_args()
     packet, model, output = (path.resolve() for path in (options.packet, options.model, options.output))
@@ -107,20 +112,45 @@ def main():
     if not options.execute:
         print(json.dumps({"executed": False, "argv": argv}, indent=2))
         return
+    if options.source_manifest is None or options.source_roots is None:
+        raise ValueError("Execution requires --source-manifest and --source-roots")
+    source_bytes = read_resident(options.source_manifest)
+    sources = json.loads(source_bytes)
+    roots = {name: Path(path) for name, path in json.loads(read_resident(options.source_roots)).items()}
+    profile = json.loads((packet / "qualification.json").read_text())
+    if sources["sources"]["rlt"]["commit"] != profile["engine_revision"]:
+        raise ValueError("Frozen RLT source does not match the qualification engine revision")
+    if roots["vime"].resolve() / "examples/looped_ppo/run.py" != Path(argv[1]):
+        raise ValueError("The child entrypoint must belong to the verified VIME root")
+    preflight = verify_local(sources, roots)
+    source_sha = sha(source_bytes)
     run = output / options.algorithm / ("continuous" if options.phase == "continuous" else "resumed")
     profile_sha = hashlib.sha256((packet / "qualification.json").read_bytes()).hexdigest()
     if options.phase == "resume":
         split = json.loads((run / "split-process.json").read_text())
         if split["returncode"] != 0 or split["qualification_sha256"] != profile_sha:
             raise ValueError("The split phase must have completed naturally before resume")
+        if split["source_manifest_sha256"] != source_sha:
+            raise ValueError("Resume requires the same frozen source manifest as the split phase")
         if (run / "checkpoints/actor/latest_checkpointed_iteration.txt").read_text().strip() != "1":
             raise ValueError("Resume requires the completed two-update split checkpoint")
     else:
         run.mkdir(parents=True, exist_ok=False)
-    receipt = {"argv": argv, "phase": options.phase, "started_ns": time.time_ns(), "qualification_sha256": profile_sha}
+    receipt = {
+        "argv": argv,
+        "phase": options.phase,
+        "started_ns": time.time_ns(),
+        "qualification_sha256": profile_sha,
+        "source_manifest_sha256": source_sha,
+        "source_preflight": preflight,
+    }
     receipt_path = run / f"{options.phase}-process.json"
+    child_env = dict(os.environ)
+    child_env["PYTHONPATH"] = os.pathsep.join(
+        [str(roots[name].resolve()) for name in ("vime", "rlt", "megatron")] + [child_env.get("PYTHONPATH", "")]
+    )
     with (run / f"{options.phase}.log").open("x") as log:
-        process = subprocess.Popen(argv, stdout=log, stderr=subprocess.STDOUT)
+        process = subprocess.Popen(argv, stdout=log, stderr=subprocess.STDOUT, env=child_env)
         receipt["pid"] = process.pid
         receipt["returncode"] = None
         receipt_path.write_text(json.dumps(receipt, indent=2) + "\n")
