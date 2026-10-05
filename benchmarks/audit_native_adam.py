@@ -2,6 +2,7 @@
 
 import argparse
 import hashlib
+import io
 import json
 from pathlib import Path
 
@@ -105,6 +106,66 @@ def audit_adam(checkpoints: list[Checkpoint], initial_weights: Path, optimizer: 
     }
 
 
+def audit(
+    continuous: Path,
+    resumed: Path,
+    packet: Path,
+    initial_weights: Path,
+    initial_sha256: str,
+    input_audit: Path,
+    algorithm: str,
+) -> dict:
+    with initial_weights.open("rb") as stream:
+        initial_sha = hashlib.file_digest(stream, "sha256").hexdigest()
+        assert initial_sha == initial_sha256
+    profile = json.loads((packet / "qualification.json").read_text())
+    assert profile["precision"] == "fp32" and profile["updates"] == 3 and profile["optimizer"]["name"] == "adam"
+    roots = [run / "checkpoints/actor" for run in (continuous, resumed)]
+    consumed = {str(initial_weights.resolve()): initial_sha}
+    for root in roots:
+        path = root / "latest_checkpointed_iteration.txt"
+        data = path.read_bytes()
+        assert data.strip() == b"2"
+        consumed[str(path.resolve())] = hashlib.sha256(data).hexdigest()
+    checkpoints = [[Checkpoint(root / f"iter_{i:07d}") for i in range(3)] for root in roots]
+    comparisons = [compare_checkpoints(a, b) for a, b in zip(*checkpoints, strict=True)]
+    for group in checkpoints:
+        for checkpoint in group:
+            for name, digest in checkpoint.control_sha256.items():
+                consumed[str((checkpoint.folder / name).resolve())] = digest
+    for i in range(3):
+        counters = []
+        for root in roots:
+            path = root / f"rollout/global_dataset_state_dict_{i}.pt"
+            data = path.read_bytes()
+            consumed[str(path.resolve())] = hashlib.sha256(data).hexdigest()
+            counters.append(torch.load(io.BytesIO(data), map_location="cpu", weights_only=False))
+        assert fingerprint(counters[0]) == fingerprint(counters[1]), f"Rollout counters differ at update {i}"
+        assert counters[0]["sample_index"] == (i + 1) * 32 and counters[0]["sample_group_index"] == (i + 1) * 4
+        assert counters[0]["sample_offset"] == (i + 1) * 4 and counters[0]["epoch_id"] == 0
+    adam = audit_adam(checkpoints[0], initial_weights, profile["optimizer"])
+    signals = [audit_signal(run, packet, input_audit, algorithm) for run in (continuous, resumed)]
+    joint = sorted(set(adam["useful_updates"]).intersection(*(set(signal["useful_updates"]) for signal in signals)))
+    return {
+        "inputs": {
+            "initial_weights_sha256": initial_sha,
+            "qualification_sha256": hashlib.sha256((packet / "qualification.json").read_bytes()).hexdigest(),
+            "token_audit_sha256": hashlib.sha256(input_audit.read_bytes()).hexdigest(),
+            "continuous": str(continuous.resolve()),
+            "resumed": str(resumed.resolve()),
+            "algorithm": algorithm,
+        },
+        "checkpoint_comparisons": comparisons,
+        "consumed_sha256": consumed,
+        "adam": adam,
+        "joint_useful_updates": joint,
+        "signals": signals,
+        "stored_state_and_update_pass": bool(joint),
+        "heldout_and_worker_identity": "REQUIRES_SEPARATE_AUDIT",
+        "reward_convergence": "NOT_ESTABLISHED",
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--continuous", type=Path, required=True)
@@ -116,47 +177,17 @@ def main():
     parser.add_argument("--algorithm", choices=("grpo", "rltt"), required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    with args.initial_weights.open("rb") as stream:
-        initial_sha = hashlib.file_digest(stream, "sha256").hexdigest()
-        assert initial_sha == args.initial_sha256
-    profile = json.loads((args.packet / "qualification.json").read_text())
-    assert profile["precision"] == "fp32" and profile["updates"] == 3 and profile["optimizer"]["name"] == "adam"
-    roots = [run / "checkpoints/actor" for run in (args.continuous, args.resumed)]
-    for root in roots:
-        assert (root / "latest_checkpointed_iteration.txt").read_text().strip() == "2"
-    checkpoints = [[Checkpoint(root / f"iter_{i:07d}") for i in range(3)] for root in roots]
-    comparisons = [compare_checkpoints(a, b) for a, b in zip(*checkpoints, strict=True)]
-    for i in range(3):
-        counters = [
-            torch.load(root / f"rollout/global_dataset_state_dict_{i}.pt", weights_only=False) for root in roots
-        ]
-        assert fingerprint(counters[0]) == fingerprint(counters[1]), f"Rollout counters differ at update {i}"
-        assert counters[0]["sample_index"] == (i + 1) * 32 and counters[0]["sample_group_index"] == (i + 1) * 4
-        assert counters[0]["sample_offset"] == (i + 1) * 4 and counters[0]["epoch_id"] == 0
-    adam = audit_adam(checkpoints[0], args.initial_weights, profile["optimizer"])
-    signals = [
-        audit_signal(run, args.packet, args.input_audit, args.algorithm) for run in (args.continuous, args.resumed)
-    ]
-    joint = sorted(set(adam["useful_updates"]).intersection(*(set(signal["useful_updates"]) for signal in signals)))
-    report = {
-        "inputs": {
-            "initial_weights_sha256": initial_sha,
-            "qualification_sha256": hashlib.sha256((args.packet / "qualification.json").read_bytes()).hexdigest(),
-            "token_audit_sha256": hashlib.sha256(args.input_audit.read_bytes()).hexdigest(),
-            "continuous": str(args.continuous.resolve()),
-            "resumed": str(args.resumed.resolve()),
-            "algorithm": args.algorithm,
-        },
-        "checkpoint_comparisons": comparisons,
-        "adam": adam,
-        "joint_useful_updates": joint,
-        "signals": signals,
-        "stored_state_and_update_pass": bool(joint),
-        "heldout_and_worker_identity": "REQUIRES_SEPARATE_AUDIT",
-        "reward_convergence": "NOT_ESTABLISHED",
-    }
+    report = audit(
+        args.continuous,
+        args.resumed,
+        args.packet,
+        args.initial_weights,
+        args.initial_sha256,
+        args.input_audit,
+        args.algorithm,
+    )
     args.output.write_text(json.dumps(report, indent=2) + "\n")
-    raise SystemExit(0 if joint else 1)
+    raise SystemExit(0 if report["stored_state_and_update_pass"] else 1)
 
 
 if __name__ == "__main__":

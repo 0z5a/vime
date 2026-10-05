@@ -1,0 +1,31 @@
+{
+  "scope": "Actual tiny CPU native Ouro RLTT with token-parity rewards; not official qualification",
+  "physical_tensors": 16,
+  "updates": [
+    {
+      "step": 0,
+      "mixed_groups": 2,
+      "grad_norm": 1.5851722144144906,
+      "parameter_delta": 0.029088287078086517,
+      "score_error": 2.384185791015625e-07,
+      "publication_digest": "e9cdb6c297f6ceb1f2bd4c075baea91ed1024422703fcb915d366e10da737c4a"
+    },
+    {
+      "step": 1,
+      "mixed_groups": 2,
+      "grad_norm": 1.4600794051263781,
+      "parameter_delta": 0.022045368527569352,
+      "score_error": 2.384185791015625e-07,
+      "publication_digest": "6e6352bb5207b65d7cfad842302b78e69321e26bcc039ded147d763dca5d6f4b"
+    },
+    {
+      "step": 2,
+      "mixed_groups": 2,
+      "grad_norm": 1.0564968577816691,
+      "parameter_delta": 0.01640916807317626,
+      "score_error": 4.76837158203125e-07,
+      "publication_digest": "24fb7dd8f53a86642ab43c815df2bc299e947837ea2bf0bd4018b808cb77bf51"
+    }
+  ],
+  "shard_writer_relayout_exact": true
+}

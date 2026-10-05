@@ -1,0 +1,184 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/0z5a/Documents/infra/flashrlt-20261005/vime
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 109 items
+
+tests/test_native_qualification_chain.py ................                [ 14%]
+tests/plugins/test_native_publication_chain.py .                         [ 15%]
+tests/test_native_source_membership.py .........................         [ 38%]
+tests/test_native_qualification_recipe.py .......                        [ 44%]
+tests/test_native_runtime_audit.py .............                         [ 56%]
+tests/test_native_output_audit.py ....................                   [ 75%]
+tests/test_native_learning_signal_audit.py ........                      [ 82%]
+tests/test_native_checkpoint_audit.py ...................                [100%]
+
+=============================== warnings summary ===============================
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/jit/_script.py:365: 14 warnings
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/mixed_precision.py:113
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/mixed_precision.py:113: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_scale
+    warnings.warn(
+
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/contexts/__init__.py:9
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/contexts/__init__.py:9: DeprecationWarning: The following imports from `dynamic_context.py` will be removed in this file in `megatron-core` 0.14. The imports here result in a cyclic import issue that causes rotary embeddings to import from Apex rather than Transformer Engine.
+    warnings.warn(
+
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/__init__.py:24
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/__init__.py:24: UserWarning: Transformer Engine and Apex are not installed. Falling back to Torch optimizers.
+    warnings.warn(
+
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/optimizer.py:28
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/optimizer.py:28: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_scale
+    warnings.warn(
+
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/clip_grads.py:29
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/clip_grads.py:29: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier, multi_tensor_l2norm, and multi_tensor_scale
+    warnings.warn(
+
+tests/test_native_qualification_chain.py: 16 warnings
+tests/plugins/test_native_publication_chain.py: 1 warning
+tests/test_native_checkpoint_audit.py: 16 warnings
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/distributed/checkpoint/utils.py:485: UserWarning: torch.distributed is disabled, unavailable or uninitialized, assuming the intent is to save in a single process.
+    return func(*args, **kwargs)
+
+tests/plugins/test_native_publication_chain.py::test_real_native_updates_bind_every_published_physical_tensor
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/transformer_config.py:1734: UserWarning: full scope is deprecated. Use empty cuda_graph_scope to capture the whole layer.
+    warnings.warn(
+
+tests/plugins/test_native_publication_chain.py::test_real_native_updates_bind_every_published_physical_tensor
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/models/backends.py:21: UserWarning: Apex is not installed. Falling back to Torch Norm
+    warnings.warn("Apex is not installed. Falling back to Torch Norm")
+
+tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[model]
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/distributed/checkpoint/state_dict_saver.py:472: UserWarning: Detected an existing checkpoint in /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_rejects_corrupted_state_e0/right/iter_0000002, overwriting since self.overwrite=True. Past version 2.5 of PyTorch, `overwrite` will default to False. Set this variable to True to maintain this functionality or False to raise when an existing checkpoint is found.
+    local_plan = storage_writer.prepare_local_plan(local_plan)
+
+tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[moment]
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/distributed/checkpoint/state_dict_saver.py:472: UserWarning: Detected an existing checkpoint in /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_rejects_corrupted_state_e1/right/iter_0000002, overwriting since self.overwrite=True. Past version 2.5 of PyTorch, `overwrite` will default to False. Set this variable to True to maintain this functionality or False to raise when an existing checkpoint is found.
+    local_plan = storage_writer.prepare_local_plan(local_plan)
+
+tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[rng]
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/distributed/checkpoint/state_dict_saver.py:472: UserWarning: Detected an existing checkpoint in /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_rejects_corrupted_state_e2/right/iter_0000002, overwriting since self.overwrite=True. Past version 2.5 of PyTorch, `overwrite` will default to False. Set this variable to True to maintain this functionality or False to raise when an existing checkpoint is found.
+    local_plan = storage_writer.prepare_local_plan(local_plan)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/native-chain-bound.xml -
+============================== slowest durations ===============================
+0.49s call     tests/test_native_source_membership.py::test_git_reads_commit_objects_instead_of_dirty_checkout
+0.48s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[missing_row]
+0.36s call     tests/test_native_qualification_chain.py::test_complete_cli_reopens_all_evidence[learning-grpo]
+0.35s setup    tests/test_native_qualification_chain.py::test_rejects_worker_model_binding[learning-worker_path]
+0.34s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[epoch]
+0.30s call     tests/test_native_qualification_chain.py::test_complete_cli_reopens_all_evidence[learning-rltt]
+0.28s setup    tests/test_native_qualification_chain.py::test_complete_cli_reopens_all_evidence[learning-grpo]
+0.26s call     tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-rehashed_wrong_update]
+0.26s call     tests/test_native_output_audit.py::test_identical_outputs_with_zero_learning_signal_do_not_qualify
+0.25s call     tests/test_native_qualification_chain.py::test_no_shared_useful_update_retains_failed_report[momentum]
+0.25s call     tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-publication_bytes]
+0.25s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[stale_final]
+0.24s call     tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-missing_tensor]
+0.24s call     tests/plugins/test_native_publication_chain.py::test_real_native_updates_bind_every_published_physical_tensor
+0.24s call     tests/test_native_qualification_chain.py::test_failed_chain_cli_returns_one_and_writes_report[learning]
+0.23s call     tests/test_native_qualification_chain.py::test_no_shared_useful_update_retains_failed_report[decay]
+0.22s setup    tests/test_native_qualification_chain.py::test_failed_chain_cli_returns_one_and_writes_report[learning]
+0.21s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[missing_round]
+0.21s setup    tests/test_native_qualification_chain.py::test_complete_cli_reopens_all_evidence[learning-rltt]
+0.20s setup    tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-model_revision]
+0.20s setup    tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-model_bytes]
+0.19s setup    tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-missing_tensor]
+0.19s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[eos]
+0.19s call     tests/test_native_output_audit.py::test_full_cli_reads_all_saved_outputs_with_real_tokenizer[grpo]
+0.19s call     tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-duplicate_tensor]
+0.19s call     tests/test_native_output_audit.py::test_full_cli_reads_all_saved_outputs_with_real_tokenizer[rltt]
+0.19s setup    tests/test_native_qualification_chain.py::test_rejects_worker_model_binding[learning-preflight]
+0.19s setup    tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-rehashed_wrong_update]
+0.18s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[publication]
+0.18s setup    tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-tokenizer_bytes]
+0.18s setup    tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-publication_bytes]
+0.18s call     tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-missing_version]
+0.18s call     tests/test_native_checkpoint_audit.py::test_combined_cli_reads_actual_state_and_both_raw_signal_runs[None]
+0.17s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[eos]
+0.17s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[nonfinite]
+0.16s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[gradient]
+0.16s call     tests/test_native_output_audit.py::test_predeclared_score_tolerance_reports_small_finite_difference
+0.16s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[training_tensor]
+0.16s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[missing_row]
+0.16s setup    tests/test_native_qualification_chain.py::test_rejects_worker_model_binding[learning-manifest]
+0.15s setup    tests/test_native_output_audit.py::test_full_cli_reads_all_saved_outputs_with_real_tokenizer[grpo]
+0.15s setup    tests/test_native_qualification_chain.py::test_no_shared_useful_update_retains_failed_report[momentum]
+0.15s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[changed_output]
+0.14s setup    tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-duplicate_tensor]
+0.14s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[stale_final]
+0.14s setup    tests/test_native_qualification_chain.py::test_no_shared_useful_update_retains_failed_report[decay]
+0.14s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[publication]
+0.13s setup    tests/test_native_qualification_chain.py::test_rejects_unbound_model_and_publications[learning-missing_version]
+0.13s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[training_text]
+0.13s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[reordered_id]
+0.13s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[seed]
+0.13s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[gradient]
+0.12s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[missing_round]
+0.12s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[prefix]
+0.12s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[version]
+0.11s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[decoded_text]
+0.11s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[version]
+0.11s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[training_text]
+0.10s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[nonfinite]
+0.10s setup    tests/test_native_output_audit.py::test_predeclared_score_tolerance_reports_small_finite_difference
+0.10s setup    tests/test_native_output_audit.py::test_identical_outputs_with_zero_learning_signal_do_not_qualify
+0.10s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[changed_output]
+0.10s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[training_tensor]
+0.10s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[reordered_id]
+0.09s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[seed]
+0.09s setup    tests/test_native_output_audit.py::test_full_cli_reads_all_saved_outputs_with_real_tokenizer[rltt]
+0.09s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[epoch]
+0.08s call     tests/test_native_checkpoint_audit.py::test_combined_cli_reads_actual_state_and_both_raw_signal_runs[optimizer_mode]
+0.08s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[decoded_text]
+0.08s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[prefix]
+0.07s call     tests/test_native_source_membership.py::test_controller_checks_sources_before_launch[success]
+0.07s call     tests/test_native_checkpoint_audit.py::test_combined_cli_reads_actual_state_and_both_raw_signal_runs[counters]
+0.07s call     tests/test_native_learning_signal_audit.py::test_rejects_mismatched_evidence[index]
+0.06s call     tests/test_native_learning_signal_audit.py::test_signal_gate_never_claims_optimizer_resume_or_convergence[rltt]
+0.05s call     tests/test_native_learning_signal_audit.py::test_nonzero_gradient_and_new_versions_alone_do_not_pass
+0.05s call     tests/test_native_learning_signal_audit.py::test_rejects_mismatched_evidence[gradient]
+0.05s call     tests/test_native_learning_signal_audit.py::test_signal_gate_never_claims_optimizer_resume_or_convergence[grpo]
+0.04s call     tests/test_native_checkpoint_audit.py::test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[0.001-learning-expected0]
+0.03s call     tests/test_native_learning_signal_audit.py::test_rejects_mismatched_evidence[reference]
+0.03s call     tests/test_native_learning_signal_audit.py::test_rejects_mismatched_evidence[prefix]
+0.02s call     tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[rng]
+0.02s call     tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[optimizer_step]
+0.02s call     tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[iteration]
+0.02s call     tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[moment]
+0.02s call     tests/test_native_learning_signal_audit.py::test_rejects_mismatched_evidence[reward]
+0.02s call     tests/test_native_checkpoint_audit.py::test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[0.001-decay-expected1]
+0.02s call     tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[model]
+0.02s call     tests/test_native_checkpoint_audit.py::test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[1e-06-learning-expected0]
+0.02s call     tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[scheduler]
+0.02s call     tests/test_native_checkpoint_audit.py::test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[0.001-momentum-expected2]
+0.02s call     tests/test_native_checkpoint_audit.py::test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[1e-06-decay-expected1]
+0.02s call     tests/test_native_checkpoint_audit.py::test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[1e-06-momentum-expected2]
+0.01s setup    tests/test_native_source_membership.py::test_same_revision_declarations_do_not_qualify_changed_sources[manifest]
+0.01s setup    tests/test_native_source_membership.py::test_same_revision_declarations_do_not_qualify_changed_sources[missing_mcore]
+0.01s setup    tests/test_native_source_membership.py::test_same_revision_declarations_do_not_qualify_changed_sources[all_phases_changed]
+0.01s setup    tests/test_native_source_membership.py::test_same_revision_declarations_do_not_qualify_changed_sources[unknown_module]
+0.01s setup    tests/test_native_source_membership.py::test_same_revision_declarations_do_not_qualify_changed_sources[incomplete]
+0.01s setup    tests/test_native_source_membership.py::test_cli_binds_frozen_sources_to_all_phases
+0.01s call     tests/test_native_checkpoint_audit.py::test_missing_adam_and_rng_do_not_qualify
+0.01s call     tests/test_native_qualification_chain.py::test_rejects_worker_model_binding[learning-preflight]
+0.01s setup    tests/test_native_source_membership.py::test_controller_checks_sources_before_launch[resume_model_manifest]
+0.01s call     tests/test_native_qualification_recipe.py::test_actual_recipe_receives_optimizer_data_eval_and_resume[continuous-grpo]
+0.01s setup    tests/test_native_source_membership.py::test_controller_checks_sources_before_launch[missing_model_manifest]
+0.01s setup    tests/test_native_runtime_audit.py::test_rejects_stale_or_mismatched_records[worker]
+0.01s setup    tests/test_native_source_membership.py::test_controller_checks_sources_before_launch[changed_model]
+0.01s setup    tests/test_native_source_membership.py::test_controller_checks_sources_before_launch[success]
+0.01s call     tests/test_native_source_membership.py::test_controller_checks_sources_before_launch[missing_model_manifest]
+0.01s call     tests/test_native_source_membership.py::test_controller_checks_sources_before_launch[changed_model]
+0.01s setup    tests/test_native_runtime_audit.py::test_cli_binds_all_six_synthetic_reports_and_records_input_hashes
+
+(218 durations < 0.005s hidden.  Use -vv to show these durations.)
+====================== 109 passed, 57 warnings in 19.69s =======================

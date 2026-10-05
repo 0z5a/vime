@@ -10,6 +10,7 @@ import time
 from pathlib import Path
 
 from benchmarks.native_sources import read_resident, sha, verify_local
+from benchmarks.native_model_manifest import MODEL_FILES, verify_model
 
 
 def command(packet: Path, model: Path, output: Path, address: str, algorithm: str, phase: str) -> list[str]:
@@ -105,6 +106,7 @@ def main():
     parser.add_argument("--phase", choices=("continuous", "split", "resume"), required=True)
     parser.add_argument("--source-manifest", type=Path)
     parser.add_argument("--source-roots", type=Path, help="JSON object mapping vime/rlt/megatron to local directories")
+    parser.add_argument("--model-manifest", type=Path)
     parser.add_argument("--execute", action="store_true")
     options = parser.parse_args()
     packet, model, output = (path.resolve() for path in (options.packet, options.model, options.output))
@@ -124,6 +126,14 @@ def main():
         raise ValueError("The child entrypoint must belong to the verified VIME root")
     preflight = verify_local(sources, roots)
     source_sha = sha(source_bytes)
+    if options.model_manifest is None:
+        raise ValueError("Execution requires --model-manifest")
+    model_files = verify_model(model, options.model_manifest, profile["model_revision"])
+    model_sha = model_files[str(options.model_manifest.resolve())]
+    model_preflight = {
+        "model": str(model),
+        "files": {name: model_files[str((model / name).resolve())] for name in sorted(MODEL_FILES)},
+    }
     run = output / options.algorithm / ("continuous" if options.phase == "continuous" else "resumed")
     profile_sha = hashlib.sha256((packet / "qualification.json").read_bytes()).hexdigest()
     if options.phase == "resume":
@@ -132,6 +142,8 @@ def main():
             raise ValueError("The split phase must have completed naturally before resume")
         if split["source_manifest_sha256"] != source_sha:
             raise ValueError("Resume requires the same frozen source manifest as the split phase")
+        if split["model_manifest_sha256"] != model_sha:
+            raise ValueError("Resume requires the same model manifest as the split phase")
         if (run / "checkpoints/actor/latest_checkpointed_iteration.txt").read_text().strip() != "1":
             raise ValueError("Resume requires the completed two-update split checkpoint")
     else:
@@ -143,6 +155,8 @@ def main():
         "qualification_sha256": profile_sha,
         "source_manifest_sha256": source_sha,
         "source_preflight": preflight,
+        "model_manifest_sha256": model_sha,
+        "model_preflight": model_preflight,
     }
     receipt_path = run / f"{options.phase}-process.json"
     child_env = dict(os.environ)

@@ -1,0 +1,63 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/0z5a/Documents/infra/flashrlt-20261005/vime
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 1 item
+
+tests/plugins/test_native_publication_chain.py F                         [100%]
+
+=================================== FAILURES ===================================
+________ test_real_native_updates_bind_every_published_physical_tensor _________
+tests/plugins/test_native_publication_chain.py:79: in test_real_native_updates_bind_every_published_physical_tensor
+    local = writer.local_state()
+            ^^^^^^^^^^^^^^^^^^
+E   AttributeError: '_SafetensorShardWriter' object has no attribute 'local_state'
+=============================== warnings summary ===============================
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/jit/_script.py:365: 14 warnings
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/mixed_precision.py:113
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/distributed/fsdp/src/megatron_fsdp/mixed_precision.py:113: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_scale
+    warnings.warn(
+
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/contexts/__init__.py:9
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/inference/contexts/__init__.py:9: DeprecationWarning: The following imports from `dynamic_context.py` will be removed in this file in `megatron-core` 0.14. The imports here result in a cyclic import issue that causes rotary embeddings to import from Apex rather than Transformer Engine.
+    warnings.warn(
+
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/__init__.py:24
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/__init__.py:24: UserWarning: Transformer Engine and Apex are not installed. Falling back to Torch optimizers.
+    warnings.warn(
+
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/optimizer.py:28
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/optimizer.py:28: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_scale
+    warnings.warn(
+
+../../looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/clip_grads.py:29
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/optimizer/clip_grads.py:29: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier, multi_tensor_l2norm, and multi_tensor_scale
+    warnings.warn(
+
+tests/plugins/test_native_publication_chain.py::test_real_native_updates_bind_every_published_physical_tensor
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/transformer/transformer_config.py:1734: UserWarning: full scope is deprecated. Use empty cuda_graph_scope to capture the whole layer.
+    warnings.warn(
+
+tests/plugins/test_native_publication_chain.py::test_real_native_updates_bind_every_published_physical_tensor
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron/megatron/core/models/backends.py:21: UserWarning: Apex is not installed. Falling back to Torch Norm
+    warnings.warn("Apex is not installed. Falling back to Torch Norm")
+
+tests/plugins/test_native_publication_chain.py::test_real_native_updates_bind_every_published_physical_tensor
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/distributed/checkpoint/utils.py:485: UserWarning: torch.distributed is disabled, unavailable or uninitialized, assuming the intent is to save in a single process.
+    return func(*args, **kwargs)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/native-chain-tiny.xml -
+============================== slowest durations ===============================
+0.99s call     tests/plugins/test_native_publication_chain.py::test_real_native_updates_bind_every_published_physical_tensor
+
+(2 durations < 0.005s hidden.  Use -vv to show these durations.)
+=========================== short test summary info ============================
+FAILED tests/plugins/test_native_publication_chain.py::test_real_native_updates_bind_every_published_physical_tensor
+======================== 1 failed, 22 warnings in 3.27s ========================

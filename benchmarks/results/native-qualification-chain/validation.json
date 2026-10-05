@@ -1,0 +1,64 @@
+{
+  "parent": "d1ab6e8ba0e2195c625100aa208d346b196848b3",
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "109",
+    "time": "19.679",
+    "timestamp": "2026-10-06T00:02:53.802147+08:00",
+    "hostname": "dadaxiaoxiaodeMacBook-Air.local"
+  },
+  "existing_cases": 89,
+  "natural_exit": {
+    "73141": 1,
+    "16652": 0,
+    "49510": 1,
+    "79280": 0,
+    "88890": 0,
+    "27612": 0
+  },
+  "test_files": [
+    "tests/test_native_checkpoint_audit.py",
+    "tests/test_native_learning_signal_audit.py",
+    "tests/test_native_output_audit.py",
+    "tests/test_native_qualification_recipe.py",
+    "tests/test_native_runtime_audit.py",
+    "tests/test_native_source_membership.py",
+    "tests/test_native_qualification_chain.py",
+    "tests/plugins/test_native_publication_chain.py"
+  ],
+  "harness": "../bench/resident_pytest.py",
+  "test_options": [
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--tb=short",
+    "-o",
+    "junit_family=legacy",
+    "--show-capture=no",
+    "--basetemp=../evidence/tmp-native-chain-bound"
+  ],
+  "python": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/bin/python",
+  "test_environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "FROZENLIST_NO_EXTENSIONS": "1",
+    "MULTIDICT_NO_EXTENSIONS": "1",
+    "AIOHTTP_NO_EXTENSIONS": "1",
+    "YARL_NO_EXTENSIONS": "1",
+    "OMP_NUM_THREADS": "1",
+    "PYTHONPATH": ".:../rlt:tests/plugins:/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron"
+  },
+  "scope": "CPU complete-chain controls with synthetic workers/output; actual tiny CPU native publications; no actual full Ray/MCore/GPU run",
+  "actual_ray_cuda_e2e": "NOT_RUN",
+  "reward_convergence": "NOT_ESTABLISHED",
+  "environment_mutation": false,
+  "process_signals": false,
+  "new_cases": 20,
+  "warnings": 57,
+  "fixture_corrections": [
+    "Frozen RecurrentTrace requires dataclasses.replace, not assignment",
+    "Production safetensor writer exposes state(), not local_state()"
+  ]
+}

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="13" failures="0" skipped="0" tests="32" time="6.429" timestamp="2026-10-05T23:46:38.638636+08:00" hostname="dadaxiaoxiaodeMacBook-Air.local"><testcase classname="tests.test_native_qualification_chain" name="test_complete_cli_reopens_all_evidence[learning-grpo]" file="tests/test_native_qualification_chain.py" line="117" time="0.331"><error message="failed on setup with &quot;dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'&quot;">tests/test_native_qualification_chain.py:83: in chain
+    replace_digest(run, step, digest)
+tests/test_native_qualification_chain.py:32: in replace_digest
+    sample["recurrent_inputs"].publication_digest = digest
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;string&gt;:4: in __setattr__
+    ???
+E   dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'</error></testcase><testcase classname="tests.test_native_qualification_chain" name="test_complete_cli_reopens_all_evidence[learning-rltt]" file="tests/test_native_qualification_chain.py" line="117" time="0.131"><error message="failed on setup with &quot;dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'&quot;">tests/test_native_qualification_chain.py:83: in chain
+    replace_digest(run, step, digest)
+tests/test_native_qualification_chain.py:32: in replace_digest
+    sample["recurrent_inputs"].publication_digest = digest
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;string&gt;:4: in __setattr__
+    ???
+E   dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'</error></testcase><testcase classname="tests.test_native_qualification_chain" name="test_rejects_unbound_model_and_publications[learning-model_revision]" file="tests/test_native_qualification_chain.py" line="140" time="0.108"><error message="failed on setup with &quot;dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'&quot;">tests/test_native_qualification_chain.py:83: in chain
+    replace_digest(run, step, digest)
+tests/test_native_qualification_chain.py:32: in replace_digest
+    sample["recurrent_inputs"].publication_digest = digest
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;string&gt;:4: in __setattr__
+    ???
+E   dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'</error></testcase><testcase classname="tests.test_native_qualification_chain" name="test_rejects_unbound_model_and_publications[learning-model_bytes]" file="tests/test_native_qualification_chain.py" line="140" time="0.099"><error message="failed on setup with &quot;dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'&quot;">tests/test_native_qualification_chain.py:83: in chain
+    replace_digest(run, step, digest)
+tests/test_native_qualification_chain.py:32: in replace_digest
+    sample["recurrent_inputs"].publication_digest = digest
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;string&gt;:4: in __setattr__
+    ???
+E   dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'</error></testcase><testcase classname="tests.test_native_qualification_chain" name="test_rejects_unbound_model_and_publications[learning-tokenizer_bytes]" file="tests/test_native_qualification_chain.py" line="140" time="0.112"><error message="failed on setup with &quot;dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'&quot;">tests/test_native_qualification_chain.py:83: in chain
+    replace_digest(run, step, digest)
+tests/test_native_qualification_chain.py:32: in replace_digest
+    sample["recurrent_inputs"].publication_digest = digest
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;string&gt;:4: in __setattr__
+    ???
+E   dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'</error></testcase><testcase classname="tests.test_native_qualification_chain" name="test_rejects_unbound_model_and_publications[learning-publication_bytes]" file="tests/test_native_qualification_chain.py" line="140" time="0.121"><error message="failed on setup with &quot;dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'&quot;">tests/test_native_qualification_chain.py:83: in chain
+    replace_digest(run, step, digest)
+tests/test_native_qualification_chain.py:32: in replace_digest
+    sample["recurrent_inputs"].publication_digest = digest
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;string&gt;:4: in __setattr__
+    ???
+E   dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'</error></testcase><testcase classname="tests.test_native_qualification_chain" name="test_rejects_unbound_model_and_publications[learning-rehashed_wrong_update]" file="tests/test_native_qualification_chain.py" line="140" time="0.109"><error message="failed on setup with &quot;dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'&quot;">tests/test_native_qualification_chain.py:83: in chain
+    replace_digest(run, step, digest)
+tests/test_native_qualification_chain.py:32: in replace_digest
+    sample["recurrent_inputs"].publication_digest = digest
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;string&gt;:4: in __setattr__
+    ???
+E   dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'</error></testcase><testcase classname="tests.test_native_qualification_chain" name="test_rejects_unbound_model_and_publications[learning-missing_tensor]" file="tests/test_native_qualification_chain.py" line="140" time="0.090"><error message="failed on setup with &quot;dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'&quot;">tests/test_native_qualification_chain.py:83: in chain
+    replace_digest(run, step, digest)
+tests/test_native_qualification_chain.py:32: in replace_digest
+    sample["recurrent_inputs"].publication_digest = digest
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;string&gt;:4: in __setattr__
+    ???
+E   dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'</error></testcase><testcase classname="tests.test_native_qualification_chain" name="test_rejects_unbound_model_and_publications[learning-duplicate_tensor]" file="tests/test_native_qualification_chain.py" line="140" time="0.095"><error message="failed on setup with &quot;dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'&quot;">tests/test_native_qualification_chain.py:83: in chain
+    replace_digest(run, step, digest)
+tests/test_native_qualification_chain.py:32: in replace_digest
+    sample["recurrent_inputs"].publication_digest = digest
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;string&gt;:4: in __setattr__
+    ???
+E   dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'</error></testcase><testcase classname="tests.test_native_qualification_chain" name="test_rejects_unbound_model_and_publications[learning-missing_version]" file="tests/test_native_qualification_chain.py" line="140" time="0.083"><error message="failed on setup with &quot;dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'&quot;">tests/test_native_qualification_chain.py:83: in chain
+    replace_digest(run, step, digest)
+tests/test_native_qualification_chain.py:32: in replace_digest
+    sample["recurrent_inputs"].publication_digest = digest
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;string&gt;:4: in __setattr__
+    ???
+E   dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'</error></testcase><testcase classname="tests.test_native_qualification_chain" name="test_no_shared_useful_update_retains_failed_report[decay]" file="tests/test_native_qualification_chain.py" line="182" time="0.119"><error message="failed on setup with &quot;dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'&quot;">tests/test_native_qualification_chain.py:83: in chain
+    replace_digest(run, step, digest)
+tests/test_native_qualification_chain.py:32: in replace_digest
+    sample["recurrent_inputs"].publication_digest = digest
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;string&gt;:4: in __setattr__
+    ???
+E   dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'</error></testcase><testcase classname="tests.test_native_qualification_chain" name="test_no_shared_useful_update_retains_failed_report[momentum]" file="tests/test_native_qualification_chain.py" line="182" time="0.096"><error message="failed on setup with &quot;dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'&quot;">tests/test_native_qualification_chain.py:83: in chain
+    replace_digest(run, step, digest)
+tests/test_native_qualification_chain.py:32: in replace_digest
+    sample["recurrent_inputs"].publication_digest = digest
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;string&gt;:4: in __setattr__
+    ???
+E   dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'</error></testcase><testcase classname="tests.test_native_qualification_chain" name="test_failed_chain_cli_returns_one_and_writes_report[learning]" file="tests/test_native_qualification_chain.py" line="195" time="0.097"><error message="failed on setup with &quot;dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'&quot;">tests/test_native_qualification_chain.py:83: in chain
+    replace_digest(run, step, digest)
+tests/test_native_qualification_chain.py:32: in replace_digest
+    sample["recurrent_inputs"].publication_digest = digest
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;string&gt;:4: in __setattr__
+    ???
+E   dataclasses.FrozenInstanceError: cannot assign to field 'publication_digest'</error></testcase><testcase classname="tests.test_native_checkpoint_audit" name="test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[0.001-learning-expected0]" file="tests/test_native_checkpoint_audit.py" line="72" time="0.021" /><testcase classname="tests.test_native_checkpoint_audit" name="test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[0.001-decay-expected1]" file="tests/test_native_checkpoint_audit.py" line="72" time="0.015" /><testcase classname="tests.test_native_checkpoint_audit" name="test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[0.001-momentum-expected2]" file="tests/test_native_checkpoint_audit.py" line="72" time="0.018" /><testcase classname="tests.test_native_checkpoint_audit" name="test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[1e-06-learning-expected0]" file="tests/test_native_checkpoint_audit.py" line="72" time="0.027" /><testcase classname="tests.test_native_checkpoint_audit" name="test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[1e-06-decay-expected1]" file="tests/test_native_checkpoint_audit.py" line="72" time="0.016" /><testcase classname="tests.test_native_checkpoint_audit" name="test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[1e-06-momentum-expected2]" file="tests/test_native_checkpoint_audit.py" line="72" time="0.017" /><testcase classname="tests.test_native_checkpoint_audit" name="test_rejects_corrupted_state_even_with_reusable_fingerprints[model]" file="tests/test_native_checkpoint_audit.py" line="85" time="0.021" /><testcase classname="tests.test_native_checkpoint_audit" name="test_rejects_corrupted_state_even_with_reusable_fingerprints[moment]" file="tests/test_native_checkpoint_audit.py" line="85" time="0.022" /><testcase classname="tests.test_native_checkpoint_audit" name="test_rejects_corrupted_state_even_with_reusable_fingerprints[rng]" file="tests/test_native_checkpoint_audit.py" line="85" time="0.026" /><testcase classname="tests.test_native_checkpoint_audit" name="test_rejects_corrupted_state_even_with_reusable_fingerprints[scheduler]" file="tests/test_native_checkpoint_audit.py" line="85" time="0.025" /><testcase classname="tests.test_native_checkpoint_audit" name="test_rejects_corrupted_state_even_with_reusable_fingerprints[optimizer_step]" file="tests/test_native_checkpoint_audit.py" line="85" time="0.028" /><testcase classname="tests.test_native_checkpoint_audit" name="test_rejects_corrupted_state_even_with_reusable_fingerprints[iteration]" file="tests/test_native_checkpoint_audit.py" line="85" time="0.046" /><testcase classname="tests.test_native_checkpoint_audit" name="test_missing_adam_and_rng_do_not_qualify" file="tests/test_native_checkpoint_audit.py" line="123" time="0.017" /><testcase classname="tests.test_native_checkpoint_audit" name="test_nonfinite_state_is_rejected[value0]" file="tests/test_native_checkpoint_audit.py" line="134" time="0.001" /><testcase classname="tests.test_native_checkpoint_audit" name="test_nonfinite_state_is_rejected[value1]" file="tests/test_native_checkpoint_audit.py" line="134" time="0.001" /><testcase classname="tests.test_native_checkpoint_audit" name="test_nonfinite_state_is_rejected[nan]" file="tests/test_native_checkpoint_audit.py" line="134" time="0.000" /><testcase classname="tests.test_native_checkpoint_audit" name="test_combined_cli_reads_actual_state_and_both_raw_signal_runs[None]" file="tests/test_native_checkpoint_audit.py" line="140" time="0.137" /><testcase classname="tests.test_native_checkpoint_audit" name="test_combined_cli_reads_actual_state_and_both_raw_signal_runs[counters]" file="tests/test_native_checkpoint_audit.py" line="140" time="0.072" /><testcase classname="tests.test_native_checkpoint_audit" name="test_combined_cli_reads_actual_state_and_both_raw_signal_runs[optimizer_mode]" file="tests/test_native_checkpoint_audit.py" line="140" time="0.113" /></testsuite></testsuites>

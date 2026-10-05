@@ -1,0 +1,1021 @@
+{
+  "evidence_chain_pass": true,
+  "joint_useful_updates": [
+    0,
+    1,
+    2
+  ],
+  "model_revision": "model-pin",
+  "algorithm": "grpo",
+  "model_files_verified": 7,
+  "sources": {
+    "source_membership_pass": true,
+    "source_manifest_sha256": "a28d41cf561d667ece05a380644a81a129719dba4cfe86daa527c5a251dcda78",
+    "sources": {
+      "vime": {
+        "kind": "git",
+        "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "rlt": {
+        "kind": "git",
+        "commit": "engine-pin"
+      },
+      "megatron": {
+        "kind": "archive"
+      }
+    },
+    "matched_modules": {
+      "vime.observability.native_runtime": {
+        "source": "vime",
+        "path": "vime/observability/native_runtime.py",
+        "bytes": 47,
+        "sha256": "6a707099434e445e721ad1f1b1ac17aff40376ca9fc2fe4d92ff26b619d8b1cf"
+      },
+      "vime.backends.megatron_utils.model": {
+        "source": "vime",
+        "path": "vime/backends/megatron_utils/model.py",
+        "bytes": 48,
+        "sha256": "23e59ab4faf1273eee3051b8a7e9516d94b21ef7281126b3420af3f20fc7ad7a"
+      },
+      "vime_plugins.ouro.model": {
+        "source": "vime",
+        "path": "vime_plugins/ouro/model.py",
+        "bytes": 37,
+        "sha256": "6dfee80a5d0178c5659dd861151962d99738dc6c785920e55ac4994d6f240418"
+      },
+      "megatron.core.optimizer.optimizer": {
+        "source": "megatron",
+        "path": "megatron/core/optimizer/optimizer.py",
+        "bytes": 47,
+        "sha256": "3d60550762179a7bb44fea8b8837193eb9db2d49a5ef9b3ac5128de867e97eca"
+      },
+      "vime.backends.vllm_rlt_utils.engine": {
+        "source": "vime",
+        "path": "vime/backends/vllm_rlt_utils/engine.py",
+        "bytes": 49,
+        "sha256": "22e814c8cbf187fa5dabe316365f6c5a378304f67c2a3928c2f01e58fe47840b"
+      },
+      "vllm_rlt.models.ouro": {
+        "source": "rlt",
+        "path": "vllm_rlt/models/ouro.py",
+        "bytes": 34,
+        "sha256": "399d4be44b3cffd5865bccf7756526927080621ad748b4cd6accef582f5d3d54"
+      }
+    },
+    "preflight": {
+      "continuous": {
+        "files_checked": {
+          "vime": 6,
+          "rlt": 2,
+          "megatron": 1
+        },
+        "roots": {
+          "vime": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/vime",
+          "rlt": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/rlt",
+          "megatron": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/megatron"
+        }
+      },
+      "split": {
+        "files_checked": {
+          "vime": 6,
+          "rlt": 2,
+          "megatron": 1
+        },
+        "roots": {
+          "vime": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/vime",
+          "rlt": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/rlt",
+          "megatron": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/megatron"
+        }
+      },
+      "resume": {
+        "files_checked": {
+          "vime": 6,
+          "rlt": 2,
+          "megatron": 1
+        },
+        "roots": {
+          "vime": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/vime",
+          "rlt": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/rlt",
+          "megatron": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/megatron"
+        }
+      }
+    },
+    "consumed_sha256": {
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/packet/qualification.json": "7d24b28909b1fa408de553a50ad528c2515b841fd61b769f36df385031825eb1",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/continuous-process.json": "1fb0531895c9741e01d455109d817f9ab9df4e008f7dee3c37184542c37b8973",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/runtime/continuous/actor.json": "4196370a23888d3f13b643d425c6a67c7acd9c80d537ab7794873aa52ac280cc",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/runtime/continuous/rollout.json": "1ab6a297a41e3ca76a38b530bde9deddd8adbbb4ef681a20ca60c5c3751947f6",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/0.pt": "8c7f1259c4eafa908da572dba4cb85553508ff49f65da881160bfe4dbc459994",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/1.pt": "2b6b22c02ebecb0550830cc03bdf4097f882104e1a4a7b052836d04935079088",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/2.pt": "6da0f05e57ac63b9b05047b50eda682b3a573cf6adc7695c8e69c9ef7799237d",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/split-process.json": "c58e32e282c93ac5d5f2577e671e315d846d60ae5b35573077d5e6fa121797e4",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/runtime/split/actor.json": "7213ea2a4fd80268402a3aa7e500ddecf7f64eb33360be92ec39d0c11ab8b322",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/runtime/split/rollout.json": "cf73d5f0c35ea5596d8493d3139e975249b856748693c5efb48fc3cf41df0d80",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/0.pt": "4ef68f989304aefab1f8e1655a6a1bb7ca80b3ba50a9b24b6da68dfcdcef1473",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/1.pt": "17aebc06c0676daf59f91d08b357aa69392f128e7077bbebd8081ab90d47deb6",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/resume-process.json": "203ccb5bded2a6bf8de587fce6fe948060641a24ffc3cea015d95736ebd296c4",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/runtime/resume/actor.json": "6c9848414e6cd5c5a466f8e32e26b17b6ee075ce0aac335ba86824861eb8f3e7",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/runtime/resume/rollout.json": "4f9b7eb65dfdcc5caf22537e535b95b75984d3c5659a7b0c6d94273a0464bab9",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/2.pt": "18498ae833d30a2e9e454eaf7f03107c4b9bb5761e61b14dc866af50a9b03b46",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/sources.json": "a28d41cf561d667ece05a380644a81a129719dba4cfe86daa527c5a251dcda78"
+    },
+    "scope": "driver preflight files and observed worker module files at startup; trusted records, not loaded-code attestation",
+    "excluded": [
+      "unobserved worker files",
+      "HF dynamic modules",
+      "Torch/TE/CUDA dependencies",
+      "compiled kernels"
+    ],
+    "weights_checkpoint_outputs": "REQUIRES_SEPARATE_AUDITS",
+    "reward_convergence": "NOT_ESTABLISHED"
+  },
+  "outputs": {
+    "output_equivalence_pass": true,
+    "joint_signal_updates": [
+      0,
+      1,
+      2
+    ],
+    "output_and_signal_pass": true,
+    "training_samples_per_run": 96,
+    "heldout_samples_per_run": 32,
+    "numeric_tolerance": {
+      "atol": 1e-05,
+      "rtol": 3e-05
+    },
+    "max_absolute_errors": {
+      "training_scores": 0.0,
+      "heldout_scores": 0.0,
+      "training_tensors": 0.0,
+      "gradient_norm": 0.0
+    },
+    "continuous_curve": [
+      {
+        "completed_updates": 0,
+        "reward_mean": 0.5,
+        "response_tokens": 16,
+        "truncated": 0,
+        "publication_digest": "5fe6256cb05d610fe81269397beb161e0228e4c290c283b4cc714f664e7b0060"
+      },
+      {
+        "completed_updates": 1,
+        "reward_mean": 0.5,
+        "response_tokens": 16,
+        "truncated": 0,
+        "publication_digest": "608aa319c57fdf8844df514da9cb8e1ddc323944274856b14b8ce3da672abcaf"
+      },
+      {
+        "completed_updates": 2,
+        "reward_mean": 0.5,
+        "response_tokens": 16,
+        "truncated": 0,
+        "publication_digest": "99e4c7428a8f57e31dca430d98cce29a4ae97effb97468ca9a557a1c98cebd08"
+      },
+      {
+        "completed_updates": 3,
+        "reward_mean": 0.5,
+        "response_tokens": 16,
+        "truncated": 0,
+        "publication_digest": "6ce7a20db042f827094e5262ecda03d8c1fecb548ab022fb502fc584d574ebd6"
+      }
+    ],
+    "resumed_curve": [
+      {
+        "completed_updates": 0,
+        "reward_mean": 0.5,
+        "response_tokens": 16,
+        "truncated": 0,
+        "publication_digest": "5fe6256cb05d610fe81269397beb161e0228e4c290c283b4cc714f664e7b0060"
+      },
+      {
+        "completed_updates": 1,
+        "reward_mean": 0.5,
+        "response_tokens": 16,
+        "truncated": 0,
+        "publication_digest": "608aa319c57fdf8844df514da9cb8e1ddc323944274856b14b8ce3da672abcaf"
+      },
+      {
+        "completed_updates": 2,
+        "reward_mean": 0.5,
+        "response_tokens": 16,
+        "truncated": 0,
+        "publication_digest": "99e4c7428a8f57e31dca430d98cce29a4ae97effb97468ca9a557a1c98cebd08"
+      },
+      {
+        "completed_updates": 3,
+        "reward_mean": 0.5,
+        "response_tokens": 16,
+        "truncated": 0,
+        "publication_digest": "6ce7a20db042f827094e5262ecda03d8c1fecb548ab022fb502fc584d574ebd6"
+      }
+    ],
+    "runtime": {
+      "fresh_worker_evidence_pass": true,
+      "phases": {
+        "continuous": {
+          "runtime_epoch": "continuous",
+          "ray": {
+            "actor": {
+              "job": "continuous",
+              "node": "test-node",
+              "worker": "continuous-actor",
+              "actor": "continuous-actor"
+            },
+            "rollout": {
+              "job": "continuous",
+              "node": "test-node",
+              "worker": "continuous-rollout",
+              "actor": "continuous-rollout"
+            }
+          },
+          "rollouts": [
+            0,
+            1,
+            2
+          ]
+        },
+        "split": {
+          "runtime_epoch": "split",
+          "ray": {
+            "actor": {
+              "job": "split",
+              "node": "test-node",
+              "worker": "split-actor",
+              "actor": "split-actor"
+            },
+            "rollout": {
+              "job": "split",
+              "node": "test-node",
+              "worker": "split-rollout",
+              "actor": "split-rollout"
+            }
+          },
+          "rollouts": [
+            0,
+            1
+          ]
+        },
+        "resume": {
+          "runtime_epoch": "resume",
+          "ray": {
+            "actor": {
+              "job": "resume",
+              "node": "test-node",
+              "worker": "resume-actor",
+              "actor": "resume-actor"
+            },
+            "rollout": {
+              "job": "resume",
+              "node": "test-node",
+              "worker": "resume-rollout",
+              "actor": "resume-rollout"
+            }
+          },
+          "rollouts": [
+            2
+          ]
+        }
+      },
+      "environment": {
+        "python": "/test/python",
+        "python_version": "test",
+        "torch_version": "test",
+        "torch_cuda": "test",
+        "ray_version": "test"
+      },
+      "reported_module_sha256": {
+        "vime.observability.native_runtime": "6a707099434e445e721ad1f1b1ac17aff40376ca9fc2fe4d92ff26b619d8b1cf",
+        "vime.backends.megatron_utils.model": "23e59ab4faf1273eee3051b8a7e9516d94b21ef7281126b3420af3f20fc7ad7a",
+        "vime_plugins.ouro.model": "6dfee80a5d0178c5659dd861151962d99738dc6c785920e55ac4994d6f240418",
+        "megatron.core.optimizer.optimizer": "3d60550762179a7bb44fea8b8837193eb9db2d49a5ef9b3ac5128de867e97eca",
+        "vime.backends.vllm_rlt_utils.engine": "22e814c8cbf187fa5dabe316365f6c5a378304f67c2a3928c2f01e58fe47840b",
+        "vllm_rlt.models.ouro": "399d4be44b3cffd5865bccf7756526927080621ad748b4cd6accef582f5d3d54"
+      },
+      "optimizer_contract": [
+        {
+          "implementation": {
+            "class": "control.AdamW"
+          }
+        }
+      ],
+      "consumed_sha256": {
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/packet/qualification.json": "7d24b28909b1fa408de553a50ad528c2515b841fd61b769f36df385031825eb1",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/continuous-process.json": "1fb0531895c9741e01d455109d817f9ab9df4e008f7dee3c37184542c37b8973",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/runtime/continuous/actor.json": "4196370a23888d3f13b643d425c6a67c7acd9c80d537ab7794873aa52ac280cc",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/runtime/continuous/rollout.json": "1ab6a297a41e3ca76a38b530bde9deddd8adbbb4ef681a20ca60c5c3751947f6",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/0.pt": "8c7f1259c4eafa908da572dba4cb85553508ff49f65da881160bfe4dbc459994",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/1.pt": "2b6b22c02ebecb0550830cc03bdf4097f882104e1a4a7b052836d04935079088",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/2.pt": "6da0f05e57ac63b9b05047b50eda682b3a573cf6adc7695c8e69c9ef7799237d",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/split-process.json": "c58e32e282c93ac5d5f2577e671e315d846d60ae5b35573077d5e6fa121797e4",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/runtime/split/actor.json": "7213ea2a4fd80268402a3aa7e500ddecf7f64eb33360be92ec39d0c11ab8b322",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/runtime/split/rollout.json": "cf73d5f0c35ea5596d8493d3139e975249b856748693c5efb48fc3cf41df0d80",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/0.pt": "4ef68f989304aefab1f8e1655a6a1bb7ca80b3ba50a9b24b6da68dfcdcef1473",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/1.pt": "17aebc06c0676daf59f91d08b357aa69392f128e7077bbebd8081ab90d47deb6",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/resume-process.json": "203ccb5bded2a6bf8de587fce6fe948060641a24ffc3cea015d95736ebd296c4",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/runtime/resume/actor.json": "6c9848414e6cd5c5a466f8e32e26b17b6ee075ce0aac335ba86824861eb8f3e7",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/runtime/resume/rollout.json": "4f9b7eb65dfdcc5caf22537e535b95b75984d3c5659a7b0c6d94273a0464bab9",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/2.pt": "18498ae833d30a2e9e454eaf7f03107c4b9bb5761e61b14dc866af50a9b03b46"
+      },
+      "scope": "consistency of trusted task-owned startup/process records and raw rollout epochs; not remote attestation",
+      "weights_checkpoint_heldout": "REQUIRES_SEPARATE_AUDITS",
+      "reward_convergence": "NOT_ESTABLISHED"
+    },
+    "signals": [
+      {
+        "algorithm": "grpo",
+        "rounds": [
+          {
+            "rollout_id": 0,
+            "mixed_groups": 4,
+            "total_groups": 4,
+            "reward_mean": 0.125,
+            "nonzero_masked_advantage_tokens": 64,
+            "gradient_norm": 1.0,
+            "response_tokens": 64,
+            "runtime_epoch": "continuous",
+            "policy_version": 1,
+            "publication_digest": "5fe6256cb05d610fe81269397beb161e0228e4c290c283b4cc714f664e7b0060",
+            "useful_signal": true
+          },
+          {
+            "rollout_id": 1,
+            "mixed_groups": 4,
+            "total_groups": 4,
+            "reward_mean": 0.125,
+            "nonzero_masked_advantage_tokens": 64,
+            "gradient_norm": 1.0,
+            "response_tokens": 64,
+            "runtime_epoch": "continuous",
+            "policy_version": 2,
+            "publication_digest": "608aa319c57fdf8844df514da9cb8e1ddc323944274856b14b8ce3da672abcaf",
+            "useful_signal": true
+          },
+          {
+            "rollout_id": 2,
+            "mixed_groups": 4,
+            "total_groups": 4,
+            "reward_mean": 0.125,
+            "nonzero_masked_advantage_tokens": 64,
+            "gradient_norm": 1.0,
+            "response_tokens": 64,
+            "runtime_epoch": "continuous",
+            "policy_version": 3,
+            "publication_digest": "99e4c7428a8f57e31dca430d98cce29a4ae97effb97468ca9a557a1c98cebd08",
+            "useful_signal": true
+          }
+        ],
+        "useful_updates": [
+          0,
+          1,
+          2
+        ],
+        "learning_signal_pass": true,
+        "scope": "saved rollout/advantage/gradient signal only",
+        "optimizer_parameter_delta": "REQUIRES_SEPARATE_CHECKPOINT_AUDIT",
+        "heldout_and_fresh_worker_resume": "REQUIRES_SEPARATE_COMPARISON",
+        "reward_convergence": "NOT_ESTABLISHED"
+      },
+      {
+        "algorithm": "grpo",
+        "rounds": [
+          {
+            "rollout_id": 0,
+            "mixed_groups": 4,
+            "total_groups": 4,
+            "reward_mean": 0.125,
+            "nonzero_masked_advantage_tokens": 64,
+            "gradient_norm": 1.0,
+            "response_tokens": 64,
+            "runtime_epoch": "split",
+            "policy_version": 1,
+            "publication_digest": "5fe6256cb05d610fe81269397beb161e0228e4c290c283b4cc714f664e7b0060",
+            "useful_signal": true
+          },
+          {
+            "rollout_id": 1,
+            "mixed_groups": 4,
+            "total_groups": 4,
+            "reward_mean": 0.125,
+            "nonzero_masked_advantage_tokens": 64,
+            "gradient_norm": 1.0,
+            "response_tokens": 64,
+            "runtime_epoch": "split",
+            "policy_version": 2,
+            "publication_digest": "608aa319c57fdf8844df514da9cb8e1ddc323944274856b14b8ce3da672abcaf",
+            "useful_signal": true
+          },
+          {
+            "rollout_id": 2,
+            "mixed_groups": 4,
+            "total_groups": 4,
+            "reward_mean": 0.125,
+            "nonzero_masked_advantage_tokens": 64,
+            "gradient_norm": 1.0,
+            "response_tokens": 64,
+            "runtime_epoch": "resume",
+            "policy_version": 3,
+            "publication_digest": "99e4c7428a8f57e31dca430d98cce29a4ae97effb97468ca9a557a1c98cebd08",
+            "useful_signal": true
+          }
+        ],
+        "useful_updates": [
+          0,
+          1,
+          2
+        ],
+        "learning_signal_pass": true,
+        "scope": "saved rollout/advantage/gradient signal only",
+        "optimizer_parameter_delta": "REQUIRES_SEPARATE_CHECKPOINT_AUDIT",
+        "heldout_and_fresh_worker_resume": "REQUIRES_SEPARATE_COMPARISON",
+        "reward_convergence": "NOT_ESTABLISHED"
+      }
+    ],
+    "consumed_sha256": {
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/packet/qualification.json": "7d24b28909b1fa408de553a50ad528c2515b841fd61b769f36df385031825eb1",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/continuous-process.json": "1fb0531895c9741e01d455109d817f9ab9df4e008f7dee3c37184542c37b8973",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/runtime/continuous/actor.json": "4196370a23888d3f13b643d425c6a67c7acd9c80d537ab7794873aa52ac280cc",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/runtime/continuous/rollout.json": "1ab6a297a41e3ca76a38b530bde9deddd8adbbb4ef681a20ca60c5c3751947f6",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/0.pt": "8c7f1259c4eafa908da572dba4cb85553508ff49f65da881160bfe4dbc459994",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/1.pt": "2b6b22c02ebecb0550830cc03bdf4097f882104e1a4a7b052836d04935079088",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/2.pt": "6da0f05e57ac63b9b05047b50eda682b3a573cf6adc7695c8e69c9ef7799237d",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/split-process.json": "c58e32e282c93ac5d5f2577e671e315d846d60ae5b35573077d5e6fa121797e4",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/runtime/split/actor.json": "7213ea2a4fd80268402a3aa7e500ddecf7f64eb33360be92ec39d0c11ab8b322",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/runtime/split/rollout.json": "cf73d5f0c35ea5596d8493d3139e975249b856748693c5efb48fc3cf41df0d80",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/0.pt": "4ef68f989304aefab1f8e1655a6a1bb7ca80b3ba50a9b24b6da68dfcdcef1473",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/1.pt": "17aebc06c0676daf59f91d08b357aa69392f128e7077bbebd8081ab90d47deb6",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/resume-process.json": "203ccb5bded2a6bf8de587fce6fe948060641a24ffc3cea015d95736ebd296c4",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/runtime/resume/actor.json": "6c9848414e6cd5c5a466f8e32e26b17b6ee075ce0aac335ba86824861eb8f3e7",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/runtime/resume/rollout.json": "4f9b7eb65dfdcc5caf22537e535b95b75984d3c5659a7b0c6d94273a0464bab9",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/2.pt": "18498ae833d30a2e9e454eaf7f03107c4b9bb5761e61b14dc866af50a9b03b46",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/packet/train.jsonl": "ba13376d908307ef46842379d46cd6427fae8413901dff26796850ad0c154575",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/packet/inputs.json": "984edb170a5b69c104d417192f2b5549ad598d449e29b89cfa454f9acb145b35",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/packet/development.jsonl": "af58ca58af693a5078aff092fbbeaa1ea85046263339aa4be131b8e27e864431",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/train_data/0.pt": "bcb8cb6ee783173d63ab15a4570a2871ed53c6970ad00170c811d154915442d1",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/grad-actor-0-0.pt": "3b8a0f299b57eeef3766390bf3cd3065a2807087a448312335ed6a8e17e17de9",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/train_data/1.pt": "a44ebbc17bab40d853008f0e495c901e7696e2811fb1bf361a9d6f569a876c25",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/grad-actor-1-0.pt": "4272f30f566704f7297f387ec6a46da78929084cb87e10f582ffd1a4f4a6f975",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/train_data/2.pt": "9fd9b5d927a32efcd3e91016ed699a24826f8baad84345b2c3c34b448f2f02c4",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/grad-actor-2-0.pt": "cf68aa8117047ed1de4d4dc88eb16d5de1be539b209607f55fb009e67bdff1df",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/eval_0.pt": "0fd9f7c03dde77acbb7cb9bdd7d9f0e42349cfd29161c9cad1e35d9e0ea99989",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/eval_1.pt": "06fd96b10fed117e90e5a69f39017ca5b5cf2eb4904c364a89a9839f80c50b95",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/eval_2.pt": "c9b2b904a95e79c1964d7256a3eab8359f1bd2ea2106d2e2e61ce3bb3b823ab8",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/eval_3.pt": "539654bf3e09242ec90e8b7e68cddfc6eb8dcc640bfc05bd308e32f6a000a584",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/train_data/0.pt": "03b2e9d7ddd4bc6baeb38ab807c26922f1ef59cf52b43e2e31d834c3d3fcd8c0",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/grad-actor-0-0.pt": "3b8a0f299b57eeef3766390bf3cd3065a2807087a448312335ed6a8e17e17de9",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/train_data/1.pt": "79aa4238e25c27d81f10434c4178e2cfb282985b84c02de6e028fd1c1bd66003",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/grad-actor-1-0.pt": "4272f30f566704f7297f387ec6a46da78929084cb87e10f582ffd1a4f4a6f975",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/train_data/2.pt": "521859ff4b9b363c58eb6af1738c22733784066aad52f3562f731b864e695d59",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/grad-actor-2-0.pt": "cf68aa8117047ed1de4d4dc88eb16d5de1be539b209607f55fb009e67bdff1df",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/eval_0.pt": "542c293733becbb960241df8fcb168bbd316a7164fc71494107692016907441c",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/eval_1.pt": "7b8da025ddff386897efeb731ec8761680c960cc321035bce510d5193d98d972",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/eval_2.pt": "512385b0a73214f312e039163c1e4d1e545f5973417a02a6d19a9b6b23162ffc",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/eval_3.pt": "cf7a16049b7613ba270c17dafcd849ca4731429c3cc29d3964043f354a9368ae"
+    },
+    "scope": "complete three-update native output/held-out recovery qualification, not a convergence experiment",
+    "weights_optimizer_frozen_sources": "REQUIRES_SEPARATE_AUDITS",
+    "reward_convergence": "NOT_ESTABLISHED"
+  },
+  "stored_state": {
+    "inputs": {
+      "initial_weights_sha256": "8330f39a465a87e3c8597b5b3a3c3688f3ed0b09f67b4590dad683611dcea0d0",
+      "qualification_sha256": "7d24b28909b1fa408de553a50ad528c2515b841fd61b769f36df385031825eb1",
+      "token_audit_sha256": "984edb170a5b69c104d417192f2b5549ad598d449e29b89cfa454f9acb145b35",
+      "continuous": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run",
+      "resumed": "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run",
+      "algorithm": "grpo"
+    },
+    "checkpoint_comparisons": [
+      {
+        "stored_state_exact": true,
+        "control_sha256": {
+          "left": {
+            "common.pt": "257c84a396e0b081cf144355ca6aa64327cfb0b68cec66c83fa0963be32bdb9d",
+            ".metadata": "bef19f30b9d8de007328cf4d8b8af007822b6d8f765d5293f53ff460280215a9"
+          },
+          "right": {
+            "common.pt": "257c84a396e0b081cf144355ca6aa64327cfb0b68cec66c83fa0963be32bdb9d",
+            ".metadata": "a9ef37c1cd51d4c8f353d985323940418ea28ecf13e32c9f983904e6c8754e62"
+          }
+        },
+        "common_sha256": {
+          "checkpoint_version": "640cb820f42331c4b3547ae439e125197a153652b4a703b59265190e91cfe0e4",
+          "iteration": "cbfff6aa816a121d510fa92ca74d2af40b6d58cf9d09fc5c21b39467933a48d2",
+          "num_floating_point_operations_so_far": "cbfff6aa816a121d510fa92ca74d2af40b6d58cf9d09fc5c21b39467933a48d2",
+          "opt_param_scheduler": "b29f2e9e7647c5c3af97875d679c8acb5531b8f55498d446b1f403a61421e91e",
+          "optimizer": "0458e11c1b49377faafa4da16b8e70e001cfbdb49b704867643bc4a65aafaef0"
+        },
+        "chunks": [
+          {
+            "name": "model.weight",
+            "offsets": [
+              0,
+              0
+            ],
+            "sha256": "03f87e6ae6dd4d0a6ab926cfb541c9bcd5a25bd2ded38ecadd18c138ba11af6c"
+          },
+          {
+            "name": "optimizer.state.exp_avg.model.weight",
+            "offsets": [
+              0,
+              0
+            ],
+            "sha256": "bcc08e83d55fbbbd35d69f46d17caa2579a25024357812c15bf82236b9f827ad"
+          },
+          {
+            "name": "optimizer.state.exp_avg_sq.model.weight",
+            "offsets": [
+              0,
+              0
+            ],
+            "sha256": "b8cc0802cb451475cc8a5587d5745c51c37f425173d2d2941e494d05b3a230b6"
+          },
+          {
+            "name": "rng_state/shard_0.0_1.1",
+            "offsets": [],
+            "sha256": "125d1baed8d69bcbaacde5837a040325da53f74e8e3f74f34c33fea4866b8e2f"
+          }
+        ],
+        "excluded": [
+          "common.args"
+        ],
+        "fresh_worker_execution_proven": false
+      },
+      {
+        "stored_state_exact": true,
+        "control_sha256": {
+          "left": {
+            "common.pt": "235cdfc4ee5130eed4291b4604b8b0ba3262bb49deedebc943ae55e01dc257be",
+            ".metadata": "928d410e094cc020f50175f723db6cef514b64eecd4d284f19057d6161b0dcb3"
+          },
+          "right": {
+            "common.pt": "235cdfc4ee5130eed4291b4604b8b0ba3262bb49deedebc943ae55e01dc257be",
+            ".metadata": "0c70051975f604437887d43b956f88a3dc1c19cadd1d2f50d0ace97e07295200"
+          }
+        },
+        "common_sha256": {
+          "checkpoint_version": "640cb820f42331c4b3547ae439e125197a153652b4a703b59265190e91cfe0e4",
+          "iteration": "e9d3042af1c0f97641eb0203a6c483ee0c16bd8aeda370f81a55b2a6252f7273",
+          "num_floating_point_operations_so_far": "cbfff6aa816a121d510fa92ca74d2af40b6d58cf9d09fc5c21b39467933a48d2",
+          "opt_param_scheduler": "557594899ef03ecd4534afa154117aa9fe725d696d816795e3c794907f644977",
+          "optimizer": "b96197630a853856f2b2b09b78a7e04a67ef08d67eb3804daeffff1409101876"
+        },
+        "chunks": [
+          {
+            "name": "model.weight",
+            "offsets": [
+              0,
+              0
+            ],
+            "sha256": "6e4108192863cfc9b949e787f94f924c54605fdebf34d60dd8f214039e148139"
+          },
+          {
+            "name": "optimizer.state.exp_avg.model.weight",
+            "offsets": [
+              0,
+              0
+            ],
+            "sha256": "4b6c2893cc4a61b38273e961c13bee3f635cefca70d01a4d53d0ba91f0162a83"
+          },
+          {
+            "name": "optimizer.state.exp_avg_sq.model.weight",
+            "offsets": [
+              0,
+              0
+            ],
+            "sha256": "62182996d74806e2dd83e47aca9752efa8d039a7de51406fd48961ea7b3589e6"
+          },
+          {
+            "name": "rng_state/shard_0.0_1.1",
+            "offsets": [],
+            "sha256": "0bc9f7748d42090245f0e9608a36f64494e9b410c416dc8fa28bdeb95a8745c5"
+          }
+        ],
+        "excluded": [
+          "common.args"
+        ],
+        "fresh_worker_execution_proven": false
+      },
+      {
+        "stored_state_exact": true,
+        "control_sha256": {
+          "left": {
+            "common.pt": "723c6a7b13b31501b28ae45f99d59acd5bd8d14188f672f7758a0f18f6222067",
+            ".metadata": "c02683d0c64ac694513254d4b931fb3ed438e79a445b12340f88c385a551e4e9"
+          },
+          "right": {
+            "common.pt": "723c6a7b13b31501b28ae45f99d59acd5bd8d14188f672f7758a0f18f6222067",
+            ".metadata": "14eed05efa15a26214d7073818a7e56ecdf25aaf06494f631392ddda38616d9b"
+          }
+        },
+        "common_sha256": {
+          "checkpoint_version": "640cb820f42331c4b3547ae439e125197a153652b4a703b59265190e91cfe0e4",
+          "iteration": "77fdb0fbde767643174a1f1216a548da4c54e507eec213c4271882c5cb381021",
+          "num_floating_point_operations_so_far": "cbfff6aa816a121d510fa92ca74d2af40b6d58cf9d09fc5c21b39467933a48d2",
+          "opt_param_scheduler": "d0356de87cbfab2868a380167bad814667318a657a83c871cca851e7a72dc229",
+          "optimizer": "ebed19b790f8d9e715dd99c2e849620bf9f7402744e233fa402dff1100fe8e7f"
+        },
+        "chunks": [
+          {
+            "name": "model.weight",
+            "offsets": [
+              0,
+              0
+            ],
+            "sha256": "074384341287b92c38f197421ef628e2422813239bfa30cc4fc55c1837c3f496"
+          },
+          {
+            "name": "optimizer.state.exp_avg.model.weight",
+            "offsets": [
+              0,
+              0
+            ],
+            "sha256": "bfa0f1c89e44d7e7d7775ea678719e701bbbac7bfe070049d01688eeb1e0b8f2"
+          },
+          {
+            "name": "optimizer.state.exp_avg_sq.model.weight",
+            "offsets": [
+              0,
+              0
+            ],
+            "sha256": "3933c79ffa85022a8e3f4b851e4fa70732c9c663c6c03a177d62281fa9fcbe0c"
+          },
+          {
+            "name": "rng_state/shard_0.0_1.1",
+            "offsets": [],
+            "sha256": "9605a9366a82352f2943a41ea4ea8c44f0fcaa7efe4fa122a0a52ed430636390"
+          }
+        ],
+        "excluded": [
+          "common.args"
+        ],
+        "fresh_worker_execution_proven": false
+      }
+    ],
+    "consumed_sha256": {
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/tokenizer/model.safetensors": "8330f39a465a87e3c8597b5b3a3c3688f3ed0b09f67b4590dad683611dcea0d0",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/latest_checkpointed_iteration.txt": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/latest_checkpointed_iteration.txt": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000000/common.pt": "257c84a396e0b081cf144355ca6aa64327cfb0b68cec66c83fa0963be32bdb9d",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000000/.metadata": "bef19f30b9d8de007328cf4d8b8af007822b6d8f765d5293f53ff460280215a9",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000001/common.pt": "235cdfc4ee5130eed4291b4604b8b0ba3262bb49deedebc943ae55e01dc257be",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000001/.metadata": "928d410e094cc020f50175f723db6cef514b64eecd4d284f19057d6161b0dcb3",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000002/common.pt": "723c6a7b13b31501b28ae45f99d59acd5bd8d14188f672f7758a0f18f6222067",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000002/.metadata": "c02683d0c64ac694513254d4b931fb3ed438e79a445b12340f88c385a551e4e9",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000000/common.pt": "257c84a396e0b081cf144355ca6aa64327cfb0b68cec66c83fa0963be32bdb9d",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000000/.metadata": "a9ef37c1cd51d4c8f353d985323940418ea28ecf13e32c9f983904e6c8754e62",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000001/common.pt": "235cdfc4ee5130eed4291b4604b8b0ba3262bb49deedebc943ae55e01dc257be",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000001/.metadata": "0c70051975f604437887d43b956f88a3dc1c19cadd1d2f50d0ace97e07295200",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000002/common.pt": "723c6a7b13b31501b28ae45f99d59acd5bd8d14188f672f7758a0f18f6222067",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000002/.metadata": "14eed05efa15a26214d7073818a7e56ecdf25aaf06494f631392ddda38616d9b",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/rollout/global_dataset_state_dict_0.pt": "9c13fd86674e9f6bff8376c6199e01c5a1ea890f3fafa21e24ebcd280105b403",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/rollout/global_dataset_state_dict_0.pt": "9c13fd86674e9f6bff8376c6199e01c5a1ea890f3fafa21e24ebcd280105b403",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/rollout/global_dataset_state_dict_1.pt": "5d46c52a00864c50ab013a5070e5455f2e9e5c2eec2e22319c843fd496633175",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/rollout/global_dataset_state_dict_1.pt": "5d46c52a00864c50ab013a5070e5455f2e9e5c2eec2e22319c843fd496633175",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/rollout/global_dataset_state_dict_2.pt": "37eac35fe5eeace01fcf28eed7803e9664f06d91d7be2658a4e3663eebaa143d",
+      "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/rollout/global_dataset_state_dict_2.pt": "37eac35fe5eeace01fcf28eed7803e9664f06d91d7be2658a4e3663eebaa143d"
+    },
+    "adam": {
+      "rounds": [
+        {
+          "rollout_id": 0,
+          "parameters": [
+            {
+              "name": "model.weight",
+              "fresh_moment_signal": true,
+              "beyond_zero_gradient_update": true,
+              "minimum_max_parameter_residual": 0.001000046730041504,
+              "useful_parameter_update": true
+            }
+          ],
+          "useful_parameter_update": true
+        },
+        {
+          "rollout_id": 1,
+          "parameters": [
+            {
+              "name": "model.weight",
+              "fresh_moment_signal": true,
+              "beyond_zero_gradient_update": true,
+              "minimum_max_parameter_residual": 0.001386662945151329,
+              "useful_parameter_update": true
+            }
+          ],
+          "useful_parameter_update": true
+        },
+        {
+          "rollout_id": 2,
+          "parameters": [
+            {
+              "name": "model.weight",
+              "fresh_moment_signal": true,
+              "beyond_zero_gradient_update": true,
+              "minimum_max_parameter_residual": 0.0007205605506896973,
+              "useful_parameter_update": true
+            }
+          ],
+          "useful_parameter_update": true
+        }
+      ],
+      "useful_updates": [
+        0,
+        1,
+        2
+      ],
+      "scope": "stored unsharded FP32 AdamW state; excludes argument/source and fresh-worker identity checks"
+    },
+    "joint_useful_updates": [
+      0,
+      1,
+      2
+    ],
+    "signals": [
+      {
+        "algorithm": "grpo",
+        "rounds": [
+          {
+            "rollout_id": 0,
+            "mixed_groups": 4,
+            "total_groups": 4,
+            "reward_mean": 0.125,
+            "nonzero_masked_advantage_tokens": 64,
+            "gradient_norm": 1.0,
+            "response_tokens": 64,
+            "runtime_epoch": "continuous",
+            "policy_version": 1,
+            "publication_digest": "5fe6256cb05d610fe81269397beb161e0228e4c290c283b4cc714f664e7b0060",
+            "useful_signal": true
+          },
+          {
+            "rollout_id": 1,
+            "mixed_groups": 4,
+            "total_groups": 4,
+            "reward_mean": 0.125,
+            "nonzero_masked_advantage_tokens": 64,
+            "gradient_norm": 1.0,
+            "response_tokens": 64,
+            "runtime_epoch": "continuous",
+            "policy_version": 2,
+            "publication_digest": "608aa319c57fdf8844df514da9cb8e1ddc323944274856b14b8ce3da672abcaf",
+            "useful_signal": true
+          },
+          {
+            "rollout_id": 2,
+            "mixed_groups": 4,
+            "total_groups": 4,
+            "reward_mean": 0.125,
+            "nonzero_masked_advantage_tokens": 64,
+            "gradient_norm": 1.0,
+            "response_tokens": 64,
+            "runtime_epoch": "continuous",
+            "policy_version": 3,
+            "publication_digest": "99e4c7428a8f57e31dca430d98cce29a4ae97effb97468ca9a557a1c98cebd08",
+            "useful_signal": true
+          }
+        ],
+        "useful_updates": [
+          0,
+          1,
+          2
+        ],
+        "learning_signal_pass": true,
+        "scope": "saved rollout/advantage/gradient signal only",
+        "optimizer_parameter_delta": "REQUIRES_SEPARATE_CHECKPOINT_AUDIT",
+        "heldout_and_fresh_worker_resume": "REQUIRES_SEPARATE_COMPARISON",
+        "reward_convergence": "NOT_ESTABLISHED"
+      },
+      {
+        "algorithm": "grpo",
+        "rounds": [
+          {
+            "rollout_id": 0,
+            "mixed_groups": 4,
+            "total_groups": 4,
+            "reward_mean": 0.125,
+            "nonzero_masked_advantage_tokens": 64,
+            "gradient_norm": 1.0,
+            "response_tokens": 64,
+            "runtime_epoch": "split",
+            "policy_version": 1,
+            "publication_digest": "5fe6256cb05d610fe81269397beb161e0228e4c290c283b4cc714f664e7b0060",
+            "useful_signal": true
+          },
+          {
+            "rollout_id": 1,
+            "mixed_groups": 4,
+            "total_groups": 4,
+            "reward_mean": 0.125,
+            "nonzero_masked_advantage_tokens": 64,
+            "gradient_norm": 1.0,
+            "response_tokens": 64,
+            "runtime_epoch": "split",
+            "policy_version": 2,
+            "publication_digest": "608aa319c57fdf8844df514da9cb8e1ddc323944274856b14b8ce3da672abcaf",
+            "useful_signal": true
+          },
+          {
+            "rollout_id": 2,
+            "mixed_groups": 4,
+            "total_groups": 4,
+            "reward_mean": 0.125,
+            "nonzero_masked_advantage_tokens": 64,
+            "gradient_norm": 1.0,
+            "response_tokens": 64,
+            "runtime_epoch": "resume",
+            "policy_version": 3,
+            "publication_digest": "99e4c7428a8f57e31dca430d98cce29a4ae97effb97468ca9a557a1c98cebd08",
+            "useful_signal": true
+          }
+        ],
+        "useful_updates": [
+          0,
+          1,
+          2
+        ],
+        "learning_signal_pass": true,
+        "scope": "saved rollout/advantage/gradient signal only",
+        "optimizer_parameter_delta": "REQUIRES_SEPARATE_CHECKPOINT_AUDIT",
+        "heldout_and_fresh_worker_resume": "REQUIRES_SEPARATE_COMPARISON",
+        "reward_convergence": "NOT_ESTABLISHED"
+      }
+    ],
+    "stored_state_and_update_pass": true,
+    "heldout_and_worker_identity": "REQUIRES_SEPARATE_AUDIT",
+    "reward_convergence": "NOT_ESTABLISHED"
+  },
+  "publications": [
+    {
+      "publication_checkpoint_pass": true,
+      "rounds": [
+        {
+          "completed_updates": 0,
+          "policy_version": 1,
+          "publication_digest": "5fe6256cb05d610fe81269397beb161e0228e4c290c283b4cc714f664e7b0060",
+          "physical_tensors": 1,
+          "tensor_values_exact": true
+        },
+        {
+          "completed_updates": 1,
+          "policy_version": 2,
+          "publication_digest": "608aa319c57fdf8844df514da9cb8e1ddc323944274856b14b8ce3da672abcaf",
+          "physical_tensors": 1,
+          "tensor_values_exact": true
+        },
+        {
+          "completed_updates": 2,
+          "policy_version": 3,
+          "publication_digest": "99e4c7428a8f57e31dca430d98cce29a4ae97effb97468ca9a557a1c98cebd08",
+          "physical_tensors": 1,
+          "tensor_values_exact": true
+        },
+        {
+          "completed_updates": 3,
+          "policy_version": 4,
+          "publication_digest": "6ce7a20db042f827094e5262ecda03d8c1fecb548ab022fb502fc584d574ebd6",
+          "physical_tensors": 1,
+          "tensor_values_exact": true
+        }
+      ],
+      "consumed_sha256": {
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/publications/weight_v000001/model.safetensors": "8330f39a465a87e3c8597b5b3a3c3688f3ed0b09f67b4590dad683611dcea0d0",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/publications/weight_v000002/model.safetensors": "bcfeaf71b6d0761283e39ee87b12874f86c07b3bd5768df7d60d5d37c7101343",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000000/common.pt": "257c84a396e0b081cf144355ca6aa64327cfb0b68cec66c83fa0963be32bdb9d",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000000/.metadata": "bef19f30b9d8de007328cf4d8b8af007822b6d8f765d5293f53ff460280215a9",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/publications/weight_v000003/model.safetensors": "be4946d09d723d7d1d74fbd667ae6596b88985b16a2ea6cd55afac1c2da32fda",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000001/common.pt": "235cdfc4ee5130eed4291b4604b8b0ba3262bb49deedebc943ae55e01dc257be",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000001/.metadata": "928d410e094cc020f50175f723db6cef514b64eecd4d284f19057d6161b0dcb3",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/publications/weight_v000004/model.safetensors": "8941177f87f89e943b1f4ae1f6c89230bcb01dfefb7a5ca0bc7c213ff9e794ae",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000002/common.pt": "723c6a7b13b31501b28ae45f99d59acd5bd8d14188f672f7758a0f18f6222067",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000002/.metadata": "c02683d0c64ac694513254d4b931fb3ed438e79a445b12340f88c385a551e4e9"
+      },
+      "scope": "retained unsharded FP32 Ouro publication files and complete physical tensors; not memory attestation"
+    },
+    {
+      "publication_checkpoint_pass": true,
+      "rounds": [
+        {
+          "completed_updates": 0,
+          "policy_version": 1,
+          "publication_digest": "5fe6256cb05d610fe81269397beb161e0228e4c290c283b4cc714f664e7b0060",
+          "physical_tensors": 1,
+          "tensor_values_exact": true
+        },
+        {
+          "completed_updates": 1,
+          "policy_version": 2,
+          "publication_digest": "608aa319c57fdf8844df514da9cb8e1ddc323944274856b14b8ce3da672abcaf",
+          "physical_tensors": 1,
+          "tensor_values_exact": true
+        },
+        {
+          "completed_updates": 2,
+          "policy_version": 3,
+          "publication_digest": "99e4c7428a8f57e31dca430d98cce29a4ae97effb97468ca9a557a1c98cebd08",
+          "physical_tensors": 1,
+          "tensor_values_exact": true
+        },
+        {
+          "completed_updates": 3,
+          "policy_version": 4,
+          "publication_digest": "6ce7a20db042f827094e5262ecda03d8c1fecb548ab022fb502fc584d574ebd6",
+          "physical_tensors": 1,
+          "tensor_values_exact": true
+        }
+      ],
+      "consumed_sha256": {
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/publications/weight_v000001/model.safetensors": "8330f39a465a87e3c8597b5b3a3c3688f3ed0b09f67b4590dad683611dcea0d0",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/publications/weight_v000002/model.safetensors": "bcfeaf71b6d0761283e39ee87b12874f86c07b3bd5768df7d60d5d37c7101343",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000000/common.pt": "257c84a396e0b081cf144355ca6aa64327cfb0b68cec66c83fa0963be32bdb9d",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000000/.metadata": "a9ef37c1cd51d4c8f353d985323940418ea28ecf13e32c9f983904e6c8754e62",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/publications/weight_v000003/model.safetensors": "be4946d09d723d7d1d74fbd667ae6596b88985b16a2ea6cd55afac1c2da32fda",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000001/common.pt": "235cdfc4ee5130eed4291b4604b8b0ba3262bb49deedebc943ae55e01dc257be",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000001/.metadata": "0c70051975f604437887d43b956f88a3dc1c19cadd1d2f50d0ace97e07295200",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/publications/weight_v000004/model.safetensors": "8941177f87f89e943b1f4ae1f6c89230bcb01dfefb7a5ca0bc7c213ff9e794ae",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000002/common.pt": "723c6a7b13b31501b28ae45f99d59acd5bd8d14188f672f7758a0f18f6222067",
+        "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000002/.metadata": "14eed05efa15a26214d7073818a7e56ecdf25aaf06494f631392ddda38616d9b"
+      },
+      "scope": "retained unsharded FP32 Ouro publication files and complete physical tensors; not memory attestation"
+    }
+  ],
+  "consumed_sha256": {
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/model-manifest.json": "097a197fb0fef62bb21db1bb641da637a5a6d525a8b226e2a9a8eb6cf90420b7",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/tokenizer/config.json": "573a7a82893fb7fb2421c6a80cbb303f39d2b3581537de3bcdaedf665d8e3d5b",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/tokenizer/merges.txt": "faa5b4816800b8cbe1595e5533fe36c53f396c0c26a3a876dd3e4085232348a1",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/tokenizer/model.safetensors": "8330f39a465a87e3c8597b5b3a3c3688f3ed0b09f67b4590dad683611dcea0d0",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/tokenizer/special_tokens_map.json": "bba84181b071da891f9bbed421e15d81acec44a2db3611330f3f247b0dc9e818",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/tokenizer/tokenizer.json": "11d192b982b8c3e2b63f14ca7617bbaf2dc1cec775e712ad5b556955ac497f32",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/tokenizer/tokenizer_config.json": "7a2ec6ce86eceb1845a42385492075e9d93d307173bdf3acdbbc6f51dd0e920f",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/tokenizer/vocab.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/packet/qualification.json": "7d24b28909b1fa408de553a50ad528c2515b841fd61b769f36df385031825eb1",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/continuous-process.json": "1fb0531895c9741e01d455109d817f9ab9df4e008f7dee3c37184542c37b8973",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/runtime/continuous/actor.json": "4196370a23888d3f13b643d425c6a67c7acd9c80d537ab7794873aa52ac280cc",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/runtime/continuous/rollout.json": "1ab6a297a41e3ca76a38b530bde9deddd8adbbb4ef681a20ca60c5c3751947f6",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/0.pt": "8c7f1259c4eafa908da572dba4cb85553508ff49f65da881160bfe4dbc459994",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/1.pt": "2b6b22c02ebecb0550830cc03bdf4097f882104e1a4a7b052836d04935079088",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/2.pt": "6da0f05e57ac63b9b05047b50eda682b3a573cf6adc7695c8e69c9ef7799237d",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/split-process.json": "c58e32e282c93ac5d5f2577e671e315d846d60ae5b35573077d5e6fa121797e4",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/runtime/split/actor.json": "7213ea2a4fd80268402a3aa7e500ddecf7f64eb33360be92ec39d0c11ab8b322",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/runtime/split/rollout.json": "cf73d5f0c35ea5596d8493d3139e975249b856748693c5efb48fc3cf41df0d80",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/0.pt": "4ef68f989304aefab1f8e1655a6a1bb7ca80b3ba50a9b24b6da68dfcdcef1473",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/1.pt": "17aebc06c0676daf59f91d08b357aa69392f128e7077bbebd8081ab90d47deb6",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/resume-process.json": "203ccb5bded2a6bf8de587fce6fe948060641a24ffc3cea015d95736ebd296c4",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/runtime/resume/actor.json": "6c9848414e6cd5c5a466f8e32e26b17b6ee075ce0aac335ba86824861eb8f3e7",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/runtime/resume/rollout.json": "4f9b7eb65dfdcc5caf22537e535b95b75984d3c5659a7b0c6d94273a0464bab9",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/2.pt": "18498ae833d30a2e9e454eaf7f03107c4b9bb5761e61b14dc866af50a9b03b46",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/sources.json": "a28d41cf561d667ece05a380644a81a129719dba4cfe86daa527c5a251dcda78",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/packet/train.jsonl": "ba13376d908307ef46842379d46cd6427fae8413901dff26796850ad0c154575",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/packet/inputs.json": "984edb170a5b69c104d417192f2b5549ad598d449e29b89cfa454f9acb145b35",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/packet/development.jsonl": "af58ca58af693a5078aff092fbbeaa1ea85046263339aa4be131b8e27e864431",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/train_data/0.pt": "bcb8cb6ee783173d63ab15a4570a2871ed53c6970ad00170c811d154915442d1",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/grad-actor-0-0.pt": "3b8a0f299b57eeef3766390bf3cd3065a2807087a448312335ed6a8e17e17de9",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/train_data/1.pt": "a44ebbc17bab40d853008f0e495c901e7696e2811fb1bf361a9d6f569a876c25",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/grad-actor-1-0.pt": "4272f30f566704f7297f387ec6a46da78929084cb87e10f582ffd1a4f4a6f975",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/train_data/2.pt": "9fd9b5d927a32efcd3e91016ed699a24826f8baad84345b2c3c34b448f2f02c4",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/grad-actor-2-0.pt": "cf68aa8117047ed1de4d4dc88eb16d5de1be539b209607f55fb009e67bdff1df",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/eval_0.pt": "0fd9f7c03dde77acbb7cb9bdd7d9f0e42349cfd29161c9cad1e35d9e0ea99989",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/eval_1.pt": "06fd96b10fed117e90e5a69f39017ca5b5cf2eb4904c364a89a9839f80c50b95",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/eval_2.pt": "c9b2b904a95e79c1964d7256a3eab8359f1bd2ea2106d2e2e61ce3bb3b823ab8",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/details/rollout_data/eval_3.pt": "539654bf3e09242ec90e8b7e68cddfc6eb8dcc640bfc05bd308e32f6a000a584",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/train_data/0.pt": "03b2e9d7ddd4bc6baeb38ab807c26922f1ef59cf52b43e2e31d834c3d3fcd8c0",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/grad-actor-0-0.pt": "3b8a0f299b57eeef3766390bf3cd3065a2807087a448312335ed6a8e17e17de9",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/train_data/1.pt": "79aa4238e25c27d81f10434c4178e2cfb282985b84c02de6e028fd1c1bd66003",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/grad-actor-1-0.pt": "4272f30f566704f7297f387ec6a46da78929084cb87e10f582ffd1a4f4a6f975",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/train_data/2.pt": "521859ff4b9b363c58eb6af1738c22733784066aad52f3562f731b864e695d59",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/grad-actor-2-0.pt": "cf68aa8117047ed1de4d4dc88eb16d5de1be539b209607f55fb009e67bdff1df",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/eval_0.pt": "542c293733becbb960241df8fcb168bbd316a7164fc71494107692016907441c",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/eval_1.pt": "7b8da025ddff386897efeb731ec8761680c960cc321035bce510d5193d98d972",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/eval_2.pt": "512385b0a73214f312e039163c1e4d1e545f5973417a02a6d19a9b6b23162ffc",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/details/rollout_data/eval_3.pt": "cf7a16049b7613ba270c17dafcd849ca4731429c3cc29d3964043f354a9368ae",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/latest_checkpointed_iteration.txt": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/latest_checkpointed_iteration.txt": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000000/common.pt": "257c84a396e0b081cf144355ca6aa64327cfb0b68cec66c83fa0963be32bdb9d",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000000/.metadata": "bef19f30b9d8de007328cf4d8b8af007822b6d8f765d5293f53ff460280215a9",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000001/common.pt": "235cdfc4ee5130eed4291b4604b8b0ba3262bb49deedebc943ae55e01dc257be",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000001/.metadata": "928d410e094cc020f50175f723db6cef514b64eecd4d284f19057d6161b0dcb3",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000002/common.pt": "723c6a7b13b31501b28ae45f99d59acd5bd8d14188f672f7758a0f18f6222067",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/iter_0000002/.metadata": "c02683d0c64ac694513254d4b931fb3ed438e79a445b12340f88c385a551e4e9",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000000/common.pt": "257c84a396e0b081cf144355ca6aa64327cfb0b68cec66c83fa0963be32bdb9d",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000000/.metadata": "a9ef37c1cd51d4c8f353d985323940418ea28ecf13e32c9f983904e6c8754e62",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000001/common.pt": "235cdfc4ee5130eed4291b4604b8b0ba3262bb49deedebc943ae55e01dc257be",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000001/.metadata": "0c70051975f604437887d43b956f88a3dc1c19cadd1d2f50d0ace97e07295200",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000002/common.pt": "723c6a7b13b31501b28ae45f99d59acd5bd8d14188f672f7758a0f18f6222067",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/iter_0000002/.metadata": "14eed05efa15a26214d7073818a7e56ecdf25aaf06494f631392ddda38616d9b",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/rollout/global_dataset_state_dict_0.pt": "9c13fd86674e9f6bff8376c6199e01c5a1ea890f3fafa21e24ebcd280105b403",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/rollout/global_dataset_state_dict_0.pt": "9c13fd86674e9f6bff8376c6199e01c5a1ea890f3fafa21e24ebcd280105b403",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/rollout/global_dataset_state_dict_1.pt": "5d46c52a00864c50ab013a5070e5455f2e9e5c2eec2e22319c843fd496633175",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/rollout/global_dataset_state_dict_1.pt": "5d46c52a00864c50ab013a5070e5455f2e9e5c2eec2e22319c843fd496633175",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/checkpoints/actor/rollout/global_dataset_state_dict_2.pt": "37eac35fe5eeace01fcf28eed7803e9664f06d91d7be2658a4e3663eebaa143d",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/checkpoints/actor/rollout/global_dataset_state_dict_2.pt": "37eac35fe5eeace01fcf28eed7803e9664f06d91d7be2658a4e3663eebaa143d",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/publications/weight_v000001/model.safetensors": "8330f39a465a87e3c8597b5b3a3c3688f3ed0b09f67b4590dad683611dcea0d0",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/publications/weight_v000002/model.safetensors": "bcfeaf71b6d0761283e39ee87b12874f86c07b3bd5768df7d60d5d37c7101343",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/publications/weight_v000003/model.safetensors": "be4946d09d723d7d1d74fbd667ae6596b88985b16a2ea6cd55afac1c2da32fda",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-0/run/publications/weight_v000004/model.safetensors": "8941177f87f89e943b1f4ae1f6c89230bcb01dfefb7a5ca0bc7c213ff9e794ae",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/publications/weight_v000001/model.safetensors": "8330f39a465a87e3c8597b5b3a3c3688f3ed0b09f67b4590dad683611dcea0d0",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/publications/weight_v000002/model.safetensors": "bcfeaf71b6d0761283e39ee87b12874f86c07b3bd5768df7d60d5d37c7101343",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/publications/weight_v000003/model.safetensors": "be4946d09d723d7d1d74fbd667ae6596b88985b16a2ea6cd55afac1c2da32fda",
+    "/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/tmp-native-chain-bound/test_complete_cli_reopens_all_0/signals-1/run/publications/weight_v000004/model.safetensors": "8941177f87f89e943b1f4ae1f6c89230bcb01dfefb7a5ca0bc7c213ff9e794ae"
+  },
+  "scope": "trusted saved three-update evidence including at least one useful update; not convergence or resource handback",
+  "resource_handback": "REQUIRES_SEPARATE_PROCESS_AND_READER_AUDIT",
+  "reward_convergence": "NOT_ESTABLISHED",
+  "performance": "NOT_MEASURED"
+}

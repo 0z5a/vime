@@ -51,10 +51,13 @@ on the already admitted Ray worker nodes.
 python -m benchmarks.run_native_qualification \
   --packet PACKET --model VERIFIED_MODEL --output RUNS \
   --ray-address RESERVED_HOST:PORT --algorithm rltt --phase continuous \
-  --source-manifest sources.json --source-roots roots.json --execute
+  --source-manifest sources.json --source-roots roots.json \
+  --model-manifest model-manifest.json --execute
 ```
 
-Execution now requires both source arguments. Before creating the run directory
+Execution requires both source arguments and the seven-file model manifest
+described in [the combined qualification](native_qualification_chain.md).
+Before creating the run directory
 or launching a child, the controller checks every selected file's size and
 SHA256, rejects symlinked source files, and checks the RLT pin against the frozen
 qualification profile. It prepends the verified roots to the child's
