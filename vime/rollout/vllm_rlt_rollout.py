@@ -8,6 +8,7 @@ from transformers import AutoTokenizer
 
 from vime.rollout.base_types import RolloutFnTrainOutput
 from vime.rollout.rm_hub import async_rm
+from vime.utils.types import Sample
 
 
 @lru_cache(maxsize=1)
@@ -17,7 +18,9 @@ def _tokenizer(checkpoint: str):
 
 def generate_rollout(args, rollout_id, data_source, evaluation=False):
     if evaluation:
-        raise ValueError("Native RLT evaluation requires an explicit evaluation recipe")
+        from vime.rollout.native_eval import evaluate
+
+        return evaluate(args)
     groups = data_source.get_samples(args.rollout_batch_size)
     count = args.n_samples_per_prompt
     if len(groups) != args.rollout_batch_size or any(len(group) != count for group in groups):
@@ -41,12 +44,18 @@ def generate_rollout(args, rollout_id, data_source, evaluation=False):
     generated = ray.get(args.rlt_engine.generate.remote(samples, rollout_id))
     if [(sample.group_index, sample.index) for sample in generated] != identities:
         raise ValueError("Native rollout must preserve every prompt group and sample index in order")
+    decode_and_reward(args, generated, tokenizer)
+    return RolloutFnTrainOutput(samples=[generated[i : i + count] for i in range(0, len(generated), count)])
+
+
+def decode_and_reward(args, generated: list[Sample], tokenizer, *, skip_special_tokens: bool = True) -> None:
     for sample in generated:
-        sample.response = tokenizer.decode(sample.tokens[-sample.response_length :], skip_special_tokens=True)
+        sample.response = tokenizer.decode(
+            sample.tokens[-sample.response_length :], skip_special_tokens=skip_special_tokens
+        )
 
     async def reward():
         return await asyncio.gather(*(async_rm(args, sample) for sample in generated))
 
     for sample, value in zip(generated, asyncio.run(reward()), strict=True):
         sample.reward = value
-    return RolloutFnTrainOutput(samples=[generated[i : i + count] for i in range(0, len(generated), count)])

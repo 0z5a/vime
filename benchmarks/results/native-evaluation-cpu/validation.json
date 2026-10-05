@@ -1,0 +1,38 @@
+{
+  "parent": "61903fbef8a06eff4a0f7ce9daf42f5da792aa0b",
+  "python": "3.12.14",
+  "torch": "2.13.0",
+  "scope": "CPU components; tiny actual native engines/MCore loss/Adam; transport/tokenizer doubles; no official GPU or Ray lifecycle",
+  "suites": [
+    {
+      "name": "native-eval-release",
+      "passed": 506,
+      "skipped": 6
+    },
+    {
+      "name": "native-eval-arguments",
+      "passed": 2,
+      "skipped": 0
+    }
+  ],
+  "unique_passed": 508,
+  "known_factory_deselected": 3,
+  "sources": {
+    "examples/looped_ppo/README.md": "ecd51d2d635279350a0e154d4bf09736f851eb665a92e5099b9041eb7db0bc68",
+    "train.py": "5d6912878b7490aee786d16e0359fc4f90573c8d0d2f7e28a228f730901a86d0",
+    "vime/backends/vllm_rlt_utils/README.md": "7a5ae34bfa1c64cc77fe2a37e9a6b3db3cd5038f18b03ca2a6897ca7f7b8274b",
+    "vime/backends/vllm_rlt_utils/arguments.py": "1418acaa0a4b99b78409b5c0043b98759f3124b4b3064be4fb020d7dca400410",
+    "vime/backends/vllm_rlt_utils/engine.py": "bb5f804e8d202efba0860c7b24f68041178594e2e9a2d10b3c15da598afffa49",
+    "vime/observability/rollout_metrics.py": "d85918ee581bcce4dd4a69b4482b2459950619b55b739880cd03a54298c18b79",
+    "vime/rollout/vllm_rlt_rollout.py": "b60f2a8583a12a01310d0b2c9b8690bde4a9923379ac3ef0ab66ffeed8712855",
+    "vime/rollout/native_eval.py": "06a7aab463bd888f4d7946544f8f390d1d462504fe88120305e0fa5f4ca4a363",
+    "tests/rollout_backends/test_native_rlt_evaluation.py": "e0b150f8fd49b9bdabca3322b21f0f683efe01959010f5fb31c1d6de4810bef0",
+    "tests/rollout_backends/test_native_eval_arguments.py": "3c954479254632a8def3385b8f9d2e3c14e6bf09df0bee5562e1c9aafe33cefa",
+    "tests/plugins/test_native_heldout_training.py": "9019b5914fb8cbb57c20df072f023ce4fb448b9714d34d07e0a7708418da2c43",
+    "tests/test_native_eval_schedule.py": "60e9432c1d36b0512125b4f9405ddeb8c7337fb548f81748776ba2b62de5104b",
+    "docs/native_evaluation_results.md": "475da4c4117ebd8ab6f0808bd7c339b61e4184b4cd9fcfd29a1166d1a8d38482",
+    "docs/rltt_training_validation.md": "b27d9036758dd84641727814f7b018a38cf2cfacb34c75877a016a90f86a5ea7"
+  },
+  "suite_identity_audit": "508 distinct (classname, name) identities across the two final suites; zero failures/errors",
+  "recovery_scope": "Fresh objects in the same pytest process; not fresh worker processes or distributed checkpoint recovery"
+}

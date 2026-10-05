@@ -1,0 +1,17 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/0z5a/Documents/infra/flashrlt-20261005/vime
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 2 items
+
+tests/rollout_backends/test_native_eval_arguments.py ..                  [100%]
+
+- generated xml file: /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/native-eval-arguments.xml -
+============================== slowest durations ===============================
+7.25s call     tests/rollout_backends/test_native_eval_arguments.py::test_eval_sampling_is_separate_from_training_validation[1.0]
+
+(5 durations < 0.005s hidden.  Use -vv to show these durations.)
+============================== 2 passed in 7.32s ===============================

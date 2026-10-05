@@ -1,12 +1,17 @@
 """Serial engine ownership and fail-closed full physical-weight publications."""
 
 import hashlib
+from dataclasses import replace
 from pathlib import Path
+from typing import TYPE_CHECKING
 from uuid import uuid4
 
 import torch
 
 from vime.utils.types import RecurrentTrace, Sample
+
+if TYPE_CHECKING:
+    from vllm_rlt import SamplingParams
 
 
 def weight_digest(path: Path) -> tuple[str, list[Path]]:
@@ -44,10 +49,6 @@ class NativeEngine:
     def generate(self, samples: list[Sample], rollout_id: int) -> list[Sample]:
         from vllm_rlt import SamplingParams
 
-        if self.paused or not self.ready:
-            raise RuntimeError("Publish a complete policy and resume generation first")
-        assert self.committed_digest is not None
-        version = self.llm.get_weight_version()
         if any(sample.index is None for sample in samples):
             raise ValueError("Native rollout requires stable sample indices")
         params = [
@@ -62,9 +63,29 @@ class NativeEngine:
             )
             for sample in samples
         ]
-        if self.args.rlt_model_family == "huginn_raven":
-            from dataclasses import replace
+        return self._generate(samples, params)
 
+    def evaluate(self, samples: list[Sample], sampling: "SamplingParams", seeds: tuple[int, ...]) -> list[Sample]:
+        """Held-out seeds are independent of rollout counters and request IDs."""
+        params = [
+            replace(
+                sampling,
+                seed=seed,
+                min_loops=self.args.rlt_depth,
+                max_loops=self.args.rlt_depth,
+                logprobs=0,
+                logprobs_mode="processed",
+            )
+            for _, seed in zip(samples, seeds, strict=True)
+        ]
+        return self._generate(samples, params)
+
+    def _generate(self, samples: list[Sample], params: list["SamplingParams"]) -> list[Sample]:
+        if self.paused or not self.ready:
+            raise RuntimeError("Publish a complete policy and resume generation first")
+        assert self.committed_digest is not None
+        version = self.llm.get_weight_version()
+        if self.args.rlt_model_family == "huginn_raven":
             params = [replace(sampling, latent_seed=sampling.seed) for sampling in params]
         outputs = self.llm.generate([sample.tokens for sample in samples], params)
         for sample, output, sampling in zip(samples, outputs, params, strict=True):

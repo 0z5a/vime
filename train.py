@@ -34,7 +34,8 @@ def train(args):
 
     # special case for eval-only
     if args.num_rollout == 0 and args.eval_interval is not None:
-        ray.get(rollout_manager.eval.remote(rollout_id=0))
+        evaluation_step = args.start_rollout_id if args.rollout_backend == "vllm-rlt" else 0
+        ray.get(rollout_manager.eval.remote(rollout_id=evaluation_step))
 
     def offload_train(actor_trains_this_step):
         # Each model auto-offloads after train() when offload_train is set,
@@ -91,7 +92,10 @@ def train(args):
             ray.get(rollout_manager.onload_kv.remote())
 
         if should_run_periodic_action(rollout_id, args.eval_interval, num_rollout_per_epoch):
-            ray.get(rollout_manager.eval.remote(rollout_id))
+            # Native held-out curves use completed updates: preserve eval_0 as
+            # the initial policy instead of overwriting it after update one.
+            evaluation_step = rollout_id + 1 if args.rollout_backend == "vllm-rlt" else rollout_id
+            ray.get(rollout_manager.eval.remote(evaluation_step))
 
     ray.get(rollout_manager.dispose.remote())
     if args.rollout_backend == "vllm-rlt":
