@@ -14,9 +14,10 @@ from vllm_rlt.models.huginn import HuginnBlock, HuginnForCausalLM
 from vllm_rlt.models.huginn_latents import HUGINN_LATENT_PROFILE, replay_huginn_latents
 
 from vime.utils.types import RecurrentTrace
-from vime_plugins.looped.packing import ReplayLayout, causal_attention, readout_boundaries
+from vime_plugins.looped.packing import ReplayLayout, causal_attention, prefix_attention, readout_boundaries
 from vime_plugins.looped.response import ResponseReadout, packed_response_readout
 from vime_plugins.looped.execution import RecurrentProgram, RematPlan, run_layers
+from vime_plugins.looped.prefix import PrefixProgram
 
 
 class HuginnMegatronModel(MegatronModule):
@@ -73,6 +74,17 @@ class HuginnMegatronModel(MegatronModule):
         *,
         layout: ReplayLayout | None = None,
     ) -> torch.Tensor:
+        return self._prefix_block(block, hidden, frequencies, layout=layout)[0]
+
+    def _prefix_block(
+        self,
+        block: HuginnBlock,
+        hidden: torch.Tensor,
+        frequencies: torch.Tensor,
+        prefix_kv: tuple[torch.Tensor, torch.Tensor] | None = None,
+        *,
+        layout: ReplayLayout | None = None,
+    ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
         attention = block.attn
         q, k, v = attention.Wqkv(block.norm_1(hidden)).chunk(3, dim=-1)
         shape = (len(hidden), attention.n_heads, attention.head_dim)
@@ -82,9 +94,12 @@ class HuginnMegatronModel(MegatronModule):
         real = pairs[..., 0] * cos - pairs[..., 1] * sin
         imag = pairs[..., 1] * cos + pairs[..., 0] * sin
         q, k = torch.stack((real, imag), dim=-1).flatten(-2).to(hidden.dtype).unbind(0)
-        attended = causal_attention(q, k, v.reshape(shape), layout).reshape(len(hidden), -1)
+        v = v.reshape(shape)
+        attended = (
+            causal_attention(q, k, v, layout) if prefix_kv is None else prefix_attention(q, k, v, prefix_kv)
+        ).reshape(len(hidden), -1)
         hidden = block.norm_2(attention.proj(attended) + hidden)
-        return block.norm_4(block.mlp(block.norm_3(hidden)) + hidden)
+        return block.norm_4(block.mlp(block.norm_3(hidden)) + hidden), k, v
 
     def _blocks(
         self,
@@ -107,6 +122,65 @@ class HuginnMegatronModel(MegatronModule):
     @property
     def readout_depth(self) -> int:
         return self.huginn_config.mean_recurrence
+
+    def prefix_program(self, tokens: torch.Tensor, *, latent_seed: int) -> PrefixProgram:
+        """Share a recurrent prefix only when its actual latent identity agrees."""
+        if self.role != "actor":
+            raise ValueError("shared response prefix requires an actor")
+        width, length, depth = self.huginn_config.n_embd, len(tokens), self.readout_depth
+        frequencies = self.freqs_cis[0, :length]
+        boundaries = []
+
+        def capture(blocks: torch.nn.ModuleList, hidden: torch.Tensor) -> torch.Tensor:
+            for block in blocks:
+                hidden, k, v = self._prefix_block(block, hidden, frequencies)
+                boundaries.extend((k, v))
+            return hidden
+
+        injection = capture(self.transformer.prelude, self.transformer.wte(tokens) * math.sqrt(width))
+        state = replay_huginn_latents(
+            width, [latent_seed] * length, range(length), dtype=injection.dtype, device=tokens.device
+        )
+        for _ in range(depth):
+            state = self.transformer.adapter(torch.cat((state, injection), dim=-1))
+            state = capture(self.transformer.core_block, state)
+            readout = self.transformer.ln_f(capture(self.transformer.coda, self.transformer.ln_f(state)))
+            boundaries.append(readout[-1:])
+
+        def suffix(tokens: torch.Tensor, boundary: tuple[torch.Tensor, ...]) -> Iterator[torch.Tensor]:
+            frequencies = self.freqs_cis[0, length : length + len(tokens)]
+            cursor = 0
+
+            def blocks(blocks: torch.nn.ModuleList, hidden: torch.Tensor) -> torch.Tensor:
+                nonlocal cursor
+                for block in blocks:
+                    if len(tokens):
+                        hidden, _, _ = self._prefix_block(block, hidden, frequencies, boundary[cursor : cursor + 2])
+                    cursor += 2
+                return hidden
+
+            injection = blocks(self.transformer.prelude, self.transformer.wte(tokens) * math.sqrt(width))
+            state = (
+                replay_huginn_latents(
+                    width,
+                    [latent_seed] * len(tokens),
+                    range(length, length + len(tokens)),
+                    dtype=injection.dtype,
+                    device=tokens.device,
+                )
+                if len(tokens)
+                else injection
+            )
+            for _ in range(depth):
+                state = self.transformer.adapter(torch.cat((state, injection), dim=-1))
+                state = blocks(self.transformer.core_block, state)
+                readout = self.transformer.ln_f(blocks(self.transformer.coda, self.transformer.ln_f(state)))
+                yield torch.cat((boundary[cursor], readout))
+                cursor += 1
+
+        return PrefixProgram(
+            tuple(boundaries), depth, suffix, tuple(tokens.tolist()), latent_seed, HUGINN_LATENT_PROFILE
+        )
 
     def recurrent_program(
         self, tokens: torch.Tensor, *, latent_seed: int, layout: ReplayLayout, plan: RematPlan

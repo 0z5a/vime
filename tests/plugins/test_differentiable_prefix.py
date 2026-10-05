@@ -1,0 +1,213 @@
+"""Shared prefix adjoints include all recurrent KV and first-response readouts."""
+
+import copy
+from dataclasses import replace
+
+import pytest
+import torch
+from test_looped_response_readout import make_actor
+from test_rltt_training import packed, trace
+from vllm_rlt.models.huginn_latents import HUGINN_LATENT_PROFILE
+
+from vime_plugins.looped.prefix import PrefixIdentity, PrefixReplay
+from vime_plugins.looped.packing import causal_attention, prefix_attention
+
+
+def replay(actor, prompt, depth, all_loops, latent_seed=None):
+    identity = PrefixIdentity(
+        "tiny-current-actor",
+        3,
+        tuple(prompt.tolist()),
+        depth,
+        latent_seed,
+        HUGINN_LATENT_PROFILE if latent_seed is not None else None,
+    )
+    program = (
+        actor.prefix_program(prompt) if latent_seed is None else actor.prefix_program(prompt, latent_seed=latent_seed)
+    )
+    state = PrefixReplay(
+        program,
+        identity,
+        actor,
+        actor.lm_head.weight,
+        vocab_tile=5,
+        temperature=0.7,
+        all_loops=all_loops,
+        entropy=True,
+    )
+    return state, identity
+
+
+def objective(scores, reference, advantage, weight):
+    credit = torch.arange(1, scores.shape[1], dtype=scores.dtype).pow(1.5)
+    credit /= credit.sum()
+    ratio = reference - scores[:, -2]
+    return (
+        (-(scores[:, :-1] * credit).sum(-1) * advantage + 0.1 * (ratio.exp() - ratio - 1) - 0.03 * scores[:, -1])
+        * weight
+    ).sum()
+
+
+@pytest.mark.parametrize("family", ["ouro", "nanbeige", "huginn"])
+@pytest.mark.parametrize("all_loops", [False, True])
+@pytest.mark.parametrize("groups", [((0, 1, 2),), ((0,), (1,), (2,)), ((2,), (0, 1))])
+@pytest.mark.parametrize("dtype", [torch.float32, torch.float64])
+def test_full_gradient_and_update_across_suffix_microbatches(family, all_loops, groups, dtype, record_property):
+    baseline, depth = make_actor(family, False)
+    baseline = baseline.to(dtype)
+    actor, reference = copy.deepcopy(baseline), copy.deepcopy(baseline).requires_grad_(False)
+    with torch.no_grad():
+        reference.lm_head.weight.mul_(0.9)
+    prompt = torch.tensor([1, 3, 5, 7])
+    responses = [torch.tensor(values) for values in ([2], [4, 6, 8], [9, 10, 11, 12, 2])]
+    items = [
+        (
+            torch.cat((prompt, response)),
+            len(response),
+            trace(family, depth, 31 if family == "huginn" else i, len(response)),
+        )
+        for i, response in enumerate(responses)
+    ]
+    inputs = packed(items, all_loops=all_loops)
+    with torch.no_grad():
+        ref = reference(**inputs)[:, -2]
+    expected = baseline(**inputs)
+    advantage = torch.tensor([0.7, -0.3, 0.2, -0.4, 0.5, 0.1, -0.9, 0.3, 0.8], dtype=dtype)
+    weight = torch.tensor([1, 1, 0, 1, 1, 1, 0, 0, 1], dtype=dtype) / 6
+    objective(expected, ref, advantage, weight).backward()
+    state, identity = replay(actor, prompt, depth, all_loops, 31 if family == "huginn" else None)
+    expected_chunks, refs = expected.detach().split([1, 3, 5]), ref.split([1, 3, 5])
+    advantages, weights = advantage.split([1, 3, 5]), weight.split([1, 3, 5])
+
+    def microbatch_loss(actual, group):
+        expected_group = torch.cat([expected_chunks[i] for i in group])
+        torch.testing.assert_close(actual, expected_group, atol=3e-6 if dtype == torch.float32 else 1e-12, rtol=3e-6)
+        return objective(
+            actual,
+            torch.cat([refs[i] for i in group]),
+            torch.cat([advantages[i] for i in group]),
+            torch.cat([weights[i] for i in group]),
+        )
+
+    state.backward_suffixes(tuple(responses), groups, microbatch_loss, identity=identity)
+    errors, norms = [], []
+    for (name, left), (_, right) in zip(baseline.named_parameters(), actor.named_parameters(), strict=True):
+        if left.requires_grad:
+            assert left.grad is not None and right.grad is not None, name
+            # Native RMSNorm explicitly reduces in FP32, even for FP64 weights.
+            # Splitting backward changes that FP32 accumulation order.
+            atol, rtol = 1e-5, 8e-5
+            torch.testing.assert_close(right.grad, left.grad, atol=atol, rtol=rtol, msg=name)
+            errors.append((right.grad - left.grad).double().square().sum())
+            norms.append(left.grad.double().square().sum())
+    relative = (sum(errors).sqrt() / sum(norms).sqrt()).item()
+    assert relative < 2e-6
+    record_property("gradient_relative_l2", relative)
+    before = [p.detach().clone() for p in baseline.parameters()]
+    for model in (baseline, actor):
+        torch.optim.SGD(model.parameters(), lr=0.03).step()
+    assert sum((new - old).square().sum() for new, old in zip(baseline.parameters(), before, strict=True)) > 0
+    for expected_param, actual_param, old in zip(baseline.parameters(), actor.parameters(), before, strict=True):
+        torch.testing.assert_close(actual_param - old, expected_param - old, atol=2e-6, rtol=8e-5)
+
+
+@pytest.mark.parametrize("family", ["ouro", "nanbeige"])
+def test_first_response_readout_is_a_live_boundary(family):
+    baseline, depth = make_actor(family, False)
+    actor = copy.deepcopy(baseline)
+    prompt, response = torch.tensor([1, 3, 5]), torch.tensor([7])
+    expected = baseline(**packed([(torch.cat((prompt, response)), 1, trace(family, depth, 0, 1))], all_loops=True))
+    expected.sum().backward()
+    state, identity = replay(actor, prompt, depth, True)
+    state.scores(response, identity=identity).sum().backward()
+    width = 2 * len(actor.model.layers) + 1
+    assert all(state.leaves[loop * width + width - 1].grad.abs().sum() > 0 for loop in range(depth))
+    assert all(leaf.grad is None for index, leaf in enumerate(state.leaves) if (index + 1) % width)
+    state.backward_prefix(identity=identity)
+    for left, right in zip(baseline.parameters(), actor.parameters(), strict=True):
+        if left.requires_grad:
+            torch.testing.assert_close(left.grad, right.grad, atol=1e-5, rtol=8e-5)
+
+
+def test_policy_prompt_depth_and_parameter_mutation_rejected():
+    actor, depth = make_actor("ouro", False)
+    prompt = torch.tensor([1, 3])
+    state, identity = replay(actor, prompt, depth, True)
+    for altered in (
+        replace(identity, policy_version=4),
+        replace(identity, prompt_tokens=(1, 4)),
+        replace(identity, loop_depth=3),
+        replace(identity, model_revision="different"),
+    ):
+        with pytest.raises(ValueError, match="different"):
+            state.scores(torch.tensor([5]), identity=altered)
+    with torch.no_grad():
+        actor.model.embed_tokens.weight.add_(0.01)
+    with pytest.raises(RuntimeError, match="parameters changed"):
+        state.scores(torch.tensor([5]), identity=identity)
+
+
+def test_prefix_backward_is_once_per_logical_group():
+    actor, depth = make_actor("ouro", False)
+    state, identity = replay(actor, torch.tensor([1]), depth, True)
+    state.scores(torch.tensor([3]), identity=identity).sum().backward()
+    state.backward_prefix(identity=identity)
+    with pytest.raises(ValueError, match="closed"):
+        state.backward_prefix(identity=identity)
+
+
+@pytest.mark.parametrize("family", ["ouro", "nanbeige", "huginn"])
+def test_empty_response_and_replaced_parameter(family):
+    actor, depth = make_actor(family, False)
+    state, identity = replay(actor, torch.tensor([1]), depth, True, 31 if family == "huginn" else None)
+    output = state.scores(torch.empty(0, dtype=torch.long), identity=identity)
+    assert output.shape == (0, depth + 1)
+    output.sum().backward()
+    state.backward_prefix(identity=identity)
+    assert all(p.grad is not None and not bool(p.grad.any()) for p in actor.parameters() if p.requires_grad)
+    state, identity = replay(actor, torch.tensor([1]), depth, True, 31 if family == "huginn" else None)
+    actor.lm_head.weight = torch.nn.Parameter(actor.lm_head.weight.detach().clone())
+    with pytest.raises(RuntimeError, match="parameters changed"):
+        state.scores(torch.tensor([3]), identity=identity)
+
+
+def test_group_partition_rejects_missing_and_duplicate_suffixes():
+    actor, depth = make_actor("ouro", False)
+    state, identity = replay(actor, torch.tensor([1]), depth, True)
+    for groups in (((0,),), ((0,), (0, 1)), ((), (0, 1))):
+        with pytest.raises(ValueError, match="partition"):
+            state.backward_suffixes(
+                (torch.tensor([2]), torch.tensor([3])), groups, lambda scores, indices: scores.sum(), identity=identity
+            )
+
+
+def test_huginn_prefix_does_not_alias_different_latent_identities():
+    actor, depth = make_actor("huginn", False)
+    prompt = torch.tensor([1, 3, 5])
+    state, identity = replay(actor, prompt, depth, True, 31)
+    for other in (replace(identity, latent_seed=32), replace(identity, latent_profile="different")):
+        with pytest.raises(ValueError, match="different"):
+            state.scores(torch.tensor([7, 9]), identity=other)
+    first = state.scores(torch.tensor([7, 9]), identity=identity)
+    second, other_identity = replay(actor, prompt, depth, True, 32)
+    assert not torch.equal(first, second.scores(torch.tensor([7, 9]), identity=other_identity))
+
+
+@pytest.mark.parametrize("prefix_length,suffix_length", [(1, 1), (3, 5), (7, 2)])
+def test_strict_fp64_attention_and_all_boundary_adjoints(prefix_length, suffix_length):
+    torch.manual_seed(81)
+    length = prefix_length + suffix_length
+    original = [torch.randn(length, heads, 8, dtype=torch.float64, requires_grad=True) for heads in (4, 2, 2)]
+    split = [value.detach().clone().requires_grad_(True) for value in original]
+    oracle = causal_attention(*original)
+    prefix = causal_attention(*(value[:prefix_length] for value in split))
+    suffix = prefix_attention(
+        *(value[prefix_length:] for value in split), (split[1][:prefix_length], split[2][:prefix_length])
+    )
+    actual = torch.cat((prefix, suffix))
+    torch.testing.assert_close(actual, oracle, atol=1e-12, rtol=1e-12)
+    upstream = torch.randn_like(actual)
+    actual.backward(upstream)
+    oracle.backward(upstream)
+    for expected, observed in zip(original, split, strict=True):
+        torch.testing.assert_close(expected.grad, observed.grad, atol=1e-12, rtol=1e-12)

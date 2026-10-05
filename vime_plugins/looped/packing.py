@@ -12,6 +12,28 @@ from torch.utils.checkpoint import checkpoint
 AttentionBackend = Literal["sdpa-reference", "varlen"]
 
 
+def prefix_attention(
+    q: torch.Tensor, k: torch.Tensor, v: torch.Tensor, prefix: tuple[torch.Tensor, torch.Tensor]
+) -> torch.Tensor:
+    """Suffix queries see the complete shared prefix and their causal suffix."""
+    length = prefix[0].shape[0]
+    k, v = torch.cat((prefix[0], k)), torch.cat((prefix[1], v))
+    mask = torch.arange(k.shape[0], device=q.device)[None, :] <= (
+        length + torch.arange(q.shape[0], device=q.device)[:, None]
+    )
+    return (
+        F.scaled_dot_product_attention(
+            q.transpose(0, 1).unsqueeze(0),
+            k.transpose(0, 1).unsqueeze(0),
+            v.transpose(0, 1).unsqueeze(0),
+            attn_mask=mask,
+            enable_gqa=True,
+        )
+        .squeeze(0)
+        .transpose(0, 1)
+    )
+
+
 @dataclass(frozen=True)
 class QueryChunk:
     prefix: int
