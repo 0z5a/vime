@@ -95,14 +95,13 @@ def collect_log_probs(
     return output.new_empty(0), result
 
 
-def megatron_loss(
+def logical_rltt_loss(
     args: Namespace,
     batch: RLTTBatch,
     weights: list[torch.Tensor],
-    num_microbatches: int,
-    step_global_batch_size: int,
     output: torch.Tensor,
-) -> tuple[torch.Tensor, torch.Tensor, dict[str, list[str] | torch.Tensor]]:
+) -> tuple[torch.Tensor, dict[str, torch.Tensor]]:
+    """Use step-global token weights; apply no schedule, optimizer or log scale."""
     if batch["ref_log_probs"] is None:
         raise ValueError("RLTT requires scores from the frozen initial reference")
     scores, entropy = output[:, :-1], output[:, -1]
@@ -121,6 +120,18 @@ def megatron_loss(
         entropy_mean = (entropy * token_weight).sum()
         loss = loss - args.entropy_coef * entropy_mean
         log.update(loss=loss.detach(), entropy_loss=entropy_mean.detach())
+    return loss, log
+
+
+def megatron_loss(
+    args: Namespace,
+    batch: RLTTBatch,
+    weights: list[torch.Tensor],
+    num_microbatches: int,
+    step_global_batch_size: int,
+    output: torch.Tensor,
+) -> tuple[torch.Tensor, torch.Tensor, dict[str, list[str] | torch.Tensor]]:
+    loss, log = logical_rltt_loss(args, batch, weights, output)
     # The single-rank MCore schedule divides each loss by num_microbatches.
     # Logging is subsequently divided by VIME's step_global_batch_size.
     return (

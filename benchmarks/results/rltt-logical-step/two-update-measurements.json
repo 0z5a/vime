@@ -1,0 +1,1610 @@
+[
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-1.0-groups0-1-token_mean]",
+    "precision": "fp32",
+    "qualified": true,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.49191462993621826,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.2436278327397573e-07,
+          2.4610282211076436e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03548203408718109,
+          0.03548203408718109,
+          0.03548203408718109
+        ],
+        "delta_max_errors": [
+          1.1920928955078125e-07,
+          1.1920928955078125e-07
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.47786667943000793,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.0315888539578047e-07,
+          1.9654512184541965e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.026919454336166382,
+          0.026919452473521233,
+          0.026919452473521233
+        ],
+        "delta_max_errors": [
+          6.05359673500061e-09,
+          7.450580596923828e-09
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-1.0-groups0-1-response_mean]",
+    "precision": "fp32",
+    "qualified": true,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.6862305402755737,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.5129760538306777e-07,
+          2.433654357303373e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03538694977760315,
+          0.03538694605231285,
+          0.03538694605231285
+        ],
+        "delta_max_errors": [
+          1.1920928955078125e-07,
+          3.026798367500305e-08
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.6705030202865601,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          4.365550205001895e-07,
+          5.371107896698602e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.028429625555872917,
+          0.028429625555872917,
+          0.028429623693227768
+        ],
+        "delta_max_errors": [
+          5.960464477539063e-08,
+          6.51925802230835e-09
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-1.0-groups1-2-token_mean]",
+    "precision": "fp32",
+    "qualified": true,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.49191462993621826,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.2442894197800552e-07,
+          2.640519439686965e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03548203408718109,
+          0.03548203408718109,
+          0.03548203408718109
+        ],
+        "delta_max_errors": [
+          1.1920928955078125e-07,
+          1.1920928955078125e-07
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.47786667943000793,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.0476864358364999e-07,
+          2.1109555462533843e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.026919454336166382,
+          0.026919452473521233,
+          0.026919452473521233
+        ],
+        "delta_max_errors": [
+          5.587935447692871e-09,
+          7.450580596923828e-09
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-1.0-groups1-2-response_mean]",
+    "precision": "fp32",
+    "qualified": true,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.6862305402755737,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.404819786885001e-07,
+          2.252275727646945e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03538694977760315,
+          0.03538694605231285,
+          0.03538694605231285
+        ],
+        "delta_max_errors": [
+          1.1920928955078125e-07,
+          2.6542693376541138e-08
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.6705030202865601,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          4.4882342454970114e-07,
+          4.4169082358328245e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.028429625555872917,
+          0.028429623693227768,
+          0.028429623693227768
+        ],
+        "delta_max_errors": [
+          5.960464477539063e-08,
+          3.725290298461914e-09
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-1.0-groups2-3-token_mean]",
+    "precision": "fp32",
+    "qualified": true,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.49191462993621826,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.261717323926513e-07,
+          2.7063804329433706e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03548203408718109,
+          0.03548203408718109,
+          0.03548203036189079
+        ],
+        "delta_max_errors": [
+          1.1920928955078125e-07,
+          1.1920928955078125e-07
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.47786667943000793,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.7502542395147715e-07,
+          2.3219135670608324e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.026919454336166382,
+          0.026919452473521233,
+          0.026919454336166382
+        ],
+        "delta_max_errors": [
+          5.122274160385132e-09,
+          5.587935447692871e-09
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-1.0-groups2-3-response_mean]",
+    "precision": "fp32",
+    "qualified": true,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.6862305402755737,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.6089442505737665e-07,
+          2.2393991612079507e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03538694977760315,
+          0.03538694605231285,
+          0.03538694605231285
+        ],
+        "delta_max_errors": [
+          1.1920928955078125e-07,
+          2.0489096641540527e-08
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.6705030202865601,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          4.582014164623555e-07,
+          5.224819893583634e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.028429625555872917,
+          0.028429625555872917,
+          0.028429625555872917
+        ],
+        "delta_max_errors": [
+          5.960464477539063e-08,
+          3.725290298461914e-09
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-8.0-groups0-1-token_mean]",
+    "precision": "fp32",
+    "qualified": true,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.49191462993621826,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.2436278327397573e-07,
+          2.4610282211076436e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03548203408718109,
+          0.03548203408718109,
+          0.03548203408718109
+        ],
+        "delta_max_errors": [
+          1.1920928955078125e-07,
+          1.1920928955078125e-07
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.47786667943000793,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.0315888539578047e-07,
+          1.9654512184541965e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.026919454336166382,
+          0.026919452473521233,
+          0.026919452473521233
+        ],
+        "delta_max_errors": [
+          6.05359673500061e-09,
+          7.450580596923828e-09
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-8.0-groups0-1-response_mean]",
+    "precision": "fp32",
+    "qualified": true,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.6862305402755737,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.5129760538306777e-07,
+          2.433654357303373e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03538694977760315,
+          0.03538694605231285,
+          0.03538694605231285
+        ],
+        "delta_max_errors": [
+          1.1920928955078125e-07,
+          3.026798367500305e-08
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.6705030202865601,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          4.365550205001895e-07,
+          5.371107896698602e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.028429625555872917,
+          0.028429625555872917,
+          0.028429623693227768
+        ],
+        "delta_max_errors": [
+          5.960464477539063e-08,
+          6.51925802230835e-09
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-8.0-groups1-2-token_mean]",
+    "precision": "fp32",
+    "qualified": true,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.49191462993621826,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.2442894197800552e-07,
+          2.640519439686965e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03548203408718109,
+          0.03548203408718109,
+          0.03548203408718109
+        ],
+        "delta_max_errors": [
+          1.1920928955078125e-07,
+          1.1920928955078125e-07
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.47786667943000793,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.0476864358364999e-07,
+          2.1109555462533843e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.026919454336166382,
+          0.026919452473521233,
+          0.026919452473521233
+        ],
+        "delta_max_errors": [
+          5.587935447692871e-09,
+          7.450580596923828e-09
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-8.0-groups1-2-response_mean]",
+    "precision": "fp32",
+    "qualified": true,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.6862305402755737,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.404819786885001e-07,
+          2.252275727646945e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03538694977760315,
+          0.03538694605231285,
+          0.03538694605231285
+        ],
+        "delta_max_errors": [
+          1.1920928955078125e-07,
+          2.6542693376541138e-08
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.6705030202865601,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          4.4882342454970114e-07,
+          4.4169082358328245e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.028429625555872917,
+          0.028429623693227768,
+          0.028429623693227768
+        ],
+        "delta_max_errors": [
+          5.960464477539063e-08,
+          3.725290298461914e-09
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-8.0-groups2-3-token_mean]",
+    "precision": "fp32",
+    "qualified": true,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.49191462993621826,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.261717323926513e-07,
+          2.7063804329433706e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03548203408718109,
+          0.03548203408718109,
+          0.03548203036189079
+        ],
+        "delta_max_errors": [
+          1.1920928955078125e-07,
+          1.1920928955078125e-07
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.47786667943000793,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.7502542395147715e-07,
+          2.3219135670608324e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.026919454336166382,
+          0.026919452473521233,
+          0.026919454336166382
+        ],
+        "delta_max_errors": [
+          5.122274160385132e-09,
+          5.587935447692871e-09
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype0-8.0-groups2-3-response_mean]",
+    "precision": "fp32",
+    "qualified": true,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.6862305402755737,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          2.6089442505737665e-07,
+          2.2393991612079507e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03538694977760315,
+          0.03538694605231285,
+          0.03538694605231285
+        ],
+        "delta_max_errors": [
+          1.1920928955078125e-07,
+          2.0489096641540527e-08
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.6705030202865601,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          4.582014164623555e-07,
+          5.224819893583634e-07
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.028429625555872917,
+          0.028429625555872917,
+          0.028429625555872917
+        ],
+        "delta_max_errors": [
+          5.960464477539063e-08,
+          3.725290298461914e-09
+        ],
+        "delta_pass": [
+          true,
+          true
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-1.0-groups0-1-token_mean]",
+    "precision": "bf16",
+    "qualified": false,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.49196338653564453,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.010438050208960251,
+          0.009510744440367234
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03421701863408089,
+          0.03421306982636452,
+          0.03422493487596512
+        ],
+        "delta_max_errors": [
+          0.001708984375,
+          0.00177001953125
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.47794342041015625,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.01075195409363386,
+          0.012365501616408644
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.026263060048222542,
+          0.026299094781279564,
+          0.026264196261763573
+        ],
+        "delta_max_errors": [
+          0.000244140625,
+          0.000244140625
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-1.0-groups0-1-response_mean]",
+    "precision": "bf16",
+    "qualified": false,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.6862614154815674,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.009864240421905476,
+          0.009649793197001405
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03420407325029373,
+          0.034175850450992584,
+          0.034195467829704285
+        ],
+        "delta_max_errors": [
+          0.0015869140625,
+          0.00177001953125
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.670647919178009,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.01045921738268897,
+          0.027068462201497306
+        ],
+        "gradient_pass": [
+          true,
+          false
+        ],
+        "delta_norms": [
+          0.027829796075820923,
+          0.02784055285155773,
+          0.027962585911154747
+        ],
+        "delta_max_errors": [
+          0.0003662109375,
+          0.0008544921875
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-1.0-groups1-2-token_mean]",
+    "precision": "bf16",
+    "qualified": false,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.49196338653564453,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.010440703782111841,
+          0.00960755263464587
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03421701863408089,
+          0.03421255201101303,
+          0.0342244915664196
+        ],
+        "delta_max_errors": [
+          0.00164794921875,
+          0.00177001953125
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.47794342041015625,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.00927342393122796,
+          0.01237356850174976
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.026263060048222542,
+          0.0263061486184597,
+          0.02626696601510048
+        ],
+        "delta_max_errors": [
+          0.000244140625,
+          0.000244140625
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-1.0-groups1-2-response_mean]",
+    "precision": "bf16",
+    "qualified": false,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.6862614154815674,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.010776152313167474,
+          0.009813909706572494
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03420407325029373,
+          0.03419328108429909,
+          0.034195467829704285
+        ],
+        "delta_max_errors": [
+          0.0015869140625,
+          0.00177001953125
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.670647919178009,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.012897224572434645,
+          0.027288047820704132
+        ],
+        "gradient_pass": [
+          true,
+          false
+        ],
+        "delta_norms": [
+          0.027829796075820923,
+          0.027843141928315163,
+          0.02796855755150318
+        ],
+        "delta_max_errors": [
+          0.000244140625,
+          0.0008544921875
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-1.0-groups2-3-token_mean]",
+    "precision": "bf16",
+    "qualified": false,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.49196338653564453,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.010204297118261223,
+          0.009312072557154102
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03421701863408089,
+          0.03420994430780411,
+          0.03421537205576897
+        ],
+        "delta_max_errors": [
+          0.00164794921875,
+          0.00177001953125
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.47794342041015625,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.01009760620915072,
+          0.010962250242513329
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.026263060048222542,
+          0.026280291378498077,
+          0.026282839477062225
+        ],
+        "delta_max_errors": [
+          0.000244140625,
+          0.000244140625
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-1.0-groups2-3-response_mean]",
+    "precision": "bf16",
+    "qualified": false,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.6862614154815674,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.010301298913383591,
+          0.009335192356961805
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03420407325029373,
+          0.03418135643005371,
+          0.034194860607385635
+        ],
+        "delta_max_errors": [
+          0.0015869140625,
+          0.00177001953125
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.670647919178009,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.012433649481145776,
+          0.02734618290496837
+        ],
+        "gradient_pass": [
+          true,
+          false
+        ],
+        "delta_norms": [
+          0.027829796075820923,
+          0.02783166617155075,
+          0.027930358424782753
+        ],
+        "delta_max_errors": [
+          0.000244140625,
+          0.0008544921875
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-8.0-groups0-1-token_mean]",
+    "precision": "bf16",
+    "qualified": false,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.49196338653564453,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.010438050208960251,
+          0.009510744440367234
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03421701863408089,
+          0.03421306982636452,
+          0.03422493487596512
+        ],
+        "delta_max_errors": [
+          0.001708984375,
+          0.00177001953125
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.47794342041015625,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.01075195409363386,
+          0.012365501616408644
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.026263060048222542,
+          0.026299094781279564,
+          0.026264196261763573
+        ],
+        "delta_max_errors": [
+          0.000244140625,
+          0.000244140625
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-8.0-groups0-1-response_mean]",
+    "precision": "bf16",
+    "qualified": false,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.6862614154815674,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.009864240421905476,
+          0.009649793197001405
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03420407325029373,
+          0.034175850450992584,
+          0.034195467829704285
+        ],
+        "delta_max_errors": [
+          0.0015869140625,
+          0.00177001953125
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.670647919178009,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.01045921738268897,
+          0.027068462201497306
+        ],
+        "gradient_pass": [
+          true,
+          false
+        ],
+        "delta_norms": [
+          0.027829796075820923,
+          0.02784055285155773,
+          0.027962585911154747
+        ],
+        "delta_max_errors": [
+          0.0003662109375,
+          0.0008544921875
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-8.0-groups1-2-token_mean]",
+    "precision": "bf16",
+    "qualified": false,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.49196338653564453,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.010440703782111841,
+          0.00960755263464587
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03421701863408089,
+          0.03421255201101303,
+          0.0342244915664196
+        ],
+        "delta_max_errors": [
+          0.00164794921875,
+          0.00177001953125
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.47794342041015625,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.00927342393122796,
+          0.01237356850174976
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.026263060048222542,
+          0.0263061486184597,
+          0.02626696601510048
+        ],
+        "delta_max_errors": [
+          0.000244140625,
+          0.000244140625
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-8.0-groups1-2-response_mean]",
+    "precision": "bf16",
+    "qualified": false,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.6862614154815674,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.010776152313167474,
+          0.009813909706572494
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03420407325029373,
+          0.03419328108429909,
+          0.034195467829704285
+        ],
+        "delta_max_errors": [
+          0.0015869140625,
+          0.00177001953125
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.670647919178009,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.012897224572434645,
+          0.027288047820704132
+        ],
+        "gradient_pass": [
+          true,
+          false
+        ],
+        "delta_norms": [
+          0.027829796075820923,
+          0.027843141928315163,
+          0.02796855755150318
+        ],
+        "delta_max_errors": [
+          0.000244140625,
+          0.0008544921875
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-8.0-groups2-3-token_mean]",
+    "precision": "bf16",
+    "qualified": false,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.49196338653564453,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.010204297118261223,
+          0.009312072557154102
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03421701863408089,
+          0.03420994430780411,
+          0.03421537205576897
+        ],
+        "delta_max_errors": [
+          0.00164794921875,
+          0.00177001953125
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.47794342041015625,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.01009760620915072,
+          0.010962250242513329
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.026263060048222542,
+          0.026280291378498077,
+          0.026282839477062225
+        ],
+        "delta_max_errors": [
+          0.000244140625,
+          0.000244140625
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      }
+    ]
+  },
+  {
+    "case": "test_two_adam_updates_match_dense_and_mcore_scaling[dtype1-8.0-groups2-3-response_mean]",
+    "precision": "bf16",
+    "qualified": false,
+    "updates": [
+      {
+        "update": 0,
+        "loss": 0.6862614154815674,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.010301298913383591,
+          0.009335192356961805
+        ],
+        "gradient_pass": [
+          true,
+          true
+        ],
+        "delta_norms": [
+          0.03420407325029373,
+          0.03418135643005371,
+          0.034194860607385635
+        ],
+        "delta_max_errors": [
+          0.0015869140625,
+          0.00177001953125
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      },
+      {
+        "update": 1,
+        "loss": 0.670647919178009,
+        "loss_pass": [
+          true,
+          true,
+          true
+        ],
+        "gradient_relative_l2": [
+          0.012433649481145776,
+          0.02734618290496837
+        ],
+        "gradient_pass": [
+          true,
+          false
+        ],
+        "delta_norms": [
+          0.027829796075820923,
+          0.02783166617155075,
+          0.027930358424782753
+        ],
+        "delta_max_errors": [
+          0.000244140625,
+          0.0008544921875
+        ],
+        "delta_pass": [
+          false,
+          false
+        ]
+      }
+    ]
+  }
+]

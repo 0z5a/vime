@@ -140,6 +140,7 @@ class PrefixReplay:
         *,
         identity: PrefixIdentity,
         batch_suffixes: bool = False,
+        grad_scale_func: Callable[[torch.Tensor], torch.Tensor] | None = None,
     ) -> torch.Tensor:
         """Run B/C with caller-supplied logical loss weights; optimizer follows C."""
         indices = [index for group in microbatches for index in group]
@@ -153,7 +154,9 @@ class PrefixReplay:
                 else torch.cat([self.scores(responses[index], identity=identity) for index in group])
             )
             loss = objective(scores, group)
-            loss.backward()
+            backward_loss = loss if grad_scale_func is None else grad_scale_func(loss)
+            backward_loss.backward()
             total = total + loss.detach()
+        # Boundary adjoints already carry the optimizer scale from each suffix.
         self.backward_prefix(identity=identity)
         return total
