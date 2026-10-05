@@ -1,0 +1,22 @@
+{
+  "source_sha256": {
+    "vime_plugins/looped/prefix.py": "421ed872f3febb19447a02667be79246b27dfce87b14fa4ce218d5ce1dd5ce80",
+    "vime_plugins/ouro/model.py": "39b9ab53d7d2efc16eec11db723ad9981a2892021c3506d44a52de58b507dce3",
+    "vime_plugins/huginn/model.py": "f0c063a4ac9fe6095c57330c1b35a22780c3469508dc45eacc7d34a48963015c",
+    "vime_plugins/nanbeige/model.py": "1e8dbc94e8a133cc89bc20e9e3a49c669f61ee4cd53447098803207dadb95fd2",
+    "tests/plugins/test_prefix_actor_binding.py": "1f208d19a1ce9e608540630ea8ef4c789db250f9a2b53a912662ca646732647e",
+    "tests/plugins/test_differentiable_prefix.py": "a9949fa40173fe5eb091fec5cdd9331f191045fb9e6e9f9a76fc46ce78694f18",
+    "tests/plugins/test_prefix_provider_entry.py": "2b698d0a667b389f4455fddbf102aa2f28bd9ef9388bc3318316d0628fd8753a",
+    "tests/plugins/test_looped_logical_step.py": "06ee85a79acefc4da0d7313a39d20f88879f817bd429e26c070a41c7224a6f87",
+    "docs/prefix_actor_binding.md": "36b58f7fdef3b3d4cfdcf6c1928c6e0095f73a15ccfe5c366d1b0f52ed7a1707"
+  },
+  "artifact_sha256": {
+    "prefix-binding-after.log": "8ce3685a0b21e58e765ffaaac765c374bc3f12e071f25d0bce4a5a2a8109b15d",
+    "prefix-binding-after.xml": "0c70a967cb5d1bfeb28520a41397bcba8ba3d890637c9083a8d99adce8c0eb30",
+    "prefix-binding-before-retry.log": "1aa2ae1947cc451d87bc17e2803eac966feebfd4ce2218aeb54dcf661f4694dd",
+    "prefix-binding-before-retry.xml": "bebe25d49449f26f9461a7ffa2d66cb4620f67c0d2edc920a7b9b0564d01eacd",
+    "prefix-binding-before.log": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "resident_pytest.py": "2af5ce445da14f656c71e8d4817dcf85cd57402a77f50f612898c47f52f4d4f4",
+    "validation.json": "5ccb5216039744e9afe4de66e464baf09e3ffa0b0e302690ceef37d918633c56"
+  }
+}

@@ -194,7 +194,14 @@ class HuginnMegatronModel(MegatronModule):
                 cursor += 1
 
         return PrefixProgram(
-            tuple(boundaries), depth, suffix, tuple(tokens.tolist()), latent_seed, HUGINN_LATENT_PROFILE
+            tuple(boundaries),
+            depth,
+            suffix,
+            tuple(tokens.tolist()),
+            self,
+            self.lm_head.weight,
+            latent_seed,
+            HUGINN_LATENT_PROFILE,
         )
 
     def recurrent_program(

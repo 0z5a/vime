@@ -5,7 +5,7 @@ per-loop response supervision, with optional packed suffix projections.
 """
 
 from collections.abc import Callable, Iterator
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 import torch
 
@@ -13,6 +13,11 @@ from .readout import streamed_readout
 from .packing import SuffixLayout
 
 SuffixReplay = Callable[[torch.Tensor, tuple[torch.Tensor, ...], SuffixLayout | None], Iterator[torch.Tensor]]
+ParameterVersions = tuple[tuple[int, int, torch.dtype, torch.device, bool], ...]
+
+
+def parameter_versions(actor: torch.nn.Module) -> ParameterVersions:
+    return tuple((id(p), p._version, p.dtype, p.device, p.requires_grad) for p in actor.parameters())
 
 
 @dataclass(frozen=True)
@@ -21,8 +26,14 @@ class PrefixProgram:
     depth: int
     suffix: SuffixReplay
     prompt_tokens: tuple[int, ...]
+    actor: torch.nn.Module = field(repr=False)
+    readout_weight: torch.Tensor = field(repr=False)
     latent_seed: int | None = None
     latent_profile: str | None = None
+    versions: ParameterVersions = field(init=False, repr=False)
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "versions", parameter_versions(self.actor))
 
 
 @dataclass(frozen=True)
@@ -63,8 +74,13 @@ class PrefixReplay:
             or program.latent_profile != identity.latent_profile
         ):
             raise ValueError("prefix identity requires the current nonempty prompt and fixed depth")
+        if (
+            program.actor is not actor
+            or program.readout_weight is not weight
+            or program.versions != parameter_versions(actor)
+        ):
+            raise RuntimeError("prefix actor binding changed before replay creation")
         self.program, self.identity, self.actor = program, identity, actor
-        self.versions = self._parameter_versions()
         self.leaves = tuple(value.detach().requires_grad_(value.requires_grad) for value in program.boundaries)
         self.weight, self.vocab_tile, self.temperature = weight, vocab_tile, temperature
         self.all_loops, self.entropy, self.closed = all_loops, entropy, False
@@ -72,11 +88,8 @@ class PrefixReplay:
     def _check(self, identity: PrefixIdentity) -> None:
         if self.closed or identity != self.identity:
             raise ValueError("prefix replay is closed or belongs to a different policy/prompt/depth")
-        if self.versions != self._parameter_versions():
+        if self.program.versions != parameter_versions(self.actor):
             raise RuntimeError("actor parameters changed before logical prefix backward")
-
-    def _parameter_versions(self) -> tuple[tuple[int, int, torch.dtype, torch.device], ...]:
-        return tuple((id(p), p._version, p.dtype, p.device) for p in self.actor.parameters())
 
     def scores(self, response: torch.Tensor, *, identity: PrefixIdentity) -> torch.Tensor:
         self._check(identity)

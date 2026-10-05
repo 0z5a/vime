@@ -202,7 +202,7 @@ class OuroMegatronModel(MegatronModule):
                     hidden = self._loop_output(hidden)
                 yield prefix_readout(boundary[base + 2 * layers], hidden, layout)
 
-        return PrefixProgram(tuple(boundaries), depth, suffix, tuple(tokens.tolist()))
+        return PrefixProgram(tuple(boundaries), depth, suffix, tuple(tokens.tolist()), self, self.lm_head.weight)
 
     def _traced_sequence(self, tokens: torch.Tensor, depths: torch.Tensor) -> torch.Tensor:
         """Replay LAST_EXITED: skipped deeper KV planes reuse the last computed KV."""

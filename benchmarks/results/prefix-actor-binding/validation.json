@@ -1,0 +1,59 @@
+{
+  "parent_commit": "78c21cfbab77ffee63bef3658bda7fe3e466a6ee",
+  "scope": "Tiny CPU actual PyTorch prefix construction/restores/backward; no Ray, CUDA, official model, snapshot IO or performance qualification",
+  "first_baseline_attempt": {
+    "session": 60163,
+    "exit_code": 1,
+    "log_bytes": 1,
+    "junit_created": false,
+    "reason": "no diagnostic was emitted; excluded from numeric evidence"
+  },
+  "negative_baseline": {
+    "session": 69207,
+    "exit_code": 1,
+    "failed": 12,
+    "seconds": 40.04,
+    "reason": "all twelve invalid actor bindings accepted by parent"
+  },
+  "final": {
+    "session": 99895,
+    "exit_code": 0,
+    "passed": 141,
+    "strict_existing_bf16_xfailed": 12,
+    "seconds": 152.36,
+    "warnings": 152
+  },
+  "cases": [
+    "different actor object",
+    "reference state restore before replay",
+    "restore round trip before replay",
+    "reference readout weight"
+  ],
+  "model_families": [
+    "ouro",
+    "nanbeige",
+    "huginn"
+  ],
+  "gate": "Original full-gradient/nonzero-update gates unchanged; no BF16 qualification",
+  "actual_gpu_learner": "NOT_RUN",
+  "speedup": "NOT_MEASURED",
+  "reward_convergence": "NOT_ESTABLISHED",
+  "prefix-binding-before-retry.xml": [
+    {
+      "errors": "0",
+      "failures": "12",
+      "skipped": "0",
+      "tests": "12",
+      "time": "40.007"
+    }
+  ],
+  "prefix-binding-after.xml": [
+    {
+      "errors": "0",
+      "failures": "0",
+      "skipped": "12",
+      "tests": "153",
+      "time": "151.570"
+    }
+  ]
+}
