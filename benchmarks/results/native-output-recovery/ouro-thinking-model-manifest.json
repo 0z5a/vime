@@ -1,0 +1,49 @@
+{
+  "repo": "ByteDance/Ouro-1.4B-Thinking",
+  "revision": "3aaa2224253a92ca45cf2e3d427c360e1ef9c93d",
+  "files": [
+    {
+      "path": "config.json",
+      "bytes": 1471,
+      "sha256": "44e42ec2ed97f49f20f87985688b6e1be9dd61bbfe9f8a349daac192126e2c55"
+    },
+    {
+      "path": "merges.txt",
+      "bytes": 466391,
+      "sha256": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510"
+    },
+    {
+      "path": "model.safetensors",
+      "bytes": 2869336434,
+      "sha256": "6730581fd366f6d1689728c61637520228385cdfc17c0b24f19aa840b00565fb"
+    },
+    {
+      "path": "special_tokens_map.json",
+      "bytes": 965,
+      "sha256": "688ac94df221b18a4d2d4579dfa3c4f0fd5ca3e394da46cd0a317fb5d57d4685"
+    },
+    {
+      "path": "tokenizer.json",
+      "bytes": 3522644,
+      "sha256": "fcb808fe5e7642f5299be28aea07fc7f6d4f4364c3ac5e408e15a772cbc8fa8d"
+    },
+    {
+      "path": "tokenizer_config.json",
+      "bytes": 4392,
+      "sha256": "e41eafc6bf7269d6f90f2531124949073a57965f5f0765238a744c1c528e2448"
+    },
+    {
+      "path": "vocab.json",
+      "bytes": 800656,
+      "sha256": "7b9de3f47796abf8d00ab96be299fea0dc9afdf1827f34e7e0b9fb44593efe5c"
+    }
+  ],
+  "source": "official immutable metadata and official CDN",
+  "task_owned_root": "/root/autodl-tmp/0z5a/flashrlt-20261005/models/ouro-1.4b-thinking",
+  "independent_hash_completed_utc": "2026-10-04T20:59:49Z",
+  "stage_exit_code": 0,
+  "large_weight_inode": "2304:2159281731",
+  "source_reader_released": true,
+  "cleanup_eligible": false,
+  "cleanup_reason": "Required experiments remain unfinished; own read-only hardlinks retained"
+}

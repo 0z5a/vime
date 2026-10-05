@@ -1,0 +1,82 @@
+{
+  "parent": "11efa7420172bcf348b28c32bbcd88cae482f94a",
+  "cpu_component_rlt_head": "334f243e1b7b374682e138b641ce9cb8236a9157",
+  "official_qualification_rlt_pin": "fd993ec5512904b68e16f4d541682c076c487b5d",
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "245",
+    "time": "33.845",
+    "timestamp": "2026-10-05T15:19:16.497705+08:00",
+    "hostname": "192.168.10.10"
+  },
+  "new_output_audit_cases": 20,
+  "expanded_existing_model_cases": 3,
+  "other_existing_cases": 222,
+  "paired_tiny_cpu_outputs": [
+    {
+      "case": "test_evaluation_preserves_updates_and_fresh_resume[ouro]",
+      "samples": 8,
+      "max_score_error": 0.0
+    },
+    {
+      "case": "test_evaluation_preserves_updates_and_fresh_resume[nanbeige]",
+      "samples": 8,
+      "max_score_error": 0.0
+    },
+    {
+      "case": "test_evaluation_preserves_updates_and_fresh_resume[huginn_raven]",
+      "samples": 8,
+      "max_score_error": 0.0
+    }
+  ],
+  "answer_replay_controls": 40,
+  "natural_exit": {
+    "29315": 0,
+    "90984": 0,
+    "18693": 0,
+    "22020": 0,
+    "22814": 0
+  },
+  "scope": "CPU controls; actual tiny sampling/Adam with fresh objects in one process; synthetic Ray/process records; no official model generation",
+  "actual_ray_cuda_e2e": "NOT_RUN",
+  "reward_convergence": "NOT_ESTABLISHED",
+  "existing_python": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/bin/python",
+  "test_environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "FROZENLIST_NO_EXTENSIONS": "1",
+    "MULTIDICT_NO_EXTENSIONS": "1",
+    "AIOHTTP_NO_EXTENSIONS": "1",
+    "YARL_NO_EXTENSIONS": "1",
+    "OMP_NUM_THREADS": "1",
+    "PYTHONPATH": ".:../rlt:tests/plugins:/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron"
+  },
+  "test_files": [
+    "tests/plugins/test_native_heldout_training.py",
+    "tests/rollout_backends/test_native_colocation.py",
+    "tests/rollout_backends/test_native_rlt_contract.py",
+    "tests/rollout_backends/test_native_rlt_evaluation.py",
+    "tests/test_looped_grpo_recipe.py",
+    "tests/test_native_checkpoint_audit.py",
+    "tests/test_native_eval_schedule.py",
+    "tests/test_native_learning_signal_audit.py",
+    "tests/test_native_output_audit.py",
+    "tests/test_native_qualification_recipe.py",
+    "tests/test_native_runtime_audit.py",
+    "tests/test_native_runtime_identity.py",
+    "tests/test_native_runtime_mcore.py"
+  ],
+  "pytest_options": [
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--tb=short",
+    "-o",
+    "junit_family=legacy"
+  ],
+  "harness": "../bench/resident_pytest.py",
+  "environment_mutation": false,
+  "process_signals": false
+}

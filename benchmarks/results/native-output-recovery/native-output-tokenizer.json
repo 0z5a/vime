@@ -1,0 +1,300 @@
+{
+  "scope": "answer-replay controls from known labels with invented scores; no model generation or training",
+  "qualification_sha256": "d7bf3edcd0a05ee25b93bf7abaf1f739a4f8da4a769ac5fc00cf87a423e67f9c",
+  "eos_token_id": 2,
+  "tokenizer_class": "GPT2TokenizerFast",
+  "trust_remote_code": false,
+  "local_files_only": true,
+  "rows": [
+    {
+      "split": "train",
+      "id": "number_theory/train/483",
+      "expected_reward": 1,
+      "response_tokens": 7,
+      "token_sha256": "fc1f7be12dbfa224a035deacb237385eaa186254f1bb5c0ec09d88b16c040fda"
+    },
+    {
+      "split": "train",
+      "id": "number_theory/train/483",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "train",
+      "id": "prealgebra/train/799",
+      "expected_reward": 1,
+      "response_tokens": 8,
+      "token_sha256": "f6685e2e3e68191bf764c6522e00cbbb3c4a0418273b0849026cbf249914abb6"
+    },
+    {
+      "split": "train",
+      "id": "prealgebra/train/799",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "train",
+      "id": "geometry/train/445",
+      "expected_reward": 1,
+      "response_tokens": 9,
+      "token_sha256": "095e4e4bd915611b027de271873d6290329f8bf905f2df91e996ea6403ad27ad"
+    },
+    {
+      "split": "train",
+      "id": "geometry/train/445",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "train",
+      "id": "algebra/train/1647",
+      "expected_reward": 1,
+      "response_tokens": 9,
+      "token_sha256": "7cf3be7279e406330d89d2f9fe549bff02019fb3bb5c15646d836b4f06ae2e41"
+    },
+    {
+      "split": "train",
+      "id": "algebra/train/1647",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "train",
+      "id": "prealgebra/train/161",
+      "expected_reward": 1,
+      "response_tokens": 8,
+      "token_sha256": "fa315fb7666d9cb89a5bbfb70b23326f9b9709281d35cf44749156c70b39319a"
+    },
+    {
+      "split": "train",
+      "id": "prealgebra/train/161",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "train",
+      "id": "precalculus/train/467",
+      "expected_reward": 1,
+      "response_tokens": 17,
+      "token_sha256": "2549be62b1653f6ac90e1c0342a29db92860aeb858eb6b5dc5b3dc582165f0cc"
+    },
+    {
+      "split": "train",
+      "id": "precalculus/train/467",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "train",
+      "id": "algebra/train/963",
+      "expected_reward": 1,
+      "response_tokens": 11,
+      "token_sha256": "24ab47bd34a444b3d3a2aab5f325ee0eccde32e0ab679f07ccf0412981f6b665"
+    },
+    {
+      "split": "train",
+      "id": "algebra/train/963",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "train",
+      "id": "algebra/train/1201",
+      "expected_reward": 1,
+      "response_tokens": 8,
+      "token_sha256": "29555376478bc957b03657f950165fc0bbf29cd570d498a735e9fa70185e6f21"
+    },
+    {
+      "split": "train",
+      "id": "algebra/train/1201",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "train",
+      "id": "geometry/train/264",
+      "expected_reward": 1,
+      "response_tokens": 8,
+      "token_sha256": "b0f6ebc703631ae26a44d7e5a44e1ea79edd2d61067318fcc82ce66b186a1154"
+    },
+    {
+      "split": "train",
+      "id": "geometry/train/264",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "train",
+      "id": "geometry/train/682",
+      "expected_reward": 1,
+      "response_tokens": 7,
+      "token_sha256": "4f1aec4a17fc68722817f90a976ab9394ae6921953a978df7447444109f7c49c"
+    },
+    {
+      "split": "train",
+      "id": "geometry/train/682",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "train",
+      "id": "prealgebra/train/304",
+      "expected_reward": 1,
+      "response_tokens": 9,
+      "token_sha256": "84cdf72152c7a477452a56afb50422429510a9f3fa9c89422c9f003262662c55"
+    },
+    {
+      "split": "train",
+      "id": "prealgebra/train/304",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "train",
+      "id": "geometry/train/496",
+      "expected_reward": 1,
+      "response_tokens": 9,
+      "token_sha256": "109b0ae07355941d124dcdc04519aaae711021b08c1cbdaa7e9659fda9978467"
+    },
+    {
+      "split": "train",
+      "id": "geometry/train/496",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "development",
+      "id": "precalculus/test/309",
+      "expected_reward": 1,
+      "response_tokens": 11,
+      "token_sha256": "2bf959d161f53afd06216fd96013e723b8121129c3b88d40748b9824637ed1f6"
+    },
+    {
+      "split": "development",
+      "id": "precalculus/test/309",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "development",
+      "id": "algebra/test/348",
+      "expected_reward": 1,
+      "response_tokens": 7,
+      "token_sha256": "3f39f147dc7f937eda7abcc49449cb2fdaadfd511e12a38b0f17dd32e4dbcbc3"
+    },
+    {
+      "split": "development",
+      "id": "algebra/test/348",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "development",
+      "id": "precalculus/test/72",
+      "expected_reward": 1,
+      "response_tokens": 13,
+      "token_sha256": "5b93508ebc8426814ba885a3731c087995b3d66a7afea226a119870416d4b5c3"
+    },
+    {
+      "split": "development",
+      "id": "precalculus/test/72",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "development",
+      "id": "intermediate_algebra/test/267",
+      "expected_reward": 1,
+      "response_tokens": 13,
+      "token_sha256": "bc42ed00afc072fa9957397815f2c935e7bab86131ac675ee554da6444c8bdbd"
+    },
+    {
+      "split": "development",
+      "id": "intermediate_algebra/test/267",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "development",
+      "id": "intermediate_algebra/test/285",
+      "expected_reward": 1,
+      "response_tokens": 11,
+      "token_sha256": "9a78c195a1a46e853ffb6106c66ec595bdc0a1dd799372af509699f3df40295d"
+    },
+    {
+      "split": "development",
+      "id": "intermediate_algebra/test/285",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "development",
+      "id": "geometry/test/284",
+      "expected_reward": 1,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "development",
+      "id": "geometry/test/284",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "7acedb2271a5fef175b49f5e86e0546ba44fcbe6dfef254139e2d58f80413e15"
+    },
+    {
+      "split": "development",
+      "id": "prealgebra/test/822",
+      "expected_reward": 1,
+      "response_tokens": 11,
+      "token_sha256": "286ce91e738b4aacb334049b5cd9cc221a374a1865f120b31561f031843e12f3"
+    },
+    {
+      "split": "development",
+      "id": "prealgebra/test/822",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    },
+    {
+      "split": "development",
+      "id": "prealgebra/test/748",
+      "expected_reward": 1,
+      "response_tokens": 9,
+      "token_sha256": "d766509ed8a47817b152b1b1a9558a9b8dac03859e17be0a35adb58a96fa0ebf"
+    },
+    {
+      "split": "development",
+      "id": "prealgebra/test/748",
+      "expected_reward": 0,
+      "response_tokens": 7,
+      "token_sha256": "b8a5f65f453b6c99b4ef479445e04bf0a0ac07bb33561e9f193e88b62864fcd3"
+    }
+  ],
+  "cuda_initialized": false,
+  "model_generation": "NOT_RUN",
+  "source_sha256": "e55d2fa5f89a45d7afdb8fa22724f33f4fb70396830e4584957bcffbcb6fb598",
+  "tokenizer_sha256": {
+    "tokenizer.json": "fcb808fe5e7642f5299be28aea07fc7f6d4f4364c3ac5e408e15a772cbc8fa8d",
+    "tokenizer_config.json": "e41eafc6bf7269d6f90f2531124949073a57965f5f0765238a744c1c528e2448",
+    "special_tokens_map.json": "688ac94df221b18a4d2d4579dfa3c4f0fd5ca3e394da46cd0a317fb5d57d4685",
+    "vocab.json": "7b9de3f47796abf8d00ab96be299fea0dc9afdf1827f34e7e0b9fb44593efe5c",
+    "merges.txt": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510"
+  }
+}
