@@ -96,6 +96,8 @@ def test_actual_recipe_receives_optimizer_data_eval_and_resume(tmp_path, monkeyp
     assert "--apply-chat-template" in actual and "--recurrent-fp32" in actual
     assert "--colocate" in actual and "--no-offload-train" in actual and "--no-offload-rollout" in actual
     assert last("rlt-start-version") == ("2" if phase == "resume" else "0")
+    run = output / algorithm / ("continuous" if phase == "continuous" else "resumed")
+    assert last("rlt-runtime-report-dir") == str(run / "runtime" / phase)
     if phase == "split":
         assert last("stop-after-rollout") == "2"
     else:

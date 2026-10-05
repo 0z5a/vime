@@ -45,6 +45,10 @@ class NativeEngine:
             cache_config=CacheConfig(num_blocks=args.rlt_kv_blocks),
             scheduler_config=SchedulerConfig(max_num_seqs=args.rlt_max_num_seqs),
         )
+        if args.rlt_runtime_report_dir is not None:
+            from vime.observability.native_runtime import record_rollout
+
+            record_rollout(args, self.llm.engine.model, self.epoch)
 
     def generate(self, samples: list[Sample], rollout_id: int) -> list[Sample]:
         from vllm_rlt import SamplingParams

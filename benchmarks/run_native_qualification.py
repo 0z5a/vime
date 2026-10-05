@@ -58,6 +58,7 @@ def command(packet: Path, model: Path, output: Path, address: str, algorithm: st
         "eval-max-response-len": profile["response_limit"],
         "eval-max-context-len": profile["prompt_limit"] + profile["response_limit"],
         "dump-details": run / "details",
+        "rlt-runtime-report-dir": run / "runtime" / phase,
         "ci-save-grad-norm": run / "grad-{role}-{rollout_id}-{step_id}.pt",
     }
     if algorithm == "rltt":

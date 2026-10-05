@@ -1,0 +1,17 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/0z5a/Documents/infra/flashrlt-20261005/vime
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 3 items
+
+tests/test_native_runtime_mcore.py ...                                   [100%]
+
+- generated xml file: /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/native-runtime-mcore.xml -
+============================== slowest durations ===============================
+0.01s call     tests/test_native_runtime_mcore.py::test_learner_capture_preserves_mcore_defaults_and_loaded_iteration[none]
+
+(8 durations < 0.005s hidden.  Use -vv to show these durations.)
+============================== 3 passed in 6.71s ===============================

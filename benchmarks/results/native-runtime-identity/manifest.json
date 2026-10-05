@@ -1,0 +1,29 @@
+{
+  "source_sha256": {
+    "benchmarks/audit_native_runtime.py": "b676295b99a7489d7d80810186e5b414bbeb36a3258d073fd696cc92dad40e50",
+    "benchmarks/run_native_qualification.py": "24117344de31f357e17ad15ec1c69832b9f33b25526b167bd9cf4a64ccb856a4",
+    "vime/observability/native_runtime.py": "5d64fc2f8a98b5f835dfb557d1b4917dd9484f98c5013926c1c104b1b588665e",
+    "vime/backends/megatron_utils/model.py": "793b0d7f0cc1c158212de6480880b664860b2706b325b190b3796fbbe8134d54",
+    "vime/backends/vllm_rlt_utils/arguments.py": "330b0680b4b5c75bf083e2fd13e620ce56a61683cdee64d6adc71728650436a6",
+    "vime/backends/vllm_rlt_utils/engine.py": "d685ce50987059e46616921c8b02b20a5d78835f8707eb85b8ae6094f668fac0",
+    "tests/test_native_runtime_identity.py": "02d7eae997d4275df24b1763ceba44e7c1cba4bf381c268985a14eaa95c76a1e",
+    "tests/test_native_runtime_audit.py": "583de0496f5b3424c617dd7238f7c1500da68a4864fa400d9548ac207a0da15f",
+    "tests/test_native_runtime_mcore.py": "874c730a8d6ad7149cf604a0b5e9164e33df09babfb9ba9241dc7c07d458c197",
+    "tests/test_native_qualification_recipe.py": "e8fe2ee8ebe22d1d3b08bf850686b1ad5235cf4503960eaae1b6cef600dc3a76",
+    "docs/native_runtime_identity.md": "f8f62e9473c713a0ed12574c7e70513195d87c6e9cc96cac46e491d1b10dfa7a"
+  },
+  "artifact_sha256": {
+    "native-runtime-audit-initial.log": "a743059158da149ee140349c4b78310d0753ec0d44dba2fb8c71a40c5ff35201",
+    "native-runtime-audit-initial.xml": "cda13cfca49d910d3120e7f6b2b4a8d26379a7cf4abec7632bd067d227dfc822",
+    "native-runtime-final.log": "497f8376afabe0a10806cfce2bcb038a2a0c59a01b3382f2695c57961c1deeef",
+    "native-runtime-final.xml": "77cc18ffc9aa012e90c66dd2575976e68ced2e43290e2949e01bbd14a2378af1",
+    "native-runtime-initial.log": "ccf8d870dcc15b69912b3df06ef3976e202428a6f68b688aa4c422cb5058e2ca",
+    "native-runtime-initial.xml": "7780ae87177a472545b289e93d73eebeebddcbc2ac66fc83c96e5ef979b50968",
+    "native-runtime-mcore-import.log": "e3b6d2af0e9d3398df4606b6253c456b084761435af44d232bed8e17f5d5f1ba",
+    "native-runtime-mcore.log": "788eaf684d0728652b68a7eee8b4390c9af2869afc53903a45c77a46c2b23154",
+    "native-runtime-mcore.xml": "8a314668294fb5e4a37a6cda18fcfffeaa424d383a81de1393a0a0d67de8b8f6",
+    "probe_native_runtime_import.py": "cdf377a392c489050c4486108b81d562bb15ff5703cb0652b75f98d4b7f40a79",
+    "resident_pytest.py": "2af5ce445da14f656c71e8d4817dcf85cd57402a77f50f612898c47f52f4d4f4",
+    "validation.json": "468d16ab3e40072906ef461d751662737412f37f9cb1db1f08ee46364a965398"
+  }
+}

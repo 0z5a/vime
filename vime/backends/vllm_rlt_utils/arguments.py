@@ -12,6 +12,9 @@ def add_arguments(parser):
     group.add_argument("--rlt-attention-backend", choices=("torch", "triton"), default="triton")
     group.add_argument("--rlt-cuda-graphs", action="store_true")
     group.add_argument(
+        "--rlt-runtime-report-dir", help="Write native Ray worker/source/optimizer identities at startup"
+    )
+    group.add_argument(
         "--rlt-start-version", type=int, default=0, help="Last published policy version before a fresh resume"
     )
     group.add_argument("--rlt-model-revision", required=True)
