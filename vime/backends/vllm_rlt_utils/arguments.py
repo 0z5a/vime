@@ -44,8 +44,13 @@ def validate_args(args):
         raise ValueError("RLT's starting policy version must be nonnegative")
     if args.rollout_num_gpus != 1 or args.rollout_num_gpus_per_engine != 1:
         raise ValueError("Native RLT currently uses one rollout GPU and one engine")
-    if args.colocate or args.offload_rollout or args.release_train or args.use_fault_tolerance:
-        raise ValueError("Native RLT requires dedicated rollout resources without offload or recovery")
+    if args.offload_rollout or args.release_train or args.use_fault_tolerance:
+        raise ValueError("Native RLT keeps rollout resident without offload, release-train or recovery")
+    if args.colocate:
+        if args.actor_num_nodes != 1 or args.actor_num_gpus_per_node != 1:
+            raise ValueError("Native resident colocation requires one learner and one physical GPU")
+        if args.offload_train or args.use_critic:
+            raise ValueError("Native resident colocation requires no training offload and no critic")
     if args.rollout_external or args.use_opd or args.use_rollout_routing_replay or args.check_weight_update_equal:
         raise ValueError("Native RLT does not expose external HTTP, OPD, MoE replay or weight-check RPCs")
     if args.update_weight_mode != "full" or args.update_weight_transport != "disk":

@@ -1,0 +1,47 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/0z5a/Documents/infra/flashrlt-20261005/vime
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 153 items
+
+tests/rollout_backends/test_native_colocation.py .........F..            [  7%]
+tests/test_looped_grpo_recipe.py ....................................... [ 33%]
+........................................................................ [ 80%]
+..........                                                               [ 86%]
+tests/rollout_backends/test_native_eval_arguments.py ..                  [ 88%]
+tests/test_placement_group.py .............                              [ 96%]
+tests/test_native_eval_schedule.py .....                                 [100%]
+
+=================================== FAILURES ===================================
+_____ test_native_deployment_and_learner_fit_the_actual_bundle[True-False] _____
+tests/rollout_backends/test_native_colocation.py:120: in test_native_deployment_and_learner_fit_the_actual_bundle
+    assert placement_group._get_placement_group_layout(args) == (1, 0)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vime/ray/placement_group.py:109: in _get_placement_group_layout
+    if args.rollout_external:
+       ^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'Namespace' object has no attribute 'rollout_external'
+- generated xml file: /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/native-colocate-first.xml -
+============================== slowest durations ===============================
+5.02s call     tests/rollout_backends/test_native_eval_arguments.py::test_eval_sampling_is_separate_from_training_validation[1.0]
+0.06s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[False-None-ppo-False-ouro]
+0.01s call     tests/test_native_eval_schedule.py::test_completed_update_indices_preserve_initial_and_resumed_eval[vllm-rlt-0-3-expected0]
+0.01s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[True-3-grpo-False-huginn_raven]
+0.01s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[True-3-grpo-True-huginn_raven]
+0.01s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[True-None-rltt-True-ouro]
+0.01s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[False-3-flow-dppo-True-nanbeige]
+0.01s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[True-3-rltt-True-nanbeige]
+0.01s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[True-3-grpo-True-ouro]
+0.01s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[True-3-grpo-False-nanbeige]
+0.01s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[False-3-flow-dppo-True-ouro]
+0.01s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[True-3-rltt-True-huginn_raven]
+0.01s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[True-3-grpo-False-ouro]
+0.01s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[False-3-ppo-True-nanbeige]
+
+(445 durations < 0.005s hidden.  Use -vv to show these durations.)
+=========================== short test summary info ============================
+FAILED tests/rollout_backends/test_native_colocation.py::test_native_deployment_and_learner_fit_the_actual_bundle[True-False]
+======================== 1 failed, 152 passed in 7.80s =========================

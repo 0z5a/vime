@@ -13,7 +13,10 @@ import pytest
 @pytest.mark.parametrize("resume", [False, True])
 @pytest.mark.parametrize("estimator", ["grpo", "ppo", "dppo", "flow-dppo", "rltt"])
 @pytest.mark.parametrize("group_size", [None, 3])
-def test_recipe_roles_groups_precision_and_resume(tmp_path, monkeypatch, family, resume, estimator, group_size):
+@pytest.mark.parametrize("colocate", [False, True])
+def test_recipe_roles_groups_precision_and_resume(
+    tmp_path, monkeypatch, family, resume, estimator, group_size, colocate
+):
     source = Path(__file__).resolve().parents[1]
     spec = importlib.util.spec_from_file_location("looped_recipe", source / "examples/looped_ppo/run.py")
     recipe = importlib.util.module_from_spec(spec)
@@ -67,6 +70,8 @@ def test_recipe_roles_groups_precision_and_resume(tmp_path, monkeypatch, family,
     ]
     if group_size is not None:
         arguments.extend(["--n-samples-per-prompt", str(group_size)])
+    if colocate:
+        arguments.append("--colocate-resident")
     if resume:
         checkpoint = output / "checkpoints/actor"
         checkpoint.mkdir(parents=True)
@@ -77,14 +82,25 @@ def test_recipe_roles_groups_precision_and_resume(tmp_path, monkeypatch, family,
     captured = {}
     monkeypatch.setitem(sys.modules, "ray", SimpleNamespace(init=lambda **kwargs: captured.update(ray=kwargs)))
     monkeypatch.setattr(recipe.runpy, "run_path", lambda *args, **kwargs: captured.update(command=sys.argv[1:]))
+    if colocate and estimator not in ("grpo", "rltt"):
+        with pytest.raises(SystemExit) as error:
+            recipe.main()
+        assert error.value.code == 2 and not captured
+        return
     if estimator == "grpo":
         recipe.main(advantage_estimator="grpo")
     else:
         recipe.main()
     command = captured["command"]
+    assert ("--colocate" in command) is colocate
+    assert ("--no-offload-rollout" in command) is colocate
+    assert ("--no-offload-train" in command) is colocate
+    assert ("--offload-train" in command) is not colocate
 
     def flag(name):
         return command[command.index("--" + name) + 1]
+
+    assert flag("num-gpus-per-node") == ("1" if colocate else "2")
 
     roles = json.loads((output / "roles.json").read_text())["megatron"]
     grouped = estimator in ("grpo", "rltt")

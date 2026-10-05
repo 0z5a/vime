@@ -1,0 +1,21 @@
+{
+  "parent": "c19ef3121350177781c2f0c907055b4de29ed9e8",
+  "python": "3.12.14",
+  "torch": "2.13.0",
+  "rlt": "fd993ec5512904b68e16f4d541682c076c487b5d",
+  "passed": 580,
+  "cuda_skipped": 6,
+  "factory_deselected": 3,
+  "scope": "CPU numerical/components and captured Ray options; no actual Ray/CUDA resident workers",
+  "initial_failure": "one new test fixture omitted rollout_external; 152 passed/1 failed; retained; production unchanged for repair",
+  "sources": {
+    "examples/looped_ppo/README.md": "af94803ce7cd3c496e3ece4026d1dfc3ae45200afbc0988d3a82de5498145c02",
+    "examples/looped_ppo/run.py": "8117217279e82c0d0b8a767733a4f5b6737c8964254c564b24695ada13ff17d6",
+    "tests/test_looped_grpo_recipe.py": "0e1422b1d9e461a6328c5d210c897aae2421c7740d8a479d35a6edc9462ab2e5",
+    "vime/backends/vllm_rlt_utils/README.md": "c942c448bbe5833781bc25bea8d34faa8c6cc48523c7d96fb0f0e7749baabe7b",
+    "vime/backends/vllm_rlt_utils/arguments.py": "449e91ce4007d17324d368740d9e7d43944c5405d5e90ab52d2d147aa9976720",
+    "vime/backends/vllm_rlt_utils/deployment.py": "fa29d794e436795a23d2151d83803c538c35bb0fa2ff91432d95658b0a6e6daf",
+    "tests/rollout_backends/test_native_colocation.py": "a8ff056242135ad08b893c2bc3679552566f090c102fb9bbcaa9039f685adec1",
+    "docs/native_colocation_results.md": "8b169bf99885f8b051b414c860d1c9f6def5f79f5c6ee02ac7734af10e855a3a"
+  }
+}

@@ -27,6 +27,7 @@ def main(advantage_estimator="ppo", model_family: str | None = None):
     parser.add_argument("--flow-dppo-divergence-budget", type=float)
     parser.add_argument("--rollout-batch-size", type=int, default=4)
     parser.add_argument("--n-samples-per-prompt", type=int)
+    parser.add_argument("--colocate-resident", action="store_true")
     options, extra = parser.parse_known_args()
     algorithm = options.algorithm or options.advantage_estimator
     if options.flow_dppo_divergence_budget is not None:
@@ -34,6 +35,8 @@ def main(advantage_estimator="ppo", model_family: str | None = None):
             parser.error("A Flow-DPPO divergence budget requires the Flow-DPPO policy loss")
         algorithm = "flow-dppo"
     grpo = algorithm in ("grpo", "rltt")
+    if options.colocate_resident and not grpo:
+        parser.error("Resident native colocation currently supports GRPO or RLTT without a critic")
     group_size = options.n_samples_per_prompt
     if group_size is None:
         group_size = 4 if grpo else 1
@@ -93,7 +96,7 @@ def main(advantage_estimator="ppo", model_family: str | None = None):
         "rlt-start-version": next_update,
         "actor-num-nodes": 1,
         "actor-num-gpus-per-node": 1,
-        "num-gpus-per-node": 2,
+        "num-gpus-per-node": 1 if options.colocate_resident else 2,
         "rollout-num-gpus": 1,
         "rollout-num-gpus-per-engine": 1,
         "num-layers": layers,
@@ -152,13 +155,15 @@ def main(advantage_estimator="ppo", model_family: str | None = None):
         "swiglu",
         "group-query-attention",
         "disable-bias-linear",
-        "offload-train",
+        "no-offload-train" if options.colocate_resident else "offload-train",
         "accumulate-allreduce-grads-in-fp32",
         "rollout-global-dataset",
         "no-gradient-accumulation-fusion",
         "no-rope-fusion",
         "deterministic-mode",
     ]
+    if options.colocate_resident:
+        switches.extend(("colocate", "no-offload-rollout"))
     if algorithm == "rltt":
         flags.update({"loss-type": "rltt_loss", "ref-load": options.model, "kl-loss-coef": 0.001})
     if algorithm == "dppo":
