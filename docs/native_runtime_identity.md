@@ -78,7 +78,7 @@ signal, adapter, colocation and evaluation checks. It completed naturally in
 62.70 seconds with 19 existing single-process/overwrite DCP warnings retained.
 Earlier 19-, 32- and 3-case runs overlap this final suite.
 
-| E2E comparison | Baseline rate | FlashRLT rate | Speedup | Peak memory reduction | Reward convergence |
+| E2E comparison | Baseline rate | ScaleRLT rate | Speedup | Peak memory reduction | Reward convergence |
 |---|---:|---:|---:|---:|---|
 | Native official Ouro Thinking, runtime records disabled/enabled | NOT_RUN | NOT_RUN | NOT_MEASURED | NOT_MEASURED | NOT_ESTABLISHED |
 | RLTT / FlashLoop / slime / Megatron full online RL | NOT_RUN | NOT_RUN | NOT_MEASURED | NOT_MEASURED | NOT_ESTABLISHED |

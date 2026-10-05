@@ -84,7 +84,7 @@ all input prefixes match the retained qualification evidence. No weight file or
 remote node was read for this check. No CUDA initialization or environment
 mutation occurred.
 
-| Required E2E comparison | Baseline throughput | FlashRLT throughput | Speedup | Peak memory reduction | Reward convergence |
+| Required E2E comparison | Baseline throughput | ScaleRLT throughput | Speedup | Peak memory reduction | Reward convergence |
 |---|---:|---:|---:|---:|---|
 | Official Ouro Thinking continuous/fresh-process recovery | NOT_RUN | NOT_RUN | NOT_MEASURED | NOT_MEASURED | NOT_ESTABLISHED |
 | RLTT / FlashLoop / slime / Megatron campaign | NOT_RUN | NOT_RUN | NOT_MEASURED | NOT_MEASURED | NOT_ESTABLISHED |

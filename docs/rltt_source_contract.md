@@ -108,7 +108,7 @@ as original-source E2E.
 | Comparison | Parent / original | Candidate | Speed ratio |
 |---|---|---|---|
 | Original converter on v1 vs new public input | Empty problem and label | All 12,498 rows match native prompts and labels | Not a timing comparison |
-| Original RLTT vs FlashRLT full RL | Not run | Not run | Not measured |
+| Original RLTT vs ScaleRLT full RL | Not run | Not run | Not measured |
 | GPU peak memory / high-concurrency stability | Not run | Not run | Not measured |
 | Held-out time-to-quality | Not run | Not run | Not measured |
 
