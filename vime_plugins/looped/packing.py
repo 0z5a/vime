@@ -12,10 +12,45 @@ from torch.utils.checkpoint import checkpoint
 AttentionBackend = Literal["sdpa-reference", "varlen"]
 
 
+@dataclass(frozen=True)
+class SuffixLayout:
+    lengths: tuple[int, ...]
+    boundaries: tuple[int, ...]
+    positions: torch.Tensor
+
+    @classmethod
+    def create(cls, lengths: tuple[int, ...], device: torch.device) -> "SuffixLayout":
+        if not lengths or min(lengths) < 0:
+            raise ValueError("suffix inputs require nonnegative lengths")
+        return cls(
+            lengths,
+            (0, *accumulate(lengths)),
+            torch.tensor([p for length in lengths for p in range(length)], dtype=torch.long, device=device),
+        )
+
+
+def prefix_readout(first: torch.Tensor, hidden: torch.Tensor, layout: SuffixLayout | None) -> torch.Tensor:
+    if layout is None:
+        return torch.cat((first, hidden))
+    return torch.cat([torch.cat((first, part)) for part in hidden.split(layout.lengths)])
+
+
 def prefix_attention(
-    q: torch.Tensor, k: torch.Tensor, v: torch.Tensor, prefix: tuple[torch.Tensor, torch.Tensor]
+    q: torch.Tensor,
+    k: torch.Tensor,
+    v: torch.Tensor,
+    prefix: tuple[torch.Tensor, torch.Tensor],
+    layout: SuffixLayout | None = None,
 ) -> torch.Tensor:
     """Suffix queries see the complete shared prefix and their causal suffix."""
+    if layout is not None:
+        return torch.cat(
+            [
+                prefix_attention(q[begin:end], k[begin:end], v[begin:end], prefix)
+                for begin, end in zip(layout.boundaries[:-1], layout.boundaries[1:], strict=True)
+                if begin < end
+            ]
+        )
     length = prefix[0].shape[0]
     k, v = torch.cat((prefix[0], k)), torch.cat((prefix[1], v))
     mask = torch.arange(k.shape[0], device=q.device)[None, :] <= (

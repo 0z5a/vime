@@ -1,0 +1,9 @@
+BEGIN seed31-order0-parent
+Traceback (most recent call last):
+  File "/Users/0z5a/Documents/infra/flashrlt-20261005/vime/../bench/run_packed_prefix_clean.py", line 35, in <module>
+    with (root / "evidence" / ("w07-packed-clean-" + name + ".log")).open("x") as log:
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1242, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1110, in _opener
+    return self._accessor.open(self, flags, mode)
+FileExistsError: [Errno 17] File exists: '/Users/0z5a/Documents/infra/flashrlt-20261005/evidence/w07-packed-clean-seed31-order0-parent.log'

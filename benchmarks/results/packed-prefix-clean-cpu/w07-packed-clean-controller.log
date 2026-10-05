@@ -1,0 +1,36 @@
+BEGIN seed31-order0-parent
+END seed31-order0-parent 0
+BEGIN seed31-order1-serial-prefix
+END seed31-order1-serial-prefix 0
+BEGIN seed31-order2-packed-prefix
+END seed31-order2-packed-prefix 0
+BEGIN seed31-order3-packed-prefix
+END seed31-order3-packed-prefix 0
+BEGIN seed31-order4-serial-prefix
+END seed31-order4-serial-prefix 0
+BEGIN seed31-order5-parent
+END seed31-order5-parent 0
+BEGIN seed32-order0-parent
+END seed32-order0-parent 0
+BEGIN seed32-order1-serial-prefix
+END seed32-order1-serial-prefix 0
+BEGIN seed32-order2-packed-prefix
+END seed32-order2-packed-prefix 0
+BEGIN seed32-order3-packed-prefix
+END seed32-order3-packed-prefix 0
+BEGIN seed32-order4-serial-prefix
+END seed32-order4-serial-prefix 0
+BEGIN seed32-order5-parent
+END seed32-order5-parent 0
+BEGIN seed33-order0-parent
+END seed33-order0-parent 0
+BEGIN seed33-order1-serial-prefix
+END seed33-order1-serial-prefix 0
+BEGIN seed33-order2-packed-prefix
+END seed33-order2-packed-prefix 0
+BEGIN seed33-order3-packed-prefix
+END seed33-order3-packed-prefix 0
+BEGIN seed33-order4-serial-prefix
+END seed33-order4-serial-prefix 0
+BEGIN seed33-order5-parent
+END seed33-order5-parent 0

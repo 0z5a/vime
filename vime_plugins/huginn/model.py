@@ -14,7 +14,14 @@ from vllm_rlt.models.huginn import HuginnBlock, HuginnForCausalLM
 from vllm_rlt.models.huginn_latents import HUGINN_LATENT_PROFILE, replay_huginn_latents
 
 from vime.utils.types import RecurrentTrace
-from vime_plugins.looped.packing import ReplayLayout, causal_attention, prefix_attention, readout_boundaries
+from vime_plugins.looped.packing import (
+    ReplayLayout,
+    SuffixLayout,
+    causal_attention,
+    prefix_attention,
+    prefix_readout,
+    readout_boundaries,
+)
 from vime_plugins.looped.response import ResponseReadout, packed_response_readout
 from vime_plugins.looped.execution import RecurrentProgram, RematPlan, run_layers
 from vime_plugins.looped.prefix import PrefixProgram
@@ -84,6 +91,7 @@ class HuginnMegatronModel(MegatronModule):
         prefix_kv: tuple[torch.Tensor, torch.Tensor] | None = None,
         *,
         layout: ReplayLayout | None = None,
+        suffix_layout: SuffixLayout | None = None,
     ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
         attention = block.attn
         q, k, v = attention.Wqkv(block.norm_1(hidden)).chunk(3, dim=-1)
@@ -96,7 +104,9 @@ class HuginnMegatronModel(MegatronModule):
         q, k = torch.stack((real, imag), dim=-1).flatten(-2).to(hidden.dtype).unbind(0)
         v = v.reshape(shape)
         attended = (
-            causal_attention(q, k, v, layout) if prefix_kv is None else prefix_attention(q, k, v, prefix_kv)
+            causal_attention(q, k, v, layout)
+            if prefix_kv is None
+            else prefix_attention(q, k, v, prefix_kv, suffix_layout)
         ).reshape(len(hidden), -1)
         hidden = block.norm_2(attention.proj(attended) + hidden)
         return block.norm_4(block.mlp(block.norm_3(hidden)) + hidden), k, v
@@ -147,15 +157,20 @@ class HuginnMegatronModel(MegatronModule):
             readout = self.transformer.ln_f(capture(self.transformer.coda, self.transformer.ln_f(state)))
             boundaries.append(readout[-1:])
 
-        def suffix(tokens: torch.Tensor, boundary: tuple[torch.Tensor, ...]) -> Iterator[torch.Tensor]:
-            frequencies = self.freqs_cis[0, length : length + len(tokens)]
+        def suffix(
+            tokens: torch.Tensor, boundary: tuple[torch.Tensor, ...], layout: SuffixLayout | None
+        ) -> Iterator[torch.Tensor]:
+            positions = list(range(len(tokens))) if layout is None else [p for n in layout.lengths for p in range(n)]
+            frequencies = self.freqs_cis[0, [length + p for p in positions]]
             cursor = 0
 
             def blocks(blocks: torch.nn.ModuleList, hidden: torch.Tensor) -> torch.Tensor:
                 nonlocal cursor
                 for block in blocks:
                     if len(tokens):
-                        hidden, _, _ = self._prefix_block(block, hidden, frequencies, boundary[cursor : cursor + 2])
+                        hidden, _, _ = self._prefix_block(
+                            block, hidden, frequencies, boundary[cursor : cursor + 2], suffix_layout=layout
+                        )
                     cursor += 2
                 return hidden
 
@@ -164,7 +179,7 @@ class HuginnMegatronModel(MegatronModule):
                 replay_huginn_latents(
                     width,
                     [latent_seed] * len(tokens),
-                    range(length, length + len(tokens)),
+                    [length + p for p in positions],
                     dtype=injection.dtype,
                     device=tokens.device,
                 )
@@ -175,7 +190,7 @@ class HuginnMegatronModel(MegatronModule):
                 state = self.transformer.adapter(torch.cat((state, injection), dim=-1))
                 state = blocks(self.transformer.core_block, state)
                 readout = self.transformer.ln_f(blocks(self.transformer.coda, self.transformer.ln_f(state)))
-                yield torch.cat((boundary[cursor], readout))
+                yield prefix_readout(boundary[cursor], readout, layout)
                 cursor += 1
 
         return PrefixProgram(

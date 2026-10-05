@@ -18,7 +18,14 @@ from vllm_rlt.models.nanbeige import NanbeigeForCausalLM
 from vllm_rlt.models.ouro import OuroDecoderLayer, OuroForCausalLM
 
 from vime.utils.types import RecurrentTrace
-from vime_plugins.looped.packing import ReplayLayout, causal_attention, prefix_attention, readout_boundaries
+from vime_plugins.looped.packing import (
+    ReplayLayout,
+    SuffixLayout,
+    causal_attention,
+    prefix_attention,
+    prefix_readout,
+    readout_boundaries,
+)
 from vime_plugins.looped.response import ResponseReadout, packed_response_readout
 from vime_plugins.looped.execution import RecurrentProgram, RematPlan, run_layers
 from vime_plugins.looped.prefix import PrefixProgram
@@ -34,6 +41,7 @@ def decoder_forward(
     previous_kv: tuple[torch.Tensor, torch.Tensor] | None = None,
     layout: ReplayLayout | None = None,
     prefix_kv: tuple[torch.Tensor, torch.Tensor] | None = None,
+    suffix_layout: SuffixLayout | None = None,
 ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     attention = layer.self_attn
     value = layer.input_layernorm(hidden)
@@ -50,7 +58,7 @@ def decoder_forward(
         v = previous_kv[1].index_copy(0, positions, v)
     mask = None if positions is None else torch.arange(k.shape[0], device=k.device)[None, :] <= positions[:, None]
     output = (
-        prefix_attention(q, k, v, prefix_kv).reshape(hidden.shape[0], -1)
+        prefix_attention(q, k, v, prefix_kv, suffix_layout).reshape(hidden.shape[0], -1)
         if prefix_kv is not None
         else causal_attention(q, k, v, layout).reshape(hidden.shape[0], -1)
         if layout is not None
@@ -152,9 +160,11 @@ class OuroMegatronModel(MegatronModule):
         cos: torch.Tensor,
         sin: torch.Tensor,
         prefix_kv: tuple[torch.Tensor, torch.Tensor] | None = None,
+        *,
+        suffix_layout: SuffixLayout | None = None,
     ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
         self.block_tokens += hidden.shape[0]
-        return decoder_forward(layer, hidden, cos, sin, prefix_kv=prefix_kv)
+        return decoder_forward(layer, hidden, cos, sin, prefix_kv=prefix_kv, suffix_layout=suffix_layout)
 
     def prefix_program(self, tokens: torch.Tensor) -> PrefixProgram:
         """Capture every physical-layer/loop KV and first-response hidden boundary."""
@@ -171,18 +181,26 @@ class OuroMegatronModel(MegatronModule):
             hidden = self._loop_output(hidden)
             boundaries.append(hidden[-1:])
 
-        def suffix(tokens: torch.Tensor, boundary: tuple[torch.Tensor, ...]) -> Iterator[torch.Tensor]:
+        def suffix(
+            tokens: torch.Tensor, boundary: tuple[torch.Tensor, ...], layout: SuffixLayout | None
+        ) -> Iterator[torch.Tensor]:
             hidden = self.model.embed_tokens(tokens)
-            cos, sin = self.model.rotary_emb(hidden, torch.arange(length, length + len(tokens), device=tokens.device))
+            positions = torch.arange(len(tokens), device=tokens.device) if layout is None else layout.positions
+            cos, sin = self.model.rotary_emb(hidden, length + positions)
             for loop in range(depth):
                 base = loop * (2 * layers + 1)
                 if len(tokens):
                     for index, layer in enumerate(self.model.layers):
                         hidden, _, _ = self._prefix_layer(
-                            layer, hidden, cos, sin, boundary[base + 2 * index : base + 2 * index + 2]
+                            layer,
+                            hidden,
+                            cos,
+                            sin,
+                            boundary[base + 2 * index : base + 2 * index + 2],
+                            suffix_layout=layout,
                         )
                     hidden = self._loop_output(hidden)
-                yield torch.cat((boundary[base + 2 * layers], hidden))
+                yield prefix_readout(boundary[base + 2 * layers], hidden, layout)
 
         return PrefixProgram(tuple(boundaries), depth, suffix, tuple(tokens.tolist()))
 

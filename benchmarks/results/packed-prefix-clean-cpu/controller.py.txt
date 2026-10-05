@@ -1,0 +1,42 @@
+"""Sequential fresh-process A/S/P/P/S/A comparison, without process timeouts."""
+
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+
+root = Path(__file__).resolve().parents[1]
+python = root.parent / "looped-grpo-integration-20261003/.venv/bin/python"
+driver = root / "vime/benchmarks/bench_packed_prefix_clean.py"
+destination = root / "vime/benchmarks/results/packed-prefix-clean-cpu"
+destination.mkdir(parents=True, exist_ok=True)
+sources = {
+    "parent": root / "vime-parent-w07",
+    "serial-prefix": root / "vime-parent-packed-prefix",
+    "packed-prefix": root / "vime",
+}
+environment = os.environ | {
+    "PYTHONDONTWRITEBYTECODE": "1", "FROZENLIST_NO_EXTENSIONS": "1",
+    "MULTIDICT_NO_EXTENSIONS": "1", "AIOHTTP_NO_EXTENSIONS": "1", "YARL_NO_EXTENSIONS": "1",
+    "OMP_NUM_THREADS": "1",
+}
+driver_hash = hashlib.sha256(driver.read_bytes()).hexdigest()
+with (root / "evidence/w07-packed-clean-processes.jsonl").open("x") as receipts:
+    for seed in (31, 32, 33):
+        for order, arm in enumerate(("parent", "serial-prefix", "packed-prefix", "packed-prefix", "serial-prefix", "parent")):
+            source = sources[arm]
+            environment["PYTHONPATH"] = ":".join(map(str, (source, root / "rlt", root.parent / "looped-grpo-integration-20261003/runtime/megatron")))
+            name = f"seed{seed}-order{order}-{arm}"
+            command = [str(python), "-u", str(root / "bench/resident_pytest.py"), "--script", str(driver),
+                       "--seed", str(seed), "--order", str(order), "--arm", arm, "--source", str(source),
+                       "--output", str(destination / (name + ".jsonl"))]
+            print("BEGIN", name, flush=True)
+            with (root / "evidence" / ("w07-packed-clean-" + name + ".log")).open("x") as log:
+                process = subprocess.Popen(command, cwd=source, env=environment, stdout=log, stderr=subprocess.STDOUT)
+                code = process.wait()
+            record = {"name": name, "pid": process.pid, "returncode": code, "source": str(source), "driver_sha256": driver_hash}
+            receipts.write(json.dumps(record) + "\n")
+            receipts.flush()
+            print("END", name, code, flush=True)
+            assert code == 0, record

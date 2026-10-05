@@ -1,0 +1,24 @@
+import copy,json,sys
+import torch
+sys.path.insert(0,"tests/plugins")
+from test_looped_response_readout import make_actor
+from test_differentiable_prefix import replay
+rows=[]
+for lengths in ((1,1,1),(0,3,1,0,5)):
+ for reduction in ("sum","mean"):
+  serial,depth=make_actor("huginn",False)
+  candidate=copy.deepcopy(serial)
+  prompt=torch.tensor([1,3,5])
+  responses=tuple(torch.arange(n,dtype=torch.long)+2 for n in lengths)
+  outs=[]
+  for actor,batch in ((serial,False),(candidate,True)):
+   state,identity=replay(actor,prompt,depth,True,31)
+   value=state.scores_batch(responses,identity=identity) if batch else torch.cat([state.scores(r,identity=identity) for r in responses])
+   loss=value.square().sum()/(value.numel() if reduction=="mean" else 1)
+   loss.backward()
+   state.backward_prefix(identity=identity)
+   outs.append(value.detach())
+  a=torch.cat([p.grad.flatten() for p in serial.parameters() if p.requires_grad])
+  b=torch.cat([p.grad.flatten() for p in candidate.parameters() if p.requires_grad])
+  rows.append({"lengths":lengths,"reduction":reduction,"forward_error":(outs[0]-outs[1]).abs().max().item(),"gradient_max_abs":(a-b).abs().max().item(),"gradient_relative_l2":((a-b).double().norm()/a.double().norm()).item(),"bound_violations":int(((a-b).abs()>1e-5+8e-5*a.abs()).sum())})
+print(json.dumps(rows,indent=2))

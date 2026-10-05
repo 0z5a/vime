@@ -1,0 +1,380 @@
+[
+  {
+    "family": "huginn",
+    "P": 4,
+    "D": 16,
+    "G": 1,
+    "speed_ratio": 1.0395781075400725,
+    "ci95_t_log": [
+      0.7380861470664785,
+      1.4642229040226915
+    ],
+    "per_start_ratio": [
+      0.961938543623673,
+      0.9581436019024822,
+      1.218971199677494
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.02341923435443266,
+      "packed-prefix": 0.022527633262544377
+    },
+    "max_gradient_relative_l2": 6.511552205361425e-07
+  },
+  {
+    "family": "huginn",
+    "P": 4,
+    "D": 16,
+    "G": 8,
+    "speed_ratio": 2.106496802163546,
+    "ci95_t_log": [
+      1.650903002993888,
+      2.6878191931798643
+    ],
+    "per_start_ratio": [
+      2.3398515300312894,
+      1.9266981483184806,
+      2.0733872873324946
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.10803282021941757,
+      "packed-prefix": 0.05128553725239884
+    },
+    "max_gradient_relative_l2": 3.8024104735953103e-07
+  },
+  {
+    "family": "huginn",
+    "P": 4,
+    "D": 16,
+    "G": 32,
+    "speed_ratio": 2.245769934534582,
+    "ci95_t_log": [
+      1.6501642991336214,
+      3.0563517835814396
+    ],
+    "per_start_ratio": [
+      1.9748245264734086,
+      2.529539244972025,
+      2.2673880638684945
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.3714984138388357,
+      "packed-prefix": 0.16542140320167112
+    },
+    "max_gradient_relative_l2": 4.85981996375015e-07
+  },
+  {
+    "family": "huginn",
+    "P": 24,
+    "D": 4,
+    "G": 1,
+    "speed_ratio": 0.9649555323713367,
+    "ci95_t_log": [
+      0.7612812051062414,
+      1.2231211978024645
+    ],
+    "per_start_ratio": [
+      0.8647048122890063,
+      1.0100746459770291,
+      1.0287279873255286
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.022741256522918838,
+      "packed-prefix": 0.023567154920634707
+    },
+    "max_gradient_relative_l2": 7.332838025353185e-07
+  },
+  {
+    "family": "huginn",
+    "P": 24,
+    "D": 4,
+    "G": 8,
+    "speed_ratio": 2.3111436593174433,
+    "ci95_t_log": [
+      1.951047644891506,
+      2.73770096183389
+    ],
+    "per_start_ratio": [
+      2.3123288413668783,
+      2.1582648275939524,
+      2.473583048616248
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.10067725120840594,
+      "packed-prefix": 0.043561658663027115
+    },
+    "max_gradient_relative_l2": 3.099775883443718e-07
+  },
+  {
+    "family": "huginn",
+    "P": 24,
+    "D": 4,
+    "G": 32,
+    "speed_ratio": 2.5145033481496317,
+    "ci95_t_log": [
+      2.2602267258320636,
+      2.797386215990392
+    ],
+    "per_start_ratio": [
+      2.618556824150435,
+      2.4039886220443747,
+      2.5255864804180566
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.34103894139517876,
+      "packed-prefix": 0.1356287481765105
+    },
+    "max_gradient_relative_l2": 5.744715608626019e-07
+  },
+  {
+    "family": "nanbeige",
+    "P": 4,
+    "D": 16,
+    "G": 1,
+    "speed_ratio": 0.9100576678503329,
+    "ci95_t_log": [
+      0.5905074940814536,
+      1.4025308181761122
+    ],
+    "per_start_ratio": [
+      1.0249634116886834,
+      0.7452018330822183,
+      0.9867893702941953
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.008170200168942708,
+      "packed-prefix": 0.008977673017405286
+    },
+    "max_gradient_relative_l2": 5.644727465345126e-08
+  },
+  {
+    "family": "nanbeige",
+    "P": 4,
+    "D": 16,
+    "G": 8,
+    "speed_ratio": 2.270441244854897,
+    "ci95_t_log": [
+      1.5391532651987232,
+      3.3491813732225646
+    ],
+    "per_start_ratio": [
+      2.2534749516560284,
+      1.9491040957021057,
+      2.6646675526424826
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.04944394271229538,
+      "packed-prefix": 0.021777239479040266
+    },
+    "max_gradient_relative_l2": 2.0259547491082172e-07
+  },
+  {
+    "family": "nanbeige",
+    "P": 4,
+    "D": 16,
+    "G": 32,
+    "speed_ratio": 2.164465560979289,
+    "ci95_t_log": [
+      1.5353535918167567,
+      3.0513565016132973
+    ],
+    "per_start_ratio": [
+      2.330523392895525,
+      1.8453829232624226,
+      2.3578277584877334
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.18668901412114547,
+      "packed-prefix": 0.08625178311300088
+    },
+    "max_gradient_relative_l2": 2.1335759953946176e-07
+  },
+  {
+    "family": "nanbeige",
+    "P": 24,
+    "D": 4,
+    "G": 1,
+    "speed_ratio": 1.0369093270454157,
+    "ci95_t_log": [
+      0.6541383799592771,
+      1.6436597904264714
+    ],
+    "per_start_ratio": [
+      1.2839626367075783,
+      0.9209265997590407,
+      0.9428550680681026
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.010038793430944024,
+      "packed-prefix": 0.009681457355146673
+    },
+    "max_gradient_relative_l2": 1.484433630280867e-07
+  },
+  {
+    "family": "nanbeige",
+    "P": 24,
+    "D": 4,
+    "G": 8,
+    "speed_ratio": 2.22326410946664,
+    "ci95_t_log": [
+      1.9266151391154402,
+      2.5655893593319887
+    ],
+    "per_start_ratio": [
+      2.1452693828752802,
+      2.3761582818464144,
+      2.1558372424230146
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.04292453371478915,
+      "packed-prefix": 0.019306988104569704
+    },
+    "max_gradient_relative_l2": 1.5083442419286526e-07
+  },
+  {
+    "family": "nanbeige",
+    "P": 24,
+    "D": 4,
+    "G": 32,
+    "speed_ratio": 2.224737253152333,
+    "ci95_t_log": [
+      1.9058400877469839,
+      2.596994300510731
+    ],
+    "per_start_ratio": [
+      2.234964105612271,
+      2.3619803661408527,
+      2.085880122658964
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.15774485496779203,
+      "packed-prefix": 0.07090493708606534
+    },
+    "max_gradient_relative_l2": 1.983399565419075e-07
+  },
+  {
+    "family": "ouro",
+    "P": 4,
+    "D": 16,
+    "G": 1,
+    "speed_ratio": 0.9654594507577164,
+    "ci95_t_log": [
+      0.7893842199028668,
+      1.180808948995823
+    ],
+    "per_start_ratio": [
+      0.8792052169256929,
+      1.0106321407541283,
+      1.0127884787090737
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.021520355613999557,
+      "packed-prefix": 0.02229027391788423
+    },
+    "max_gradient_relative_l2": 1.0733199179842517e-07
+  },
+  {
+    "family": "ouro",
+    "P": 4,
+    "D": 16,
+    "G": 8,
+    "speed_ratio": 2.1588233930757483,
+    "ci95_t_log": [
+      1.4498930233341478,
+      3.2143877979175612
+    ],
+    "per_start_ratio": [
+      2.5425592073497234,
+      2.143873028490564,
+      1.845785418803778
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.09078370522683794,
+      "packed-prefix": 0.04205240017225093
+    },
+    "max_gradient_relative_l2": 4.684168110202287e-07
+  },
+  {
+    "family": "ouro",
+    "P": 4,
+    "D": 16,
+    "G": 32,
+    "speed_ratio": 2.8347763507289243,
+    "ci95_t_log": [
+      2.4202233874719923,
+      3.3203368747898248
+    ],
+    "per_start_ratio": [
+      2.6393007349739928,
+      2.894431504859934,
+      2.9819767125946726
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.3648630099015883,
+      "packed-prefix": 0.1287096281185529
+    },
+    "max_gradient_relative_l2": 5.511029412040773e-07
+  },
+  {
+    "family": "ouro",
+    "P": 24,
+    "D": 4,
+    "G": 1,
+    "speed_ratio": 0.990274982933137,
+    "ci95_t_log": [
+      0.8554376113696491,
+      1.1463659404139428
+    ],
+    "per_start_ratio": [
+      0.9277481025235835,
+      1.0060853564908756,
+      1.0404052150826
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.017935205766079935,
+      "packed-prefix": 0.018111338845455734
+    },
+    "max_gradient_relative_l2": 2.0550286923101848e-07
+  },
+  {
+    "family": "ouro",
+    "P": 24,
+    "D": 4,
+    "G": 8,
+    "speed_ratio": 2.5377840395306266,
+    "ci95_t_log": [
+      2.4217560947089494,
+      2.659370960340412
+    ],
+    "per_start_ratio": [
+      2.59307303612249,
+      2.5041790629144827,
+      2.5170037105654868
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.08399483490502484,
+      "packed-prefix": 0.03309770792023738
+    },
+    "max_gradient_relative_l2": 3.390321594195039e-07
+  },
+  {
+    "family": "ouro",
+    "P": 24,
+    "D": 4,
+    "G": 32,
+    "speed_ratio": 2.638582451243138,
+    "ci95_t_log": [
+      2.2246780326017275,
+      3.129494358276265
+    ],
+    "per_start_ratio": [
+      2.4849898619073896,
+      2.5993971423092512,
+      2.8439028120024368
+    ],
+    "actor_update_seconds_geomean": {
+      "serial-prefix": 0.34750352567630305,
+      "packed-prefix": 0.13170084016612052
+    },
+    "max_gradient_relative_l2": 2.3332720350811768e-07
+  }
+]
