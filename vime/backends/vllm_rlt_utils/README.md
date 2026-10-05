@@ -6,10 +6,11 @@ function. The ordinary sample, reward, dataset and training contracts remain in
 use; backend imports stay lazy for other rollout engines.
 
 The initial implementation supports Ouro, Nanbeige and Huginn at the checkpoint's
-fixed full depth, one dedicated rollout GPU, full-vocabulary sampling and full
-physical-weight publication through disk. Configure training GPUs separately.
-Colocation, rollout offload/recovery, external HTTP and truncated training
-sampling require additional backend contracts and are rejected by validation.
+fixed full depth, full-vocabulary sampling and full physical-weight publication
+through disk. Dedicated rollout resources remain the default. An opt-in resident
+profile places one learner and one rollout engine on the same GPU, as described
+below. Rollout offload/recovery, external HTTP and truncated training sampling
+require additional backend contracts and are rejected by validation.
 
 Install the pinned engine in VIME's isolated environment:
 
@@ -41,6 +42,40 @@ Defaults use BF16 training dtype, Triton attention and eager execution.
 `--rlt-attention-backend torch` selects the Torch reference path;
 `--rlt-cuda-graphs` opts into graphs. Set cache capacity with `--rlt-kv-blocks`
 and admission concurrency with `--rlt-max-num-seqs`.
+
+## Single-GPU resident profile
+
+For GRPO or RLTT, add `--colocate-resident` to `examples/looped_ppo/run.py`.
+The launcher selects one physical GPU, `--colocate`, `--no-offload-train` and
+`--no-offload-rollout`. For a direct `train.py` invocation the equivalent flags
+are:
+
+```bash
+--colocate --no-offload-train --no-offload-rollout \
+--actor-num-nodes 1 --actor-num-gpus-per-node 1 --num-gpus-per-node 1 \
+--rollout-num-gpus 1 --rollout-num-gpus-per-engine 1
+```
+
+Both model roles remain resident in separate Ray actors. The rollout actor
+reserves 0.5 CPU/GPU and the existing learner reserves 0.4, fitting the same
+one-CPU/one-GPU placement bundle. The rollout's physical-device offset is zero.
+Ray fractions express scheduling resources; they do not partition memory or
+reserve half the device's memory. Model copies, frozen reference, gradients,
+optimizer state, KV, activations and graph pools must all fit together.
+
+This profile uses the ordinary synchronous `train.py` order: complete rollout,
+update the learner, save when scheduled, publish every physical weight and
+verify its version, then evaluate or generate again. The native publication
+barrier and held-out evaluator are unchanged. Actor/rollout overlap, critic,
+release-train, fault recovery and offload are outside this resident profile.
+Bare `--colocate` still resolves to VIME's offload defaults and is rejected by
+the native validator; choose the explicit resident flags.
+
+Current coverage verifies configuration, both placement-resource budgets and
+unchanged CPU numerical/update contracts. Actual shared-device Ray/CUDA startup,
+memory capacity, complete training and fresh-worker recovery still require a
+reserved compatible device. This profile is not yet a qualified performance or
+quality result. See [native_colocation_results.md](../../../docs/native_colocation_results.md).
 
 ## Held-out evaluation
 

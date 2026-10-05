@@ -20,6 +20,12 @@ Megatron `1dcf0dafa884ad52ffb243625717a3471643e087` with
 [VIME's patch](../../docker/patch/latest/megatron.patch) in an isolated environment.
 Use an existing two-GPU Ray cluster; `--ray-address host:port` selects its address.
 The launcher propagates its Python executable and source path to workers.
+For an existing single-GPU cluster, GRPO/RLTT can select `--colocate-resident`:
+learner, frozen reference and rollout remain resident together. The launcher
+disables both offload paths and uses the shared placement described in the
+[backend contract](../../vime/backends/vllm_rlt_utils/README.md#single-gpu-resident-profile).
+Capacity and actual Ray/CUDA training for this new profile are still unqualified;
+it does not turn a small device into a sharded or offloaded execution path.
 Math JSONL rows need string `prompt` and `label` fields, for example:
 
 ```json

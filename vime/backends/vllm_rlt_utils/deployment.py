@@ -29,12 +29,15 @@ class NativeServer:
 
 def start_rollout_servers(args, pg):
     placement, bundles, _ = pg
-    offset = 0 if args.debug_rollout_only else args.actor_num_nodes * args.actor_num_gpus_per_node
+    offset = 0 if args.debug_rollout_only or args.colocate else args.actor_num_nodes * args.actor_num_gpus_per_node
+    # The learner reserves 0.4 CPU/GPU in this same one-CPU/one-GPU bundle.
+    # Ray fractions are placement tokens, not device-memory partitions.
+    resources = 0.5 if args.colocate else 1
     engine = (
         ray.remote(NativeEngine)
         .options(
-            num_cpus=1,
-            num_gpus=1,
+            num_cpus=resources,
+            num_gpus=resources,
             scheduling_strategy=PlacementGroupSchedulingStrategy(
                 placement_group=placement,
                 placement_group_bundle_index=bundles[0],
