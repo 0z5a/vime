@@ -1,0 +1,51 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/0z5a/Documents/infra/flashrlt-20261005/vime
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 28 items
+
+tests/rollout_backends/test_native_chat_prompt.py FF....                 [ 21%]
+tests/rollout_backends/test_native_rlt_groups.py .....                   [ 39%]
+tests/rollout_backends/test_native_rlt_evaluation.py .................   [100%]
+
+=================================== FAILURES ===================================
+____ test_prompt_rendered_once_and_preserved_through_reward[rendered-False] ____
+tests/rollout_backends/test_native_chat_prompt.py:40: in test_prompt_rendered_once_and_preserved_through_reward
+    dataset = Dataset(
+vime/utils/data.py:249: in __init__
+    output_prompt = tokenizer.apply_chat_template(
+E   TypeError: Tokenizer.apply_chat_template() got an unexpected keyword argument 'tools'
+____ test_prompt_rendered_once_and_preserved_through_reward[rendered-True] _____
+tests/rollout_backends/test_native_chat_prompt.py:40: in test_prompt_rendered_once_and_preserved_through_reward
+    dataset = Dataset(
+vime/utils/data.py:249: in __init__
+    output_prompt = tokenizer.apply_chat_template(
+E   TypeError: Tokenizer.apply_chat_template() got an unexpected keyword argument 'tools'
+- generated xml file: /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/native-chat-focused.xml -
+============================== slowest durations ===============================
+0.16s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_complete_datasets_fixed_seeds_and_unchanged_training_state[ouro]
+0.07s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_complete_datasets_fixed_seeds_and_unchanged_training_state[huginn]
+0.06s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_complete_datasets_fixed_seeds_and_unchanged_training_state[nanbeige]
+0.03s setup    tests/rollout_backends/test_native_rlt_evaluation.py::test_complete_datasets_fixed_seeds_and_unchanged_training_state[ouro]
+0.02s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_policy_publication_between_batches_invalidates_evaluation
+0.02s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_reward_key_and_metadata_override
+0.01s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_sampling_and_chat_overrides_are_used
+0.01s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_reordered_or_missing_heldout_samples_are_rejected
+0.01s setup    tests/rollout_backends/test_native_rlt_evaluation.py::test_long_heldout_prompts_are_not_silently_dropped[context]
+0.01s call     tests/rollout_backends/test_native_rlt_groups.py::test_native_groups_and_actual_math_rewards
+0.01s setup    tests/rollout_backends/test_native_chat_prompt.py::test_prompt_rendered_once_and_preserved_through_reward[rendered-False]
+0.01s setup    tests/rollout_backends/test_native_rlt_evaluation.py::test_complete_datasets_fixed_seeds_and_unchanged_training_state[huginn]
+0.01s setup    tests/rollout_backends/test_native_rlt_evaluation.py::test_long_heldout_prompts_are_not_silently_dropped[prompt]
+0.01s setup    tests/rollout_backends/test_native_rlt_evaluation.py::test_unsupported_eval_settings_reject_before_generation[eval_task_timeout-1]
+0.01s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_long_heldout_prompts_are_not_silently_dropped[prompt]
+0.01s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_unsupported_eval_settings_reject_before_generation[n_samples_per_eval_prompt-0]
+0.01s setup    tests/rollout_backends/test_native_rlt_evaluation.py::test_unsupported_eval_settings_reject_before_generation[n_samples_per_eval_prompt-0]
+
+(67 durations < 0.005s hidden.  Use -vv to show these durations.)
+=========================== short test summary info ============================
+FAILED tests/rollout_backends/test_native_chat_prompt.py::test_prompt_rendered_once_and_preserved_through_reward[rendered-False]
+FAILED tests/rollout_backends/test_native_chat_prompt.py::test_prompt_rendered_once_and_preserved_through_reward[rendered-True]
+========================= 2 failed, 26 passed in 6.35s =========================

@@ -35,7 +35,7 @@ def generate_rollout(args, rollout_id, data_source, evaluation=False):
             tokenizer.apply_chat_template(
                 sample.prompt, tokenize=False, add_generation_prompt=True, **sample.apply_chat_template_kwargs
             )
-            if args.apply_chat_template
+            if args.apply_chat_template and isinstance(sample.prompt, list)
             else sample.prompt
         )
         sample.tokens = tokenizer.encode(prompt, add_special_tokens=False)

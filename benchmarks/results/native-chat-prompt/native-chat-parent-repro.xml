@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="6" time="4.924" timestamp="2026-10-05T11:26:32.076455+08:00" hostname="192.168.10.10"><testcase classname="tests.rollout_backends.test_native_chat_prompt" name="test_prompt_rendered_once_and_preserved_through_reward[rendered-False]" file="tests/rollout_backends/test_native_chat_prompt.py" line="34" time="0.004"><failure message="AssertionError: The dataset already rendered this prompt&#10;assert False&#10; +  where False = isinstance('user:What is 1+1?\nassistant:', list)">tests/rollout_backends/test_native_chat_prompt.py:85: in test_prompt_rendered_once_and_preserved_through_reward
+    output = vllm_rlt_rollout.generate_rollout(args, 7, SimpleNamespace(get_samples=lambda count: groups))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vime/rollout/vllm_rlt_rollout.py:35: in generate_rollout
+    tokenizer.apply_chat_template(
+tests/rollout_backends/test_native_chat_prompt.py:20: in apply_chat_template
+    assert isinstance(messages, list), "The dataset already rendered this prompt"
+E   AssertionError: The dataset already rendered this prompt
+E   assert False
+E    +  where False = isinstance('user:What is 1+1?\nassistant:', list)</failure></testcase><testcase classname="tests.rollout_backends.test_native_chat_prompt" name="test_prompt_rendered_once_and_preserved_through_reward[rendered-True]" file="tests/rollout_backends/test_native_chat_prompt.py" line="34" time="0.002"><failure message="AssertionError: The dataset already rendered this prompt&#10;assert False&#10; +  where False = isinstance('user:What is 1+1?\nassistant:&lt;think&gt;', list)">tests/rollout_backends/test_native_chat_prompt.py:85: in test_prompt_rendered_once_and_preserved_through_reward
+    output = vllm_rlt_rollout.generate_rollout(args, 7, SimpleNamespace(get_samples=lambda count: groups))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vime/rollout/vllm_rlt_rollout.py:35: in generate_rollout
+    tokenizer.apply_chat_template(
+tests/rollout_backends/test_native_chat_prompt.py:20: in apply_chat_template
+    assert isinstance(messages, list), "The dataset already rendered this prompt"
+E   AssertionError: The dataset already rendered this prompt
+E   assert False
+E    +  where False = isinstance('user:What is 1+1?\nassistant:&lt;think&gt;', list)</failure></testcase><testcase classname="tests.rollout_backends.test_native_chat_prompt" name="test_prompt_rendered_once_and_preserved_through_reward[conversation-False]" file="tests/rollout_backends/test_native_chat_prompt.py" line="34" time="0.003" /><testcase classname="tests.rollout_backends.test_native_chat_prompt" name="test_prompt_rendered_once_and_preserved_through_reward[conversation-True]" file="tests/rollout_backends/test_native_chat_prompt.py" line="34" time="0.002" /><testcase classname="tests.rollout_backends.test_native_chat_prompt" name="test_prompt_rendered_once_and_preserved_through_reward[plain-False]" file="tests/rollout_backends/test_native_chat_prompt.py" line="34" time="0.002" /><testcase classname="tests.rollout_backends.test_native_chat_prompt" name="test_prompt_rendered_once_and_preserved_through_reward[plain-True]" file="tests/rollout_backends/test_native_chat_prompt.py" line="34" time="0.002" /></testsuite></testsuites>

@@ -1,0 +1,17 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+thinking=False: 500 prompts, 1000 replayed completions
+thinking=True: 500 prompts, 1000 replayed completions
+{
+  "data_sha256": "c6f8041f5c066dbca1431504c898f6203f63d8c8d8d1413e4b666c01467bee1e",
+  "tokenizer_repository": "ByteDance/Ouro-1.4B-Thinking",
+  "tokenizer_revision": "3aaa2224253a92ca45cf2e3d427c360e1ef9c93d",
+  "tokenizer_class": "GPT2TokenizerFast",
+  "exact_prompt_token_matches": 2000,
+  "known_answer_rewards_one": 2000,
+  "ray_transport": "explicit synchronous test seam",
+  "engine": "canonical answer token replay",
+  "model_generation": false,
+  "training": false,
+  "quality_measurement": false
+}

@@ -1,0 +1,42 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/0z5a/Documents/infra/flashrlt-20261005/vime
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 6 items
+
+tests/rollout_backends/test_native_chat_prompt.py FF....                 [100%]
+
+=================================== FAILURES ===================================
+____ test_prompt_rendered_once_and_preserved_through_reward[rendered-False] ____
+tests/rollout_backends/test_native_chat_prompt.py:85: in test_prompt_rendered_once_and_preserved_through_reward
+    output = vllm_rlt_rollout.generate_rollout(args, 7, SimpleNamespace(get_samples=lambda count: groups))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vime/rollout/vllm_rlt_rollout.py:35: in generate_rollout
+    tokenizer.apply_chat_template(
+tests/rollout_backends/test_native_chat_prompt.py:20: in apply_chat_template
+    assert isinstance(messages, list), "The dataset already rendered this prompt"
+E   AssertionError: The dataset already rendered this prompt
+E   assert False
+E    +  where False = isinstance('user:What is 1+1?\nassistant:', list)
+____ test_prompt_rendered_once_and_preserved_through_reward[rendered-True] _____
+tests/rollout_backends/test_native_chat_prompt.py:85: in test_prompt_rendered_once_and_preserved_through_reward
+    output = vllm_rlt_rollout.generate_rollout(args, 7, SimpleNamespace(get_samples=lambda count: groups))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vime/rollout/vllm_rlt_rollout.py:35: in generate_rollout
+    tokenizer.apply_chat_template(
+tests/rollout_backends/test_native_chat_prompt.py:20: in apply_chat_template
+    assert isinstance(messages, list), "The dataset already rendered this prompt"
+E   AssertionError: The dataset already rendered this prompt
+E   assert False
+E    +  where False = isinstance('user:What is 1+1?\nassistant:<think>', list)
+- generated xml file: /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/native-chat-parent-repro.xml -
+============================== slowest durations ===============================
+
+(18 durations < 0.005s hidden.  Use -vv to show these durations.)
+=========================== short test summary info ============================
+FAILED tests/rollout_backends/test_native_chat_prompt.py::test_prompt_rendered_once_and_preserved_through_reward[rendered-False]
+FAILED tests/rollout_backends/test_native_chat_prompt.py::test_prompt_rendered_once_and_preserved_through_reward[rendered-True]
+========================= 2 failed, 4 passed in 4.94s ==========================
