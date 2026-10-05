@@ -1,0 +1,52 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/0z5a/Documents/infra/flashrlt-20261005/vime
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 18 items
+
+tests/test_native_output_audit.py ..................                     [100%]
+
+- generated xml file: /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/native-output-initial.xml -
+============================== slowest durations ===============================
+0.25s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[changed_output]
+0.23s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[epoch]
+0.23s call     tests/test_native_output_audit.py::test_full_cli_reads_all_saved_outputs_with_real_tokenizer[grpo]
+0.22s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[stale_final]
+0.22s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[training_tensor]
+0.22s call     tests/test_native_output_audit.py::test_full_cli_reads_all_saved_outputs_with_real_tokenizer[rltt]
+0.21s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[nonfinite]
+0.20s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[missing_row]
+0.19s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[training_tensor]
+0.19s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[eos]
+0.18s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[gradient]
+0.18s setup    tests/test_native_output_audit.py::test_full_cli_reads_all_saved_outputs_with_real_tokenizer[grpo]
+0.17s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[gradient]
+0.17s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[missing_round]
+0.17s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[changed_output]
+0.17s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[nonfinite]
+0.17s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[publication]
+0.17s setup    tests/test_native_output_audit.py::test_full_cli_reads_all_saved_outputs_with_real_tokenizer[rltt]
+0.16s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[eos]
+0.16s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[stale_final]
+0.16s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[training_text]
+0.16s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[missing_row]
+0.16s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[missing_round]
+0.15s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[publication]
+0.15s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[training_text]
+0.15s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[prefix]
+0.15s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[decoded_text]
+0.15s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[decoded_text]
+0.15s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[seed]
+0.15s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[seed]
+0.15s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[version]
+0.14s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[reordered_id]
+0.14s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[prefix]
+0.14s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[reordered_id]
+0.14s setup    tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[version]
+0.14s call     tests/test_native_output_audit.py::test_rejects_incomplete_or_changed_outputs[epoch]
+
+(18 durations < 0.005s hidden.  Use -vv to show these durations.)
+============================= 18 passed in 10.66s ==============================

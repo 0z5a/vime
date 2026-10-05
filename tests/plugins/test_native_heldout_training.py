@@ -14,11 +14,12 @@ import torch
 from test_looped_grpo import cpu_engine, publish
 from test_rltt_online_cycle import pair, update
 
+from benchmarks.audit_native_outputs import compare_samples
 from vime.rollout import native_eval
 from vime.utils.eval_config import EvalDatasetConfig
 
 
-def evaluate(engine, data, monkeypatch):
+def evaluate(engine, data, monkeypatch, capture=None):
     tokenizer = SimpleNamespace(
         encode=lambda prompt, **kwargs: [int(value) for value in prompt.split()],
         decode=lambda tokens, **kwargs: r"\boxed{" + str(tokens[-1]) + "}",
@@ -59,6 +60,8 @@ def evaluate(engine, data, monkeypatch):
         )
     )
     output = native_eval.evaluate(args)
+    if capture is not None:
+        capture.append([sample.to_dict() for sample in output.data["heldout"]["samples"]])
     return [
         {
             "tokens": sample.tokens,
@@ -82,7 +85,7 @@ def assert_optimizer_equal(left, right):
 def test_evaluation_preserves_updates_and_fresh_resume(family, tmp_path, monkeypatch, record_property):
     data = tmp_path / "heldout.jsonl"
     data.write_text('{"prompt":"4 5","label":"2"}\n{"prompt":"7 8","label":"3"}\n')
-    evaluations, reference_runs, final_states = [], [], []
+    evaluations, raw_evaluations, reference_runs, final_states = [], [], [], []
     for enabled in (False, True):
         directory = tmp_path / str(enabled)
         directory.mkdir()
@@ -94,7 +97,7 @@ def test_evaluation_preserves_updates_and_fresh_resume(family, tmp_path, monkeyp
         for step in range(3):
             records.append(update(actor, reference, optimizer, engine, family, directory, step, "sdpa-reference"))
             if enabled:
-                evaluations.append(evaluate(engine, data, monkeypatch))
+                evaluations.append(evaluate(engine, data, monkeypatch, raw_evaluations))
             if enabled and step == 1:
                 torch.save(
                     {
@@ -123,12 +126,19 @@ def test_evaluation_preserves_updates_and_fresh_resume(family, tmp_path, monkeyp
     engine = cpu_engine(native, family)
     publish(resumed, engine, family, tmp_path / "restored-policy", 3)
     torch.set_rng_state(checkpoint["rng"])
-    assert evaluate(engine, data, monkeypatch) == evaluations[1]
+    resumed_outputs = []
+    assert evaluate(engine, data, monkeypatch, resumed_outputs) == evaluations[1]
     directory = tmp_path / "fresh"
     directory.mkdir()
     actual = update(resumed, reference, optimizer, engine, family, directory, 2, "sdpa-reference")
     assert actual == reference_runs[1][2]
-    assert evaluate(engine, data, monkeypatch) == evaluations[2]
+    assert evaluate(engine, data, monkeypatch, resumed_outputs) == evaluations[2]
+    errors = [
+        compare_samples(left, right)
+        for expected, actual in zip(raw_evaluations[1:], resumed_outputs, strict=True)
+        for left, right in zip(expected, actual, strict=True)
+    ]
+    assert len(errors) == 8
     for name, expected in final_states[1][0].items():
         assert torch.equal(expected, resumed.state_dict()[name]), name
     assert_optimizer_equal(final_states[1][1], optimizer.state_dict())
@@ -136,3 +146,5 @@ def test_evaluation_preserves_updates_and_fresh_resume(family, tmp_path, monkeyp
     record_property("scope", "tiny CPU native/RLTT/Adam recovery; transport and tokenizer doubles; no quality claim")
     record_property("training", json.dumps(reference_runs[1]))
     record_property("heldout", json.dumps(evaluations))
+    record_property("paired_raw_heldout_samples", len(errors))
+    record_property("paired_raw_score_max_error", max(errors))

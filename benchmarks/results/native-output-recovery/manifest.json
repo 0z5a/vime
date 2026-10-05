@@ -1,0 +1,33 @@
+{
+  "source_sha256": {
+    "benchmarks/audit_native_outputs.py": "e55d2fa5f89a45d7afdb8fa22724f33f4fb70396830e4584957bcffbcb6fb598",
+    "benchmarks/audit_native_runtime.py": "b676295b99a7489d7d80810186e5b414bbeb36a3258d073fd696cc92dad40e50",
+    "benchmarks/audit_native_learning_signal.py": "48dda7c53d488d826e6ee19dfa8dff4342c6f68c7b104109ba02f9ea33930fbd",
+    "tests/test_native_output_audit.py": "07eed856325720541eb67842fea529c6decf7fb9f86932e95d85035e4b24515a",
+    "tests/plugins/test_native_heldout_training.py": "d18dca50a47aaa4a7bd49d644e8b74a4651225a79e23a3935bd833f4ff54f738",
+    "tests/plugins/test_rltt_online_cycle.py": "d2e36ca16f5fed6d229612aa42da0c97cfc53147f9936b89e5c614814190d893",
+    "tests/plugins/test_looped_grpo.py": "51af0f220b21331b745a0a3fdd21e403dec31cc8053c5f1ac41e9839b4479610",
+    "tests/test_native_learning_signal_audit.py": "60674e58a5a6ab1e42c8e080d02ae2fc255baa73e5d5ec6137b7d70b0eba505c",
+    "tests/test_native_runtime_audit.py": "583de0496f5b3424c617dd7238f7c1500da68a4864fa400d9548ac207a0da15f",
+    "vime/rollout/native_eval.py": "06a7aab463bd888f4d7946544f8f390d1d462504fe88120305e0fa5f4ca4a363",
+    "vime/rollout/vllm_rlt_rollout.py": "aa18f8806f6bfa0a894b3b0f67ecad0e669f7695351309e6f2f4e5b55ddbbeee",
+    "docs/native_output_recovery.md": "d3e1df1441a0e87ffdd5bfd128b61d142fb67f06989f4522cc538d42e26e9429"
+  },
+  "artifact_sha256": {
+    "audit_native_response_tokenizer.py": "0216710e96363e0c9d32f83bf53701e4acae71f37906b2c12cd9de529f79d321",
+    "native-output-final.log": "2fd155bf8c51f66251af04e218270ec383a6db962e63500495ad0411bb25f273",
+    "native-output-final.xml": "f5c4a9f88986fe8a674c9a346fbc7d5e32cd8e94c15cb1eb92e4b25a2654b7a0",
+    "native-output-initial.log": "d4867a66fdc061af434e11cb92ec551223f1190a2ac581eced1b876361eb022e",
+    "native-output-initial.xml": "66b8a1636dd56ea3df2e3f935f147d5371fdc91ddd1912a00b301caeaaf9af5f",
+    "native-output-tiny.log": "3352127eebc7b499ccfeb03af616890924ee0f9bb8a97cd9e92117067a0bd46f",
+    "native-output-tiny.xml": "f74f3d826fa947e9c34f7815a9e81aac8dfceae8a4954a74c5bedf68bacbda5e",
+    "native-output-tokenizer-source.json": "bdd16bb7077b9548dc9f0a690b41ef6e439072331980413bcb289942f52c1542",
+    "native-output-tokenizer-v1.json": "812e0cfa18af358ff9ca1e490bbb1c038bca1fdf09b3d3f9454069b5ceedcb90",
+    "native-output-tokenizer-v1.log": "c17bfecb66747c0e4a67ee13d6490400fa03dcf682d7545c80d1297d5cb38514",
+    "native-output-tokenizer.json": "6ce20866b2fc7dd5f0b0f3f3d4f0cb485c9a73ff0d0651d62fc39c598fe591bd",
+    "native-output-tokenizer.log": "c17bfecb66747c0e4a67ee13d6490400fa03dcf682d7545c80d1297d5cb38514",
+    "ouro-thinking-model-manifest.json": "22b0ab9886d283181acb6e51a4dbd19420be8c2da4474b653a042d2bb2e36081",
+    "resident_pytest.py": "2af5ce445da14f656c71e8d4817dcf85cd57402a77f50f612898c47f52f4d4f4",
+    "validation.json": "ef6cbaeb1f4b2f2ebb090cec90d689c25b7f4ca26dc5129cc6305dd1e12c9583"
+  }
+}

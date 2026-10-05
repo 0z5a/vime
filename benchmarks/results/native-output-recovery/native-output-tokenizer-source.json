@@ -1,0 +1,13 @@
+{
+  "revision": "3aaa2224253a92ca45cf2e3d427c360e1ef9c93d",
+  "source_manifest_sha256": "22b0ab9886d283181acb6e51a4dbd19420be8c2da4474b653a042d2bb2e36081",
+  "verified_local_sha256": {
+    "config.json": "44e42ec2ed97f49f20f87985688b6e1be9dd61bbfe9f8a349daac192126e2c55",
+    "merges.txt": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510",
+    "special_tokens_map.json": "688ac94df221b18a4d2d4579dfa3c4f0fd5ca3e394da46cd0a317fb5d57d4685",
+    "tokenizer.json": "fcb808fe5e7642f5299be28aea07fc7f6d4f4364c3ac5e408e15a772cbc8fa8d",
+    "tokenizer_config.json": "e41eafc6bf7269d6f90f2531124949073a57965f5f0765238a744c1c528e2448",
+    "vocab.json": "7b9de3f47796abf8d00ab96be299fea0dc9afdf1827f34e7e0b9fb44593efe5c"
+  },
+  "scope": "six retained local configuration/tokenizer files; no weight file or remote node read"
+}
