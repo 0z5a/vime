@@ -29,6 +29,12 @@ def test_learner_capture_preserves_mcore_defaults_and_loaded_iteration(tmp_path,
         tensor_model_parallel_size=1,
         pipeline_model_parallel_size=1,
         context_parallel_size=1,
+        loss_type="rltt_loss",
+        rltt_prefix_wave_size=2,
+        recompute_granularity=None,
+        rltt_loop_checkpoint=0,
+        rltt_layer_checkpoint=0,
+        rltt_token_chunk=0,
     )
     captured = {}
 
@@ -42,6 +48,14 @@ def test_learner_capture_preserves_mcore_defaults_and_loaded_iteration(tmp_path,
     assert captured["rank"] == 0 and captured["role"] == "actor"
     assert details["loaded_checkpoint_iteration"] == 1 and details["parallelism"] == {"tp": 1, "pp": 1, "cp": 1}
     assert details["models"][0]["state"]["weight"]["shape"] == [2, 3]
+    assert details["learner_execution"] == {
+        "actor_schedule": "prefix",
+        "prefix_wave_size": 2,
+        "recompute": False,
+        "loop_checkpoint": 0,
+        "layer_checkpoint": 0,
+        "token_chunk": 0,
+    }
     if kind == "none":
         assert details["optimizers"] == []
     else:

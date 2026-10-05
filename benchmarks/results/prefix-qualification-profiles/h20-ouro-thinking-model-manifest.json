@@ -1,0 +1,80 @@
+{
+  "repo": "ByteDance/Ouro-1.4B-Thinking",
+  "revision": "3aaa2224253a92ca45cf2e3d427c360e1ef9c93d",
+  "files": [
+    {
+      "path": "config.json",
+      "bytes": 1471,
+      "sha256": "44e42ec2ed97f49f20f87985688b6e1be9dd61bbfe9f8a349daac192126e2c55"
+    },
+    {
+      "path": "merges.txt",
+      "bytes": 466391,
+      "sha256": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510"
+    },
+    {
+      "path": "model.safetensors",
+      "bytes": 2869336434,
+      "sha256": "6730581fd366f6d1689728c61637520228385cdfc17c0b24f19aa840b00565fb"
+    },
+    {
+      "path": "special_tokens_map.json",
+      "bytes": 965,
+      "sha256": "688ac94df221b18a4d2d4579dfa3c4f0fd5ca3e394da46cd0a317fb5d57d4685"
+    },
+    {
+      "path": "tokenizer.json",
+      "bytes": 3522644,
+      "sha256": "fcb808fe5e7642f5299be28aea07fc7f6d4f4364c3ac5e408e15a772cbc8fa8d"
+    },
+    {
+      "path": "tokenizer_config.json",
+      "bytes": 4392,
+      "sha256": "e41eafc6bf7269d6f90f2531124949073a57965f5f0765238a744c1c528e2448"
+    },
+    {
+      "path": "vocab.json",
+      "bytes": 800656,
+      "sha256": "7b9de3f47796abf8d00ab96be299fea0dc9afdf1827f34e7e0b9fb44593efe5c"
+    }
+  ],
+  "task_owned_root": "/root/autodl-tmp/0z5a/flashrlt-h20-20261006/model-stage-v2/models",
+  "host": "region-42.seetacloud.com:33885",
+  "boot_id": "797c630e-4da1-48bd-bdf3-daabf26649d2",
+  "source": "public mirror with all seven official immutable sizes/SHA256 verified twice on node",
+  "physical_files": {
+    "config.json": {
+      "bytes": 1471,
+      "device_inode": "64528:62545298"
+    },
+    "merges.txt": {
+      "bytes": 466391,
+      "device_inode": "64528:62545299"
+    },
+    "model.safetensors": {
+      "bytes": 2869336434,
+      "device_inode": "64528:62545300"
+    },
+    "special_tokens_map.json": {
+      "bytes": 965,
+      "device_inode": "64528:62545301"
+    },
+    "tokenizer.json": {
+      "bytes": 3522644,
+      "device_inode": "64528:62545302"
+    },
+    "tokenizer_config.json": {
+      "bytes": 4392,
+      "device_inode": "64528:62545303"
+    },
+    "vocab.json": {
+      "bytes": 800656,
+      "device_inode": "64528:62545304"
+    }
+  },
+  "download_exit_code": 0,
+  "reader_active": false,
+  "cleanup_eligible": false,
+  "cleanup_reason": "Official model training and remaining required experiments have not run",
+  "reverified_utc": "2026-10-05T17:22:44Z"
+}

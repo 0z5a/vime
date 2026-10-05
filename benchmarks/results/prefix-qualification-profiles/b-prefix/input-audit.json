@@ -1,0 +1,128 @@
+{
+  "qualification_sha256": "3284713921c35c40dac052874c32d544b15472deae160c248decc52cb578c08c",
+  "rows": [
+    {
+      "split": "train",
+      "id": "number_theory/train/483",
+      "prompt_tokens": 80,
+      "token_ids_sha256": "345ab53731fa39bfb0dec00c11e7500ffb3bb4d54cb14186b37c807a9dbf0fb4"
+    },
+    {
+      "split": "train",
+      "id": "prealgebra/train/799",
+      "prompt_tokens": 93,
+      "token_ids_sha256": "4f61b34a575472e661350054efefdcb363d756c80f30d5872575ecbeb365de69"
+    },
+    {
+      "split": "train",
+      "id": "geometry/train/445",
+      "prompt_tokens": 494,
+      "token_ids_sha256": "2db044171ed503fbd7b7720b91b167cd9df1b92fa98161653fd40484249badca"
+    },
+    {
+      "split": "train",
+      "id": "algebra/train/1647",
+      "prompt_tokens": 111,
+      "token_ids_sha256": "da5159ea2e00addd00a497d8afaa3ea749e5a627de31e79725114f075a13e353"
+    },
+    {
+      "split": "train",
+      "id": "prealgebra/train/161",
+      "prompt_tokens": 70,
+      "token_ids_sha256": "a9ee1fec0256f9d4212656691f4bf9d295113e41d08e3ddf3fa9261e82a61695"
+    },
+    {
+      "split": "train",
+      "id": "precalculus/train/467",
+      "prompt_tokens": 148,
+      "token_ids_sha256": "e371ae6f9c058889e758cb7e8c376476cd526d63d6b57d83e0c087944b5d3ad7"
+    },
+    {
+      "split": "train",
+      "id": "algebra/train/963",
+      "prompt_tokens": 86,
+      "token_ids_sha256": "5afb363852d6d3ded4b109c288a0d8708fa0f69194128a586ba36600434ec89d"
+    },
+    {
+      "split": "train",
+      "id": "algebra/train/1201",
+      "prompt_tokens": 98,
+      "token_ids_sha256": "ed1c2468c8d45fceff50f616d5370de75f89f0d4a6b5e71294f8348085c305dc"
+    },
+    {
+      "split": "train",
+      "id": "geometry/train/264",
+      "prompt_tokens": 101,
+      "token_ids_sha256": "9ca0aa2b0c019350b9793fb290c3c9ed76754aad48f38974a947a4aa24e5dcdd"
+    },
+    {
+      "split": "train",
+      "id": "geometry/train/682",
+      "prompt_tokens": 334,
+      "token_ids_sha256": "50ae737add4d26c5f99fb76fdedd6e2c5867a77ea2c403857724ca66bef21a85"
+    },
+    {
+      "split": "train",
+      "id": "prealgebra/train/304",
+      "prompt_tokens": 301,
+      "token_ids_sha256": "628a70be9e15e2a6e8b329e93e0f79a8e933f05a0633e5e2e0e1bffe491471e1"
+    },
+    {
+      "split": "train",
+      "id": "geometry/train/496",
+      "prompt_tokens": 222,
+      "token_ids_sha256": "768f71f635a6c493e5e22697014e03961a2a4d9d5d2b8217784fa056e29014fa"
+    },
+    {
+      "split": "development",
+      "id": "precalculus/test/309",
+      "prompt_tokens": 119,
+      "token_ids_sha256": "b0821f38ba40dd0293b9607e2d5c342e154ea86042f22f318f3a9cdb7bc8b705"
+    },
+    {
+      "split": "development",
+      "id": "algebra/test/348",
+      "prompt_tokens": 143,
+      "token_ids_sha256": "4872ae2102bfacd4e1a147ffaf6fb6902be5ecf887880d2ed5a0db2ab6ff3400"
+    },
+    {
+      "split": "development",
+      "id": "precalculus/test/72",
+      "prompt_tokens": 142,
+      "token_ids_sha256": "37e88ae7095cc483fa5a0280f42ab107cbcf5d42c655eb7390d5ee5f0f348940"
+    },
+    {
+      "split": "development",
+      "id": "intermediate_algebra/test/267",
+      "prompt_tokens": 118,
+      "token_ids_sha256": "aa80adfcb532bb46a2752b8054079ed17bc99e4a1f83a9ce3e05f747fe011bfb"
+    },
+    {
+      "split": "development",
+      "id": "intermediate_algebra/test/285",
+      "prompt_tokens": 125,
+      "token_ids_sha256": "092f6bae6d665cff571013208502dfeff318e8dfb6e609a1dd8ce0975278e051"
+    },
+    {
+      "split": "development",
+      "id": "geometry/test/284",
+      "prompt_tokens": 69,
+      "token_ids_sha256": "3f601227af0ea4e68b05e12c1de18191b4d2ae88abb7bd5be16bc33cb58d20d6"
+    },
+    {
+      "split": "development",
+      "id": "prealgebra/test/822",
+      "prompt_tokens": 1013,
+      "token_ids_sha256": "fb6b3a0cb5c536d94e7195fc153d21b54204145fb0fadad062e18a6cc666e5ca"
+    },
+    {
+      "split": "development",
+      "id": "prealgebra/test/748",
+      "prompt_tokens": 96,
+      "token_ids_sha256": "a5ab72de5fdc33a2efe052fc45b50ae05704d7d84a9769fd5bab9033201b3c3f"
+    }
+  ],
+  "source_record_sha256": "66e4cf3e67c468f6579997c13a4e56a12b6795dc43e81b3d92ea992b1f20b0fb",
+  "scope": "Prior measured prompt rows retained after exact train/development byte comparison; not re-tokenized",
+  "executed_training": false
+}

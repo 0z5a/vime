@@ -1,0 +1,97 @@
+{
+  "schema": "native-reward-qualification-v1",
+  "scope": "three-update startup and fresh-process recovery, not convergence",
+  "source_manifest_sha256": "a272932944329fa41b4da023b2d115606a1dbf3a364a1d1d300df6f251233b53",
+  "source_train_sha256": "f3e52c440246c455b7a7fa089c63ab08f69fdac4a29bc9c828fdd567b0a72a90",
+  "model_revision": "3aaa2224253a92ca45cf2e3d427c360e1ef9c93d",
+  "engine_revision": "fd993ec5512904b68e16f4d541682c076c487b5d",
+  "files": {
+    "train.jsonl": {
+      "sha256": "c5a2156c48c8263a44893f6050d1822bd88323d7e037c31d8e4c94b760f768a6",
+      "rows": 12
+    },
+    "development.jsonl": {
+      "sha256": "eb1147bf09c1f194bf7f0a75620bdf9a61e13fc6fb36a0f97cfa7994e752010c",
+      "rows": 8
+    }
+  },
+  "selected_ids": {
+    "train": [
+      "number_theory/train/483",
+      "prealgebra/train/799",
+      "geometry/train/445",
+      "algebra/train/1647",
+      "prealgebra/train/161",
+      "precalculus/train/467",
+      "algebra/train/963",
+      "algebra/train/1201",
+      "geometry/train/264",
+      "geometry/train/682",
+      "prealgebra/train/304",
+      "geometry/train/496"
+    ],
+    "development": [
+      "precalculus/test/309",
+      "algebra/test/348",
+      "precalculus/test/72",
+      "intermediate_algebra/test/267",
+      "intermediate_algebra/test/285",
+      "geometry/test/284",
+      "prealgebra/test/822",
+      "prealgebra/test/748"
+    ]
+  },
+  "updates": 3,
+  "split_stop_after": 2,
+  "prompts_per_rollout": 4,
+  "completions_per_prompt": 8,
+  "prompt_limit": 1024,
+  "response_limit": 2048,
+  "eval_completions_per_prompt": 1,
+  "seed": 42,
+  "algorithms": [
+    "rltt"
+  ],
+  "precision": "fp32",
+  "optimizer": {
+    "name": "adam",
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "lr": 1e-06,
+    "weight_decay": 0.1,
+    "clip_grad": 0.1
+  },
+  "sampling": {
+    "temperature": 0.9,
+    "top_p": 1,
+    "top_k": -1,
+    "natural_eos": true
+  },
+  "rltt": {
+    "alpha": 0,
+    "reduction": "response_mean",
+    "kl_coefficient": 0.001
+  },
+  "qualification_gates": [
+    "actual native Ray/CUDA workers and declared sources",
+    "all 96 new training completions and complete held-out rounds",
+    "at least one mixed-reward group with nonzero advantages and finite nonzero gradient",
+    "nonzero model update beyond weight decay and advanced Adam moments",
+    "new committed policy after each update",
+    "fresh worker restart with matching final model, optimizer, scheduler and RNG",
+    "matching continued samples, rewards, traces and held-out results",
+    "natural process completion and complete resource handback"
+  ],
+  "execution_variant": "b-prefix",
+  "learner_execution": {
+    "actor_schedule": "prefix",
+    "prefix_wave_size": 2,
+    "recompute": false,
+    "loop_checkpoint": 0,
+    "layer_checkpoint": 0,
+    "token_chunk": 0
+  }
+}

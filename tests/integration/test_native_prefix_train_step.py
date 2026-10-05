@@ -26,7 +26,7 @@ def single_rank(tmp_path):
 
 
 @pytest.mark.parametrize("reduction", ["token_mean", "response_mean"])
-def test_actual_mcore_prefix_train_step(single_rank, monkeypatch, record_property, reduction):
+def test_actual_mcore_prefix_train_step(single_rank, monkeypatch, record_property, reduction, tmp_path):
     from megatron.core.distributed import DistributedDataParallel as DDP
     from megatron.core.distributed import DistributedDataParallelConfig, finalize_model_grads
     from megatron.core.enums import ModelType
@@ -67,6 +67,10 @@ def test_actual_mcore_prefix_train_step(single_rank, monkeypatch, record_propert
     groups = [[4, 1], [3, 0, 2]]
     args = Namespace(
         loss_type="rltt_loss",
+        rollout_backend="vllm-rlt",
+        rlt_runtime_report_dir=None,
+        rank=0,
+        recompute_granularity=None,
         rltt_prefix_wave_size=0,
         rltt_reduction=reduction,
         rlt_model_revision="tiny-cpu",
@@ -124,12 +128,16 @@ def test_actual_mcore_prefix_train_step(single_rank, monkeypatch, record_propert
         actor.config.finalize_model_grads_func = capture
         iterator = DataIterator(data, groups * 2)
         args.rltt_prefix_wave_size = wave
+        args.rlt_runtime_report_dir = str(tmp_path / f"wave{wave}")
         for update in range(2):
             before = torch.cat([p.detach().flatten().clone() for p in actor.parameters()])
             loss, norm = backend.train_one_step(args, 0, update, [iterator], [wrapped], optimizer, scheduler, 2, 5)
             after = torch.cat([p.detach().flatten().clone() for p in actor.parameters()])
             assert iterator.offset == 2 * (update + 1) and scheduler.num_steps == 5 * (update + 1)
             assert counts[wave] == update + 1 and bool((after - before).norm() > 0)
+            receipt = json.loads((tmp_path / f"wave{wave}/steps/rollout0-step{update}-rank0.json").read_text())
+            assert receipt["actor_generation_after"] == scheduler.num_steps
+            assert receipt["schedule_completed"] == ("prefix" if wave else "mcore")
             assert all(not bool(p.main_grad.any()) for p in actor.parameters() if p.requires_grad)
             histories[wave].append(
                 {

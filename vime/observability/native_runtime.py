@@ -94,6 +94,42 @@ def optimizer_identity(components) -> list[dict]:
     return records
 
 
+def learner_execution(args) -> dict[str, str | int | bool]:
+    return {
+        "actor_schedule": "prefix" if args.loss_type == "rltt_loss" and args.rltt_prefix_wave_size > 0 else "mcore",
+        "prefix_wave_size": args.rltt_prefix_wave_size,
+        "recompute": args.recompute_granularity is not None,
+        "loop_checkpoint": args.rltt_loop_checkpoint,
+        "layer_checkpoint": args.rltt_layer_checkpoint,
+        "token_chunk": args.rltt_token_chunk,
+    }
+
+
+def record_step(args, rollout_id, step_id, schedule, generation_before, generation_after, samples, grad_norm) -> Path:
+    """A completed learner dispatch/update, bound to its startup process record."""
+    proc = Path("/proc/self/stat")
+    record = {
+        "pid": os.getpid(),
+        "process_start_ticks": int(proc.read_text().rsplit(")", 1)[1].split()[19]) if proc.exists() else None,
+        "rank": args.rank,
+        "rollout_id": rollout_id,
+        "step_id": step_id,
+        "schedule_completed": schedule,
+        "actor_generation_before": generation_before,
+        "actor_generation_after": generation_after,
+        "logical_samples": samples,
+        "gradient_norm": float(grad_norm),
+        "learner_execution": learner_execution(args),
+    }
+    folder = Path(args.rlt_runtime_report_dir) / "steps"
+    folder.mkdir(parents=True, exist_ok=True)
+    path = folder / f"rollout{rollout_id}-step{step_id}-rank{args.rank}.json"
+    with path.open("x") as stream:
+        json.dump(record, stream, indent=2, allow_nan=False)
+        stream.write("\n")
+    return path
+
+
 def write_worker_report(directory: str, role: str, rank: int, details: dict) -> Path:
     import ray
 
@@ -166,6 +202,7 @@ def record_learner(args, role: str, models, optimizer, loaded_checkpoint_iterati
             "model_path": str(Path(args.hf_checkpoint).resolve()),
             "load_path": str(Path(args.load).resolve()),
             "parameters_dtype": str(args.params_dtype),
+            "learner_execution": learner_execution(args),
             "parallelism": {
                 "tp": args.tensor_model_parallel_size,
                 "pp": args.pipeline_model_parallel_size,

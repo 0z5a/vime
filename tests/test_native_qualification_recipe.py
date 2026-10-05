@@ -8,7 +8,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from benchmarks.prepare_native_qualification import prepare
+from benchmarks.prepare_native_qualification import EXECUTION_VARIANTS, prepare
 from benchmarks.run_native_qualification import command
 
 
@@ -38,9 +38,19 @@ def packet(tmp_path, monkeypatch):
     return first
 
 
-@pytest.mark.parametrize("algorithm", ["grpo", "rltt"])
+@pytest.mark.parametrize(
+    "variant,algorithm",
+    [("legacy-remat", "grpo"), ("legacy-remat", "rltt"), ("b-baseline", "rltt"), ("b-prefix", "rltt")],
+)
 @pytest.mark.parametrize("phase", ["continuous", "split", "resume"])
-def test_actual_recipe_receives_optimizer_data_eval_and_resume(tmp_path, monkeypatch, packet, algorithm, phase):
+def test_actual_recipe_receives_optimizer_data_eval_and_resume(
+    tmp_path, monkeypatch, packet, algorithm, phase, variant
+):
+    if variant != "legacy-remat":
+        original = json.loads((packet / "qualification.json").read_text())
+        packet = tmp_path / variant
+        selected = prepare(tmp_path / "source", packet, variant)
+        assert selected["files"] == original["files"] and selected["selected_ids"] == original["selected_ids"]
     source = Path(__file__).resolve().parents[1]
     spec = importlib.util.spec_from_file_location("native_qualification_recipe", source / "examples/looped_ppo/run.py")
     recipe = importlib.util.module_from_spec(spec)
@@ -104,7 +114,13 @@ def test_actual_recipe_receives_optimizer_data_eval_and_resume(tmp_path, monkeyp
         assert "--stop-after-rollout" not in actual
     if algorithm == "rltt":
         assert last("ref-load") == str(model) and last("loss-type") == "rltt_loss"
-        assert last("rltt-token-chunk") == "256" and last("rltt-progressive-alpha") == "0"
+        assert last("rltt-progressive-alpha") == "0"
+        if variant == "legacy-remat":
+            assert last("rltt-token-chunk") == "256" and last("recompute-granularity") == "full"
+        else:
+            assert last("rltt-prefix-wave-size") == str(EXECUTION_VARIANTS[variant]["prefix_wave_size"])
+            assert last("rltt-token-chunk") == last("rltt-loop-checkpoint") == last("rltt-layer-checkpoint") == "0"
+            assert "--recompute-granularity" not in actual
     assert captured["ray"]["address"] == "reserved-cluster:6379"
 
 
@@ -114,3 +130,20 @@ def test_changed_data_and_new_cluster_are_rejected(packet, tmp_path):
     (packet / "train.jsonl").write_text("changed\n")
     with pytest.raises(ValueError, match="Changed qualification data"):
         command(packet, tmp_path, tmp_path, "reserved:6379", "rltt", "continuous")
+
+
+@pytest.mark.parametrize("change", ["wave", "remat", "algorithm", "variant"])
+def test_b_execution_is_frozen_before_launch(packet, tmp_path, change):
+    target = tmp_path / "b-prefix"
+    profile = prepare(tmp_path / "source", target, "b-prefix")
+    if change == "wave":
+        profile["learner_execution"]["prefix_wave_size"] = 1
+    elif change == "remat":
+        profile["learner_execution"]["recompute"] = True
+    elif change == "algorithm":
+        profile["algorithms"] = ["grpo", "rltt"]
+    else:
+        profile["execution_variant"] = "unqualified"
+    (target / "qualification.json").write_text(json.dumps(profile))
+    with pytest.raises(ValueError, match="execution contract"):
+        command(target, tmp_path, tmp_path, "reserved:6379", "rltt", "continuous")

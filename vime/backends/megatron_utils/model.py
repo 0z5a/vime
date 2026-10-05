@@ -772,6 +772,7 @@ def train_one_step(
             )
         return output_tensor, partial(loss_function, args, batch, num_microbatches, step_global_batch_size)
 
+    actor_generation = opt_param_scheduler.num_steps
     # Forward pass.
     if prefix_schedule:
         from .looped_prefix_schedule import forward_backward_prefix
@@ -784,7 +785,7 @@ def train_one_step(
             model[0],
             num_microbatches,
             step_global_batch_size,
-            actor_generation=opt_param_scheduler.num_steps,
+            actor_generation=actor_generation,
         )
     else:
         forward_backward_func = get_forward_backward_func()
@@ -831,6 +832,23 @@ def train_one_step(
             data_iterator[0].offset += num_microbatches
             if microbatch_pbar is not None:
                 microbatch_pbar.update(num_microbatches)
+        if (
+            args.loss_type == "rltt_loss"
+            and args.rollout_backend == "vllm-rlt"
+            and args.rlt_runtime_report_dir is not None
+        ):
+            from vime.observability.native_runtime import record_step
+
+            record_step(
+                args,
+                rollout_id,
+                step_id,
+                "prefix" if prefix_schedule else "mcore",
+                actor_generation,
+                opt_param_scheduler.num_steps,
+                step_global_batch_size,
+                grad_norm,
+            )
     elif prefix_schedule:
         raise FloatingPointError("Prefix actor update rejected; iterator cursor was not advanced")
 
