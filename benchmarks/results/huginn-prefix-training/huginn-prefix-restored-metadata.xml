@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="1" failures="0" skipped="0" tests="1" time="1.012" timestamp="2026-10-06T04:02:31.490542+08:00" hostname="dadaxiaoxiaodeMacBook-Air.local"><testcase classname="" name="tests.plugins.test_huginn_prefix_fallback" file="tests/plugins/test_huginn_prefix_fallback.py" time="0.000"><error message="collection failure">tests/plugins/test_huginn_prefix_fallback.py:10: in &lt;module&gt;
+    from test_differentiable_prefix import objective
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/plugins/test_differentiable_prefix.py:8: in &lt;module&gt;
+    from test_looped_response_readout import make_actor
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/plugins/test_looped_response_readout.py:9: in &lt;module&gt;
+    from megatron.core.transformer.transformer_config import TransformerConfig
+../evidence/h20-learner-prep-v1/sources/megatron/megatron/core/__init__.py:3: in &lt;module&gt;
+    import megatron.core.tensor_parallel
+../evidence/h20-learner-prep-v1/sources/megatron/megatron/core/tensor_parallel/__init__.py:4: in &lt;module&gt;
+    from .inference_layers import InferenceLayerNormColumnParallelLinear, InferenceRowParallelLinear
+../evidence/h20-learner-prep-v1/sources/megatron/megatron/core/tensor_parallel/inference_layers.py:7: in &lt;module&gt;
+    from megatron.core.extensions.transformer_engine import (
+../evidence/h20-learner-prep-v1/sources/megatron/megatron/core/extensions/transformer_engine.py:34: in &lt;module&gt;
+    from megatron.core.tensor_parallel.layers import (
+../evidence/h20-learner-prep-v1/sources/megatron/megatron/core/tensor_parallel/layers.py:32: in &lt;module&gt;
+    from ..transformer.utils import make_sharded_tensors_for_checkpoint
+../evidence/h20-learner-prep-v1/sources/megatron/megatron/core/transformer/__init__.py:3: in &lt;module&gt;
+    from .module import MegatronModule
+../evidence/h20-learner-prep-v1/sources/megatron/megatron/core/transformer/module.py:13: in &lt;module&gt;
+    from megatron.core.transformer.transformer_config import TransformerConfig
+../evidence/h20-learner-prep-v1/sources/megatron/megatron/core/transformer/transformer_config.py:16: in &lt;module&gt;
+    from ..fusions.fused_bias_geglu import quick_gelu
+../evidence/h20-learner-prep-v1/sources/megatron/megatron/core/fusions/fused_bias_geglu.py:16: in &lt;module&gt;
+    @jit_fuser
+     ^^^^^^^^^
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py:2836: in compile
+    return torch._dynamo.optimize(
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1682: in optimize
+    return _optimize(rebuild_ctx, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1769: in _optimize
+    backend = get_compiler_fn(backend)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1512: in get_compiler_fn
+    from .repro.after_dynamo import wrap_backend_debug
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/_dynamo/repro/after_dynamo.py:33: in &lt;module&gt;
+    ???
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/_dynamo/debug_utils.py:43: in &lt;module&gt;
+    from torch._dynamo.testing import rand_strided
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/_dynamo/testing.py:33: in &lt;module&gt;
+    from torch._dynamo.backends.debugging import aot_eager
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/_dynamo/backends/debugging.py:34: in &lt;module&gt;
+    from functorch.compile import min_cut_rematerialization_partition
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/functorch/compile/__init__.py:2: in &lt;module&gt;
+    from torch._functorch.aot_autograd import (
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/_functorch/aot_autograd.py:156: in &lt;module&gt;
+    from .partitioners import default_partition
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/_functorch/partitioners.py:57: in &lt;module&gt;
+    from ._activation_checkpointing.graph_info_provider import GraphInfoProvider
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/_functorch/_activation_checkpointing/graph_info_provider.py:3: in &lt;module&gt;
+    import networkx as nx
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/networkx/__init__.py:46: in &lt;module&gt;
+    from networkx import algorithms
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/networkx/algorithms/__init__.py:43: in &lt;module&gt;
+    from networkx.algorithms.reciprocity import *
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+&lt;frozen importlib._bootstrap_external&gt;:995: in exec_module
+    ???
+&lt;frozen importlib._bootstrap_external&gt;:1132: in get_code
+    ???
+../bench/resident_pytest.py:90: in resident_data
+    raise OSError(61, "iCloud file is not resident", path)
+E   ConnectionRefusedError: [Errno 61] iCloud file is not resident: '/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/networkx/algorithms/reciprocity.py'</error></testcase></testsuite></testsuites>

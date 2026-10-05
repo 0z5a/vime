@@ -1,0 +1,10 @@
+{
+  "wheel": "pybase64-1.5.0-cp312-cp312-macosx_11_0_arm64.whl",
+  "url": "https://files.pythonhosted.org/packages/b6/61/302d65a981c9baf156e4becbbbe49f38de72906c430ab373d6d1ca0d4258/pybase64-1.5.0-cp312-cp312-macosx_11_0_arm64.whl",
+  "wheel_sha256": "d1149b7360dd99ef1ad10618df2a4f54a00385bc8d2c1aa244c0301a548ac415",
+  "wheel_bytes": 40490,
+  "entry_points_sha256": "a8b84b7ae3d19e3ea3bbbe92a9e5583aec5abe60cac7d6568d71cb96da4b6b9a",
+  "entry_points_bytes": 52,
+  "original_installed_RECORD_matches": true,
+  "existing_environment_modified": false
+}

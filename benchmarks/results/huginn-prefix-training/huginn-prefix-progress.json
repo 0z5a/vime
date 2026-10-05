@@ -1,0 +1,38 @@
+{
+  "time_utc": "2026-10-05T19:57:21.122736+00:00",
+  "parent": "0b03ea7e34b9d0be9bd2f5fde8cf32431f347fa3",
+  "branch": "feat/huginn-prefix-replay",
+  "status": "UNCOMMITTED_NUMERICAL_TESTS_PENDING",
+  "files": {
+    "vime_plugins/looped/logical_step.py": "d9c4a1447ac1d2bb2f87ef7b6fbb93dcb57e6bb29c2e4cbca76d0cc4ec976469",
+    "vime_plugins/huginn/model.py": "12a40f3ae056ad023fa309bf62bd38078f40fcdaee97331d252c95ff10ec634b",
+    "vime/backends/megatron_utils/looped_prefix_schedule.py": "c13ff20272b21a5c1e37b683007b2da505cca73fc76f69c64da4193599754da9",
+    "tests/integration/test_native_prefix_train_step.py": "3608378d6f9ec919da1d3dca355ab401955fed9e7739e58bd431a48aeb32290b",
+    "tests/plugins/test_huginn_prefix_fallback.py": "fb23920587628184aa21c92a75d317cda6c2fd55a0cb9f3b6a60539e89f81118"
+  },
+  "numerical_passes": 0,
+  "numerical_failures": 0,
+  "completed_collection_failure": "huginn-prefix-explicit-plugins.log: iCloud-evicted sympy/matrices/exceptions.py; exit 2",
+  "live_natural_waits": [
+    {
+      "pid": 94391,
+      "file": "_pytest/_io/__pycache__/pprint.cpython-312.pyc"
+    },
+    {
+      "pid": 95024,
+      "file": "pygments/token.py"
+    },
+    {
+      "pid": 78060,
+      "file": "idna-3.20.dist-info/entry_points.txt"
+    },
+    {
+      "pid": 89527,
+      "file": "idna-3.20.dist-info/entry_points.txt"
+    }
+  ],
+  "h20_own_jobs": [],
+  "h20_archive_cutoff_utc": "2026-10-06T00:30:00Z",
+  "tests": "24 two-update CPU cases + 4 contract cases prepared; 12 CUDA integration cases prepared, not executed",
+  "environment": "No installed package edits; existing sources only; same-RECORD fallback for resident setuptools/pygments/sympy sources; TORCH_DEVICE_BACKEND_AUTOLOAD=0 and PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 for explicit test run."
+}

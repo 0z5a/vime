@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="1" failures="0" skipped="0" tests="1" time="2.271" timestamp="2026-10-06T04:07:02.416229+08:00" hostname="dadaxiaoxiaodeMacBook-Air.local"><testcase classname="" name="tests.plugins.test_huginn_prefix_fallback" file="tests/plugins/test_huginn_prefix_fallback.py" time="0.000"><error message="collection failure">tests/plugins/test_huginn_prefix_fallback.py:10: in &lt;module&gt;
+    from test_differentiable_prefix import objective
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/plugins/test_differentiable_prefix.py:8: in &lt;module&gt;
+    from test_looped_response_readout import make_actor
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/plugins/test_looped_response_readout.py:9: in &lt;module&gt;
+    from megatron.core.transformer.transformer_config import TransformerConfig
+../evidence/h20-learner-prep-v1/sources/megatron/megatron/core/__init__.py:7: in &lt;module&gt;
+    from megatron.core.inference_params import InferenceParams
+../evidence/h20-learner-prep-v1/sources/megatron/megatron/core/inference_params.py:3: in &lt;module&gt;
+    from .inference.contexts import (  # noqa: F401 # pylint: disable=unused-import
+../evidence/h20-learner-prep-v1/sources/megatron/megatron/core/inference/contexts/__init__.py:16: in &lt;module&gt;
+    from .dynamic_context import (
+../evidence/h20-learner-prep-v1/sources/megatron/megatron/core/inference/contexts/dynamic_context.py:70: in &lt;module&gt;
+    import wandb  # pylint: disable=unused-import
+    ^^^^^^^^^^^^
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/wandb/__init__.py:22: in &lt;module&gt;
+    from wandb.sdk.lib import wb_logging as _wb_logging
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/wandb/sdk/__init__.py:28: in &lt;module&gt;
+    from .wandb_init import _attach, init
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/wandb/sdk/wandb_init.py:40: in &lt;module&gt;
+    from wandb.sdk.lib import noop_run, progress, runid, wb_logging
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/wandb/sdk/lib/noop_run.py:9: in &lt;module&gt;
+    from wandb.sdk import wandb_config, wandb_metric, wandb_run, wandb_settings
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/wandb/sdk/wandb_run.py:32: in &lt;module&gt;
+    from wandb.plot import CustomChart, Visualize
+../../looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/wandb/plot/__init__.py:24: in &lt;module&gt;
+    from wandb.plot.histogram import histogram
+&lt;frozen importlib._bootstrap&gt;:1360: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:1331: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:935: in _load_unlocked
+    ???
+&lt;frozen importlib._bootstrap_external&gt;:995: in exec_module
+    ???
+&lt;frozen importlib._bootstrap_external&gt;:1132: in get_code
+    ???
+../bench/resident_pytest.py:93: in resident_data
+    raise OSError(61, "iCloud file is not resident", path)
+E   ConnectionRefusedError: [Errno 61] iCloud file is not resident: '/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/wandb/plot/histogram.py'</error></testcase></testsuite></testsuites>

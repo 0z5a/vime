@@ -1,0 +1,35 @@
+{
+  "scope": "Tiny CPU providers and real production group helper; CUDA DDP and official online RL not executed",
+  "tests": 240,
+  "passed": 216,
+  "cuda_skipped": 12,
+  "strict_bf16_xfailed": 12,
+  "groups": {
+    "0.0": {
+      "configurations": 8,
+      "updates": 16,
+      "gradient_relative_l2_max": 7.174630809458904e-07,
+      "delta_max_error": 5.306428647600114e-07,
+      "full_replay_samples": 5
+    },
+    "0.4": {
+      "configurations": 8,
+      "updates": 16,
+      "gradient_relative_l2_max": 9.231137028109515e-07,
+      "delta_max_error": 2.9406510293483734e-07,
+      "full_replay_samples": 3
+    },
+    "1.0": {
+      "configurations": 8,
+      "updates": 16,
+      "gradient_relative_l2_max": 1.9366980268387124e-06,
+      "delta_max_error": 1.4603137969970703e-06,
+      "full_replay_samples": 0
+    }
+  },
+  "speedup": "NOT_RUN",
+  "gpu_memory": "NOT_RUN",
+  "reward_convergence": "NOT_RUN",
+  "original_environment_modified": false,
+  "parent": "0b03ea7e34b9d0be9bd2f5fde8cf32431f347fa3"
+}

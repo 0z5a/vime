@@ -1,0 +1,98 @@
+{
+  "huginn-dynamo-source-restoration.json": {
+    "bytes": 528,
+    "sha256": "d71131af084bdf1639822b24d3b28a6f8d6d6f1e2332d1c627569251950da302"
+  },
+  "huginn-official-test-source-restoration.json": {
+    "bytes": 359496,
+    "sha256": "d9dca6ea71cd5e0d094ea4161aa5a23e7a50c428faf15e05dbd5289bedd6e1c3"
+  },
+  "huginn-prefix-all-records.log": {
+    "bytes": 5959,
+    "sha256": "5d9e5139eb2945d899968fdaf0c928ac8c390e16b1d9b826738872388a18c185"
+  },
+  "huginn-prefix-all-records.xml": {
+    "bytes": 3956,
+    "sha256": "c9858cdd471f9a47278265c2d4c4110e8fcf77e3320db7a5b139d926bbc7eaad"
+  },
+  "huginn-prefix-cache-record.log": {
+    "bytes": 6164,
+    "sha256": "0977efa1bce5d09971622577217e9409d61bd0838a9a1d58ea87e4a83bc2e549"
+  },
+  "huginn-prefix-cache-record.xml": {
+    "bytes": 5640,
+    "sha256": "b363bf31a2cd4c26a766f2bb58121b744573a533081773f484cf6673cbb39ddc"
+  },
+  "huginn-prefix-exact-source.log": {
+    "bytes": 6164,
+    "sha256": "9149d356948de710e3b00286a0bcf0e8c3bfccc76c365ce7c81a296973ecf0eb"
+  },
+  "huginn-prefix-exact-source.xml": {
+    "bytes": 5640,
+    "sha256": "83739586a02dd4e1f0658ce594949cfcad2aab8c934d0237d03439771837c46e"
+  },
+  "huginn-prefix-explicit-plugins.log": {
+    "bytes": 6529,
+    "sha256": "1d2438e61df819a91d857ba7b2be1bd81f6911ece906be1e17edd3e61bbc95db"
+  },
+  "huginn-prefix-explicit-plugins.xml": {
+    "bytes": 6049,
+    "sha256": "b9f42d7748bdf0c684d93b1ca1d54e8ac50650b89b5ebe264ce5edf29c4af935"
+  },
+  "huginn-prefix-final.log": {
+    "bytes": 31490,
+    "sha256": "a078f0fa7b23fc18fb5e6719ae962f7c7b0abfc6b0656a57e90af0d5f39d7aad"
+  },
+  "huginn-prefix-final.xml": {
+    "bytes": 168661,
+    "sha256": "e727ef2ccaccd14ddd505de52b03fe8e143623d90d15809f4f411bdc9c1d3835"
+  },
+  "huginn-prefix-package-source.log": {
+    "bytes": 8137,
+    "sha256": "4474c27da158d24eb2bb47776812f9f0533def355380dffe60122cbd84b2c1b8"
+  },
+  "huginn-prefix-package-source.xml": {
+    "bytes": 24658,
+    "sha256": "815ba3b02b6126899a1b11e9975024c192ed823ac9d26ce177b99cb41ea2ce92"
+  },
+  "huginn-prefix-progress.json": {
+    "bytes": 1773,
+    "sha256": "cb813c26028db0c9e1168de93f464fbecae82fd6e3357c6bc68371f894a1f031"
+  },
+  "huginn-prefix-restored-metadata.log": {
+    "bytes": 6770,
+    "sha256": "2c699f4657d95872af1aacfc38f311f1172e579842cb59cdec0ff37a0ce6a3dc"
+  },
+  "huginn-prefix-restored-metadata.xml": {
+    "bytes": 6301,
+    "sha256": "651f4b5c3892efa0cc6eb39a7dbf15c664ef8fe602f72adf79cc904e3ad7cdec"
+  },
+  "huginn-prefix-restored-sources.log": {
+    "bytes": 6134,
+    "sha256": "9ab15e822cc586f6ca455ead25452abfd51d95a1939575f4b35b7723887950ce"
+  },
+  "huginn-prefix-restored-sources.xml": {
+    "bytes": 3971,
+    "sha256": "c9811d54d1e6eec7cfad5b4b3ad74c4c9b2ea1f3b16e4094d98344391b4f81ab"
+  },
+  "huginn-pybase64-metadata-restoration.json": {
+    "bytes": 552,
+    "sha256": "f089b0a490f828205a441978f6f7e5ba530e2ee6c94d0d9140e48927461a65e8"
+  },
+  "huginn-resident-source-matches.json": {
+    "bytes": 80905,
+    "sha256": "0933634bf380927bcd0cad8b98bab6c495824b513f102ea3931416032c80ae3b"
+  },
+  "resident_pytest.py": {
+    "bytes": 5078,
+    "sha256": "b4cb09e5e9d23b53820ab665d76d0f0d2caa6413196629d95720ba2688dd0c71"
+  },
+  "restore_test_sources.py": {
+    "bytes": 3784,
+    "sha256": "b0530a5ebb8ff97b97aef7d75941f5032eadec8bc671034b6933688c9f7b34d1"
+  },
+  "summary.json": {
+    "bytes": 1016,
+    "sha256": "a537f0ba2904f0c5e43bcb481fef77cb8b9a9f26be5d27adc66a011b30cc1044"
+  }
+}

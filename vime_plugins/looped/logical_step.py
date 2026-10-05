@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING, Literal, cast
 import torch
 
 from vime.utils.types import RecurrentTrace
+from vllm_rlt.models.huginn_latents import HUGINN_LATENT_PROFILE
 
 from .prefix import PrefixIdentity
 from .training import masked_token_weights
@@ -44,11 +45,11 @@ def plan_step(
     actor_generation: int,
     model_revision: str,
     loop_depth: int,
-    model_family: Literal["ouro", "nanbeige"] = "ouro",
+    model_family: Literal["ouro", "nanbeige", "huginn_raven"] = "ouro",
     suffix_wave_size: int,
     reduction: Literal["token_mean", "response_mean"],
 ) -> LogicalStep:
-    """Keep original identities; group only canonical causal, fixed-depth Ouro/Nanbeige.
+    """Keep original identities; group only canonical causal, fixed-depth models with actual latent identity.
 
     Prefix positions start at zero and use the provider's unmodified causal
     mask. Response loss masks remain per sample and do not change prefix keys.
@@ -56,8 +57,8 @@ def plan_step(
     """
     if min(num_microbatches, suffix_wave_size, loop_depth) < 1 or iterator.offset < 0:
         raise ValueError("A logical step requires positive microbatch, wave and depth counts")
-    if model_family not in ("ouro", "nanbeige"):
-        raise ValueError("Prefix planning supports Ouro and Nanbeige; Huginn requires latent-aware replay")
+    if model_family not in ("ouro", "nanbeige", "huginn_raven"):
+        raise ValueError("Unknown prefix model family")
     data = iterator.rollout_data
     if data.get("position_ids") is not None or data.get("attention_mask") is not None:
         raise ValueError("Prefix sharing requires canonical positions and causal attention")
@@ -94,12 +95,17 @@ def plan_step(
             or trace.model_revision != model_revision
             or trace.prefill_depth != loop_depth
             or trace.decode_depths != [loop_depth] * length
-            or trace.latent_seed is not None
-            or trace.latent_profile is not None
         ):
             raise ValueError("Logical prefix plan requires the recorded fixed-depth model family and revision")
+        if model_family == "huginn_raven":
+            if type(trace.latent_seed) is not int or trace.latent_profile != HUGINN_LATENT_PROFILE:
+                raise ValueError("Huginn prefix planning requires the actual recorded latent identity")
+        elif trace.latent_seed is not None or trace.latent_profile is not None:
+            raise ValueError("This model family does not use latent-conditioned prefixes")
         prompt = tuple(sequence[: len(sequence) - length].tolist())
-        identity = PrefixIdentity(model_revision, actor_generation, prompt, loop_depth)
+        identity = PrefixIdentity(
+            model_revision, actor_generation, prompt, loop_depth, trace.latent_seed, trace.latent_profile
+        )
         grouped.setdefault(identity, []).append(index)
     weights = masked_token_weights([masks[index] for index in indices], reduction)
     groups = tuple(

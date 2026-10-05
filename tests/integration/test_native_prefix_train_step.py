@@ -6,6 +6,7 @@ qualification. Run only in an admitted window with the complete environment.
 
 import copy
 import json
+from dataclasses import replace
 from argparse import Namespace
 
 import pytest
@@ -25,11 +26,20 @@ def single_rank(tmp_path):
     torch.distributed.destroy_process_group()
 
 
-@pytest.mark.parametrize("family", ["ouro", "nanbeige"])
 @pytest.mark.parametrize("reduction", ["token_mean", "response_mean"])
-@pytest.mark.parametrize("rematerialize", [False, True])
+@pytest.mark.parametrize(
+    "family,rematerialize,latent_grouping",
+    [
+        ("ouro", False, "none"),
+        ("ouro", True, "none"),
+        ("nanbeige", False, "none"),
+        ("nanbeige", True, "none"),
+        ("huginn", False, "independent"),
+        ("huginn", False, "mixed"),
+    ],
+)
 def test_actual_mcore_prefix_train_step(
-    single_rank, monkeypatch, record_property, reduction, rematerialize, family, tmp_path
+    single_rank, monkeypatch, record_property, reduction, rematerialize, family, latent_grouping, tmp_path
 ):
     from megatron.core.distributed import DistributedDataParallel as DDP
     from megatron.core.distributed import DistributedDataParallelConfig, finalize_model_grads
@@ -51,6 +61,8 @@ def test_actual_mcore_prefix_train_step(
     with torch.no_grad():
         reference.lm_head.weight.mul_(0.9)
     data = rollout(depth, family)
+    if latent_grouping == "mixed":
+        data["recurrent_inputs"][2] = replace(data["recurrent_inputs"][2], latent_seed=0)
     for key in ("tokens", "advantages", "loss_masks"):
         data[key] = [tensor.cuda() for tensor in data[key]]
     data["total_lengths"] = [len(tokens) for tokens in data["tokens"]]
@@ -143,6 +155,17 @@ def test_actual_mcore_prefix_train_step(
             receipt = json.loads((tmp_path / f"wave{wave}/steps/rollout0-step{update}-rank0.json").read_text())
             assert receipt["actor_generation_after"] == scheduler.num_steps
             assert receipt["schedule_completed"] == ("prefix" if wave else "mcore")
+            if wave:
+                report = json.loads(
+                    (tmp_path / f"wave{wave}/prefix-plans/generation{update * 5}-offset{update * 2}.json").read_text()
+                )
+                shared = 0 if latent_grouping == "independent" else 2 if latent_grouping == "mixed" else 5
+                assert report["phase"] == "backward_completed"
+                assert report["model_family"] == actor.prefix_model_family
+                assert report["samples"] == 5 and report["shared_samples"] == shared
+                assert report["shared_fraction"] == shared / 5
+                assert report["full_replay_samples"] == (5 - shared if family == "huginn" else 0)
+                assert report["sample_ids"] == [data["sample_indices"][i] for group in groups for i in group]
             assert all(not bool(p.main_grad.any()) for p in actor.parameters() if p.requires_grad)
             histories[wave].append(
                 {
