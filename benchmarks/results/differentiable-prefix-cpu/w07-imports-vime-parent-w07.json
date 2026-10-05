@@ -1,0 +1,20 @@
+[
+  {
+    "family": "ouro",
+    "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime-parent-w07/vime_plugins/ouro/model.py",
+    "depth": 4,
+    "sha256": "aba73f12cc415d48b5e1afd1f0104b6e26f85dfde0f07282ccf3d8539e809f9e"
+  },
+  {
+    "family": "nanbeige",
+    "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime-parent-w07/vime_plugins/nanbeige/model.py",
+    "depth": 2,
+    "sha256": "c97f4f8031a2b83fd7cd468d0a19492dd30fbcddee9dc522133c1dfeefab2b11"
+  },
+  {
+    "family": "huginn",
+    "path": "/Users/0z5a/Documents/infra/flashrlt-20261005/vime-parent-w07/vime_plugins/huginn/model.py",
+    "depth": 3,
+    "sha256": "0a80caf96e37b7899444e1201c8c4ba6c6d2e1c076c22668419069b8757a4b53"
+  }
+]

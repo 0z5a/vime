@@ -1,0 +1,20 @@
+{
+  "passed": 402,
+  "skipped": 6,
+  "known_factory_deselected": 3,
+  "new_checks": 48,
+  "full_gradient_cases": 36,
+  "max_new_gradient_relative_l2": 1.8186566325957303e-07,
+  "benchmarks": {
+    "same_tree_rows": 648,
+    "clean_parent_rows": 108,
+    "separate_pilot_rows": 72
+  },
+  "parent_commit": "5f7ce7faa26c6a95fcfee2a751ab332a39373e02",
+  "parent_all_blobs_verified": 688,
+  "rlt_library_commit": "7d6e08edf6327797337f361421245539ac0283e8",
+  "megatron_source_commit": "1dcf0dafa884ad52ffb243625717a3471643e087",
+  "megatron_patch_sha256": "6fa39fdfdac8dae6b9bb3e44014df6766d774e0968ac07d6025a6b40f211aa98",
+  "online_rl": false,
+  "target_cuda": false
+}

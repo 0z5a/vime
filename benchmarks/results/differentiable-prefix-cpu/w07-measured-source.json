@@ -1,0 +1,10 @@
+{
+  "vime_plugins/looped/prefix.py": "b552394a650b31ad77d877fa84ed1428fa7448bef853a63a7ba4816ee5594bbc",
+  "vime_plugins/looped/packing.py": "14f2037ac7ec9589a96d20bd0b076737cf0477ee98025864f69aa7fafc8ccf9e",
+  "vime_plugins/ouro/model.py": "dcfe702bf262bcbe9c018af9686d7d36a56cd7ceb042f698f53d32c1412e2b4a",
+  "vime_plugins/nanbeige/model.py": "a1f3c8d96382b9b0937ae787e3ef87957d1dd851708a9a5df916b8357d38a376",
+  "vime_plugins/huginn/model.py": "6a46332c58e92fb714b982882a4e576cc8a1cf3feec6daca47a0352b0dcec680",
+  "tests/plugins/test_differentiable_prefix.py": "d6a2c5c8dd6cac5ca3607bcb30c58a438fd0bb789de25eca254f211ed15f90a4",
+  "benchmarks/bench_differentiable_prefix.py": "a454b3e5fda546c9dd6e4bd095f8e6cba8c31c85bac70ab97ef40f6622d46539",
+  "benchmarks/bench_prefix_clean.py": "0e4bcd832e2fb32c79db4914b28846e93da090eaa0d938b6e8b0d899d4d5b35e"
+}
