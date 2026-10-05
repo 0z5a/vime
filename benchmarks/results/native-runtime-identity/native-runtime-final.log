@@ -1,0 +1,140 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/0z5a/Documents/infra/flashrlt-20261005/vime
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 217 items
+
+tests/test_native_runtime_identity.py ............                       [  5%]
+tests/test_native_runtime_audit.py .............                         [ 11%]
+tests/test_native_runtime_mcore.py ...                                   [ 12%]
+tests/test_native_checkpoint_audit.py ...................                [ 21%]
+tests/test_native_learning_signal_audit.py ........                      [ 25%]
+tests/test_native_qualification_recipe.py .......                        [ 28%]
+tests/test_looped_grpo_recipe.py ....................................... [ 46%]
+........................................................................ [ 79%]
+..........                                                               [ 84%]
+tests/rollout_backends/test_native_rlt_contract.py .....                 [ 86%]
+tests/rollout_backends/test_native_colocation.py ............            [ 92%]
+tests/rollout_backends/test_native_rlt_evaluation.py .................   [100%]
+
+=============================== warnings summary ===============================
+tests/test_native_checkpoint_audit.py: 16 warnings
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/distributed/checkpoint/utils.py:485: UserWarning: torch.distributed is disabled, unavailable or uninitialized, assuming the intent is to save in a single process.
+    return func(*args, **kwargs)
+
+tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[model]
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/distributed/checkpoint/state_dict_saver.py:472: UserWarning: Detected an existing checkpoint in /private/var/folders/12/3pb2615n5wddcr6spjcz8_pw0000gn/T/pytest-of-0z5a/pytest-304/test_rejects_corrupted_state_e0/right/iter_0000002, overwriting since self.overwrite=True. Past version 2.5 of PyTorch, `overwrite` will default to False. Set this variable to True to maintain this functionality or False to raise when an existing checkpoint is found.
+    local_plan = storage_writer.prepare_local_plan(local_plan)
+
+tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[moment]
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/distributed/checkpoint/state_dict_saver.py:472: UserWarning: Detected an existing checkpoint in /private/var/folders/12/3pb2615n5wddcr6spjcz8_pw0000gn/T/pytest-of-0z5a/pytest-304/test_rejects_corrupted_state_e1/right/iter_0000002, overwriting since self.overwrite=True. Past version 2.5 of PyTorch, `overwrite` will default to False. Set this variable to True to maintain this functionality or False to raise when an existing checkpoint is found.
+    local_plan = storage_writer.prepare_local_plan(local_plan)
+
+tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[rng]
+  /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/distributed/checkpoint/state_dict_saver.py:472: UserWarning: Detected an existing checkpoint in /private/var/folders/12/3pb2615n5wddcr6spjcz8_pw0000gn/T/pytest-of-0z5a/pytest-304/test_rejects_corrupted_state_e2/right/iter_0000002, overwriting since self.overwrite=True. Past version 2.5 of PyTorch, `overwrite` will default to False. Set this variable to True to maintain this functionality or False to raise when an existing checkpoint is found.
+    local_plan = storage_writer.prepare_local_plan(local_plan)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/native-runtime-final.xml -
+============================== slowest durations ===============================
+8.68s call     tests/test_native_checkpoint_audit.py::test_combined_cli_reads_actual_state_and_both_raw_signal_runs[optimizer_mode]
+6.38s call     tests/test_native_checkpoint_audit.py::test_combined_cli_reads_actual_state_and_both_raw_signal_runs[None]
+3.68s call     tests/test_native_checkpoint_audit.py::test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[0.001-decay-expected1]
+3.25s call     tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[scheduler]
+3.23s call     tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[rng]
+3.14s call     tests/test_native_checkpoint_audit.py::test_combined_cli_reads_actual_state_and_both_raw_signal_runs[counters]
+3.13s call     tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[moment]
+2.89s call     tests/test_native_checkpoint_audit.py::test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[1e-06-momentum-expected2]
+2.33s call     tests/rollout_backends/test_native_rlt_contract.py::test_publication_cohort_and_serialization
+2.03s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_unsupported_eval_settings_reject_before_generation[stop-value0]
+2.00s call     tests/test_native_checkpoint_audit.py::test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[0.001-learning-expected0]
+1.95s call     tests/test_native_checkpoint_audit.py::test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[1e-06-learning-expected0]
+1.92s call     tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[iteration]
+1.73s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_complete_datasets_fixed_seeds_and_unchanged_training_state[nanbeige]
+1.41s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_complete_datasets_fixed_seeds_and_unchanged_training_state[huginn]
+0.23s call     tests/test_native_runtime_audit.py::test_rejects_stale_or_mismatched_records[duplicate]
+0.22s call     tests/test_native_learning_signal_audit.py::test_signal_gate_never_claims_optimizer_resume_or_convergence[grpo]
+0.21s call     tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[optimizer_step]
+0.15s call     tests/rollout_backends/test_native_rlt_contract.py::test_http_client_concurrency_matches_backend[vllm]
+0.10s call     tests/test_native_checkpoint_audit.py::test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[1e-06-decay-expected1]
+0.10s call     tests/test_native_runtime_identity.py::test_reports_process_and_loaded_bytes_without_copying_model_state
+0.10s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_policy_publication_between_batches_invalidates_evaluation
+0.08s call     tests/test_native_checkpoint_audit.py::test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[0.001-momentum-expected2]
+0.08s call     tests/test_native_learning_signal_audit.py::test_nonzero_gradient_and_new_versions_alone_do_not_pass
+0.08s call     tests/test_native_checkpoint_audit.py::test_rejects_corrupted_state_even_with_reusable_fingerprints[model]
+0.07s call     tests/test_native_qualification_recipe.py::test_actual_recipe_receives_optimizer_data_eval_and_resume[continuous-grpo]
+0.06s call     tests/test_native_learning_signal_audit.py::test_signal_gate_never_claims_optimizer_resume_or_convergence[rltt]
+0.06s setup    tests/test_native_checkpoint_audit.py::test_combined_cli_reads_actual_state_and_both_raw_signal_runs[None]
+0.06s call     tests/test_native_learning_signal_audit.py::test_rejects_mismatched_evidence[reference]
+0.06s call     tests/test_native_checkpoint_audit.py::test_missing_adam_and_rng_do_not_qualify
+0.06s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_complete_datasets_fixed_seeds_and_unchanged_training_state[ouro]
+0.05s setup    tests/rollout_backends/test_native_rlt_evaluation.py::test_long_heldout_prompts_are_not_silently_dropped[prompt]
+0.05s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[True-3-ppo-True-nanbeige]
+0.04s call     tests/test_native_learning_signal_audit.py::test_rejects_mismatched_evidence[index]
+0.03s setup    tests/rollout_backends/test_native_rlt_evaluation.py::test_unsupported_eval_settings_reject_before_generation[min_new_tokens-1]
+0.03s call     tests/test_native_runtime_identity.py::test_native_init_records_real_model_through_explicit_cpu_transport[True]
+0.03s call     tests/test_native_learning_signal_audit.py::test_rejects_mismatched_evidence[reward]
+0.03s call     tests/test_native_learning_signal_audit.py::test_rejects_mismatched_evidence[gradient]
+0.03s setup    tests/rollout_backends/test_native_rlt_evaluation.py::test_complete_datasets_fixed_seeds_and_unchanged_training_state[ouro]
+0.03s call     tests/test_native_learning_signal_audit.py::test_rejects_mismatched_evidence[prefix]
+0.03s setup    tests/rollout_backends/test_native_rlt_contract.py::test_publication_cohort_and_serialization
+0.03s setup    tests/test_native_runtime_audit.py::test_cli_binds_all_six_synthetic_reports_and_records_input_hashes
+0.02s setup    tests/rollout_backends/test_native_rlt_evaluation.py::test_unsupported_eval_settings_reject_before_generation[no_stop_trim-False]
+0.02s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[False-3-grpo-False-ouro]
+0.02s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[True-3-dppo-True-ouro]
+0.02s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[True-3-grpo-True-ouro]
+0.02s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[False-None-flow-dppo-True-nanbeige]
+0.02s call     tests/rollout_backends/test_native_colocation.py::test_colocation_rejects_unimplemented_residency_contracts[overrides3-release-train]
+0.02s setup    tests/rollout_backends/test_native_colocation.py::test_bare_colocate_does_not_silently_enable_native_offload
+0.02s call     tests/rollout_backends/test_native_rlt_contract.py::test_huginn_aliases_static_buffer_and_noise_profile
+0.02s teardown tests/test_native_checkpoint_audit.py::test_combined_cli_reads_actual_state_and_both_raw_signal_runs[optimizer_mode]
+0.02s setup    tests/test_native_qualification_recipe.py::test_actual_recipe_receives_optimizer_data_eval_and_resume[continuous-grpo]
+0.02s call     tests/rollout_backends/test_native_rlt_contract.py::test_incomplete_publication_cannot_resume_or_reuse_old_manifest
+0.01s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_sampling_and_chat_overrides_are_used
+0.01s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_long_heldout_prompts_are_not_silently_dropped[prompt]
+0.01s teardown tests/test_native_checkpoint_audit.py::test_actual_adamw_distinguishes_new_signal_from_decay_and_old_momentum[0.001-decay-expected1]
+0.01s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[False-None-grpo-False-ouro]
+0.01s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[True-None-ppo-False-ouro]
+0.01s setup    tests/rollout_backends/test_native_rlt_contract.py::test_incomplete_publication_cannot_resume_or_reuse_old_manifest
+0.01s teardown tests/rollout_backends/test_native_rlt_contract.py::test_publication_cohort_and_serialization
+0.01s setup    tests/rollout_backends/test_native_rlt_evaluation.py::test_long_heldout_prompts_are_not_silently_dropped[context]
+0.01s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_unsupported_eval_settings_reject_before_generation[repetition_penalty-1.2]
+0.01s call     tests/test_native_runtime_identity.py::test_actual_learner_function_records_after_load_without_importing_full_framework[vllm-True]
+0.01s setup    tests/test_native_runtime_audit.py::test_rejects_stale_or_mismatched_records[optimizer]
+0.01s setup    tests/test_native_runtime_audit.py::test_rejects_stale_or_mismatched_records[source]
+0.01s teardown tests/rollout_backends/test_native_rlt_evaluation.py::test_complete_datasets_fixed_seeds_and_unchanged_training_state[nanbeige]
+0.01s call     tests/test_native_runtime_identity.py::test_actual_learner_function_records_after_load_without_importing_full_framework[vllm-rlt-True]
+0.01s setup    tests/test_native_checkpoint_audit.py::test_combined_cli_reads_actual_state_and_both_raw_signal_runs[counters]
+0.01s setup    tests/test_native_runtime_audit.py::test_rejects_stale_or_mismatched_records[actor]
+0.01s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_reward_key_and_metadata_override
+0.01s setup    tests/test_native_runtime_audit.py::test_rejects_stale_or_mismatched_records[process]
+0.01s call     tests/test_native_runtime_identity.py::test_actual_learner_function_records_after_load_without_importing_full_framework[vllm-rlt-False]
+0.01s setup    tests/test_native_runtime_audit.py::test_rejects_stale_or_mismatched_records[worker]
+0.01s setup    tests/test_native_runtime_audit.py::test_rejects_stale_or_mismatched_records[iteration]
+0.01s setup    tests/test_native_runtime_audit.py::test_rejects_stale_or_mismatched_records[revision]
+0.01s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[True-3-grpo-False-huginn_raven]
+0.01s setup    tests/rollout_backends/test_native_rlt_evaluation.py::test_sampling_and_chat_overrides_are_used
+0.01s teardown tests/rollout_backends/test_native_rlt_evaluation.py::test_complete_datasets_fixed_seeds_and_unchanged_training_state[huginn]
+0.01s setup    tests/test_native_runtime_audit.py::test_rejects_stale_or_mismatched_records[epoch]
+0.01s call     tests/test_native_qualification_recipe.py::test_changed_data_and_new_cluster_are_rejected
+0.01s setup    tests/test_native_runtime_audit.py::test_rejects_stale_or_mismatched_records[job]
+0.01s setup    tests/test_native_runtime_audit.py::test_rejects_stale_or_mismatched_records[environment]
+0.01s call     tests/rollout_backends/test_native_rlt_evaluation.py::test_reordered_or_missing_heldout_samples_are_rejected
+0.01s setup    tests/test_native_runtime_audit.py::test_rejects_stale_or_mismatched_records[unfinished]
+0.01s call     tests/test_native_qualification_recipe.py::test_actual_recipe_receives_optimizer_data_eval_and_resume[continuous-rltt]
+0.01s call     tests/test_native_runtime_audit.py::test_cli_binds_all_six_synthetic_reports_and_records_input_hashes
+0.01s setup    tests/test_native_runtime_audit.py::test_rejects_stale_or_mismatched_records[duplicate]
+0.01s teardown tests/test_native_checkpoint_audit.py::test_combined_cli_reads_actual_state_and_both_raw_signal_runs[None]
+0.01s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[True-3-ppo-False-huginn_raven]
+0.01s call     tests/test_native_runtime_audit.py::test_rejects_stale_or_mismatched_records[actor]
+0.01s setup    tests/rollout_backends/test_native_rlt_evaluation.py::test_complete_datasets_fixed_seeds_and_unchanged_training_state[huginn]
+0.01s call     tests/test_looped_grpo_recipe.py::test_recipe_roles_groups_precision_and_resume[False-None-grpo-False-nanbeige]
+0.01s call     tests/test_looped_grpo_recipe.py::test_grpo_rejects_single_completion_before_starting_ray
+0.01s teardown tests/rollout_backends/test_native_rlt_evaluation.py::test_reward_key_and_metadata_override
+0.01s call     tests/rollout_backends/test_native_colocation.py::test_real_common_validation_preserves_resident_profile
+
+(556 durations < 0.005s hidden.  Use -vv to show these durations.)
+================= 217 passed, 19 warnings in 62.70s (0:01:02) ==================

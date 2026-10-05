@@ -1136,4 +1136,9 @@ def initialize_model_and_optimizer(
             optimizer.reload_model_params()
     clear_memory()
 
+    if args.rollout_backend == "vllm-rlt" and args.rlt_runtime_report_dir is not None:
+        from vime.observability.native_runtime import record_learner
+
+        record_learner(args, role, model, optimizer, iteration)
+
     return model, optimizer, opt_param_scheduler, iteration

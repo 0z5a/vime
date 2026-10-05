@@ -1,0 +1,27 @@
+torch=2.13.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/torch/__init__.py
+setuptools=84.0.0 /Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages/setuptools/__init__.py
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/0z5a/Documents/infra/flashrlt-20261005/vime
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 19 items
+
+tests/test_native_runtime_identity.py ............                       [ 63%]
+tests/test_native_qualification_recipe.py .......                        [100%]
+
+- generated xml file: /Users/0z5a/Documents/infra/flashrlt-20261005/evidence/native-runtime-initial.xml -
+============================== slowest durations ===============================
+0.54s call     tests/test_native_runtime_identity.py::test_captures_actual_optimizer_class_and_group_overrides[Adam]
+0.53s call     tests/test_native_runtime_identity.py::test_reports_process_and_loaded_bytes_without_copying_model_state
+0.11s call     tests/test_native_runtime_identity.py::test_native_init_records_real_model_through_explicit_cpu_transport[False]
+0.01s call     tests/test_native_qualification_recipe.py::test_actual_recipe_receives_optimizer_data_eval_and_resume[resume-rltt]
+0.01s call     tests/test_native_runtime_identity.py::test_actual_learner_function_records_after_load_without_importing_full_framework[vllm-rlt-False]
+0.01s call     tests/test_native_runtime_identity.py::test_actual_learner_function_records_after_load_without_importing_full_framework[vllm-True]
+0.01s call     tests/test_native_runtime_identity.py::test_actual_learner_function_records_after_load_without_importing_full_framework[vllm-rlt-True]
+0.01s setup    tests/test_native_qualification_recipe.py::test_changed_data_and_new_cluster_are_rejected
+0.01s call     tests/test_native_runtime_identity.py::test_native_init_records_real_model_through_explicit_cpu_transport[True]
+0.01s call     tests/test_native_qualification_recipe.py::test_actual_recipe_receives_optimizer_data_eval_and_resume[continuous-rltt]
+
+(47 durations < 0.005s hidden.  Use -vv to show these durations.)
+============================== 19 passed in 1.58s ==============================

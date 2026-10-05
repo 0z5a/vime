@@ -1,0 +1,60 @@
+{
+  "parent": "12200cb95ddc1ac50bd390bb8384c92669024b1a",
+  "existing_python": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/bin/python",
+  "existing_mcore": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron",
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "217",
+    "time": "60.426",
+    "timestamp": "2026-10-05T14:50:27.485800+08:00",
+    "hostname": "192.168.10.10"
+  },
+  "new_cases": 28,
+  "existing_cases": 189,
+  "natural_exit": {
+    "50575": 0,
+    "44046": 0,
+    "56117": 0,
+    "6112": 0,
+    "18335": 0
+  },
+  "scope": "CPU controls; Ray context and transport doubles; no worker or model training run",
+  "ray_cuda_worker_execution": "NOT_RUN",
+  "reward_convergence": "NOT_ESTABLISHED",
+  "full_framework_import": "NOT_QUALIFIED: existing runtime lacks Triton",
+  "environment_mutation": false,
+  "process_signals": false,
+  "test_files": [
+    "tests/rollout_backends/test_native_colocation.py",
+    "tests/rollout_backends/test_native_rlt_contract.py",
+    "tests/rollout_backends/test_native_rlt_evaluation.py",
+    "tests/test_looped_grpo_recipe.py",
+    "tests/test_native_checkpoint_audit.py",
+    "tests/test_native_learning_signal_audit.py",
+    "tests/test_native_qualification_recipe.py",
+    "tests/test_native_runtime_audit.py",
+    "tests/test_native_runtime_identity.py",
+    "tests/test_native_runtime_mcore.py"
+  ],
+  "test_environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "FROZENLIST_NO_EXTENSIONS": "1",
+    "MULTIDICT_NO_EXTENSIONS": "1",
+    "AIOHTTP_NO_EXTENSIONS": "1",
+    "YARL_NO_EXTENSIONS": "1",
+    "OMP_NUM_THREADS": "1",
+    "PYTHONPATH": ".:../rlt:/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/runtime/megatron"
+  },
+  "pytest_options": [
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--tb=short",
+    "-o",
+    "junit_family=legacy"
+  ],
+  "harness": "../bench/resident_pytest.py"
+}
