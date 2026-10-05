@@ -1,0 +1,16 @@
+import json
+import pickle
+from pathlib import Path
+
+import torch
+
+root = Path('/Users/0z5a/Documents/infra/vime-looped-deliverables-20261003/evidence/a100-standard-ray-ppo-20261003/runs')
+for name in ('synthetic-tiny-ray-ppo-v17-multiround-continuous', 'synthetic-tiny-ray-ppo-v17-multiround-resume'):
+    folder = root / name / 'checkpoints/actor/iter_0000002'
+    common = torch.load(folder / 'common.pt', map_location='cpu', weights_only=False)
+    with (folder / '.metadata').open('rb') as stream:
+        metadata = pickle.load(stream)
+    print(json.dumps({'run': name, 'common_keys': list(common), 'optimizer': common['optimizer'],
+                      'iteration': common['iteration'], 'scheduler': common['opt_param_scheduler'],
+                      'keys': [index.fqn for index in metadata.storage_data],
+                      'planner_data': metadata.planner_data}, default=str))

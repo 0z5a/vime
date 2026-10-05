@@ -1,0 +1,174 @@
+{
+  "scope": "fresh audit of retained prior synthetic-tiny Ray PPO/SGD checkpoint, not a new RL run",
+  "source_paths": [
+    "/Users/0z5a/Documents/infra/vime-looped-deliverables-20261003/evidence/a100-standard-ray-ppo-20261003/runs/synthetic-tiny-ray-ppo-v17-multiround-continuous/checkpoints/actor",
+    "/Users/0z5a/Documents/infra/vime-looped-deliverables-20261003/evidence/a100-standard-ray-ppo-20261003/runs/synthetic-tiny-ray-ppo-v17-multiround-resume/checkpoints/actor"
+  ],
+  "final_iteration": 2,
+  "checkpoint_comparison": {
+    "stored_state_exact": true,
+    "control_sha256": {
+      "left": {
+        "common.pt": "9459b17b0d838c6f2d718addf9e0c2766f6de235bbaf723ffaae18c7a7c1abf6",
+        ".metadata": "1ec635acf073be802885934bebc6b4fe16946c98bb7573444399c65bc4a89576"
+      },
+      "right": {
+        "common.pt": "ed3e93cb67241d5620eb6e23a4e9fa0237c2bb2d2575aeb7628b5962064294a8",
+        ".metadata": "8eacf2c35675b1a0f35fedce557167059ccf5a8b0e61eefb1c21ad606e00c72c"
+      }
+    },
+    "common_sha256": {
+      "checkpoint_version": "640cb820f42331c4b3547ae439e125197a153652b4a703b59265190e91cfe0e4",
+      "content_metadata": "62d2cf4bc10b42621964bc54c9265277be64c20876d270aef13c92d701cae6dd",
+      "iteration": "77fdb0fbde767643174a1f1216a548da4c54e507eec213c4271882c5cb381021",
+      "num_floating_point_operations_so_far": "cbfff6aa816a121d510fa92ca74d2af40b6d58cf9d09fc5c21b39467933a48d2",
+      "opt_param_scheduler": "e18253a605f7c5be16f55c4a5a7d920e04bf91472e7d789ea1e4a2bc74fc69ce",
+      "optimizer": "8268117738854741ce8ce7260a71422b56374098636b64639c4a447d0e371f61"
+    },
+    "chunks": [
+      {
+        "name": "lm_head.weight",
+        "offsets": [
+          0,
+          0
+        ],
+        "sha256": "415861008c3ff1ef480262c2db38e0cb1e24b0f00f3e907b59e67b34dcdc9b85"
+      },
+      {
+        "name": "model.early_exit_gate.bias",
+        "offsets": [
+          0
+        ],
+        "sha256": "a6fffeafc228e3acce54c732eb7d94b06f02d10f6ff4195840cfad6bfe635b12"
+      },
+      {
+        "name": "model.early_exit_gate.weight",
+        "offsets": [
+          0,
+          0
+        ],
+        "sha256": "184e9d7b53443fecb4ab7b53c967098b0abd4beca1cf4357d35d5efdfb74d656"
+      },
+      {
+        "name": "model.embed_tokens.weight",
+        "offsets": [
+          0,
+          0
+        ],
+        "sha256": "edf13f8ba6fb5c7c1204d79fe141323b3ea81ed23b623473e84e6d13c4c7dc3c"
+      },
+      {
+        "name": "model.layers.0.input_layernorm.weight",
+        "offsets": [
+          0
+        ],
+        "sha256": "002c7847f5fb2f38f426e6ba431fe383d45ae2e496417459ae0d22413054ba54"
+      },
+      {
+        "name": "model.layers.0.input_layernorm_2.weight",
+        "offsets": [
+          0
+        ],
+        "sha256": "bbf585ec11a5b60a18ee180be259dabfa6e91f866e6a114988a0ddcd6d6b7ad0"
+      },
+      {
+        "name": "model.layers.0.mlp.down_proj.weight",
+        "offsets": [
+          0,
+          0
+        ],
+        "sha256": "48d434b3eb8134e8ec5662c2a8440a5dcad52047d21b910520d29ce74f2c95ea"
+      },
+      {
+        "name": "model.layers.0.mlp.gate_proj.weight",
+        "offsets": [
+          0,
+          0
+        ],
+        "sha256": "f5a7de5eca26c7b922957e97cb3c6c6db1f7ea5d410f1590e72ae6b1df6dadf4"
+      },
+      {
+        "name": "model.layers.0.mlp.up_proj.weight",
+        "offsets": [
+          0,
+          0
+        ],
+        "sha256": "673fba5229db182f63257c981ba7d6083866ea6a4c7ad220b3c58fa96b18a0e3"
+      },
+      {
+        "name": "model.layers.0.post_attention_layernorm.weight",
+        "offsets": [
+          0
+        ],
+        "sha256": "7c04b8b3033219c3e551de604c4758a0df4a85a2dc275704861f21fe51048164"
+      },
+      {
+        "name": "model.layers.0.post_attention_layernorm_2.weight",
+        "offsets": [
+          0
+        ],
+        "sha256": "696926b1a1747bea0550b0d6f91433f664bdf39a83609ee2bd0bbab290e45be7"
+      },
+      {
+        "name": "model.layers.0.self_attn.k_proj.weight",
+        "offsets": [
+          0,
+          0
+        ],
+        "sha256": "c3f4e103889e324cce83a2fcc6dbb64595e327791fab1ee195f004353929c560"
+      },
+      {
+        "name": "model.layers.0.self_attn.o_proj.weight",
+        "offsets": [
+          0,
+          0
+        ],
+        "sha256": "76c0c14e4563e0eadc021391678cbd9bf00b1af619fbc57fdacc1352ceafc974"
+      },
+      {
+        "name": "model.layers.0.self_attn.q_proj.weight",
+        "offsets": [
+          0,
+          0
+        ],
+        "sha256": "05cc5e4b7630d1f64627b85277f760cc5aa7862e42bb641007e2acae58f89eb8"
+      },
+      {
+        "name": "model.layers.0.self_attn.v_proj.weight",
+        "offsets": [
+          0,
+          0
+        ],
+        "sha256": "224d31b8254707bb64f1dbd55b379235019fab888d1ab218a9c1d21fbe430dd8"
+      },
+      {
+        "name": "model.norm.weight",
+        "offsets": [
+          0
+        ],
+        "sha256": "2b1cbd8211a1358ec27ebc2be6dd67c4499d2dca5bab795b8e195393b8049283"
+      },
+      {
+        "name": "rng_state/shard_0.0_1.1",
+        "offsets": [],
+        "sha256": "8c39ad11b033b73edc7076dcbca5a4458f517fe267edf7464f27947019a5030e"
+      }
+    ],
+    "excluded": [
+      "common.args"
+    ],
+    "fresh_worker_execution_proven": false
+  },
+  "rollout_counter_sha256": "7072e295bdcb51c9440bff58cd991f65a49aede585d0f73cbbe5ed419b700ca9",
+  "rollout_counters": {
+    "sample_offset": 4,
+    "epoch_id": 2,
+    "sample_group_index": 12,
+    "sample_index": 12,
+    "metadata": {}
+  },
+  "adam_qualification_rejected": true,
+  "reader_sha256": "c09e8597715a1fbc1bccacf84f7639ed9ca5bf5e09bb160e10ea83857f00c578",
+  "cuda_initialized": false,
+  "new_training": false
+}
