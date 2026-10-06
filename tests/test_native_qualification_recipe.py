@@ -43,14 +43,18 @@ def packet(tmp_path, monkeypatch):
     [("legacy-remat", "grpo"), ("legacy-remat", "rltt"), ("b-baseline", "rltt"), ("b-prefix", "rltt")],
 )
 @pytest.mark.parametrize("phase", ["continuous", "split", "resume"])
+@pytest.mark.parametrize("layout", ["colocate-resident", "separate"])
 def test_actual_recipe_receives_optimizer_data_eval_and_resume(
-    tmp_path, monkeypatch, packet, algorithm, phase, variant
+    tmp_path, monkeypatch, packet, algorithm, phase, variant, layout
 ):
     if variant != "legacy-remat":
         original = json.loads((packet / "qualification.json").read_text())
         packet = tmp_path / variant
         selected = prepare(tmp_path / "source", packet, variant)
         assert selected["files"] == original["files"] and selected["selected_ids"] == original["selected_ids"]
+    profile = json.loads((packet / "qualification.json").read_text())
+    profile["resource_layout"] = layout
+    (packet / "qualification.json").write_text(json.dumps(profile))
     source = Path(__file__).resolve().parents[1]
     spec = importlib.util.spec_from_file_location("native_qualification_recipe", source / "examples/looped_ppo/run.py")
     recipe = importlib.util.module_from_spec(spec)
@@ -104,7 +108,13 @@ def test_actual_recipe_receives_optimizer_data_eval_and_resume(
     assert last("eval-prompt-data") == "qualification-development"
     assert str(packet / "development.jsonl") in actual
     assert "--apply-chat-template" in actual and "--recurrent-fp32" in actual
-    assert "--colocate" in actual and "--no-offload-train" in actual and "--no-offload-rollout" in actual
+    assert last("num-gpus-per-node") == ("1" if layout == "colocate-resident" else "2")
+    if layout == "colocate-resident":
+        assert "--colocate" in actual and "--no-offload-train" in actual and "--no-offload-rollout" in actual
+    else:
+        assert "--colocate" not in actual and "--offload-train" in actual
+    if algorithm == "grpo":
+        assert "--ref-load" not in actual and "--use-critic" not in actual and last("kl-coef") == "0"
     assert last("rlt-start-version") == ("2" if phase == "resume" else "0")
     run = output / algorithm / ("continuous" if phase == "continuous" else "resumed")
     assert last("rlt-runtime-report-dir") == str(run / "runtime" / phase)
@@ -130,6 +140,14 @@ def test_changed_data_and_new_cluster_are_rejected(packet, tmp_path):
     (packet / "train.jsonl").write_text("changed\n")
     with pytest.raises(ValueError, match="Changed qualification data"):
         command(packet, tmp_path, tmp_path, "reserved:6379", "rltt", "continuous")
+
+
+def test_unknown_layout_is_rejected_before_recipe(packet, tmp_path):
+    profile = json.loads((packet / "qualification.json").read_text())
+    profile["resource_layout"] = "logical-ranks-on-one-card"
+    (packet / "qualification.json").write_text(json.dumps(profile))
+    with pytest.raises(ValueError, match="resource layout"):
+        command(packet, tmp_path, tmp_path, "reserved:6379", "grpo", "continuous")
 
 
 @pytest.mark.parametrize("change", ["wave", "remat", "algorithm", "variant"])

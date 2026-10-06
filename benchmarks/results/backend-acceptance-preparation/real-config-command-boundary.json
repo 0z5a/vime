@@ -1,0 +1,52 @@
+{
+  "scope": "CPU-MOCK actual recipe command boundary with real pinned ordinary model config; no Ray cluster or GPU/model execution",
+  "cases": [
+    {
+      "profile": "ordinary",
+      "phase": "continuous",
+      "resource_layout": "separate",
+      "physical_gpu_argument": "2",
+      "pass": true
+    },
+    {
+      "profile": "ordinary",
+      "phase": "split",
+      "resource_layout": "separate",
+      "physical_gpu_argument": "2",
+      "pass": true
+    },
+    {
+      "profile": "ordinary",
+      "phase": "resume",
+      "resource_layout": "separate",
+      "physical_gpu_argument": "2",
+      "pass": true
+    },
+    {
+      "profile": "thinking-legacy",
+      "phase": "continuous",
+      "resource_layout": "colocate-resident",
+      "physical_gpu_argument": "1",
+      "pass": true
+    },
+    {
+      "profile": "thinking-legacy",
+      "phase": "split",
+      "resource_layout": "colocate-resident",
+      "physical_gpu_argument": "1",
+      "pass": true
+    },
+    {
+      "profile": "thinking-legacy",
+      "phase": "resume",
+      "resource_layout": "colocate-resident",
+      "physical_gpu_argument": "1",
+      "pass": true
+    }
+  ],
+  "case_count": 6,
+  "ordinary_profile_sha256": "a950da72a25ab6f6a083ce7b8e73a6c3cd1dd959b01a4b3f39381180a1d236ce",
+  "model_config_sha256": "ce9cc13da41591b8b4deca053d7dfee06424c0228628ee862ea86d725bc163f3",
+  "real_backend_acceptance": "NOT_RUN",
+  "reward_convergence": "NOT_RUN"
+}

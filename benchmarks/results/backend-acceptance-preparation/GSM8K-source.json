@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/openai/grade-school-math",
+  "revision": "3101c7d5072418e28b9008a6636bde82a006892c",
+  "file": "grade_school_math/data/train.jsonl",
+  "git_blob_sha1": "7d97154b91aef28d01c3301741c81ce90039a4b1",
+  "bytes": 4166206,
+  "sha256": "17f347dc51477c50d4efb83959dbb7c56297aba886e5544ee2aaed3024813465",
+  "rows": 7473,
+  "license_sha256": "86bbb73e855821d7c401912fd4bf82e34313e6e3b6fd6f909f2b6cc9e209a53b",
+  "official_test_split_consumed": false
+}

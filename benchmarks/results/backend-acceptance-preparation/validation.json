@@ -1,0 +1,23 @@
+{
+  "scope": "Startup/recovery preparation only; no official-model RL has run",
+  "data_repeated_bytes_identical": true,
+  "train_rows": 12,
+  "development_rows": 8,
+  "official_test_split_consumed": false,
+  "actual_recipe_CPU_MOCK_cases_pass": 6,
+  "pytest_receipt": "recipe-resident-v2.xml",
+  "input_tokenizer_receipt": "ORIGINAL_READER_PENDING; RESIDENT_V4_IMPORT_EXIT1",
+  "model_weights_opened": false,
+  "physical_trainer_rollout_resources_required": 2,
+  "available_new_H20_gpus": 1,
+  "large_scale_and_reward_convergence": "NOT_RUN",
+  "source_parent_commit": "2ad271d5fbb58f06170a05277b03663bf9d66b24",
+  "pytest_actual_exit_code": 0,
+  "unique_recipe_tests_pass": 30,
+  "recorded_utc": "2026-10-06T10:26:40.891001+00:00",
+  "environment_updated": false,
+  "pytest_original_environment_receipt": "recipe.xml",
+  "pytest_original_environment_actual_exit_code": 0,
+  "input_resident_v4_actual_exit_code": 1,
+  "input_resident_v4_failure": "Original installed torch/_guards.py source not locally resident; no package or environment change"
+}

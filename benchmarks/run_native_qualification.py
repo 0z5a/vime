@@ -20,6 +20,9 @@ def command(packet: Path, model: Path, output: Path, address: str, algorithm: st
     profile = json.loads((packet / "qualification.json").read_text())
     if profile["schema"] != "native-reward-qualification-v1" or algorithm not in profile["algorithms"]:
         raise ValueError("Unknown qualification profile or algorithm")
+    layout = profile.get("resource_layout", "colocate-resident")
+    if layout not in ("colocate-resident", "separate"):
+        raise ValueError("Unknown trainer/rollout resource layout")
     variant = profile.get("execution_variant", "legacy-remat")
     if variant != "legacy-remat" and (
         variant not in EXECUTION_VARIANTS
@@ -52,6 +55,7 @@ def command(packet: Path, model: Path, output: Path, address: str, algorithm: st
         "rollout-top-k": profile["sampling"]["top_k"],
         "rlt-kv-blocks": 1536,
         "rlt-max-num-seqs": 2,
+        "rlt-attention-backend": profile.get("attention_backend", "triton"),
         "optimizer": optimizer["name"],
         "adam-beta1": optimizer["betas"][0],
         "adam-beta2": optimizer["betas"][1],
@@ -99,17 +103,18 @@ def command(packet: Path, model: Path, output: Path, address: str, algorithm: st
     argv = [sys.executable, str(Path(__file__).resolve().parents[1] / "examples/looped_ppo/run.py")]
     for name, value in values.items():
         argv.extend(("--" + name, str(value)))
+    if layout == "colocate-resident":
+        argv.append("--colocate-resident")
+    if variant == "legacy-remat":
+        argv.append("--recompute")
     argv.extend(
         (
-            "--colocate-resident",
             "--apply-chat-template",
             "--eval-prompt-data",
             "qualification-development",
             str(packet / "development.jsonl"),
         )
     )
-    if variant == "legacy-remat":
-        argv.insert(argv.index("--colocate-resident") + 1, "--recompute")
     if phase == "resume":
         argv.append("--resume")
     return argv
