@@ -1,0 +1,22 @@
+{
+  "cpu-suite-completion.json": {
+    "bytes": 868,
+    "sha256": "b53b1570aea9671764b20b285d6f36b0efada4452102204294b6f6703a947998"
+  },
+  "cpu-suite.log": {
+    "bytes": 8657,
+    "sha256": "79788ad0942b17c3bf99f27e39ce7207347e19d852f6ae640c015585749716c9"
+  },
+  "cpu-suite.xml": {
+    "bytes": 18157,
+    "sha256": "a5e790bcdbb94cf87354fda572882adb81c49cd96df08c4ab4fa7d73c74dd41b"
+  },
+  "native-sgd-import.log": {
+    "bytes": 3246,
+    "sha256": "770b17e9bfa00d26591c80366c6bcb46df45404619901b1208346dcc9dced2a4"
+  },
+  "validation.json": {
+    "bytes": 1082,
+    "sha256": "e8470727ebea7158208d5d4ecc33be210375a0e8cdc03f6d1977658f8f49de4a"
+  }
+}

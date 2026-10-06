@@ -1,5 +1,7 @@
 # Nanbeige recurrent policy training
 
+See [verification results](RESULTS.md) for the tested source, retained evidence and remaining official-weight GPU gates.
+
 Train [Nanbeige4.2-3B](https://huggingface.co/Nanbeige/Nanbeige4.2-3B) at checkpoint
 revision `b82e54bd609793562a75cbf9337970a93369eab5`. The provider preserves independent
 attention histories for each loop, the checkpoint's `head_dim`, and its loop-final

@@ -1,0 +1,16 @@
+# Nanbeige recurrent RL verification
+
+The source tested on 2026-10-06 is `1e9618b0`, with the merged `0z5a-branch` base at `8c8b8e8e908818683b96dbdb2f438ff54cfd6aa0`. The merge preserves recurrent inputs in both ordinary and draft-feature forward paths. Native SGD uses Megatron's selected optimizer implementation; the Torch fallback does not receive fused-SGD state initialization.
+
+The existing Thor `0z5a` Python environment and retained MCore/RLT sources ran 101 CPU tests, with actual exit zero and no failures or skips. This includes all four objectives' tiny three-update versus two-save/fresh-resume checks, grouped GRPO, categorical KL, Nanbeige's independent two-loop logits/value/gradient checks, parameter conversion and draft-feature contracts. Full logs, XML, command and hashes are retained in [the CPU result archive](../../benchmarks/results/nanbeige-e2e-20261006/). The actual standard training module also imports successfully using Megatron’s native Torch SGD, with CUDA uninitialized. Pinned Ruff 0.14.7, Black 24.3.0 and isort 5.13.2 checks pass. Synthetic tiny rewards do not establish official-model reward quality or convergence.
+
+| Algorithm | Current-source tiny CPU three updates / fresh resume | Previous official-weight GPU evidence | Current-source complete official-weight GPU e2e | Matched speed improvement |
+| --- | --- | --- | --- | --- |
+| PPO | PASS | Three continuous updates and two-update save reported; final resume audit unavailable after SSH loss | Pending | Not measured |
+| GRPO | PASS | Pending | Pending | Not measured |
+| DPPO | PASS | Pending | Pending | Not measured |
+| Flow-DPPO | PASS | Pending | Pending | Not measured |
+
+The retained functional GPU harness uses controlled binary rewards to verify useful updates; it does not establish model quality or reward convergence. The full original GPU campaign remains three continuous updates versus two saved updates and a fresh-process final update for each objective, with complete actor/critic parameters, optimizer, scheduler, RNG, tokens, rewards and physical publication checks. Precision stays FP32, native engine stays pinned to `d2a358933393f25d74dd2bdd1068a741cd5d9226`, and model revision stays `b82e54bd609793562a75cbf9337970a93369eab5`. The existing selected-logprob bound is unchanged. There is no reduced-model substitution or speed claim from pytest duration.
+
+The 2026-10-06 18:34 CST Thor snapshot still has an occupied GPU coordination lock and three compute processes, about 20.4 GiB available unified host memory and 14.6 GiB local disk space. Its Nanbeige directory contains configuration and revision metadata, with no weight shards. The existing dedicated trainer/rollout recipe requires two physical GPUs; the retained full-case harness also requires 80 GiB host and 56 GiB checkpoint/publication disk reserves. GPU execution is pending a suitable existing environment and resource window. No environment was installed or updated, no process was signalled, and no lcpu NFS path was used.
