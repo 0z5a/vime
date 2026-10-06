@@ -1,0 +1,35 @@
+{
+  "state": "ALL_ORIGINAL_FIXTURES_IDENTICAL_COMPLETE_UPDATE_GATE_UNRESOLVED",
+  "recorded_utc": "2026-10-06T00:40:36.934462+00:00",
+  "profiles": [
+    {
+      "profile": "SDPA AUTO",
+      "paired_steps": 32,
+      "complete_gate_pass": 24,
+      "max_logit_abs": 7.152557373046875e-07,
+      "max_gradient_relative_l2": 3.2186702337661606e-07,
+      "max_parameter_delta_abs": 2.3990869522094727e-06,
+      "source_receipt_sha256": "144c0002c185043f0171e2b0f5a71e11d236c9e207022afac78c4e9c20beb32f"
+    },
+    {
+      "profile": "SDPA MATH",
+      "paired_steps": 32,
+      "complete_gate_pass": 24,
+      "max_logit_abs": 6.258487701416016e-07,
+      "max_gradient_relative_l2": 3.04581396807327e-07,
+      "max_parameter_delta_abs": 1.9818544387817383e-06,
+      "source_receipt_sha256": "d9a5707f80a90c3c8dca7fc430a0cacfd7d7b342ab63ab0b180773e8b501c4e4"
+    },
+    {
+      "profile": "Explicit eager",
+      "paired_steps": 32,
+      "complete_gate_pass": 26,
+      "max_logit_abs": 5.960464477539062e-07,
+      "max_gradient_relative_l2": 2.961168852270406e-07,
+      "max_parameter_delta_abs": 1.7434358596801758e-06,
+      "source_receipt_sha256": "105c371d9a30356922631860876179baae221e78805dd22add8d805ff536a2a1"
+    }
+  ],
+  "eager_frozen_input_sha256": "21c244f30541fd958e4b7a71104f1125c70e2bc8e54400a5f5359fc27ca936c5",
+  "style": "Ruff lint PASS; rootdefault88format-check fails on frozen longlines, preserved as executed. No rerun or numerical change for cosmetics."
+}

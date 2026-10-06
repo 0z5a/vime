@@ -1,0 +1,15 @@
+{
+  "state": "FROZEN_BEFORE_RUN",
+  "recorded_utc": "2026-10-06T00:34:16.875520+00:00",
+  "candidate": "/Users/0z5a/Documents/infra/flashrlt-20261005/bench/iquest_replay_eager.py",
+  "candidate_sha256": "6c34a4e1238da49e39ff7f46cc138f4fb5d2c95dad87fc44a645f6e88a78c2d4",
+  "audit_sha256": "8194408c2a98e2451eac4745629e929be1bde5068a63ead2ff0ec665741d60e3",
+  "original_candidate_sha256": "cdf28edb5b41dfdd6d223ef171e9163c33b73c5d118590a84c5277e9c37592fc",
+  "original_audit_sha256": "4b55e0f3d34c80ce2dd782db306b27e877560bd6ec9c86255f4aa5970b26b386",
+  "original_fixture_functions_AST_unchanged": true,
+  "only_numerical_variant": "Explicit matmul/group-repeat/FP32softmax attention instead of SDPA, matching pinned eager reference operator family; batched replay and nonreentrant checkpoint dependencies unchanged.",
+  "original_16_configs_32_paired_steps_gates_optimizer_data_unchanged": true,
+  "official_weight_bodies": 0,
+  "device": "CPU",
+  "scope": "Tiny diagnostic only, not provider/GPU/official reward qualification."
+}
