@@ -1,0 +1,9 @@
+{
+  "original_record_sha256": "b236c7a32c86e59de7a293a435085617f920e6b5fffa4edbb7ac69c0bdcf9ca5",
+  "mirror_setuptools_init_matches_original_wheel_record": true,
+  "original_init_dataless": true,
+  "mirror_init_resident": true,
+  "original_site": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/lib/python3.12/site-packages",
+  "mirror_site": "/Users/0z5a/Documents/infra/vime-sm120-initial-20260912/.venv/lib/python3.12/site-packages",
+  "environment_updated": false
+}

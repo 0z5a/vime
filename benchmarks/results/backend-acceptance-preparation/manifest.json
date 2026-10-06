@@ -1,0 +1,58 @@
+{
+  "train.jsonl": {
+    "bytes": 6395,
+    "sha256": "2c45227a7a80134d946d04b3e08c4ba28a13a9d4e688927e9444182ea560e9ca"
+  },
+  "qualification.json": {
+    "bytes": 2337,
+    "sha256": "a950da72a25ab6f6a083ce7b8e73a6c3cd1dd959b01a4b3f39381180a1d236ce"
+  },
+  "model-metadata-source.json": {
+    "bytes": 1722,
+    "sha256": "ca4d8fb08aeafd1cd23ea3ee5ed03d79b4abed8c1c5fc36f6a6d3ee46b5a14f7"
+  },
+  "recipe-resident-v2.xml": {
+    "bytes": 5400,
+    "sha256": "99e265147c85a8255eaf536abb01e0a66165b19f9b6b5366d2f636de56fa7701"
+  },
+  "GSM8K-LICENSE": {
+    "bytes": 1062,
+    "sha256": "86bbb73e855821d7c401912fd4bf82e34313e6e3b6fd6f909f2b6cc9e209a53b"
+  },
+  "initial-local-dependency-wait.json": {
+    "bytes": 1210,
+    "sha256": "0add0925538d68a677cba93657abd786f20c7d8aaade6dd718a204298533d800"
+  },
+  "read-only-wheel-records.json": {
+    "bytes": 351,
+    "sha256": "ab640c2691f5a2ec0b4ee0d71c1b1cfaa503a0ddb99c7a636f0abb2f712a5a70"
+  },
+  "validation.json": {
+    "bytes": 765,
+    "sha256": "a597bb03e1e1fa319c365fb9afba7687bea6b839352ff034cfb3caf684d51e6b"
+  },
+  "resident_bootstrap.py": {
+    "bytes": 3006,
+    "sha256": "73180c9ed710d94769566b7b4ce603d7b09e4362dba3762c48ef842eda06268c"
+  },
+  "phase-commands.json": {
+    "bytes": 6571,
+    "sha256": "bf7f7cd4745f99f51cebbe7ec6cbb433d7e4d3b5135d6538038b0f92f4284ade"
+  },
+  "real-config-command-boundary.json": {
+    "bytes": 1444,
+    "sha256": "58ce8dc373d922f7e515cc4fe92feedd4d277e5582a34a988ee8c55543e9b3ca"
+  },
+  "development.jsonl": {
+    "bytes": 3543,
+    "sha256": "ae6c52bfd2955502ea9acdffb35a47b274053318a210ed5bf0f7f4fb44b2c8bd"
+  },
+  "GSM8K-source.json": {
+    "bytes": 480,
+    "sha256": "2da22560e93ee585e72a1e61d188b3a8370816b1b980c602d4861bd311ec44ac"
+  },
+  "read-only-cache-proof.json": {
+    "bytes": 490,
+    "sha256": "3b91ef095a01d490b2ebd24493cdc58e50ce6ee7dfdb6f2249cee79b239643a2"
+  }
+}

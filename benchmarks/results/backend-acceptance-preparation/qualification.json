@@ -1,0 +1,85 @@
+{
+  "schema": "native-reward-qualification-v1",
+  "acceptance_profile": "rfc465-ouro-grpo-separate-v1",
+  "scope": "standard-entry three-update startup and fresh-process recovery; remaining RFC465 gates are separate",
+  "source_repository": "https://github.com/openai/grade-school-math",
+  "source_revision": "3101c7d5072418e28b9008a6636bde82a006892c",
+  "source_train_sha256": "17f347dc51477c50d4efb83959dbb7c56297aba886e5544ee2aaed3024813465",
+  "official_test_split_consumed": false,
+  "selection": "Identity-only hash order; no model outputs, rewards or answers used",
+  "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+  "engine_revision": "fd993ec5512904b68e16f4d541682c076c487b5d",
+  "files": {
+    "train.jsonl": {
+      "sha256": "2c45227a7a80134d946d04b3e08c4ba28a13a9d4e688927e9444182ea560e9ca",
+      "rows": 12
+    },
+    "development.jsonl": {
+      "sha256": "ae6c52bfd2955502ea9acdffb35a47b274053318a210ed5bf0f7f4fb44b2c8bd",
+      "rows": 8
+    }
+  },
+  "selected_ids": {
+    "train": [
+      "gsm8k/train/07326",
+      "gsm8k/train/04167",
+      "gsm8k/train/01531",
+      "gsm8k/train/03264",
+      "gsm8k/train/05096",
+      "gsm8k/train/06238",
+      "gsm8k/train/05476",
+      "gsm8k/train/05586",
+      "gsm8k/train/04078",
+      "gsm8k/train/06857",
+      "gsm8k/train/01183",
+      "gsm8k/train/03627"
+    ],
+    "development": [
+      "gsm8k/train/06106",
+      "gsm8k/train/03675",
+      "gsm8k/train/05089",
+      "gsm8k/train/04098",
+      "gsm8k/train/01761",
+      "gsm8k/train/04282",
+      "gsm8k/train/03032",
+      "gsm8k/train/02433"
+    ]
+  },
+  "resource_layout": "separate",
+  "physical_gpus_required": 2,
+  "attention_backend": "torch",
+  "updates": 3,
+  "split_stop_after": 2,
+  "prompts_per_rollout": 4,
+  "completions_per_prompt": 8,
+  "prompt_limit": 1024,
+  "response_limit": 2048,
+  "eval_completions_per_prompt": 1,
+  "seed": 42,
+  "algorithms": [
+    "grpo"
+  ],
+  "precision": "fp32",
+  "optimizer": {
+    "name": "adam",
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "lr": 1e-06,
+    "weight_decay": 0.1,
+    "clip_grad": 0.1
+  },
+  "sampling": {
+    "temperature": 0.9,
+    "top_p": 1,
+    "top_k": -1,
+    "natural_eos": true
+  },
+  "reference": false,
+  "critic": false,
+  "kl_coefficient": 0,
+  "fixed_depth": 4,
+  "reward_convergence": "NOT_RUN"
+}

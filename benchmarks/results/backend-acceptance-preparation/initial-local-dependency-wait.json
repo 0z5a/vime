@@ -1,0 +1,51 @@
+{
+  "recorded_utc": "2026-10-06T09:58:54.523966+00:00",
+  "interpreter": "/Users/0z5a/Documents/infra/looped-grpo-integration-20261003/.venv/bin/python",
+  "package_file_metadata": [
+    {
+      "relative_path": "pytest/__init__.py",
+      "bytes": 5644,
+      "flags": 32832,
+      "dataless": false
+    },
+    {
+      "relative_path": "_pytest/__init__.py",
+      "bytes": 391,
+      "flags": 32832,
+      "dataless": false
+    },
+    {
+      "relative_path": "torch/__init__.py",
+      "bytes": 111841,
+      "flags": 32832,
+      "dataless": false
+    },
+    {
+      "relative_path": "transformers/__init__.py",
+      "bytes": 32617,
+      "flags": 32832,
+      "dataless": false
+    },
+    {
+      "relative_path": "tokenizers/__init__.py",
+      "bytes": 2615,
+      "flags": 32832,
+      "dataless": false
+    },
+    {
+      "relative_path": "setuptools/__init__.py",
+      "bytes": 9566,
+      "flags": 1073774688,
+      "dataless": true
+    }
+  ],
+  "live_process_snapshot": [
+    "60557  1478 Ss   06:02",
+    "60689  1478 Ss   05:00"
+  ],
+  "pytest_session": 20320,
+  "input_audit_session": 81358,
+  "process_signals_sent": false,
+  "environment_updated": false,
+  "terminal_exit_observed": false
+}
