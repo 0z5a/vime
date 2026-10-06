@@ -1,0 +1,13 @@
+{
+  "recorded_utc": "2026-10-06T11:13:17.825081+00:00",
+  "human_instruction": "\u4f60\u5728thor\u5148\u505a\u4e0d\u8981\u62a2\u8d44\u6e90",
+  "scope": "Thor only; retain existing process and lock ownership",
+  "external_node_requests": "WITHDRAWN",
+  "external_GPU_IO_reserved_by_Root": false,
+  "external_GPU_jobs_started_by_Root": 0,
+  "pending_two_node_question": "WITHDRAWN_NO_ANSWER_NEEDED",
+  "model_files_downloaded_on_new_nodes": 0,
+  "GPU_launch_requires_existing_Thor_lock_and_resources_available": true,
+  "environment_updates": 0,
+  "signals_sent": 0
+}

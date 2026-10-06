@@ -1,0 +1,12 @@
+W1006 19:13:52.382000 474725 torch/utils/cpp_extension.py:178] No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+/home/jwipc/experiments/vime-three-deliverables-20261001/megatron-validated/megatron/core/distributed/fsdp/src/megatron_fsdp/mixed_precision.py:113: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_scale
+  warnings.warn(
+/home/jwipc/experiments/vime-three-deliverables-20261001/megatron-validated/megatron/core/optimizer/__init__.py:24: UserWarning: Transformer Engine and Apex are not installed. Falling back to Torch optimizers.
+  warnings.warn(
+/home/jwipc/experiments/vime-three-deliverables-20261001/megatron-validated/megatron/core/optimizer/optimizer.py:28: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_scale
+  warnings.warn(
+/home/jwipc/experiments/vime-three-deliverables-20261001/megatron-validated/megatron/core/optimizer/clip_grads.py:29: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier, multi_tensor_l2norm, and multi_tensor_scale
+  warnings.warn(
+Traceback (most recent call last):
+  File "<stdin>", line 8, in <module>
+TypeError: NanbeigeConfig.__init__() got an unexpected keyword argument 'architectures'

@@ -1,0 +1,17 @@
+W1006 19:15:46.132000 477225 torch/utils/cpp_extension.py:178] No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+/home/jwipc/experiments/vime-three-deliverables-20261001/megatron-validated/megatron/core/distributed/fsdp/src/megatron_fsdp/mixed_precision.py:113: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_scale
+  warnings.warn(
+/home/jwipc/experiments/vime-three-deliverables-20261001/megatron-validated/megatron/core/optimizer/__init__.py:24: UserWarning: Transformer Engine and Apex are not installed. Falling back to Torch optimizers.
+  warnings.warn(
+/home/jwipc/experiments/vime-three-deliverables-20261001/megatron-validated/megatron/core/optimizer/optimizer.py:28: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_scale
+  warnings.warn(
+/home/jwipc/experiments/vime-three-deliverables-20261001/megatron-validated/megatron/core/optimizer/clip_grads.py:29: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier, multi_tensor_l2norm, and multi_tensor_scale
+  warnings.warn(
+/home/jwipc/experiments/vime-three-deliverables-20261001/megatron-validated/megatron/core/transformer/transformer_config.py:1734: UserWarning: full scope is deprecated. Use empty cuda_graph_scope to capture the whole layer.
+  warnings.warn(
+WARNING:root:deep_ep is not installed, some functionalities may be limited.
+/home/jwipc/experiments/vime-three-deliverables-20261001/megatron-validated/megatron/core/models/backends.py:21: UserWarning: Apex is not installed. Falling back to Torch Norm
+  warnings.warn("Apex is not installed. Falling back to Torch Norm")
+{"status": "PASS_OFFICIAL_CONFIGURATION_META_LAYOUT_ONLY", "source": "1e9618b0", "model_revision": "b82e54bd609793562a75cbf9337970a93369eab5", "config_git_blob": "e542b36686258dcc58de083c0fa7c81c9ebd65d6", "recorded_utc": "2026-10-06T11:16:06.119430+00:00", "roles": {"actor": {"unique_physical_parameters": 4169800704, "named_parameter_tensors": 201, "state_keys": 201, "physical_layers": 22, "logical_layer_visits": 44, "loop_budget": 2, "recompute": true}, "critic": {"unique_physical_parameters": 3659409408, "named_parameter_tensors": 201, "state_keys": 201, "physical_layers": 22, "logical_layer_visits": 44, "loop_budget": 2, "recompute": true}}, "cuda_initialized": false, "weight_shards_loaded": 0, "official_model_numerical_e2e": "NOT_RUN", "environment_updated": false}
+/home/jwipc/experiments/vime-three-deliverables-20261001/megatron-validated/megatron/core/models/gpt/gpt_layer_specs.py:70: UserWarning: Apex is not installed. Falling back to Torch Norm
+  warnings.warn("Apex is not installed. Falling back to Torch Norm")
