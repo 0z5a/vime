@@ -1,0 +1,30 @@
+{
+  "README.md": {
+    "bytes": 2144,
+    "sha256": "d1f0224b6110dbf942ac09f557684b54fbc5ee8b83dc710df8992fa8901a9972"
+  },
+  "executed-audit.py": {
+    "bytes": 10253,
+    "sha256": "8194408c2a98e2451eac4745629e929be1bde5068a63ead2ff0ec665741d60e3"
+  },
+  "executed-candidate.py": {
+    "bytes": 4962,
+    "sha256": "6c34a4e1238da49e39ff7f46cc138f4fb5d2c95dad87fc44a645f6e88a78c2d4"
+  },
+  "frozen-input.json": {
+    "bytes": 1031,
+    "sha256": "21c244f30541fd958e4b7a71104f1125c70e2bc8e54400a5f5359fc27ca936c5"
+  },
+  "paired-results.json": {
+    "bytes": 27339,
+    "sha256": "105c371d9a30356922631860876179baae221e78805dd22add8d805ff536a2a1"
+  },
+  "readonly-dependency-provenance.json": {
+    "bytes": 17076,
+    "sha256": "d95af2f1b05b06b638b6a2d68eb7bd0afcae4efd955e10106b7db4170da0ba99"
+  },
+  "three-profile-summary.json": {
+    "bytes": 1486,
+    "sha256": "fe9bbfcae543299e1a700eada87932581153844a210306bce0258e8de161c506"
+  }
+}
