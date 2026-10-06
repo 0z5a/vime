@@ -1,0 +1,33 @@
+{
+  "state": "LOCAL_SOURCE_FROZEN_REMOTE_AUTH_REQUIRED",
+  "recorded_utc": "2026-10-06T10:25:27.503291+00:00",
+  "source_commit": "322c7550c81f34d76ff77adb82559f5fee7b2ecf",
+  "packet_bytes": 18206790,
+  "packet_sha256": "59c9966438847a20b3746ea8e1222b7431af6ec637a188b6bf6437944ad437e8",
+  "source_regular_files": 1205,
+  "source_manifest_sha256": "f34d01b93336d7d8ee0a1dbed05c1401f84abb997f68401a8ff751312c2fc1ae",
+  "model_bodies": 0,
+  "remote_actions": 0,
+  "ssh_endpoint": {
+    "jump": "root@106.55.61.249",
+    "target": "jwipc@127.0.0.1",
+    "port": 2223
+  },
+  "own_batch_auth_exit_code": 255,
+  "own_batch_auth_result": "Permission denied (publickey,password)",
+  "current_gpu_state": "UNKNOWN",
+  "existing_0z5a_environment": "UNKNOWN",
+  "real_gpu_tests": "NOT_RUN",
+  "standard_backend_e2e": "NOT_RUN",
+  "reward_convergence": "NOT_RUN",
+  "constraints": [
+    "no process signals",
+    "no environment installation or update",
+    "no lcpu NFS",
+    "use current 0z5a environment only",
+    "reuse existing Thor coordination locks",
+    "no GPU launch before fresh admission"
+  ],
+  "manifest_verification": "PASS",
+  "source_symlinks": 0
+}
