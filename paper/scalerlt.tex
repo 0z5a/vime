@@ -3,440 +3,475 @@
 \usepackage{amsmath,amssymb,booktabs,array,microtype,xcolor,hyperref}
 \definecolor{ink}{RGB}{22,39,57}
 \definecolor{accent}{RGB}{18,105,116}
-\hypersetup{colorlinks=true,urlcolor=accent,citecolor=accent,linkcolor=ink,pdftitle={ScaleRLT: I/O-Aware End-to-End Reinforcement Learning for Recurrent Looped Transformers},pdfauthor={0z5a}}
+\definecolor{muted}{RGB}{95,109,120}
+\definecolor{pale}{RGB}{237,245,246}
+\hypersetup{colorlinks=true,urlcolor=accent,citecolor=accent,linkcolor=ink,
+ pdftitle={ScaleRLT: I/O-Aware End-to-End Reinforcement Learning for Recurrent Looped Transformers},pdfauthor={0z5a}}
 \setlength{\parindent}{1em}
 \setlength{\parskip}{0pt}
-\title{\bfseries\color{ink}ScaleRLT: I/O-Aware End-to-End Reinforcement Learning for Recurrent Looped Transformers}
+\setlength{\textfloatsep}{11pt plus 2pt minus 2pt}
+\setlength{\floatsep}{9pt plus 2pt minus 2pt}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{0pt}{-2.3ex plus -0.5ex minus -0.2ex}{1ex plus 0.2ex}{\large\bfseries\color{ink}}}
+\renewcommand\subsection{\@startsection{subsection}{2}{0pt}{-1.8ex plus -0.4ex minus -0.2ex}{0.7ex plus 0.2ex}{\normalsize\bfseries\color{ink}}}
+\makeatother
+\newcommand{\pass}{\textsc{Pass}}
+\newcommand{\fail}{\textsc{Fail}}
+\newcommand{\pending}{\textsc{Not run}}
+\newcommand{\code}[1]{\texttt{#1}}
+\title{ScaleRLT: I/O-Aware End-to-End Reinforcement Learning for Recurrent Looped Transformers}
 \author{0z5a}
-\date{Research draft\quad October 6, 2026}
+\date{Research draft v0.1, October 6, 2026}
 \begin{document}
-\maketitle
-\begin{abstract}
-Recurrent looped transformers reuse physical parameters while retaining distinct computational states for each invocation. Reinforcement learning adds repeated prompt groups, sampled trajectories, reference evaluation, optimizer state, and policy publication to this execution graph. ScaleRLT investigates an I/O-aware execution layer that treats these dependencies explicitly. Its design combines response-position readout, bounded output export, stage-aware key--value allocation, and joint loop--sequence rematerialization with differentiable prefix reuse. The primary endpoint is time and allocated GPU-hours to held-out reward quality, supported by matched-workload throughput and memory measurements. This manuscript is an evolving research artifact: prior short-run validation is identified separately, and the proposed system's complete performance and convergence evaluation remains unfinished. No unmeasured speedup or quality improvement is claimed.
-\end{abstract}
+\twocolumn[{
+\begin{center}
+{\LARGE\bfseries\color{ink}ScaleRLT: I/O-Aware End-to-End Reinforcement Learning\\[3pt]for Recurrent Looped Transformers\par}
+\vspace{9pt}
+{\large 0z5a\par}
+\vspace{5pt}
+{\small\color{muted}Research draft v0.1\quad $\cdot$\quad October 6, 2026\par}
+\vspace{12pt}
+\begin{minipage}{0.94\textwidth}\small
+\textbf{Abstract.}
+Looped transformers share physical weights across recurrent invocations, but reinforcement learning (RL) still repeats prefix computation, retains invocation-specific states, and moves scores, policies and optimizer checkpoints. We present ScaleRLT, an I/O-aware execution prototype that preserves declared looped-policy and gradient contracts while coordinating prefix adjoints, suffix batching, rematerialization, stage-specific KV storage and output export. Across three tiny FP32 CPU model families, a prefix-heavy fixed-trace update achieves $2.96$--$3.68\times$ speed ratios with complete gradient and update checks; shorter-prefix and single-response controls expose regressions. Stage-specific Huginn R32 allocation reduces measured tiny KV tensor storage by $48.44\%$. Twelve tiny H20/Megatron configurations pass paired two-step AdamW checks, including all parameter gradients, moments and accounting. A separately audited official Ouro inference baseline gains $1.142\times$ fixed-work throughput by reducing decode depth, while its held-out quality remains statistically uncertain; it is not an exact-schedule RL gain. BF16 and IQuest strict-update failures are retained. These results establish component feasibility and numerical boundaries. Complete official-model online RL, fresh-worker recovery, high-load stability and independent-seed reward convergence remain open. The principal endpoint is time and allocated GPU-hours to held-out reward quality.
+\end{minipage}
+\vspace{10pt}\par
+{\color{accent}\rule{\textwidth}{0.8pt}}\par
+\end{center}
+\vspace{4pt}
+}]
 
 \section{Introduction}
-Parameter sharing changes the economics of transformer execution. A recurrent core is stored once, yet a token may invoke it many times. Recurrent depth therefore measures computation, not unique parameter count. During reinforcement learning (RL), each invocation also contributes to an explicitly chosen gradient contract. Optimizing inference alone does not establish an improvement in complete RL updates.
+Recurrent looped transformers offer a distinct way to scale reasoning: apply shared physical parameters repeatedly in latent space rather than store a separate layer stack for every computational step~\cite{ouro,huginn}. This economy of weights does not make their execution states interchangeable. Each invocation has its own hidden state, attention history and gradient contribution. In RL, multiple sampled responses to one prompt add repeated prefix work, reference evaluation, policy publication and persistent optimizer state to that recurrent graph.
 
-We study the following question: can execution scheduling reduce memory traffic and resident state while preserving a declared looped policy and its gradients, and can those gains reduce the cost of reaching a fixed reward quality? Our starting point is the existing VIME native backend and vllm-rlt integration, including physical parameter sharing, recurrent traces, policy publication, and checkpoint recovery~\cite{vime,rlt}. These capabilities are inherited infrastructure, not new contributions of this work.
+A useful optimization must preserve the policy being trained and the evidence that it learns. Faster token generation can change the decode depth or sampling distribution. A correct forward pass can still yield a different optimizer update. An incremented policy version can coexist with zero advantages and no reward-driven learning. We therefore organize ScaleRLT around an accuracy-first question: which execution costs can be reduced while preserving a declared looped objective, and do those changes lower the cost of reaching a fixed held-out reward?
 
-Three distinctions govern the evaluation. First, exact execution and approximate policies require separate comparisons. Second, fixed-workload timing and natural online learning answer different questions. Third, a three-update recovery test verifies lifecycle correctness; it does not establish reward convergence. The experimental plan tracks each distinction explicitly.
+Our prototype extends the existing VIME/Megatron learner and native vllm-rlt backend~\cite{vime,rlt}. Physical parameter sharing, model adapters, recurrent trace identities and publication machinery are inherited infrastructure. Ordinary three-phase differentiable prefix reuse is also prior work~\cite{prefix}. The present engineering focus is their interaction with repeated loops, first-response readout, model stages, actual latent identity and optimizer scheduling.
 
-\section{Execution and Learning Contracts}
-Let $\theta$ denote unique physical parameters, $r\in\{1,\ldots,R\}$ a recurrent invocation, and $i,t$ a trajectory and response position. A looped actor exposes
+This initial manuscript contributes an explicit looped-RL execution contract, an implementation spanning prefix and state lifetimes, and an audited evaluation that distinguishes exact transformations from approximate inference baselines. Its evidence includes both positive component results and retained negative controls. It does not yet establish a production-scale scheduling advantage over generic prefix reuse, a complete RL speedup, or reward convergence. Those conclusions require the frozen comparisons described in Section~\ref{sec:quality}.
+
+\section{Looped RL Execution Contracts}
+\subsection{Objective and logical update}
+Let $\theta$ denote unique physical parameters, $r$ a recurrent invocation, and $i,t$ a trajectory and response position. The actor exposes
 \begin{equation}
- \ell_{i,t,r}=\log p_\theta^{(r)}(y_{i,t}\mid x_i,y_{i,<t}).
+ \ell_{i,t,r}=\log p_{\theta}^{(r)}(y_{i,t}\mid x_i,y_{i,<t}).
 \end{equation}
-For a declared reduction $\mathcal{R}$, the RLTT-style policy-gradient objective is
-\begin{equation}
- L_{\rm PG}=-\mathcal{R}_{i,t}\left[\hat A_i\sum_{r=1}^{R}w_{i,t,r}\ell_{i,t,r}\right].
+For response masks $m_{i,t}$, fixed group-relative advantages $\hat A_i$, and declared loop weights $w_{i,t,r}$, the policy-gradient primitive is
+\begin{equation}\label{eq:objective}
+ L_{\rm PG}=-\mathcal R_{i,t}\!\left[m_{i,t}\hat A_i\sum_r w_{i,t,r}\ell_{i,t,r}\right].
 \end{equation}
-The weighted sum of log probabilities differs from the log of a mixture. The public RLTT loss uses a masked token mean and an unclipped policy-gradient surrogate~\cite{rltt}; reproducing its actor accumulation requires auditing the surrounding microbatch and update schedule as well. We distinguish a source-matched reproduction from a separately specified objective reimplementation.
+The weighted sum of log probabilities is not the log probability of a mixture. The public RLTT function implements an unclipped policy-gradient surrogate with a masked token mean~\cite{rltt}. A response-mean profile is a separately declared objective. Reproducing the original experiment also requires its surrounding minibatch, accumulation, reference, optimizer and reward contracts; matching Equation~\ref{eq:objective} alone is insufficient.
 
-A frozen reference has its own immutable policy identity. Sampled KL estimators and full-vocabulary KL are separate profiles. For dynamic credit weights, whether gradients traverse $w$ is independent of whether the exit-head parameters are trainable. These choices enter the experiment manifest alongside dtype, optimizer, reduction denominator, and the number of actual optimizer steps per rollout batch.
+A logical update fixes its reduction denominator before splitting suffix waves or microbatches. Parameters remain unchanged until all contributions have been accumulated. The ordinary MCore schedule divides microbatch losses by the microbatch count; its adapter compensates for that division. The prefix path consumes the logical objective directly, applies optimizer loss scaling once to suffix backward, and injects already-scaled prefix adjoints without a second factor. Empty and masked responses retain their original accounting identities.
 
-\subsection{State and provenance}
-An execution node is identified by policy, model family, physical layer, loop, sequence or prefix, token range, and execution profile. Distinct loop invocations retain distinct hidden and KV dependencies even when they share weights. A sampled trace records response-aligned depth, raw or processed scoring semantics, sampling transformations, termination reason, latent seed, and the committed publication digest.
+\subsection{Identity and model-specific state}
+Every execution node carries the policy digest, checkpoint revision, family, physical layer, loop, token range and execution profile. Sharing a weight tensor does not authorize sharing distinct loop KV. Raw and sampling-processed scores remain separate fields; sampled traces preserve depth, stop reason, sampling transforms, publication generation and latent identity.
 
-Huginn additionally requires latent identity: equal text does not imply an equal recurrent prefix. Reusing deterministic prelude work and reusing a complete latent-conditioned prefix are different operations. The first response token is predicted at the final prompt position; this boundary must survive every readout and prefix transformation.
+Ouro and Nanbeige permit compatible fixed-depth text-prefix groups. Huginn additionally conditions recurrent execution on a recorded latent seed and profile. Equal prompt tokens with independent latents are not equal recurrent prefixes. Compatible latent groups use the shared graph; singletons execute the complete replay. A backward receipt records the actual shared fraction instead of assuming all grouped prompts can reuse recurrent states.
 
-\section{I/O-Aware Execution}
-\subsection{Terminal output export}
-The inherited offline generation path repeatedly constructs cumulative output objects, although its caller consumes only completed requests. For $T$ generated tokens, cumulative selected-score exports can contain
-\begin{equation}
- \sum_{t=1}^{T}t=\frac{T(T+1)}{2}
-\end{equation}
-elements. A terminal-output path exports $T$ scores once. This is a count of materialized elements, not a predicted end-to-end speedup. The implementation preserves tokens, depths, processed scores, policy versions, stop conditions, cancellation, and speculative acceptance ordering. Streaming retains its existing cumulative interface. Ouro-1.4B GPU asynchronous delivery is qualified below; other model families and longer-running workloads remain pending.
+The first response token is predicted from the final prompt hidden state. That readout is a direct cross-boundary gradient path at each supervised loop. Huginn adds prelude injection and coda dependencies. Dropping these edges can preserve many suffix scores while silently changing the update.
 
-\subsection{Stage-aware KV residency}
-KV allocation follows the model's actual stages. If prelude and coda execute once while the core executes $R$ times, the required logical layer planes are
-\begin{equation}
- N_{\rm KV}=L_{\rm pre}+R L_{\rm core}+L_{\rm post}.
-\end{equation}
-For the Huginn R32 profile this yields $2+4\cdot32+2=132$ planes, compared with $8\cdot32=256$ in a rectangular layout. The opt-in implementation allocates separate core and boundary pools. A page bundle owns $R$ core pages and one boundary page; admission, growth and release operate on complete bundles. Explicit byte budgets round down by the exact integer bundle size. Tiny CPU allocations verify the corresponding $48.44\%$ reduction in KV tensor storage. GPU allocator peaks, graph pools, total training memory, and measured GPU capacity remain to be evaluated.
+\section{I/O-Aware System Design}\label{sec:design}
+\begin{figure*}[t]
+\centering
+\setlength{\unitlength}{1pt}
+\begin{picture}(480,112)
+\put(0,64){\color{accent}\framebox(104,36){\shortstack{\bfseries Committed policy\\\small Rollout + reward}}}
+\put(124,64){\color{accent}\framebox(104,36){\shortstack{\bfseries Shared prefix\\\small All loop boundaries}}}
+\put(248,64){\color{accent}\framebox(104,36){\shortstack{\bfseries Suffix waves\\\small Readout + adjoints}}}
+\put(372,64){\color{accent}\framebox(104,36){\shortstack{\bfseries Logical update\\\small Adam + publication}}}
+\put(106,82){\vector(1,0){16}}
+\put(230,82){\vector(1,0){16}}
+\put(354,82){\vector(1,0){16}}
+\put(300,61){\vector(0,-1){18}}
+\put(176,43){\vector(0,1){18}}
+\put(176,43){\line(1,0){124}}
+\put(192,28){\makebox(112,10){\small Summed boundary gradients}}
+\put(0,1){\color{muted}\framebox(476,20){\small Policy/latent identity\quad $\cdot$\quad Stage KV + rematerialization\quad $\cdot$\quad Verified durable state}}
+\end{picture}
+\caption{ScaleRLT execution boundaries. All suffix waves contribute before one prefix backward and one logical optimizer update. The state layer tracks model-specific dependencies and durable policy/optimizer artifacts. This is a design diagram, not a measured overlap timeline.}
+\label{fig:system}
+\end{figure*}
 
-\subsection{Response readout and exact reductions}
-The output head should consume only hidden positions needed by the objective. Vocabulary tiling can compute selected-token scores using an exact log-sum-exp without retaining a complete loop--token--vocabulary tensor. Full-distribution objectives still require the full normalization and reduction:
-\begin{equation}
- D_{\rm KL}(p\Vert q)=\sum_v p_v(\log p_v-\log q_v).
-\end{equation}
-Replacing this expression with selected-token or top-$k$ scores changes the objective. Forward and backward comparisons therefore include every physical parameter and any trainable credit weights.
-
-\subsection{Joint rematerialization and prefix gradients}
-The current prototype enumerates loop and layer checkpoint intervals and token query chunks. Response reductions execute inside loop checkpoints; token chunks retain their complete causal KV prefixes and corresponding gradients. Its selector considers only measured, gradient-verified records for the same workload, timing scope and memory metric. CPU saved-storage observations cannot substitute for CUDA peaks. Readout tiles are separately configurable; extending the joint search to prefix-residency counts and sharded weight-residency windows remains planned.
-
-For a shared prefix state $z$, differentiable reuse has the form
-\begin{equation}
- g_\theta=\sum_i g_{\theta,{\rm suffix}_i}
+\subsection{Differentiable prefix scheduling}
+Let $z(\theta)$ contain all shared boundary states and $L_i$ the appropriately weighted suffix loss. Over real arithmetic,
+\begin{equation}\label{eq:prefix}
+ \nabla_\theta L=\sum_i g_{\theta,\mathrm{suffix}_i}
        +J_{\theta,z}^{\mathsf T}\sum_i g_{z,i}.
 \end{equation}
-Here $z$ contains every loop and stage KV boundary plus readout and other cross-boundary states. Accumulating only KV adjoints misses direct first-response readout gradients. All suffixes use the logical batch denominator, and parameters remain unchanged until their complete aggregate update. The ordinary three-phase prefix schedule follows prior work~\cite{prefix}. The loop-specific planner must improve upon both standard rematerialization and a generic shared-prefix baseline to support a distinct scheduling contribution.
+One prefix forward captures the live graph. Suffix waves read detached boundary leaves, execute their private causal histories and accumulate boundary adjoints. A final prefix backward injects the sum into the live graph. Equation~\ref{eq:prefix} follows the established three-phase schedule~\cite{prefix}; ScaleRLT extends its boundary representation to every relevant loop and stage, including the first-response hidden state.
 
-\section{Evaluation Protocol}
-\subsection{Baselines and models}
-Training comparisons retain native VIME/Megatron, a declared RLTT reproduction or reimplementation, standard batching/readout/checkpoint optimizations, and generic prefix reuse. Slime and Megatron are additional framework baselines whose actual looped-model capability and version must be verified. Serving comparisons include FlashLoop dense and full-method configurations in their common supported domain, plus the existing optimized vllm-rlt path. Unsupported configurations are reported as such rather than assigned zero throughput.
+The first correctness reference executes suffix projections individually and is slower than complete packed replay. The subsequent iteration batches projections, MLPs, normalization and readout within each suffix wave while retaining segmented causal attention. Attention visibility, positions, response masks and latent identities remain unchanged. The update is verified against an independent complete replay, rather than only against another prefix implementation.
 
-The core matrix comprises Ouro 1.4B and 2.6B, Nanbeige4.2, and Huginn-0125. IQuest 40B is a separate extension with an explicit full-update resource gate. Parameter counts refer to unique checkpoint tensors; expanded loop depth is not additional physical model size.
+\subsection{Rematerialization and state lifetime}
+The prototype exposes loop checkpoints, physical-layer intervals and token query chunks. Query chunks retain the complete causal key/value prefix and all corresponding gradients. The joint Ouro/Nanbeige path checkpoints the prompt producer and full-depth suffix waves while preserving summed prefix adjoints. Token and label tensors are explicit checkpoint inputs; retained mutation failures showed that capturing mutable response tensors in closures can corrupt backward replay.
 
-\subsection{Three complementary experiments}
-Fixed-trace update experiments hold tokens, depth, advantages, reference values, and reduction fixed. Serving experiments hold the prompt and completion workload fixed and report actual concurrency, queue delay, TTFT, TPOT, failures, and memory. Fresh online RL allows natural termination and records reward, response lengths, policy staleness, and all lifecycle phases.
+The measured CPU plan selector admits only gradient-qualified records for the same workload, timing scope and storage metric. A full GPU residency search, sharded weight windows and arbitrary joint layer/query subdivision remain future implementation. Saved forward storage does not represent backward workspace, allocator peaks or total learner memory. Huginn joint prefix rematerialization remains unsupported.
 
-Complete RL wall time includes rollout, reward, reference or critic, actor, publication, and scheduled checkpoint work. Overlapping phases are measured on the actual critical path. Resource cost is
-\begin{equation}
- {\rm GPUh}=\frac{1}{3600}\sum_{j\in\mathcal{G}}\text{allocated device-seconds}_j.
+\subsection{Readout and output traffic}
+Response-position readout avoids projecting unused prompt positions. Vocabulary tiling computes selected-token scores by exact log-sum-exp without retaining a full loop--token--vocabulary output. Entropy and categorical KL require their complete distributions and reductions; substituting selected-token or top-$k$ scores would change the objective. The first-order readout primitive is numerically tested, while complete online full-KL and learned-credit integration remain pending.
+
+The inherited offline generator repeatedly materializes cumulative selected-score lists although its consumer needs final outputs. For $T$ output tokens, the cumulative path exports $T(T+1)/2$ score elements; terminal-only export materializes $T$. This is a count of objects, not an end-to-end speed prediction. Streaming preserves its cumulative interface. Tokens, depth, score semantics, stop/cancel behavior and speculative acceptance ordering remain part of the output contract.
+
+\subsection{Stage-specific KV and rollout forks}
+For a prelude and coda executed once around a recurrent core,
+\begin{equation}\label{eq:kv}
+ N_{\rm KV}=L_{\rm pre}+R L_{\rm core}+L_{\rm post}.
 \end{equation}
-Co-located actor and rollout roles do not double-count one GPU; allocated idle devices are still included.
+Huginn R32 therefore needs $2+32\cdot4+2=132$ logical KV planes instead of a rectangular $32\cdot8=256$. Separate core and boundary pools allocate, grow and release complete page bundles. Byte budgets round down by the exact integer bundle size.
 
-\subsection{Reward as the primary endpoint}
-Before formal runs, the held-out split, reward implementation, sampling budget, noninferiority tolerance, and target quality are frozen. Main quality conclusions require at least three independent training seeds and uncertainty across held-out items. We record mixed-reward group frequency, advantage variance, KL, entropy, gradient norm, parameter delta, and optimizer updates. Zero-advantage groups cannot demonstrate learning merely by incrementing a policy version.
+An independent cold-group rollout fork shares a leader's compatible prompt KV and final prompt hidden state. Followers retain private sampling generators; partial tails become private on continuation writes. Admission counts snapshot ownership and may reclaim snapshots in favor of recomputation. This opt-in mechanism is CPU-qualified for Ouro/Nanbeige. Huginn recurrent-prefix sharing and official CUDA stream-ordering qualification are still open.
 
-Paired timing comparisons use independent process restarts and confidence intervals clustered by run. Repeated steps within one run do not substitute for independent training seeds. OOM, numerical failure, unsupported profiles, and unrun experiments remain visible in separate rows.
+\subsection{Policy and checkpoint I/O}
+Publication and recovery are first-class phases in the complete RL budget. A committed publication records the physical-weight manifest and worker acknowledgments. Recovery must restore actor, immutable reference, optimizer moments/counters, worker RNG and generation identities before reproducing the next update.
 
-\section{Current Evidence and Limits}
-Table~\ref{tab:status} records inherited evidence and pending endpoints. Its short-run entries are prior task results, not measurements newly produced for this manuscript. In particular, the existing Huginn PPO record reports a $1.080\times$ warm-rollout ratio and a $0.996\times$ full-phase ratio; it does not establish complete-training acceleration. The authoritative raw receipt audit and new matched repetitions remain part of W00/W14.
+A task-owned archiver streams bounded 512 MiB parts with byte counts and SHA-256 identities. A successful part must match both its server digest and an independent download before its temporary local copy is removed. Failed transfers retain their sources; streaming producers must reach natural completion. Small source-archive transfers and a writable draft destination are verified, but complete native optimizer/publication retention has not yet run.
 
-\begin{table}[t]
-\centering\small
-\caption{Evidence at draft creation. ``Pending'' is not a successful result.}
-\label{tab:status}
-\begin{tabular}{@{}p{0.29\columnwidth}p{0.62\columnwidth}@{}}
-\toprule
-Profile & Evidence boundary \\
-\midrule
-Ouro 1.4B PPO & Prior FP32 three-update and fresh-resume audit reported passing. \\
-Nanbeige PPO & Prior three updates pass; final resume evidence unresolved after transport loss. \\
-Huginn, four losses & Prior short updates and fresh resume pass; main quality endpoint pending. \\
-ScaleRLT W01 & 171 CPU tests; 16 paired official Ouro-1.4B CUDA cases pass. GPU acceleration and full RL pending. \\
-ScaleRLT W02 & 280 CPU checks pass; tiny stage KV storage measured. Official CUDA and peak memory pending. \\
-ScaleRLT W04/W05 & 257 CPU numerical, lifecycle and CLI checks pass; three factory checks fail at missing Triton. Ray/CUDA qualification pending. \\
-Matched full RL & New ScaleRLT speed and memory comparisons pending. \\
-Reward convergence & Independent-seed time-to-quality results pending. \\
-\bottomrule
-\end{tabular}
-\end{table}
+\section{Experimental Method}
+\subsection{Evidence scopes and baselines}
+We distinguish four experiments: tiny numerical controls, fixed-trace actor timing, fixed-work generation, and fresh online RL. Tiny configurations use actual model-family math but are not official checkpoints. Generation with reduced decode depth is an approximate-policy comparison, not an exact scheduling ablation. Historical H20 results and a repeated control on a different physical H20 retain separate source and device identities.
 
-Available GPU time is coordinated with existing jobs. A separately authorized, task-owned H20 environment has passed eleven dependency imports, source checks and dependency consistency checks. Its two real MCore CUDA controls are reported below. Other hosts' compatible runtime and resource windows remain unverified. Long-context and 40B results require both learner and rollout capacity; fitting one isolated forward pass is insufficient.
+The learner baseline is complete native VIME/Megatron replay. Additional comparisons comprise a declared source-matched RLTT baseline, ordinary packing/readout/checkpointing, generic differentiable prefix reuse, and Slime/Megatron framework baselines~\cite{rltt,slime,megatron}. Serving baselines include FlashLoop dense/full-method profiles and the optimized vllm-rlt path~\cite{flashloop,rlt}. FlashLoop and Slime common-domain looped qualification and formal matched comparisons remain open. An unsupported profile is reported as unsupported, never as zero throughput.
 
-An opt-in resident deployment now permits an actor-only GRPO/RLTT learner and native rollout on one physical device. Its rollout actor requests 0.5 CPU/GPU scheduling units alongside the existing learner's 0.4 within one bundle, with device offset zero; the former whole-bundle request would leave no room for the learner. Both offload paths are disabled, so all live model copies, reference and optimizer state must fit together. The final CPU regression passes 580 checks, with six CUDA skips and three known factory deselections. These include captured placement and recipe calls, not actual shared-device worker execution. Single-device Ray/CUDA startup, complete official-model training, capacity and reward convergence remain pending. A smaller device count alone is not evidence of acceleration or memory savings.
+The core official matrix is Ouro 1.4B/2.6B, Nanbeige4.2 and Huginn-0125. IQuest 40B is a separate extension gated by complete optimizer correctness and actual full-update capacity. Unique checkpoint tensors define physical model size; loop-expanded depth does not create new physical parameters.
 
-\subsection{Held-out evaluation between updates}
-The native backend previously rejected periodic dataset evaluation. Its new text-only path evaluates every held-out completion under one committed policy cohort, with seeds determined by experiment, dataset, prompt and completion identity. The same seeds are reused across updates and resume. Evaluation sampling is separate from the full-vocabulary training profile; Huginn retains its actual latent identity. Invalid prompt budgets fail the cohort instead of filtering held-out items. Initial evaluation uses completed-update index zero, and the first updated policy uses index one, preserving both results. Publication versions are recorded separately.
+\subsection{Timing, memory and numerical gates}
+A speed ratio is baseline elapsed time divided by candidate time, or candidate throughput divided by baseline throughput, with identical work and an explicit phase scope. The clean CPU prefix experiment uses three independent process cohorts; approximate 95\% intervals are Student-$t$ intervals on cohort log ratios. Individual repeated steps do not count as independent processes or training seeds.
 
-The final CPU suites pass 508 distinct checks, with six CUDA skips and three known missing-Triton factory deselections. For each of three tiny model families, inserting evaluation after every one of three AdamW updates preserves training tokens, rewards, losses, gradients, final weights, optimizer state and publication digests exactly. Restoring a checkpoint into fresh model, reference, optimizer and engine objects reproduces the next update and held-out outputs. These tests use actual native generation and the MCore loss with transport and tokenizer doubles; restoration occurs within one test process. Token-parity training rewards and test-decoded held-out answers do not measure reasoning quality. No speed ratio against the rejecting parent is defined. Official-tokenizer Ray/CUDA runs and independent-seed convergence remain pending.
+Peak GPU allocated/reserved bytes, resident KV tensor bytes, live page counts and forward saved storage are distinct metrics. No conversion between them is assumed. Full RL wall time includes rollout, reward, reference/critic, learner, publication and scheduled checkpoint work on the actual critical path. Allocated GPU cost includes idle allocated devices and counts a co-located learner/rollout GPU once.
 
-\subsection{Frozen mathematical inputs}
-The public MATH reconstruction pins EleutherAI revision 21a5633 and MATH-500 revision 6e4ed1a. Content hashes verify all 18 source files. Removing one normalized training duplicate and one overlap with the full test split leaves 7,498 training questions. All 500 held-out questions and labels remain unchanged. A fixed hash selects 256 development questions from the other test questions; 4,244 remain reserved. Four explicit, solution-hash-bound training label repairs address two unbraced answers and two empty answer boxes. Two unknown difficulty labels remain in the corpus. These transformations and the prompt instruction define a matched reimplementation input contract, not an exact reconstruction of RLTT's private data.
+Numerical qualification checks all trainable parameters, complete gradients, nonzero parameter deltas, Adam first/second moments, counters and logical sample weights. Original failures and their thresholds remain retained. Full updates are not inferred from small output differences or optimizer-state agreement alone.
 
-The pinned official Ouro-Thinking tokenizer measures all 12,498 prepared questions under plain, chat and thinking templates, retaining 37,494 per-question length and token-ID-hash records. With the thinking template, a declared 1,024-token training cap excludes 18 further questions, producing an explicit 7,480-question profile. All development and MATH-500 questions fit; maximum prompt lengths are 995 and 954 respectively. The complete corpus remains available, and no held-out item is filtered. The actual data/reward path accepts all 12,498 known boxed labels and rejects every missing-box control; byte-identical regeneration and 62 unit/contract tests pass. These are input and grader checks, not generated reasoning accuracy. Official-tokenizer rollout, full updates and three-seed reward curves remain pending.
-
-An integration audit also identifies a duplicated chat-template application: the dataset returns a rendered string, which the native adapter previously treats as a message list. A one-condition repair limits templating to structured lists. All 500 official-tokenizer held-out prompts, with thinking on/off and two completions, preserve their prepared input token IDs in 2,000 adapter checks. The transport explicitly replays known answers; no model quality is measured. The broader regression passes 631 CPU checks, skips six CUDA checks and deselects three known factory cases.
-
-A separate source-prompt profile executes RLTT's unchanged conversion functions with actual pandas and PyArrow. It preserves all 12,498 public question identities, labels and split membership while using the original instruction and default chat options. Every converted prompt matches the actual VIME dataset and official tokenizer. The original converter instead produces an empty question and label when given the earlier prompt/label-only schema. Two fresh preparations yield byte-identical JSONL, Parquet, manifests and token rosters. The source-prompt training cap excludes 19 questions, leaving 7,479; development and MATH-500 maxima are 1,013 and 972 tokens, with no held-out exclusions. This is an input contract, not the authors' private dataset or a reward result.
-
-\subsection{Original-source batch accounting}
-RLTT's unchanged configuration functions set the loader batch to CLI $P G$; its declared verl 0.6.1 loader consumes that many prompt rows and the custom trainer repeats each generation row $G$ times. With $P=32$, $G=8$, four equal data-parallel ranks, no private changes and 140 available full rollout batches, source inspection implies 2,048 new completions per rollout and 286,720 overall. Actor minibatch normalization implies 280 optimizer steps; accumulation of two rollout batches gives 70 actor calls, each taking four steps. These are conditional source counts: the complete dataloader, FSDP and optimizer were not executed. The launcher and CLI parser have different accumulation defaults, and epoch exhaustion can leave an unflushed accumulation group.
-
-The plan's nominal 71,680-completion extension is twice the paper's nominal budget but only one quarter of that conditional source count. A corresponding twofold extension would require 573,440 new completions. Actual framework traces must fix the final budget and distinguish newly sampled completions from repeated optimizer passes. Original source, nominal paper and native reimplementation profiles remain separate; prompt mode, grader and AdamW8bit settings also require an explicit matched contract. Official custom configuration loading succeeds locally, while the complete VIME/MCore parser remains unqualified because local Triton is absent. No full-RL speed or convergence conclusion follows from these source and input audits.
-
-\subsection{Existing rollout prefix reuse}
-Before adding group-fork scheduling, we measure the inherited full-page prefix cache on tiny Ouro and Nanbeige models. Eight equal prompts arrive together with distinct completion seeds. At actual concurrency eight, a cold engine admits all requests before any prefix becomes available, so the group records zero reused tokens. At concurrency four, a later admission wave reuses earlier pages; at concurrency one, reuse occurs across successive requests. With a pre-existing cache all requests can hit. This identifies a cold group-admission gap without attributing existing reuse to ScaleRLT.
-
-With eight-token pages, the cache reuses $8\lfloor(P-1)/8\rfloor$ prompt tokens per hit because the final hidden state is not retained. For $P=17$, eight requests execute 136 prefill tokens without caching. Cold-cache counts at concurrency 1/4/8 are 24/72/136; all warm-cache cases execute eight. Across three fresh CPU processes, 324 observations and 2,592 measured requests preserve sampled tokens, depths and termination exactly; the maximum selected-score difference is $9.54\times10^{-7}$. Fifty-one regression checks cover cache behavior, publication invalidation and the explicit Huginn prefix-reuse guard. Huginn latent-conditioned recurrent prefixes remain unsupported by this path.
-
-The unchanged engine's $P=17$, concurrency-eight warm/cache-disabled timing ratios are 4.113 for Ouro and 3.464 for Nanbeige. They compare different initial cache states. Including an extra primer gives 2.247 and 1.901, with approximate 95\% intervals [1.552, 3.253] and [0.961, 3.760]. All cold concurrency-eight intervals include one. These instrumented tiny FP32 CPU diagnostics motivate the next scheduling experiment; they are not measurements of a new optimization, GPU acceleration, full RL or peak-memory savings. The complete table retains shorter-prompt regressions and wide intervals.
-
-\subsection{Cold-group rollout fork}
-An opt-in Ouro/Nanbeige scheduler admits one leader for each policy-version and exact-token prompt group. After full-depth prefill, an independent snapshot shares complete and partial KV pages and retains the first-response hidden state. Each follower receives a private hidden state and independent sampling generator. Partial tails are copied on their first continuation write; admission reserves their capacity and can reclaim pending snapshots in favor of recomputation. Forks obey bounded admission bypass. Huginn's latent-conditioned recurrent prefixes remain rejected; deterministic-prelude sharing is still pending.
-
-The final regression passes 183 CPU checks; 39 GPU cases, including four new alternating-stream CUDA/Graph cases, are not run. A real preemption sequence fails on the untouched parent when admission restores the only request into PRELUDE; selecting that stage after admission resolves the failure. Additional tests cover partial-page immutability, leader and follower aborts, request-ID reuse, publication, speculative decoding and capacity/fairness fallbacks. CUDA event ordering is implemented but unqualified on a GPU.
-
-Three seed cohorts each run four fresh processes in parent/fork/fork/parent order. Both arms start with empty ordinary prefix caches and use tiny width-16, two-layer FP32 CPU models, eight output tokens and one OpenMP thread. All 480 observations, 3,504 measured requests and 28,032 output tokens match independent cache-disabled serial oracles and opposite arms in tokens, depths, stops and policy versions. Maximum score error is $9.54\times10^{-7}$. Every eight-request candidate group executes exactly one prompt prefill. An earlier screening run is retained separately and excluded from these estimates.
+\section{Measured Results}\label{sec:results}
+\subsection{Prefix-heavy actor updates}
+Table~\ref{tab:prefix} compares the packed-prefix iteration with an untouched packed-wave parent on tiny width-8, vocabulary-13 FP32 CPU models. Timing includes zeroing gradients, the RLTT loss, forward/backward and SGD; construction, parameter reset, reference, rollout and publication are excluded. Attention remains segmented. Every timed observation verifies loss, full gradients and a nonzero update. The clean campaign has 216 observations across 18 fresh processes, including a serial-prefix reference arm.
 
 \begin{table}[t]
 \centering\small
-\caption{Cold G8/C8 CPU generation, untouched parent divided by group fork. Three seed-cohort log-ratio intervals; live pages include snapshot ownership. Both arms allocate the same 1,024-page pool.}
-\label{tab:groupfork}
-\begin{tabular}{@{}lrrlr@{}}
-\toprule
-Family & $P$ & Ratio & 95\% interval & Pages A/B \\
-\midrule
-Ouro & 17 & 1.811 & [1.450, 2.263] & 96/40 \\
-Ouro & 128 & 3.631 & [2.423, 5.440] & 544/96 \\
-Ouro & 129 & 3.622 & [2.875, 4.564] & 544/96 \\
-Nanbeige & 17 & 1.828 & [1.644, 2.032] & 48/20 \\
-Nanbeige & 128 & 4.510 & [4.259, 4.776] & 272/48 \\
-Nanbeige & 129 & 2.570 & [0.259, 25.497] & 272/48 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Table~\ref{tab:groupfork} shows workload-dependent CPU benefit. The complete 40-workload report retains shorter prompts, queued concurrency 1/4 and all one-request controls; the latter have central ratios below one. The Nanbeige $P=129$ interval remains very wide. Snapshot retention can increase live-page use: Ouro $P=7$, concurrency one, grows from eight to twelve pages. Page counts do not demonstrate allocated GPU peak reduction. Timing includes admission, generation, score export and common telemetry, but excludes construction, oracle execution, network and learning. Official-model CUDA, high-load serving, full online RL and held-out reward convergence are not qualified by these results.
-
-\subsection{Official Ouro output qualification}
-An RTX 5090 campaign loads the pinned Ouro-1.4B checkpoint in BF16 and compares cumulative with terminal-only output under synchronous Triton, asynchronous single-stream, asynchronous multi-stream, and synchronous recurrent-core CUDA Graph execution. Each mode covers actual resident concurrency 1, 4, 16 and 64, with twice as many enqueued requests. All 16 pairs (32 arms, 1,360 requests and 10,880 output tokens) return exactly equal final tokens, depths, processed selected scores and metadata. Request IDs are reused; KV allocations and scheduler queues drain after every arm.
-
-Prompts contain 2--9 synthetic vocabulary IDs, with eight sampled output tokens at fixed depth four. These inputs verify execution, not language quality. The Graph cases record actual captures and replays without fallback. The native source is pinned at 7d6e08e and all 59 deployed runtime/support files are independently verified. A private Torch-only input adapter is checked against the public Safetensors loader on 12 CPU configurations before use; public-loader CUDA coverage is not established.
-
-The 32 arms run in one process while a separate GPU executes another non-timing diagnostic. No speed ratio is reported. The largest observed Torch allocated/reserved peaks are 4.299/4.529 GiB; these include retained state across sequential arms and are not independent memory comparisons or evidence of memory savings. The controller exits naturally with code zero, followed by raw-output/source verification and fresh resource-release checks. Longer responses, other checkpoints, network serving and full RL remain unqualified by this experiment.
-
-\subsection{Stage KV allocation and generation}
-Fifteen new tiny stage-cache cases cover independent dense R1/R3/R32 oracles, allocation and growth, stale ownership, sampled output and score equality, mixed exit depths, and actual native preemption/resumption. The final broader CPU regression passes 280 checks, skips three unavailable official Nanbeige assets, and deselects 66 GPU checks. Core Graph page mapping has CPU coverage; real CUDA capture and automatic CUDA budget profiling remain unrun.
-
-\begin{table}[t]
-\centering\small
-\caption{Tiny Huginn in-process CPU generation versus the unchanged parent. Ratio is parent/stage time; all approximate 95\% intervals include one. Storage is allocated KV tensor bytes, not peak memory.}
-\label{tab:stagekv}
-\begin{tabular}{@{}rrrlr@{}}
-\toprule
-$R$ & $C$ & Ratio & 95\% interval & KV reduction \\
-\midrule
-3 & 1 & 1.098 & [0.615, 1.960] & 33.33\% \\
-3 & 16 & 1.188 & [0.896, 1.576] & 33.33\% \\
-3 & 64 & 1.208 & [0.993, 1.470] & 33.33\% \\
-32 & 1 & 1.066 & [0.828, 1.372] & 48.44\% \\
-32 & 16 & 0.981 & [0.804, 1.197] & 48.44\% \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Table~\ref{tab:stagekv} uses width 16, vocabulary 13, stages 2+4+2 and one CPU thread. Each burst enqueues $2C$ requests with prompt lengths 2--6 and four output tokens; observed peak resident requests equal $C$. Twelve sequential fresh processes form three parent/stage/stage/parent cohorts. All 137 baseline source blobs match the parent commit. Every measured output token, depth and score matches the saved reference, and all requests release their KV pages.
-
-Time includes native admission, scheduling, prefill, decode and final score export; it excludes engine construction, network and all RL phases. Approximate intervals use three cohort log ratios with two degrees of freedom. A separate 180-observation same-tree layout ablation gives ratios 0.902--0.999, including a single-concurrency regression. The two comparisons include different common-code changes and are reported separately. These shared-host CPU measurements establish storage reduction, not stable generation acceleration or GPU capacity gains.
-
-\subsection{Streamed-readout prototype}
-The first implementation exposes response-aligned, per-loop scores for Ouro, Nanbeige, and Huginn. It supplies first-order selected-score, entropy, and full-KL derivatives, and a separately declared RLTT objective primitive. An opt-in MCore training bridge now selects these scores; its Ray/CUDA lifecycle remains unqualified. FP64 finite differences and FP64/FP32/BF16 readout comparisons pass. FP32 provider comparisons cover every trainable parameter, independent depth replays, empty responses, and recomputation; the largest whole-gradient relative L2 error is $2.86\cdot10^{-7}$ on these tiny configurations. This is not an official-checkpoint error bound.
-
-\begin{table}[t]
-\centering\small
-\caption{Readout-only CPU prototype. Ratio is dense time divided by streamed time; all cases are slower. Saved bytes exclude supplied inputs and parameters and are not peak memory.}
-\label{tab:readout}
-\begin{tabular}{@{}rrlrr@{}}
-\toprule
-Rows & Vocab & Objective & Ratio & Saved bytes \\
-\midrule
-64 & 1024 & Score & 0.414 & $262144\to1024$ \\
-64 & 1024 & + entropy/KL & 0.444 & $786432\to1024$ \\
-256 & 4096 & Score & 0.722 & $4194304\to4096$ \\
-256 & 4096 & + entropy/KL & 0.654 & $12582912\to4096$ \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Table~\ref{tab:readout} reports three independent CPU process starts with matched dense and streamed objectives. Each case warms both arms and executes three dense/streamed/streamed/dense blocks. Every observation verifies loss and hidden/head gradients. The arithmetic mean is not used: ratios derive from geometric mean forward-plus-backward times. The shared macOS host uses FP32 Torch 2.13.0 with one CPU thread. The implementation reduces retained readout intermediates but does not yet establish acceleration; GPU kernels and full-update measurements remain necessary. Recurrent blocks, optimizer work, rollout, rewards, publication and checkpointing are excluded from this microbenchmark.
-
-\subsection{Training bridge and recovery}
-The current training branch uses static uniform or progressive credit, terminal sampled k3, and a frozen initial reference, including when the KL coefficient is zero. Reference replacement is rejected. It computes the logical-step reduction before partitioning microbatches and compensates the actual MCore schedule's loss divisor. Twelve numerical configurations span three families, two reductions, and recomputation on/off; each checks three microbatch partitions against an independent dense gradient oracle. Full-vocabulary KL and learned exit credit are not yet connected to this online branch.
-
-For each family, a tiny native engine generates fresh groups, an output-derived token-parity reward supplies GRPO advantages, and AdamW performs three nonzero updates. Physical policy publication and fresh actor/reference/optimizer recovery reproduce the third update exactly. Maximum rollout/replay score errors are $2.38\cdot10^{-7}$ (Ouro), $4.77\cdot10^{-7}$ (Nanbeige), and $1.91\cdot10^{-6}$ (Huginn). These CPU component cycles exercise real sampling and optimization but do not run Ray workers, GPU DDP, distributed checkpointing, or a reasoning benchmark. Their short reward sequences are not convergence evidence.
-
-The combined run contains 257 passing checks and three import failures caused by unavailable Triton; failed factory checks are retained and excluded from the pass count. CPU tests use MCore commit 1dcf0da with VIME's standard patch. All 2232 files of the tested tree independently match its pinned patched-source manifest. The separate upstream Megatron baseline archive does not supply this test runtime.
-
-\subsection{Packed replay prototype}
-An opt-in fixed-depth path merges projection, MLP, normalization and response-head work across sequences while preserving per-sequence positions and Huginn latent identities. Its CPU reference still executes attention separately per sequence. A separate Torch variable-length CUDA attention branch is implemented but untested on the target hardware; it does not silently replace itself with the CPU reference.
-
-The packed-path regression passes 282 checks, with two CUDA-only checks skipped and the three known factory import failures deselected. A follow-up set of 41 RLTT loss and native-cycle checks passes in both serial and packed modes; these counts overlap. Eighteen provider configurations covering B1/B4/B16 and recomputation have maximum gradient relative L2 error $6.701\cdot10^{-7}$ and preserve nonzero optimizer deltas. Native recovery also passes with the packed path.
-
-\begin{table}[t]
-\centering\small
-\caption{CPU tiny replay: serial/packed forward--backward ratios from three process starts. Attention remains segmented SDPA. These are not CUDA or complete-RL speedups.}
-\label{tab:packed}
-\begin{tabular}{@{}lrrr@{}}
-\toprule
-Tiny model & B1 & B4 & B16 \\
-\midrule
-Ouro & 0.992 & 2.709 & 5.944 \\
-Nanbeige & 0.924 & 2.757 & 4.702 \\
-Huginn & 1.014 & 2.405 & 3.736 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Table~\ref{tab:packed} uses width 8, vocabulary 13 and sequence lengths 16--30, with identical valid tokens in each arm. Each process warms both arms and runs three serial/packed/packed/serial blocks on one CPU thread. Every observation checks loss and full gradients. B1 shows no stable benefit; larger batches reduce Python and non-attention invocation overhead. Optimizer and complete RL phases are excluded, and no peak-memory benefit was measured.
-
-An initial FP32 benchmark comparison exceeded a $2\cdot10^{-6}$ relative-gradient gate ($3.188\cdot10^{-6}$ observed). The same input agrees at $3.021\cdot10^{-16}$ in FP64; serial and packed FP32 differ from that oracle by $2.321\cdot10^{-6}$ and $1.060\cdot10^{-6}$, respectively. Final benchmark observations require both elementwise absolute/relative bounds and relative L2 below $10^{-5}$. The original failed gate and calibration remain recorded; this does not qualify BF16 or official checkpoints.
-
-\subsection{Rematerialized actor updates}
-The rematerialization regression passes 354 CPU checks, skips six CUDA cases, and deselects three known missing-Triton factory checks. Thirty-six new provider comparisons cover six schedules, three families and terminal/all-loop supervision. The largest full-gradient relative L2 error is $3.728\cdot10^{-7}$. FP64 chunked-attention comparisons retain all query, key and value gradients within $10^{-12}$. Three further native sampling/reward/Adam/publication cycles recover the third update exactly with the new schedule; these are still tiny component tests.
-
-\begin{table}[t]
-\centering\small
-\caption{Frozen rematerialization plans versus the unmodified parent in fresh CPU processes. Saved storage comes from separate autograd-hook observations and is not a peak-memory measurement.}
-\label{tab:remat}
-\begin{tabular}{@{}lrrr@{}}
-\toprule
-Family & Ratio & 95\% interval & Saved storage \\
-\midrule
-Ouro & 1.119 & [0.514, 2.436] & $51360\to8512$ \\
-Nanbeige & 0.649 & [0.268, 1.570] & $27688\to6008$ \\
-Huginn & 0.517 & [0.261, 1.022] & $71660\to12252$ \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Eight schedules are first measured against packed replay with existing per-layer recomputation: 864 paired observations across three process starts. All observations match loss, full gradients and nonzero SGD updates. Many schedules are slower; Huginn loop-only checkpointing can retain more storage than the layer baseline because prelude activations remain resident. Query chunking is particularly costly for these short CPU sequences.
-
-Plans frozen from a separate pilot then run against the untouched parent in 12 fresh processes, producing the 36 observations in Table~\ref{tab:remat}. All 647 baseline blobs match, including one symlink target. Ouro and Nanbeige checkpoint two loops; Huginn additionally groups two physical layers. The workload uses four sequences of lengths 16/19/22/25 and eight response tokens each. Timing includes zeroing gradients, RLTT loss, forward, backward and SGD, but excludes parameter reset, optimizer construction, reference evaluation and other RL phases. All three intervals include one, so stable acceleration remains unproven.
-
-Saved storage counts unique non-parameter, non-buffer storage addresses observed by forward save hooks. It includes full underlying storage for views and excludes backward workspace and allocator overhead. The measured 78.30--83.43\% reductions cannot establish GPU capacity or whole-training savings. The current CPU profile selection only exercises a constrained choice; target GPU peaks, larger models, a generic differentiable-prefix comparison and reward convergence remain pending.
-
-\subsection{Differentiable-prefix reference}
-The three-family fixed-depth reference captures every recurrent KV and first-response hidden boundary. Suffix microbatches accumulate adjoints in detached leaves; one final prefix backward injects their sum into the live prefix graph. Huginn additionally preserves prelude, repeated injection and coda dependencies, and rejects reuse under a different actual latent identity. Independent-latent groups do not acquire shared recurrent prefixes by changing their sampling seeds.
-
-The full regression now passes 402 CPU checks, skips six CUDA cases and deselects three known factory-import checks. Thirty-six new parameter-gradient/update configurations cover three families, two supervision modes, three microbatch partitions and two parameter-storage dtypes; maximum relative L2 gradient error is $1.819\cdot10^{-7}$. Native FP64-weight models still reduce normalization in FP32, so their initial strict-FP64 gradient failures remain recorded. Separate pure-FP64 attention checks agree within $10^{-12}$.
-
-\begin{table}[t]
-\centering\small
-\caption{Serial-suffix prefix reference versus the untouched parent: CPU RLTT forward, backward and SGD. P24/D4/G32; each suffix wave contains four responses. All results are slower.}
+\caption{Tiny CPU actor update, P256/D8/G32. Times are geometric means; ratios and intervals use three process cohorts. Huginn shares the same recorded latent in this fixed trace.}
 \label{tab:prefix}
 \begin{tabular}{@{}lrrr@{}}
 \toprule
-Family & Parent ms & Prefix ms & Ratio [95\% CI] \\
+Family & Parent ms & Prefix ms & Ratio [95\% CI]\\
 \midrule
-Ouro & 135.50 & 335.78 & 0.404 [0.327, 0.498] \\
-Nanbeige & 55.96 & 171.83 & 0.326 [0.168, 0.633] \\
-Huginn & 152.97 & 324.89 & 0.471 [0.295, 0.750] \\
+Ouro &450.72&152.09&2.963 [2.099, 4.184]\\
+Nanbeige &219.31&69.79&3.142 [2.039, 4.842]\\
+Huginn &605.58&164.77&3.675 [3.100, 4.358]\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-A same-tree matrix contains 648 matched observations and an untouched-parent comparison adds 108 observations across 12 fresh processes. Every observation checks loss, complete gradients and a nonzero SGD update. The tiny width-8/vocabulary-13 reference executes suffix projections individually, losing the packed baseline's projection batching; all measured intervals indicate regressions. Table~\ref{tab:prefix} reports the prefix-heavy slice, while the retained report includes the one-response and suffix-heavy controls. Huginn rows share the recorded latent seed in a fixed trace and do not imply reuse for ordinary independent-latent groups. This revision establishes a correctness reference, not prefix acceleration or memory savings.
-
-\subsection{Packed suffix iteration}
-An opt-in iteration batches suffix projections, MLPs and response readout within each microbatch. Segmented attention preserves each suffix's private causal history and shared-prefix adjoints, including the first-response hidden boundary at every supervised loop. The serial reference remains the default. A combined regression passes 448 CPU checks, with six CUDA skips and three known factory deselections. Empty, single-token and unequal-length responses are covered. Two initial unnormalized squared-score gradient checks fail at isolated elements despite exact forwards and global relative errors below $9\cdot10^{-8}$; those failures are retained. Logical-mean checks pass the same element bounds. No production math or tolerance is changed for these checks.
-
-A three-arm CPU ablation contributes 648 observations. An independent comparison then runs the untouched packed-wave parent, untouched serial-prefix parent and current implementation in 18 fresh processes, yielding 216 observations. All loss, gradient and nonzero-update checks pass; maximum clean gradient relative L2 is $7.325\cdot10^{-7}$. The larger-prefix fixture uses an explicitly matched positional capacity after the initial 32-position Huginn fixture rejects its input. The failed attempt is excluded from final timing estimates and retained.
+The improvement is workload-dependent. Table~\ref{tab:controls} retains shorter-prefix and singleton controls. All short P24 intervals include one, and P4/D16/G1 central ratios are below one. Online Huginn reuse cannot be inferred from an artificially shared latent. CPU ratios do not establish official-model GPU acceleration or complete-RL benefit.
 
 \begin{table}[t]
 \centering\small
-\caption{Tiny CPU fixed-trace update, P256/D8/G32: untouched packed-wave parent versus packed-prefix iteration. Three process cohorts; intervals are Student-t on log ratios. This is not official-model or full-RL speed.}
-\label{tab:packed-prefix}
-\begin{tabular}{@{}lrrr@{}}
+\caption{Clean CPU negative controls for the same implementation. Ratio above one favors packed prefix.}
+\label{tab:controls}
+\begin{tabular}{@{}llr@{}}
 \toprule
-Family & Parent ms & Prefix ms & Ratio [95\% CI] \\
+Family & P/D/G & Ratio [95\% CI]\\
 \midrule
-Ouro & 450.72 & 152.09 & 2.963 [2.099, 4.184] \\
-Nanbeige & 219.31 & 69.79 & 3.142 [2.039, 4.842] \\
-Huginn & 605.58 & 164.77 & 3.675 [3.100, 4.358] \\
+Ouro &4/16/1 &0.444 [0.250, 0.788]\\
+Nanbeige &4/16/1 &0.564 [0.470, 0.676]\\
+Huginn &4/16/1 &0.494 [0.274, 0.889]\\
+Ouro &24/4/32 &0.902 [0.667, 1.218]\\
+Nanbeige &24/4/32 &0.841 [0.621, 1.140]\\
+Huginn &24/4/32 &0.921 [0.548, 1.549]\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:packed-prefix} shows a CPU benefit when a larger prefix is shared by 32 responses. The comparison against the serial-prefix parent improves all multi-response cases, but one-response controls remain slower than full-sequence replay. For the shorter P24/D4/G32 workloads, all three clean full-sequence comparison intervals include one. All controls and negative results remain in the report. These measurements support a workload-dependent engineering improvement; they do not establish joint-rematerialization novelty, GPU memory savings, production RL acceleration or reward convergence. Distinct-latent Huginn prelude sharing, production distributed scheduling and target-GPU/full-RL evidence remain pending.
+\subsection{Storage and component regressions}
+Measured tiny Huginn R32 KV tensor allocation decreases by $48.44\%$, matching Equation~\ref{eq:kv}. Its CPU generation intervals all include one; this result establishes storage reduction rather than stable speed. Both arms use the same token capacity. Graph pools, official GPU peaks and total learner memory remain unmeasured.
 
-\subsection{Logical-step scaling and unresolved BF16 updates}
-The ordinary MCore schedule divides each microbatch loss by the microbatch count. Its existing RLTT adapter compensates with the inverse factor. The prefix path instead consumes the unscaled logical objective, applies optimizer loss scaling once per suffix backward, and injects already-scaled boundary adjoints without a second factor. A logical-step plan retains original sample and GRPO group identities while grouping compatible Ouro prompts; empty and masked responses retain their global weights.
+A readout-only CPU ablation retains fewer intermediates but is slower: dense/streamed forward--backward ratios range from 0.414 to 0.722. Frozen rematerialization plans reduce observed saved storage by 78.30--83.43\%, but all three clean timing intervals include one. These results motivate GPU-specific work and prevent interpreting reduced stored bytes as automatic acceleration. Additional complete tables are preserved in Appendix~\ref{app:components}.
 
-Twelve FP32 CPU configurations each execute two AdamW updates, comparing independent dense depth replays with the actual MCore loss/backward functions and the prefix components. Both reductions, reordered microbatches, ragged suffix waves and loss scales one/eight are covered. Maximum full-gradient relative L2 error is $5.38\times10^{-7}$ and maximum parameter-delta error is $1.20\times10^{-7}$. The frozen reference differs from the actor. These tests do not instantiate a GPU DDP or mixed-precision optimizer wrapper.
-
-The corresponding twelve CPU BF16 configurations remain unqualified under unchanged tolerances: all 24 update observations fail the parameter-delta gate, and six also fail the later gradient gate. Maximum gradient relative L2 error is $2.74\times10^{-2}$ and delta error is $1.77\times10^{-3}$. Both-update records and initial failures are retained. This negative result constrains the first learner integration to FP32; it cannot be converted into a CUDA BF16 result. The FP32 production schedule has since passed the small real-MCore CUDA control below; this does not qualify BF16 or official online learning.
-
-\subsection{H20 learner correctness and joint prefix replay}
-The frozen B schedule at commit d6229d6 passes two real H20 CUDA cases using MCore DDP, its FP32 optimizer wrapper, and AdamW. Each reduction performs two updates for both ordinary and prefix schedules. All trainable main gradients, parameter updates and Adam moments pass the existing bounds; logical sample counters advance to five and ten, and gradient finalization executes once per update. Eight raw step receipts and twenty archived payloads are independently hash-verified. Table~\ref{tab:h20-adam} reports numerical errors, not speed. This fixture uses tiny fixed trajectories and is not an official-model reward experiment.
+\subsection{Actual MCore CUDA optimizer checks}
+Twelve tiny FP32 configurations execute real MCore DDP and AdamW on the historical H20: Ouro and Nanbeige ordinary/joint schedules, and Huginn independent/mixed latent schedules, each under token-mean and response-mean reduction. All 24 paired candidate updates pass the original full numerical and accounting gates. Table~\ref{tab:cuda} reports maxima over each four-update family/schedule group.
 
 \begin{table}[t]
 \centering\small
-\caption{H20 FP32 MCore control: maximum errors over two updates. No tolerance was relaxed.}
-\label{tab:h20-adam}
+\caption{Historical H20 FP32/MCore correctness at source 2ad271d. Errors are absolute maxima; all moments, counters and sample-accounting checks pass. No speed ratio is measured.}
+\label{tab:cuda}
 \begin{tabular}{@{}lrr@{}}
 \toprule
-Reduction & Main-gradient error & Parameter error \\
+Family / schedule & Gradient error & Parameter error\\
 \midrule
-Token mean & $7.45\!\times\!10^{-8}$ & $5.96\!\times\!10^{-8}$ \\
-Response mean & $1.19\!\times\!10^{-7}$ & $2.05\!\times\!10^{-8}$ \\
+Ouro ordinary/joint &$1.1921\!\times\!10^{-7}$&$5.9605\!\times\!10^{-8}$\\
+Nanbeige ordinary/joint &$5.9605\!\times\!10^{-8}$&$2.9802\!\times\!10^{-8}$\\
+Huginn independent &$7.1526\!\times\!10^{-7}$&$9.3023\!\times\!10^{-8}$\\
+Huginn mixed &$1.1772\!\times\!10^{-6}$&$2.0949\!\times\!10^{-7}$\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The frozen three-family revision at commit 2ad271d has now passed twelve actual H20 CUDA configurations: Ouro and Nanbeige ordinary and joint replay, and Huginn independent and mixed latent groups, each with both loss reductions. Each candidate performs two updates against its ordinary reference. All full-gradient, parameter, Adam-moment and accounting assertions pass without changed tolerances. Maximum observed main-gradient error is $1.1772\times10^{-6}$ and parameter error is $2.0949\times10^{-7}$. The complete run takes 22.66 seconds for verification; this duration is not a speed comparison. Its 84 payload files and manifest are independently verified offbox, and all recorded processes end naturally. Official checkpoint learning, mixed precision, memory capacity and reward convergence remain open.
+The original B-stage source d6229d6 is separately repeated on the continued H20, a different physical GPU. Both reduction configurations pass four paired candidate updates. Maximum gradient/parameter errors are $1.1921\times10^{-7}$/$5.9605\times10^{-8}$; the smallest update norms are 0.027031 and 0.028335. All 20 payloads and their manifest are independently verified after natural completion. The 15.706-second wrapper duration is verification time, not a performance comparison. These controls do not qualify official online reward learning or BF16.
 
-The subsequent C prototype at commit 17f530c checkpoints the prompt producer and each full-depth suffix wave, retaining every physical-layer/loop KV boundary and first-response hidden state. It preserves the existing summed prefix adjoint. It does not yet implement arbitrary layer/query subdivisions or the full residency search. Tokens and labels are explicit checkpoint inputs: two retained failure reproductions showed that capturing mutable response tensors in a closure could silently change backward replay. Both mutation cases now fail with the intended version error.
+Twelve CPU BF16 configurations remain failed at unchanged gates: all 24 update observations fail parameter-delta checks, and six fail the later gradient check. Maximum gradient-relative-L2 and update errors are $2.74\times10^{-2}$ and $1.77\times10^{-3}$. FP32 qualification does not remove this mixed-precision boundary.
 
-Twelve CPU configurations compare terminal/all-loop supervision, three ragged wave partitions and serial/packed suffix execution over two nonzero AdamW updates. All twenty-four gradient comparisons have zero observed maximum and relative L2 error; all trainable parameters and Adam moments meet the unchanged bounds. The broader regression passes 158 checks, skips four CUDA cases and retains twelve strict BF16 expected failures. GPU results for the parent B commit cannot qualify this C revision.
-
-\begin{table}[t]
-\centering\small
-\caption{Tiny CPU joint replay observations per update. Saved storage excludes parameters and is not peak GPU memory.}
-\begin{tabular}{@{}lrr@{}}
-\toprule
-Observation & B prefix & Joint replay \\
-\midrule
-Prompt forward saved storage & 24,544 B & 32 B \\
-Mandatory boundaries & 2,560 B & 2,560 B \\
-Decoder token calls & 80 & 160 \\
-GPU speedup & \multicolumn{2}{c}{Not measured} \\
-Online reward convergence & \multicolumn{2}{c}{Not established} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-A frozen official Thinking B-baseline controller is prepared for three actual online updates, 96 training completions and 32 held-out completions, retaining all checkpoints and policy publications. It has not run. Accuracy, nonzero reward-driven updates, multi-seed convergence and stability under scaled RL loads take priority over throughput or memory gains. The three-update phase remains startup qualification; fresh-worker recovery and the full convergence campaign are separate requirements.
-
-\subsection{Nanbeige learner extension}
-Nanbeige already inherits the prefix provider, but the logical-step planner previously rejected non-Ouro traces. The schedule now supplies the actual provider family and rejects mismatched or mixed families, revisions, depths and latent identities before reuse. Its separate grouped-query attention and loop normalization remain unchanged. Huginn requires a subsequent latent-aware fallback and is not admitted by this extension.
-
-For a tiny two-loop Nanbeige model, twelve FP32 configurations produce twenty-four nonzero AdamW update comparisons against independent dense loop replays and the ordinary MCore loss adapter. Maximum whole-gradient relative L2 error is $2.0740\times10^{-7}$; maximum parameter-delta error is $3.2783\times10^{-7}$. A separate twenty-four-update B/joint replay comparison observes zero gradient error and verifies every trainable Adam moment. Both use a distinct frozen reference. The combined regression passes 188 CPU checks, skips eight real CUDA cases, and retains the twelve known strict Ouro BF16 expected failures. These observations do not qualify official Nanbeige weights, BF16, GPU acceleration or reward convergence.
-
-\subsection{Huginn recorded-latent fallback}
-The subsequent learner extension groups the actual recorded Huginn latent seed and replay profile together with prompt, model revision, actor generation and fixed depth. A singleton latent group executes the complete provider replay; compatible shared identities use the existing differentiable prefix graph. Behavior scores and trajectory identities are preserved. After gradient finalization, a backward receipt records the actual shared fraction and complete-replay count over all logical samples, including empty and masked responses. The separate optimizer receipt remains the successful-update boundary. Huginn joint prefix rematerialization is still unsupported.
-
-Twenty-four FP32 CPU configurations compare two nonzero AdamW updates with complete packed replay under a distinct frozen reference, two reductions, two microbatch/wave partitions and loss scales one and eight. All parameters, full gradients, updates, Adam moments and counters pass unchanged bounds. Table~\ref{tab:huginn-latent} reports the three explicit fixed-trace arrangements; these artificial sharing fractions do not estimate online latent reuse. The maximum gradient relative L2 error, $1.9367\times10^{-6}$, remains below the existing $2\times10^{-6}$ gate. The related regression passes 216 checks, skips twelve actual CUDA fixtures, and retains twelve strict Ouro BF16 expected failures. CUDA DDP, official Huginn online quality and reward convergence remain unqualified.
+\subsection{Official Ouro inference correctness}
+A separately audited LoopCD/e8 baseline uses the pinned ordinary Ouro-1.4B checkpoint. FP32 Torch and Triton each pass all 12 numerical cases, 108 readouts, 96 forced continuations and 21 lifecycle/ownership checks at original absolute/relative bounds of $10^{-4}$. Table~\ref{tab:ouro-numeric} reports complete-scope maxima.
 
 \begin{table}[t]
 \centering\small
-\caption{Tiny Huginn CPU replay: sixteen paired updates per recorded-latent arrangement. No speed or GPU memory measurement is inferred.}
-\label{tab:huginn-latent}
+\caption{Official Ouro-1.4B FP32 inference baseline; no tolerance is relaxed. Selected LP is selected-token log probability.}
+\label{tab:ouro-numeric}
 \begin{tabular}{@{}lrrr@{}}
 \toprule
-Shared fraction & Full replays & Gradient rel. L2 & Update error \\
+Backend & Hidden state & Logits & Selected LP\\
 \midrule
-0/5 & 5 & $7.175\times10^{-7}$ & $5.306\times10^{-7}$ \\
-2/5 & 3 & $9.231\times10^{-7}$ & $2.941\times10^{-7}$ \\
-5/5 & 0 & $1.937\times10^{-6}$ & $1.460\times10^{-6}$ \\
+Torch &$1.907\!\times\!10^{-5}$&$3.528\!\times\!10^{-5}$&$1.907\!\times\!10^{-5}$\\
+Triton &$1.907\!\times\!10^{-5}$&$3.433\!\times\!10^{-5}$&$1.335\!\times\!10^{-5}$\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\subsection{Evidence transport and complete-state capacity}
-Checkpoint retention is part of the execution budget. A task-owned draft-asset archiver writes bounded 512 MiB parts and records their archive format, byte count and SHA-256. Every successful part must match both the server digest and a separate download before its temporary local copy is removed. An upload failure retains its source and failed part; a streaming producer must reach its natural exit before the transfer is complete.
+The first BF16/Triton prefill fails its independently frozen 0.02 absolute/relative hidden-state gate: 998 of 2,048 values mismatch, with maximum error 0.230469. Decode, KV, logit, selected-score and lifecycle checks are not reached. Differing BF16 rounding paths are a static diagnostic hypothesis, not a demonstrated cause.
 
-Four timed transfers use the original licensed Megatron source snapshot. The compressed routes share exactly 10,178,626 input bytes; the uncompressed tar contains 38,015,488 bytes. Table~\ref{tab:transport} includes upload, download, verification and control requests. Each row is one attempt, so its route ratio is descriptive and has no repetition-based confidence interval. The initial incorrect release argument failed before upload and remains archived with its corrected successor.
+A separate RTX 5090 terminal-output campaign compares 16 official BF16 Ouro pairs across synchronous, asynchronous single-/multi-stream and core-Graph modes at actual resident concurrency 1/4/16/64. Final tokens, depths, processed scores and metadata agree exactly for 1,360 requests and 10,880 output tokens. The short synthetic prompts and eight-token completions verify output semantics; they are not reasoning accuracy or a long-running stability experiment. No independent timing ratio is reported.
+
+\subsection{Approximate inference: speed and quality}
+The official FP32/Triton depth baseline provides a useful accuracy-cost boundary. Its GSM8K development experiment evaluates all six arms on 128 frozen IDs, producing 768 outputs and 82,041 generated tokens under the same strict grader. Table~\ref{tab:gsm} retains every arm and the unchanged one-percentage-point noninferiority decision.
 
 \begin{table}[t]
 \centering\small
-\caption{Measured source-evidence transport. The three compressed rows use identical input; the uncompressed input is a separate check.}
-\label{tab:transport}
-\begin{tabular}{@{}p{0.38\columnwidth}rrr@{}}
+\caption{Official Ouro GSM8K development accuracy. P4 prefill is fixed. Status is paired against D4/off at the original 1 pp margin; this is inference evaluation, not an RL reward curve.}
+\label{tab:gsm}
+\begin{tabular}{@{}llrrl@{}}
 \toprule
-Route & MiB & Seconds & Ratio \\
+Depth & Guidance & Correct & Accuracy & Status\\
 \midrule
-Local TLS via H20 SOCKS & 9.707 & 68.670 & $1.00\times$ \\
-Direct local TLS & 9.707 & 24.183 & $2.84\times$ \\
-Existing Mac HTTP proxy & 9.707 & 6.761 & $10.16\times$ \\
-Direct, uncompressed tar & 36.254 & 84.780 & Unpaired \\
+D4&Off&80/128&62.50\%&Reference\\
+D4&Two-head&83/128&64.84\%&Uncertain\\
+D3&Off&79/128&61.72\%&Uncertain\\
+D3&Two-head&80/128&62.50\%&Uncertain\\
+D2&Off&59/128&46.09\%&Degraded\\
+D2&Two-head&62/128&48.44\%&Degraded\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The existing Mac proxy completes the identical compressed-source transfer in 6.761 seconds, a descriptive $3.58\times$ ratio relative to direct TLS. A new task-owned draft release is actually writable and retains server-digest and independent-download verified assets. GitHub's \href{https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases}{published quota} permits up to 1,000 assets per release, each under 2 GiB, with no total release-size or bandwidth limit; a 75 GiB corpus fits as 150 parts of 512 MiB. This establishes the destination and quota, not an actual full-state transfer. The current H20 preflight verifies 770 frozen source files, seven pinned Thinking-model files and 93.719 GiB free private XFS without an environment update. Complete Adam states, checkpoints, publications, recovery and online reward measurements remain required. The archive tool is available in the \href{https://github.com/0z5a/vime/pull/31}{ScaleRLT evidence-archive draft}.
+D3/two-head and D4/off have equal correct totals, but their paired accuracy-difference interval is $[-11.54,+11.54]$ pp. This does not establish noninferiority. D3 remains an exploratory cost candidate; independent 505-math/148-code confirmation is unrun.
 
-\subsection{IQuest physical contract and failed update gate}
-A bounded header audit of the pinned IQuest 40B loop checkpoint verifies sixteen safetensors shards and 883 BF16 tensors, totaling 39,794,696,320 unique parameters and 79,589,392,640 tensor bytes. Only 100,960 verified header bytes, including length prefixes, are read; no weight tensor body is downloaded. Two loop passes reuse the eighty physical layers. The checkpoint contains eighty per-head query gate projections, which mix first-loop global attention with second-loop local attention over a window of 64. This metadata evidence does not establish an executed 40B model.
+A separate fixed-work C32 generation experiment uses P512/T128, a 64 GiB KV budget and actual resident A16/S16. C32 describes the initial/total queue, not 32 simultaneously resident sequences. Each of three arms runs in two fresh processes with five warmups and five measured trials per process: 60 trials, 1,920 requests and 245,760 generated tokens overall.
 
-Tiny FP32 calls with the unmodified public code reproduce missing-global-KV failures in cache-free and HF checkpointed training. Explicit causal-mask inputs isolate model math from a cache/mask incompatibility in the existing Transformers 4.54.1 environment. Full prefill differs from token-by-token decode by maximum logit errors 0.41336 at length eight and 0.50415 at length 65. The public head-major mixed-output reshape and premature local-KV truncation are retained as recorded failure boundaries.
+\begin{table}[t]
+\centering\small
+\caption{Historical H20 official Ouro fixed-work generation. Ratios are geometric means of two fresh-process mean-throughput ratios. Quality remains uncertain for both D3 arms.}
+\label{tab:cost}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Arm & Fresh 0 tok/s & Fresh 1 tok/s & Ratio vs D4\\
+\midrule
+D4/off&143.8722&144.4825&$1.0000\times$\\
+D3/off&166.7335&167.5084&$1.1591\times$\\
+D3/guided&164.6464&164.7555&$1.1424\times$\\
+\bottomrule
+\end{tabular}
+\end{table}
 
-An experimental functional replay carries differentiable first-loop KV, preserves the mixed-attention layout and applies the local causal window per query. Two initialization seeds, four lengths including the window boundary, ordinary/recomputed graphs and two AdamW steps yield sixteen configurations and 32 paired steps per attention backend. Against unmodified token-by-token autograd, all output and whole-gradient checks pass the original $10^{-5}$ output bounds and $2\times10^{-6}$ gradient-relative-L2 bound. Maximum gradient errors are $3.219\times10^{-7}$ for automatic SDPA and $3.046\times10^{-7}$ for math SDPA. Each backend passes only 24 of 32 strict update checks: parameter deltas exceed the original $10^{-7}$ absolute bound, despite passing Adam moments and counters. Neither backend is qualified for learner integration. GPU performance, full-checkpoint update, recovery and reward convergence remain unmeasured.
+Guidance is about 1.45\% slower than D3/off. D4/off and D3/off each allocate 74,501,625,856 bytes; D3/guided allocates 128 KiB more, with 2 MiB more reserved. Thus this experiment supplies no VRAM-saving claim. The speed comes from an approximate reduced-depth policy; it is neither exact-schedule actor acceleration nor complete-RL time-to-quality.
 
-A separately frozen explicit-eager attention variant repeats the same sixteen configurations and 32 paired AdamW updates. Its output and whole-gradient gates pass all observations, with maximum relative gradient error $2.9612\times10^{-7}$. Complete parameter/update checks pass 26 of 32, with six failures retained; maximum parameter-delta error is $1.7434\times10^{-6}$. Matching the reference operator family does not resolve complete update qualification. Data, optimizer settings and numerical bounds remain unchanged.
+\subsection{IQuest strict-update boundary}
+The pinned IQuest 40B source and 16 checkpoint headers describe 883 BF16 tensors, 39,794,696,320 unique physical parameters and 79,589,392,640 tensor bytes. Only 100,960 header bytes are read; no official weight tensor body is downloaded. Its two loop passes reuse 80 layers and combine first-loop global KV with second-loop local KV through query gates. Metadata alone is not a 40B execution result.
 
-\section{Reproducibility and Next Measurements}
-Each run retains immutable code and checkpoint identities, worker import provenance, hardware and topology, fixed input traces, correctness comparisons, raw phase metrics, held-out outputs, publication acknowledgments, and checkpoint recovery receipts. Completed task-owned model files are removed only after evidence retention and reader checks. The execution ledger tracks W00--W14 without promoting partial evidence to completed work.
+Tiny original-source FP32 calls expose missing global KV and prefill/decode inconsistencies. A functional replay preserves differentiable first-loop KV, the head-major mixed-attention layout and per-query local window. Across 16 configurations and 32 paired AdamW steps per backend, output and complete-gradient gates pass, but strict full-update gates remain failed (Table~\ref{tab:iquest}). Changing the attention operator family does not qualify this learner.
 
-The current sequence is B: integrate and qualify the prefix schedule in the actual single learner; C: combine rematerialization, prefix lifetime and role-switch I/O accounting; then A: run frozen baseline, B-only, C-only and combined campaigns. Results will replace pending entries only after their corresponding correctness, recovery, and resource contracts pass. H20 measurements retain their own source, device and process identities and do not inherit previous-device results.
+\begin{table}[t]
+\centering\small
+\caption{Tiny IQuest replay versus original token-by-token autograd. All backends pass 32 output/gradient checks; the unchanged parameter/update gate remains binding.}
+\label{tab:iquest}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Backend & Grad. rel. L2 max & Update pass & Fail\\
+\midrule
+Auto SDPA &$3.219\times10^{-7}$&24/32&8\\
+Math SDPA &$3.046\times10^{-7}$&24/32&8\\
+Explicit eager &$2.961\times10^{-7}$&26/32&6\\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\begin{thebibliography}{9}
-\bibitem{vime} VIME contributors. Native Huginn and Nanbeige RL integration. \href{https://github.com/vllm-project/vime/pull/464}{VIME PR 464}, pinned commit 71860e5, 2026.
-\bibitem{rlt} vllm-rlt contributors. Native training-contract and latent-replay implementation. \href{https://github.com/0z5a/vllm-rlt/tree/d2a358933393f25d74dd2bdd1068a741cd5d9226}{Commit d2a3589}, 2026.
-\bibitem{rltt} RLTT contributors. Public loop-weighted policy-gradient implementation. \href{https://github.com/jonwill8/RLTT/blob/06189850bb23a1b1b715ad29768e68f36b1c4a19/rltt_experiments/verl_rltt/rltt_algos.py}{Commit 0618985}, 2026.
+\section{Reward and Scaled-RL Qualification}\label{sec:quality}
+Reward quality is the main endpoint. Before formal runs we freeze the held-out items, grader, sampling budget, noninferiority margin and target quality. Each arm uses at least three independent training seeds. For seed $s$, the first evaluation reaching target $q_\star$ defines
+\begin{equation}
+ T_{q_\star}^{(s)}=\inf\{t:\hat q_s(t)\ge q_\star\},
+\end{equation}
+with unreached targets reported as censored, not assigned a successful time. We also report final held-out quality, uncertainty across items and seeds, and allocated device cost
+\begin{equation}
+ \mathrm{GPUh}=\frac{1}{3600}\sum_{j}\mathrm{allocated\ device\ seconds}_j.
+\end{equation}
+
+Training telemetry must expose mixed-reward group frequency, advantage variance, gradient norm, reward-driven parameter delta, optimizer moments/counters, KL, entropy, response length and committed policy identities. A zero-advantage rollout cannot demonstrate learning merely by updating a version number. Evaluation cohorts use one committed policy and fixed prompt/completion seeds; inserting evaluation must not alter training RNG.
+
+The currently frozen official Thinking startup contains three online updates, 96 new training completions and 32 held-out completions, plus three complete checkpoints and four publications. It is prepared but unrun. A three-update startup qualifies lifecycle and nonzero learning signal; it does not establish convergence. Fresh-worker recovery must reproduce the next update with actor, reference, optimizer and RNG restored. Retaining complete native states is required rather than using weights-only recovery.
+
+\begin{table}[t]
+\centering\small
+\caption{Exit gates for a complete empirical paper. Pending entries carry no numerical estimate.}
+\label{tab:remaining}
+\begin{tabular}{@{}p{0.47\columnwidth}p{0.45\columnwidth}@{}}
+\toprule
+Endpoint & Current state\\
+\midrule
+Tiny three-family CUDA Adam &Pass, historical H20\\
+Current H20 B-stage Adam &Pass, separate device\\
+Official Thinking online startup &Not run\\
+Fresh-worker full-state recovery &Not run\\
+Independent-seed reward convergence &Not run\\
+DP2/4, TP2/4/8, CP2/4/8 &Not qualified\\
+Long-running high-load serving &Not qualified\\
+Matched FlashLoop/Slime campaigns &Not run\\
+Official GPU peak/capacity frontier &Not measured\\
+Complete RL time-to-quality &Not measured\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Standard backend acceptance first}
+The immediate prerequisite is the standard VIME \code{train.py}/\code{RolloutManager} path in RFC 465~\cite{acceptance}. Its initial milestone uses pinned Ouro-1.4B, full depth four and ordinary online GRPO without reference, critic or KL. Real rollout/update/publication must advance v0 to v1 to v2, followed by matching fresh-process recovery. Default vLLM import independence, mixed-length trace conversion, failed-publication exclusion, KV version isolation and owned-resource lifecycle remain acceptance requirements. This standard control plane precedes new scheduling features. The prepared Thinking/RLTT startup is a separate follow-up, not a substitute for this gate.
+
+\subsection{Reward-correct scaling}
+The first formal scaling figure will use actual 1/2/4/8-GPU allocations crossed with batch/concurrency and sequence length, comparing vanilla VIME/vLLM, fixed-depth RLT and ScaleRLT in their common supported domain. Identical checkpoint, objective, sampling and work budgets are required. For a frozen verifier, the principal goodput is
+\begin{equation}
+ G_{\rm correct}=\frac{N_{\rm valid,correct}}{T_{\rm complete\ RL}}.
+\end{equation}
+The numerator counts complete, correctly graded samples with valid committed-policy traces; the denominator includes incorrect samples and all RL phases. Correct-sample token goodput, final reward, time-to-quality, memory and failure tails accompany it. Queued concurrency and allocated devices do not imply resident concurrency or useful work. Current one-device resource metadata supplies no multi-GPU scaling point.
+
+\subsection{Trained loop-native compute policy}
+Merged feature collection in PR 454 supplies versioned target features and immutable same-version head snapshots~\cite{draftfeatures}; it does not train a draft or measure speculation acceleration. We will use this chain to train a loop-aware proposal/exit controller after standard-backend acceptance. Proposals verified by a full-depth target and approximate early-exit policies require separate score and quality contracts. Controller training/collection cost and target verification enter the full RL budget. The decisive comparison is higher reward-correct RL goodput under the frozen reward/accuracy noninferiority gate, rather than proposal acceptance rate alone. Controller training, adaptive execution and this comparison are not yet run.
+
+Formal ablations compare the frozen native baseline, prefix-only B, joint-state C, and combined BC under the same objective and natural online sampling. Generic prefix reuse and standard packing/readout/recomputation remain additional controls. Scaled-load experiments preserve total GPU budget and actual resident/queued concurrency, recording goodput, TTFT/TPOT and queue-delay percentiles, failures, staleness, memory and publication latency. Short synthetic output equivalence cannot replace these sustained-load measurements.
+
+\section{Related Work and Limitations}
+Ouro and Huginn scale latent computation with shared recurrent weights~\cite{ouro,huginn}; their architectures, depth policies and latent semantics remain model-specific. RLTT supplies a public loop-weighted policy-gradient formulation~\cite{rltt}. ScaleRLT currently implements declared uniform/progressive profiles, not every original private experiment configuration.
+
+Schedule-level shared-prefix reuse already provides prefix forward, suffix microbatches with gradient-cache accumulation, and delayed prefix backward~\cite{prefix}. This is the relevant generic scheduling baseline. A distinct loop-specific benefit would require a measured advantage after ordinary prefix sharing and rematerialization, rather than attributing generic reuse to a new method. FlashLoop studies efficient looped inference via lazy updates~\cite{flashloop}; its approximate-method quality and common supported domain must be measured separately. Megatron and Slime provide the framework context for scalable training and RL~\cite{megatron,slime}.
+
+The current strongest exact-schedule timing evidence is tiny CPU fixed-trace replay, which may be dominated by invocation overhead. Huginn's prefix-heavy case uses artificially shared latent identities. Official CUDA output qualification uses short synthetic prompts and is not a stability campaign. The C32 depth study changes computation and retains uncertain quality. BF16 learner/inference and IQuest complete-update failures prevent wider numerical qualification. No complete original-stack RLTT, Slime or FlashLoop campaign, official-model full update, multi-seed learning curve, or distributed capacity frontier is available in this draft.
+
+\section{Conclusion}
+ScaleRLT treats loop identity, prefix gradients, state lifetime and policy/checkpoint I/O as one RL execution problem. The prototype preserves complete FP32 updates in tiny real-MCore CUDA controls and improves prefix-heavy CPU updates, while storage reductions and negative controls expose the costs and limits of each transformation. The next empirical requirement is standard-backend acceptance, reward-correct multi-GPU scaling, and a trained loop-native compute policy with full-state recovery and independent-seed held-out reward. Those measurements will determine whether the system reduces time and GPU-hours to useful quality.
+
+\begin{thebibliography}{10}\small
+\bibitem{ouro} R.-J. Zhu et al. Scaling Latent Reasoning via Looped Language Models. \href{https://arxiv.org/abs/2510.25741}{arXiv:2510.25741}, 2025.
+\bibitem{huginn} J. Geiping et al. Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach. \href{https://arxiv.org/abs/2502.05171}{arXiv:2502.05171}, 2025.
+\bibitem{rltt} RLTT contributors. Public loop-weighted policy-gradient implementation. \href{https://github.com/jonwill8/RLTT/blob/06189850bb23a1b1b715ad29768e68f36b1c4a19/rltt_experiments/verl_rltt/rltt_algos.py}{Source revision 0618985}.
 \bibitem{prefix} P. Li et al. Schedule-Level Shared-Prefix Reuse for LLM RL Training. \href{https://arxiv.org/html/2606.01143v3}{arXiv:2606.01143v3}, 2026.
+\bibitem{flashloop} FlashLoop contributors. FlashLoop: Fast and Memory-Efficient Looped Transformers via Lazy Updates. \href{https://github.com/Superone77/FlashLoop}{Official source}, frozen revision aeaadee.
+\bibitem{megatron} NVIDIA. Megatron-LM and Megatron Core. \href{https://github.com/NVIDIA/Megatron-LM}{Official source}. Tested MCore revision 1dcf0da with the pinned VIME patch.
+\bibitem{slime} Slime contributors. Slime: An LLM Post-Training Framework for RL Scaling. \href{https://github.com/THUDM/slime}{Official source}; formal looped baseline pending.
+\bibitem{vime} VIME contributors. Native Looped-Model RL Integration. \href{https://github.com/vllm-project/vime/pull/464}{PR 464}; inherited source revision 71860e5.
+\bibitem{rlt} vllm-rlt contributors. Native Training-Contract and Latent-Replay Implementation. \href{https://github.com/0z5a/vllm-rlt/tree/d2a358933393f25d74dd2bdd1068a741cd5d9226}{Inherited source d2a3589}.
+\bibitem{artifact} 0z5a. ScaleRLT Implementation and Evidence Draft Stack. \href{https://github.com/0z5a/vime/pull/35}{Current preparation draft 35}, 2026. Individual source revisions and receipt digests are recorded below.
+\bibitem{acceptance} 0z5a. Support vLLM-RLT as a Native Rollout Backend. \href{https://github.com/vllm-project/vime/issues/465}{VIME RFC 465}, 2026.
+\bibitem{draftfeatures} 0z5a. Collect Versioned Target Features for External Draft. \href{https://github.com/vllm-project/vime/pull/454}{VIME PR 454}, merged October 6, 2026; source 76ad2be4, merge 5315305d.
 \end{thebibliography}
+
+\clearpage
+\appendix
+\section{Reproducibility Ledger}\label{app:ledger}
+The evidence repository preserves immutable source/checkpoint identities, input and objective manifests, raw traces, all numerical failures, complete payload hashes and natural process completion/handback. Sources and historical devices are not merged into one execution record. Completed task-owned model files are removed only after their evidence is retained and no reader remains. Test counts from overlapping suites are not added.
+
+\subsection{Checkpoint and source identities}
+The ordinary inference checkpoint is ByteDance/Ouro-1.4B at \code{574fa66cb8bf5abdc979642d01cf2b79b16bfab1}; its 2,869,336,434-byte weight file has SHA-256
+\begin{quote}\small\ttfamily\raggedright
+58872a72616c736595b8b7662079c5b1\newline 2c5a162ec16eae94f21c348dfa9885af.
+\end{quote}
+The official Thinking input prepared for online RL is a different checkpoint: ByteDance/Ouro-1.4B-Thinking at \code{3aaa2224253a92ca45cf2e3d427c360e1ef9c93d}, weight SHA-256
+\begin{quote}\small\ttfamily\raggedright
+6730581fd366f6d1689728c616375202\newline 28385cdfc17c0b24f19aa840b00565fb.
+\end{quote}
+No ordinary-checkpoint inference result is promoted to Thinking online-learning evidence. IQuest is pinned at revision \code{61e8589747f6987ec7725e4ffe205f7a84561bd2} and has zero official tensor-body bytes downloaded in the reported header audit.
+
+The official numerical/quality/cost baseline uses source e8aa1ee; historical three-family MCore uses 2ad271d; the repeated current-device B control uses d6229d6. Exact full revisions are retained in their manifests. MCore CUDA runs use the existing task-owned environment; no environment update is part of these experiments.
+
+\begin{table*}[t]
+\centering\scriptsize
+\caption{Independently verified raw evidence anchors. Payload counts exclude the additional SHA manifest. Full digests identify immutable archives, not statistical replications.}
+\label{tab:anchors}
+\begin{tabular}{@{}p{0.25\textwidth}rp{0.61\textwidth}@{}}
+\toprule
+Archive & $n$ & SHA-256\\
+\midrule
+Three-family H20 MCore &84&\texttt{5cbea08375482e57936c9808a352fa3d12b22aabbb4a04a21723deac117f42ff}\\
+Current-device B MCore &20&\texttt{d1dc4b22da2ce28d29e07106267ff5802134ab3faae4cade8d548dcec743e618}\\
+Official C32 fixed-work &99&\texttt{06d960ebb83e97eb1dee8af3a98b5c3cc956815eb558c7cdabccc37077ec5cb4}\\
+Matched compressed source &---&\texttt{772e1abe21ae85b6ccfa29ce03fc4e86cbe7c7082d3614a9fe397690fac2f043}\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Prepared data and accounting}
+The public MATH reconstruction pins EleutherAI revision 21a5633 and MATH-500 revision 6e4ed1a. All 18 input files are hash verified. One normalized training duplicate and one overlap with the full test split are removed, leaving 7,498 training questions. All 500 held-out items remain unchanged. A fixed hash selects 256 development items, leaving 4,244 test questions reserved. Four explicit solution-hash-bound training label repairs and two unknown difficulty labels remain documented.
+
+The source-prompt profile executes RLTT's unchanged conversion functions using actual pandas/PyArrow, preserving all 12,498 public item identities, labels and split membership. Two fresh preparations are byte-identical. The Thinking tokenizer's 1,024-token training cap excludes 19 explicitly listed questions in this profile, leaving 7,479; no held-out item is removed. Development/MATH-500 maximum prompt lengths are 1,013/972. This is a public-input reimplementation, not the authors' private dataset.
+
+A separate integration repair prevents a rendered prompt from receiving a second chat template. All 500 official-tokenizer held-out prompts, two template modes and two completions retain prepared token IDs in 2,000 adapter checks. Known-answer transport doubles verify inputs and the grader, not generated reasoning quality.
+
+Original RLTT batch semantics must be observed end to end. Conditional source inspection at CLI P32/G8 implies 256 prompt rows repeated eight times, or 2,048 new completions per rollout, rather than assuming 32 prompts. The declared independent-CLI profile instead uses 32 prompts and 256 completions. These are separate contracts; the unchanged full loader/FSDP/optimizer stack has not been executed. No conditional source count is presented as a measured training budget.
+
+\subsection{Frozen startup and full-state requirement}
+The prepared Thinking control uses seed 42, prompt cap 1,024, response cap 2,048, temperature 0.9, top-$p$ 1, natural termination, FP32 and response-mean RLTT. AdamW uses learning rate $10^{-6}$, betas 0.9/0.999, epsilon $10^{-8}$, weight decay 0.1, gradient clip 0.1 and KL coefficient 0.001. It keeps the ordinary MCore schedule with rematerialization and prefix sharing disabled. Three updates use four prompts and eight responses each; eight held-out completions at initial/three subsequent policies produce the 32-completion evaluation ledger.
+
+Three full checkpoints and four physical publications require approximately 75 GiB of native state and a frozen minimum of 84 GiB private free storage. The preparation verifies 770 source files, all seven pinned Thinking-model files and 93.719 GiB free private XFS. A writable task-owned draft release and its published part quota are verified~\cite{artifact}. Neither this preflight nor a small source-archive upload establishes completed optimizer-state archival or recovery.
+
+\section{Additional Component Results}\label{app:components}
+\begin{table}[h]
+\centering\small
+\caption{Readout-only tiny CPU forward/backward. Saved bytes exclude supplied inputs and parameters. All speed ratios indicate regression.}
+\begin{tabular}{@{}rrlrr@{}}
+\toprule
+Rows&Vocab&Objective&Ratio&Saved B\\
+\midrule
+64&1024&Score&0.414&$262144\to1024$\\
+64&1024&Entropy/KL&0.444&$786432\to1024$\\
+256&4096&Score&0.722&$4194304\to4096$\\
+256&4096&Entropy/KL&0.654&$12582912\to4096$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering\small
+\caption{Tiny CPU rematerialization versus untouched parent. All 95\% intervals include one. Saved storage is a separate forward-hook metric.}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Family&Ratio&95\% interval&Saved B\\
+\midrule
+Ouro&1.119&[0.514,2.436]&$51360\to8512$\\
+Nanbeige&0.649&[0.268,1.570]&$27688\to6008$\\
+Huginn&0.517&[0.261,1.022]&$71660\to12252$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Forward saved storage counts unique non-parameter/non-buffer backing addresses, including complete view storage, and excludes backward workspace and allocator overhead. A separate joint replay observation reduces prompt saved storage from 24,544 to 32 bytes while mandatory boundary storage remains 2,560 bytes and decoder token calls double from 80 to 160. These counts are not official-model memory or speed measurements.
+
+The cold G8/C8 rollout fork achieves tiny CPU ratios 1.811/3.631/3.622 for Ouro P17/128/129, and 1.828/4.510/2.570 for Nanbeige. The last interval is [0.259,25.497]. One-request controls remain slower, and snapshot retention can increase live pages. All 3,504 measured requests match serial oracles in tokens, depth, stops and versions. Both arms allocate the same page pool. These results do not establish lower allocated GPU memory.
+
+\subsection{Evidence transport}
+Three source-archive routes use the exact same 10,178,626 compressed bytes, including upload, independent download, server-digest verification and control requests (Table~\ref{tab:transport}). Each route has only one timed attempt, so no replication-based interval is reported. These descriptive ratios do not measure model download, GPU kernels or RL.
+
+\begin{table}[h]
+\centering\small
+\caption{Matched small source-evidence transport. Ratio is relative to direct TLS; the archived source digest is in Table~\ref{tab:anchors}.}
+\label{tab:transport}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Route&Seconds&Ratio vs direct\\
+\midrule
+TLS via H20 SOCKS&68.670&$0.352\times$\\
+Direct local TLS&24.183&$1.000\times$\\
+Existing Mac HTTP proxy&6.761&$3.577\times$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The separate uncompressed 38,015,488-byte source transfer takes 84.780 seconds and is not a matched input for these ratios. Its historical 75 GiB serial extrapolation is not a current-route measurement. The current small-upload/writeability and part-quota checks pass; an actual 75 GiB full-state transfer remains unrun.
+
+\section{Claim-to-Evidence Map}
+The accompanying Markdown result table maps each claim to its original report and immutable receipt. The primary empirical results use the independently audited archives and full-gradient references listed here. Short runs under other objectives do not establish this system's reward convergence. New measurements replace pending rows only after their own model, worker, correctness, recovery and complete-state gates pass.
 \end{document}

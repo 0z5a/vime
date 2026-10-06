@@ -1,0 +1,182 @@
+{
+  "state": "PAYLOAD_TRACE_AND_QUALITY_AUDIT_PASS",
+  "checked_unix": 1791239897.912024,
+  "archive_sha256": "2cd4fbfe157d3faa6889fb372f13ce3db6e0009de270ceec135b52f603effae2",
+  "archive_bytes": 5682525,
+  "regular_files": 107,
+  "verified_payload_files": 106,
+  "original_packet_payload_files": 8,
+  "source_bundle_matches_independently_fetched_e8": true,
+  "frozen_protocol_sha256": "03105678bfdac292da7006d54c121a054d5735394894ca158a22644b257f25ce",
+  "task": "gsm8k",
+  "frozen_ids": 128,
+  "completed_outputs": 768,
+  "generated_tokens": 82041,
+  "first_response_depth": 4,
+  "finishes": {
+    "stop_text": 764,
+    "length": 4
+  },
+  "outcomes_and_classifications_exact": true,
+  "cross_platform_ci_max_error": 1.1463052729254741e-14,
+  "original_statistical_check_tolerance": 1e-10,
+  "arms": [
+    {
+      "arm_id": "A_P4D4_off",
+      "n": 128,
+      "completed": 128,
+      "missing_or_unrun": 0,
+      "correct": 80,
+      "accuracy": 0.625,
+      "hit_max_tokens": 0,
+      "status": "COMPLETE"
+    },
+    {
+      "arm_id": "B_P4D4_on",
+      "n": 128,
+      "completed": 128,
+      "missing_or_unrun": 0,
+      "correct": 83,
+      "accuracy": 0.6484375,
+      "hit_max_tokens": 0,
+      "status": "COMPLETE"
+    },
+    {
+      "arm_id": "C_P4D3_off",
+      "n": 128,
+      "completed": 128,
+      "missing_or_unrun": 0,
+      "correct": 79,
+      "accuracy": 0.6171875,
+      "hit_max_tokens": 0,
+      "status": "COMPLETE"
+    },
+    {
+      "arm_id": "D_P4D3_on",
+      "n": 128,
+      "completed": 128,
+      "missing_or_unrun": 0,
+      "correct": 80,
+      "accuracy": 0.625,
+      "hit_max_tokens": 2,
+      "status": "COMPLETE"
+    },
+    {
+      "arm_id": "E_P4D2_off",
+      "n": 128,
+      "completed": 128,
+      "missing_or_unrun": 0,
+      "correct": 59,
+      "accuracy": 0.4609375,
+      "hit_max_tokens": 0,
+      "status": "COMPLETE"
+    },
+    {
+      "arm_id": "F_P4D2_on",
+      "n": 128,
+      "completed": 128,
+      "missing_or_unrun": 0,
+      "correct": 62,
+      "accuracy": 0.484375,
+      "hit_max_tokens": 2,
+      "status": "COMPLETE"
+    }
+  ],
+  "comparisons": [
+    {
+      "candidate": "B_P4D4_on",
+      "baseline": "A_P4D4_off",
+      "n": 128,
+      "wins": 10,
+      "losses": 7,
+      "family_comparisons": 2,
+      "difference": 0.0234375,
+      "lower": -0.09545259211117094,
+      "upper": 0.14021852217183134,
+      "status": "UNCERTAIN",
+      "scope": "exploratory; no confirmation claim"
+    },
+    {
+      "candidate": "C_P4D3_off",
+      "baseline": "A_P4D4_off",
+      "n": 128,
+      "wins": 5,
+      "losses": 6,
+      "family_comparisons": 2,
+      "difference": -0.0078125,
+      "lower": -0.10634757638145353,
+      "upper": 0.09152649504495682,
+      "status": "UNCERTAIN",
+      "scope": "exploratory; no confirmation claim"
+    },
+    {
+      "candidate": "D_P4D3_on",
+      "baseline": "A_P4D4_off",
+      "n": 128,
+      "wins": 8,
+      "losses": 8,
+      "family_comparisons": 2,
+      "difference": 0.0,
+      "lower": -0.11537861871562702,
+      "upper": 0.11537861871562702,
+      "status": "UNCERTAIN",
+      "scope": "exploratory; no confirmation claim"
+    },
+    {
+      "candidate": "E_P4D2_off",
+      "baseline": "A_P4D4_off",
+      "n": 128,
+      "wins": 5,
+      "losses": 26,
+      "family_comparisons": 2,
+      "difference": -0.1640625,
+      "lower": -0.29665311663333205,
+      "upper": -0.017977838001268565,
+      "status": "DEGRADED",
+      "scope": "exploratory; no confirmation claim"
+    },
+    {
+      "candidate": "F_P4D2_on",
+      "baseline": "A_P4D4_off",
+      "n": 128,
+      "wins": 2,
+      "losses": 20,
+      "family_comparisons": 2,
+      "difference": -0.140625,
+      "lower": -0.2512598268391257,
+      "upper": -0.017149881611508044,
+      "status": "DEGRADED",
+      "scope": "exploratory; no confirmation claim"
+    },
+    {
+      "candidate": "D_P4D3_on",
+      "baseline": "C_P4D3_off",
+      "n": 128,
+      "wins": 7,
+      "losses": 6,
+      "family_comparisons": 2,
+      "difference": 0.0078125,
+      "lower": -0.09847407093944427,
+      "upper": 0.11333975925517033,
+      "status": "UNCERTAIN",
+      "scope": "exploratory; no confirmation claim"
+    },
+    {
+      "candidate": "F_P4D2_on",
+      "baseline": "E_P4D2_off",
+      "n": 128,
+      "wins": 10,
+      "losses": 7,
+      "family_comparisons": 2,
+      "difference": 0.0234375,
+      "lower": -0.09545259211117094,
+      "upper": 0.14021852217183134,
+      "status": "UNCERTAIN",
+      "scope": "exploratory; no confirmation claim"
+    }
+  ],
+  "confirmation": "NOT_RUN",
+  "fixed_work_cost": "NOT_RUN",
+  "own_online_rl_reward_convergence": "NOT_RUN",
+  "initial_local_audit_failure": "Bitwise CI equality rejected platform libm differences; exact outcomes and unchanged 1e-10 statistical check used after diagnosis."
+}

@@ -1,0 +1,15 @@
+{
+  "state": "NATIVE_LATEX_COMPILATION_SUCCESS",
+  "source": "/Users/0z5a/Documents/infra/flashrlt-20261005/paper/flashrlt.tex",
+  "latex_sha256": "3f1692c260ea8e1794084781b87e5fdaf699dd9831f87f649c39819746d5f882",
+  "preliminary": true,
+  "compilation_status": "SUCCESS",
+  "method": "Desktop native standalone LaTeX compiler",
+  "recorded_utc": "2026-10-06T09:02:06.268141+00:00",
+  "reward_convergence": "NOT_RUN",
+  "execution_priority": [
+    "RFC465_standard_backend",
+    "reward_correct_1_2_4_8_GPU_scaling",
+    "trained_loop_native_compute_policy"
+  ]
+}
