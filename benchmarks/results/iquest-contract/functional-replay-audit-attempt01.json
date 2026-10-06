@@ -1,0 +1,206 @@
+{
+  "state": "RUNNING",
+  "revision": "61e8589747f6987ec7725e4ffe205f7a84561bd2",
+  "torch": "2.13.0",
+  "official_weights": false,
+  "device": "cpu",
+  "gradient_relative_l2_gate": 2e-06,
+  "logits_atol": 1e-05,
+  "logits_rtol": 1e-05,
+  "optimizer": "AdamW",
+  "learning_rate": 0.0001,
+  "betas": [
+    0.9,
+    0.999
+  ],
+  "eps": 1e-08,
+  "weight_decay": 0.1,
+  "cases": [
+    {
+      "seed": 42,
+      "length": 1,
+      "recompute": false,
+      "tokens": [
+        [
+          36
+        ]
+      ],
+      "targets": [
+        0
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 0.0,
+          "gradient_relative_l2": 0.0,
+          "loss_reference": 5.2766923904418945,
+          "loss_candidate": 5.2766923904418945,
+          "parameter_delta_max_abs": 0.0,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 0.0,
+          "gradient_relative_l2": 0.0,
+          "loss_reference": 5.24023962020874,
+          "loss_candidate": 5.24023962020874,
+          "parameter_delta_max_abs": 0.0,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "length": 1,
+      "recompute": true,
+      "tokens": [
+        [
+          36
+        ]
+      ],
+      "targets": [
+        0
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 0.0,
+          "gradient_relative_l2": 0.0,
+          "loss_reference": 5.2766923904418945,
+          "loss_candidate": 5.2766923904418945,
+          "parameter_delta_max_abs": 0.0,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 0.0,
+          "gradient_relative_l2": 0.0,
+          "loss_reference": 5.24023962020874,
+          "loss_candidate": 5.24023962020874,
+          "parameter_delta_max_abs": 0.0,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "length": 4,
+      "recompute": false,
+      "tokens": [
+        [
+          36,
+          18,
+          74,
+          9
+        ]
+      ],
+      "targets": [
+        2,
+        61,
+        29,
+        52
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 3.5762786865234375e-07,
+          "gradient_relative_l2": 1.4622053521253907e-07,
+          "loss_reference": 4.553637504577637,
+          "loss_candidate": 4.553637504577637,
+          "parameter_delta_max_abs": 7.450580596923828e-09,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 2.682209014892578e-07,
+          "gradient_relative_l2": 1.5220117685639182e-07,
+          "loss_reference": 4.529329776763916,
+          "loss_candidate": 4.529329299926758,
+          "parameter_delta_max_abs": 2.9802322387695312e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "length": 4,
+      "recompute": true,
+      "tokens": [
+        [
+          36,
+          18,
+          74,
+          9
+        ]
+      ],
+      "targets": [
+        2,
+        61,
+        29,
+        52
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 3.5762786865234375e-07,
+          "gradient_relative_l2": 1.4622053521253907e-07,
+          "loss_reference": 4.553637504577637,
+          "loss_candidate": 4.553637504577637,
+          "parameter_delta_max_abs": 7.450580596923828e-09,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 2.682209014892578e-07,
+          "gradient_relative_l2": 1.5220117685639182e-07,
+          "loss_reference": 4.529329776763916,
+          "loss_candidate": 4.529329299926758,
+          "parameter_delta_max_abs": 2.9802322387695312e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "length": 8,
+      "recompute": false,
+      "tokens": [
+        [
+          36,
+          18,
+          74,
+          9,
+          66,
+          43,
+          91,
+          63
+        ]
+      ],
+      "targets": [
+        63,
+        62,
+        41,
+        66,
+        86,
+        49,
+        16,
+        53
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 3.5762786865234375e-07
+        }
+      ]
+    }
+  ],
+  "scope": "Tiny supervised numerical/Adam equivalence; not RL reward convergence or 40B execution."
+}
