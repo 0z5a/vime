@@ -320,6 +320,12 @@ def get_vime_extra_args_provider(add_custom_arguments=None):
                 action="store_true",
                 default=False,
             )
+            parser.add_argument("--draft-feature-mode", choices=("off", "collect-only"), default="off")
+            parser.add_argument("--draft-feature-output-dir", type=str, default=None)
+            parser.add_argument("--draft-feature-run-id", type=str, default=None)
+            parser.add_argument("--draft-feature-max-tokens", type=int, default=128)
+            parser.add_argument("--draft-feature-max-batches", type=int, default=8)
+            parser.add_argument("--draft-feature-max-bytes", type=int, default=1 << 30)
 
             return parser
 
@@ -1926,6 +1932,33 @@ def _resolve_eval_datasets(args) -> list[EvalDatasetConfig]:
 def vime_validate_args(args):
     args.eval_datasets = _resolve_eval_datasets(args)
     args.dspark_enabled = (getattr(args, "vllm_speculative_config", None) or {}).get("method") == "dspark"
+
+    if args.draft_feature_mode == "collect-only":
+        if args.micro_batch_size != 1:
+            raise ValueError("collect-only draft features require micro_batch_size=1")
+        if not args.draft_feature_output_dir or not args.draft_feature_run_id:
+            raise ValueError("collect-only draft features require output dir and run id")
+        if min(args.draft_feature_max_tokens, args.draft_feature_max_batches, args.draft_feature_max_bytes) <= 0:
+            raise ValueError("draft feature budgets must be positive")
+        if (
+            args.actor_num_nodes,
+            args.actor_num_gpus_per_node,
+            args.tensor_model_parallel_size,
+            args.pipeline_model_parallel_size,
+            args.context_parallel_size,
+        ) != (1, 1, 1, 1, 1) or any(
+            value is not None
+            for value in (
+                args.num_layers_per_virtual_pipeline_stage,
+                args.num_virtual_stages_per_pipeline_rank,
+                args.pipeline_model_parallel_layout,
+            )
+        ):
+            raise ValueError("collect-only draft features support TP=PP=CP=DP=1 without VPP")
+        if args.keep_old_actor or args.use_rollout_logprobs or not args.compute_advantages_and_returns:
+            raise ValueError("collect-only draft features require an actor log-prob forward")
+        if args.update_weights_interval != 1:
+            raise ValueError("collect-only draft features require publication after every actor update")
 
     if args.rollout_temperature <= 0:
         raise ValueError(
