@@ -11,7 +11,6 @@ import torch
 import torch.distributed as dist
 from megatron.core import mpu
 from megatron.core.utils import unwrap_model
-from torch_memory_saver import torch_memory_saver
 from transformers import AutoConfig, AutoTokenizer
 
 from vime.observability import train_data_utils, train_metric_utils
@@ -175,6 +174,7 @@ class MegatronTrainRayActor(TrainRayActor):
     @timer
     def sleep(self) -> None:
         assert self.args.offload_train
+        from torch_memory_saver import torch_memory_saver
 
         clear_memory(clear_host_memory=True)
         print_memory("before offload model")
@@ -194,6 +194,8 @@ class MegatronTrainRayActor(TrainRayActor):
     @timer
     def wake_up(self) -> None:
         assert self.args.offload_train
+        from torch_memory_saver import torch_memory_saver
+
         print_memory("before wake_up model")
 
         torch_memory_saver.resume()
@@ -629,6 +631,9 @@ class MegatronTrainRayActor(TrainRayActor):
             dist.barrier(group=get_gloo_group())
             if dist.get_rank() == 0:
                 ray.get(self.rollout_manager.clear_updatable_num_new_engines.remote())
+
+        if self.args.offload_train:
+            from torch_memory_saver import torch_memory_saver
 
         with torch_memory_saver.disable() if self.args.offload_train else nullcontext():
             if self.args.dspark_enabled and self.args.offload_train:
