@@ -1,0 +1,9 @@
+{
+  "mcore_pin": "1dcf0dafa884ad52ffb243625717a3471643e087",
+  "mcore_archive_sha256": "aa112700d8fbbfc5af4f2482e65073719eef03c337864bce81c1db884ac4ab0a",
+  "vime_patch_sha256": "6fa39fdfdac8dae6b9bb3e44014df6766d774e0968ac07d6025a6b40f211aa98",
+  "source_import_exit": 0,
+  "package_installs": 0,
+  "existing_environment_mutations": 0,
+  "gpu_started": false
+}

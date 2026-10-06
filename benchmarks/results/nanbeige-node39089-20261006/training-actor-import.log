@@ -1,0 +1,16 @@
+{"tms_present": false, "cuda_initialized": false}
+WARNING:root:deep_ep is not installed, some functionalities may be limited.
+W1006 14:42:50.736000 8850 torch/utils/cpp_extension.py:178] No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+/workspace/0z5a/work/nanbeige-pr463-e2e-20261006/deps/Megatron-LM-1dcf0dafa884ad52ffb243625717a3471643e087/megatron/core/distributed/fsdp/src/megatron_fsdp/mixed_precision.py:113: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_scale
+  warnings.warn(
+/workspace/0z5a/work/nanbeige-pr463-e2e-20261006/deps/Megatron-LM-1dcf0dafa884ad52ffb243625717a3471643e087/megatron/core/optimizer/__init__.py:24: UserWarning: Transformer Engine and Apex are not installed. Falling back to Torch optimizers.
+  warnings.warn(
+/workspace/0z5a/work/nanbeige-pr463-e2e-20261006/deps/Megatron-LM-1dcf0dafa884ad52ffb243625717a3471643e087/megatron/core/optimizer/optimizer.py:28: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_scale
+  warnings.warn(
+/workspace/0z5a/work/nanbeige-pr463-e2e-20261006/deps/Megatron-LM-1dcf0dafa884ad52ffb243625717a3471643e087/megatron/core/optimizer/clip_grads.py:29: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier, multi_tensor_l2norm, and multi_tensor_scale
+  warnings.warn(
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/workspace/0z5a/work/nanbeige-pr463-e2e-20261006/source/vime/backends/megatron_utils/actor.py", line 14, in <module>
+    from torch_memory_saver import torch_memory_saver
+ModuleNotFoundError: No module named 'torch_memory_saver'

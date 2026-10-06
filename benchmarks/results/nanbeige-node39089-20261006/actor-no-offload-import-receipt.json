@@ -1,0 +1,10 @@
+{
+  "base_head": "d09cff5c8bced7917bf09cd1aee5c70dc0424d48",
+  "actor_before_sha256": "19497a345ec2193e7ce80138bc0a025c451cdb3125d53a4bd6e1870840431fcd",
+  "actor_candidate_sha256": "cba149044fb2cf2b665e981789bec6d0f03a2a709727d7642b7f9cb53e67d294",
+  "actual_actor_import_exit": 0,
+  "recorded_utc": "2026-10-06T14:45:27.826370+00:00",
+  "package_installs": 0,
+  "existing_environment_mutations": 0,
+  "gpu_started": false
+}
