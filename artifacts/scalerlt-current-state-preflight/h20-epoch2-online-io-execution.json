@@ -1,0 +1,11 @@
+{
+  "state": "OWNED_IO_PREFLIGHT_ACTIVE",
+  "local_wrapper_pid": 14134,
+  "started_unix": 1791268559.5991921,
+  "grant_sha256": "ecaa77550844c0fe43883f6aafceaac0c19db55ad3794d5b1812f9ca57ab01fa",
+  "own_control_socket": "/tmp/0z5a-scalerlt-h20-epoch2.sock",
+  "actual_exit": 127,
+  "local_ssh_pid": 14136,
+  "finished_unix": 1791268559.712342,
+  "elapsed_seconds": 0.11314988136291504
+}

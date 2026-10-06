@@ -1,0 +1,42 @@
+{
+  "artifacts/scalerlt-current-state-preflight/h20-epoch2-online-io-execution-v2.json": {
+    "bytes": 472,
+    "sha256": "19ac283785ad7c48e8b9f898f042a54e7d74125091de7bdc0b3b5fa726314c05"
+  },
+  "artifacts/scalerlt-current-state-preflight/h20-epoch2-online-io-execution.json": {
+    "bytes": 387,
+    "sha256": "a36821cb23b9cd31414d6994b6df5c1b690a3a0a997ffe91331a74854010e8c5"
+  },
+  "artifacts/scalerlt-current-state-preflight/h20-epoch2-online-io-fresh-return.json": {
+    "bytes": 733,
+    "sha256": "4785ea4264221ecf5c35f9dfe8e22605a4abb6702e2192cbfb1932dd1be1581e"
+  },
+  "artifacts/scalerlt-current-state-preflight/h20-epoch2-online-io-stdout-v2.json": {
+    "bytes": 10952,
+    "sha256": "19eaca18b22893c4126953d7f679926fc53d65509582f10d0b62346dcc80c7a8"
+  },
+  "artifacts/scalerlt-current-state-preflight/h20-epoch2-online-io-whole-handback.json": {
+    "bytes": 1704,
+    "sha256": "62cbd3ae2f7b096081514d3edf153f5719c5e6e27a7386c44d9835f6f6cab1a7"
+  },
+  "artifacts/scalerlt-current-state-preflight/scalerlt-native-startup-release-verified.json": {
+    "bytes": 2380,
+    "sha256": "1d4f5a91762c3a2871e4049fca446e676f5cb8fa5b22ec006b83c35a474d45f0"
+  },
+  "artifacts/scalerlt-current-state-preflight/scalerlt-native-storage-current-comparison.json": {
+    "bytes": 665,
+    "sha256": "50fe1884736f76ce8597e820f54c28622427a162e2a49d12e917a450d4bcdf71"
+  },
+  "artifacts/scalerlt-current-state-preflight/scalerlt-native-storage-proxy-timed-part-verification.json": {
+    "bytes": 869,
+    "sha256": "87e7d96426b168b76a367b6e6b582183a658c21d33a2a285b227b2ab418c3816"
+  },
+  "artifacts/scalerlt-current-state-preflight/scalerlt-native-storage-proxy-timed-result.json": {
+    "bytes": 440,
+    "sha256": "dcad07de4d1ddf198f918de62aec545b9694f6a2d857a3de90029dae12dd7f19"
+  },
+  "artifacts/scalerlt-current-state-preflight/scalerlt-paper-epoch2-storage-compile.json": {
+    "bytes": 543,
+    "sha256": "fb9e3ce93e63d9c42e577512943add217386a536f8e31cca1cefd6e051e89271"
+  }
+}

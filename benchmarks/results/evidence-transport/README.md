@@ -32,3 +32,6 @@ python benchmarks/archive_draft_evidence.py --release release.json --index part-
 ```
 
 Raw receipts are retained in `raw/`; their SHA-256 manifest is `manifest.json`. Archive source 772e1abe… is an existing licensed Megatron source snapshot. The archived `.tar` bytes hash to 7e263b90….
+
+
+Current-device preparation and the same-input Mac proxy measurement are recorded in [online state preservation](../../../docs/online_state_preservation.md) and [complete state storage](../../../docs/native_checkpoint_storage.md). The new source measurement is 6.761 s including upload and independent download, versus 24.183 s direct TLS (3.58×, one timed attempt per route). Full native state transfer and reward convergence remain unmeasured.
