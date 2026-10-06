@@ -1,0 +1,16 @@
+{
+  "state": "WHOLE_INDEPENDENT_HANDBACK_VERIFIED",
+  "checked_unix": 1791239958.547296,
+  "quality_archive_sha256": "2cd4fbfe157d3faa6889fb372f13ce3db6e0009de270ceec135b52f603effae2",
+  "payload_files_verified": 106,
+  "quality_proof_sha256": "9d971194abcbb5f52a2dcac21c61a004f1076f3538c5ecc44c5446fdde927933",
+  "resource_receipt_sha256": "cab3921f7253de8616ab3d1f817d491887ae216ae67a24b8691c7e6b08b2cbf5",
+  "collector_source_sha256": "eff83d18a201c2edb0b9e4f54891a91a30f8dadf80458a9b7141a997bc09eb7c",
+  "recorded_absent_processes": 8,
+  "original_resources_and_collector_natural_zero_verified": true,
+  "reader_release_explicit": true,
+  "model_hash_scope": "Each GPU child verified9generation inputs before CUDA; collector did not rehash11canonical inputs",
+  "formal_confirmation": "NOT_RUN",
+  "fixed_work_cost": "NOT_RUN",
+  "own_online_rl_reward_convergence": "NOT_RUN"
+}

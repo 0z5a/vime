@@ -1,0 +1,106 @@
+{
+  "status": "PASS",
+  "state": "WHOLE_WINDOW_HANDBACK",
+  "GPU_uuid": "GPU-8ee84e7d-143f-dd29-1097-85943783e027",
+  "boot_id": "797c630e-4da1-48bd-bdf3-daabf26649d2",
+  "actors": {
+    "18354": 2504305669,
+    "18355": 2504305672,
+    "18391": 2504305925,
+    "18966": 2504316691,
+    "18347": null
+  },
+  "offbox_verified": true,
+  "process_and_resource_audit": true,
+  "archive_sha256": "d1dc4b22da2ce28d29e07106267ff5802134ab3faae4cade8d548dcec743e618",
+  "archive_bytes": 15005,
+  "payloads_verified": 20,
+  "regular_tar_members": 21,
+  "actual_CUDA_cases": 2,
+  "source_commit": "d6229d638b08a3927d23d39854aa13a85df71933",
+  "natural_wrapper_exit": 0,
+  "wrapper_wall_seconds": 15.705674171447754,
+  "actual_finalizer_exit": 0,
+  "finalizer_independently_absent": true,
+  "cases": [
+    {
+      "name": "test_actual_mcore_prefix_train_step[token_mean]",
+      "seconds": 9.074,
+      "status": "PASS",
+      "actual_mcore_two_update": [
+        {
+          "update": 0,
+          "gradient_max_error": 7.450580596923828e-08,
+          "parameter_max_error": 5.8673322200775146e-08,
+          "delta_norm": 0.03521193191409111,
+          "loss": {
+            "loss": 0.4919145584106445,
+            "rltt_terminal_logprob": -2.533199501037598,
+            "entropy_loss": 2.5616533279418947
+          }
+        },
+        {
+          "update": 1,
+          "gradient_max_error": 5.960464477539063e-08,
+          "parameter_max_error": 5.960464477539063e-08,
+          "delta_norm": 0.0270307045429945,
+          "loss": {
+            "loss": 0.47786765098571776,
+            "rltt_terminal_logprob": -2.5281244277954102,
+            "entropy_loss": 2.5631681442260743
+          }
+        }
+      ]
+    },
+    {
+      "name": "test_actual_mcore_prefix_train_step[response_mean]",
+      "seconds": 1.127,
+      "status": "PASS",
+      "actual_mcore_two_update": [
+        {
+          "update": 0,
+          "gradient_max_error": 1.1920928955078125e-07,
+          "parameter_max_error": 1.6763806343078613e-08,
+          "delta_norm": 0.03511379286646843,
+          "loss": {
+            "loss": 0.6862307071685791,
+            "rltt_terminal_logprob": -2.523184967041016,
+            "entropy_loss": 2.5616641998291017
+          }
+        },
+        {
+          "update": 1,
+          "gradient_max_error": 8.940696716308594e-08,
+          "parameter_max_error": 2.0489096641540527e-08,
+          "delta_norm": 0.028335392475128174,
+          "loss": {
+            "loss": 0.6705065250396729,
+            "rltt_terminal_logprob": -2.5039222717285154,
+            "entropy_loss": 2.562147521972656
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "Original two tiny actual MCore/DDP/Adam paired-update configurations and original gates. Not officialmodel onlineRL, performancecomparison or rewardconvergence.",
+  "whole_handback_unix": 1791269841.558031,
+  "recorded_utc": "2026-10-06T06:57:21.558037+00:00",
+  "all_five_actors_independently_absent": true,
+  "actual_fresh_whole_probe_exit": 0,
+  "locks": [
+    [
+      64528,
+      12920245107
+    ],
+    [
+      64528,
+      12920245108
+    ]
+  ],
+  "compute_apps": [],
+  "fresh_whole_raw_sha256": "0f336bc0506b6af2f9c375b884d9da69637722ea4d961af7d60a33dc43d67fb0",
+  "local_full_archive_audit_sha256": "fef429442cc9250ad4f94f784aa547acae8b6063c9bad1d200ec6a43f5530fad",
+  "first_attempt_255_absent_bound_proven": true,
+  "first_attempt_failure_retained": true,
+  "no_live_jobs_readers_locks_holds": true
+}

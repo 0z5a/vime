@@ -1,0 +1,90 @@
+{
+  "artifacts/scalerlt-initial-paper-v01/rfc465-public-contract.json": {
+    "bytes": 6782,
+    "sha256": "5a6ba61a47fcd9fe7a0a2ff5af441f0ce81bd21a3efb986c4602a1b917cca9d6"
+  },
+  "artifacts/scalerlt-initial-paper-v01/pr454-public-contract.json": {
+    "bytes": 6022,
+    "sha256": "449af0b593092fb995398738649a2fe65eebc36fb8fee4dad24544fb2b5c9136"
+  },
+  "artifacts/scalerlt-initial-paper-v01/pdf-export.json": {
+    "bytes": 994,
+    "sha256": "8b166e376b85f4bb450626c815d0c5b5d308ed6fe279852fa792a107fc059957"
+  },
+  "artifacts/scalerlt-initial-paper-v01/generation.json": {
+    "bytes": 564,
+    "sha256": "4e19f59fa3e3613ad7625d34de40863dec3fef846e755dad1ba2658d445d496d"
+  },
+  "benchmarks/results/scalerlt-initial-paper/h20-current-b-control.tar.gz": {
+    "bytes": 15005,
+    "sha256": "d1dc4b22da2ce28d29e07106267ff5802134ab3faae4cade8d548dcec743e618"
+  },
+  "benchmarks/results/scalerlt-initial-paper/h20-current-b-independent-handback.json": {
+    "bytes": 3466,
+    "sha256": "de944eef272e8fcb3454e53909ac2e5c0060a3f68fbaa96c011f86727a341394"
+  },
+  "benchmarks/results/scalerlt-initial-paper/official-c32-independent-handback.json": {
+    "bytes": 2826,
+    "sha256": "b2e0ed996fe6b8c458e2922ef43b0ca6785601ff9300b0be1f3dbae358a9a4bf"
+  },
+  "benchmarks/results/scalerlt-initial-paper/official-gsm8k-independent-audit.json": {
+    "bytes": 4811,
+    "sha256": "9d971194abcbb5f52a2dcac21c61a004f1076f3538c5ecc44c5446fdde927933"
+  },
+  "benchmarks/results/scalerlt-initial-paper/official-gsm8k-development.tar.gz": {
+    "bytes": 5682525,
+    "sha256": "2cd4fbfe157d3faa6889fb372f13ce3db6e0009de270ceec135b52f603effae2"
+  },
+  "benchmarks/results/scalerlt-initial-paper/README.md": {
+    "bytes": 1362,
+    "sha256": "80e7b9170e32ef3cb46282f97c132a9bec651b39874de1eb9a6fd32bbbe1c4a8"
+  },
+  "benchmarks/results/scalerlt-initial-paper/official-c32-cost.tar.gz": {
+    "bytes": 2407222,
+    "sha256": "06d960ebb83e97eb1dee8af3a98b5c3cc956815eb558c7cdabccc37077ec5cb4"
+  },
+  "benchmarks/results/scalerlt-initial-paper/official-gsm8k-resource-handback.json": {
+    "bytes": 882,
+    "sha256": "f5b22d6066fa20c442a464a8ab88bba2af8bf37c729d8977e7bb9b6051249e13"
+  },
+  "paper/export_initial_pdf.py": {
+    "bytes": 19130,
+    "sha256": "cfda751f1795abe5577f92ec542407b92cf662ee9817f08844fdfdd986ccc847"
+  },
+  "paper/ScaleRLT_v0.1_2026-10-06.pdf": {
+    "bytes": 262849,
+    "sha256": "2381199adb0877780e74fd3111021c1d19449a4266dcff2cb40b6e56a17955f8"
+  },
+  "paper/README.md": {
+    "bytes": 1937,
+    "sha256": "a30c9dbec3b833c96d34baded0a3d02b5135ab9148b305138a56eeff5ccac34f"
+  },
+  "paper/scalerlt.tex": {
+    "bytes": 46319,
+    "sha256": "01734eb29c7990aba26402ed3df974461c427123313f65cb25231a879fe8bb50"
+  },
+  "docs/scalerlt_initial_paper_results.md": {
+    "bytes": 8328,
+    "sha256": "606551d6db2e7c91229aec4c15ab76fba88a2d6fb6bb6da56a92db0b1da3d202"
+  },
+  "docs/scalerlt_priority_execution.md": {
+    "bytes": 5414,
+    "sha256": "4e56788473631ac0f937161ce8949371f4a9f3e68c71de26b1084685bba26f4d"
+  },
+  "docs/scalerlt_exploration_coverage.md": {
+    "bytes": 10179,
+    "sha256": "0ff4b1f21334c116035907bf5bc669550f4336ca75acff14a72721634e1b21b9"
+  },
+  "docs/scalerlt_h20_current_native_gate.md": {
+    "bytes": 2035,
+    "sha256": "80ab0a834ca634836b2b65d2d96424d28bed3d6c2d2517b65b0e7fe9de09c11f"
+  },
+  "docs/scalerlt_looped_backend_accuracy.md": {
+    "bytes": 6514,
+    "sha256": "b9aa53c44633470f27e14efc67e5f3bbe87e4047bc92e7e8f491d2ad4e1e7f6b"
+  },
+  ".gitattributes": {
+    "bytes": 19,
+    "sha256": "a8672ecffb02939e86f2ce45a6dacad5189ad01c28a9055b989da9da04ef3039"
+  }
+}
