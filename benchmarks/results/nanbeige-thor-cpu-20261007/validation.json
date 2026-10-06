@@ -1,0 +1,18 @@
+{
+  "tested_runtime": "0ca616352e1aa6166217b21a068ba545f52bb4c7",
+  "tms_source_archive_sha256": "c2c762d77e512b7c21344f4214263499c3057e2efd65e1b7625c4f7b12c1491a",
+  "native_build_exit": 0,
+  "actor_module_import_exit": 0,
+  "actual_recipe_argument_gate_exit": 0,
+  "algorithm_records": 4,
+  "offload_train_preserved": true,
+  "recipe_physical_gpus_required": 2,
+  "ray_launch_intercepted": true,
+  "package_installs": 0,
+  "existing_environment_mutations": 0,
+  "gpu_started": false,
+  "cuda_offload_hooks_tested": false,
+  "official_weight_gpu_e2e_complete": false,
+  "reward_convergence": "NOT_MEASURED",
+  "matched_speed_improvement": "NOT_MEASURED"
+}

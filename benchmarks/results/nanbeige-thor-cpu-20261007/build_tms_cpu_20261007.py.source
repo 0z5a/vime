@@ -1,0 +1,22 @@
+import datetime,hashlib,json,os,pathlib,shutil,subprocess,sys
+root=pathlib.Path('/home/jwipc/0z5a/work/nanbeige-pr463-e2e-20261006')
+tree=root/'deps/tms-native-8d30c59/zhuzilin-torch_memory_saver-8d30c59'
+target=root/'deps/tms-native-8d30c59-cu13-aarch64'
+assert not target.exists()
+env=os.environ.copy()
+env.update(CUDA_VISIBLE_DEVICES='',CUDA_HOME='/usr/local/cuda',TMS_CUDA_MAJOR='13',PYTHONDONTWRITEBYTECODE='1',MAX_JOBS='1')
+env['PATH']='/usr/local/cuda/bin:'+env['PATH']
+py='/home/jwipc/0z5a/work/loopcd-thor-20261003/venv/bin/python'
+with (root/'evidence/thor-tms-build.log').open('w') as log:
+ result=subprocess.run([py,str(tree/'setup.py'),'build_ext','--parallel','1','--build-lib',str(target),'--build-temp',str(root/'cache/tms-cpu-build')],cwd=tree,env=env,stdout=log,stderr=subprocess.STDOUT)
+receipt={'recorded_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source_archive_sha256':'c2c762d77e512b7c21344f4214263499c3057e2efd65e1b7625c4f7b12c1491a','source_changes':0,'build_exit':result.returncode,'compiler_parallelism':1,'target':str(target),'package_installs':0,'existing_environment_mutations':0,'gpu_started':False}
+if result.returncode==0:
+ shutil.copytree(tree/'torch_memory_saver',target/'torch_memory_saver')
+ env['PYTHONPATH']=':'.join(map(str,[target,root/'source',pathlib.Path('/home/jwipc/experiments/vime-three-deliverables-20261001/megatron-validated'),pathlib.Path('/home/jwipc/experiments/vime-looped-20261003/source/rlt-v2')]))
+ probe=subprocess.run([py,'-c','import json,torch,torch_memory_saver; import vime.backends.megatron_utils.actor; print(json.dumps({"actor_module_import":"PASS","tms_module":torch_memory_saver.__file__,"cuda_initialized":torch.cuda.is_initialized()})); assert not torch.cuda.is_initialized()'],env=env,cwd=root/'source',capture_output=True,text=True)
+ (root/'evidence/thor-tms-actor-import.log').write_text(probe.stdout+probe.stderr)
+ receipt['actor_import_exit']=probe.returncode
+ receipt['core_extensions']=[{'path':str(p),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(target.glob('*.so'))]
+(root/'evidence/thor-tms-build-completion.json').write_text(json.dumps(receipt,indent=2)+'\n')
+print(json.dumps(receipt),flush=True)
+sys.exit(result.returncode if result.returncode else receipt['actor_import_exit'])

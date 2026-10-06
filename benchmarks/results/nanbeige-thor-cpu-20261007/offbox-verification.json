@@ -1,0 +1,11 @@
+{
+  "archive_sha256": "1fb1d4ae1a291bd7dad54cfe1735a6efa4bd132bbf58d78136d964e5b4b70560",
+  "archive_bytes": 46473,
+  "verified_payloads": 12,
+  "build_exit": 0,
+  "actor_import_exit": 0,
+  "argument_gate_exit": 0,
+  "gpu_started": false,
+  "cuda_offload_tested": false,
+  "official_weight_gpu_e2e_complete": false
+}

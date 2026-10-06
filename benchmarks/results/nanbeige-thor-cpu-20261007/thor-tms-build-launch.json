@@ -1,0 +1,6 @@
+{
+  "pid": 687691,
+  "source_sha256": "2a60af007e6e1ddefab81efc8c761681136cab8f76e99d39d77a4ec12556357c",
+  "scope": "Finite serial CPU C++ build; no GPU work or package installation",
+  "gpu_started": false
+}

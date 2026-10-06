@@ -7,7 +7,6 @@
     "skipped": 0
   },
   "actual_cpu_exit": 0,
-  "actual_non_offload_actor_import_exit": 0,
   "tms_is_absent": true,
   "cuda_initialized": false,
   "formatter_pins": {
@@ -20,5 +19,8 @@
   "existing_environment_mutations": 0,
   "official_weight_gpu_e2e": "PENDING",
   "reward_convergence": "NOT_MEASURED",
-  "matched_speed_improvement": "NOT_MEASURED"
+  "matched_speed_improvement": "NOT_MEASURED",
+  "actual_actor_module_import_exit": 0,
+  "actor_module_import_scope": "Module import only; no actor initialization, offload or training execution",
+  "published_recipe_requires_native_tms": true
 }
