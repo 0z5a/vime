@@ -1,0 +1,26 @@
+{
+  "initial_auditor_sha256": "da2549caed159524c6dfbd6b439e323fdb8e21f0bbb6581afef863c7fd117117",
+  "cached_headers_written_after_range_and_storage_validation": {
+    "model-00014-of-00016.safetensors": "dd1a4bd813b7fc2b9c31b18f205364470bbbcb80ae539be39ca3531ce48b1192",
+    "model-00002-of-00016.safetensors": "4eff8d03cadbb5a151298fdd7041c96df2c750de0d689b2269a6cd80c1512974",
+    "model-00007-of-00016.safetensors": "480cbe37ad52908173c278c36530720f5430732e0e27483c1d5f5a30bad35e08",
+    "model-00009-of-00016.safetensors": "d07bb1abb9b335b7d4d82f738438319aa02819d99440b45f78011a487f56ca5b",
+    "model-00010-of-00016.safetensors": "6e12e5ad455197c93b2532e5b2efe4fb1a2b6423fed78953c90f8e51ffbb6b6d",
+    "model-00006-of-00016.safetensors": "718bed5ed94f4dc873b2d39c745f16ffaae8596ecc61c11bbe6f49677d5e1964",
+    "model-00015-of-00016.safetensors": "1c30029d91e69243e331f26911ecf68ad78124c2d58bda28b239302878db5c7b",
+    "model-00003-of-00016.safetensors": "1806828ed03fce061be4e8dc097d09ee5853b820b9f1863b7ddd32800aac63f7",
+    "model-00016-of-00016.safetensors": "69b0cea8f93d6f980d36aca9a1b8709f28e9ff5c8da85a4e832c54ef266687bc",
+    "model-00013-of-00016.safetensors": "8da14d18fa7e03ca9340d56559829040d1d9a6eac8939762931cac4780a82945",
+    "model-00005-of-00016.safetensors": "05745e0b110ef7f99bdc52971709cf4a2958570ce6e6ffea97666d91578ae682",
+    "model-00012-of-00016.safetensors": "809f79c4d6ecf6d9d20b9b3754b40ae3034d9437b9bb905b416ac38ea73236e9",
+    "model-00004-of-00016.safetensors": "8863b5419dda676dffca2ab8b2c27560b0038537c57ea5e1536b14840bbd820e",
+    "model-00001-of-00016.safetensors": "5dca395450fbcd32877649dfbca2d4ee72be043630c81ef3d53b2f57d6a614e8"
+  },
+  "missing": [
+    "model-00008-of-00016.safetensors",
+    "model-00011-of-00016.safetensors"
+  ],
+  "initial_attempt": "../weight-header-audit-attempt01.log",
+  "initial_exit_code": 1,
+  "failure": "transient TLS EOF during HTTP range request; full shards not downloaded"
+}

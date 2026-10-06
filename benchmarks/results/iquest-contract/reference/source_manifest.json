@@ -1,0 +1,77 @@
+{
+  "model_id": "IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct",
+  "revision": "61e8589747f6987ec7725e4ffe205f7a84561bd2",
+  "observed_unix": 1791242003.423913,
+  "repository_sha256": "e3c0e088a0b8b70615add634ded78cb04e1a06d037cd28966369489fcc8e161d",
+  "scope": "official source, configuration, tokenizer and weight index only",
+  "weight_shards_downloaded": 0,
+  "official_model_execution": "NOT_RUN",
+  "files": [
+    {
+      "path": "LICENSE",
+      "size_bytes": 1324,
+      "sha256": "cefd38efbfd2ca094b39736be7bf323fd6eae65964bbd96187e866981d67bee0",
+      "url": "https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct/resolve/61e8589747f6987ec7725e4ffe205f7a84561bd2/LICENSE"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 8093,
+      "sha256": "87a11089dfbba555832e6f871f0ba0e02af983e265fb01c684908fbc4b2ea91e",
+      "url": "https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct/resolve/61e8589747f6987ec7725e4ffe205f7a84561bd2/README.md"
+    },
+    {
+      "path": "__init__.py",
+      "size_bytes": 686,
+      "sha256": "40b8838e5c0e460136324d90cfa6fc409148a3929b00a2ac9b88b00fa0259b0d",
+      "url": "https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct/resolve/61e8589747f6987ec7725e4ffe205f7a84561bd2/__init__.py"
+    },
+    {
+      "path": "config.json",
+      "size_bytes": 969,
+      "sha256": "d8fe4db01164b642779ddf1b322b924a2a4a2dc803027ddd5ed925097cc5c721",
+      "url": "https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct/resolve/61e8589747f6987ec7725e4ffe205f7a84561bd2/config.json"
+    },
+    {
+      "path": "configuration_iquestloopcoder.py",
+      "size_bytes": 5292,
+      "sha256": "172306263d98fb62b8cec593727b53187b6156d2fdaa99c43a37adde381e8807",
+      "url": "https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct/resolve/61e8589747f6987ec7725e4ffe205f7a84561bd2/configuration_iquestloopcoder.py"
+    },
+    {
+      "path": "modeling_iquestloopcoder.py",
+      "size_bytes": 48994,
+      "sha256": "4b15953c4b3f48f74c524dfbd3fa2edf4f24a2fb73c68c3dba3fdec44bc0c3ea",
+      "url": "https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct/resolve/61e8589747f6987ec7725e4ffe205f7a84561bd2/modeling_iquestloopcoder.py"
+    },
+    {
+      "path": "tokenization_iquestcoder.py",
+      "size_bytes": 21762,
+      "sha256": "77c56f9aac1b382dddd56d9850fbadeee66c2eb974a2135ea72076b31837550e",
+      "url": "https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct/resolve/61e8589747f6987ec7725e4ffe205f7a84561bd2/tokenization_iquestcoder.py"
+    },
+    {
+      "path": "generation_config.json",
+      "size_bytes": 127,
+      "sha256": "16856b186ca44da6ee8e9fea0d7f7024cb6217f794677bd3335f0608e11fc202",
+      "url": "https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct/resolve/61e8589747f6987ec7725e4ffe205f7a84561bd2/generation_config.json"
+    },
+    {
+      "path": "model.safetensors.index.json",
+      "size_bytes": 71593,
+      "sha256": "2b0a5682197ec8c98ac12de1b2be89d31182c32f8e967c1d9a8396318f268a8c",
+      "url": "https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct/resolve/61e8589747f6987ec7725e4ffe205f7a84561bd2/model.safetensors.index.json"
+    },
+    {
+      "path": "tokenizer_config.json",
+      "size_bytes": 8623,
+      "sha256": "90e4563e1bea1fc922749bbbf3c6134c07edef8dd0de1bd551ab99655dd6c246",
+      "url": "https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct/resolve/61e8589747f6987ec7725e4ffe205f7a84561bd2/tokenizer_config.json"
+    },
+    {
+      "path": "tokenizer.model",
+      "size_bytes": 1345108,
+      "sha256": "7d3be68e090a927f31e0e378d7599b15c206dd47e4a73933775a746cc9c1cd91",
+      "url": "https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct/resolve/61e8589747f6987ec7725e4ffe205f7a84561bd2/tokenizer.model"
+    }
+  ]
+}

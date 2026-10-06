@@ -1,0 +1,1310 @@
+{
+  "state": "FAILED_NUMERICAL_GATE",
+  "revision": "61e8589747f6987ec7725e4ffe205f7a84561bd2",
+  "torch": "2.13.0",
+  "official_weights": false,
+  "device": "cpu",
+  "gradient_relative_l2_gate": 2e-06,
+  "logits_atol": 1e-05,
+  "logits_rtol": 1e-05,
+  "optimizer": "AdamW",
+  "learning_rate": 0.0001,
+  "betas": [
+    0.9,
+    0.999
+  ],
+  "eps": 1e-08,
+  "weight_decay": 0.1,
+  "cases": [
+    {
+      "seed": 42,
+      "length": 1,
+      "recompute": false,
+      "tokens": [
+        [
+          36
+        ]
+      ],
+      "targets": [
+        0
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 0.0,
+          "failures": [],
+          "gradient_relative_l2": 0.0,
+          "loss_reference": 5.2766923904418945,
+          "loss_candidate": 5.2766923904418945,
+          "parameter_delta_max_abs": 0.0,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 0.0,
+          "failures": [],
+          "gradient_relative_l2": 0.0,
+          "loss_reference": 5.24023962020874,
+          "loss_candidate": 5.24023962020874,
+          "parameter_delta_max_abs": 0.0,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "length": 1,
+      "recompute": true,
+      "tokens": [
+        [
+          36
+        ]
+      ],
+      "targets": [
+        0
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 0.0,
+          "failures": [],
+          "gradient_relative_l2": 0.0,
+          "loss_reference": 5.2766923904418945,
+          "loss_candidate": 5.2766923904418945,
+          "parameter_delta_max_abs": 0.0,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 0.0,
+          "failures": [],
+          "gradient_relative_l2": 0.0,
+          "loss_reference": 5.24023962020874,
+          "loss_candidate": 5.24023962020874,
+          "parameter_delta_max_abs": 0.0,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "length": 4,
+      "recompute": false,
+      "tokens": [
+        [
+          36,
+          18,
+          74,
+          9
+        ]
+      ],
+      "targets": [
+        2,
+        61,
+        29,
+        52
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 3.5762786865234375e-07,
+          "failures": [],
+          "gradient_relative_l2": 1.4622053521253907e-07,
+          "loss_reference": 4.553637504577637,
+          "loss_candidate": 4.553637504577637,
+          "parameter_delta_max_abs": 7.450580596923828e-09,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 2.682209014892578e-07,
+          "failures": [],
+          "gradient_relative_l2": 1.5220117685639182e-07,
+          "loss_reference": 4.529329776763916,
+          "loss_candidate": 4.529329299926758,
+          "parameter_delta_max_abs": 2.9802322387695312e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "length": 4,
+      "recompute": true,
+      "tokens": [
+        [
+          36,
+          18,
+          74,
+          9
+        ]
+      ],
+      "targets": [
+        2,
+        61,
+        29,
+        52
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 3.5762786865234375e-07,
+          "failures": [],
+          "gradient_relative_l2": 1.4622053521253907e-07,
+          "loss_reference": 4.553637504577637,
+          "loss_candidate": 4.553637504577637,
+          "parameter_delta_max_abs": 7.450580596923828e-09,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 2.682209014892578e-07,
+          "failures": [],
+          "gradient_relative_l2": 1.5220117685639182e-07,
+          "loss_reference": 4.529329776763916,
+          "loss_candidate": 4.529329299926758,
+          "parameter_delta_max_abs": 2.9802322387695312e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "length": 8,
+      "recompute": false,
+      "tokens": [
+        [
+          36,
+          18,
+          74,
+          9,
+          66,
+          43,
+          91,
+          63
+        ]
+      ],
+      "targets": [
+        63,
+        62,
+        41,
+        66,
+        86,
+        49,
+        16,
+        53
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 3.5762786865234375e-07,
+          "failures": [
+            {
+              "tensor": "model.layers.1.mlp.gate_proj.weight",
+              "field": "parameter_delta",
+              "mismatched_elements": 1,
+              "max_abs": 1.7881393432617188e-07
+            }
+          ],
+          "gradient_relative_l2": 2.157212363916451e-07,
+          "loss_reference": 4.706143856048584,
+          "loss_candidate": 4.706143856048584,
+          "parameter_delta_max_abs": 1.7881393432617188e-07,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": false
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 2.980232238769531e-07,
+          "failures": [],
+          "gradient_relative_l2": 1.8812555691567062e-07,
+          "loss_reference": 4.6882195472717285,
+          "loss_candidate": 4.6882195472717285,
+          "parameter_delta_max_abs": 2.9802322387695312e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "length": 8,
+      "recompute": true,
+      "tokens": [
+        [
+          36,
+          18,
+          74,
+          9,
+          66,
+          43,
+          91,
+          63
+        ]
+      ],
+      "targets": [
+        63,
+        62,
+        41,
+        66,
+        86,
+        49,
+        16,
+        53
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 3.5762786865234375e-07,
+          "failures": [
+            {
+              "tensor": "model.layers.1.mlp.gate_proj.weight",
+              "field": "parameter_delta",
+              "mismatched_elements": 1,
+              "max_abs": 1.7881393432617188e-07
+            }
+          ],
+          "gradient_relative_l2": 2.157212363916451e-07,
+          "loss_reference": 4.706143856048584,
+          "loss_candidate": 4.706143856048584,
+          "parameter_delta_max_abs": 1.7881393432617188e-07,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": false
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 2.980232238769531e-07,
+          "failures": [],
+          "gradient_relative_l2": 1.8812555691567062e-07,
+          "loss_reference": 4.6882195472717285,
+          "loss_candidate": 4.6882195472717285,
+          "parameter_delta_max_abs": 2.9802322387695312e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "length": 65,
+      "recompute": false,
+      "tokens": [
+        [
+          36,
+          18,
+          74,
+          9,
+          66,
+          43,
+          91,
+          63,
+          19,
+          70,
+          5,
+          79,
+          72,
+          61,
+          87,
+          9,
+          85,
+          47,
+          73,
+          66,
+          22,
+          40,
+          94,
+          41,
+          35,
+          15,
+          74,
+          62,
+          95,
+          17,
+          46,
+          40,
+          88,
+          50,
+          71,
+          66,
+          68,
+          71,
+          43,
+          89,
+          64,
+          18,
+          34,
+          14,
+          19,
+          49,
+          48,
+          56,
+          26,
+          79,
+          28,
+          81,
+          26,
+          51,
+          7,
+          76,
+          55,
+          79,
+          56,
+          83,
+          48,
+          13,
+          79,
+          63,
+          69
+        ]
+      ],
+      "targets": [
+        66,
+        42,
+        11,
+        29,
+        78,
+        14,
+        59,
+        18,
+        21,
+        14,
+        48,
+        49,
+        47,
+        94,
+        3,
+        49,
+        49,
+        52,
+        42,
+        21,
+        9,
+        69,
+        8,
+        83,
+        0,
+        17,
+        35,
+        25,
+        8,
+        20,
+        71,
+        39,
+        19,
+        18,
+        37,
+        49,
+        40,
+        9,
+        26,
+        63,
+        86,
+        26,
+        37,
+        17,
+        2,
+        6,
+        28,
+        78,
+        80,
+        21,
+        42,
+        80,
+        78,
+        47,
+        23,
+        88,
+        2,
+        65,
+        67,
+        68,
+        11,
+        87,
+        96,
+        19,
+        42
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 4.76837158203125e-07,
+          "failures": [
+            {
+              "tensor": "model.layers.0.mlp.down_proj.weight",
+              "field": "parameter_delta",
+              "mismatched_elements": 1,
+              "max_abs": 2.3990869522094727e-06
+            },
+            {
+              "tensor": "model.layers.0.mlp.down_proj.weight",
+              "field": "parameter",
+              "mismatched_elements": 1,
+              "max_abs": 2.3990869522094727e-06
+            }
+          ],
+          "gradient_relative_l2": 2.652557820595656e-07,
+          "loss_reference": 4.591853618621826,
+          "loss_candidate": 4.591853618621826,
+          "parameter_delta_max_abs": 2.3990869522094727e-06,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": false
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 7.152557373046875e-07,
+          "failures": [
+            {
+              "tensor": "model.layers.0.mlp.down_proj.weight",
+              "field": "parameter",
+              "mismatched_elements": 1,
+              "max_abs": 2.4139881134033203e-06
+            }
+          ],
+          "gradient_relative_l2": 3.2186702337661606e-07,
+          "loss_reference": 4.585211753845215,
+          "loss_candidate": 4.585211753845215,
+          "parameter_delta_max_abs": 3.725290298461914e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": false
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "length": 65,
+      "recompute": true,
+      "tokens": [
+        [
+          36,
+          18,
+          74,
+          9,
+          66,
+          43,
+          91,
+          63,
+          19,
+          70,
+          5,
+          79,
+          72,
+          61,
+          87,
+          9,
+          85,
+          47,
+          73,
+          66,
+          22,
+          40,
+          94,
+          41,
+          35,
+          15,
+          74,
+          62,
+          95,
+          17,
+          46,
+          40,
+          88,
+          50,
+          71,
+          66,
+          68,
+          71,
+          43,
+          89,
+          64,
+          18,
+          34,
+          14,
+          19,
+          49,
+          48,
+          56,
+          26,
+          79,
+          28,
+          81,
+          26,
+          51,
+          7,
+          76,
+          55,
+          79,
+          56,
+          83,
+          48,
+          13,
+          79,
+          63,
+          69
+        ]
+      ],
+      "targets": [
+        66,
+        42,
+        11,
+        29,
+        78,
+        14,
+        59,
+        18,
+        21,
+        14,
+        48,
+        49,
+        47,
+        94,
+        3,
+        49,
+        49,
+        52,
+        42,
+        21,
+        9,
+        69,
+        8,
+        83,
+        0,
+        17,
+        35,
+        25,
+        8,
+        20,
+        71,
+        39,
+        19,
+        18,
+        37,
+        49,
+        40,
+        9,
+        26,
+        63,
+        86,
+        26,
+        37,
+        17,
+        2,
+        6,
+        28,
+        78,
+        80,
+        21,
+        42,
+        80,
+        78,
+        47,
+        23,
+        88,
+        2,
+        65,
+        67,
+        68,
+        11,
+        87,
+        96,
+        19,
+        42
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 4.76837158203125e-07,
+          "failures": [
+            {
+              "tensor": "model.layers.0.mlp.down_proj.weight",
+              "field": "parameter_delta",
+              "mismatched_elements": 1,
+              "max_abs": 2.3990869522094727e-06
+            },
+            {
+              "tensor": "model.layers.0.mlp.down_proj.weight",
+              "field": "parameter",
+              "mismatched_elements": 1,
+              "max_abs": 2.3990869522094727e-06
+            }
+          ],
+          "gradient_relative_l2": 2.652557820595656e-07,
+          "loss_reference": 4.591853618621826,
+          "loss_candidate": 4.591853618621826,
+          "parameter_delta_max_abs": 2.3990869522094727e-06,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": false
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 7.152557373046875e-07,
+          "failures": [
+            {
+              "tensor": "model.layers.0.mlp.down_proj.weight",
+              "field": "parameter",
+              "mismatched_elements": 1,
+              "max_abs": 2.4139881134033203e-06
+            }
+          ],
+          "gradient_relative_l2": 3.2186702337661606e-07,
+          "loss_reference": 4.585211753845215,
+          "loss_candidate": 4.585211753845215,
+          "parameter_delta_max_abs": 3.725290298461914e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": false
+        }
+      ]
+    },
+    {
+      "seed": 43,
+      "length": 1,
+      "recompute": false,
+      "tokens": [
+        [
+          41
+        ]
+      ],
+      "targets": [
+        39
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 0.0,
+          "failures": [],
+          "gradient_relative_l2": 0.0,
+          "loss_reference": 4.7143659591674805,
+          "loss_candidate": 4.7143659591674805,
+          "parameter_delta_max_abs": 0.0,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 0.0,
+          "failures": [],
+          "gradient_relative_l2": 0.0,
+          "loss_reference": 4.682393550872803,
+          "loss_candidate": 4.682393550872803,
+          "parameter_delta_max_abs": 0.0,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "seed": 43,
+      "length": 1,
+      "recompute": true,
+      "tokens": [
+        [
+          41
+        ]
+      ],
+      "targets": [
+        39
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 0.0,
+          "failures": [],
+          "gradient_relative_l2": 0.0,
+          "loss_reference": 4.7143659591674805,
+          "loss_candidate": 4.7143659591674805,
+          "parameter_delta_max_abs": 0.0,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 0.0,
+          "failures": [],
+          "gradient_relative_l2": 0.0,
+          "loss_reference": 4.682393550872803,
+          "loss_candidate": 4.682393550872803,
+          "parameter_delta_max_abs": 0.0,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "seed": 43,
+      "length": 4,
+      "recompute": false,
+      "tokens": [
+        [
+          41,
+          37,
+          69,
+          7
+        ]
+      ],
+      "targets": [
+        10,
+        85,
+        78,
+        14
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 2.384185791015625e-07,
+          "failures": [],
+          "gradient_relative_l2": 1.5759216394079447e-07,
+          "loss_reference": 4.155712127685547,
+          "loss_candidate": 4.155712127685547,
+          "parameter_delta_max_abs": 1.4901161193847656e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 3.5762786865234375e-07,
+          "failures": [],
+          "gradient_relative_l2": 1.8323617298532977e-07,
+          "loss_reference": 4.13065242767334,
+          "loss_candidate": 4.13065242767334,
+          "parameter_delta_max_abs": 2.0489096641540527e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "seed": 43,
+      "length": 4,
+      "recompute": true,
+      "tokens": [
+        [
+          41,
+          37,
+          69,
+          7
+        ]
+      ],
+      "targets": [
+        10,
+        85,
+        78,
+        14
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 2.384185791015625e-07,
+          "failures": [],
+          "gradient_relative_l2": 1.5759216394079447e-07,
+          "loss_reference": 4.155712127685547,
+          "loss_candidate": 4.155712127685547,
+          "parameter_delta_max_abs": 1.4901161193847656e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 3.5762786865234375e-07,
+          "failures": [],
+          "gradient_relative_l2": 1.8323617298532977e-07,
+          "loss_reference": 4.13065242767334,
+          "loss_candidate": 4.13065242767334,
+          "parameter_delta_max_abs": 2.0489096641540527e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "seed": 43,
+      "length": 8,
+      "recompute": false,
+      "tokens": [
+        [
+          41,
+          37,
+          69,
+          7,
+          53,
+          16,
+          74,
+          60
+        ]
+      ],
+      "targets": [
+        47,
+        0,
+        86,
+        94,
+        32,
+        15,
+        51,
+        54
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 2.980232238769531e-07,
+          "failures": [],
+          "gradient_relative_l2": 2.0124109255572636e-07,
+          "loss_reference": 5.068241119384766,
+          "loss_candidate": 5.068241596221924,
+          "parameter_delta_max_abs": 2.9802322387695312e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 3.5762786865234375e-07,
+          "failures": [],
+          "gradient_relative_l2": 1.904253669715577e-07,
+          "loss_reference": 5.05097770690918,
+          "loss_candidate": 5.05097770690918,
+          "parameter_delta_max_abs": 3.259629011154175e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "seed": 43,
+      "length": 8,
+      "recompute": true,
+      "tokens": [
+        [
+          41,
+          37,
+          69,
+          7,
+          53,
+          16,
+          74,
+          60
+        ]
+      ],
+      "targets": [
+        47,
+        0,
+        86,
+        94,
+        32,
+        15,
+        51,
+        54
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 2.980232238769531e-07,
+          "failures": [],
+          "gradient_relative_l2": 2.0124109255572636e-07,
+          "loss_reference": 5.068241119384766,
+          "loss_candidate": 5.068241596221924,
+          "parameter_delta_max_abs": 2.9802322387695312e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 3.5762786865234375e-07,
+          "failures": [],
+          "gradient_relative_l2": 1.904253669715577e-07,
+          "loss_reference": 5.05097770690918,
+          "loss_candidate": 5.05097770690918,
+          "parameter_delta_max_abs": 3.259629011154175e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "seed": 43,
+      "length": 65,
+      "recompute": false,
+      "tokens": [
+        [
+          41,
+          37,
+          69,
+          7,
+          53,
+          16,
+          74,
+          60,
+          86,
+          66,
+          95,
+          38,
+          64,
+          90,
+          62,
+          18,
+          45,
+          75,
+          89,
+          59,
+          49,
+          71,
+          89,
+          13,
+          16,
+          13,
+          31,
+          8,
+          5,
+          43,
+          36,
+          59,
+          29,
+          9,
+          45,
+          71,
+          17,
+          17,
+          65,
+          95,
+          54,
+          56,
+          9,
+          15,
+          28,
+          31,
+          47,
+          89,
+          48,
+          8,
+          51,
+          64,
+          42,
+          63,
+          86,
+          14,
+          21,
+          91,
+          44,
+          43,
+          39,
+          61,
+          23,
+          69,
+          74
+        ]
+      ],
+      "targets": [
+        63,
+        26,
+        48,
+        81,
+        58,
+        75,
+        29,
+        8,
+        32,
+        40,
+        15,
+        62,
+        69,
+        78,
+        62,
+        17,
+        68,
+        25,
+        86,
+        72,
+        92,
+        10,
+        63,
+        63,
+        94,
+        21,
+        63,
+        6,
+        87,
+        57,
+        25,
+        65,
+        63,
+        72,
+        30,
+        43,
+        73,
+        57,
+        84,
+        7,
+        3,
+        45,
+        66,
+        57,
+        10,
+        19,
+        61,
+        48,
+        14,
+        39,
+        79,
+        17,
+        43,
+        87,
+        69,
+        80,
+        6,
+        70,
+        60,
+        22,
+        31,
+        36,
+        83,
+        47,
+        46
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 4.76837158203125e-07,
+          "failures": [
+            {
+              "tensor": "model.layers.1.self_attn.o_proj.weight",
+              "field": "parameter_delta",
+              "mismatched_elements": 1,
+              "max_abs": 2.1606683731079102e-07
+            }
+          ],
+          "gradient_relative_l2": 2.6332313782247524e-07,
+          "loss_reference": 4.665134906768799,
+          "loss_candidate": 4.665134906768799,
+          "parameter_delta_max_abs": 2.1606683731079102e-07,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": false
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 4.76837158203125e-07,
+          "failures": [],
+          "gradient_relative_l2": 2.838259423124515e-07,
+          "loss_reference": 4.657588481903076,
+          "loss_candidate": 4.657588481903076,
+          "parameter_delta_max_abs": 2.2351741790771484e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "seed": 43,
+      "length": 65,
+      "recompute": true,
+      "tokens": [
+        [
+          41,
+          37,
+          69,
+          7,
+          53,
+          16,
+          74,
+          60,
+          86,
+          66,
+          95,
+          38,
+          64,
+          90,
+          62,
+          18,
+          45,
+          75,
+          89,
+          59,
+          49,
+          71,
+          89,
+          13,
+          16,
+          13,
+          31,
+          8,
+          5,
+          43,
+          36,
+          59,
+          29,
+          9,
+          45,
+          71,
+          17,
+          17,
+          65,
+          95,
+          54,
+          56,
+          9,
+          15,
+          28,
+          31,
+          47,
+          89,
+          48,
+          8,
+          51,
+          64,
+          42,
+          63,
+          86,
+          14,
+          21,
+          91,
+          44,
+          43,
+          39,
+          61,
+          23,
+          69,
+          74
+        ]
+      ],
+      "targets": [
+        63,
+        26,
+        48,
+        81,
+        58,
+        75,
+        29,
+        8,
+        32,
+        40,
+        15,
+        62,
+        69,
+        78,
+        62,
+        17,
+        68,
+        25,
+        86,
+        72,
+        92,
+        10,
+        63,
+        63,
+        94,
+        21,
+        63,
+        6,
+        87,
+        57,
+        25,
+        65,
+        63,
+        72,
+        30,
+        43,
+        73,
+        57,
+        84,
+        7,
+        3,
+        45,
+        66,
+        57,
+        10,
+        19,
+        61,
+        48,
+        14,
+        39,
+        79,
+        17,
+        43,
+        87,
+        69,
+        80,
+        6,
+        70,
+        60,
+        22,
+        31,
+        36,
+        83,
+        47,
+        46
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "logits_max_abs": 4.76837158203125e-07,
+          "failures": [
+            {
+              "tensor": "model.layers.1.self_attn.o_proj.weight",
+              "field": "parameter_delta",
+              "mismatched_elements": 1,
+              "max_abs": 2.1606683731079102e-07
+            }
+          ],
+          "gradient_relative_l2": 2.6332313782247524e-07,
+          "loss_reference": 4.665134906768799,
+          "loss_candidate": 4.665134906768799,
+          "parameter_delta_max_abs": 2.1606683731079102e-07,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": false
+        },
+        {
+          "step": 2,
+          "logits_max_abs": 4.76837158203125e-07,
+          "failures": [],
+          "gradient_relative_l2": 2.838259423124515e-07,
+          "loss_reference": 4.657588481903076,
+          "loss_candidate": 4.657588481903076,
+          "parameter_delta_max_abs": 2.2351741790771484e-08,
+          "all_parameters_and_moments_checked": true,
+          "nonzero_applied_update": true,
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "scope": "Tiny supervised numerical/Adam equivalence; not RL reward convergence or 40B execution.",
+  "case_count": 16,
+  "paired_steps": 32,
+  "prototype_sha256": "cdf28edb5b41dfdd6d223ef171e9163c33b73c5d118590a84c5277e9c37592fc",
+  "parameter_delta_atol": 1e-07,
+  "parameter_delta_rtol": 1e-05
+}
