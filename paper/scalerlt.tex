@@ -35,7 +35,7 @@
 \vspace{12pt}
 \begin{minipage}{0.94\textwidth}\small
 \textbf{Abstract.}
-Looped transformers share physical weights across recurrent invocations, but reinforcement learning (RL) still repeats prefix computation, retains invocation-specific states, and moves scores, policies and optimizer checkpoints. We present ScaleRLT, an I/O-aware execution prototype that preserves declared looped-policy and gradient contracts while coordinating prefix adjoints, suffix batching, rematerialization, stage-specific KV storage and output export. Across three tiny FP32 CPU model families, a prefix-heavy fixed-trace update achieves $2.96$--$3.68\times$ speed ratios with complete gradient and update checks; shorter-prefix and single-response controls expose regressions. Stage-specific Huginn R32 allocation reduces measured tiny KV tensor storage by $48.44\%$. Twelve tiny H20/Megatron configurations pass paired two-step AdamW checks, including all parameter gradients, moments and accounting. A separately audited official Ouro inference baseline gains $1.142\times$ fixed-work throughput by reducing decode depth, while its held-out quality remains statistically uncertain; it is not an exact-schedule RL gain. BF16 and IQuest strict-update failures are retained. These results establish component feasibility and numerical boundaries. Complete official-model online RL, fresh-worker recovery, high-load stability and independent-seed reward convergence remain open. The principal endpoint is time and allocated GPU-hours to held-out reward quality.
+Looped transformers share physical weights across recurrent invocations, but reinforcement learning (RL) still repeats prefix computation, retains invocation-specific states, and moves scores, policies and optimizer checkpoints. We present ScaleRLT, an I/O-aware execution prototype that preserves declared looped-policy and gradient contracts while coordinating prefix adjoints, suffix batching, rematerialization, stage-specific KV storage and output export. Across three tiny FP32 CPU model families, a prefix-heavy fixed-trace update achieves $2.96$--$3.68\times$ speed ratios with complete gradient and update checks; shorter-prefix and single-response controls expose regressions. Stage-specific Huginn R32 allocation reduces measured tiny KV tensor storage by $48.44\%$. Twelve tiny H20/Megatron configurations pass paired two-step AdamW checks, including all parameter gradients, moments and accounting. A separately audited official Ouro inference baseline gains $1.142\times$ fixed-work throughput by reducing decode depth, while its development accuracy remains statistically uncertain; it is not an exact-schedule RL gain. BF16 and IQuest strict-update failures are retained. These results establish component feasibility and numerical boundaries. Complete official-model online RL, fresh-worker recovery, high-load stability and independent-seed reward convergence remain open. The principal endpoint is time and allocated GPU-hours to held-out reward quality.
 \end{minipage}
 \vspace{10pt}\par
 {\color{accent}\rule{\textwidth}{0.8pt}}\par
@@ -207,7 +207,7 @@ Huginn mixed &$1.1772\!\times\!10^{-6}$&$2.0949\!\times\!10^{-7}$\\
 \end{tabular}
 \end{table}
 
-The original B-stage source d6229d6 is separately repeated on the continued H20, a different physical GPU. Both reduction configurations pass four paired candidate updates. Maximum gradient/parameter errors are $1.1921\times10^{-7}$/$5.9605\times10^{-8}$; the smallest update norms are 0.027031 and 0.028335. All 20 payloads and their manifest are independently verified after natural completion. The 15.706-second wrapper duration is verification time, not a performance comparison. These controls do not qualify official online reward learning or BF16.
+The original B-stage source d6229d6 is separately repeated on the epoch2 H20 (GPU 8ee), distinct from the historical EDF device and the newly registered d952 instance. Both reduction configurations pass four paired candidate updates. Maximum gradient/parameter errors are $1.1921\times10^{-7}$/$5.9605\times10^{-8}$; the smallest update norms are 0.027031 and 0.028335. All 20 payloads and their manifest are independently verified after natural completion. The 15.706-second wrapper duration is verification time, not a performance comparison. These controls do not qualify official online reward learning or BF16.
 
 Twelve CPU BF16 configurations remain failed at unchanged gates: all 24 update observations fail parameter-delta checks, and six fail the later gradient check. Maximum gradient-relative-L2 and update errors are $2.74\times10^{-2}$ and $1.77\times10^{-3}$. FP32 qualification does not remove this mixed-precision boundary.
 
@@ -317,7 +317,7 @@ The currently frozen official Thinking startup contains three online updates, 96
 Endpoint & Current state\\
 \midrule
 Tiny three-family CUDA Adam &Pass, historical H20\\
-Current H20 B-stage Adam &Pass, separate device\\
+H20 epoch2 B-stage Adam &Pass, separate device\\
 Official Thinking online startup &Not run\\
 Fresh-worker full-state recovery &Not run\\
 Independent-seed reward convergence &Not run\\
@@ -386,7 +386,7 @@ The official Thinking input prepared for online RL is a different checkpoint: By
 \end{quote}
 No ordinary-checkpoint inference result is promoted to Thinking online-learning evidence. IQuest is pinned at revision \code{61e8589747f6987ec7725e4ffe205f7a84561bd2} and has zero official tensor-body bytes downloaded in the reported header audit.
 
-The official numerical/quality/cost baseline uses source e8aa1ee; historical three-family MCore uses 2ad271d; the repeated current-device B control uses d6229d6. Exact full revisions are retained in their manifests. MCore CUDA runs use the existing task-owned environment; no environment update is part of these experiments.
+The official numerical/quality/cost baseline uses source e8aa1ee; historical three-family MCore uses 2ad271d; the repeated epoch2 B control uses d6229d6. Exact full revisions are retained in their manifests. MCore CUDA runs use the existing task-owned environment; no environment update is part of these experiments.
 
 \begin{table*}[t]
 \centering\scriptsize
@@ -397,7 +397,7 @@ The official numerical/quality/cost baseline uses source e8aa1ee; historical thr
 Archive & $n$ & SHA-256\\
 \midrule
 Three-family H20 MCore &84&\texttt{5cbea08375482e57936c9808a352fa3d12b22aabbb4a04a21723deac117f42ff}\\
-Current-device B MCore &20&\texttt{d1dc4b22da2ce28d29e07106267ff5802134ab3faae4cade8d548dcec743e618}\\
+Epoch2 B MCore &20&\texttt{d1dc4b22da2ce28d29e07106267ff5802134ab3faae4cade8d548dcec743e618}\\
 Official C32 fixed-work &99&\texttt{06d960ebb83e97eb1dee8af3a98b5c3cc956815eb558c7cdabccc37077ec5cb4}\\
 Matched compressed source &---&\texttt{772e1abe21ae85b6ccfa29ce03fc4e86cbe7c7082d3614a9fe397690fac2f043}\\
 \bottomrule
@@ -416,7 +416,7 @@ Original RLTT batch semantics must be observed end to end. Conditional source in
 \subsection{Frozen startup and full-state requirement}
 The prepared Thinking control uses seed 42, prompt cap 1,024, response cap 2,048, temperature 0.9, top-$p$ 1, natural termination, FP32 and response-mean RLTT. AdamW uses learning rate $10^{-6}$, betas 0.9/0.999, epsilon $10^{-8}$, weight decay 0.1, gradient clip 0.1 and KL coefficient 0.001. It keeps the ordinary MCore schedule with rematerialization and prefix sharing disabled. Three updates use four prompts and eight responses each; eight held-out completions at initial/three subsequent policies produce the 32-completion evaluation ledger.
 
-Three full checkpoints and four physical publications require approximately 75 GiB of native state and a frozen minimum of 84 GiB private free storage. The preparation verifies 770 source files, all seven pinned Thinking-model files and 93.719 GiB free private XFS. A writable task-owned draft release and its published part quota are verified~\cite{artifact}. Neither this preflight nor a small source-archive upload establishes completed optimizer-state archival or recovery.
+Three full checkpoints and four physical publications require approximately 75 GiB of native state and a frozen minimum of 84 GiB private free storage. The earlier epoch2 input preflight verified 770 source files, all seven pinned Thinking-model files and 93.719 GiB free private XFS. A writable task-owned draft release and its published part quota are verified~\cite{artifact}. Neither this preflight nor a small source-archive upload establishes completed optimizer-state archival or recovery.
 
 \section{Additional Component Results}\label{app:components}
 \begin{table}[h]

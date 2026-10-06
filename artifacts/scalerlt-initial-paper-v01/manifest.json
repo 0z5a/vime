@@ -8,12 +8,12 @@
     "sha256": "449af0b593092fb995398738649a2fe65eebc36fb8fee4dad24544fb2b5c9136"
   },
   "artifacts/scalerlt-initial-paper-v01/pdf-export.json": {
-    "bytes": 1035,
-    "sha256": "5c1ee2fd3ff167a37cef0cb0512fa3acb0519f76fdf035d59d675b8e232d301f"
+    "bytes": 994,
+    "sha256": "8b166e376b85f4bb450626c815d0c5b5d308ed6fe279852fa792a107fc059957"
   },
   "artifacts/scalerlt-initial-paper-v01/generation.json": {
     "bytes": 564,
-    "sha256": "014162cc25fb00d2a926df77f6ead7550f2a41ad08c1ed8324f207c8fc1504fb"
+    "sha256": "4e19f59fa3e3613ad7625d34de40863dec3fef846e755dad1ba2658d445d496d"
   },
   "benchmarks/results/scalerlt-initial-paper/h20-current-b-control.tar.gz": {
     "bytes": 15005,
@@ -52,16 +52,16 @@
     "sha256": "cfda751f1795abe5577f92ec542407b92cf662ee9817f08844fdfdd986ccc847"
   },
   "paper/ScaleRLT_v0.1_2026-10-06.pdf": {
-    "bytes": 262775,
-    "sha256": "d2f46f79fb0ed7640a5bf370e7b148a1ba0cd8b93f5031a5614ba59bf0dfa236"
+    "bytes": 262849,
+    "sha256": "2381199adb0877780e74fd3111021c1d19449a4266dcff2cb40b6e56a17955f8"
   },
   "paper/README.md": {
     "bytes": 1937,
     "sha256": "a30c9dbec3b833c96d34baded0a3d02b5135ab9148b305138a56eeff5ccac34f"
   },
   "paper/scalerlt.tex": {
-    "bytes": 46252,
-    "sha256": "3f1692c260ea8e1794084781b87e5fdaf699dd9831f87f649c39819746d5f882"
+    "bytes": 46319,
+    "sha256": "01734eb29c7990aba26402ed3df974461c427123313f65cb25231a879fe8bb50"
   },
   "docs/scalerlt_initial_paper_results.md": {
     "bytes": 8328,

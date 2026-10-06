@@ -1,8 +1,8 @@
 {
   "pdf": "/Users/0z5a/Documents/infra/output/pdf/ScaleRLT_v0.1_2026-10-06.pdf",
-  "pdf_sha256": "d2f46f79fb0ed7640a5bf370e7b148a1ba0cd8b93f5031a5614ba59bf0dfa236",
+  "pdf_sha256": "2381199adb0877780e74fd3111021c1d19449a4266dcff2cb40b6e56a17955f8",
   "source": "/Users/0z5a/Documents/infra/flashrlt-20261005/paper/flashrlt.tex",
-  "source_sha256": "3f1692c260ea8e1794084781b87e5fdaf699dd9831f87f649c39819746d5f882",
+  "source_sha256": "01734eb29c7990aba26402ed3df974461c427123313f65cb25231a879fe8bb50",
   "pages": 8,
   "tables": 12,
   "figures": 1,
@@ -11,15 +11,10 @@
   "export_method": "ReportLab two-column typesetting from compiled LaTeX; embedded STIX math at 300 dpi",
   "preliminary": true,
   "reward_convergence": "NOT_RUN",
-  "visual_verification": "PASS_ALL_8_PAGES",
-  "verification_utc": "2026-10-06T09:08:38.571547+00:00",
-  "checks": [
-    "native standalone LaTeX compilation success",
-    "source/PDF SHA binding",
-    "17 numeric and scope text assertions",
-    "PDF title and 0z5a author metadata",
-    "no blank/orphan pages",
-    "all-page text geometry including intentional running header/footer",
-    "all pages rasterized and visually reviewed"
-  ]
+  "visual_verification": "PASS",
+  "visual_verification_scope": "All eight pages rasterized and reviewed in contact sheet; revised pages 1, 4 and 7 reviewed at full size. Earlier full-page review retained for unchanged layout.",
+  "text_bounds": "PASS",
+  "numeric_and_scope_assertions": 17,
+  "metadata": "Exact title and author 0z5a verified",
+  "verified_utc": "2026-10-06T09:29:40.641259+00:00"
 }
