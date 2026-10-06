@@ -29,7 +29,7 @@ The package retains the current experimental RLT pin `fd993ec5512904b68e16f4d541
 | --- | --- | --- | --- | --- |
 | Recipe boundary, all three phases | Thinking GRPO resident | Ordinary GRPO separate | Not a timing comparison | Six real-config CPU-MOCK probes and 30 recipe tests pass |
 | Deterministic preparation | Existing Thinking IDs preserved | New 12/8 ID-only GSM inputs | — | Two preparations produce identical bytes |
-| Actual tokenizer and full input preservation | Existing Thinking receipt | Running local audit | — | Await natural receipt; no model generation |
+| Actual tokenizer and full input preservation | Existing Thinking receipt | Pending original reader; resident import failed | — | Missing local torch/_guards.py; no model generation |
 | Standard real engine/update/publication | NOT_RUN | NOT_RUN | — | Requires two physical GPUs and complete runtime/source/model preflight |
 | Fresh worker/model/Adam/scheduler/RNG/plan | NOT_RUN | NOT_RUN | — | Continuous/split/resume raw evidence required |
 | Default vLLM without RLT; publication failure/recovery; KV isolation; lifecycle | Existing CPU controls | Real acceptance pending | — | Independent remaining RFC465 gates |
