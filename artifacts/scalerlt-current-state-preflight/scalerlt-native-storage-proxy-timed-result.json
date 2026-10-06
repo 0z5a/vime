@@ -1,0 +1,10 @@
+{
+  "actual_exit": 0,
+  "started_unix": 1791268340.2606652,
+  "finished_unix": 1791268347.021229,
+  "elapsed_seconds": 6.760564804077148,
+  "input_bytes": 10178626,
+  "original_input_sha256": "772e1abe21ae85b6ccfa29ce03fc4e86cbe7c7082d3614a9fe397690fac2f043",
+  "route": "ExistingMacHTTPproxy perprocess only",
+  "scope": "Identical source archive upload+serverdigest+independentdownloadhash, not checkpoint transfer or GPU performance."
+}

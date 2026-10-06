@@ -1,0 +1,13 @@
+{
+  "state": "SAME_SOURCE_SINGLE_ATTEMPT_TRANSPORT_PASS",
+  "input_bytes": 10178626,
+  "input_sha256": "772e1abe21ae85b6ccfa29ce03fc4e86cbe7c7082d3614a9fe397690fac2f043",
+  "direct_seconds": 24.18349453,
+  "existing_mac_proxy_seconds": 6.760564804077148,
+  "proxy_over_direct_ratio": 3.5771411458722304,
+  "proxy_input_MiB_per_second": 1.4358407135822064,
+  "release_id": 404381963,
+  "asset_id": 614709505,
+  "part_index_sha256": "87e7d96426b168b76a367b6e6b582183a658c21d33a2a285b227b2ab418c3816",
+  "scope": "Same source upload, independent redownload and all SHA checks; one attempt per route. Not complete checkpoints, GPU performance or reward convergence."
+}

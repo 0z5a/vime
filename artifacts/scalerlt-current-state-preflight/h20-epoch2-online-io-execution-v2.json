@@ -1,0 +1,12 @@
+{
+  "state": "OWNED_IO_PREFLIGHT_ACTIVE",
+  "local_wrapper_pid": 14232,
+  "started_unix": 1791268573.624372,
+  "grant_sha256": "ecaa77550844c0fe43883f6aafceaac0c19db55ad3794d5b1812f9ca57ab01fa",
+  "previous_attempt_actual_exit": 127,
+  "previous_attempt_scope": "Remote shell python3 missing before helper launch; no mutation/child/GPU/context",
+  "actual_exit": 0,
+  "local_ssh_pid": 14233,
+  "finished_unix": 1791268576.4990458,
+  "elapsed_seconds": 2.874673843383789
+}

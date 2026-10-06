@@ -1,0 +1,9 @@
+{
+  "state": "SUCCESS",
+  "compiler": "Codex desktop built-in LaTeX compiler",
+  "source_path": "/Users/0z5a/Documents/infra/flashrlt-20261005/paper/flashrlt.tex",
+  "source_sha256": "584020e3788d0b783e55061ee72a4539cbfb1606b8de85af7afc92f4e8182f4d",
+  "recorded_utc": "2026-10-06T06:43:08.558379+00:00",
+  "artifact": "Same editable ScaleRLT source and native PDF preview; standalone exportedPDF not produced",
+  "updates": "Current writable-state destination/preflight and identical-source proxy6.761s table; no fullRL/convergence claim."
+}

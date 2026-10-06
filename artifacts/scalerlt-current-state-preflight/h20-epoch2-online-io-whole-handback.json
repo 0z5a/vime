@@ -1,0 +1,45 @@
+{
+  "state": "WHOLE_WINDOW_HANDBACK",
+  "project": "ScaleRLT",
+  "recorded_utc": "2026-10-06T06:36:51.507563+00:00",
+  "actual_preflight_exit": 0,
+  "actual_independent_return_probe_exit": 0,
+  "preflight_actor_independently_absent": 12202,
+  "no_gpu_children": true,
+  "source_files_verified": 770,
+  "model_files_verified": 7,
+  "model_revision": "3aaa2224253a92ca45cf2e3d427c360e1ef9c93d",
+  "private_XFS_free_bytes": 100629929984,
+  "controls": {
+    "h20_online_continuous_epoch2.py": "6bbc4d34ee1a70205a0dcee191c5ab5cbf9400e4c498d0147c254b17f327441c",
+    "stream_online_archive_epoch2.py": "081c18f09f03ea369d65d2724df923476c36a588903441c6cb360ef46270b1b5",
+    "h20_mcore_gate_epoch2.sh": "c2142b03c4289f42e720d40b1e281cd9a8704da250783bec3cb3dd7fd2ea7394",
+    "finalize_h20_mcore_epoch2.py": "0b73b640733815835dc573438f12e3e0f7110609ff55806be3937678c440f80c"
+  },
+  "gpu_uuid": "GPU-8ee84e7d-143f-dd29-1097-85943783e027",
+  "boot_id": "797c630e-4da1-48bd-bdf3-daabf26649d2",
+  "locks": [
+    [
+      64528,
+      12920245107
+    ],
+    [
+      64528,
+      12920245108
+    ]
+  ],
+  "compute_apps": [],
+  "grant_sha256": "ecaa77550844c0fe43883f6aafceaac0c19db55ad3794d5b1812f9ca57ab01fa",
+  "preflight_raw_sha256": "19eaca18b22893c4126953d7f679926fc53d65509582f10d0b62346dcc80c7a8",
+  "fresh_return_raw_sha256": "4785ea4264221ecf5c35f9dfe8e22605a4abb6702e2192cbfb1932dd1be1581e",
+  "observed_existing_packages": {
+    "ray": "2.58.0",
+    "setuptools": "69.5.1",
+    "torch": "2.12.1+cu130",
+    "transformers": "4.54.1",
+    "triton": "3.7.1"
+  },
+  "earlier_attempt_actual_exit": 127,
+  "earlier_attempt_failed_before_python_helper": true,
+  "future_gpu_mcore_gate_or_online_included": false
+}
