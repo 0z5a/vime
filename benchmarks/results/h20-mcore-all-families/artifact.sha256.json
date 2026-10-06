@@ -1,0 +1,14 @@
+{
+  "README.md": {
+    "bytes": 1961,
+    "sha256": "fdf98ac52d107f3e722a0386309b6b38d5fda3933fc1b9a949678b895a46c65c"
+  },
+  "cuda-gate.tar.gz": {
+    "bytes": 21546,
+    "sha256": "5cbea08375482e57936c9808a352fa3d12b22aabbb4a04a21723deac117f42ff"
+  },
+  "independent-handback.json": {
+    "bytes": 12383,
+    "sha256": "97c3785f3e2194e75195eb1e6aac4aad4b5beae3a56ed0fc3faa1a0de054676b"
+  }
+}

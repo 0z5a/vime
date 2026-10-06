@@ -1,0 +1,377 @@
+{
+  "state": "VERIFIED_WHOLE_HANDBACK",
+  "recorded_unix": 1791246104.340163,
+  "grant_sha256": "cc40350d2a88133d18e351388d866f06d7929dbba83c9a2adf9d3c84f43ed23f",
+  "packet_sha256": "79ff7ca7e98ab93173fc10bf7f5594582c7a4c849e253ba42f7629dec26452c0",
+  "source": "2ad271d5fbb58f06170a05277b03663bf9d66b24",
+  "archive_sha256": "5cbea08375482e57936c9808a352fa3d12b22aabbb4a04a21723deac117f42ff",
+  "archive_bytes": 21546,
+  "payload_files_verified": 84,
+  "regular_members": 85,
+  "actual_cuda_mcore_two_update_cases": 12,
+  "case_status": "12PASS",
+  "natural_test_and_controller_exit_code": 0,
+  "finalizer_actual_exit_code": 0,
+  "finalizer_pid": 224479,
+  "fresh_owned_process_absence": {
+    "absent_owned_pids": [
+      223243,
+      223290,
+      224479,
+      223242
+    ],
+    "empty_compute": true
+  },
+  "cases": [
+    {
+      "name": "test_actual_mcore_prefix_train_step[ouro-False-none-token_mean]",
+      "seconds": 7.87,
+      "status": "PASS",
+      "actual_mcore_two_update": [
+        {
+          "update": 0,
+          "gradient_max_error": 7.450580596923828e-08,
+          "parameter_max_error": 5.8673322200775146e-08,
+          "delta_norm": 0.03521193191409111,
+          "loss": {
+            "loss": 0.4919145584106445,
+            "rltt_terminal_logprob": -2.533199501037598,
+            "entropy_loss": 2.5616533279418947
+          }
+        },
+        {
+          "update": 1,
+          "gradient_max_error": 5.960464477539063e-08,
+          "parameter_max_error": 5.960464477539063e-08,
+          "delta_norm": 0.0270307045429945,
+          "loss": {
+            "loss": 0.47786765098571776,
+            "rltt_terminal_logprob": -2.5281244277954102,
+            "entropy_loss": 2.5631681442260743
+          }
+        }
+      ]
+    },
+    {
+      "name": "test_actual_mcore_prefix_train_step[ouro-False-none-response_mean]",
+      "seconds": 1.131,
+      "status": "PASS",
+      "actual_mcore_two_update": [
+        {
+          "update": 0,
+          "gradient_max_error": 1.1920928955078125e-07,
+          "parameter_max_error": 1.6763806343078613e-08,
+          "delta_norm": 0.03511379286646843,
+          "loss": {
+            "loss": 0.6862307071685791,
+            "rltt_terminal_logprob": -2.523184967041016,
+            "entropy_loss": 2.5616641998291017
+          }
+        },
+        {
+          "update": 1,
+          "gradient_max_error": 8.940696716308594e-08,
+          "parameter_max_error": 2.0489096641540527e-08,
+          "delta_norm": 0.028335392475128174,
+          "loss": {
+            "loss": 0.6705065250396729,
+            "rltt_terminal_logprob": -2.5039222717285154,
+            "entropy_loss": 2.562147521972656
+          }
+        }
+      ]
+    },
+    {
+      "name": "test_actual_mcore_prefix_train_step[ouro-True-none-token_mean]",
+      "seconds": 1.633,
+      "status": "PASS",
+      "actual_mcore_two_update": [
+        {
+          "update": 0,
+          "gradient_max_error": 7.450580596923828e-08,
+          "parameter_max_error": 5.8673322200775146e-08,
+          "delta_norm": 0.03521193191409111,
+          "loss": {
+            "loss": 0.4919145584106445,
+            "rltt_terminal_logprob": -2.533199501037598,
+            "entropy_loss": 2.5616533279418947
+          }
+        },
+        {
+          "update": 1,
+          "gradient_max_error": 5.960464477539063e-08,
+          "parameter_max_error": 5.960464477539063e-08,
+          "delta_norm": 0.0270307045429945,
+          "loss": {
+            "loss": 0.47786765098571776,
+            "rltt_terminal_logprob": -2.5281244277954102,
+            "entropy_loss": 2.5631681442260743
+          }
+        }
+      ]
+    },
+    {
+      "name": "test_actual_mcore_prefix_train_step[ouro-True-none-response_mean]",
+      "seconds": 1.636,
+      "status": "PASS",
+      "actual_mcore_two_update": [
+        {
+          "update": 0,
+          "gradient_max_error": 1.1920928955078125e-07,
+          "parameter_max_error": 1.6763806343078613e-08,
+          "delta_norm": 0.03511379286646843,
+          "loss": {
+            "loss": 0.6862307071685791,
+            "rltt_terminal_logprob": -2.523184967041016,
+            "entropy_loss": 2.5616641998291017
+          }
+        },
+        {
+          "update": 1,
+          "gradient_max_error": 8.940696716308594e-08,
+          "parameter_max_error": 2.0489096641540527e-08,
+          "delta_norm": 0.028335392475128174,
+          "loss": {
+            "loss": 0.6705065250396729,
+            "rltt_terminal_logprob": -2.5039222717285154,
+            "entropy_loss": 2.562147521972656
+          }
+        }
+      ]
+    },
+    {
+      "name": "test_actual_mcore_prefix_train_step[nanbeige-False-none-token_mean]",
+      "seconds": 1.15,
+      "status": "PASS",
+      "actual_mcore_two_update": [
+        {
+          "update": 0,
+          "gradient_max_error": 2.9802322387695312e-08,
+          "parameter_max_error": 2.9802322387695312e-08,
+          "delta_norm": 0.03637052699923515,
+          "loss": {
+            "loss": 0.1866389036178589,
+            "rltt_terminal_logprob": -2.5343578338623045,
+            "entropy_loss": 2.176030731201172
+          }
+        },
+        {
+          "update": 1,
+          "gradient_max_error": 2.9802322387695312e-08,
+          "parameter_max_error": 2.9802322387695312e-08,
+          "delta_norm": 0.03611896559596062,
+          "loss": {
+            "loss": 0.16810529232025145,
+            "rltt_terminal_logprob": -2.5119512557983397,
+            "entropy_loss": 2.1729530334472655
+          }
+        }
+      ]
+    },
+    {
+      "name": "test_actual_mcore_prefix_train_step[nanbeige-False-none-response_mean]",
+      "seconds": 1.115,
+      "status": "PASS",
+      "actual_mcore_two_update": [
+        {
+          "update": 0,
+          "gradient_max_error": 5.960464477539063e-08,
+          "parameter_max_error": 2.9802322387695312e-08,
+          "delta_norm": 0.03630533441901207,
+          "loss": {
+            "loss": 0.33352444171905515,
+            "rltt_terminal_logprob": -2.3822282791137694,
+            "entropy_loss": 2.1632238388061524
+          }
+        },
+        {
+          "update": 1,
+          "gradient_max_error": 5.960464477539063e-08,
+          "parameter_max_error": 2.9802322387695312e-08,
+          "delta_norm": 0.03600601851940155,
+          "loss": {
+            "loss": 0.31150450706481936,
+            "rltt_terminal_logprob": -2.3452426910400392,
+            "entropy_loss": 2.1597824096679688
+          }
+        }
+      ]
+    },
+    {
+      "name": "test_actual_mcore_prefix_train_step[nanbeige-True-none-token_mean]",
+      "seconds": 1.117,
+      "status": "PASS",
+      "actual_mcore_two_update": [
+        {
+          "update": 0,
+          "gradient_max_error": 2.9802322387695312e-08,
+          "parameter_max_error": 2.9802322387695312e-08,
+          "delta_norm": 0.03637052699923515,
+          "loss": {
+            "loss": 0.1866389036178589,
+            "rltt_terminal_logprob": -2.5343578338623045,
+            "entropy_loss": 2.176030731201172
+          }
+        },
+        {
+          "update": 1,
+          "gradient_max_error": 2.9802322387695312e-08,
+          "parameter_max_error": 2.9802322387695312e-08,
+          "delta_norm": 0.03611896559596062,
+          "loss": {
+            "loss": 0.16810529232025145,
+            "rltt_terminal_logprob": -2.5119512557983397,
+            "entropy_loss": 2.1729530334472655
+          }
+        }
+      ]
+    },
+    {
+      "name": "test_actual_mcore_prefix_train_step[nanbeige-True-none-response_mean]",
+      "seconds": 1.137,
+      "status": "PASS",
+      "actual_mcore_two_update": [
+        {
+          "update": 0,
+          "gradient_max_error": 5.960464477539063e-08,
+          "parameter_max_error": 2.9802322387695312e-08,
+          "delta_norm": 0.03630533441901207,
+          "loss": {
+            "loss": 0.33352444171905515,
+            "rltt_terminal_logprob": -2.3822282791137694,
+            "entropy_loss": 2.1632238388061524
+          }
+        },
+        {
+          "update": 1,
+          "gradient_max_error": 5.960464477539063e-08,
+          "parameter_max_error": 2.9802322387695312e-08,
+          "delta_norm": 0.03600601851940155,
+          "loss": {
+            "loss": 0.31150450706481936,
+            "rltt_terminal_logprob": -2.3452426910400392,
+            "entropy_loss": 2.1597824096679688
+          }
+        }
+      ]
+    },
+    {
+      "name": "test_actual_mcore_prefix_train_step[huginn-False-independent-token_mean]",
+      "seconds": 1.132,
+      "status": "PASS",
+      "actual_mcore_two_update": [
+        {
+          "update": 0,
+          "gradient_max_error": 2.384185791015625e-07,
+          "parameter_max_error": 5.549372872337699e-08,
+          "delta_norm": 0.04711056873202324,
+          "loss": {
+            "loss": -0.029158186912536622,
+            "rltt_terminal_logprob": -4.236648178100586,
+            "entropy_loss": 0.6799128532409668
+          }
+        },
+        {
+          "update": 1,
+          "gradient_max_error": 6.556510925292969e-07,
+          "parameter_max_error": 9.30231180973351e-08,
+          "delta_norm": 0.046330101788043976,
+          "loss": {
+            "loss": -0.10193557739257812,
+            "rltt_terminal_logprob": -4.109548187255859,
+            "entropy_loss": 0.694879150390625
+          }
+        }
+      ]
+    },
+    {
+      "name": "test_actual_mcore_prefix_train_step[huginn-False-independent-response_mean]",
+      "seconds": 1.13,
+      "status": "PASS",
+      "actual_mcore_two_update": [
+        {
+          "update": 0,
+          "gradient_max_error": 3.5762786865234375e-07,
+          "parameter_max_error": 4.259163688402623e-08,
+          "delta_norm": 0.04705020412802696,
+          "loss": {
+            "loss": 0.35195763111114503,
+            "rltt_terminal_logprob": -3.976166534423828,
+            "entropy_loss": 0.6500929832458496
+          }
+        },
+        {
+          "update": 1,
+          "gradient_max_error": 7.152557373046875e-07,
+          "parameter_max_error": 8.133065421134233e-08,
+          "delta_norm": 0.04666852205991745,
+          "loss": {
+            "loss": 0.2437004804611206,
+            "rltt_terminal_logprob": -3.8089141845703125,
+            "entropy_loss": 0.6827536582946777
+          }
+        }
+      ]
+    },
+    {
+      "name": "test_actual_mcore_prefix_train_step[huginn-False-mixed-token_mean]",
+      "seconds": 1.122,
+      "status": "PASS",
+      "actual_mcore_two_update": [
+        {
+          "update": 0,
+          "gradient_max_error": 1.7881393432617188e-07,
+          "parameter_max_error": 1.7881393432617188e-07,
+          "delta_norm": 0.04707252234220505,
+          "loss": {
+            "loss": 0.02080817222595215,
+            "rltt_terminal_logprob": -3.8632606506347655,
+            "entropy_loss": 0.7506943702697754
+          }
+        },
+        {
+          "update": 1,
+          "gradient_max_error": 1.1771917343139648e-06,
+          "parameter_max_error": 1.7881393432617188e-07,
+          "delta_norm": 0.046352267265319824,
+          "loss": {
+            "loss": -0.05286041498184204,
+            "rltt_terminal_logprob": -3.748757553100586,
+            "entropy_loss": 0.7775139331817627
+          }
+        }
+      ]
+    },
+    {
+      "name": "test_actual_mcore_prefix_train_step[huginn-False-mixed-response_mean]",
+      "seconds": 1.121,
+      "status": "PASS",
+      "actual_mcore_two_update": [
+        {
+          "update": 0,
+          "gradient_max_error": 2.980232238769531e-07,
+          "parameter_max_error": 1.2610689736902714e-07,
+          "delta_norm": 0.04701389744877815,
+          "loss": {
+            "loss": 0.39359636306762696,
+            "rltt_terminal_logprob": -3.665010452270508,
+            "entropy_loss": 0.7090775966644287
+          }
+        },
+        {
+          "update": 1,
+          "gradient_max_error": 1.0132789611816406e-06,
+          "parameter_max_error": 2.094893716275692e-07,
+          "delta_norm": 0.04656941071152687,
+          "loss": {
+            "loss": 0.2847589015960693,
+            "rltt_terminal_logprob": -3.5019454956054688,
+            "entropy_loss": 0.7516379833221436
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "Twelve tiny actual CUDA MCore/DDP/Adam cases; Ouro/Nanbeige ordinary/joint plus Huginn independent/mixed latent, not official online RL or speed/convergence evidence",
+  "logical_whole_returned": true
+}
