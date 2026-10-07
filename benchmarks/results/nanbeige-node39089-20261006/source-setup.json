@@ -1,8 +1,0 @@
-{
-  "source_sha256": "206020de1b4b9b53a9cad18306b1f4ba233b603d1516aabbdf1708b79ad00b6d",
-  "engine_sha256": "ed68fdd5b936eb7bf8fcd31aaab0a50b0f733ca1a217ec8d0e9e555e59e91eb0",
-  "environment": "/workspace/0z5a/envs/0z5a",
-  "package_installs": 0,
-  "existing_environment_mutations": 0,
-  "gpu_started": false
-}

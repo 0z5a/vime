@@ -1,39 +1,29 @@
 # Nanbeige recurrent RL verification
 
-The source tested on 2026-10-06 is `1e9618b0`, with the merged `0z5a-branch` base at `8c8b8e8e908818683b96dbdb2f438ff54cfd6aa0`. The merge preserves recurrent inputs in both ordinary and draft-feature forward paths. Native SGD uses Megatron's selected optimizer implementation; the Torch fallback does not receive fused-SGD state initialization.
+Runtime `0ca616352e1aa6166217b21a068ba545f52bb4c7` passes 101 CPU tests with exit zero, no failures, errors or skips. Coverage includes the four objectives' tiny three-update versus two-save/fresh-resume checks, grouped GRPO, categorical KL, independent two-loop logits/value/gradient checks, parameter conversion and draft-feature contracts. These synthetic tests do not establish official-model accuracy or reward convergence. Ruff 0.14.7, Black 24.3.0 and isort 5.13.2 pass.
 
-The existing Thor `0z5a` Python environment and retained MCore/RLT sources ran 101 CPU tests, with actual exit zero and no failures or skips. This includes all four objectives' tiny three-update versus two-save/fresh-resume checks, grouped GRPO, categorical KL, Nanbeige's independent two-loop logits/value/gradient checks, parameter conversion and draft-feature contracts. Full logs, XML, command and hashes are retained in [the CPU result archive](../../benchmarks/results/nanbeige-e2e-20261006/). The actual standard training module also imports successfully using Megatron’s native Torch SGD, with CUDA uninitialized. Pinned Ruff 0.14.7, Black 24.3.0 and isort 5.13.2 checks pass. Synthetic tiny rewards do not establish official-model reward quality or convergence.
-
-| Algorithm | Current-source tiny CPU three updates / fresh resume | Previous official-weight GPU evidence | Current-source complete official-weight GPU e2e | Matched speed improvement |
+| Algorithm | Tiny FP32 CPU training / fresh resume | Actual recipe argument parsing | Complete official-weight GPU e2e | Matched speed improvement |
 | --- | --- | --- | --- | --- |
-| PPO | PASS | Three continuous updates and two-update save reported; final resume audit unavailable after SSH loss | Pending | Not measured |
-| GRPO | PASS | Pending | Pending | Not measured |
-| DPPO | PASS | Pending | Pending | Not measured |
-| Flow-DPPO | PASS | Pending | Pending | Not measured |
+| PPO | PASS | PASS | Pending | Not measured |
+| GRPO | PASS | PASS | Pending | Not measured |
+| DPPO | PASS | PASS | Pending | Not measured |
+| Flow-DPPO | PASS | PASS | Pending | Not measured |
 
-The retained functional GPU harness uses controlled binary rewards to verify useful updates; it does not establish model quality or reward convergence. The full original GPU campaign remains three continuous updates versus two saved updates and a fresh-process final update for each objective, with complete actor/critic parameters, optimizer, scheduler, RNG, tokens, rewards and physical publication checks. Precision stays FP32, native engine stays pinned to `d2a358933393f25d74dd2bdd1068a741cd5d9226`, and model revision stays `b82e54bd609793562a75cbf9337970a93369eab5`. The existing selected-logprob bound is unchanged. There is no reduced-model substitution or speed claim from pytest duration.
+Native SGD uses Megatron's selected optimizer implementation; the Torch fallback does not receive fused-SGD state initialization. The actual training actor module imports with TMS absent and CUDA uninitialized after TMS imports move into offload paths. The published recipe enables `--offload-train` and still requires native TMS for execution. Unchanged TMS source `8d30c59` builds two AArch64 CUDA 13 libraries using CUDA 13.2 headers and libraries, with build and actor-module-import exit zero. CUDA allocation hooks, offload, recovery and GPU training have not been tested.
 
-The 2026-10-06 18:34 CST Thor snapshot still has an occupied GPU coordination lock and three compute processes, about 20.4 GiB available unified host memory and 14.6 GiB local disk space. Its Nanbeige directory contains configuration and revision metadata, with no weight shards. The existing dedicated trainer/rollout recipe requires two physical GPUs; the retained full-case harness also requires 80 GiB host and 56 GiB checkpoint/publication disk reserves. GPU execution is pending a suitable existing environment and resource window. No environment was installed or updated, no process was signalled, and no lcpu NFS path was used.
-
-The subsequent Thor-only meta-layout check passes against the official configuration Git blob `e542b36686258dcc58de083c0fa7c81c9ebd65d6`: actor 4,169,800,704 physical parameters, critic 3,659,409,408, 22 physical layers and 44 logical visits. All parameters have FP32 meta layouts, and the critic excludes the policy LM head. The first probe used the wrong config constructor; its failure is retained alongside the successful probe using the native `from_dict` loader. No library source or numerical tolerance changed. Zero weight shards were loaded and CUDA stayed uninitialized. This is architecture/layout evidence, not numerical official-weight e2e. At the human’s earlier direction, external-node borrowing requests were withdrawn and work stayed on Thor. The subsequent direct instruction selected node39089 for continuation.
-
-The latest tested runtime is `0ca616352e1aa6166217b21a068ba545f52bb4c7` on node39089. An isolated `0z5a` environment reuses preinstalled dependencies without installing packages or changing existing environments. The exact MCore pin `1dcf0dafa884ad52ffb243625717a3471643e087` plus the repository patch and the fixed RLT pin import successfully. The actual training actor previously failed to import because TMS was required even with training offload disabled. TMS now loads in the offload paths; the real actor module imports with TMS absent and CUDA uninitialized. The published recipe still enables `--offload-train`, so executing that recipe requires the real native TMS implementation. This import check does not establish training readiness without TMS. The 101-test suite passes again after this change. See [the node39089 evidence archive](../../benchmarks/results/nanbeige-node39089-20261006/) for raw logs, XML, actual exits and hashes.
-
-| Verification on node39089 | Before offload import fix | Tested runtime `0ca61635` | Matched training speed improvement |
+| Dependency verification | Before | Current CPU result | Matched training speed improvement |
 | --- | --- | --- | --- |
-| Actual Megatron actor module import with TMS absent | `ModuleNotFoundError` | PASS; CUDA uninitialized | Not measured |
-| Four objectives, tiny fresh resume, native gradients and shared contracts | 101 CPU tests pass | 101 CPU tests pass; no failures, errors or skips | Not measured |
-| Official-weight GPU e2e and reward convergence | Pending | Pending | Not measured |
+| Actor module import with TMS absent | `ModuleNotFoundError` | PASS; CUDA uninitialized | Not measured |
+| Pinned native TMS build | Dependency unavailable | Two AArch64 CUDA 13 libraries compile | Not measured |
+| Published recipes and MCore argument parsing | Pending | Four algorithms PASS; FP32 and offload preserved | Not measured |
 
-The initial node39089 inventory has two physical RTX PRO 6000 Blackwell Max-Q GPUs, each reporting 97,887 MiB total memory, with local overlay storage and no NFS mount. Existing Kandinsky work and platform processes are preserved. No GPU window has been confirmed for this campaign, no model weights have been downloaded, and no GPU training has started. Import and CPU verification durations are not training benchmarks or reward-quality evidence. The full four-algorithm GPU and fresh-resume budgets above remain unchanged.
+The recipe argument check intercepts Ray launch and performs no rollouts or optimizer updates. It preserves three updates, GRPO group size four, Flow-DPPO's two steps, 48 response tokens and distinct physical training/rollout GPUs. The full GPU campaign remains three continuous updates versus two saved updates plus one fresh-process update for each objective. Acceptance compares complete actor/critic parameters, optimizer, scheduler, RNG, tokens, rewards and policy publication. FP32 and the selected-logprob error bound of 0.03 remain unchanged. Native RLT is pinned to `d2a358933393f25d74dd2bdd1068a741cd5d9226`; model revision is `b82e54bd609793562a75cbf9337970a93369eab5`. The official-weight GPU campaign is incomplete. No speed or memory improvement is inferred from CPU test duration.
 
-The 2026-10-07 Thor continuation builds unchanged pinned TMS source `8d30c59` into a task-private directory using existing CUDA 13.2 headers and libraries. Both AArch64 CUDA 13 shared libraries compile with actual exit zero. The real training actor module imports through the private TMS path with CUDA uninitialized. No package is installed and no existing environment is changed. This verifies dependency compilation and Python module import; CUDA allocation hooks, offload/resume and GPU training have not been tested. [The Thor CPU archive](../../benchmarks/results/nanbeige-thor-cpu-20261007/) retains full logs, helper sources, actual exits, library hashes and an independently verified off-box manifest.
+Official-configuration FP32 meta layouts match configuration Git blob `e542b36686258dcc58de083c0fa7c81c9ebd65d6`:
 
-| Thor verification | Existing environment before private build | Current CPU result | Matched training speed improvement |
+| Role | Unique physical parameters | Physical layers | Logical layer visits |
 | --- | --- | --- | --- |
-| Pinned native TMS dependency | Absent from both checked `0z5a` environments | Two AArch64 CUDA 13 libraries compile; private path only | Not measured |
-| Real training actor module with private TMS | Pending | PASS; CUDA uninitialized | Not measured |
-| Published recipes and actual MCore argument parsing | Pending | PPO, GRPO, DPPO and Flow-DPPO PASS; FP32 and offload preserved | Not measured |
-| Official-weight GPU e2e, offload and reward convergence | Pending | Pending | Not measured |
+| Actor | 4,169,800,704 | 22 | 44 |
+| Critic | 3,659,409,408 | 22 | 44 |
 
-The argument check intercepts Ray launch and runs no rollouts or optimizer updates. It preserves three updates, GRPO group size four, Flow-DPPO's two steps, 48 response tokens and the original dedicated train/rollout allocation. Its two physical GPU requirement remains unchanged. The 2026-10-07 00:44 CST Thor snapshot still has three compute processes and the occupied original GPU lock, about 19.4 GiB available host memory and 14.5 GiB local disk. This single-GPU host cannot run the original two-GPU profile, and the snapshot does not meet the 80 GiB host / 56 GiB disk reserves. No model weights were downloaded or loaded during this continuation. No official-weight GPU acceptance or reward-convergence claim is made from these CPU results.
+The critic excludes the policy LM head. This verifies architecture and parameter layout; zero weight shards were loaded and CUDA remained uninitialized. [Public validation summaries](../../benchmarks/results/nanbeige-validation-20261007/) retain measured results, source pins, library hashes and a checksum manifest. Original logs and deployment records are retained privately. Public summaries omit infrastructure identifiers and operational details.

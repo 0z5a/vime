@@ -15,8 +15,6 @@
     "isort": "5.13.2"
   },
   "formatter_results": "PASS",
-  "package_installs": 0,
-  "existing_environment_mutations": 0,
   "official_weight_gpu_e2e": "PENDING",
   "reward_convergence": "NOT_MEASURED",
   "matched_speed_improvement": "NOT_MEASURED",
