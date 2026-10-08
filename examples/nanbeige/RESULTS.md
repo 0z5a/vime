@@ -27,3 +27,12 @@ Official-configuration FP32 meta layouts match configuration Git blob `e542b3668
 | Critic | 3,659,409,408 | 22 | 44 |
 
 The critic excludes the policy LM head. This verifies architecture and parameter layout; zero weight shards were loaded and CUDA remained uninitialized. [Public validation summaries](../../benchmarks/results/nanbeige-validation-20261007/) retain measured results, source pins, library hashes and a checksum manifest. Original logs and deployment records are retained privately. Public summaries omit infrastructure identifiers and operational details.
+
+The original CPU suite also passes in a fresh Linux x86_64 environment with all 137 dependency versions verified: Torch 2.12.1+cu130, Triton 3.7.1, Transformers 4.54.1 and Setuptools 79.0.1. Dependency checking, version-lock checking, native actor import, source-pin checking and CPU tests all exit zero. RLT's 52 and patched Megatron Core's 474 source files match their frozen pins.
+
+| Original CPU qualification | Before | GNU compilers with fresh JIT caches | Matched RL speed improvement |
+| --- | --- | --- | --- |
+| Original 101 tests | 94 passed; 7 failed on missing `libimf.so` | 101 passed; zero failures, errors or skips | Not measured |
+| Five qualification stages | CPU test stage failed | All five exit zero | Not measured |
+
+Only command-scoped compilers and fresh private caches changed. The suite, numerical code and dependency pins remain unchanged. Independent review verifies sizes and SHA-256 hashes of 202 evidence files, parses the raw test XML and checks nine generated x86_64 ELF libraries; none requires `libimf.so`. Complete compiler command lines were not traced. CUDA remained uninitialized. Native CUDA allocation, offload and recovery, official-model GPU e2e, accuracy, reward convergence and matched RL speed or memory improvement remain untested. [CPU qualification summary and checksum](../../benchmarks/results/nanbeige-validation-20261008/) publish only the measured CPU scope.
