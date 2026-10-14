@@ -22,7 +22,8 @@
 #   NUM_GPUS (default 8) and TP_SIZE (default 1): GPUs on this node and
 #       training tensor parallelism.
 #   NO_SAVE=1 skips checkpoints (including the final one).
-#   EVAL_INTERVAL, EXTRA_ARGS (appended to train.py), plus the variables below.
+#   EVAL_INTERVAL (off disables evaluation, including the one before training),
+#   EXTRA_ARGS (appended to train.py), plus the variables below.
 
 set -ex
 export PYTHONUNBUFFERED=1
@@ -148,6 +149,10 @@ EVAL_ARGS=(
    --eval-max-response-len 16384
    --eval-top-p 1
 )
+
+if [ "${EVAL_INTERVAL:-}" = "off" ]; then
+   EVAL_ARGS=()
+fi
 
 MISC_ARGS=(
    --attention-dropout 0.0

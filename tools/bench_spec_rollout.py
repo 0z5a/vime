@@ -77,8 +77,8 @@ def plan(args) -> dict:
                         "DSPARK_FREEZE_POLICY": "0",
                         "NUM_ROLLOUT": str(args.num_rollout),
                         "NUM_GPUS": str(args.num_gpus),
-                        # No periodic eval inside the measured window, no checkpoints at all.
-                        "EVAL_INTERVAL": str(10**9),
+                        # No evaluation (train.py would otherwise evaluate before step 0) and no checkpoints.
+                        "EVAL_INTERVAL": "off",
                         "NO_SAVE": "1",
                         "TENSORBOARD_DIR": str(arm_dir / "tensorboard"),
                         "EXTRA_ARGS": " ".join(extra + args.extra_args),
