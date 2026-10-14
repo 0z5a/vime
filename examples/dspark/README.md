@@ -106,7 +106,8 @@ Both scripts read these environment variables:
 | `NUM_GPUS` | `8` (default) | GPUs on the node. Non-colocate trains on half and serves one engine on the other half. |
 | `TP_SIZE` | | Training tensor parallelism (colocate default 1, non-colocate default all training GPUs). |
 | `NO_SAVE` | `1` | Write no checkpoint, including the one after the last rollout. |
-| `EVAL_INTERVAL`, `NUM_ROLLOUT`, `SAVE_INTERVAL`, `EXTRA_ARGS` | | Eval cadence, steps, checkpoint cadence, and extra `train.py` arguments. |
+| `EVAL_INTERVAL` | number or `off` | Evaluation cadence; `off` also skips the evaluation before training. |
+| `NUM_ROLLOUT`, `SAVE_INTERVAL`, `EXTRA_ARGS` | | Steps, checkpoint cadence, and extra `train.py` arguments. |
 
 ### Benchmarking speculative rollout
 

@@ -47,6 +47,8 @@ def test_plan_covers_every_mode_and_layout_with_the_same_seed(tmp_path):
         assert env["NUM_ROLLOUT"] == "5" and env["NUM_GPUS"] == "4"
         # No checkpoint, not even the one train.py writes after the last rollout.
         assert env["NO_SAVE"] == "1" and "SAVE_DIR" not in env
+        # No aime evaluation before step 0 either.
+        assert env["EVAL_INTERVAL"] == "off"
         assert "--seed 7" in env["EXTRA_ARGS"] and "--rollout-seed 7" in env["EXTRA_ARGS"]
         assert env["TENSORBOARD_DIR"] == str(Path(arm["dir"]) / "tensorboard")
         assert env["MODEL_DIR"] == "/data/Qwen3-4B"
