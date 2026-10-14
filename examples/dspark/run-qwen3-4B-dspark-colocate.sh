@@ -11,6 +11,15 @@
 #   - dapo-math-17k dataset
 #
 # Usage: bash examples/dspark/run-qwen3-4B-dspark-colocate.sh
+#
+# Optional environment:
+#   SPEC_MODE=online|frozen|off  online (default) trains the draft during RL and
+#       syncs it every step; frozen serves the pretrained draft unchanged
+#       (--dspark-freeze-draft); off disables speculative decoding.
+#   DSPARK_FREEZE_POLICY=1|0  with SPEC_MODE=online, 1 (default) trains only
+#       the draft and 0 also trains the policy with GRPO. frozen and off always
+#       train the policy, so compare them with online and DSPARK_FREEZE_POLICY=0.
+#   EVAL_INTERVAL, EXTRA_ARGS (appended to train.py), plus the variables below.
 
 set -ex
 export PYTHONUNBUFFERED=1
@@ -91,7 +100,6 @@ OPTIMIZER_ARGS=(
 VLLM_ARGS=(
    --rollout-num-gpus-per-engine 1
    --vllm-gpu-memory-utilization 0.5
-   --vllm-speculative-config '{"method":"dspark","model":"'"${DSPARK_MODEL}"'","num_speculative_tokens":7}'
 )
 
 DSPARK_ARGS=(
@@ -107,13 +115,29 @@ DSPARK_ARGS=(
    --dspark-confidence-head-alpha 0.1
    --dspark-loss-decay-gamma 4.0
    --dspark-draft-loss-weight 1.0
-   --dspark-freeze-policy
    --dspark-intermediate-size 9728
    --dspark-pretrained-model "${DSPARK_MODEL}/model.safetensors"
 )
 
+SPEC_ARGS=(
+   --vllm-speculative-config '{"method":"dspark","model":"'"${DSPARK_MODEL}"'","num_speculative_tokens":7}'
+)
+
+SPEC_MODE=${SPEC_MODE:-online}
+DSPARK_FREEZE_POLICY=${DSPARK_FREEZE_POLICY:-1}
+case "${SPEC_MODE}" in
+   online)
+      if [ "${DSPARK_FREEZE_POLICY}" = "1" ]; then
+         DSPARK_ARGS+=(--dspark-freeze-policy)
+      fi
+      ;;
+   frozen) DSPARK_ARGS=(--dspark-freeze-draft) ;;
+   off) SPEC_ARGS=(); DSPARK_ARGS=() ;;
+   *) echo "SPEC_MODE must be online, frozen or off" >&2; exit 1 ;;
+esac
+
 EVAL_ARGS=(
-   --eval-interval 100
+   --eval-interval "${EVAL_INTERVAL:-100}"
    --eval-prompt-data aime /root/aime-2024/aime-2024.jsonl
    --n-samples-per-eval-prompt 16
    --eval-max-response-len 16384
@@ -157,8 +181,10 @@ ray job submit --address="http://127.0.0.1:8265" \
    ${PERF_ARGS[@]} \
    ${EVAL_ARGS[@]} \
    ${VLLM_ARGS[@]} \
+   ${SPEC_ARGS[@]} \
    ${DSPARK_ARGS[@]} \
-   ${MISC_ARGS[@]}
+   ${MISC_ARGS[@]} \
+   ${EXTRA_ARGS:-}
 
 # Cleanup
 ray stop --force

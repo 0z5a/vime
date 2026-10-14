@@ -49,10 +49,11 @@ hf download --repo-type dataset zhuzilin/dapo-math-17k --local-dir /root/dapo-ma
 | `--dspark-num-draft-layers` | Number of decoder layers in the draft backbone (default: 5). |
 | `--dspark-target-layer-ids` | Comma-separated policy layer indices to capture hidden states from (default: "1,9,17,25,33"). |
 | `--dspark-freeze-policy` | Freeze policy and train only the draft model. |
+| `--dspark-freeze-draft` | Serve the pretrained draft from `--vllm-speculative-config`'s `model` without training or syncing it. Baseline for online draft training. |
 | `--dspark-ce-loss-alpha` | Weight for cross-entropy loss (default: 0.1). |
 | `--dspark-l1-loss-alpha` | Weight for L1/TV loss (default: 0.9). |
 | `--dspark-draft-loss-weight` | Weight multiplying draft loss added to policy loss (default: 1.0). |
-| `--vllm-speculative-config` | JSON config passed to vLLM. Setting `method: "dspark"` also enables DSpark draft training. |
+| `--vllm-speculative-config` | JSON config passed to vLLM. Setting `method: "dspark"` also enables DSpark draft training, unless `--dspark-freeze-draft` is set. |
 
 ## Mode Comparison
 
@@ -93,6 +94,29 @@ GPU layout:
 |------|------|
 | 0–3 | Policy Megatron train |
 | 4–7 | vLLM rollout (with DSpark speculative decoding) |
+
+### Script switches
+
+Both scripts read these environment variables:
+
+| Variable | Values | Effect |
+|----------|--------|--------|
+| `SPEC_MODE` | `online` (default), `frozen`, `off` | Train and sync the draft every step; serve the pretrained draft unchanged; or no speculative decoding. |
+| `DSPARK_FREEZE_POLICY` | `1` (default), `0` | With `online`, `1` trains only the draft and `0` also trains the policy. `frozen` and `off` always train the policy. |
+| `EVAL_INTERVAL`, `NUM_ROLLOUT`, `SAVE_INTERVAL`, `EXTRA_ARGS` | | Eval cadence, steps, checkpoint cadence, and extra `train.py` arguments. |
+
+### Benchmarking speculative rollout
+
+`tools/bench_spec_rollout.py` runs the `off`, `frozen` and `online` modes in both
+placements with the same seed and number of steps (all arms train the policy),
+then compares rollout and step time, acceptance over the run, draft sync time
+and train/rollout log-prob difference from each arm's TensorBoard log:
+
+```bash
+python tools/bench_spec_rollout.py plan --out /root/spec-bench --num-rollout 20
+python tools/bench_spec_rollout.py run --out /root/spec-bench
+python tools/bench_spec_rollout.py summarize --out /root/spec-bench
+```
 
 ## What to Expect
 
