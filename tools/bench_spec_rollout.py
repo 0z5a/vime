@@ -8,8 +8,12 @@ placements, with the same dataset, seed and number of steps, and compares them:
 - ``frozen``: the pretrained DSpark draft is served but never trained or synced
 - ``online``: the draft is trained during RL and synced every step
 
-All arms train the policy with GRPO (``DSPARK_FREEZE_POLICY=0``), so they see
-the same kind of policy drift. Metrics come from each arm's TensorBoard log.
+All arms train the policy with GRPO (``DSPARK_FREEZE_POLICY=0``). In the
+``online`` arm the draft reads detached policy hidden states and logits, so its
+loss does not reach the policy parameters; the one coupling left is the shared
+optimizer's global gradient-norm clipping. No arm writes checkpoints
+(``NO_SAVE=1``). Metrics come from each arm's TensorBoard log; an arm that ends
+without TensorBoard events counts as failed.
 
     python tools/bench_spec_rollout.py plan --out /data/bench --num-rollout 20
     python tools/bench_spec_rollout.py run --out /data/bench          # or --dry-run
@@ -72,10 +76,10 @@ def plan(args) -> dict:
                         "SPEC_MODE": mode,
                         "DSPARK_FREEZE_POLICY": "0",
                         "NUM_ROLLOUT": str(args.num_rollout),
-                        # No periodic eval or checkpoints inside the measured window.
+                        "NUM_GPUS": str(args.num_gpus),
+                        # No periodic eval inside the measured window, no checkpoints at all.
                         "EVAL_INTERVAL": str(10**9),
-                        "SAVE_INTERVAL": str(10**9),
-                        "SAVE_DIR": str(arm_dir / "ckpt"),
+                        "NO_SAVE": "1",
                         "TENSORBOARD_DIR": str(arm_dir / "tensorboard"),
                         "EXTRA_ARGS": " ".join(extra + args.extra_args),
                         **dict(kv.split("=", 1) for kv in args.env),
@@ -106,10 +110,16 @@ def run(args) -> int:
             code = subprocess.call(
                 ["bash", arm["script"]], env={**os.environ, **arm["env"]}, stdout=log, stderr=subprocess.STDOUT
             )
-        record = {"exit_code": code, "start": start, "wall_time": time.time() - start}
+        events = len(list((arm_dir / "tensorboard").rglob("events.out.tfevents.*")))
+        record = {
+            "exit_code": code,
+            "tensorboard_event_files": events,
+            "start": start,
+            "wall_time": time.time() - start,
+        }
         (arm_dir / "run.json").write_text(json.dumps(record, indent=2))
-        print(f"[{arm['name']}] exit {code} after {record['wall_time']:.0f}s", flush=True)
-        failures += code != 0
+        print(f"[{arm['name']}] exit {code}, {events} event files, {record['wall_time']:.0f}s", flush=True)
+        failures += code != 0 or events == 0
     return 1 if failures else 0
 
 
@@ -184,7 +194,9 @@ def render(rows: list[dict], plan_data: dict, warmup: int) -> str:
         "# Speculative rollout benchmark",
         "",
         f"Seed {plan_data['seed']}; means over rollout steps after the first {warmup}. "
-        "Speedups divide the `off` arm's time by the arm's time (same placement).",
+        "Speedups divide the `off` arm's time by the arm's time (same placement). "
+        "All arms train the policy; in `online` the draft loss is detached from it but "
+        "shares the optimizer's gradient-norm clipping.",
         "",
         "| " + " | ".join(header for _, header, _ in COLUMNS) + " |",
         "| " + " | ".join("---" if key == "arm" else "---:" for key, _, _ in COLUMNS) + " |",
@@ -219,6 +231,7 @@ def main():
     p.add_argument("--out", required=True)
     p.add_argument("--num-rollout", type=int, default=20)
     p.add_argument("--seed", type=int, default=1234)
+    p.add_argument("--num-gpus", type=int, default=8, help="GPUs on the node (non-colocate splits them in half)")
     p.add_argument("--modes", nargs="+", choices=MODES, default=list(MODES))
     p.add_argument("--layouts", nargs="+", choices=LAYOUTS, default=list(LAYOUTS))
     p.add_argument("--env", nargs="*", default=[], help="extra KEY=VALUE for every arm, e.g. MODEL_DIR=/data/Qwen3-4B")

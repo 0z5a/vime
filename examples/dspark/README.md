@@ -103,14 +103,20 @@ Both scripts read these environment variables:
 |----------|--------|--------|
 | `SPEC_MODE` | `online` (default), `frozen`, `off` | Train and sync the draft every step; serve the pretrained draft unchanged; or no speculative decoding. |
 | `DSPARK_FREEZE_POLICY` | `1` (default), `0` | With `online`, `1` trains only the draft and `0` also trains the policy. `frozen` and `off` always train the policy. |
+| `NUM_GPUS` | `8` (default) | GPUs on the node. Non-colocate trains on half and serves one engine on the other half. |
+| `TP_SIZE` | | Training tensor parallelism (colocate default 1, non-colocate default all training GPUs). |
+| `NO_SAVE` | `1` | Write no checkpoint, including the one after the last rollout. |
 | `EVAL_INTERVAL`, `NUM_ROLLOUT`, `SAVE_INTERVAL`, `EXTRA_ARGS` | | Eval cadence, steps, checkpoint cadence, and extra `train.py` arguments. |
 
 ### Benchmarking speculative rollout
 
 `tools/bench_spec_rollout.py` runs the `off`, `frozen` and `online` modes in both
-placements with the same seed and number of steps (all arms train the policy),
-then compares rollout and step time, acceptance over the run, draft sync time
-and train/rollout log-prob difference from each arm's TensorBoard log:
+placements with the same seed and number of steps, then compares rollout and
+step time, acceptance over the run, draft sync time and train/rollout log-prob
+difference from each arm's TensorBoard log. All arms train the policy and write
+no checkpoints. In `online` the draft reads detached policy hidden states and
+logits, so its loss does not reach the policy; the arms still share the
+optimizer's global gradient-norm clipping. Use `--num-gpus 4` on a 4-GPU node.
 
 ```bash
 python tools/bench_spec_rollout.py plan --out /root/spec-bench --num-rollout 20

@@ -4,7 +4,9 @@ Trains the policy with GRPO and the DSpark draft at the same time for a few
 steps, in colocate or non-colocate placement (``--layout``), and checks from
 the run's TensorBoard log that
 
-- the draft was synced to vLLM after every training step, and
+- a draft push to vLLM was issued after every training step (the vLLM engine
+  does not support ``check_weights``, so this cannot confirm vLLM applied it;
+  tests/test_dspark_weight_export.py checks the pushed names and shapes), and
 - speculation stayed effective: the acceptance rate of every rollout is above
   ``MIN_SPEC_ACCEPT_RATE``.
 
@@ -113,8 +115,8 @@ def verify(tensorboard_dir: Path) -> None:
     perf_steps = sorted(scalars.get("perf/actor_train_time", {}))
     assert perf_steps, "no perf metrics logged"
     missing = [step for step in perf_steps[1:] if step not in draft_sync]
-    assert not missing, f"draft not synced before steps {missing}: {draft_sync}"
-    print(f"DSpark verified: accept rates {accept}, draft sync times {draft_sync}")
+    assert not missing, f"no draft push before steps {missing}: {draft_sync}"
+    print(f"DSpark verified: accept rates {accept}, draft push times {draft_sync}")
 
 
 def execute(layout: str) -> None:

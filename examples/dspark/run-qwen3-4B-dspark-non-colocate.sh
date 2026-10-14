@@ -24,6 +24,9 @@
 #   DSPARK_FREEZE_POLICY=1|0  with SPEC_MODE=online, 1 (default) trains only
 #       the draft and 0 also trains the policy with GRPO. frozen and off always
 #       train the policy, so compare them with online and DSPARK_FREEZE_POLICY=0.
+#   NUM_GPUS (default 8): half train (TP_SIZE, default all of them), half
+#       serve one rollout engine.
+#   NO_SAVE=1 skips checkpoints (including the final one).
 #   EVAL_INTERVAL, EXTRA_ARGS (appended to train.py), plus the variables below.
 
 set -ex
@@ -42,14 +45,18 @@ source "/root/vime/scripts/models/qwen3-4B.sh"
 MODEL_DIR=${MODEL_DIR:-/root/Qwen3-4B}
 DSPARK_MODEL=${DSPARK_MODEL:-/root/Qwen3-4B-dspark-pretrained}
 DATA_PATH=${DATA_PATH:-/root/dapo-math-17k/dapo-math-17k.jsonl}
+NUM_GPUS=${NUM_GPUS:-8}
+TRAIN_GPUS=$((NUM_GPUS / 2))
+ROLLOUT_GPUS=$((NUM_GPUS - TRAIN_GPUS))
 SAVE_DIR=${SAVE_DIR:-/root/Qwen3-4B_dspark_non_colocate/}
 
 CKPT_ARGS=(
    --hf-checkpoint "${MODEL_DIR}"
    --ref-load "${MODEL_DIR}_torch_dist"
-   --save "${SAVE_DIR}"
-   --save-interval "${SAVE_INTERVAL:-50}"
 )
+if [ "${NO_SAVE:-0}" != "1" ]; then
+   CKPT_ARGS+=(--save "${SAVE_DIR}" --save-interval "${SAVE_INTERVAL:-50}")
+fi
 
 ROLLOUT_ARGS=(
    --prompt-data "${DATA_PATH}"
@@ -69,7 +76,7 @@ ROLLOUT_ARGS=(
 )
 
 PERF_ARGS=(
-   --tensor-model-parallel-size 4
+   --tensor-model-parallel-size "${TP_SIZE:-${TRAIN_GPUS}}"
    --sequence-parallel
    --pipeline-model-parallel-size 1
    --context-parallel-size 1
@@ -104,8 +111,8 @@ OPTIMIZER_ARGS=(
 )
 
 VLLM_ARGS=(
-   --rollout-num-gpus 4
-   --rollout-num-gpus-per-engine 4
+   --rollout-num-gpus "${ROLLOUT_GPUS}"
+   --rollout-num-gpus-per-engine "${ROLLOUT_GPUS}"
    --vllm-gpu-memory-utilization 0.85
 )
 
@@ -161,14 +168,15 @@ MISC_ARGS=(
 )
 
 # Start Ray with all 8 GPUs
-ray start --head --port=6379 --num-gpus=8 \
+ray start --head --port=6379 --num-gpus="${NUM_GPUS}" \
    --disable-usage-stats --dashboard-host=0.0.0.0 --dashboard-port=8265
 
 RUNTIME_ENV_JSON="{
   \"env_vars\": {
     \"PYTHONPATH\": \"/root/vime:/root/Megatron-LM/\",
     \"CUDA_DEVICE_MAX_CONNECTIONS\": \"1\",
-    \"NCCL_NVLS_ENABLE\": \"${HAS_NVLINK}\"
+    \"NCCL_NVLS_ENABLE\": \"${HAS_NVLINK}\"${TENSORBOARD_DIR:+,
+    \"TENSORBOARD_DIR\": \"${TENSORBOARD_DIR}\"}
   }
 }"
 
@@ -178,7 +186,7 @@ ray job submit --address="http://127.0.0.1:8265" \
    -- python3 train.py \
    --train-backend megatron \
    --actor-num-nodes 1 \
-   --actor-num-gpus-per-node 4 \
+   --actor-num-gpus-per-node "${TRAIN_GPUS}" \
    ${MODEL_ARGS[@]} \
    ${CKPT_ARGS[@]} \
    ${ROLLOUT_ARGS[@]} \
