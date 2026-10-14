@@ -131,6 +131,7 @@ steps:
           python tests/test_ppo_logprob_entropy.py
           python tests/utils/test_hf_checkpoint_saver.py
           python tests/test_bench_spec_rollout.py
+          python tests/test_dspark_weight_export.py
         '
 
   - label: ":robot_face: agent adapter tests"
