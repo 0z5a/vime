@@ -22,6 +22,7 @@ def _plan(tmp_path, **overrides):
         out=str(tmp_path),
         num_rollout=5,
         seed=7,
+        num_gpus=4,
         modes=list(bench.MODES),
         layouts=list(bench.LAYOUTS),
         env=["MODEL_DIR=/data/Qwen3-4B"],
@@ -43,7 +44,9 @@ def test_plan_covers_every_mode_and_layout_with_the_same_seed(tmp_path):
         assert env["SPEC_MODE"] == arm["mode"]
         # Every arm trains the policy, so acceptance is measured under the same drift.
         assert env["DSPARK_FREEZE_POLICY"] == "0"
-        assert env["NUM_ROLLOUT"] == "5"
+        assert env["NUM_ROLLOUT"] == "5" and env["NUM_GPUS"] == "4"
+        # No checkpoint, not even the one train.py writes after the last rollout.
+        assert env["NO_SAVE"] == "1" and "SAVE_DIR" not in env
         assert "--seed 7" in env["EXTRA_ARGS"] and "--rollout-seed 7" in env["EXTRA_ARGS"]
         assert env["TENSORBOARD_DIR"] == str(Path(arm["dir"]) / "tensorboard")
         assert env["MODEL_DIR"] == "/data/Qwen3-4B"
@@ -60,6 +63,21 @@ def test_dry_run_runs_nothing(tmp_path, capsys):
     assert code == 0
     assert 'SPEC_MODE="off"' in capsys.readouterr().out
     assert not (tmp_path / "colocate-off" / "run.json").exists()
+
+
+@pytest.mark.unit
+def test_arm_without_tensorboard_events_fails(tmp_path):
+    result = _plan(tmp_path, layouts=["colocate"], modes=["off"])
+    script = tmp_path / "fake.sh"
+    script.write_text("exit 0\n")
+    result["arms"][0]["script"] = str(script)
+    (tmp_path / "plan.json").write_text(json.dumps(result))
+
+    code = bench.run(Namespace(out=str(tmp_path), arms=None, dry_run=False))
+
+    assert code == 1
+    record = json.loads((tmp_path / "colocate-off" / "run.json").read_text())
+    assert record["exit_code"] == 0 and record["tensorboard_event_files"] == 0
 
 
 @pytest.mark.unit
