@@ -4,9 +4,11 @@ Workers shard a tiny randomly initialized Qwen3 with FSDP2 on CPU and drive
 the production trainer: log-probs on packed micro-batches, the shared GRPO
 loss, optimizer steps, weight export, model switching and checkpoints.
 
-``megatron.core.mpu`` is stubbed with the pure data-parallel layout the
-backend registers at runtime (TP = PP = CP = 1, DP = world), because the
-shared loss and metric helpers read their process groups from it.
+The shared loss and metric helpers read their process groups from
+``megatron.core.mpu``. With Megatron installed (the vime image), workers
+register the same pure data-parallel layout as the actor (TP = PP = CP = 1,
+DP = world) through Megatron's ``initialize_model_parallel``; without it (the
+plain CPU image) a stub provides that layout.
 """
 
 from __future__ import annotations
@@ -24,9 +26,12 @@ import torch
 import torch.distributed as dist
 import torch.multiprocessing as mp
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
-if str(REPO_ROOT) not in sys.path:
-    sys.path.insert(0, str(REPO_ROOT))
+TESTS_ROOT = Path(__file__).resolve().parent
+for path in (TESTS_ROOT, TESTS_ROOT.parent):
+    if str(path) not in sys.path:
+        sys.path.insert(0, str(path))
+
+import _unit_stubs
 
 NUM_GPUS = 0
 
@@ -67,7 +72,8 @@ def _install_param_meta_stub() -> None:
         sys.modules["vllm.distributed.weight_transfer.base"] = base
 
 
-_install_pure_data_parallel_mpu()
+if not _unit_stubs.real_module_available("megatron.core"):
+    _install_pure_data_parallel_mpu()
 
 
 def _free_port() -> int:
@@ -280,11 +286,21 @@ def _full_state(model) -> dict[str, torch.Tensor]:
 def _init_worker(rank: int, world: int, port: int) -> None:
     os.environ.update(MASTER_ADDR="127.0.0.1", MASTER_PORT=str(port))
     dist.init_process_group("gloo", rank=rank, world_size=world)
+    from megatron.core import mpu
+
+    if hasattr(mpu, "initialize_model_parallel"):  # real Megatron; the stub has no initializer
+        # Same layout as FSDPTrainRayActor.init registers.
+        mpu.initialize_model_parallel(
+            tensor_model_parallel_size=1,
+            pipeline_model_parallel_size=1,
+            context_parallel_size=1,
+            create_gloo_process_groups=True,
+        )
+        assert mpu.get_data_parallel_world_size(with_context_parallel=True) == world
+        return
     singletons = [dist.new_group([r]) for r in range(world)]
     # Mutate the installed stub: this module may be imported twice in a worker
     # (as __mp_main__ and by name), and the loss code is bound to the first.
-    from megatron.core import mpu
-
     mpu.get_tensor_model_parallel_group = lambda: singletons[rank]
 
 

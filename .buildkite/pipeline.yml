@@ -209,6 +209,8 @@ steps:
             tests/test_draft_feature_collector.py \
             tests/test_draft_feature_metadata.py \
             tests/test_filter_long_prompt.py \
+            tests/test_fsdp2_backend_registry.py \
+            tests/test_fsdp2_cpu_smoke.py \
             tests/test_fully_async_rollout.py \
             tests/test_queue_sample_codec.py \
             tests/test_rollout_straw_transport.py \
