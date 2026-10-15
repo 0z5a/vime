@@ -19,7 +19,6 @@ import torch.distributed as dist
 from torch.distributed.tensor import DTensor, Replicate
 
 from vime.utils.distributed_utils import get_gloo_group
-from vime.utils.weight_sync import should_flush_cache
 
 logger = logging.getLogger(__name__)
 
@@ -96,7 +95,6 @@ class FSDPWeightUpdater:
         )
         self.weight_version = args.update_weight_start_version
         self.rollout_engines = []
-        self._distributed_engines = []
         self._trainers = []
 
     def connect_rollout_engines(
@@ -110,10 +108,7 @@ class FSDPWeightUpdater:
         from vllm.distributed.weight_transfer.factory import WeightTransferTrainerFactory
         from vllm.distributed.weight_transfer.ipc_engine import IPCTrainerInitInfo
 
-        from vime.backends.megatron_utils.update_weight.common import VimeRayWeightSyncClient
-        from vime.backends.megatron_utils.update_weight.update_weight_from_distributed import (
-            connect_rollout_engines_from_distributed,
-        )
+        from vime.backends.megatron_utils.update_weight.common import VimeRayWeightSyncClient, create_nccl_trainer
 
         del rollout_engine_lock, engine_parallel_configs
         self.disconnect_rollout_engines()
@@ -135,7 +130,7 @@ class FSDPWeightUpdater:
                     break
                 num_colocated += 1
         colocated = self.rollout_engines[:num_colocated]
-        self._distributed_engines = self.rollout_engines[num_colocated:]
+        distributed = self.rollout_engines[num_colocated:]
 
         if colocated:
             client = VimeRayWeightSyncClient(colocated, lambda: self.weight_version)
@@ -152,38 +147,24 @@ class FSDPWeightUpdater:
                     source=self.source,
                 )
             )
-        if self._distributed_engines:
+        if distributed:
             client = VimeRayWeightSyncClient(
-                self._distributed_engines, lambda: self.weight_version, engine_gpu_counts[num_colocated:]
+                distributed, lambda: self.weight_version, engine_gpu_counts[num_colocated:]
             )
-            self._trainers.append(
-                connect_rollout_engines_from_distributed(client, self.source, engine_gpu_counts[num_colocated:])
-            )
+            self._trainers.append(create_nccl_trainer(client, self.source, engine_gpu_counts[num_colocated:]))
 
     def disconnect_rollout_engines(self) -> None:
-        from vime.backends.megatron_utils.update_weight.update_weight_from_distributed import (
-            disconnect_rollout_engines_from_distributed,
-        )
-
         for trainer in self._trainers:
-            if trainer.init_info_cls.backend == "nccl":
-                disconnect_rollout_engines_from_distributed(trainer, self._distributed_engines)
-            else:
-                trainer.shutdown()
+            trainer.shutdown()
         self._trainers = []
 
     @torch.no_grad()
     def update_weights(self) -> None:
         assert self._trainers, "connect_rollout_engines must run before update_weights"
         self.weight_version += 1
-        flush_cache = should_flush_cache(
-            self.args.flush_cache_interval, self.weight_version, self.args.update_weight_start_version
-        )
         if dist.get_rank() == 0:
-            mode = "abort" if flush_cache else "in_place"
-            ray.get([engine.pause_generation.remote(mode=mode) for engine in self.rollout_engines])
-            if flush_cache:
-                ray.get([engine.flush_cache.remote() for engine in self.rollout_engines])
+            ray.get([engine.pause_generation.remote() for engine in self.rollout_engines])
+            ray.get([engine.flush_cache.remote() for engine in self.rollout_engines])
         dist.barrier(group=get_gloo_group())
 
         for trainer in self._trainers:
