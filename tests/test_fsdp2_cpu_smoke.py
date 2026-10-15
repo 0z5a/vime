@@ -409,6 +409,101 @@ def test_data_parallel_size_does_not_change_the_update(models, tie, overrides, w
     assert moved > 1e-4, "the optimizer steps did not change the weights"
 
 
+def _reference_step_gradient(policy_dir: str, ref_dir: str, samples, *, temperature, entropy_coef, kl_coef):
+    """Plain PyTorch: d/dθ of (1/G) Σ_s [-c_ent·mean_t H_t + c_kl·mean_t (log p_t - log p_ref_t)]."""
+    from transformers import AutoModelForCausalLM
+
+    model = AutoModelForCausalLM.from_pretrained(policy_dir, dtype=torch.float32, attn_implementation="sdpa")
+    reference = AutoModelForCausalLM.from_pretrained(ref_dir, dtype=torch.float32, attn_implementation="sdpa")
+    total = 0.0
+    for sample in samples:
+        tokens, response = sample["tokens"], sample["response_lengths"]
+        target = tokens[1:][-response:]
+        log_probs = (model(input_ids=tokens[None], use_cache=False).logits[0] / temperature).log_softmax(-1)
+        log_probs = log_probs[:-1][-response:]
+        token_log_probs = log_probs.gather(-1, target[:, None])[:, 0]
+        entropy = -(log_probs.exp() * log_probs).sum(-1)
+        with torch.no_grad():
+            ref_log_probs = (reference(input_ids=tokens[None], use_cache=False).logits[0] / temperature).log_softmax(
+                -1
+            )
+            ref_token_log_probs = ref_log_probs[:-1][-response:].gather(-1, target[:, None])[:, 0]
+        mask = sample["loss_masks"].float()
+        kl = token_log_probs - ref_token_log_probs
+        total = total + ((kl_coef * kl - entropy_coef * entropy) * mask).sum() / mask.sum().clamp_min(1)
+    (total / len(samples)).backward()
+    return {name: param.grad for name, param in model.named_parameters()}
+
+
+def _gradient_worker(rank, world, port, tmp, overrides, with_ref, result_path):
+    _init_worker(rank, world, port)
+    try:
+        from vime.backends.fsdp_utils.data_packing import iter_step_micro_batches
+        from vime.backends.fsdp_utils.model import load_hf_weights_into
+
+        args = _args(Path(tmp), **overrides)
+        trainer = _build(args, world)
+        samples = _samples(8, 96)
+        for sample in samples:
+            sample["rewards"] = 0.0  # GRPO advantages are the rewards here: no policy-gradient term
+        data = _local_rollout_data(args, samples, rank, world)
+        if with_ref:
+            trainer.backup.backup("actor")
+            load_hf_weights_into(trainer.model, args.ref_load, "sdpa")
+            trainer.backup.backup("ref")
+            trainer.switch_model("actor")
+
+        grads = {}
+        optimizer_step = trainer.optimizer.step
+
+        def capture_and_step():
+            for name, param in trainer.model.named_parameters():
+                grads[name] = param.grad.full_tensor().clone()
+            optimizer_step()
+
+        trainer.optimizer.step = capture_and_step
+        trainer.prepare_actor_inputs(data)
+        (_, step0), *_ = iter_step_micro_batches(data)
+        trainer.train_step(data, step0, data["global_batch_sizes"][0])
+        if rank == 0:
+            torch.save(grads, result_path)
+    finally:
+        dist.destroy_process_group()
+
+
+@pytest.mark.parametrize(
+    ("kl", "reference"),
+    [(False, "policy"), (True, "policy"), (True, "reference")],
+    ids=["entropy", "kl-ref-equals-actor", "kl-ref-differs"],
+)
+def test_step_gradient_matches_reference_loss(models, kl, reference):
+    """The trainer's gradient (packing, loss scaling, reduce-scatter, reference-model switching)
+    equals a plain unsharded computation of the same loss. With k1 the gradient does not
+    depend on the reference log-probs, so a differing reference model leaves the expected
+    gradient unchanged and only catches a trainer that keeps computing on the reference weights."""
+    tmp = models / "tie1"
+    overrides = dict(lr=0.0, clip_grad=0.0, entropy_coef=0.01, kl_loss_type="k1", ref_load=str(tmp / reference))
+    if kl:
+        overrides.update(use_kl_loss=True, kl_loss_coef=1.0)
+    path = tmp / f"grads_{int(kl)}_{reference}.pt"
+    _spawn(_gradient_worker, 2, str(tmp), overrides, kl, str(path))
+    got = torch.load(path, weights_only=False)
+
+    # Static micro-batches of 2 and a global batch of 4: step 0 holds the first 4 rollouts.
+    samples = _samples(8, 96)[:4]
+    expected = _reference_step_gradient(
+        str(tmp / "policy"),
+        str(tmp / reference),
+        samples,
+        temperature=0.8,
+        entropy_coef=0.01,
+        kl_coef=1.0 if kl else 0.0,
+    )
+    assert got.keys() == expected.keys()
+    for name, grad in expected.items():
+        torch.testing.assert_close(got[name], grad, rtol=1e-4, atol=1e-7, msg=name)
+
+
 def _state_worker(rank, world, port, tmp):
     _init_worker(rank, world, port)
     try:
