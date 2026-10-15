@@ -157,6 +157,8 @@ steps:
             tests/test_draft_feature_collector.py \
             tests/test_draft_feature_metadata.py \
             tests/test_filter_long_prompt.py \
+            tests/test_fsdp2_backend_registry.py \
+            tests/test_fsdp2_cpu_smoke.py \
             tests/test_fully_async_rollout.py \
             tests/test_glm52_layerwise_comparison.py \
             tests/test_glm5_indexer_q_norm.py \

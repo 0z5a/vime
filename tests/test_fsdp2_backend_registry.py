@@ -172,6 +172,54 @@ def test_validate_rejects_multimodal_and_quantized_checkpoints():
         validate_fsdp_args(_valid_args(), hf_config=Namespace(quantization_config={"quant_method": "fp8"}))
 
 
+@pytest.mark.skipif(
+    not _unit_stubs.real_module_available("megatron.training"), reason="requires the Megatron-LM training package"
+)
+def test_fsdp2_flags_survive_the_megatron_parser(monkeypatch, tmp_path):
+    """Full parse_args for an fsdp2 launch: Megatron's parser and validation, then the backend flags."""
+    from transformers import AutoModelForCausalLM, Qwen3Config
+
+    config = Qwen3Config(
+        vocab_size=96,
+        hidden_size=32,
+        intermediate_size=64,
+        num_hidden_layers=2,
+        num_attention_heads=4,
+        num_key_value_heads=2,
+        head_dim=8,
+        rope_theta=1000000,
+        rms_norm_eps=1e-6,
+        tie_word_embeddings=False,
+    )
+    AutoModelForCausalLM.from_config(config).save_pretrained(tmp_path)
+    model_args = (
+        "--swiglu --num-layers 2 --hidden-size 32 --ffn-hidden-size 64 --num-attention-heads 4 "
+        "--group-query-attention --num-query-groups 2 --use-rotary-position-embeddings --disable-bias-linear "
+        "--normalization RMSNorm --norm-epsilon 1e-6 --rotary-base 1000000 --vocab-size 96 --kv-channels 8 "
+        "--qk-layernorm --untie-embeddings-and-output-weights"
+    ).split()
+    launch = [
+        *model_args,
+        *("--hf-checkpoint", str(tmp_path), "--ref-load", str(tmp_path), "--debug-train-only"),
+        *("--actor-num-nodes", "1", "--actor-num-gpus-per-node", "2", "--num-rollout", "2"),
+        *("--rollout-batch-size", "4", "--n-samples-per-prompt", "2", "--global-batch-size", "8"),
+        *("--prompt-data", "/dev/null", "--input-key", "prompt", "--advantage-estimator", "grpo", "--lr", "1e-6"),
+        *("--train-backend", "fsdp2", "--fsdp-attn-implementation", "sdpa", "--fsdp-param-dtype", "fp32"),
+    ]
+    monkeypatch.setattr(sys, "argv", ["train.py", *launch])
+    from vime.utils.arguments import parse_args
+
+    args = parse_args()
+    assert (args.train_backend, args.fsdp_attn_implementation, args.fsdp_param_dtype) == ("fsdp2", "sdpa", "fp32")
+    assert args.fsdp_reshard_after_forward is True and args.fsdp_cpu_offload is False
+    # Fields the fsdp2 trainer reads directly come from Megatron's parser and validation.
+    assert args.load == str(tmp_path), "a fresh start trains from the HF weights in --ref-load"
+    assert (args.lr, args.world_size, args.clip_grad) == (1e-6, 2, 1.0)
+    assert args.start_weight_decay == args.end_weight_decay == args.weight_decay
+    assert args.weight_decay_incr_style == "constant"
+    validate_fsdp_args(args)
+
+
 def test_gpu_alignment_script_replays_megatron_rollout_with_fsdp2(monkeypatch, tmp_path):
     """Check the (GPU-only) alignment test's commands and comparison without running them."""
     import runpy
