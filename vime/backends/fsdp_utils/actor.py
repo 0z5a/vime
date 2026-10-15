@@ -241,7 +241,16 @@ class FSDPTrainRayActor(TrainRayActor):
                 ray.get(self.rollout_manager.clear_updatable_num_new_engines.remote())
 
         print_memory("before update_weights")
-        self.weight_updater.update_weights()
+        if self.args.offload_train:
+            # With --offload-train the train group preloads torch_memory_saver with tracking enabled, so every CUDA
+            # allocation is a VMM mapping that CUDA IPC cannot export ("invalid argument" when sharing the packed
+            # buffer). Allocate the transfer buffers untracked, as the Megatron actor does.
+            from torch_memory_saver import torch_memory_saver
+
+            with torch_memory_saver.disable():
+                self.weight_updater.update_weights()
+        else:
+            self.weight_updater.update_weights()
         clear_memory()
         print_memory("after update_weights")
 
