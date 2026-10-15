@@ -1,7 +1,10 @@
 """Megatron vs fsdp2 alignment on the same weights and the same batch.
 
-NOT YET RUN ON GPUs: this test was written together with the fsdp2 backend
-and has not been executed; its tolerances are first estimates.
+Its tolerances are first estimates. On the first H100 run every response was
+truncated, so all rewards and GRPO advantages were zero and both backends
+reported a zero gradient; only the log-prob comparison was informative.
+A small entropy term now gives the loss a gradient independent of rewards,
+and the test fails if Megatron's gradient is zero.
 
 1. Megatron (colocate, 4 GPUs) generates one rollout with vLLM, saves it,
    trains on it, and records its grad norms and train debug dump.
@@ -17,6 +20,7 @@ both backends, so both dumps carry ``log_probs``.
 
 import os
 import tempfile
+from pathlib import Path
 
 import torch
 
@@ -59,7 +63,8 @@ def _common_args() -> str:
         "--kl-loss-coef 0.00 "
         "--kl-loss-type k1 "
         "--kl-coef 0.00 "
-        "--entropy-coef 0.00 "
+        # Nonzero so the gradient compared below never vanishes with the rewards.
+        "--entropy-coef 0.01 "
         "--eps-clip 0.2 "
         "--eps-clip-high 0.28 "
     )
@@ -126,6 +131,8 @@ def execute():
         num_gpus_per_node=NUM_GPUS,
         megatron_model_type=MODEL_TYPE,
     )
+    norms = [float(torch.load(path)) for path in sorted(Path(work_dir).glob("grad_norm_*.pt"))]
+    assert norms and min(norms) > 0, f"Megatron grad norms {norms}: a zero gradient makes the 1% check vacuous"
     U.execute_train(
         train_args=(
             common + f"--ref-load /root/models/{MODEL_NAME}/ "
