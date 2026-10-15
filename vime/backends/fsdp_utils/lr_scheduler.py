@@ -179,8 +179,6 @@ def get_param_scheduler(args, optimizer: torch.optim.Optimizer) -> FSDPParamSche
     else:
         lr_warmup_steps = args.lr_warmup_iters * args.global_batch_size
 
-    start_wd = getattr(args, "start_weight_decay", None)
-    end_wd = getattr(args, "end_weight_decay", None)
     return FSDPParamScheduler(
         optimizer,
         init_lr=args.lr_warmup_init,
@@ -189,10 +187,10 @@ def get_param_scheduler(args, optimizer: torch.optim.Optimizer) -> FSDPParamSche
         lr_warmup_steps=lr_warmup_steps,
         lr_decay_steps=lr_decay_steps,
         lr_decay_style=args.lr_decay_style,
-        start_wd=args.weight_decay if start_wd is None else start_wd,
-        end_wd=args.weight_decay if end_wd is None else end_wd,
+        start_wd=args.start_weight_decay,
+        end_wd=args.end_weight_decay,
         wd_incr_steps=wd_incr_steps,
-        wd_incr_style=getattr(args, "weight_decay_incr_style", "constant"),
+        wd_incr_style=args.weight_decay_incr_style,
         wsd_decay_steps=wsd_decay_steps,
         lr_wsd_decay_style=args.lr_wsd_decay_style,
     )

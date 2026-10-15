@@ -21,8 +21,6 @@ from torch.distributed.tensor import DTensor, Replicate
 from vime.utils.distributed_utils import get_gloo_group
 from vime.utils.weight_sync import should_flush_cache
 
-from .model import resolve_rollout_dtype
-
 logger = logging.getLogger(__name__)
 
 
@@ -43,10 +41,6 @@ class FSDPWeightSource:
         self.bucket_bytes = bucket_bytes
         self._metadata = None
 
-    def named_shapes(self) -> list[tuple[str, tuple[int, ...]]]:
-        # DTensor.shape is the global shape, so this never communicates.
-        return [(name, tuple(param.shape)) for name, param in self.model.named_parameters()]
-
     def max_tensor_bytes(self) -> int:
         itemsize = torch.empty((), dtype=self.dtype).element_size()
         return max((param.numel() * itemsize for param in self.model.parameters()), default=0)
@@ -55,7 +49,10 @@ class FSDPWeightSource:
         if self._metadata is None:
             from vllm.distributed.weight_transfer.base import ParamMeta
 
-            self._metadata = [ParamMeta(name, self.dtype, shape) for name, shape in self.named_shapes()]
+            # DTensor.shape is the global shape, so this never communicates.
+            self._metadata = [
+                ParamMeta(name, self.dtype, tuple(param.shape)) for name, param in self.model.named_parameters()
+            ]
         return self._metadata
 
     def __iter__(self) -> Iterator[tuple[str, torch.Tensor]]:
@@ -93,12 +90,11 @@ class FSDPWeightUpdater:
         self.args = args
         self.source = FSDPWeightSource(
             model,
-            dtype=resolve_rollout_dtype(args),
+            dtype=torch.float16 if args.fp16 else torch.bfloat16,
             device=device,
             bucket_bytes=args.update_weight_buffer_size,
         )
-        self.weight_version = getattr(args, "update_weight_start_version", 0)
-        self.update_weight_metrics: dict[str, float] = {}
+        self.weight_version = args.update_weight_start_version
         self.rollout_engines = []
         self._distributed_engines = []
         self._trainers = []
@@ -176,16 +172,12 @@ class FSDPWeightUpdater:
                 trainer.shutdown()
         self._trainers = []
 
-    def pop_metrics(self) -> dict[str, float]:
-        metrics, self.update_weight_metrics = self.update_weight_metrics, {}
-        return metrics
-
     @torch.no_grad()
     def update_weights(self) -> None:
         assert self._trainers, "connect_rollout_engines must run before update_weights"
         self.weight_version += 1
         flush_cache = should_flush_cache(
-            self.args.flush_cache_interval, self.weight_version, getattr(self.args, "update_weight_start_version", 0)
+            self.args.flush_cache_interval, self.weight_version, self.args.update_weight_start_version
         )
         if dist.get_rank() == 0:
             mode = "abort" if flush_cache else "in_place"
@@ -195,7 +187,6 @@ class FSDPWeightUpdater:
         dist.barrier(group=get_gloo_group())
 
         for trainer in self._trainers:
-            trainer.client.draft = False
             trainer.send_weights()
 
         if dist.get_rank() == 0:

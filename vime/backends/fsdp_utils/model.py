@@ -23,15 +23,10 @@ _DTYPES = {"bf16": torch.bfloat16, "fp16": torch.float16, "fp32": torch.float32}
 
 def resolve_param_dtype(args) -> torch.dtype:
     """Compute dtype of the sharded model; ``auto`` follows the shared ``--fp16`` flag."""
-    name = getattr(args, "fsdp_param_dtype", "auto")
+    name = args.fsdp_param_dtype
     if name == "auto":
-        name = "fp16" if getattr(args, "fp16", False) else "bf16"
+        name = "fp16" if args.fp16 else "bf16"
     return _DTYPES[name]
-
-
-def resolve_rollout_dtype(args) -> torch.dtype:
-    """Dtype of the weights pushed to the rollout engines."""
-    return torch.float16 if getattr(args, "fp16", False) else torch.bfloat16
 
 
 def is_hf_checkpoint(path: str | None) -> bool:
@@ -46,39 +41,19 @@ def initial_weights_path(args) -> str:
     return args.hf_checkpoint
 
 
-def build_empty_model(hf_config, attn_implementation: str):
-    """Instantiate the architecture on the meta device (no memory, no initialization)."""
-    from transformers import AutoModelForCausalLM
-
-    with torch.device("meta"):
-        return AutoModelForCausalLM.from_config(
-            hf_config, dtype=torch.float32, attn_implementation=attn_implementation, trust_remote_code=True
-        )
-
-
-def load_full_state_dict(path: str, attn_implementation: str) -> dict[str, torch.Tensor]:
-    """Read an HF checkpoint on CPU in fp32 (the master-weight dtype)."""
-    from transformers import AutoModelForCausalLM
-
-    model = AutoModelForCausalLM.from_pretrained(
-        path, dtype=torch.float32, attn_implementation=attn_implementation, trust_remote_code=True
-    )
-    return model.state_dict()
-
-
 def apply_fsdp2(model, mesh, args) -> torch.nn.Module:
     """Shard every decoder layer, then the root module (embeddings, final norm, LM head)."""
     from torch.distributed.fsdp import CPUOffloadPolicy, MixedPrecisionPolicy, fully_shard
 
     layer_cls_to_wrap = set(model._no_split_modules or [])
     assert layer_cls_to_wrap, f"{type(model).__name__} does not declare _no_split_modules"
-    reduce_dtype = _DTYPES[getattr(args, "fsdp_reduce_dtype", "fp32")]
+    reduce_dtype = _DTYPES[args.fsdp_reduce_dtype]
     fsdp_kwargs = {
         "mesh": mesh,
         "mp_policy": MixedPrecisionPolicy(param_dtype=resolve_param_dtype(args), reduce_dtype=reduce_dtype),
-        "reshard_after_forward": getattr(args, "fsdp_reshard_after_forward", True),
+        "reshard_after_forward": args.fsdp_reshard_after_forward,
     }
-    if getattr(args, "fsdp_cpu_offload", False):
+    if args.fsdp_cpu_offload:
         fsdp_kwargs["offload_policy"] = CPUOffloadPolicy()
 
     tie = getattr(model.config, "tie_word_embeddings", False)
@@ -108,10 +83,13 @@ def build_fsdp_model(args, hf_config, weights_path: str, mesh, device: torch.dev
         )
         full_state = model.state_dict()
     else:
-        model = build_empty_model(hf_config, attn)
+        with torch.device("meta"):
+            model = AutoModelForCausalLM.from_config(
+                hf_config, dtype=torch.float32, attn_implementation=attn, trust_remote_code=True
+            )
         full_state = {}
 
-    if getattr(args, "fsdp_gradient_checkpointing", False):
+    if args.fsdp_gradient_checkpointing:
         model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
     model.config.use_cache = False
 
@@ -121,7 +99,7 @@ def build_fsdp_model(args, hf_config, weights_path: str, mesh, device: torch.dev
     else:
         model.to_empty(device=device)
 
-    cpu_offload = getattr(args, "fsdp_cpu_offload", False)
+    cpu_offload = args.fsdp_cpu_offload
     set_model_state_dict(
         model,
         full_state,
@@ -139,10 +117,15 @@ def build_fsdp_model(args, hf_config, weights_path: str, mesh, device: torch.dev
 
 
 def load_hf_weights_into(model, path: str, attn_implementation: str, cpu_offload: bool = False) -> None:
-    """Overwrite the sharded model with an HF checkpoint read on rank 0."""
+    """Overwrite the sharded model with an HF checkpoint read on rank 0 (in fp32, the master dtype)."""
     from torch.distributed.checkpoint.state_dict import StateDictOptions, set_model_state_dict
+    from transformers import AutoModelForCausalLM
 
-    full_state = load_full_state_dict(path, attn_implementation) if dist.get_rank() == 0 else {}
+    full_state = {}
+    if dist.get_rank() == 0:
+        full_state = AutoModelForCausalLM.from_pretrained(
+            path, dtype=torch.float32, attn_implementation=attn_implementation, trust_remote_code=True
+        ).state_dict()
     set_model_state_dict(
         model,
         full_state,

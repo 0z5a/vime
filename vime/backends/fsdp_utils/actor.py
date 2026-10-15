@@ -46,7 +46,6 @@ from .model import (
     load_hf_weights_into,
     move_optimizer_state,
 )
-from .parallel_state import initialize_data_parallel_state
 from .trainer import FSDPTrainer, move_rollout_data_to_device
 from .update_weight import FSDPWeightUpdater
 
@@ -70,7 +69,18 @@ class FSDPTrainRayActor(TrainRayActor):
             raise NotImplementedError("The fsdp2 backend has no Megatron OPD teacher; use --opd-type vllm.")
 
         super().init(args, role, with_ref, with_opd_teacher)
-        initialize_data_parallel_state(args)
+        # The loss/advantage/metric helpers shared with the Megatron backend read
+        # their process groups from megatron.core.mpu; register this trainer's
+        # layout there: pure data parallelism over every rank.
+        from megatron.core import mpu
+
+        mpu.initialize_model_parallel(
+            tensor_model_parallel_size=1,
+            pipeline_model_parallel_size=1,
+            context_parallel_size=1,
+            distributed_timeout_minutes=args.distributed_timeout_minutes,
+            create_gloo_process_groups=True,
+        )
         self.device = torch.device(accelerator.device_type(), accelerator.current_device())
         self.train_parallel_config = {
             "dp_size": dist.get_world_size(),
@@ -176,7 +186,7 @@ class FSDPTrainRayActor(TrainRayActor):
             self.prof.step(rollout_id=rollout_id)
 
         train_data_utils.save_debug_train_data(self.args, rollout_id=rollout_id, rollout_data=rollout_data)
-        train_metric_utils.log_perf_data(rollout_id, self.args, extra_metrics=self.weight_updater.pop_metrics())
+        train_metric_utils.log_perf_data(rollout_id, self.args)
 
         if self.args.offload_train:
             del rollout_data
@@ -243,4 +253,3 @@ class FSDPTrainRayActor(TrainRayActor):
             self.trainer.model, path, self.args.fsdp_attn_implementation, cpu_offload=self.args.fsdp_cpu_offload
         )
         self.trainer.backup.backup(model_tag)
-        self.trainer.active_tag = model_tag

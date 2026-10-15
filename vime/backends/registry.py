@@ -29,13 +29,6 @@ _TRAIN_BACKENDS: dict[str, TrainBackend] = {
 }
 
 
-def register_train_backend(name: str, actor: str, arguments: str | None = None) -> None:
-    """Add a backend. Must run before ``parse_args`` so ``--train-backend`` accepts it."""
-    if name in _TRAIN_BACKENDS:
-        raise ValueError(f"Training backend {name!r} is already registered")
-    _TRAIN_BACKENDS[name] = TrainBackend(actor=actor, arguments=arguments)
-
-
 def train_backend_names() -> list[str]:
     return list(_TRAIN_BACKENDS)
 

@@ -39,11 +39,12 @@ TRAIN_KEYS = [
     "teacher_log_probs",
     "rollout_mask_sums",
 ]
-ROLLOUT_TOP_P_TOKEN_KEYS = ["rollout_top_p_token_ids", "rollout_top_p_token_offsets"]
 
 
 def _with_rollout_top_p_token_keys(args, keys: list[str]) -> list[str]:
-    return keys + ROLLOUT_TOP_P_TOKEN_KEYS if args.rollout_top_p != 1.0 else keys
+    from vime.backends.megatron_utils.loss import ROLLOUT_TOP_P_TOKEN_KEYS
+
+    return [*keys, *ROLLOUT_TOP_P_TOKEN_KEYS] if args.rollout_top_p != 1.0 else keys
 
 
 def move_rollout_data_to_device(rollout_data: dict, device: torch.device) -> dict:
@@ -74,14 +75,12 @@ class FSDPTrainer:
         self.scheduler = scheduler
         self.device = torch.device(device)
         self.backup = ShardBackup(model)
-        self.active_tag = "actor"
         self.global_step = 0
 
     def switch_model(self, tag: str) -> None:
         if tag not in self.backup.tags:
             raise ValueError(f"Cannot switch to unknown model tag: {tag}")
         self.backup.restore(tag)
-        self.active_tag = tag
 
     def forward_logits(self, packed) -> torch.Tensor:
         # use_cache=False is required: with a KV cache HF skips the per-sample

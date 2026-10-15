@@ -67,14 +67,6 @@ def checkpoint_dir(root: str | Path, rollout_id: int) -> Path:
     return Path(root).expanduser() / f"iter_{rollout_id:07d}"
 
 
-def is_fsdp_checkpoint(root: str | Path | None, step: int | None = None) -> bool:
-    if root is None or not (Path(root) / TRACKER).exists():
-        return False
-    if step is None:
-        step = int((Path(root) / TRACKER).read_text().strip())
-    return (checkpoint_dir(root, step) / "model" / ".metadata").exists()
-
-
 def _rng_state() -> dict:
     state = {"python": random.getstate(), "numpy": np.random.get_state(), "torch": torch.get_rng_state()}
     if torch.cuda.is_available():
@@ -100,13 +92,13 @@ def save(trainer, rollout_id: int) -> Path:
     dist.barrier()
 
     dcp.save({"model": _ModelState(trainer.model)}, checkpoint_id=str(directory / "model"))
-    save_optim = not getattr(args, "no_save_optim", False)
+    save_optim = not args.no_save_optim
     if save_optim:
         dcp.save(
             {"optimizer": _OptimizerState(trainer.model, trainer.optimizer)},
             checkpoint_id=str(directory / "optimizer"),
         )
-    if not getattr(args, "no_save_rng", False):
+    if not args.no_save_rng:
         rng_dir = directory / "rng"
         if dist.get_rank() == 0:
             rng_dir.mkdir(exist_ok=True)
@@ -141,10 +133,10 @@ def load(trainer) -> int | None:
     Returns ``None`` when ``--load`` has no tracker (a fresh start from HF weights).
     """
     args = trainer.args
-    root = getattr(args, "load", None)
+    root = args.load
     if root is None or not (Path(root) / TRACKER).exists():
         return None
-    step = args.ckpt_step if getattr(args, "ckpt_step", None) is not None else int((Path(root) / TRACKER).read_text())
+    step = args.ckpt_step if args.ckpt_step is not None else int((Path(root) / TRACKER).read_text())
     directory = checkpoint_dir(root, step)
     if not (directory / "model" / ".metadata").exists():
         raise ValueError(
@@ -153,7 +145,7 @@ def load(trainer) -> int | None:
         )
 
     dcp.load({"model": _ModelState(trainer.model)}, checkpoint_id=str(directory / "model"))
-    if not getattr(args, "no_load_optim", False):
+    if not args.no_load_optim:
         if (directory / "optimizer" / ".metadata").exists():
             dcp.load(
                 {"optimizer": _OptimizerState(trainer.model, trainer.optimizer)},
@@ -164,7 +156,7 @@ def load(trainer) -> int | None:
         if (directory / "scheduler.pt").exists():
             trainer.scheduler.load_state_dict(torch.load(directory / "scheduler.pt", weights_only=True))
     rng_path = directory / "rng" / f"rank_{dist.get_rank()}.pt"
-    if not getattr(args, "no_load_rng", False) and rng_path.exists():
+    if not args.no_load_rng and rng_path.exists():
         _set_rng_state(torch.load(rng_path, weights_only=False))
 
     meta_path = directory / "meta.json"

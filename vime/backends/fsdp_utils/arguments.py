@@ -61,28 +61,26 @@ def add_fsdp_arguments(parser: argparse.ArgumentParser) -> argparse.ArgumentPars
 def validate_fsdp_args(args, role: str = "actor", hf_config=None) -> None:
     """Reject configurations the FSDP2 backend does not implement yet."""
     unsupported = []
-    if role != "actor" or getattr(args, "use_critic", False):
+    if role != "actor" or args.use_critic:
         unsupported.append("critic training (--use-critic)")
     for flag, size in (
-        ("--tensor-model-parallel-size", getattr(args, "tensor_model_parallel_size", 1)),
-        ("--pipeline-model-parallel-size", getattr(args, "pipeline_model_parallel_size", 1)),
-        ("--context-parallel-size", getattr(args, "context_parallel_size", 1)),
-        ("--expert-model-parallel-size", getattr(args, "expert_model_parallel_size", 1)),
+        ("--tensor-model-parallel-size", args.tensor_model_parallel_size),
+        ("--pipeline-model-parallel-size", args.pipeline_model_parallel_size),
+        ("--context-parallel-size", args.context_parallel_size),
+        ("--expert-model-parallel-size", args.expert_model_parallel_size),
     ):
-        if (size or 1) > 1:
+        if size > 1:
             unsupported.append(f"{flag} > 1 (FSDP2 shards over data parallelism only)")
-    if getattr(args, "use_opd", False) and getattr(args, "opd_type", None) == "megatron":
+    if args.use_opd and args.opd_type == "megatron":
         unsupported.append("--opd-type megatron (use --opd-type vllm)")
-    if getattr(args, "dspark_enabled", False) or getattr(args, "enable_mtp_training", False):
+    if args.dspark_enabled or args.enable_mtp_training:
         unsupported.append("draft/MTP training")
-    if getattr(args, "use_routing_replay", False) or getattr(args, "use_rollout_routing_replay", False):
+    if args.use_routing_replay or args.use_rollout_routing_replay:
         unsupported.append("routing replay")
-    if (
-        getattr(args, "update_weight_transport", "nccl") == "disk"
-        or getattr(args, "update_weight_mode", "full") != "full"
-    ):
+    # Delta sync is validated to require the disk transport.
+    if args.update_weight_transport == "disk":
         unsupported.append("disk/delta weight sync (use --update-weight-transport nccl)")
-    if getattr(args, "async_save", False):
+    if args.async_save:
         unsupported.append("--async-save")
     if hf_config is not None:
         if hasattr(hf_config, "vision_config"):
