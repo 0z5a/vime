@@ -103,11 +103,3 @@ def restore_sample_order(values: Sequence, order: Sequence[int]) -> list:
         assert restored[index] is None, f"sample {index} appears twice in the schedule"
         restored[index] = value
     return restored
-
-
-def unpack_sequences(packed: torch.Tensor, cu_seqlens: torch.Tensor, num_pad_tokens: int = 0) -> list[torch.Tensor]:
-    """Split a packed ``[T, ...]`` tensor back into its samples, dropping the padding tail."""
-    bounds = cu_seqlens.tolist()
-    if num_pad_tokens:
-        bounds = bounds[:-1]
-    return [packed[start:end] for start, end in zip(bounds[:-1], bounds[1:], strict=True)]

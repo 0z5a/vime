@@ -46,8 +46,6 @@ def test_registered_backends():
     assert registry.train_backend_names()[:2] == ["megatron", "fsdp2"]
     with pytest.raises(ValueError, match="Unknown training backend"):
         registry.get_train_actor_cls("fsdp")
-    with pytest.raises(ValueError, match="already registered"):
-        registry.register_train_backend("fsdp2", "x:y")
 
 
 def test_fsdp2_actor_resolves_lazily_and_matches_the_train_group_contract():

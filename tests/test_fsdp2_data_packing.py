@@ -13,12 +13,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from vime.backends.fsdp_utils.data_packing import (
-    iter_step_micro_batches,
-    pack_micro_batch,
-    restore_sample_order,
-    unpack_sequences,
-)
+from vime.backends.fsdp_utils.data_packing import iter_step_micro_batches, pack_micro_batch, restore_sample_order
 from vime.backends.fsdp_utils.lr_scheduler import get_param_scheduler
 from vime.backends.fsdp_utils.model import build_optimizer
 from vime.utils.dp_schedule import build_dp_schedule
@@ -55,7 +50,11 @@ def test_pack_round_trip_keeps_trailing_zero_tokens(pad_to_multiple_of):
         # The padding tail restarts its positions so it never attends to the samples.
         torch.testing.assert_close(packed.position_ids[0, total:], torch.arange(packed.num_pad_tokens))
 
-    segments = unpack_sequences(packed.input_ids[0], packed.cu_seqlens, packed.num_pad_tokens)
+    bounds = packed.cu_seqlens.tolist()
+    assert bounds[-1] == packed.input_ids.numel()
+    if packed.num_pad_tokens:
+        bounds = bounds[:-1]
+    segments = [packed.input_ids[0, start:end] for start, end in zip(bounds[:-1], bounds[1:], strict=True)]
     for segment, index in zip(segments, indices, strict=True):
         torch.testing.assert_close(segment, data["tokens"][index])
     assert segments[-1][-1].item() == 0

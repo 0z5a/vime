@@ -130,6 +130,9 @@ def _args(tmp: Path, **overrides) -> Namespace:
         lr_wsd_decay_iters=None,
         lr_wsd_decay_style=None,
         weight_decay=0.1,
+        start_weight_decay=0.1,
+        end_weight_decay=0.1,
+        weight_decay_incr_style="constant",
         adam_beta1=0.9,
         adam_beta2=0.98,
         adam_eps=1e-8,
@@ -437,7 +440,7 @@ def _state_worker(rank, world, port, tmp):
         checkpoint.save(trainer, rollout_id=3)
         save_root = Path(args.save)
         assert (save_root / checkpoint.TRACKER).read_text() == "3"
-        assert checkpoint.is_fsdp_checkpoint(save_root)
+        assert (save_root / "iter_0000003" / "model" / ".metadata").exists()
         assert (save_root / "iter_0000003" / "rng" / f"rank_{rank}.pt").exists()
 
         # --load now holds the checkpoint; the initial weights come from --ref-load.
