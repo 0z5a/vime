@@ -8,6 +8,11 @@ placements, with the same dataset, seed and number of steps, and compares them:
 - ``frozen``: the pretrained DSpark draft is served but never trained or synced
 - ``online``: the draft is trained during RL and synced every step
 
+``plan --drafts NAME=JSON`` adds an arm per placement that serves another
+pretrained vLLM draft (for example DFlash2 or EAGLE3) without any DSpark
+training: the example runs with ``SPEC_MODE=off`` and the JSON is passed to
+train.py as ``--vllm-speculative-config``.
+
 All arms train the policy with GRPO (``DSPARK_FREEZE_POLICY=0``). In the
 ``online`` arm the draft reads detached policy hidden states and logits, so its
 loss does not reach the policy parameters, and its gradients are clipped by
@@ -30,6 +35,7 @@ import argparse
 import json
 import math
 import os
+import re
 import subprocess
 import sys
 import time
@@ -53,11 +59,31 @@ STEP_TAGS = {
 }
 
 
+def parse_draft(text: str) -> tuple[str, dict]:
+    """``NAME=JSON`` for ``plan --drafts``: a new arm name and a vLLM speculative config with a ``model``."""
+    name, _, config = text.partition("=")
+    if not re.fullmatch(r"[a-z0-9][a-z0-9-]*", name) or name in MODES:
+        raise argparse.ArgumentTypeError(f"draft arm name must be lowercase and not one of {MODES}: {text!r}")
+    spec = json.loads(config)
+    if not isinstance(spec, dict) or "model" not in spec:
+        raise argparse.ArgumentTypeError(f"draft config must be a JSON object with a model: {text!r}")
+    if re.search(r"\s", json.dumps(spec, separators=(",", ":"))):
+        raise argparse.ArgumentTypeError(
+            f"draft config must not contain whitespace (EXTRA_ARGS is word-split): {text!r}"
+        )
+    return name, spec
+
+
 def plan(args) -> dict:
     out = Path(args.out).resolve()
+    # (arm mode, SPEC_MODE for the example, extra train.py arguments)
+    variants = [(mode, mode, []) for mode in args.modes] + [
+        (name, "off", [f"--vllm-speculative-config {json.dumps(spec, separators=(',', ':'))}"])
+        for name, spec in getattr(args, "drafts", [])
+    ]
     arms = []
     for layout in args.layouts:
-        for mode in args.modes:
+        for mode, spec_mode, spec_args in variants:
             name = f"{layout}-{mode}"
             arm_dir = out / name
             extra = [
@@ -73,7 +99,7 @@ def plan(args) -> dict:
                     "script": str(REPO_ROOT / "examples" / "dspark" / f"run-qwen3-4B-dspark-{layout}.sh"),
                     "dir": str(arm_dir),
                     "env": {
-                        "SPEC_MODE": mode,
+                        "SPEC_MODE": spec_mode,
                         "DSPARK_FREEZE_POLICY": "0",
                         "NUM_ROLLOUT": str(args.num_rollout),
                         "NUM_GPUS": str(args.num_gpus),
@@ -81,7 +107,7 @@ def plan(args) -> dict:
                         "EVAL_INTERVAL": "off",
                         "NO_SAVE": "1",
                         "TENSORBOARD_DIR": str(arm_dir / "tensorboard"),
-                        "EXTRA_ARGS": " ".join(extra + args.extra_args),
+                        "EXTRA_ARGS": " ".join(extra + spec_args + args.extra_args),
                         **dict(kv.split("=", 1) for kv in args.env),
                     },
                 }
@@ -232,10 +258,19 @@ def main():
     p.add_argument("--num-rollout", type=int, default=20)
     p.add_argument("--seed", type=int, default=1234)
     p.add_argument("--num-gpus", type=int, default=8, help="GPUs on the node (non-colocate splits them in half)")
-    p.add_argument("--modes", nargs="+", choices=MODES, default=list(MODES))
+    p.add_argument(
+        "--modes", nargs="*", choices=MODES, default=list(MODES), help="built-in arms; pass none to run only --drafts"
+    )
     p.add_argument("--layouts", nargs="+", choices=LAYOUTS, default=list(LAYOUTS))
     p.add_argument("--env", nargs="*", default=[], help="extra KEY=VALUE for every arm, e.g. MODEL_DIR=/data/Qwen3-4B")
     p.add_argument("--extra-args", nargs="*", default=[], help="extra train.py arguments for every arm")
+    p.add_argument(
+        "--drafts",
+        nargs="*",
+        type=parse_draft,
+        default=[],
+        help='extra arms NAME=JSON serving another pretrained vLLM draft, e.g. dflash2=\'{"method":"dflash","model":"/m","num_speculative_tokens":8}\'',
+    )
 
     r = sub.add_parser("run", help="run the arms in plan.json one by one")
     r.add_argument("--out", required=True)

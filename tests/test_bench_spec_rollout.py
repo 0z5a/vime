@@ -57,6 +57,50 @@ def test_plan_covers_every_mode_and_layout_with_the_same_seed(tmp_path):
 
 
 @pytest.mark.unit
+def test_draft_arms_serve_another_draft_without_dspark_training(tmp_path):
+    spec = {"method": "dflash", "model": "/data/Qwen3-4B-speculator.dflash2", "num_speculative_tokens": 8}
+    result = _plan(
+        tmp_path, modes=["off"], layouts=["colocate"], drafts=[bench.parse_draft("dflash2=" + json.dumps(spec))]
+    )
+
+    assert [arm["name"] for arm in result["arms"]] == ["colocate-off", "colocate-dflash2"]
+    draft = result["arms"][1]
+    assert draft["mode"] == "dflash2"
+    # SPEC_MODE=off drops the example's DSpark config and training flags; the draft comes from EXTRA_ARGS.
+    assert draft["env"]["SPEC_MODE"] == "off"
+    words = draft["env"]["EXTRA_ARGS"].split()
+    assert json.loads(words[words.index("--vllm-speculative-config") + 1]) == spec
+    assert "--seed 7" in draft["env"]["EXTRA_ARGS"]
+    assert "--vllm-speculative-config" not in result["arms"][0]["env"]["EXTRA_ARGS"]
+
+
+@pytest.mark.unit
+def test_cli_plans_only_draft_arms_when_modes_is_empty(tmp_path, monkeypatch):
+    spec = '{"method":"dflash","model":"/m/d","num_speculative_tokens":8}'
+    argv = ["bench", "plan", "--out", str(tmp_path), "--layouts", "colocate", "--modes", "--drafts", f"dflash2={spec}"]
+    monkeypatch.setattr(sys, "argv", argv)
+    bench.main()
+
+    arms = json.loads((tmp_path / "plan.json").read_text())["arms"]
+    assert [arm["name"] for arm in arms] == ["colocate-dflash2"]
+
+
+@pytest.mark.unit
+@pytest.mark.parametrize(
+    "text",
+    [
+        'online={"model":"/m"}',  # clashes with a built-in mode
+        'Dflash2={"model":"/m"}',
+        'dflash2={"method":"dflash"}',  # no model
+        'dflash2={"model":"/my models/d"}',  # EXTRA_ARGS is word-split
+    ],
+)
+def test_parse_draft_rejects_bad_arms(text):
+    with pytest.raises(bench.argparse.ArgumentTypeError):
+        bench.parse_draft(text)
+
+
+@pytest.mark.unit
 def test_dry_run_runs_nothing(tmp_path, capsys):
     _plan(tmp_path, layouts=["colocate"])
 
