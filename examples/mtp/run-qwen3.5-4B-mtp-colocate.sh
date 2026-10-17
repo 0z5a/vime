@@ -22,6 +22,9 @@
 #       policy with GRPO.
 #   MTP_K (default 2, the Qwen3.5-4B model card's vLLM setting): speculative
 #       tokens per step.
+#   RM_TYPE (default deepscaler) and CHAT_TEMPLATE_KWARGS (JSON, unset by default):
+#       e.g. CHAT_TEMPLATE_KWARGS='{"enable_thinking":false}' RM_TYPE=math for
+#       short non-thinking answers; deepscaler scores only text after </think>.
 #   NUM_GPUS (default 8) and TP_SIZE (default 1): GPUs on this node and
 #       training tensor parallelism.
 #   NO_SAVE=1 skips checkpoints (including the final one).
@@ -77,7 +80,7 @@ ROLLOUT_ARGS=(
    --label-key label
    --apply-chat-template
    --rollout-shuffle
-   --rm-type deepscaler
+   --rm-type "${RM_TYPE:-deepscaler}"
    --num-rollout "${NUM_ROLLOUT:-200}"
    --rollout-batch-size "${ROLLOUT_BATCH_SIZE:-32}"
    --n-samples-per-prompt "${N_SAMPLES_PER_PROMPT:-8}"
@@ -87,6 +90,10 @@ ROLLOUT_ARGS=(
    --global-batch-size "${GLOBAL_BATCH_SIZE:-256}"
    --balance-data
 )
+
+if [ -n "${CHAT_TEMPLATE_KWARGS:-}" ]; then
+   ROLLOUT_ARGS+=(--apply-chat-template-kwargs "${CHAT_TEMPLATE_KWARGS}")
+fi
 
 PERF_ARGS=(
    --tensor-model-parallel-size "${TP_SIZE:-1}"

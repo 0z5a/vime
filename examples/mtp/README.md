@@ -13,6 +13,11 @@ vLLM every step. The rollout, GRPO and optimizer settings are the same as in the
 | `off` | none | — | `${MODEL_DIR}_torch_dist` |
 
 `MTP_K` defaults to 2, the value the Qwen3.5-4B model card uses with vLLM.
+Qwen3.5-4B reasons at length by default; with a 4096-token response limit most
+dapo-math answers are cut off and score 0, so the policy hardly learns. For
+short answers set `CHAT_TEMPLATE_KWARGS='{"enable_thinking":false}'` together
+with `RM_TYPE=math`: the `deepscaler` reward only scores text after `</think>`,
+which non-thinking answers do not contain.
 Megatron clips the MTP layer's gradients by their own norm, so `train/grad_norm`
 covers the policy only; the MTP loss is logged as `train/mtp_loss`.
 
