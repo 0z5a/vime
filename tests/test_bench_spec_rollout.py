@@ -27,6 +27,7 @@ def _plan(tmp_path, **overrides):
         layouts=list(bench.LAYOUTS),
         env=["MODEL_DIR=/data/Qwen3-4B"],
         extra_args=[],
+        example=bench.DEFAULT_EXAMPLE,
     )
     values.update(overrides)
     return bench.plan(Namespace(**values))
@@ -98,6 +99,16 @@ def test_cli_plans_only_draft_arms_when_modes_is_empty(tmp_path, monkeypatch):
 def test_parse_draft_rejects_bad_arms(text):
     with pytest.raises(bench.argparse.ArgumentTypeError):
         bench.parse_draft(text)
+
+
+@pytest.mark.unit
+def test_example_option_selects_the_mtp_example(tmp_path):
+    result = _plan(tmp_path, layouts=["colocate"], example="examples/mtp/run-qwen3.5-4B-mtp-{layout}.sh")
+
+    for arm in result["arms"]:
+        assert arm["script"].endswith("examples/mtp/run-qwen3.5-4B-mtp-colocate.sh")
+        assert Path(arm["script"]).exists()
+        assert arm["env"]["SPEC_MODE"] == arm["mode"]
 
 
 @pytest.mark.unit

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """On/off benchmark for speculative decoding in RL rollout.
 
-Runs the DSpark example (examples/dspark) in three speculative modes and two
-placements, with the same dataset, seed and number of steps, and compares them:
+Runs the DSpark example (examples/dspark; another example with the same
+SPEC_MODE contract via ``plan --example``, e.g. examples/mtp) in three
+speculative modes and two placements, with the same dataset, seed and number of steps, and compares them:
 
 - ``off``: no speculative decoding
 - ``frozen``: the pretrained DSpark draft is served but never trained or synced
@@ -42,6 +43,7 @@ import time
 from pathlib import Path
 
 MODES = ("off", "frozen", "online")
+DEFAULT_EXAMPLE = "examples/dspark/run-qwen3-4B-dspark-{layout}.sh"
 LAYOUTS = ("colocate", "non-colocate")
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
@@ -96,7 +98,7 @@ def plan(args) -> dict:
                     "name": name,
                     "layout": layout,
                     "mode": mode,
-                    "script": str(REPO_ROOT / "examples" / "dspark" / f"run-qwen3-4B-dspark-{layout}.sh"),
+                    "script": str(REPO_ROOT / args.example.format(layout=layout)),
                     "dir": str(arm_dir),
                     "env": {
                         "SPEC_MODE": spec_mode,
@@ -260,6 +262,11 @@ def main():
     p.add_argument("--num-gpus", type=int, default=8, help="GPUs on the node (non-colocate splits them in half)")
     p.add_argument(
         "--modes", nargs="*", choices=MODES, default=list(MODES), help="built-in arms; pass none to run only --drafts"
+    )
+    p.add_argument(
+        "--example",
+        default=DEFAULT_EXAMPLE,
+        help="example script relative to the repo, {layout} is filled in; it must accept SPEC_MODE off/frozen/online",
     )
     p.add_argument("--layouts", nargs="+", choices=LAYOUTS, default=list(LAYOUTS))
     p.add_argument("--env", nargs="*", default=[], help="extra KEY=VALUE for every arm, e.g. MODEL_DIR=/data/Qwen3-4B")
