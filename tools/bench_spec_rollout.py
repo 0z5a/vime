@@ -10,8 +10,8 @@ placements, with the same dataset, seed and number of steps, and compares them:
 
 All arms train the policy with GRPO (``DSPARK_FREEZE_POLICY=0``). In the
 ``online`` arm the draft reads detached policy hidden states and logits, so its
-loss does not reach the policy parameters; the one coupling left is the shared
-optimizer's global gradient-norm clipping. No arm writes checkpoints
+loss does not reach the policy parameters, and its gradients are clipped by
+their own norm rather than the policy's. No arm writes checkpoints
 (``NO_SAVE=1``). Metrics come from each arm's TensorBoard log; an arm that ends
 without TensorBoard events counts as failed.
 
@@ -195,8 +195,8 @@ def render(rows: list[dict], plan_data: dict, warmup: int) -> str:
         "",
         f"Seed {plan_data['seed']}; means over rollout steps after the first {warmup}. "
         "Speedups divide the `off` arm's time by the arm's time (same placement). "
-        "All arms train the policy; in `online` the draft loss is detached from it but "
-        "shares the optimizer's gradient-norm clipping.",
+        "All arms train the policy; in `online` the draft loss is detached from it and "
+        "the draft's gradients are clipped by their own norm.",
         "",
         "| " + " | ".join(header for _, header, _ in COLUMNS) + " |",
         "| " + " | ".join("---" if key == "arm" else "---:" for key, _, _ in COLUMNS) + " |",
