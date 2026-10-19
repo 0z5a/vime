@@ -52,6 +52,8 @@ def vllm_args() -> SimpleNamespace:
         use_rollout_routing_replay=False,
         rollout_top_p=1.0,
         rollout_health_check_timeout=600.0,
+        update_weight_init_timeout=600.0,
+        update_weight_request_timeout=1800.0,
         vllm_pipeline_parallel_size=1,
         vllm_prefill_context_parallel_size=1,
         vllm_data_parallel_size=1,
@@ -134,6 +136,36 @@ def test_flush_cache_times_out_after_unsuccessful_resets(vllm_engine, monkeypatc
         vllm_engine.flush_cache()
 
     assert sleeps == [1] * 60
+
+
+@pytest.mark.unit
+def test_weight_transfer_requests_carry_their_timeouts(vllm_engine, monkeypatch):
+    vllm_engine.args.update_weight_init_timeout = 11.0
+    vllm_engine.args.update_weight_request_timeout = 22.0
+    seen = []
+
+    def fake_post(url, json=None, timeout=None, **kwargs):
+        seen.append((url.rsplit("/", 1)[-1], timeout))
+        return _MockResponse(json_data={})
+
+    monkeypatch.setattr(mod.requests, "post", fake_post)
+    vllm_engine.init_weight_transfer_engine({"init_info": {}})
+    vllm_engine.init_weights_update_group("127.0.0.1", 1234, 1, 2, "group", "nccl")
+    vllm_engine.start_weight_update()
+    vllm_engine.start_draft_weight_update()
+    vllm_engine.update_weights({"names": []})
+    vllm_engine.update_weights_from_distributed([], [], [], weight_version="1")
+    vllm_engine.finish_weight_update(weight_version="1")
+
+    assert seen == [
+        ("init_weight_transfer_engine", 11.0),
+        ("init_weight_transfer_engine", 11.0),
+        ("start_weight_update", 22.0),
+        ("start_draft_weight_update", 22.0),
+        ("update_weights", 22.0),
+        ("update_weights", 22.0),
+        ("finish_weight_update", 22.0),
+    ]
 
 
 @pytest.mark.unit
@@ -459,7 +491,7 @@ def test_get_base_gpu_id_colocate(vllm_args):
 def test_start_weight_update_posts_four_phase_endpoint(vllm_engine, monkeypatch):
     calls: list[tuple] = []
 
-    def fake_post(endpoint: str, payload: dict):
+    def fake_post(endpoint: str, payload: dict, **kwargs):
         calls.append((endpoint, payload))
         return {"ok": True}
 
@@ -477,7 +509,7 @@ def test_start_weight_update_posts_four_phase_endpoint(vllm_engine, monkeypatch)
 def test_start_draft_weight_update_posts_empty_body(vllm_engine, monkeypatch):
     calls: list[tuple] = []
 
-    def fake_post(endpoint: str, payload: dict):
+    def fake_post(endpoint: str, payload: dict, **kwargs):
         calls.append((endpoint, payload))
         return {"ok": True}
 
@@ -493,7 +525,7 @@ def test_start_draft_weight_update_posts_empty_body(vllm_engine, monkeypatch):
 def test_finish_weight_update_posts_empty_body(vllm_engine, monkeypatch):
     calls: list[tuple] = []
 
-    def fake_post(endpoint: str, payload: dict):
+    def fake_post(endpoint: str, payload: dict, **kwargs):
         calls.append((endpoint, payload))
         return {"done": True}
 
@@ -509,7 +541,7 @@ def test_finish_weight_update_posts_empty_body(vllm_engine, monkeypatch):
 def test_finish_weight_update_commits_version(vllm_engine, monkeypatch):
     calls: list[tuple] = []
 
-    def fake_post(endpoint: str, payload: dict):
+    def fake_post(endpoint: str, payload: dict, **kwargs):
         calls.append((endpoint, payload))
         return {"done": True}
 
@@ -524,7 +556,7 @@ def test_finish_weight_update_commits_version(vllm_engine, monkeypatch):
 def test_update_weights_posts_ipc_payload(vllm_engine, monkeypatch):
     posted: list[tuple[str, dict]] = []
 
-    def fake_post(endpoint: str, payload: dict):
+    def fake_post(endpoint: str, payload: dict, **kwargs):
         posted.append((endpoint, payload))
         return {"ok": True}
 
@@ -557,7 +589,7 @@ def test_update_weights_posts_ipc_payload(vllm_engine, monkeypatch):
 def test_update_weights_serializes_rank_local_payloads(vllm_engine, monkeypatch):
     posted: list[tuple[str, dict]] = []
 
-    def fake_post(endpoint: str, payload: dict):
+    def fake_post(endpoint: str, payload: dict, **kwargs):
         posted.append((endpoint, payload))
         return {"ok": True}
 
@@ -591,7 +623,7 @@ def test_update_weights_serializes_rank_local_payloads(vllm_engine, monkeypatch)
 def test_update_weights_does_not_advance_version_on_failure(vllm_engine, monkeypatch):
     """Chunk POST failure must not modify the engine's committed version cache."""
 
-    def fake_post_fail(endpoint: str, payload: dict) -> dict:
+    def fake_post_fail(endpoint: str, payload: dict, **kwargs) -> dict:
         raise RuntimeError("simulated POST failure")
 
     monkeypatch.setattr(vllm_engine, "_make_request", fake_post_fail)
@@ -632,7 +664,7 @@ def test_get_weight_version_preserves_uninitialized_none(vllm_engine, monkeypatc
 def test_set_weight_version_updates_vllm_and_local_cache(vllm_engine, monkeypatch):
     calls: list[tuple] = []
 
-    def fake_post(endpoint: str, payload: dict):
+    def fake_post(endpoint: str, payload: dict, **kwargs):
         calls.append((endpoint, payload))
         return {"success": True}
 
@@ -655,7 +687,7 @@ def test_get_weight_version_worker_rank_returns_none_without_raise(vllm_engine):
 def test_update_weights_from_distributed_posts_update_weights_without_checkpoint_flag(vllm_engine, monkeypatch):
     calls: list[dict] = []
 
-    def fake_make_request(endpoint: str, payload: dict) -> dict:
+    def fake_make_request(endpoint: str, payload: dict, **kwargs) -> dict:
         calls.append(payload.get("update_info", payload))
         return {"ok": True}
 
@@ -824,7 +856,7 @@ def test_resume_memory_occupation_posts_wake_even_when_sleep_disabled(vllm_engin
 def test_init_weights_update_group_posts_init_info(vllm_engine, monkeypatch):
     calls: list[tuple] = []
 
-    def fake_post(endpoint: str, payload: dict):
+    def fake_post(endpoint: str, payload: dict, **kwargs):
         calls.append((endpoint, payload))
         return {"initialized": True}
 
