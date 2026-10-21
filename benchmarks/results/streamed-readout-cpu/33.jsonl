@@ -1,0 +1,56 @@
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": false, "arm": "dense", "seconds": 0.0003072500694543123, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": false, "arm": "streamed", "seconds": 0.0010851661209017038, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": false, "arm": "streamed", "seconds": 0.000651499954983592, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": false, "arm": "dense", "seconds": 0.0002994581591337919, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": false, "arm": "dense", "seconds": 0.00026454217731952667, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": false, "arm": "streamed", "seconds": 0.0006198750343173742, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": false, "arm": "streamed", "seconds": 0.0006084581837058067, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": false, "arm": "dense", "seconds": 0.0002669580280780792, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": false, "arm": "dense", "seconds": 0.00026487489230930805, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": false, "arm": "streamed", "seconds": 0.0006020001601427794, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": false, "arm": "streamed", "seconds": 0.0006953750271350145, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": false, "arm": "dense", "seconds": 0.0002814158797264099, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": false, "arm": "dense", "saved_intermediate_bytes": 262144}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": false, "arm": "streamed", "saved_intermediate_bytes": 1024}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": true, "arm": "dense", "seconds": 0.0005893330089747906, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": true, "arm": "streamed", "seconds": 0.0013527499977499247, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": true, "arm": "streamed", "seconds": 0.001335458131507039, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": true, "arm": "dense", "seconds": 0.000590750016272068, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": true, "arm": "dense", "seconds": 0.0005904999561607838, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": true, "arm": "streamed", "seconds": 0.0014342919457703829, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": true, "arm": "streamed", "seconds": 0.0013403750490397215, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": true, "arm": "dense", "seconds": 0.0006007920019328594, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": true, "arm": "dense", "seconds": 0.000587458023801446, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": true, "arm": "streamed", "seconds": 0.0013439999893307686, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": true, "arm": "streamed", "seconds": 0.0013208340387791395, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": true, "arm": "dense", "seconds": 0.0005831250455230474, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": true, "arm": "dense", "saved_intermediate_bytes": 786432}
+{"seed": 33, "rows": 64, "vocabulary": 1024, "width": 128, "tile": 256, "full": true, "arm": "streamed", "saved_intermediate_bytes": 1024}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": false, "arm": "dense", "seconds": 0.004252416081726551, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": false, "arm": "streamed", "seconds": 0.005849082954227924, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": false, "arm": "streamed", "seconds": 0.0059083751402795315, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": false, "arm": "dense", "seconds": 0.004483958939090371, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": false, "arm": "dense", "seconds": 0.0046253749169409275, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": false, "arm": "streamed", "seconds": 0.006399041041731834, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": false, "arm": "streamed", "seconds": 0.01086620893329382, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": false, "arm": "dense", "seconds": 0.004360708175227046, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": false, "arm": "dense", "seconds": 0.004285709001123905, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": false, "arm": "streamed", "seconds": 0.005823125131428242, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": false, "arm": "streamed", "seconds": 0.005782916909083724, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": false, "arm": "dense", "seconds": 0.004693125141784549, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": false, "arm": "dense", "saved_intermediate_bytes": 4194304}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": false, "arm": "streamed", "saved_intermediate_bytes": 4096}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": true, "arm": "dense", "seconds": 0.009889667155221105, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": true, "arm": "streamed", "seconds": 0.015013790922239423, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": true, "arm": "streamed", "seconds": 0.015132208121940494, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": true, "arm": "dense", "seconds": 0.009821624960750341, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": true, "arm": "dense", "seconds": 0.009668832877650857, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": true, "arm": "streamed", "seconds": 0.015027167042717338, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": true, "arm": "streamed", "seconds": 0.015134250046685338, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": true, "arm": "dense", "seconds": 0.00982975005172193, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": true, "arm": "dense", "seconds": 0.010076125152409077, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": true, "arm": "streamed", "seconds": 0.015389959095045924, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": true, "arm": "streamed", "seconds": 0.015376874944195151, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": true, "arm": "dense", "seconds": 0.009769999887794256, "torch": "2.13.0", "platform": "macOS-26.6.1-arm64-arm-64bit"}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": true, "arm": "dense", "saved_intermediate_bytes": 12582912}
+{"seed": 33, "rows": 256, "vocabulary": 4096, "width": 256, "tile": 512, "full": true, "arm": "streamed", "saved_intermediate_bytes": 4096}

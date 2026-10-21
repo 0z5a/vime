@@ -1,6 +1,7 @@
 """Differentiable Huginn with replayed noise and current-weight prelude inputs."""
 
 import math
+from collections.abc import Iterator
 from functools import partial
 from typing import Literal
 
@@ -97,7 +98,9 @@ class HuginnMegatronModel(MegatronModule):
             )
         return hidden
 
-    def _sequence(self, tokens: torch.Tensor, seed: int) -> torch.Tensor:
+    def iter_readout_states(
+        self, tokens: torch.Tensor, *, all_loops: bool = False, latent_seed: int = 0
+    ) -> Iterator[torch.Tensor]:
         width = self.huginn_config.n_embd
         frequencies = self.freqs_cis[0, : len(tokens)]
         injection = self._blocks(
@@ -107,16 +110,20 @@ class HuginnMegatronModel(MegatronModule):
         )
         state = replay_huginn_latents(
             width,
-            [seed] * len(tokens),
+            [latent_seed] * len(tokens),
             range(len(tokens)),
             dtype=injection.dtype,
             device=tokens.device,
         )
-        for _ in range(self.huginn_config.mean_recurrence):
+        for depth in range(self.huginn_config.mean_recurrence):
             state = self.transformer.adapter(torch.cat((state, injection), dim=-1))
             state = self._blocks(self.transformer.core_block, state, frequencies)
-        state = self._blocks(self.transformer.coda, self.transformer.ln_f(state), frequencies)
-        state = self.transformer.ln_f(state)
+            if all_loops or depth + 1 == self.huginn_config.mean_recurrence:
+                readout = self._blocks(self.transformer.coda, self.transformer.ln_f(state), frequencies)
+                yield self.transformer.ln_f(readout)
+
+    def _sequence(self, tokens: torch.Tensor, seed: int) -> torch.Tensor:
+        state = next(self.iter_readout_states(tokens, latent_seed=seed))
         if self.role == "critic":
             return self.output_layer(state)[0]
         # Drain the tied output gradient before recurrent backward reaches wte.

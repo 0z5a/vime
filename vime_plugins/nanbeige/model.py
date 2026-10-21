@@ -1,5 +1,6 @@
 """Differentiable Nanbeige physical layers with independent attention per loop."""
 
+from collections.abc import Iterator
 from functools import partial
 from typing import Literal
 
@@ -52,10 +53,12 @@ class NanbeigeMegatronModel(OuroMegatronModel):
         hidden = hidden + attention.o_proj(attended)
         return hidden + layer.mlp(layer.post_attention_layernorm(hidden))
 
-    def _sequence(self, tokens: torch.Tensor) -> torch.Tensor:
+    def iter_readout_states(
+        self, tokens: torch.Tensor, *, all_loops: bool = False, latent_seed: int = 0
+    ) -> Iterator[torch.Tensor]:
         hidden = self.model.embed_tokens(tokens)
         cos, sin = self.model.rotary_emb(hidden, torch.arange(tokens.numel(), device=tokens.device))
-        for _ in range(self.loop_budget):
+        for depth in range(self.loop_budget):
             for layer in self.model.layers:
                 forward = partial(self._layer, layer)
                 # Bound shared-weight gradient temporaries to one physical layer.
@@ -66,6 +69,11 @@ class NanbeigeMegatronModel(OuroMegatronModel):
                 )
             if not self.nanbeige_config.skip_loop_final_norm:
                 hidden = self.model.norm(hidden)
+            if all_loops or depth + 1 == self.loop_budget:
+                yield hidden
+
+    def _sequence(self, tokens: torch.Tensor) -> torch.Tensor:
+        hidden = next(self.iter_readout_states(tokens))
         return (
             checkpoint(self._readout, hidden, use_reentrant=True)
             if self.recompute and torch.is_grad_enabled()
