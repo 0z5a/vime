@@ -7,8 +7,6 @@ from typing import Any
 
 import yaml
 
-from vime.backends.vllm_utils.arguments import validate_args as vllm_validate_args
-from vime.backends.vllm_utils.arguments import vllm_parse_args
 from vime.backends.vllm_utils.external import apply_external_engine_info_to_args
 from vime.observability.logging_utils import configure_logger
 from vime.utils.eval_config import EvalDatasetConfig, build_eval_dataset_configs, ensure_dataset_list
@@ -87,7 +85,10 @@ def get_vime_extra_args_provider(add_custom_arguments=None):
                 action=argparse.BooleanOptionalAction,
                 help=(
                     "Whether to offload the training actor to CPU during training. "
-                    "This will always be true when --colocate is set."
+                    "Defaults to true when --colocate is set, because the training state "
+                    "usually does not fit next to the rollout engines. --no-offload-train "
+                    "is honoured when both do fit, and skips the memory-saver copy that "
+                    "otherwise dominates a colocate step."
                 ),
             )
             parser.add_argument(
@@ -308,6 +309,12 @@ def get_vime_extra_args_provider(add_custom_arguments=None):
                 action="store_true",
                 default=False,
             )
+            parser.add_argument("--draft-feature-mode", choices=("off", "collect-only"), default="off")
+            parser.add_argument("--draft-feature-output-dir", type=str, default=None)
+            parser.add_argument("--draft-feature-run-id", type=str, default=None)
+            parser.add_argument("--draft-feature-max-tokens", type=int, default=128)
+            parser.add_argument("--draft-feature-max-batches", type=int, default=8)
+            parser.add_argument("--draft-feature-max-bytes", type=int, default=1 << 30)
 
             return parser
 
@@ -1734,6 +1741,8 @@ def parse_args(add_custom_arguments=None):
     # Skipped when vllm servers are not needed.
     vllm_ns = None
     if not skip_vllm:
+        from vime.backends.vllm_utils.arguments import vllm_parse_args
+
         vllm_ns = vllm_parse_args()
 
     # Phase 2: Parse megatron + vime args.
@@ -1762,6 +1771,8 @@ def parse_args(add_custom_arguments=None):
         megatron_validate_args(args)
 
     if not args.debug_train_only:
+        from vime.backends.vllm_utils.arguments import validate_args as vllm_validate_args
+
         vllm_validate_args(args)
 
     return args
@@ -1891,6 +1902,33 @@ def _resolve_eval_datasets(args) -> list[EvalDatasetConfig]:
 def vime_validate_args(args):
     args.eval_datasets = _resolve_eval_datasets(args)
     args.dspark_enabled = (getattr(args, "vllm_speculative_config", None) or {}).get("method") == "dspark"
+
+    if args.draft_feature_mode == "collect-only":
+        if args.micro_batch_size != 1:
+            raise ValueError("collect-only draft features require micro_batch_size=1")
+        if not args.draft_feature_output_dir or not args.draft_feature_run_id:
+            raise ValueError("collect-only draft features require output dir and run id")
+        if min(args.draft_feature_max_tokens, args.draft_feature_max_batches, args.draft_feature_max_bytes) <= 0:
+            raise ValueError("draft feature budgets must be positive")
+        if (
+            args.actor_num_nodes,
+            args.actor_num_gpus_per_node,
+            args.tensor_model_parallel_size,
+            args.pipeline_model_parallel_size,
+            args.context_parallel_size,
+        ) != (1, 1, 1, 1, 1) or any(
+            value is not None
+            for value in (
+                args.num_layers_per_virtual_pipeline_stage,
+                args.num_virtual_stages_per_pipeline_rank,
+                args.pipeline_model_parallel_layout,
+            )
+        ):
+            raise ValueError("collect-only draft features support TP=PP=CP=DP=1 without VPP")
+        if args.keep_old_actor or args.use_rollout_logprobs or not args.compute_advantages_and_returns:
+            raise ValueError("collect-only draft features require an actor log-prob forward")
+        if args.update_weights_interval != 1:
+            raise ValueError("collect-only draft features require publication after every actor update")
 
     if args.rollout_temperature <= 0:
         raise ValueError(
@@ -2077,6 +2115,12 @@ def vime_validate_args(args):
                 logger.info("Ignoring --no-offload-rollout because colocated --release-train needs rollout offload.")
             args.offload_rollout = True
         elif args.offload_train is None:
+            # A default, not a requirement: an explicit --no-offload-train is kept, and
+            # skips the memory-saver copy when the training state and rollout engines
+            # both fit in device memory. See the colocate section of the usage guide
+            # for the measured costs and configuration trade-offs.
+            # The trade-off is that the rollout engines then have to fit next to the
+            # resident training state instead of into the memory it released.
             args.offload_train = True
         if args.offload_rollout is None:
             args.offload_rollout = True
