@@ -114,6 +114,13 @@ def test_vllm_fp8_weight_transfer_defaults_to_raw_ue8m0_scale(monkeypatch):
             (16, 8),
         ),
         (
+            qwen_hf_tensor,
+            convert_qwen2_to_hf,
+            "qwen3",
+            "module.module.decoder.layers.0.input_layernorm.weight",
+            (8,),
+        ),
+        (
             qwen_moe_hf_tensor,
             convert_qwen3moe_to_hf,
             "qwen3_moe",
