@@ -782,15 +782,6 @@ async def abort(args: Namespace, rollout_id: int) -> list[list[Sample]]:
             aborted_samples.append(group)
             count += len(group)
 
-    if server_abort:
-        # Local pending tasks being empty does not prove the engines are idle:
-        # the abort sweep is best-effort and a late request can still be queued
-        # server-side. Report what the engines actually say so the gap is
-        # observable; enforcing it is a separate, deliberate step.
-        report = await verify_server_drain(urls, deadline_s=_ABORT_DRAIN_VERIFY_DEADLINE_S)
-        if not report.drained:
-            logger.warning(f"Rollout engines not confirmed idle after abort: {report.describe()}")
-
     if args.partial_rollout:
         logger.info(f"Collected {count} partial samples into the data buffer")
 

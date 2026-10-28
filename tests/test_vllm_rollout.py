@@ -1077,13 +1077,6 @@ def test_eval_rollout_passk_requests_do_not_share_session_ids(patch_generate_sta
 def test_abort_deletes_inflight_without_pause_resume(patch_generate_state, monkeypatch, rollout_external):
     state = _PatchedGenerateState(_rollout_args())
     state.active_server_generations = 1
-    monkeypatch.setattr(
-        mod,
-        "verify_server_drain",
-        AsyncMock(
-            return_value=server_control.DrainReport((server_control.EngineDrainState("http://w0:9000", 0),), 0, 5)
-        ),
-    )
     monkeypatch.setattr(mod, "GenerateState", lambda args: state)
 
     aborted = asyncio.Event()
