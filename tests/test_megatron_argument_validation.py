@@ -859,7 +859,6 @@ def collect_args(**overrides):
         ({"draft_feature_max_tokens": 0}, "budgets must be positive"),
         ({"draft_feature_max_batches": -1}, "budgets must be positive"),
         ({"draft_feature_max_bytes": 0}, "budgets must be positive"),
-        ({"keep_old_actor": True}, "actor log-prob forward"),
         ({"use_rollout_logprobs": True}, "actor log-prob forward"),
         ({"compute_advantages_and_returns": False}, "actor log-prob forward"),
         ({"update_weights_interval": 2}, "publication after every actor update"),
