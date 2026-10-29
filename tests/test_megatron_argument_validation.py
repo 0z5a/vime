@@ -748,7 +748,7 @@ def test_colocate_offload_resolution(monkeypatch, colocate, offload_train, relea
         update_weight_transport="disk",
         update_weight_disk_dir="/tmp/weights",
     )
-    module.vime_validate_args(args)
+    args, _ = module.vime_validate_args(args)
     expected_train = False if colocate and release_train else (colocate if offload_train is None else offload_train)
     expected_rollout = True if colocate and release_train else (colocate if offload_rollout is None else False)
     assert args.offload_train is expected_train
