@@ -12,8 +12,14 @@ import sys
 import types
 
 import pytest
+import torch
 
-from vime.backends.megatron_utils.dspark.modeling import DSPARK_GRAD_NORM_GROUP, register_dspark_grad_norm_group
+from vime.backends.megatron_utils.dspark.modeling import (
+    DSPARK_GRAD_NORM_GROUP,
+    dspark_draft_lr_override,
+    is_dspark_draft_parameter,
+    register_dspark_grad_norm_group,
+)
 
 NUM_GPUS = 0
 
@@ -64,3 +70,15 @@ def test_register_is_a_no_op_without_separate_groups(megatron_optimizer):
     optimizer = megatron_optimizer(with_groups=False)
     register_dspark_grad_norm_group()
     assert not hasattr(optimizer, "SEPARATE_GRAD_NORM_GROUPS")
+
+
+def test_draft_lr_override_targets_only_dspark_parameters():
+    draft, mtp, policy = (torch.nn.Parameter(torch.zeros(2)) for _ in range(3))
+    draft.grad_norm_group = DSPARK_GRAD_NORM_GROUP
+    mtp.grad_norm_group = "mtp"
+    assert [is_dspark_draft_parameter(p) for p in (draft, mtp, policy)] == [True, False, False]
+
+    owned = types.SimpleNamespace(dspark_enabled=True, dspark_draft_lr=1e-4, dspark_draft_min_lr=1e-5)
+    assert dspark_draft_lr_override(owned) == {"max_lr": 1e-4, "min_lr": 1e-5}
+    assert dspark_draft_lr_override(types.SimpleNamespace(dspark_enabled=True, dspark_draft_lr=None)) is None
+    assert dspark_draft_lr_override(types.SimpleNamespace(dspark_enabled=False, dspark_draft_lr=1e-4)) is None
