@@ -579,6 +579,17 @@ def register_dspark_grad_norm_group() -> None:
         optimizer.SEPARATE_GRAD_NORM_GROUPS = (*groups, DSPARK_GRAD_NORM_GROUP)
 
 
+def is_dspark_draft_parameter(param: torch.nn.Parameter) -> bool:
+    return getattr(param, "grad_norm_group", None) == DSPARK_GRAD_NORM_GROUP
+
+
+def dspark_draft_lr_override(args) -> dict[str, float] | None:
+    """Megatron param-group override giving the draft its own learning rates, or None to share the policy's."""
+    if not getattr(args, "dspark_enabled", False) or getattr(args, "dspark_draft_lr", None) is None:
+        return None
+    return {"max_lr": args.dspark_draft_lr, "min_lr": args.dspark_draft_min_lr}
+
+
 def attach_dspark_model(model, args, config) -> None:
     dspark_config = DSparkConfig(
         block_size=args.dspark_block_size,
