@@ -668,6 +668,34 @@ def test_vime_validate_args_derives_dspark_from_speculative_method(monkeypatch):
 
 
 @pytest.mark.unit
+def test_vime_validate_args_frozen_draft_keeps_speculation_without_training(monkeypatch):
+    module = load_vime_arguments_module(monkeypatch)
+    args = make_vime_validate_args(vllm_speculative_config={"method": "dspark"}, dspark_freeze_draft=True)
+
+    args, _ = module.vime_validate_args(args)
+
+    assert args.dspark_enabled is False
+    assert args.vllm_speculative_config == {"method": "dspark"}
+
+
+@pytest.mark.unit
+@pytest.mark.parametrize(
+    "overrides, message",
+    [
+        ({"vllm_speculative_config": {"method": "mtp"}}, "requires --vllm-speculative-config"),
+        ({"vllm_speculative_config": None}, "requires --vllm-speculative-config"),
+        ({"vllm_speculative_config": {"method": "dspark"}, "dspark_freeze_policy": True}, "cannot both be set"),
+    ],
+)
+def test_vime_validate_args_rejects_invalid_frozen_draft(monkeypatch, overrides, message):
+    module = load_vime_arguments_module(monkeypatch)
+    args = make_vime_validate_args(dspark_freeze_draft=True, **overrides)
+
+    with pytest.raises(ValueError, match=message):
+        module.vime_validate_args(args)
+
+
+@pytest.mark.unit
 def test_vime_validate_args_rejects_equal_debug_data_paths(monkeypatch):
     module = load_vime_arguments_module(monkeypatch)
     args = make_vime_validate_args(
@@ -748,7 +776,7 @@ def test_colocate_offload_resolution(monkeypatch, colocate, offload_train, relea
         update_weight_transport="disk",
         update_weight_disk_dir="/tmp/weights",
     )
-    module.vime_validate_args(args)
+    args, _ = module.vime_validate_args(args)
     expected_train = False if colocate and release_train else (colocate if offload_train is None else offload_train)
     expected_rollout = True if colocate and release_train else (colocate if offload_rollout is None else False)
     assert args.offload_train is expected_train
@@ -840,7 +868,6 @@ def collect_args(**overrides):
         num_virtual_stages_per_pipeline_rank=None,
         pipeline_model_parallel_layout=None,
         compute_advantages_and_returns=True,
-        update_weights_interval=1,
     )
     values.update(overrides)
     return make_vime_validate_args(**values)
@@ -859,10 +886,8 @@ def collect_args(**overrides):
         ({"draft_feature_max_tokens": 0}, "budgets must be positive"),
         ({"draft_feature_max_batches": -1}, "budgets must be positive"),
         ({"draft_feature_max_bytes": 0}, "budgets must be positive"),
-        ({"keep_old_actor": True}, "actor log-prob forward"),
         ({"use_rollout_logprobs": True}, "actor log-prob forward"),
         ({"compute_advantages_and_returns": False}, "actor log-prob forward"),
-        ({"update_weights_interval": 2}, "publication after every actor update"),
     ],
 )
 def test_collect_only_rejects_before_side_effects(monkeypatch, tmp_path, override, message):
