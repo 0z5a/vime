@@ -34,7 +34,7 @@ from vime.utils.routed_experts import RoutedExpertsLayerRef, RoutedExpertsMicrob
 from vime.utils.routing_replay import RoutingReplay
 from vime.utils.types import RolloutBatch
 
-from ...utils.tensor_backper import TensorBackuper
+from ...utils.tensor_backper import TensorBackuper, tensors_from_backup
 from .checkpoint import load_checkpoint
 from .cp_utils import prepare_routed_experts_for_routing_replay, slice_log_prob_with_cp
 from .data import DataIterator, get_data_iterator
@@ -381,6 +381,7 @@ class MegatronTrainRayActor(TrainRayActor):
         num_microbatches: list[int],
         store_prefix: str = "",
         use_rollout_top_p_replay: bool = True,
+        draft_feature_collector=None,
     ) -> dict[str, list[torch.Tensor]]:
         with timer(f"{store_prefix}log_probs"):
             return forward_only(
@@ -391,6 +392,7 @@ class MegatronTrainRayActor(TrainRayActor):
                 num_microbatches,
                 store_prefix=store_prefix,
                 use_rollout_top_p_replay=use_rollout_top_p_replay,
+                draft_feature_collector=draft_feature_collector,
             )
 
     def train(self, rollout_id: int, rollout_data_ref: Box, external_data=None):
@@ -464,7 +466,6 @@ class MegatronTrainRayActor(TrainRayActor):
                     and not self.args.use_rollout_logprobs
                     and not self.args.get_mismatch_metrics
                     and not self.args.use_critic
-                    and not self.args.keep_old_actor
                     and not self.args.use_opd
                     and (not self.args.use_routing_replay or self.args.use_rollout_routing_replay)
                     and self.args.advantage_estimator != "gspo"
@@ -509,6 +510,13 @@ class MegatronTrainRayActor(TrainRayActor):
                     and (not self.args.use_routing_replay or self.args.use_rollout_routing_replay)
                     and self.args.advantage_estimator != "gspo"
                 )
+                draft_feature_collector = None
+                if self.args.draft_feature_mode == "collect-only":
+                    from .draft_feature_collector import DraftFeatureCollector
+
+                    draft_feature_collector = DraftFeatureCollector(
+                        self.args, unwrap_model(self.model[0]), rollout_id, str(self.weight_updater.weight_version)
+                    )
                 if (
                     not self.args.use_rollout_logprobs or self.args.get_mismatch_metrics
                 ) and not can_reuse_log_probs_in_loss:
@@ -690,14 +698,22 @@ class MegatronTrainRayActor(TrainRayActor):
                 ray.get(self.rollout_manager.clear_updatable_num_new_engines.remote())
 
         with torch_memory_saver.disable() if self.args.offload_train else nullcontext():
+            # The paused training memory cannot be read, so the draft is exported from its CPU backup. The draft
+            # parameters must point back at their DDP buffer views afterwards, or optimizer updates stop reaching them.
+            draft = nullcontext()
             if self.args.dspark_enabled and self.args.offload_train:
-                backup = self.weights_backuper.get("actor")
-                for name, param in named_params_and_buffers(self.args, self.model):
-                    if ".draft_model." in name:
-                        param.data = backup[name].to(param.device)
-            print_memory("before update_weights")
-            self.weight_updater.update_weights()
-            print_memory("after update_weights")
+                draft = tensors_from_backup(
+                    (
+                        (name, param)
+                        for name, param in named_params_and_buffers(self.args, self.model)
+                        if ".draft_model." in name
+                    ),
+                    self.weights_backuper.get("actor"),
+                )
+            with draft:
+                print_memory("before update_weights")
+                self.weight_updater.update_weights()
+                print_memory("after update_weights")
 
         if reconnect_rollout_engines:
             self.sleep()
